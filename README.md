@@ -1,4 +1,4 @@
-# PHP rühmatöö projekt
+# UNILIFE
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 
 ## Tööjuhend
