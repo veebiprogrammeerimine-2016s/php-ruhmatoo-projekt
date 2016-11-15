@@ -1,7 +1,7 @@
 
 
 EESMÄRK:
-	alkohooli hulgimüük
+	Veini hulgimüük/edasimüük
 
 KES:
 	eraisikud
