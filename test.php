@@ -1,6 +1,16 @@
-<?php
+test asin
 
-echo "Hello world";
 
-echo "fugiohi9pgifuyvg";
-?>
+
+
+testi asi gfhgdf hdfh 
+dgfh 
+gdh 
+gfhj gfhgdffg
+h 
+
+
+
+
+
+
