@@ -8,7 +8,7 @@
 1. Tee valmis korralik veebirakendus
 
 ### Nõuded
-
+ SELGE
 1. **README.md sisaldab:**
     * suurelt projekti nime;
     * suurelt projekti veebirakenduse pilt;
