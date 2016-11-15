@@ -24,7 +24,7 @@ muutmine
     * andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
     * **kokkuvõte:** mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
 
-
+lisa
 2. **Veebirakenduse nõuded:**
     * rakendus on terviklik (täidab mingit funktsiooni ja sellega saab midagi teha);
     * terve arenduse ajal on kasutatud _git_'i ja _commit_'ide sõnumid annavad edasi tehtud muudatuste sisu; 
