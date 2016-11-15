@@ -1,3 +1,110 @@
+1) NAME: 		JOKER
+
+2) TARGET:		An online social networking service that enables users to post and read short 255-character jokes.
+
+3) TARGET GROUP: 	Young people, Age 16-28.
+
+4) ALTERNATIVES:	Twitter  - Login Screen, News Feed
+		https://twitter.com/
+		Facebook - Like, Share, Comment
+		https://www.facebook.com/
+		Instagram- User Profile/ Menu-Bar
+		https://www.instagram.com/
+
+5) PAGES / SCREENS:
+
+(HOME - H) (SEARCH - S) (POST - P) (USER - U)
+
+1.______________________
+|***LOGIN & SIGNU-UP****|
+|_______________________|
+|			|
+|			|
+| -Login		|
+| -Sign-Up		|
+|			|
+|			|
+|			|
+|			|
+|			|
+|			|
+|_______________________|
+
+2.______________________
+|*********HOME**********|
+|_______________________|
+|			|
+|			|
+| -Last 24H most liked	|
+| posts on the top!	|
+| -Followed feed	|
+|			|
+| 			|
+| 			|
+|_______________________|
+|  H  |  S  |  P  |  U	|
+|_____|_____|_____|_____|
+
+3.______________________
+|********SEARCH*********|
+|_______________________|
+|			|
+|			|
+| -Search #hashtags	|
+| -Search people	|
+|			|
+|			|
+|			|
+|			|
+|_______________________|
+|  H  |  S  |  P  |  U	|
+|_____|_____|_____|_____|
+
+4.______________________
+|*********POST**********|
+|_______________________|
+|			|
+| -Write 255 char post	|
+| most liked on the top!|
+| -Followed feed	|
+|			|
+| -Username + Text	|
+| -Like, Share, Comment	|
+|			|
+|_______________________|
+|  H  |  S  |  P  |  U	|
+|_____|_____|_____|_____|
+
+5.______________________
+|******USER PROFILE*****|
+|_______________________|
+|			|
+|			|
+| -User profile picture	|
+| -Username		|
+| -User Posts		|
+|			|
+|			|
+|_______________________|
+|  H  |  S  |  P  |  U	|
+|_____|_____|_____|_____|
+
+6) DEVELOPER: Andry Žagars
+
+7) VERSIONS:
+v0.1 - Login / Sign-Up Screen
+v0.2 - Home Screen
+v0.3 - Post Screen
+v0.4 - User Profile
+...
+v1.0 - The Real MVP
+
+8) DATABASE SCHEME:
+...
+
+9) CONCLUSION:
+...
+__________________________
 # PHP rühmatöö projekt
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 
@@ -38,3 +145,5 @@
 * **Stiilijuhend:** [Coding Style Guide](http://www.php-fig.org/psr/psr-2/)
 * **GIT õpetus:** [Become a git guru.](https://www.atlassian.com/git/tutorials/)
 * **Abimaterjale:** [Veebirakenduste loomine PHP ja MySQLi abil](http://minitorn.tlu.ee/~jaagup/kool/java/loeng/veebipr/veebipr1.pdf), [PHP with MySQL Essential Training] (http://www.lynda.com/MySQL-tutorials/PHP-MySQL-Essential-Training/119003-2.html)
+
+
