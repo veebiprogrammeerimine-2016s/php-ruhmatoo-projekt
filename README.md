@@ -1,7 +1,5 @@
 #Anu, Ege, Sandra
 
-// EGE
-
 *Projekti nimi: Tv shows
 
 *Eesmärk: Luua kasutajasõbralik keskkond, kus inimesed saavad end kurssi viia kuupäevadega,
