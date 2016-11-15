@@ -1,6 +1,6 @@
 1. Proekti nimi voiks olla naiteks: Rehvide vahetus
 2. Veebirakenduse pilt: Vaike ja mugav rakendus uhele firmale.
-3. Ruhma liikmete nimed: Pjetr Iljukov, Juri Gussarov, Stanislav Majevski
+3. Ruhma liikmete nimed: Pjotr Iljukov, Juri Gussarov, Stanislav Majevski
 4. Kirjeldus: Lehel saab naha tapse info  rehvi vahetuse kohta, millised firmad mida pakkuvad, milline on seal jarjekord, 
 kuna on lahem vaba aeg, ja mida millised hinnad on igal kohal.
 Saab panna ennast jarrjekorda, markida ona number ja auto, ehk kohe markida millised tood teil on vaja.
