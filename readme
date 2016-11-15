@@ -1,0 +1,14 @@
+PHP projekt: 
+-eesmärk: raamatute ost-müük, vahetus eraisikute vahel
+-kirjeldus: sihtrühmaks on raamatuhuvilised/huvitud inimesed.  
+Eeskujud näiteks: raamatukoi.ee ja kasutatudraamat.ee, osta.ee
+
+Liikmed:
+Karin Rikkinen
+
+Funktsionaalsuse loetelu:
+-Kasutaja loomine
+-Sisse logimine
+-Raamatute lisamine müügiks
+-Otsimine märgusõna, kategooriate järgi
+-Sorteerimine: filtrid (mis seisukord), järjestamine(millal müüki pandud)
