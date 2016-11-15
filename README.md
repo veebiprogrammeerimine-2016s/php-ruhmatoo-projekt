@@ -1,6 +1,10 @@
 //fun2
 //fun2
 
+//fun
+//fun == FUN
+
+
 # PHP rühmatöö projekt
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 
