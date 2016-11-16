@@ -1,45 +1,28 @@
-# PHP r√ºhmat√∂√∂ projekt
-**R√ºhmat√∂√∂de demo p√§ev** on valitud eksamip√§ev jaanuaris, kuhu tullakse terve r√ºhmaga koos!
+#WasteChase
 
-## T√∂√∂juhend
-1. √úks r√ºhma liikmetest _fork_'ib endale k√§esoleva repositooriumi ning annab teistele kirjutamis√µiguse/ligip√§√§su (_Settings > Collaborators_)
-1. Muudate vastavalt _git config_'ut
-```
-git config user.name "Romil Robtsenkov"
-git config user.email romilrobtsenkov@users.noreply.github.com
-```
-1. √úks r√ºhma liikmetest teeb esimesel v√µimaluse _Pull request_'i (midagi peab olema repositooriumis muudetud)
-1. Muuda repositooriumi README.md faili vastavalt n√µutele
-1. Tee valmis korralik veebirakendus
+#R¸hmaliikmed: 
 
-### N√µuded
+Krister Tarnamaa, Martin Holtsmeier, Rait Keernik
 
-1. **README.md sisaldab:**
-    * suurelt projekti nime;
-    * suurelt projekti veebirakenduse pilt;
-    * r√ºhma liikmete nimed;
-    * eesm√§rki (3-4 lauset, mis probleemi √ºritate lahendada);
-    * kirjeldus (sihtr√ºhm, erip√§ra v√µrreldes teiste samalaadsete rakendustega ‚Äì kirjeldada v√§hemalt 2-3 sarnast rakendust mida eeskujuks v√µtta);
-    * funktsionaalsuse loetelu prioriteedi j√§rjekorras, nt
-        * v0.1 Saab teha kasutaja ja sisselogida
-        * v0.2 Saab lisada huviala
-        * ...
-    * andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda t√∂√∂le panna);
-    * **kokkuv√µte:** mida √µppisid juurde? mis eba√µnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
+#Eesm‰rk:
 
+Eesm‰rgiks on teha leht, kust sa saad sisestada enda ostud ja nende sisud, neid kategoriseerida, ja vaadata
+enda n‰dalaseid/kuuseid v‰ljaminekuid, ning v‰lja tuua, ning sorteerida v‰lja kasutud ja kasulikud raiskamised
+nagu n‰iteks: Ost #15: 2.20Ä pitsa (R‰mpstoit), 5,60Ä After-shave Nivea (H¸gieen) , 1.89Ä Krıpsud (R‰mpstoit)
+N‰itaks ka veel vıimalus valida v‰lja kindlaid kategooriaid, millest hoidudes s‰‰staksid x eurot kuu jooksul
 
-2. **Veebirakenduse n√µuded:**
-    * rakendus on terviklik (t√§idab mingit funktsiooni ja sellega saab midagi teha);
-    * terve arenduse ajal on kasutatud _git_'i ja _commit_'ide s√µnumid annavad edasi tehtud muudatuste sisu; 
-    * kasutusel on v√§hemalt 6 tabelit;
-    * kood on jaotatud klassidesse;
-    * koodis kasutatud muutujad/tabelid on inglise keeles;
-    * rakendus on piisava funktsionaalsusega ja turvaline;
-    * k√µik tiimi liikmed on panustanud rakenduse arendusprotsessi.
+Hans Pıldoja interaction design methods
 
-## Abiks
-* **Testserver:** greeny.cs.tlu.ee, [tunneli loomise juhend](http://minitorn.tlu.ee/~jaagup/kool/java/kursused/09/veebipr/naited/greenytunnel/greenytunnel.pdf)
-* **Abiks tunnin√§ited (r√ºhmade l√µikes):** [I r√ºhm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-I-ruhm), [II r√ºhm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-II-ruhm), [III r√ºhm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-III-ruhm)
-* **Stiilijuhend:** [Coding Style Guide](http://www.php-fig.org/psr/psr-2/)
-* **GIT √µpetus:** [Become a git guru.](https://www.atlassian.com/git/tutorials/)
-* **Abimaterjale:** [Veebirakenduste loomine PHP ja MySQLi abil](http://minitorn.tlu.ee/~jaagup/kool/java/loeng/veebipr/veebipr1.pdf), [PHP with MySQL Essential Training] (http://www.lynda.com/MySQL-tutorials/PHP-MySQL-Essential-Training/119003-2.html)
+#Kirjeldus
+Lehe sihtr¸hm on inimesed, kellel on tahtmine hoida j‰rge enda ostudest ja vıimalusel raha raiskamist
+v‰hendada. Pıhiliselt oleme mıelnud seda Kutse- ja ‹likoolide ıpilastele, kuid kes tahab see kasutab.
+
+Oma rakenduse erip‰ra vırreldes n‰iteks pankadega, kes hoiavad raiskamisest logi, on vıimalik t‰pselt
+n‰ha, mille peale raha l‰ks ja vıimalik v‰lja filtreerida kindla kategooria ostud, et n‰ha palju on
+vıimalik kokku hoida, kui hoidud n‰iteks kategooriast: Alkohol.
+
+#Funktsionaalsuse Loetelu
+
+TBD
+
+ERD: https://drive.google.com/open?id=0B7r2XlMnEQ43OUx3Y2RmX25QTTQ
