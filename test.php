@@ -1,3 +1,3 @@
 Tere
 
-Tsau, Marii, kuidas läheb?
+Tsau!! SEE EI OLE OK!
