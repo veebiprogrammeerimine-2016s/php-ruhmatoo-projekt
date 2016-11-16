@@ -1,16 +1,30 @@
 # IziPäevik - http://kool.iziveeb.ee
 ## Description
-	* Adding DTI Bachelor lectures and classes into an easy-to-read calendar, shown by study area, year and group
-	* Possibility to change the table and save it into your account or a PDF file
-	* Fast and mobile friendly
+	Adding DTI Bachelor lectures and classes into an easy-to-read calendar, shown by study area, year and group
+	Possibility to change the table and save it into your account or a PDF file
+	Fast and mobile friendly
 
 ## Developers
 	Hinrek Saar - developer
 	Alar Aasa - developer, alar@alaraasa.ee
 
 ## Functionality
-	* v0.1 - 
 
+###To-do:
+* Account creation with student data, TLU account
+* Log-in
+* Calendar is mobile-friendly
+* Get and display specific calendar data from ASIO
+* Group calendar data by study-area, year and group
+* Display user specific calendar data
+* Save calendar into PDF
+* Add and remove calendar data with lesson code
+* Save new calendar into PDF
+* Save new calendar for single user
+* Add homework for specific lesson, specific date
+* Edit homework
+* Choice screens mobile-friendly
+        
 ## Technologies used
 	
 ## Database
