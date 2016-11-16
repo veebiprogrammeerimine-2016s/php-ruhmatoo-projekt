@@ -3,6 +3,11 @@
 
 ## Tööjuhend
 1. Üks rühma liikmetest _fork_'ib endale käesoleva repositooriumi ning annab teistele kirjutamisõiguse/ligipääsu (_Settings > Collaborators_)
+1. Muudate vastavalt _git config_'ut
+```
+git config user.name "Romil Robtsenkov"
+git config user.email romilrobtsenkov@users.noreply.github.com
+```
 1. Üks rühma liikmetest teeb esimesel võimaluse _Pull request_'i (midagi peab olema repositooriumis muudetud)
 1. Muuda repositooriumi README.md faili vastavalt nõutele
 1. Tee valmis korralik veebirakendus
