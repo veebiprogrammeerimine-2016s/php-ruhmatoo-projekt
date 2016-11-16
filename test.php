@@ -1,3 +1,3 @@
-Tere, Inna
+Tere
 
 Tsau, Marii, kuidas läheb?
