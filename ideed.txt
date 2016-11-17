@@ -1,0 +1,6 @@
+inglise keelne kategooria ja eesti keelne kategooria
+upload compression (jms protsesseerimine)
+põhiasjad: kuvamisleht, upload 
+	second: user
+		third: pildi alla saab kommenteerida
+aadressid lühemaks !!! (või üldse ära peita)
