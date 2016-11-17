@@ -4,7 +4,7 @@
 Hello 
 
 
-//Mida kirjutan
+//Mida kirjutan (Kert)
 
 
 
