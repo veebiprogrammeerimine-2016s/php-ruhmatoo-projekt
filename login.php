@@ -4,7 +4,7 @@
 //Hello my name is...
 
 
-//Mida kirjutan (Kert)
+//Mida kirjutan (Kert 12)
 
 
 
