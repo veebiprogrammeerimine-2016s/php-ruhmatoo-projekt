@@ -1,7 +1,7 @@
 <?php
 
 
-Hello 
+//Hello my name is...
 
 
 //Mida kirjutan (Kert)
