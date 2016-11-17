@@ -42,7 +42,7 @@ class User {
 				$_SESSION["userEmail"] = $emailFromDb;
 				//echo "ERROR";
 				
-				header("Location:../projekt/page/data.php");
+				header("Location:/~gregness/php-ruhmatoo-projekt/page/data.php");
 				exit();
 				
 			} else {
@@ -64,19 +64,24 @@ class User {
 	
 	
 	
-	function signup($email, $password) {
+	function register($email, $password) {
 		
 		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password) VALUE (?, ?)");
 		echo $this->connection->error;
 		
 		$stmt->bind_param("ss", $email, $password);
 		
-		if ( $stmt->execute() ) {
-			echo "õnnestus";
+		if ($stmt->execute()) {
+
+
+			header("Location:/~gregness/php-ruhmatoo-projekt/page/register.php?success");
+			exit();
+			
 		} else {
-			echo "ERROR ".$stmt->error;
+			header("Location:/~gregness/php-ruhmatoo-projekt/page/register.php?duplicate");
+			exit();
 		}
-		
+		$stmt->close();
 	}
 	
 	

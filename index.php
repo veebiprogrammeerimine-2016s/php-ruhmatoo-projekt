@@ -84,11 +84,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand">Projekt</a>
+          <a href='/~gregness/php-ruhmatoo-projekt/index.php' class="navbar-brand">Projekt</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a>Logi sisse, et saada rohkem privileege</a></li>
+			<li><a href='/~gregness/php-ruhmatoo-projekt/page/register.php'>Loo uus konto</a></li>
 		  </ul>
 			
 			<form class="navbar-form navbar-right" method="POST">
