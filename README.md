@@ -1,4 +1,4 @@
-# PHP rühmatöö projekt
+################# PHP rühmatöö projekt ################################
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 
 ## Tööjuhend
