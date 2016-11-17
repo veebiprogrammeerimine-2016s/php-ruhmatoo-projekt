@@ -1,1 +1,13 @@
+<?php
+
+
 Hello 
+
+
+//Mida kirjutan
+
+
+
+
+
+?>
