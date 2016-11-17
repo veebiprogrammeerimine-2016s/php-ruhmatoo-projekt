@@ -1,13 +1,3 @@
-<?php
+asdfghj
 
-echo "Hello world";
-
-
-
-
-
-
-
-
-
-?>
+Tere tere!
