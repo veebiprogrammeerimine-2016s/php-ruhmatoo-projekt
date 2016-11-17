@@ -1,5 +1,5 @@
 <?php
-//../image/avaleht.jpg
+
 require("../header.php");
 
 
