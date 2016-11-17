@@ -12,7 +12,7 @@
 	}
  
 // hello world by aleksander
-	//test2 by ed
+	//test2 by edik
 	
 	lal al al
 
