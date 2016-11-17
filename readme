@@ -1,7 +1,11 @@
-PHP projekt: 
--eesmärk: raamatute ost-müük, vahetus eraisikute vahel
--kirjeldus: sihtrühmaks on raamatuhuvilised/huvitud inimesed.  
-Eeskujud näiteks: raamatukoi.ee ja kasutatudraamat.ee, osta.ee
+PHP projekt: Raamaturiiul
+-eesmÃ¤rk: raamatute vahetus eraisikute vahel 
+-sihtrÃ¼hm: kÃµik, kes lugeda oskavad, raamatuhuvilised inimesed (et raamatuid saada) vÃµi ka huvitud (et raamatutest lahti saada)
+-kirjeldus: vÃµimalus pakkuda raamatuid, mida ise enam ei vajata. Samas vÃµimalus saada raamatuid, mida teised pakuvad. Raamatute raha eest 
+ostu-mÃ¼Ã¼ki ei toimu. Kauplemine toimub punktidega: raamatu pakkumise/loovutamise eest saab punkte ja raamatu saamine maksab punkte. Punktide 
+sÃ¼steem on sisse viidud, et tagada tasakaal pakkumiste/soovimiste vahel. 
+
+Eeskujud nÃ¤iteks: http://bookmooch.com/
 
 Liikmed:
 Karin Rikkinen
@@ -9,6 +13,7 @@ Karin Rikkinen
 Funktsionaalsuse loetelu:
 -Kasutaja loomine
 -Sisse logimine
--Raamatute lisamine müügiks
--Otsimine märgusõna, kategooriate järgi
--Sorteerimine: filtrid (mis seisukord), järjestamine(millal müüki pandud)
+-Raamatute lisamine 'mÃ¼Ã¼giks'
+-Otsimine mÃ¤rgusÃµna, kategooriate jÃ¤rgi
+-Sorteerimine: filtrid (mis seisukord), jÃ¤rjestamine(millal lisatud)
+-Raamatute 'ost'
