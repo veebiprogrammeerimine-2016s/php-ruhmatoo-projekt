@@ -36,9 +36,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/~gregness/projekt/page/data.php">ENG meemid</a></li>
-            <li><a href="/~gregness/projekt/page/data.php">EST meemid</a></li>
-			<li><a href="/~gregness/projekt/page/upload.php">Upload</a></li>
+            <li><a href="/~gregness/php-ruhmatoo-projekt/page/data.php">ENG meemid</a></li>
+            <li><a href="/~gregness/php-ruhmatoo-projekt/page/data.php">EST meemid</a></li>
+			<li><a href="/~gregness/php-ruhmatoo-projekt/page/upload.php">Upload</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin CP<span class="caret"></span></a>
               <ul class="dropdown-menu">

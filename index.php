@@ -13,7 +13,7 @@
 	
 	// kui on sisseloginud siis suunan data lehele
 	if (isset($_SESSION["userId"])) {
-		header("Location:../projekt/page/data.php");
+		header("Location:../php-ruhmatoo-projekt/page/data.php");
 		exit();
 	}
 
