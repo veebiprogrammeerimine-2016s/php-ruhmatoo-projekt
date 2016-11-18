@@ -1,3 +1,14 @@
+<?php
+$quest = "";
+$_GET["logout"] = "";
+if (!isset($_SESSION["userId"])){
+	$quest = TRUE;
+	echo "külaline";
+}else{
+	echo "Tere " . $_SESSION["username"];
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,19 +46,21 @@
 			<li></li>
 <?php 
 		
-		if (!isset($_SESSION["userId"])){
+		if($quest == TRUE || $_GET["logout"]){
 			$header = '<li><a href="home.php" class="btn btn-default" role="button">Avaleht</a></li>';
-			$header .= '<li ><a href="books.php" class="btn btn-default" role="button">Raamatud</a></li>';
-			$header .= '<li ><a href="join.php" class="btn btn-default" role="button">Liitu</a></li>';
-			$header .= '<li  ><a href="login.php" class="btn btn-default" role="button">Logi sisse</a></li>';
+			$header .= '<li><a href="books.php" class="btn btn-default" role="button">Raamatud</a></li>';
+			$header .= '<li><a href="join.php" class="btn btn-default" role="button">Liitu</a></li>';
+			$header .= '<li><a href="login.php" class="btn btn-default" role="button">Logi sisse</a></li>';
 			echo $header;
-		}else{
+		}
+		if($quest == ""){
 			$header = '<li><a href="user.php" class="btn btn-default" role="button">Sinu riiul</a></li>';
-			$header .= '<li ><a href="books.php" class="btn btn-default" role="button">Otsi raamatuid</a></li>';
-			$header .= '<li ><a href="edit.php" class="btn btn-default" role="button">Paku raamatuid</a></li>';
-			$header .= '<li  ><a href="login.php" class="btn btn-default" role="button">Logi välja</a></li>';
+			$header .= '<li><a href="books.php" class="btn btn-default" role="button">Otsi raamatuid</a></li>';
+			$header .= '<li><a href="edit.php" class="btn btn-default" role="button">Paku raamatuid</a></li>';
+			$header .= '<li><a href="login.php" class="btn btn-default" role="button">Logi välja</a></li>';
 			echo $header;
-}?>
+        }
+?>
 		</ul>	
 	
 	</div>
