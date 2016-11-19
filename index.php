@@ -10,6 +10,7 @@ require("../../config.php");
     <title>Rehvivahetus Online</title>
     <!-- bootstrap css -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css">
   </head>
   <body id="home" data-spy="scroll" data-targer=".navbar" data-offset="100">
   	<!-- navbar -->
@@ -40,8 +41,7 @@ require("../../config.php");
     <h1 class="display-2">Rehvivahetus Online</h1>
     <p class="lead">Me tahame, et Sinu rehvid oleksid kindlalt auto all</p>
     <div class="btn-group m-t-2" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register">Liitu Meiega</button> <!-- padding-left: 48px;
-    padding-right: 47px; -->
+  <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register">Liitu Meiega</button>
   <a class="btn btn-secondary btn-lg" href="#speakers" >Tutvu Partneritega</a>
 
 </div>
@@ -89,8 +89,7 @@ require("../../config.php");
                 <a href="#" class="btn btn-primary">Tutvu lähemalt</a>
               </div>
             </div>
-          
-               
+                 
           </div>
         
           
@@ -162,7 +161,7 @@ require("../../config.php");
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous">
 
         </script>
-        <script>
+        <script> <!--SMOOTH -->
 		        $(function() {
   $('a[href*="#"]:not([href="#"])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
