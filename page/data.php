@@ -1,5 +1,6 @@
 <?php 
 	//ühendan sessiooniga
+	//kuradi git ma ütlen!
 	require("../functions.php");
 
 	require("../class/Helper.class.php");
