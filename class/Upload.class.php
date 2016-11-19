@@ -11,7 +11,11 @@ class Upload {
 	}
 
 	function uploadPicture($caption,$imgurl) {
-
+		
+		
+		$ext = substr($_FILES["fileToUpload"]["name"], strrpos($_FILES["fileToUpload"]["name"], "."));
+		$_FILES["fileToUpload"]["name"] = uniqid() . $ext;
+		//$_FILES["fileToUpload"]["name"]=uniqid();
 		$target_dir = "uploads/";
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$uploadOk = 1;
