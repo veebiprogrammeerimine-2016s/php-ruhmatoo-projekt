@@ -42,7 +42,7 @@ require("../../config.php");
     <p class="lead">Me tahame, et Sinu rehvid oleksid kindlalt auto all</p>
     <div class="btn-group m-t-2" role="group" aria-label="Basic example">
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register">Liitu Meiega</button>
-  <a class="btn btn-secondary btn-lg" href="#speakers" >Tutvu Partneritega</a>
+  <a class="btn btn-secondary btn-lg" href="#tirechanger" >Tutvu Partneritega</a>
 
 </div>
   </div>
