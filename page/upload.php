@@ -32,35 +32,87 @@
 					<br><div class='alert alert-danger'>
 					<strong>
 					 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-					File already exists</strong>
+					Error: File already exists</strong>
 					</div>";
 		
 	}
 	
+	$caption="";
 	
-	$imgurl="";
+	if (isset($_POST["caption"])) {
+		
+		if (empty($_POST["caption"])) {
+		
+			header("Location: upload.php?empty");
+		
+		}
+		
+	}
 	
-	if  (isset($_POST["submit"]) or
-		isset($_POST["caption"]) or
-		isset($_FILES["fileToUpload"])) {
+	if (isset($_POST["fileToUpload"])) {
+		
+		if (empty($_POST["fileToUpload"])) {
+		
+			header("Location: upload.php?empty");
+		
+		}
+		
+	}
+	
+	if (isset($_POST["caption"])) {
+		
+		if (!empty($_POST["caption"])) {
+		
+			if (strlen($_POST["caption"])<3) {
 			
-		}	if	(empty($_FILES["fileToUpload"]["name"]) or
-				empty($_POST["caption"])) {
+					header("Location: upload.php?short");
+			
+			}
+		
+		}
+		
+	}
+	
+	if	(isset($_GET["empty"])) {
 				 
 				 $uploadError="
 						<br><div class='alert alert-danger'>
 						<strong>
 						 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-						Field(s) empty</strong>
+						Error: Empty field(s)</strong>
 						</div>";
 				 
-		}
+	}
 	
+	if	(isset($_GET["short"])) {
+				 
+				 $uploadError="
+						<br><div class='alert alert-danger'>
+						<strong>
+						 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
+						Error: Caption too short (minimum 4 letters)</strong>
+						</div>";
+				 
+	}
+	
+	if	(isset($_GET["success"])) {
+				 
+				 $uploadError="
+						<br><div class='alert alert-success'>
+						<strong>
+						 <span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>
+							Your post was submitted! Check it out here: (siia tuleb postituse link)</strong>
+						</div>";
+				 
+	}
+	
+	$imgurl="";
 	
 	if	(
 		isset($_POST["caption"]) &&
-		isset($_FILES["fileToUpload"])&& 
-		!empty($_FILES["fileToUpload"]["name"])) {
+		isset($_FILES["fileToUpload"]) && 
+		!empty($_FILES["fileToUpload"]["name"]) &&
+		(strlen($_POST["caption"])>3))	{
 			
 		$caption = $Helper->cleanInput($_POST["caption"]);
 		$Upload->uploadPicture($caption,$imgurl);

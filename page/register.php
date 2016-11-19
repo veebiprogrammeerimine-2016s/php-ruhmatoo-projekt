@@ -25,7 +25,7 @@
 		$userError="
 				<br>
 		  		<div class='alert alert-danger'>
-				<strong><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> Email address in use</strong>
+				<strong><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> Error: Email address exists</strong>
 				</div>";
 	}
 	// kui on sisseloginud siis suunan data lehele

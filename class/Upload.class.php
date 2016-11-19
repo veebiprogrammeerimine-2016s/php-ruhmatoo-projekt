@@ -10,7 +10,7 @@ class Upload {
 	$this->connection=$mysqli;
 	}
 
-	function uploadPicture() {
+	function uploadPicture($caption,$imgurl) {
 
 		$target_dir = "uploads/";
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -53,7 +53,7 @@ class Upload {
 				
 				//echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 				
-				$stmt = $this->connection->prepare("INSERT INTO submissions (caption,imgurl,date) values (?,?,now())");
+				$stmt = $this->connection->prepare("INSERT INTO submissions (caption,imgurl,date) values (?,?,now() )");
 				
 				echo $this->connection->error;
 				// s -string
@@ -65,7 +65,7 @@ class Upload {
 				
 				
 				if ($stmt->execute()) {
-					header("Location: upload?success");
+					header("Location: upload.php?success");
 				}
 				echo $stmt->error;
 				
