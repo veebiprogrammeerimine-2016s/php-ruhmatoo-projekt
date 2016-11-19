@@ -26,13 +26,13 @@
 		
 	}
 	
-	if (isset($_GET["exists"])) {
+	if (isset($_GET["large"])) {
 		
 		$uploadError="
 					<br><div class='alert alert-danger'>
 					<strong>
 					 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-					Error: File already exists</strong>
+					Error: File too large (maximum 500kb)</strong>
 					</div>";
 		
 	}

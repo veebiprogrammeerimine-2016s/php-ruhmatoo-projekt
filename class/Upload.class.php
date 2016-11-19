@@ -1,7 +1,6 @@
 <?php
 class Upload {
-			
-	
+
 	private $connection;
 	
 	//funktsioon käivitatakse siis kui on 'new User(see jõuab siia)'
@@ -9,8 +8,40 @@ class Upload {
 	//'this' viitab sellele klassile ja klassi muutujale
 	$this->connection=$mysqli;
 	}
+	
 
+	
+	
 	function uploadPicture($caption,$imgurl) {
+		
+			function compressPicture($source_url, $destination_url, $quality) {
+			
+			$info = getimagesize($source_url);
+		 
+			if ($info['mime'] == 'image/jpeg') $image = imagecreatefromjpeg($source_url);
+			elseif ($info['mime'] == 'image/gif') $image = imagecreatefromgif($source_url);
+			elseif ($info['mime'] == 'image/png') $image = imagecreatefrompng($source_url);
+		 
+			//save it
+			imagejpeg($image, $destination_url, $quality);
+			
+			
+			include('src/abeautifulsite/SimpleImage.php');
+
+			try {
+				$img = new abeautifulsite\SimpleImage($destination_url);
+				$img->best_fit(400, 400)->save($destination_url);
+			} catch(Exception $e) {
+				echo 'Error: ' . $e->getMessage();
+			}
+			
+			
+			
+			
+			//return destination file url
+			return $destination_url;
+			}
+		
 		
 		
 		$ext = substr($_FILES["fileToUpload"]["name"], strrpos($_FILES["fileToUpload"]["name"], "."));
@@ -18,8 +49,21 @@ class Upload {
 		//$_FILES["fileToUpload"]["name"]=uniqid();
 		$target_dir = "uploads/";
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-		$uploadOk = 1;
+		
+		
+		
+
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+		&& $imageFileType != "gif" ) {
+			echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed. ";
+			$uploadOk = 0;
+
+		}
+		
+
+		$uploadOk = 1;
+
 		// Check if image file is an actual image or fake image
 		if(isset($_POST["submit"])) {
 			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -33,14 +77,14 @@ class Upload {
 			}
 		}
 		// Check if file already exists
-		if (file_exists($target_file)) {
+		/*if (file_exists($target_file)) {
 			$uploadOk = 0;
 			header("Location: upload.php?exists");
-		}
+		}*/
 		// Check file size
 		if ($_FILES["fileToUpload"]["size"] > 500000) {
-			echo "Sorry, your file is too large. ";
 			$uploadOk = 0;
+			header("Location: upload.php?large");
 		}
 		// Allow certain file formats
 		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
@@ -56,6 +100,9 @@ class Upload {
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 				
 				//echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+				
+				compressPicture($target_file,$target_file,40);
+				
 				
 				$stmt = $this->connection->prepare("INSERT INTO submissions (caption,imgurl,date) values (?,?,now() )");
 				
