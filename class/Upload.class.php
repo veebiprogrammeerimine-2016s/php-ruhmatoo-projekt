@@ -1,7 +1,7 @@
 <?php
 class Upload {
-		
-		
+			
+	
 	private $connection;
 	
 	//funktsioon käivitatakse siis kui on 'new User(see jõuab siia)'
@@ -12,11 +12,7 @@ class Upload {
 
 	function uploadPicture() {
 
-		
-		
-		
-		
-		$target_dir = "pildid/";
+		$target_dir = "uploads/";
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -34,8 +30,8 @@ class Upload {
 		}
 		// Check if file already exists
 		if (file_exists($target_file)) {
-			echo "Sorry, file already exists. ";
 			$uploadOk = 0;
+			header("Location: upload.php?exists");
 		}
 		// Check file size
 		if ($_FILES["fileToUpload"]["size"] > 500000) {
@@ -59,25 +55,26 @@ class Upload {
 				
 				$stmt = $this->connection->prepare("INSERT INTO submissions (caption,imgurl,date) values (?,?,now())");
 				
-				echo $mysqli->error;
+				echo $this->connection->error;
 				// s -string
 				// i - int
 				// d- double
 				//
-				$caption = cleanInput($_POST["caption"]);
+				
 				$stmt->bind_param("ss", $caption, $target_file);
 				
 				
 				if ($stmt->execute()) {
-					header("Location: data.php?submitted=true");
+					header("Location: upload?success");
 				}
 				echo $stmt->error;
 				
 				
-				
+				$stmt->close();
 				
 			} else {
 				echo "Sorry, there was an error uploading your file.";
+				$stmt->close();
 			}
 		
 
