@@ -1,5 +1,8 @@
 <?php 
 require("../../config.php");
+require("functions.php");
+
+$tyreFittings = getAllTyreFittings();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,18 +82,29 @@ require("../../config.php");
       <div class ="container">
       <h1 id="tirechanger" class="display-4 text-xs-center m-y-3 text-muted">Rehvitöökoda</h1>
          <div class="row">
-          <div class="col-md-6 col-lg-4">
-          
-          	<div class="card">
-              <img class="card-img-top img-fluid" src="..." alt="Partneri logo">
-              <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Tutvu lähemalt</a>
-              </div>
-            </div>
+         
+          	<?php
+			$html = "";
+			foreach($tyreFittings as $tyreFitting)
+			{
+				$html .= "<div class='col-md-6 col-lg-4'>";
+				$html .= "<div class='card'>";
+                $html .= "<img class='card-img-top img-fluid' src='".$tyreFitting->logo."' alt='Partneri logo'>";
+                $html .= "<div class='card-block'>";
+                $html .= "<h4 class='card-title'>".$tyreFitting->name."</h4>";
+                $html .= "<p class='card-text'>".$tyreFitting->description."...</p>";
+                $html .= "<a href='#' class='btn btn-primary'>Tutvu lähemalt</a>";
+                $html .= "</div>";
+            	$html .= "</div>";
+				$html .= "</div>";
+			
+			}
+			
+            echo $html;
+			?>
+          	
                  
-          </div>
+         
         
           
         </div><!-- /speakers -->
