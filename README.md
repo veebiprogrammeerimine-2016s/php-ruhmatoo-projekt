@@ -1,11 +1,19 @@
 # PHP rühmatöö projekt
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 
-## Tööjuhend
-1. Üks rühma liikmetest _fork_'ib endale käesoleva repositooriumi ning annab teistele kirjutamisõiguse/ligipääsu (_Settings > Collaborators_)
-1. Üks rühma liikmetest teeb esimesel võimaluse _Pull request_'i (midagi peab olema repositooriumis muudetud)
-1. Muuda repositooriumi README.md faili vastavalt nõutele
-1. Tee valmis korralik veebirakendus
+FacePl�nt 
+
+Projekti nimi: FacePl�nt 
+Eesm�rk: Mugav ja lihtsalt kasutatav meeldetuletus/tasklist taimede hooldamiseks 
+Sihtgrupp: inimesed kelle kodus kasvab taim. Suuremas osas naised 25+ 
+Sarnased lehed: - 
+Struktuur: 
+1. Pealeht-sisse logimata - keel, lehe tutvustus, login vorm, registreerimise vorm, navigatsioon(foorum, oma taimed, pood, oma info, recommended hooldus) 
+1.2 Pealeht - sisse logitud - keel, kalender, to-do list, lisa/kustuta/muuda link 
+2. Recommended hooldus - saab valida recommended hooldus ts�kli, k�igile k�ttesaadav, login saab kalendrisse lisada.
+3. Foorum - k�ik saavad postida ja lugeda, spam report pahatahtlike jaoks. 
+4. taimede info - most popular&muu sorteerimine
+
 
 ### Nõuded
 .
