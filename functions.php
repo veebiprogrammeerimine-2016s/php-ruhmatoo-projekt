@@ -4,7 +4,7 @@
 
 	session_start();
 
-	function signUp ($email, $password, $name, $family){
+	function signUp ($email, $password, $name, $family, $gender){
 	
 		$database = "if16_andralla_2";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
@@ -14,11 +14,11 @@
 			die('Connect Error: ' . $mysqli->connect_error);
 		}
 		
-		$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password, name, family) VALUES (?, ?, ?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password, name, family, gender) VALUES (?, ?, ?, ?, ?)");
 		
 		echo $mysqli->error;
 
-		$stmt->bind_param("ssss", $email, $password, $name, $family);
+		$stmt->bind_param("sssss", $email, $password, $name, $family, $gender);
 		
 	
 		if($stmt->execute()) {

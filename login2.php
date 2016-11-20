@@ -13,7 +13,8 @@
 	
 	$signupName="";
 	$signupFamily="";
-	$signupEmail = "";
+	$signupEmail="";
+	$gender="";
 	
 	if(isset($_POST["loginEmail"])){
 		if(empty($_POST["loginEmail"])){
@@ -68,11 +69,18 @@
 		}
 	}
 	
+	if(isset($_POST["gender"])){
+		if(!empty($_POST["gender"])){
+			$signupSex = $_POST["gender"];
+		}
+	} 
+	
 	
 	if (isset($_POST["signupEmail"]) &&
 		isset($_POST["signupName"]) &&
 		isset($_POST["signupFamily"]) && 
-		isset($_POST["signupPassword"]) && 
+		isset($_POST["signupPassword"]) &&
+		isset($_POST["gender"]) &&
 		
 		$signupEmailError == "" && 
 		empty($signupPasswordError) &&
@@ -85,10 +93,11 @@
 		echo "email: ".$signupEmail."<br>";
 		echo "first name: ".$signupName."<br>";
 		echo "last name: ".$signupFamily."<br>";
+		echo "gender: ".$gender."<br>";
 		
 		$password = hash("sha512", $_POST["signupPassword"]);
 		
-		signUp($signupEmail, $password, $signupName, $signupFamily);
+		signUp($signupEmail, $password, $signupName, $signupFamily, $gender);
 	}
 	
 	$error="";
@@ -150,11 +159,9 @@
 							
 							<h4>Gender</h4>
 							
-							<input type="radio" name="Sugu" value="Male" checked> Male
+							<input type="radio" name="gender" value="Male" checked> Male
 							
-							<input type="radio" name="Sugu" value="Female"> Female
-							
-							<input type="radio" name="Sugu" value="Other"> Other <br><br>
+							<input type="radio" name="gender" value="Female"> Female <br><br>
 							
 							<input class="btn btn-primary btn-sm" type="submit" value="Register">
 							
