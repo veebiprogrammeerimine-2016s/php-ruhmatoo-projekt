@@ -42,11 +42,11 @@
 		<div class="jumbotron">
 			<div class="container">
 				<h1>SoundScape</h1>
-				<h3>Quality is priority</h3>
+				<h3>Quality is priority</h3><br>
+				<h4>Signed in as <a href="user.php"><?=$_SESSION["userEmail"];?></a></h4>
+				<h4><a href="?logout=1">Sign out</a></h4>
 			</div> 
 		
 		</div> 
-<p>Signed in as <a href="user.php"><?=$_SESSION["userEmail"];?></a>
-<a href="?logout=1">Sign out</a>
-</p>
+
 	</header>
