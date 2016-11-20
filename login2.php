@@ -1,7 +1,17 @@
 <?php
 	
 	require("functions.php");
-
+	
+	//kui on juba sisse loginud, suunan data lehele
+	if(isset ($_SESSION["userId"])){
+	
+		//suunan sisselogimise lehele 
+		header("Location: data.php");
+		exit();
+		
+	}
+	
+	
 	$loginEmail="";
 	$loginEmailError="";
 	$loginPasswordError="";	
