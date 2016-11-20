@@ -1,10 +1,12 @@
 <?php
 
+	require("/home/karlkruu/config.php");
+
 	session_start();
 
 	function signUp ($email, $password, $name, $family){
 	
-		$database = "if16_andralla";
+		$database = "if16_andralla_2";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
 	
@@ -12,7 +14,7 @@
 			die('Connect Error: ' . $mysqli->connect_error);
 		}
 		
-		$stmt = $mysqli->prepare("INSERT INTO project_user_sample (email, password, name, family) VALUES (?, ?, ?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password, name, family) VALUES (?, ?, ?, ?)");
 		
 		echo $mysqli->error;
 
@@ -34,9 +36,9 @@
 	
 		$error = "";
 		
-		$database = "if16_andralla";
+		$database = "if16_andralla_2";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-		$stmt = $mysqli->prepare("SELECT id, email, password, created FROM project_user_sample WHERE email = ?");
+		$stmt = $mysqli->prepare("SELECT id, email, password, created FROM user_sample WHERE email = ?");
 		
 		echo $mysqli->error;
 		
