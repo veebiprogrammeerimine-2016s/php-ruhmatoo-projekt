@@ -1,36 +1,70 @@
 # PHP rühmatöö projekt
-**Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
-
-## Tööjuhend
-1. Üks rühma liikmetest _fork_'ib endale käesoleva repositooriumi ning annab teistele kirjutamisõiguse/ligipääsu (_Settings > Collaborators_)
-1. Üks rühma liikmetest teeb esimesel võimaluse _Pull request_'i (midagi peab olema repositooriumis muudetud)
-1. Muuda repositooriumi README.md faili vastavalt nõutele
-1. Tee valmis korralik veebirakendus
-
-### Nõuded
-
-1. **README.md sisaldab:**
-    * suurelt projekti nime;
-    * suurelt projekti veebirakenduse pilt;
-    * rühma liikmete nimed;
-    * eesmärki (3-4 lauset, mis probleemi üritate lahendada);
-    * kirjeldus (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta);
-    * funktsionaalsuse loetelu prioriteedi järjekorras, nt
-        * v0.1 Saab teha kasutaja ja sisselogida
-        * v0.2 Saab lisada huviala
-        * ...
-    * andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
-    * **kokkuvõte:** mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
 
 
-2. **Veebirakenduse nõuded:**
-    * rakendus on terviklik (täidab mingit funktsiooni ja sellega saab midagi teha);
-    * terve arenduse ajal on kasutatud _git_'i ja _commit_'ide sõnumid annavad edasi tehtud muudatuste sisu; 
-    * kasutusel on vähemalt 6 tabelit;
-    * kood on jaotatud klassidesse;
-    * koodis kasutatud muutujad/tabelid on inglise keeles;
-    * rakendus on piisava funktsionaalsusega ja turvaline;
-    * kõik tiimi liikmed on panustanud rakenduse arendusprotsessi.
+
+
+
+    * Rehvivahetuse online rakendus;
+    
+    * Stas Majevski, Pjetr Iljukov, Juri Gussarov;
+	
+    * Veebirakendus mis seotaks koik rehvivahetuse burood ja annaks voimalus broneerida/uurida mitme too kohta korraga.  ;
+    * Loodame et rakendus tuleb vaja inimestele kellel on probleemid rehvivahetusega kui sesoon lopeb. Uritame teha oma rakendus voimalikult lihtne ja kasutajale sobralik.;
+	  Saransed rakendused mida eeskujuks votta - https://www.kummiproff.ee/rehvivahetus/, https://www.kumm.ee/, http://www.rehvitakso.ee/;
+    * Funtksionaalsus;
+        * saab valida kumb lehele minna, kas klient voi buroo omanik
+        * kui klient siis saab valida teeenused ja registreerida ennast
+        * kui omanik siis saab oma burood registreerida
+		* saab kommentarii jatta
+		* hindada burood
+    * andmebaasi skeem 
+	ORDER
+1. ID
+2. DATE
+3. TIME VARCHAR
+4. CLIENT_ID FOREIGN KEY
+5. REHVIVAHETUS_PUNKT_ID FOREIGN KEY REFERENCES REHVIVAHETUS_PUNKT.ID
+
+CLIENT
+1. ID
+2. NAME
+3. CAR_NUMBER
+4. TELEPHONE_NUMBER
+
+COMMETNS
+1. ID
+2. REHVIVAHETUS_PUNKT_ID FOREIGN KEY REFERENCES REHVIVAHETUS_PUNKT.ID
+3. BODY
+
+RATING
+1. ID
+2. REHVIVAHETUS_PUNKT_ID FOREIGN KEY REFERENCES REHVIVAHETUS_PUNKT.ID
+3. RATE
+
+REHVIVAHETUS PUNKTI OMANIKU PAGE:
+1. TIRE PUNKT REGISTRATION
+2. ORDER STATISTICS PAGE
+
+REHVIVAHETUS PUNKTI OMANIK
+1. ID PRIMARY KEY
+2. username -> email? UNIQUE VALUE
+3. password -> bcrypt crypted
+
+REHVIVAHETUS PUNKT
+1. ID PRIMARY KEY
+2. NAME
+3. ADDRESS
+4. OWNER_ID -> FOREIGN KEY REFERENCES OMANIK-ID
+
+TIRE_CHANGE_SERVICES
+1. ID PRIMARY KEY
+2. TIRE_CHANGE_PUNKT_ID FOREIGN KEY
+3. NAME
+4. DESCRIPTION
+5. PRICE;
+
+
+
 
 ## Abiks
 * **Testserver:** greeny.cs.tlu.ee, [tunneli loomise juhend](http://minitorn.tlu.ee/~jaagup/kool/java/kursused/09/veebipr/naited/greenytunnel/greenytunnel.pdf)
