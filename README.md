@@ -1,4 +1,4 @@
-# PHP rühmatöö projekt
+﻿# PHP rühmatöö projekt
 
 
 
@@ -8,15 +8,16 @@
     
     * Stas Majevski, Pjetr Iljukov, Juri Gussarov;
 	
-    * Veebirakendus mis seotaks koik rehvivahetuse burood ja annaks voimalus broneerida/uurida mitme too kohta korraga.  ;
-    * Loodame et rakendus tuleb vaja inimestele kellel on probleemid rehvivahetusega kui sesoon lopeb. Uritame teha oma rakendus voimalikult lihtne ja kasutajale sobralik.;
-	  Saransed rakendused mida eeskujuks votta - https://www.kummiproff.ee/rehvivahetus/, https://www.kumm.ee/, http://www.rehvitakso.ee/;
+    * Veebirakendus kus on erinevaid rehvivahetuse punktid ja annab võimalus broneerida endale sobiv aeg;
+    * Loodame et rakendus tuleb vaja inimestele kellel on probleemid rehvivahetusega kui hooaeg algab. Üritame teha oma rakendus võimalikult lihtne ;
+	  Sarnased rakendused mida eeskujuks võtta - https://www.kummiproff.ee/rehvivahetus/, https://www.kumm.ee/, http://www.rehvitakso.ee/;
     * Funtksionaalsus;
-        * saab valida kumb lehele minna, kas klient voi buroo omanik
-        * kui klient siis saab valida teeenused ja registreerida ennast
-        * kui omanik siis saab oma burood registreerida
-		* saab kommentarii jatta
-		* hindada burood
+        * saab valida kumb lehele minna, kas klient või rehvitöökoda omanik
+        * kui klient siis saab valida rehvivahetuse punkt ja broneerida endale sobiv aeg
+		* saab jätta kommentaari 
+		* saab hinnata
+        * kui omanik siis saab oma rehvitöökoda registreerida ja edaspidi  muuta/kustuta
+		
     * andmebaasi skeem ;
 	* ORDER;
     * 1. ID;
