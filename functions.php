@@ -1,6 +1,6 @@
 <?php
 require("../../config.php");
-
+//
 function getAllTyreFittings() {
 		
 		$database = "if16_stanislav";
