@@ -18,6 +18,8 @@
 		
 	}
 	
+	
+	
 	//kui on ?logout aadressireal siis login välja
 	if (isset($_GET["logout"])) {
 		
@@ -48,7 +50,30 @@
 		    exit();
 		}
 		
-		$plantData=$Plant->getAll();
+		
+	if(isset($_GET["sort"]) && isset($_GET["direction"])){
+		$sort=$_GET["sort"];
+		$direction=$_GET["direction"];
+	} else {
+		//kui ei ole määratud siis vaikimisi id ja ASC
+		$sort="id";
+		$direction="ascending";
+		
+	}
+	
+	if(isset($_GET["q"])){
+		$q = $Helper->cleanInput($_GET["q"]);
+		$plantData = $Plant->getAll($q, $sort, $direction);
+	} else {
+		$q="";
+		$plantData = $Plant->getAll($q,$sort,$direction);
+		
+	}	
+		
+	
+	
+	
+	
 		
 		//echo"<pre>";
 		//var_dump($plantData);
@@ -120,21 +145,32 @@
 	
 	</form>
 	</div>
-
-
-
+	
+    
 
 	<div class="col-sm-6 col-sm-offset-6">
-	
+	<div >
+	<form>
+		<input type="search" name="q" value="<?=$q;?>">
+		<input class="btn btn-success" type="submit" value="Otsi">
+	</form></div>
 	
 	<?php
 	
+	$direction = "ascending";
+	if (isset($_GET["direction"])){
+		if($_GET["direction"]=="ascending"){
+			$direction="descending";
+		}
+		
+	}
+	
 	$html = "<table class='table table-striped table-hover table-condensed table-bordered  '>";
 	$html .= "<tr>";
-		$html .= "<th>nr</th>";
-		$html .= "<th>id</th>";
-		$html .= "<th>taim</th>";
-		$html .= "<th>intervall</th>";
+		$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>nr</a></th>";
+		$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>id</a></th>";
+		$html .= "<th><a href='?q=".$q."&sort=plant&direction=".$direction."'>plant</a></th>";
+		$html .= "<th><a href='?q=".$q."&sort=interval&direction=".$direction."'>interval</a></th>";
 	$html .= "</tr>";
 	
 	$i = 1;
@@ -166,14 +202,7 @@
 	echo $listHtml;
 	?></div></div><br><br>
 	<a class="btn btn-default btn-success" href="?logout=1" role="button">Logi välja</a>
-<center><iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23009900&amp;src=mreintop%40gmail.com&amp;color=%231B887A&amp;ctz=Europe%2FTallinn" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-	
-	
-	
-		
-		 
-	
-</center>
+
 
 
 <?php require("../footer.php");?>

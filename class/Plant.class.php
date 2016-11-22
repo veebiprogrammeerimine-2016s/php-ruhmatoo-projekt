@@ -40,17 +40,51 @@ class Plant {
 		
 	}
 	
-	function getAll() {
-		$stmt = $this->connection->prepare("
+	function getAll($q,$sort,$direction) {
 		
-		  SELECT id, plant,wateringInterval FROM flowers WHERE deleted IS NULL
-		 
-		");
+		$allowedSortOptions = ["id", "plant", "interval"];
+			
+		if(!in_array($sort,$allowedSortOptions)){
+			
+			$sort="id";
+		}	
+		
+		if($sort == "interval"){
+			$sort = "wateringInterval";
+		}
+		
+		echo "Sorteerin...";
+
+		$orderBy="ASC";
+		if($direction=="descending"){
+			$orderBy="DESC";
+		}	
+		
+		if($q == ""){
+			echo"ei otsi...";
+			$stmt = $this->connection->prepare("
+			SELECT id, plant, wateringInterval
+			FROM flowers
+			WHERE deleted IS NULL
+			ORDER BY $sort $orderBy");
+			
+		
+		} else {
+			echo"Otsib...".$q;
+			$searchWord = "%".$q."%";
+			$stmt = $this->connection->prepare(
+			"SELECT id, plant, wateringInterval from flowers WHERE
+			deleted IS NULL AND (plant LIKE ? OR wateringInterval LIKE?)ORDER BY $sort $orderBy");
+			$stmt->bind_param("ss", $searchWord, $searchWord);
+			
+		}
 		echo $this->connection->error;
 		
 		
-		$stmt -> bind_result ($id, $plant,$watering) ;
-		$stmt ->execute();
+		$stmt->bind_result($id, $plant, $watering);
+		$stmt->execute();
+		
+		
 		
 		//tekitan massiivi
 		

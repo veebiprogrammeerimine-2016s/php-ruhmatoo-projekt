@@ -17,7 +17,7 @@
 		
 		$Plant->update($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["plant"]), $Helper->cleanInput($_POST["interval"]));
 		
-		header("Location: edit.php?id=".$_POST["id"]."&success=true");
+		header("Location: data.php?id=".$_POST["id"]."&success=true");
         exit();	
 		
 	}
