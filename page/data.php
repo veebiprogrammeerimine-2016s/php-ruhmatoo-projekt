@@ -117,43 +117,72 @@
 <?php require("../header.php");?>
 
 <title>Kalender</title>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div id="logo" class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="login.php">FacePlänt</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+        <li class="col-sm-8"><a href="#">Taimehooldus<span class="sr-only"></span></a></li>
+        
+        
+      </ul><ul class="nav navbar-nav navbar-right">
+		<li class="col-sm-8"><a href="?logout=1"> Logi välja <span class="sr-only"></span></a></li>
+           </ul>         
+                
+      
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 <center>
 <br><br>
- Tere tulemast     <?=$_SESSION["firstName"];?>!
+ <h3>Tere tulemast     <?=$_SESSION["firstName"];?>!</h3>
+<div id="signupForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
+		<h3>><font face="verdana" color="white"> Toataimede sisestamine </h3></font>
 
-<h2><font face="verdana" color="#006600"> Toataimede sisestamine</font> </h2></center>
-<div class = "form-group col-sm-8  col-sm-offset-0">
-<div class="form-group col-sm-6 col-sm-offset-6" >
-	<form method=POST>
-		<?php echo $plantError;  ?>
-		<?php echo $wateringIntervalError;  ?>
+		<div >
+			<form method=POST>
+				<?php echo $plantError;  ?>
+				<?php echo $wateringIntervalError;  ?>
 
-          
-	 <p><font face="verdana" color="#006600">Sisesta taime nimetus</font></p>
-		<input  class="form-control" name="user_plant" placeholder="taime nimetus"  type="text" value="<?=$plant;?>" > 
+				  
+			 <h3><font face="verdana" color="white">Sisesta taime nimetus</font></h3>
+				<input  class="form-control" name="user_plant" placeholder="taime nimetus"  type="text" value="<?=$plant;?>" > 
 
-	<br><br>
+			<br>
 
-        <p><font face="verdana"color="#006600">Sisesta taime kastmisintervall</font></p>
-		<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number"> 
+				<h3><font face="verdana" color="white">Sisesta taime kastmisintervall</font></h3>
+				<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number"> 
 
-	<br>
+			<br>
 
-		<input class="btn btn-success" type="submit" value="Salvesta">
-	<br><br>
-	
-	</form>
+				<input class="btn btn-default" type="submit" value="Salvesta">
+			<br>
+			
+			</form>
+			</div>
+			
+			
+
+			<div class="col-sm-6 col-sm-offset-6">
+			<h3><font face="verdana" color="white">Taime otsing</font></h3>
+			<form>
+				<input type="search" name="q" value="<?=$q;?>">
+				<input class="btn btn-default" type="submit" value="Otsi">
+			</form></div>
 	</div>
-	
-    
-
-	<div class="col-sm-6 col-sm-offset-6">
-	<div >
-	<form>
-		<input type="search" name="q" value="<?=$q;?>">
-		<input class="btn btn-success" type="submit" value="Otsi">
-	</form></div>
 	
 	<?php
 	
@@ -165,7 +194,7 @@
 		
 	}
 	
-	$html = "<table class='table table-striped table-hover table-condensed table-bordered  '>";
+	$html = "<table class='table table-striped table-hover table-condensed table-bordered  ' style='background-color:white'>";
 	$html .= "<tr>";
 		$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>nr</a></th>";
 		$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>id</a></th>";
@@ -201,7 +230,7 @@
 	
 	echo $listHtml;
 	?></div></div><br><br>
-	<a class="btn btn-default btn-success" href="?logout=1" role="button">Logi välja</a>
+	
 
 
 
