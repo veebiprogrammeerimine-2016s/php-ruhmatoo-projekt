@@ -26,6 +26,11 @@
     width: 65%;
     margin: 0 auto;
 }
+/* FIX (Open modal is shifting body content to the left) */
+.modal-open , #home
+{
+	padding-right:0 !important;	
+}
 @media only screen and (max-width: 720px) 
 {
    .mrg 

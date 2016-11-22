@@ -3,6 +3,22 @@ require("../../config.php");
 require("functions.php");
 
 $tyreFittings = getAllTyreFittings();
+$username = "";
+$password = "";
+if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
+	{
+		if( !empty($_POST["regPassword"])&& !empty($_POST["regUsername"]))
+		{
+		$username = $_POST["regUsername"];
+		$password = $_POST["regPassword"];
+		signUP($username,$password);
+		
+		?>
+        <script>alert("Kasutaja on tehtud!");</script>
+        <?php
+		}
+    
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +49,7 @@ $tyreFittings = getAllTyreFittings();
   <a class="navbar-brand pull-sm-right m-r-0 hidden-sm-down" href="http://www.tlu.ee">Presented by TLÜ team</a>
       <ul class="nav navbar-nav ">
       <li class="nav-item pull-xs-right mrg">
-          <a class="nav-link" data-toggle="modal" data-target="#login">Logi sisse</a>
+          <a class="nav-link" data-toggle="modal" data-target="#login" style="cursor:pointer">Logi sisse</a>
       </li>
       </ul>
   </div>
@@ -83,7 +99,8 @@ $tyreFittings = getAllTyreFittings();
       
       <!-- speakers -->
       <div class ="container">
-      <h1 id="tirechanger" class="display-4 text-xs-center m-y-3 text-muted">Rehvitöökoda</h1>
+      <h1 id="tirechanger" class="display-4 text-xs-center m-y-3 text-muted hidden-xs-down">Rehvitöökoda</h1>
+      <h1 id="tirechanger" class="text-xs-center m-y-3 text-muted hidden-sm-up">Rehvitöökoda</h1>
          <div class="row">
          
           	<?php
@@ -104,12 +121,7 @@ $tyreFittings = getAllTyreFittings();
 			}
 			
             echo $html;
-			?>
-          	
-                 
-         
-        
-          
+			?>         
         </div><!-- /speakers -->
       </div>
   
@@ -152,8 +164,9 @@ $tyreFittings = getAllTyreFittings();
      <!-- /footer-->
     </div>  <!-- container -->
     <!-- ====================
-    FORM MODAL
+    FORM MODAL  REGISTER
     ======================== -->
+    <form id="reg" method="POST">
             <div id="register" class="modal fade">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -168,21 +181,27 @@ $tyreFittings = getAllTyreFittings();
                
 				 <div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+					<input name="regUsername" type="email" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
 				 </div>
 				 <div class="form-group">
 					<label for="exampleInputPassword1">Password</label>
-					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+					<input name="regPassword" type="password" class="form-control" aria-describedby="passwordHelpBlock" id="exampleInputPassword1" placeholder="Password">
+                    <p id="passwordHelpBlock" class="form-text text-muted">
+                    Parool peab olema vähemalt 8 sümboli pikkune
+                    </p>
 				</div>
               </div>
               <div class="modal-footer">
                 <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                <button type="button" class="btn btn-primary" >Registreerun</button>
+                <button id="butt" type="submit" class="btn btn-primary"  >Registreerun</button>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
- 
+        </form>
+ <!-- ====================
+    FORM MODAL  LOGIN
+    ======================== -->
 	<div id="login" class="modal fade">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -210,7 +229,7 @@ $tyreFittings = getAllTyreFittings();
             <div id="sign-up-form-body">
                 Teil pole veel kontot?
 				</br>
-                <a data-toggle="modal" data-target="#register" data-dismiss="modal">Registreeru!</a>
+                <a data-toggle="modal" data-target="#register" data-dismiss="modal" style="cursor:pointer">Registreeru!</a>
             </div>
         </div>
               </div>
@@ -222,25 +241,11 @@ $tyreFittings = getAllTyreFittings();
     <!-- jQuery first, then bootstrap js -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous">
-
         </script>
-        <script> <!--SMOOTH -->
-		        $(function() {
-  $('a[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: target.offset().top - 100
-        }, 1000);
-        return false;
-      }
-    }
-  });
-});
-      
-		</script>
+    <!-- our scripts -->    
+        <script type="text/javascript" src="js/sc.js"></script>
+        
+       
 		
   </body>
 </html>
