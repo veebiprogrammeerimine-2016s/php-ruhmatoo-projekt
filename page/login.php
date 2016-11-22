@@ -59,6 +59,8 @@
 			<br><br>
 			<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Logi sisse">
 			<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Logi sisse2">
+			<br><br>
+			<a class="link" href="http://localhost:5555/~railtoom/php-ruhmatoo-projekt/page/signup.php">Loo kasutaja</a>
 		</form>
 		</div>
 	</div>
