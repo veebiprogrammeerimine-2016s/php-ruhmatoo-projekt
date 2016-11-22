@@ -1,31 +1,48 @@
-//fun2
-//fun2
-
-//fun
-//fun == FUN
-
-
 # PHP rühmatöö projekt
-**Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
-
-## Tööjuhend
-1. Üks rühma liikmetest _fork_'ib endale käesoleva repositooriumi ning annab teistele kirjutamisõiguse/ligipääsu (_Settings > Collaborators_)
-1. Üks rühma liikmetest teeb esimesel võimaluse _Pull request_'i (midagi peab olema repositooriumis muudetud)
-1. Muuda repositooriumi README.md faili vastavalt nõutele
-1. Tee valmis korralik veebirakendus
-
-### Nõuded
 
 1. **README.md sisaldab:**
     * suurelt projekti nime;
+			* E-pood mis ostab ja müüb erinevaid veine
+	
     * suurelt projekti veebirakenduse pilt;
-    * rühma liikmete nimed;
+			*
+			
+	* rühma liikmete nimed; 
+			* Ingo Mägi
+			* Johan Laas
+		
     * eesmärki (3-4 lauset, mis probleemi üritate lahendada);
-    * kirjeldus (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta);
-    * funktsionaalsuse loetelu prioriteedi järjekorras, nt
-        * v0.1 Saab teha kasutaja ja sisselogida
-        * v0.2 Saab lisada huviala
-        * ...
+			* Luua keskkond kus on võimalik firmadel lihtsalt pakkuda oma tooteid
+			* ja samas on mugav erinevate vajadustega klientidel osta pakutavat
+	
+	* kirjeldus (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta);
+			* sihtrühm: eraisikud, firmad, poed, pubid, baarid, restoraanid
+			* eripära: võimalik nii osta kui müüa tooteid
+	
+	* funktsionaalsuse loetelu prioriteedi järjekorras:
+			* Saab teha kasutaja ja sisselogida
+			* LEHED:
+				Leht1:  tutvustus 
+				-> 
+				leht2: sisselogimine(registreerimine) 
+				->
+				edasi suunamine vastavalt kasutajarollile
+				->
+				leht3: ostja: toodete nimekiri, erisoovide lahter.
+				leht4: ostja: ostukorv
+				leht5: ostja: andmed, ostuajalugu(arved), etc
+				
+				leht6: müüja: lahtrid mis hetkel on müügis antud firma poolt, mis kogused/hinnad/etc
+							  (informatiivne leht) lisaks mis hetkel enim müüdav kraam
+				leht7: müüja: pakkumiste tegemise leht (uued/vanad tooted), hindade-koguste muutmine, 
+				leht8: müüja: firma andmed ja ostuajalugu koos arvetega ja muu seonduvaga
+				leht9: müüja: toodete nimekiri nagu ostjal
+				
+				leht10: admin: müüjate nimekiri
+				leht11: admin: ostjate nimekiri
+				leht12: admin: müüjatelt tellimise ja ostjatele müümise leht
+				leht13: admin: ostu/müügi arved
+		
     * andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
     * **kokkuvõte:** mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
 
@@ -38,10 +55,3 @@
     * koodis kasutatud muutujad/tabelid on inglise keeles;
     * rakendus on piisava funktsionaalsusega ja turvaline;
     * kõik tiimi liikmed on panustanud rakenduse arendusprotsessi.
-
-## Abiks
-* **Testserver:** greeny.cs.tlu.ee, [tunneli loomise juhend](http://minitorn.tlu.ee/~jaagup/kool/java/kursused/09/veebipr/naited/greenytunnel/greenytunnel.pdf)
-* **Abiks tunninäited (rühmade lõikes):** [I rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-I-ruhm), [II rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-II-ruhm), [III rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-III-ruhm)
-* **Stiilijuhend:** [Coding Style Guide](http://www.php-fig.org/psr/psr-2/)
-* **GIT õpetus:** [Become a git guru.](https://www.atlassian.com/git/tutorials/)
-* **Abimaterjale:** [Veebirakenduste loomine PHP ja MySQLi abil](http://minitorn.tlu.ee/~jaagup/kool/java/loeng/veebipr/veebipr1.pdf), [PHP with MySQL Essential Training] (http://www.lynda.com/MySQL-tutorials/PHP-MySQL-Essential-Training/119003-2.html)
