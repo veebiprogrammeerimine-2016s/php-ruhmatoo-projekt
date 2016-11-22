@@ -13,5 +13,6 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body background = "http://www.pixeden.com/media/k2/galleries/165/004-subtle-light-pattern-background-texture-vol5.jpg">
+<body background = "http://www.magic4walls.com/wp-content/uploads/2013/12/blossom-bench-bloom-green-flower-grow-nature-1920x1200.jpg">

@@ -178,43 +178,40 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">FacePlänt</a>
+      <a class="navbar-brand" href="login.php">FacePlänt</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="navbar-main">
       <ul class="nav navbar-nav">
         <li class="col-sm-12 col-sm-offset-12"><a href="#">Suggested Plänt Care <span class="sr-only"></span></a></li>
         
         
       </ul>
-      <form class="navbar-form navbar-right">
-        <div class="form-group">
-				<form method=POST>
-
-
-
-					<input class="form-control" name=signupEmail placeholder="e-mail" type="text" value="<?=$signupEmail;?>"> <?php echo $signupEmailError;  ?>
-
-					<input class="form-control" name=signupPassword placeholder="parool" type="password"> <?php echo $signupPasswordError; ?>
-		
-					<input class="btn btn-success" type="submit" value="Logi sisse">
-				
-					
-
-				</form>
-			</div>	
+			<form class="navbar-form navbar-right" method=post role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="signupEmail" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="signupPassword" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-default">Sign In</button>
+                </form>
       </form>
       
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-	<div class="row">
+
+
+
+	<div class="col-lg-12 ">
 				
-				
-			<div class="col-sm-4 col-sm-offset-4">
-				<h2><font face="verdana" color="green">Loo kasutaja</font></h2>
+		
+		
+		<div class="col-lg-4 col-sm-offset-8">
+				<h2><font face="verdana" color="white">Loo kasutaja</font></h2>
 				<?php echo $nameError ?>
 
 				<?php echo $registerEmailError;?>
@@ -227,14 +224,14 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				
 				
 
-				<input class="form-control" type=password name=registerPassword  placeholder="Vali parool" > <br><br>
-				<h3><font face="verdana" color="green">Sisesta oma ees- ja perekonnanimi</font></h3>
+				<input class="form-control" type=password name=registerPassword  placeholder="Vali parool" > 
+				<h3><font face="verdana" color="white">Sisesta oma ees- ja perekonnanimi</font></h3>
 				<input class="form-control" name=FirstName placeholder="eesnimi" type="text" value="<?=$userFirstName;?>">
 				<input class="form-control" name=LastName placeholder="perekonnanimi" type="text" value="<?=$userLastName;?>">
 					
-				<br><br><?php echo $personalError;  ?>
+				<?php echo $personalError;  ?>
 				
-				<h3><font face="verdana" color="green"> Kirjuta enda kohta midagi huvitavat</font></h3><br>
+				<h3><font face="verdana" color="white"> Kirjuta enda kohta midagi huvitavat</font></h3>
 				<input class="form-control" type=text name=personal placeholder="Kirjuta midagi enda kohta" value="<?=$aboutUser;?>"> <br><br>
 				
 				
@@ -251,6 +248,11 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 		
 
 		</div>
+	
+	
 	</div>
+	
+</div>
+<div>
 </div>
 <?php require("../footer.php");?>
