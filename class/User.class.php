@@ -12,7 +12,7 @@ class User {
 	function signUp ($username, $email, $password) {
 		$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("
-		INSERT INTO riiul_users (username, email, password) 
+		INSERT INTO project_users (username, email, password) 
 		VALUES (?, ?, ?)");
 		echo $this->connection->error;
 		$stmt->bind_param("sss", $username, $email, $password);  //asendan küsimärgid
@@ -30,7 +30,7 @@ class User {
 		$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("
 		SELECT user_id, username, email, password 
-		FROM riiul_users
+		FROM project_users
 		WHERE email = ?");
 		echo $this->connection->error;
 		$stmt->bind_param("s", $email);      //asendan küsimärgi

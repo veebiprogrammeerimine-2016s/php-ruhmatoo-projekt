@@ -2,8 +2,8 @@
 
 //FUNKTSIOONIDEGA FAILID
 require("../functions.php");     
-require("../class/User.class.php");      //peab olema ENNE ojekti loomist
-$User = new User($mysqli);               //objekt
+require("../class/Book.class.php");     //peab olema ENNE ojekti loomist
+$Book = new Book($mysqli);               //objekt
 
 		
 //MUUTUJAD
@@ -38,7 +38,9 @@ if(isset($_POST["title"])){
 //ühtegi errorit	
 if(isset($_POST["title"]) && empty($error)) {
 	$error = 'Aitäh, raamat "'.$title. '" on lisatud pakutavate raamatute nimekirja! Vajadusel saad raamatu andmeid muuta Sinu riiulis. <br> Kui raamat leiab uue omaniku, kantakse mündid Sinu kontole.';
-	}
+	$userId = $_SESSION["userId"];
+	$Book->addBook($userId, $category, $title, $author, $year, $condition, $location, $description, $coins, $image);
+}
 ?>
 
 
@@ -53,17 +55,15 @@ require("../header.php");
 <form method="post">
 	
 	<select name="category">
-	<option value="Muu">Vali kategooria</option>
+	<option value="Vali kategooria">Vali kategooria</option>
 	
 <?php
 	$topic = array( 'Ajalugu, kultuur','Arvutid ja infotehnoloogia', 'Ehitus, tehnika', 'Elulood, memuaarid', 'Esoteerika', 
 	'Fotograafia', 'Ilukirjandus', 'Kodu ja aed', 'Kokandus', 'Kunst ja arhitektuur', 'Käsiraamatud, õppekirjandus', 'Käsitöö',
 	'Lastekirjandus', 'Loodus', 'Majandus, poliitika', 'Reisijuhid', 'Sõnastikud', 'Võõrkeelne kirjandus', 'Muu');
-	if(isset($_POST["category"]) && $_POST["category"] != "none"){
-		$cat = $_POST["category"];
-	} else {
+	if(isset($_POST["category"]) && $_POST["category"] == "Vali kategooria"){
 		$cat = "Muu";
-	}
+	} 
 	foreach( $topic as $value ){
 		if ($value == $cat){
 			$selected = "selected = 'selected'";
@@ -79,10 +79,10 @@ require("../header.php");
 	<input name="title" type="text" placeholder="Raamatu pealkiri" value="<?=$title;?>"> *<br>
 	<input name="author" type="text" placeholder="Raamatu autor" value="<?=$author;?>">*<br> 
 	<input name="year" type="year" placeholder="Ilmumise aasta" value="<?=$year;?>"><br>
-	<input name="location" type="text" placeholder="Raamatu asukoht"value="<?=$location;?>"> *<br>
+	<input name="location" type="text" placeholder="Raamatu asukoht" value="<?=$location;?>"> *<br>
 	<br>
 		<select name="condition">
-	<option value="none">Raamatu seisukord</option>
+	<option value="">Raamatu seisukord</option>
 	
 <?php
 	$cond = array( 'Uus', 'Väga hea', 'Keskmine', 'Halb' );
@@ -99,7 +99,7 @@ require("../header.php");
     echo "<option value='$value' $selected>$value</option>";
 }
 ?>
-	</select>
+	</select> *
 	<br><br>
 	<p>Mitu münti on raamat väärt? Vali vahemikus 1-10, kus 10 on kõige väärtuslikum:</p>
 	<select name="points">
