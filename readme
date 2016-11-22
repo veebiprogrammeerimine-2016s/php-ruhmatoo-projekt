@@ -38,12 +38,20 @@ CREATE TABLE project_books (
     -> cat VARCHAR(255) NOT NULL,
     -> title VARCHAR(255) NOT NULL,
     -> author VARCHAR(128) NOT NULL,
-    -> year SMALLINT UNSIGNED,
-	-> language VARCHAR(50) NOT NULL,
-	-> condition VARCHAR(50) NOT NULL,
+    -> year INT(4),
+	-> bookCondition VARCHAR(50) NOT NULL,
 	-> location VARCHAR(128) NOT NULL,
 	-> description TEXT,
-	-> points TINYINT UNSIGNED NOT NULL,
+	-> points INT(2),
 	-> created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	-> deleted DATE DEFAULT NULL
+	-> image VARCHAR(500),
+	-> user_id INT(11),
+	-> FOREIGN KEY (user_id) REFERENCES project_users(user_id)
 	-> );
+
+	
+
+	
+	
+	
