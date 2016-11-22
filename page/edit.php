@@ -119,7 +119,7 @@ require("../header.php");
 ?>
 	</select>
 	<br><br>
-	<input name="picture" type="url" placeholder="URL:http://www.aadress.ee"> Lisa pildi aadress (URL)
+	<input name="picture" type="text" placeholder="http://www.aadress.ee"> Lisa pildi aadress (URL)
 	<br><br>
 	<textarea name="description" rows="4" cols="50" placeholder="Kommentaar"></textarea>
 	<br><br>
