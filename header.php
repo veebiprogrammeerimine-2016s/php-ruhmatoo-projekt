@@ -44,23 +44,20 @@ if (!isset($_SESSION["userId"])){
 			<li></li>
 			<li></li>
 			<li></li>
-<?php 
-		
-		if($quest == TRUE || $_GET["logout"]){
-			$header = '<li><a href="home.php" class="btn btn-default" role="button">Avaleht</a></li>';
-			$header .= '<li><a href="books.php" class="btn btn-default" role="button">Raamatud</a></li>';
-			$header .= '<li><a href="join.php" class="btn btn-default" role="button">Liitu</a></li>';
-			$header .= '<li><a href="login.php" class="btn btn-default" role="button">Logi sisse</a></li>';
-			echo $header;
-		}
-		if($quest == ""){
-			$header = '<li><a href="user.php" class="btn btn-default" role="button">Sinu riiul</a></li>';
-			$header .= '<li><a href="books.php" class="btn btn-default" role="button">Otsi raamatuid</a></li>';
-			$header .= '<li><a href="edit.php" class="btn btn-default" role="button">Paku raamatuid</a></li>';
-			$header .= '<li><a href="login.php" class="btn btn-default" role="button">Logi välja</a></li>';
-			echo $header;
-        }
-?>
+<?php if(!isset($_SESSION["userId"])){ ?>
+			<li><a href="home.php" class="btn btn-default" role="button">Avaleht</a></li>
+			<li><a href="books.php" class="btn btn-default" role="button">Raamatud</a></li>
+			<li><a href="join.php" class="btn btn-default" role="button">Liitu</a></li>
+			<li><a href="login.php" class="btn btn-default" role="button">Logi sisse</a></li>
+			
+<?php } else { ?>
+			<li><a href="user.php" class="btn btn-default" role="button">Sinu riiul</a></li>
+			<li><a href="books.php" class="btn btn-default" role="button">Otsi raamatuid</a></li>
+			<li><a href="edit.php" class="btn btn-default" role="button">Paku raamatuid</a></li>
+			<li><a href="login.php" class="btn btn-default" role="button">Logi välja</a></li>
+
+
+<?php } ?>
 		</ul>	
 	
 	</div>
