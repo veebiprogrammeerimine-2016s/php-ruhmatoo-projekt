@@ -1,84 +1,61 @@
-<?php
-class User {
-
+<?php 
+class User{
 	private $connection;
-
-	// kÃ¤ivitatakse siis kui on = new User(see jÃµuab siia)
+	//käivitataks siis kui on = new User(see jõuab siia)
+	
 	function __construct($mysqli){
-		// this viitab sellele klassile ja selle
-		// klassi muutujale
-		$this->connection = $mysqli;
+		//this viitab sellele klassile ja selle klassi muutujale
+		$this->connection=$mysqli;
 	}
-
-	/* KÃ•IK FUNKTSIOONID*/
-
+	/*KÕIK FUNKTSIOONID */
+	
 	function login($email, $password) {
-
-		$notice = "";
-
-		$stmt = $this->connection->prepare("
-			SELECT id, email, password, created
-			FROM user_sample
-			WHERE email = ?
-		");
-
+		$notice="";
+		$stmt = $this->connection->prepare("SELECT id, email, password, created FROM user_sample WHERE email = ?"  );
 		echo $this->connection->error;
-
-		//asendan kÃ¼simÃ¤rgi
-		$stmt->bind_param("s", $email);
-
-		//rea kohta tulba vÃ¤Ã¤rtus
+		//asendan küsimärgi
+		$stmt->bind_param("s",$email);
+		
+		//rea kohta tulba väärtus
 		$stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created);
-
 		$stmt->execute();
-
-		//ainult SELECT'i puhul
-		if($stmt->fetch()) {
-			// oli olemas, rida kÃ¤es
-			//kasutaja sisestas sisselogimiseks
-			$hash = hash("sha512", $password);
-
-			if ($hash == $passwordFromDb) {
+		
+		//ainult select puhul
+		if($stmt->fetch()){
+			//oli olemas,rida käes
+			$hash=hash("sha512", $password);
+			if($hash==$passwordFromDb) {
 				echo "Kasutaja $id logis sisse";
-
 				$_SESSION["userId"] = $id;
 				$_SESSION["userEmail"] = $emailFromDb;
-				//echo "ERROR";
-
 				header("Location: data.php");
 				exit();
-
 			} else {
-				$notice = "parool vale";
+				$notice = "Parool vale";
 			}
-
-
 		} else {
-
-			//ei olnud Ã¼htegi rida
-			$notice = "Sellise emailiga ".$email." kasutajat ei ole olemas";
+			//ei olnud ühtegi rida
+			$notice = "Sellise emailiga $email kasutajat ei ole olemas";
 		}
-
+		
 		$stmt->close();
-
+		
+		
 		return $notice;
-
 	}
-
+	
 	function signup($email, $password) {
 
-		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password) VALUE (?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password) VALUE (?,?)");
 		echo $this->connection->error;
 
-		$stmt->bind_param("ss", $email, $password);
-
-		if ( $stmt->execute() ) {
-			echo "Ãµnnestus";
-		} else {
-			echo "ERROR ".$stmt->error;
+		$stmt->bind_param("ss",$email, $password);
+		if ($stmt->execute() ) {
+			echo "õnnestus";
+		}	else { "ERROR".$stmt->error;
 		}
-
 	}
+	
 
 }
 ?>

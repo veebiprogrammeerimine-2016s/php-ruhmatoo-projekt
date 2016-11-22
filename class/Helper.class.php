@@ -1,21 +1,12 @@
-<?php
-class Helper {
-
-    function cleanInput($input) {
-
-		// input = "  romil  ";
-		$input = trim($input);
-		// input = "romil";
-
-		// võtab välja \
-		$input = stripslashes($input);
-
-		// html asendab, nt "<" saab "&lt;"
-		$input = htmlspecialchars($input);
-
+<?php 
+class Helper{
+	
+	function cleanInput($input) {
+		$input=trim($input);
+		$input=stripslashes($input);
+		$input=htmlspecialchars($input);
 		return $input;
-
 	}
-
+	
 }
 ?>
