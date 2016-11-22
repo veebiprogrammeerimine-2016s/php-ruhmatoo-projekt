@@ -18,23 +18,14 @@ if(isset($_SESSION["userID"])){
 	$registerPasswordError ="";
 	$signupEmail = "";	
 	$registerEmail = "";
-	$personalError = "";
+	
 	$nameError = "";
 	$userFirstName= "";
 	$userLastName="";
-	$aboutUser="";
 	
 	
-	if(isset($_POST["personal"])) {
-		if( empty($_POST["personal"])){
-			
-			$personalError = "Kirjuta enda kohta midagi! :)";
-		} else {
-			
-			$aboutUser = $_POST["personal"];
-		}
-		
-	}
+	
+
 	
 	if(isset($_POST["FirstName"])){
 		
@@ -140,7 +131,7 @@ if( isset($_POST["registerPassword"] )){
 	
 	
 	if($registerEmailError == "" && empty ($registerPasswordError) && isset($_POST["registerEmail"])
-			&& isset($_POST["registerPassword"])&& isset($_POST["personal"]) && !empty($_POST["personal"]) && isset($_POST["FirstName"]) 
+			&& isset($_POST["registerPassword"])&&  isset($_POST["FirstName"]) 
 			&& isset($_POST["LastName"])) {
 		
 		
@@ -148,7 +139,7 @@ if( isset($_POST["registerPassword"] )){
 		$password = hash("whirlpool", $_POST["registerPassword"]);
 		
 		
-		$User->signUp(($Helper->cleanInput($registerEmail)),($Helper->cleanInput($password)),($Helper->cleanInput($userFirstName)),($Helper->cleanInput($userLastName)),($Helper->cleanInput($aboutUser)));
+		$User->signUp(($Helper->cleanInput($registerEmail)),($Helper->cleanInput($password)),($Helper->cleanInput($userFirstName)),($Helper->cleanInput($userLastName)));
 	
 		echo "Salvestan...";
 		echo "email : ".$_POST["registerEmail"]."<br>";
@@ -220,19 +211,17 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 			<div class="form-group">
 				<form method=post>
 
-				<input class="form-control" type=text  name=registerEmail  placeholder="Sisesta meiliaadress" value="<?=$registerEmail;?>"> <br><br>
+				<input class="form-control" type=text  name=registerEmail  placeholder="Sisesta meiliaadress" value="<?=$registerEmail;?>"> <br>
 				
 				
 
 				<input class="form-control" type=password name=registerPassword  placeholder="Vali parool" > 
 				<h3><font face="verdana" color="white">Sisesta oma ees- ja perekonnanimi</font></h3>
-				<input class="form-control" name=FirstName placeholder="eesnimi" type="text" value="<?=$userFirstName;?>">
+				<input class="form-control" name=FirstName placeholder="eesnimi" type="text" value="<?=$userFirstName;?>"><br>
 				<input class="form-control" name=LastName placeholder="perekonnanimi" type="text" value="<?=$userLastName;?>">
 					
-				<?php echo $personalError;  ?>
+				<br>
 				
-				<h3><font face="verdana" color="white"> Kirjuta enda kohta midagi huvitavat</font></h3>
-				<input class="form-control" type=text name=personal placeholder="Kirjuta midagi enda kohta" value="<?=$aboutUser;?>"> <br><br>
 				
 				
 				

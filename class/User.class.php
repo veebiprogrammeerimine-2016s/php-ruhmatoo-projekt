@@ -12,13 +12,13 @@ class User {
 	}
 	/*TEISED FUNKTSIOONID*/
 	
-	function signUp ($email, $password,$userFirstName,$userLastName,$aboutUser) {
+	function signUp ($email, $password,$userFirstName,$userLastName) {
 	
-		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password,first_name, last_name,about_user) VALUES (?, ?,?,?,?)");
+		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password,first_name, last_name) VALUES (?, ?,?,?)");
 	
 		echo $this->connection->error;
 		
-		$stmt->bind_param("sssss", $email, $password,$userFirstName, $userLastName, $aboutUser);
+		$stmt->bind_param("ssss", $email, $password,$userFirstName, $userLastName);
 		
 		if($stmt->execute()) {
 			echo "salvestamine toimis!:)";
@@ -35,7 +35,7 @@ class User {
 		$error = "";
 		echo $email;
 		$stmt = $this->connection->prepare("
-		SELECT id, email, password, created ,first_name,last_name,about_user
+		SELECT id, email, password, created ,first_name,last_name
 		FROM user_sample
 		WHERE email = ?");
 	
@@ -45,7 +45,7 @@ class User {
 		$stmt->bind_param("s", $email);
 		
 		//määran väärtused muutujatesse
-		$stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created, $firstNameFromDb, $lastNameFromDb,$aboutUserFromDb);
+		$stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created, $firstNameFromDb, $lastNameFromDb);
 		$stmt->execute();
 		
 		//andmed tulid andmebaasist või mitte
@@ -65,7 +65,7 @@ class User {
 				$_SESSION["message"] = "<h1>Tere tulemast!</h1>";
 				$_SESSION["firstName"] = $firstNameFromDb;
 				$_SESSION["lastName"] = $lastNameFromDb;
-				$_SESSION["aboutUser"] = $aboutUserFromDb;
+				
 				
 				
 				header("Location: data.php");
