@@ -13,7 +13,7 @@
 
 5) PAGES / SCREENS:
 
-(HOME - H) (SEARCH - S) (POST - P) (USER - U)
+(HOME - H) (SEARCH - S) (POST - P) (USER - U) (ABOUT - A) 
 
 6) DEVELOPER: Andry Žagars
 
