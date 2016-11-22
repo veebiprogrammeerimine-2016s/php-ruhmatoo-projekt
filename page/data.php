@@ -56,7 +56,7 @@
 	//echo"</pre>";
 	
 ?>
-<?php require("../header.php");?>
+<?php require("../loginheader.php");?>
 <h1>Data</h1>
 
 <?php echo$_SESSION["userEmail"];?>
