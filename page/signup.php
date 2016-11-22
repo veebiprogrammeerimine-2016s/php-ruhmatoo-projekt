@@ -86,6 +86,8 @@
 		<input name="signupPassword" placeholder="Parool" type="password"> <?php echo $signupPasswordError;?>
 		<br><br>
 		<input type="submit" value="Loo kasutaja">
+		<br><br>
+		<a class="link" href="http://localhost:5555/~railtoom/php-ruhmatoo-projekt/page/login.php">Kasutaja olemas?</a>
 		</form>
 		</div>
 	</div>

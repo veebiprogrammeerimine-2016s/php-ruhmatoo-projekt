@@ -56,12 +56,12 @@
 	//echo"</pre>";
 	
 ?>
-<?php require("../loginheader.php");?>
+<?php require("../dataheader.php");?>
 <h1>Data</h1>
 
-<?php echo$_SESSION["userEmail"];?>
+<?php //echo$_SESSION["userEmail"];?>
 
-<?=$_SESSION["userEmail"];?>
+<?//=$_SESSION["userEmail"];?>
 
 
 <p>
@@ -69,21 +69,7 @@
 	<a href="?logout=1">logi välja</a>
 </p>
 
-<h2>Salvesta sündmus</h2>
-<form method="POST" >
-	
-	<label>Vanus</label><br>
-	<input name="age" type="number">
-	
-	<br><br>
-	<label>Värv</label><br>
-	<input name="color" type="color">
-	
-	<br><br>
-	
-	<input type="submit" value="Salvesta">
 
-</form>
 
 <h2>Arhiiv</h2>
 
@@ -144,26 +130,5 @@
 	echo $html;
 ?>
 
-<h2>Midagi huvitavat</h2>
-<?php 
-	foreach($people as $p){
-		$style="background-color:".$p->color.";
-		width: 40px;
-		height: 40px;
-		border-radius: 20px;
-		text-align: center;
-		line-height: 39px;
-		float: left;
-		margin: 20px;
-		";
-		
-		echo"<p style='".$style."'>".$p->age."</p>";
-		
-	}
 
-
-
-
-
-?>
-<?php require("../footer.php");?>
+<?php require("../datafooter.php");?>
