@@ -2,6 +2,8 @@
 <html>
 <head>
 
+<link rel="stylesheet" type="text/css" href="style.css"/>
+
 	<title>Logi sisse või loo kasutaja</title>
 	
 	<!-- Latest compiled and minified CSS -->
@@ -15,4 +17,4 @@
 	
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body background = "http://www.magic4walls.com/wp-content/uploads/2013/12/blossom-bench-bloom-green-flower-grow-nature-1920x1200.jpg">
+<body background = "http://3.bp.blogspot.com/_9yPJkiEHO34/TVLWcEsZdYI/AAAAAAAAAMY/RLMofca-egw/s1600/DSC01372.JPG">

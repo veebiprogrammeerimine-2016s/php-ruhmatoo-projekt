@@ -210,8 +210,8 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				
 		
 		
-		<div class="col-lg-4 col-sm-offset-8">
-				<h2><font face="verdana" color="white">Loo kasutaja</font></h2>
+		<div id="signupForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
+				<h2><font color="white">Loo kasutaja</font></h2>
 				<?php echo $nameError ?>
 
 				<?php echo $registerEmailError;?>
