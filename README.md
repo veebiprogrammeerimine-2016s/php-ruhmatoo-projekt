@@ -9,7 +9,7 @@ Kaalust alla veebirakenduse eesmärgiks on oma tervisest ja kaalust lugu pidaval
 
 Veebirakenduse sihtrühm on lai, sest sobib kõikidele indiviididele, kes peavad mõistlikuks ja vajalikuks oma kaalumuutusi jälgida. Olgu tegemist naise või mehega, noore või vanemapoolsega - rakendus on sobilik rakendamiseks kõigile. Ühelt poolt pakub rakendus ülevaadet kaalunumbrite muutusest ning teisalt võib rohkemal määral inimest muudatuste teostamiseks (nt kehalise aktiivsuse suurendamiseks) motiveerida. 
 
-Võrreldes teiste samaväärsete rakendustega on eristavaks asjaoluks kaalunumbri muutuse monitoorimine ehk inimesel on võimalus oma varasemaid kaalunumbreid andmebaasis talletada ning neid kuvatakse talle igal sisselogimisel, andmaks lihtsustatud ülevaadet võimalikest muudatustest ajalises järjekorras. 
+Võrreldes teiste samaväärsete rakendustega on eristavaks asjaoluks kaalunumbri muutuse monitoorimine ehk inimesel on võimalus oma varasemaid kaalunumbreid andmebaasis talletada ning neid kuvatakse talle igal sisselogimisel, andmaks lihtsustatud ülevaadet võimalikest muutustest ajalises järjekorras. 
 
 Eeskujuks võtame http://kaaluabi.ee, projekti koostamisel on veel toetavateks keskkondadeks http://www.kalkulaator.ee/?lang=1&page=24, mis lubab soovijal välja arvutada sisestatavate näitajate abil KMI. 
   
@@ -42,6 +42,3 @@ Lisame juurde  andmebaasi skeemi loetava pildina + tabelite loomise SQL laused (
 
 
 KOKKUVÕTE
-
-
-
