@@ -184,7 +184,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li ><a href="#">Suggested Plänt Care <span class="sr-only"></span></a></li>
+        <li class="col-sm-12 col-sm-offset-12"><a href="#">Suggested Plänt Care <span class="sr-only"></span></a></li>
         
         
       </ul>
@@ -211,17 +211,6 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 </nav>
 <div class="container">
 	<div class="row">
-		<div class="col-sm-4 col-sm-offset-4">
-
-			<br><br><br><br><br>
-
-			<center><h2><font face="verdana" color="green">Logi sisse</font></h2></center>
-
-
-			
-				
-				
-			</div>	
 				
 				
 			<div class="col-sm-4 col-sm-offset-4">

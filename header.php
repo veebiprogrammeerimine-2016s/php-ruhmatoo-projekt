@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<title>Logi sisse või loo kasutaja</title>
 	
 	<!-- Latest compiled and minified CSS -->
