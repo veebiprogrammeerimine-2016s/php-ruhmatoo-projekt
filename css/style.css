@@ -10,3 +10,31 @@
     height: 85px;
 	width:100%;
 }
+.mrg
+{
+	margin-right:2rem;
+}
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    /* background-clip: padding-box; */
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
+    outline: 0;
+    /* max-width: 65%; */
+    width: 65%;
+    margin: 0 auto;
+}
+@media only screen and (max-width: 720px) 
+{
+   .mrg 
+   {
+		margin-right: 0;
+	}
+}
+#sign-up-form-body
+{
+	text-align:center;
+	margin-top:18px;
+}

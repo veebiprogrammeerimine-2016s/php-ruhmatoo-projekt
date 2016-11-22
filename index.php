@@ -8,17 +8,17 @@ $tyreFittings = getAllTyreFittings();
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Rehvivahetus Online</title>
     <!-- bootstrap css -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
   </head>
-  <body id="home" data-spy="scroll" data-targer=".navbar" data-offset="100">
+  <body id="home" data-spy="scroll" data-targer=".navbar" data-offset="200"> <!-- !!!! -->
   	<!-- navbar -->
     <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
-    <div class="container">
+    <div class="">
   <ul class="nav navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="#home">Esileht <span class="sr-only">(current)</span></a>
@@ -29,19 +29,22 @@ $tyreFittings = getAllTyreFittings();
     <li class="nav-item">
       <a class="nav-link" href="#tirechanger">Rehvitöökoda</a>
     </li>
-    <!--<li class="nav-item">
-      <a class="nav-link" href="#schedule">Schedule</a>
-    </li>
-    -->
   </ul>
-  <a class="navbar-brand pull-sm-right m-r-0 hidden-xs-down" href="http://www.tlu.ee">Presented by TLÜ team</a>
+  <a class="navbar-brand pull-sm-right m-r-0 hidden-sm-down" href="http://www.tlu.ee">Presented by TLÜ team</a>
+      <ul class="nav navbar-nav ">
+      <li class="nav-item pull-xs-right mrg">
+          <a class="nav-link" data-toggle="modal" data-target="#login">Logi sisse</a>
+      </li>
+      </ul>
   </div>
 </nav>
     <!-- /navbar-->
-    <!-- jumbotron -->
+    <!-- jumbotron -->	
+		
     <div class="jumbotron jumbotron-fluid bg-info">
   <div class="container text-sm-center p-t-3">
-    <h1 class="display-2">Rehvivahetus Online</h1>
+    <h1 class="display-2 hidden-xs-down">Rehvivahetus Online</h1>
+	<h1 class="hidden-sm-up">Rehvivahetus Online</h1>
     <p class="lead">Me tahame, et Sinu rehvid oleksid kindlalt auto all</p>
     <div class="btn-group m-t-2" role="group" aria-label="Basic example">
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register">Liitu Meiega</button>
@@ -70,11 +73,11 @@ $tyreFittings = getAllTyreFittings();
         <div class="col-lg-4">
           <h3 class="m-b-2">Miks valida meid?</h3>
            <div class="list-group">
-  <a class="list-group-item"><strong>Asukoht</strong>: Kõik on ühes kohas</a>
-  <a class="list-group-item"><strong>Hind</strong>: Vali endale parem hind </a>
-  <a class="list-group-item"><strong>Partnerid</strong>: Ainult paremad rehvitöökodat</a>
-  <a class="list-group-item"><strong>Järjekord</strong>: Sa ei pea ootama. Vali endale sobiv aeg ja koht</a>
-</div>
+			  <a class="list-group-item"><strong>Asukoht</strong>: Kõik on ühes kohas</a>
+			  <a class="list-group-item"><strong>Hind</strong>: Vali endale parem hind </a>
+			  <a class="list-group-item"><strong>Partnerid</strong>: Ainult paremad rehvitöökodat</a>
+			  <a class="list-group-item"><strong>Järjekord</strong>: Sa ei pea ootama. Vali endale sobiv aeg ja koht</a>
+		   </div>
         </div>
       </div> <!-- /about -->
       
@@ -158,18 +161,64 @@ $tyreFittings = getAllTyreFittings();
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Register</h4>
+                <h4 class="modal-title">Loo kasutaja</h4>
               </div>
+			  
               <div class="modal-body">
-                <p>Form goes here..</p>
+               
+				 <div class="form-group">
+					<label for="exampleInputEmail1">Email address</label>
+					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+				 </div>
+				 <div class="form-group">
+					<label for="exampleInputPassword1">Password</label>
+					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+				</div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                <button type="button" class="btn btn-primary" >Registreerun</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+ 
+	<div id="login" class="modal fade">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Logi sisse</h4>
+              </div>
+              <div class="modal-body">
+               
+				 <div class="form-group">
+					<label for="exampleInputEmail1">Email address</label>
+					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+				 </div>
+				 <div class="form-group">
+					<label for="exampleInputPassword1">Password</label>
+					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+				</div>
+              </div>
+              <div class="modal-footer">
+                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                <button type="button" class="btn btn-primary">Logi sisse</button>
+				 <div class="row">
+            <div id="sign-up-form-body">
+                Teil pole veel kontot?
+				</br>
+                <a data-toggle="modal" data-target="#register" data-dismiss="modal">Registreeru!</a>
+            </div>
+        </div>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->	
+
+		
     <!-- jQuery first, then bootstrap js -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous">
@@ -192,5 +241,6 @@ $tyreFittings = getAllTyreFittings();
 });
       
 		</script>
+		
   </body>
 </html>
