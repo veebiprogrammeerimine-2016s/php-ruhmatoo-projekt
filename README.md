@@ -23,18 +23,23 @@
 			* LEHED:
 				Leht1:  tutvustus
 				leht2: sisselogimine(registreerimine) -> edasi suunamine vastavalt kasutajarollile
+						ostja: ees-perenimi, kontakt nr, email, tarne aadress
+						müüja: kontakt-isiku ees-perenimi, kontakt nr, email, firma nimi, firma reg.nr, juriidiline aadress, tarne aadress
 				leht3: ostja: toodete nimekiri, erisoovide lahter.
+							toote pilt, kirjeldus, saadavus-kogus, tarne aeg, hind
 				leht4: ostja: ostukorv
 				leht5: ostja: andmed, ostuajalugu(arved), etc
 				leht6: müüja: lahtrid mis hetkel on müügis antud firma poolt, mis kogused/hinnad/etc
 							  (informatiivne leht) lisaks mis hetkel enim müüdav kraam
 				leht7: müüja: pakkumiste tegemise leht (uued/vanad tooted), hindade-koguste muutmine, 
 				leht8: müüja: firma andmed ja ostuajalugu koos arvetega ja muu seonduvaga
-				leht9: müüja: toodete nimekiri nagu ostja
-				leht10: admin: müüjate nimekiri
-				leht11: admin: ostjate nimekiri
+				leht9: müüja: toodete nimekiri nagu ostjal
+				leht10: admin: müüjate nimekiri (kliendi andmebaas) nimi, nr, email, aadress,
+				leht11: admin: ostjate nimekiri (kliendi andmebaas)
 				leht12: admin: müüjatelt tellimise ja ostjatele müümise leht
-				leht13: admin: ostu/müügi arved
+							lahter ostja sooviga kus saab määrata milliselt müüjalt tellida ja mis kogusega
+				leht13: admin: ostu/müügi arved 2 erinevat tabelit, üks ostu arved teine müügi arved, 
+								näitab ostjat, müüjat, hinda, tasumist, transpordi staatust, 
 		
     * andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
     * **kokkuvõte:** mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
