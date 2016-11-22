@@ -162,7 +162,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
+    <div id="logo" class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -175,18 +175,18 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <li class="col-sm-12 col-sm-offset-12"><a href="#">Suggested Plänt Care <span class="sr-only"></span></a></li>
+        <li class="col-sm-8"><a href="#">Taimehooldus<span class="sr-only"></span></a></li>
         
         
       </ul>
-			<form class="navbar-form navbar-right" method=post role="search">
+			<form id="loginforms" class="navbar-form navbar-right col-sm-6" method=post role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="signupEmail" placeholder="Username">
+                        <input type="text" class="form-control" name="signupEmail" placeholder="E-maili aadress">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="signupPassword" placeholder="Password">
+                        <input type="password" class="form-control" name="signupPassword" placeholder="Parool">
                     </div>
-                    <button type="submit" class="btn btn-default">Sign In</button>
+                    <button type="submit" class="btn btn-default">Logi sisse</button>
                 </form>
       </form>
       
@@ -216,7 +216,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				
 
 				<input class="form-control" type=password name=registerPassword  placeholder="Vali parool" > 
-				<h3><font face="verdana" color="white">Sisesta oma ees- ja perekonnanimi</font></h3>
+				<h3><font face="verdana" color="white">Sisesta ees-ja perekonnanimi</font></h3>
 				<input class="form-control" name=FirstName placeholder="eesnimi" type="text" value="<?=$userFirstName;?>"><br>
 				<input class="form-control" name=LastName placeholder="perekonnanimi" type="text" value="<?=$userLastName;?>">
 					
@@ -225,7 +225,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				
 				
 				
-				<center><input class="btn-success" type="submit" value="Kinnitan"></center>
+				<center><input class="btn btn-default" type="submit" value="Kinnita"></center>
 				
 				
 			
