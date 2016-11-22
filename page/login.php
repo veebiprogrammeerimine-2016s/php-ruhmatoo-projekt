@@ -196,13 +196,13 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 <div class="container">
 
 
-
+<br><br><br><br><br><br><br><br>
 	<div class="col-lg-12 ">
 				
 		
 		
 		<div id="signupForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
-				<h2><font color="white">Loo kasutaja</font></h2>
+				<h3>Loo kasutaja</h3>
 				<?php echo $nameError ?>
 
 				<?php echo $registerEmailError;?>
@@ -216,7 +216,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				
 
 				<input class="form-control" type=password name=registerPassword  placeholder="Vali parool" > 
-				<h3><font face="verdana" color="white">Sisesta ees-ja perekonnanimi</font></h3>
+				<h3>Sisesta ees-ja perekonnanimi</h4>
 				<input class="form-control" name=FirstName placeholder="eesnimi" type="text" value="<?=$userFirstName;?>"><br>
 				<input class="form-control" name=LastName placeholder="perekonnanimi" type="text" value="<?=$userLastName;?>">
 					
@@ -240,8 +240,8 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	
 	
 	</div>
-	
-</div>
+	</div>
+
 <div>
 </div>
 <?php require("../footer.php");?>

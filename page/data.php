@@ -147,23 +147,23 @@
 </nav>
 
 <center>
-<br><br>
- <h3>Tere tulemast     <?=$_SESSION["firstName"];?>!</h3>
+<br><br><br>
+ <h4>Tere tulemast     <?=$_SESSION["firstName"];?>!</h4>
 <div id="signupForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
-		<h3>><font face="verdana" color="white"> Toataimede sisestamine </h3></font>
+		<h3> Toataimede sisestamine </h3>
 
 		<div >
-			<form method=POST>
+			<form id="insertPlants" method=POST>
 				<?php echo $plantError;  ?>
 				<?php echo $wateringIntervalError;  ?>
 
 				  
-			 <h3><font face="verdana" color="white">Sisesta taime nimetus</font></h3>
+			 <h3>Sisesta taime nimetus</h3>
 				<input  class="form-control" name="user_plant" placeholder="taime nimetus"  type="text" value="<?=$plant;?>" > 
 
 			<br>
 
-				<h3><font face="verdana" color="white">Sisesta taime kastmisintervall</font></h3>
+				<h3>Sisesta taime kastmisintervall</h3>
 				<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number"> 
 
 			<br>
@@ -177,7 +177,7 @@
 			
 
 			<div class="col-sm-6 col-sm-offset-6">
-			<h3><font face="verdana" color="white">Taime otsing</font></h3>
+			<h3>Taime otsing</h3>
 			<form>
 				<input type="search" name="q" value="<?=$q;?>">
 				<input class="btn btn-default" type="submit" value="Otsi">
