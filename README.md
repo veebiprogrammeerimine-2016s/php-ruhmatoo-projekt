@@ -1,7 +1,7 @@
 # PHP rühmatöö projekt
 
 
-KAALUST ALLA 
+# KAALUST ALLA 
 
 PROJEKTI rühmaliikmed: Inna Sammel, Marii Viita
 
