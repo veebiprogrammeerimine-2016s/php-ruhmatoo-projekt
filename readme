@@ -21,3 +21,29 @@ Funktsionaalsuse loetelu:
 =======
 -Raamatute 'ost'
 >>>>>>> b7e005e3377e3d9a6fd8be2a0cceed223883124c
+
+Andmebaasi tabelite SQL käsud
+
+CREATE TABLE project_users (
+    -> user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> username VARCHAR(50) NOT NULL,
+    -> email VARCHAR(128) NOT NULL,
+    -> password VARCHAR(128) NOT NULL,
+    -> joined TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -> UNIQUE(email)
+    -> );
+	
+CREATE TABLE project_books (
+    -> book_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> cat VARCHAR(255) NOT NULL,
+    -> title VARCHAR(255) NOT NULL,
+    -> author VARCHAR(128) NOT NULL,
+    -> year SMALLINT UNSIGNED,
+	-> language VARCHAR(50) NOT NULL,
+	-> condition VARCHAR(50) NOT NULL,
+	-> location VARCHAR(128) NOT NULL,
+	-> description TEXT,
+	-> points TINYINT UNSIGNED NOT NULL,
+	-> created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	-> deleted DATE DEFAULT NULL
+	-> );
