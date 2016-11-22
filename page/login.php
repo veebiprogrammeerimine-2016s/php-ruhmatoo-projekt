@@ -168,6 +168,47 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	
 ?>
 <?php require("../header.php");?>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">FacePlänt</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li ><a href="#">Suggested Plänt Care <span class="sr-only"></span></a></li>
+        
+        
+      </ul>
+      <form class="navbar-form navbar-right">
+        <div class="form-group">
+				<form method=POST>
+
+
+
+					<input class="form-control" name=signupEmail placeholder="e-mail" type="text" value="<?=$signupEmail;?>"> <?php echo $signupEmailError;  ?>
+
+					<input class="form-control" name=signupPassword placeholder="parool" type="password"> <?php echo $signupPasswordError; ?>
+		
+					<input class="btn btn-success" type="submit" value="Logi sisse">
+				
+					
+
+				</form>
+			</div>	
+      </form>
+      
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-4">
@@ -177,27 +218,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 			<center><h2><font face="verdana" color="green">Logi sisse</font></h2></center>
 
 
-			<div class="form-group">
-				<center><form method=POST>
-
-
-
-					<input class="form-control" name=signupEmail placeholder="e-mail" type="text" value="<?=$signupEmail;?>"> <?php echo $signupEmailError;  ?>
-
-				<br><br>
-
-
-					<input class="form-control" name=signupPassword placeholder="parool" type="password"> <?php echo $signupPasswordError; ?>
-
-				<br><br>
-
-					<input class="btn btn-success" type="submit" value="Logi sisse">
-				<br><br>
-				<br><br><br>
-					
-
-				</form>
-			</div>	
+			
 				
 				
 			</div>	
