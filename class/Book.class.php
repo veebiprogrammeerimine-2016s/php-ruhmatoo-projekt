@@ -67,4 +67,49 @@ class Book {
 		
 		return $result;
 	}
+
+	//konkreetne raamat id järgi
+	function getSingle($id){
+		$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+			SELECT cat, title, author, year, bookCondition, location, description, points, image 
+			FROM project_books
+			WHERE book_id=?
+			AND deleted IS NULL");
+		
+
+		$stmt->bind_param("i", $id);
+		$stmt->bind_result($categoryDb, $titleDb, $authorDb, $yearDb, $conditionDb, $locationDb, $descriptionDb, $pointsDb, $imageDb);
+		$stmt->execute();
+		
+		//tekitan objekti
+		$book = new Stdclass();
+		
+		//saime ühe rea andmeid
+		if($stmt->fetch()){
+			// saan siin alles kasutada bind_result muutujaid
+			
+			$book->category = $categoryDb;
+			$book->title = $titleDb;
+			$book->author = $authorDb;
+			$book->year = $yearDb;
+			$book->condition = $conditionDb;
+			$book->location = $locationDb;
+			$book->description = $descriptionDb;
+			$book->coins = $pointsDb;
+			$book->image = $imageDb;
+				
+		}else{
+			// ei saanud rida andmeid kätte
+			// sellist id'd ei ole olemas
+			
+			header("Location: books.php");
+			exit();
+		}
+		
+		$stmt->close();
+		return $book;
+		
+	}
+	
 }

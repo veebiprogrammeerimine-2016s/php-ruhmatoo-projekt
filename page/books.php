@@ -27,17 +27,17 @@ foreach($books as $book){
 	$tableHtml .= "<tr>";
 	
 		if($book->image == ""){
-			$book->image = ("../image/raamat.jpg"); //link teha detailse vaateni
+			$book->image = ("../image/raamat.jpg");  //kui raamatust pilti pole
 		}
-		$tableHtml .= "<td>";
-			$tableHtml .= '<a href="books.php"> 
+		$tableHtml .= "<td>";  //link detailse vaateni
+			$tableHtml .= '<a href="details.php?id='.$book->book_id.'"> 
 								<img src="' .$book->image. '" style= "width:128px;" >
 							</a>';
 		$tableHtml .= "</td>";
 		
 		$tableHtml .= "<td>";
 			$tableHtml .= "<div>" .$book->author."</div>";
-			$tableHtml .= '<p><a href="books.php">' .$book->title.'</a></p>';	//link detailse vaateni
+			$tableHtml .= '<p><a href="details.php?id='.$book->book_id.'">' .$book->title.'</a></p>';	//link detailse vaateni
 		$tableHtml .= "</td>";
 	
 	$tableHtml .= "</tr>";
