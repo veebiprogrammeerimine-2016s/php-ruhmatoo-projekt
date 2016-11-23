@@ -12,7 +12,7 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<img src="header.gif" alt="Header" width="1500" height="300">
+	<img src="header.gif" alt="Header" width="1500" height="300" align="center">
 </head>
 <head>
 <style>
@@ -31,6 +31,7 @@
 </style>
 </head>
 <body>
+<br>
 <a href="data.php" class="button">Avaleht</a>
 <a href="animals.php" class="button">Loomad</a>
 <a href="insert_animal.php" class="button">Registreeri loom</a>
