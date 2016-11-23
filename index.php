@@ -2,7 +2,7 @@
 require("../../config.php");
 require("functions.php");
 
-if(isset($_SESSION["userID"]))
+if(isset($_SESSION["userId"]))
 	{
 		//suunan sisselogimise lehele
 		header("Location: data.php");
@@ -21,14 +21,15 @@ if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
 		?>
         <script>alert("Kasutaja on tehtud!");</script>
         <?php
+		
 		}
     
 	}
 		
-		if(isset($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["username"]) && !empty($_POST["password"]))
+if(isset($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["username"]) && !empty($_POST["password"]))
 	{
 		login($_POST["username"],$_POST["password"]);
-		if(!isset($_SESSION["userID"]))
+		if(!isset($_SESSION["userId"]))
 		{
 			?> <script> alert("Vale parool või kasutaja nimi"); </script> <?php
 		}
