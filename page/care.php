@@ -175,7 +175,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-main">
       <ul class="nav navbar-nav">
-        <li class="col-sm-8"><a href="care.php">Taimehooldus<span class="sr-only"></span></a></li>
+        <li class="col-sm-8"><a href="#">Taimehooldus<span class="sr-only"></span></a></li>
         
         
       </ul>
@@ -251,11 +251,11 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
   width:1250px;
   height:400px;
   border-style:double;
-  background-color: #000000;
+  background-color: #1f7a1f;
   border-top-left-radius:10px;
   border-top-right-radius:10px;
   padding-top:30;
-  opacity:0.8;
+  opacity:0.9;
 
   }
   
