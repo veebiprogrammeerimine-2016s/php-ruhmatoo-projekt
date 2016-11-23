@@ -186,6 +186,11 @@
 					
 					<input name="surname" placeholder="perekonnanimi" value="<?=$surname;?>" type="text"> <?php echo $surnameError; ?>
 					<br><br>
+					
+					<input type="radio" name="gender" value="male">Male<br>
+					<input type="radio" name="gender" value="female">Female<br>
+					<input type="radio" name="gender" value="other">Other  
+					<br><br>
 
 					<input type="submit" value="Loo kasutaja">
 
