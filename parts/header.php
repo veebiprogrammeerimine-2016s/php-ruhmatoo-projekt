@@ -17,7 +17,7 @@
 
 <!-- Google signin api -->
 <meta name="google-signin-scope" content="profile email">
-<meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+<meta name="google-signin-client_id" content="222084492791-61g6s53kmn6vvaua33api5li3lsrk9tn.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </head>
