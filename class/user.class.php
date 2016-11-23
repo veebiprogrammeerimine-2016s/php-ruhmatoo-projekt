@@ -9,12 +9,12 @@ class User {
 
         $this->connection = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 
-        $stmt = $this->connection->prepare("INSERT INTO repairUsers (email, password) VALUES (?, ?)");
+        $stmt = $this->connection->prepare("INSERT INTO repairUsers (email, password, firstname, lastname) VALUES (?, ?, ?, ?)");
 
 
         echo $this->connection->error;
 
-        $stmt->bind_param("ss", $email, $password);
+        $stmt->bind_param("ssss", $email, $password, $firstname, $lastname);
 
         if ($stmt->execute()) {
 

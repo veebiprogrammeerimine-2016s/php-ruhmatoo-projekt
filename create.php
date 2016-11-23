@@ -8,10 +8,10 @@
     $signupEmailError = "";
     $signupPasswordError = "";
     $signupEmail = "";
-    $signupName = "";
-    $signupLastName = "";
-    $signupNameError = "";
-    $signupLastNameError = "";
+    $firstname = "";
+    $lastname = "";
+    $firstnameError = "";
+    $lastnameError = "";
 
 
     if ( isset ( $_POST["signupEmail"] ) ) {
@@ -25,7 +25,6 @@
             $signupEmail = $_POST["signupEmail"];
 
         }
-
     }
     if ( isset ( $_POST["signupPassword"] ) ) {
 
@@ -40,35 +39,32 @@
                 $signupPasswordError = "Parool peab olema vähemalt 8 tähemärkki pikk";
 
             }
-
         }
-
     }
-    if ( isset ( $_POST["signupName"] ) ) {
+    
+	if ( isset ( $_POST["firstname"] ) ) {
 
-        if ( empty ( $_POST["signupName"] ) ) {
+        if ( empty ( $_POST["firstname"] ) ) {
 
-            $signupNameError = "See väli on kohustuslik!";
+            $firstnameError = "See väli on kohustuslik!";
 
         } else {
 
-            $signupName = $_POST["signupName"];
+            $firstname = $_POST["firstname"];
 
         }
-
     }
-    if ( isset ( $_POST["signupLastName"] ) ) {
+    if ( isset ( $_POST["lastname"] ) ) {
 
-        if ( empty ( $_POST["signupLastName"] ) ) {
+        if ( empty ( $_POST["lastname"] ) ) {
 
-            $signupLastNameError = "See väli on kohustuslik!";
+            $lastnameError = "See väli on kohustuslik!";
 
         } else {
 
-            $signupLastName = $_POST["signupLastName"];
+            $lastname = $_POST["lastname"];
 
         }
-
     }
     if ( isset($_POST["signupPassword"]) &&
         isset($_POST["signupEmail"]) &&
@@ -81,8 +77,9 @@
 
         $password = hash("sha512", $_POST["signupPassword"]);
 
-        signup ($signupEmail, $password);
-
+	$signupEmail = cleanInput($signupEmail);
+		
+	$User->signUp($signupEmail, cleanInput($password), $firstname, $lastname);
 }
 ?>
 <?php require("header.php"); ?>
@@ -98,9 +95,9 @@
     <br><br>
     <input name="signupPassword" type="password" placeholder="Korda parooli"> <?php echo $signupPasswordError; ?>
     <br><br>
-    <input name="firstName" type="name" placeholder="Eesnimi">
+    <input name="firstname" type="name" placeholder="Eesnimi"> <?php echo $firstnameError; ?>
     <br><br>
-    <input name="lastName" type="name" placeholder="Perekonnanimi">
+    <input name="lastname" type="name" placeholder="Perekonnanimi"> <?php echo $lastnameError; ?>
     <br><br>
     <input type="submit" value="Loo kasutaja">
 
