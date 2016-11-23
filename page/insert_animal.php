@@ -52,11 +52,6 @@
         <h1>Koduloomade registreerimine</h1>
 	</head>	
         <body>
-		<a href="data.php">Avaleht</a>
-		<br>
-		<a href="animals.php">Vaata renditavaid loomasid</a>
-		<br>
-		<a href="?logout=1">Logi valja</a>
             <h3>Andmed</h3>
             <form method="POST">
 				<label>Liik</label><br>
