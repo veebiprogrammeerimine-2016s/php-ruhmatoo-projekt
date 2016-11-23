@@ -112,7 +112,7 @@
 				 </th>";
 				 
 
-		foreach($Animal as $g){
+		foreach($animal as $g){
 			$html .= "<tr>";
 				$html .= "<td>".$g->id."</td>";
 				$html .= "<td>".$g->type."</td>";
