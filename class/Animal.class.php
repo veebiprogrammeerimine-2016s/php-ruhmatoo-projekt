@@ -35,6 +35,8 @@ class Animal {
 			$sort = "id";
 		}
 		
+		//kas github t88tab??
+		
 		$orderBy = "ASC";
 		
 		if ($order == "DESC") {
