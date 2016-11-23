@@ -5,8 +5,8 @@
 
 PROJEKTI rühmaliikmed: Inna Sammel, Marii Viita, Elias Rubiales
 
-Veebirakenduse MinuTunne eesmärgiks on oma enesetundest, kaalust ja üleüldisest heaolust lugu pidavahele inimesele võimaldada monitoorida enda enesetunde muutusi, liikumisaktiivsust ning vastavalt soovile jälgida kehamassiindeksi (KMI) ja kaalu muutusi. 
-Inimene leiab veebirakendusest tuge oma enesetunde monitoorimisel ning selle seostamisel võimalike kaalutmuudatustega. Samuti on rakendus hea abimees kaalumuudatuse motiveerimiseks. 
+Veebirakenduse MinuTunne eesmärgiks on oma enesetundest, kaalust ja üleüldisest heaolust lugu pidavale inimesele võimaldada monitoorida enda enesetunde muutusi, liikumisaktiivsust ning vastavalt soovile jälgida kehamassiindeksi (KMI) ja kaalu muutusi. 
+Inimene leiab veebirakendusest tuge oma enesetunde monitoorimisel ning selle seostamisel võimalike kaalumuudatustega. Samuti on rakendus hea abimees kaalumuudatuse motiveerimiseks. 
 Kasutajal on võimalik tutvuda enda varasemate enesetunde hinnangutega, liikumisaktiivsusega ning neid vastavalt vajadusele analüüsida. 
 
 Veebirakenduse sihtrühm on lai, sest sobib kõikidele indiviididele, kes peavad mõistlikuks ja vajalikuks oma enesetunde ja liikumisaktiivsuse muutusi jälgida. Olgu tegemist naise või mehega, noore või vanemapoolsega - rakendus on sobilik kasutamiseks kõigile. Ühelt poolt pakub rakendus ülevaadet enesetunde muutusest ning teisalt võib rohkemal määral inimest muudatuste teostamiseks (nt kehalise aktiivsuse suurendamiseks) motiveerida. 
