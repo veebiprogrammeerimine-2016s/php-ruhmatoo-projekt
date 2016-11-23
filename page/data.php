@@ -40,8 +40,9 @@
     <head>
 	<?php require("../header.php"); ?>
 	<br>
-	Tere tulemast <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
+Tere tulemast <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
 	<a href="?logout=1">Logi välja</a>
+	<br>
 </p>
 </html>		
 

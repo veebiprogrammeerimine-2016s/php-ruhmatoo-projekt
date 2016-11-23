@@ -37,4 +37,5 @@
 <a href="insert_animal.php" class="button">Registreeri loom</a>
 <a href="animalshelter.php" class="button">Varjupaigad</a>
 <a href="contact.php" class="button">Kontakt</a>
+<a href="?logout=1" class="button">Logi valja</a>
 </body>
