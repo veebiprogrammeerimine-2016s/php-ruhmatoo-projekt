@@ -8,9 +8,9 @@
 	//kas kasutaja uuendab andmeid
 	if(isset($_POST["update"])){
 		
-		$Apartment->update($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["city"]), $Helper->cleanInput($_POST["street"]), $Helper->cleanInput($_POST["area"]), $Helper->cleanInput($_POST["rooms"]));
+		$Animal->update($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["type"]), $Helper->cleanInput($_POST["name"]), $Helper->cleanInput($_POST["age"]));
 		
-		header("Location: edit.php?id=".$_POST["id"]."&success=true");
+		header("Location: animals.php?id=".$_POST["id"]."&success=true");
         exit();	
 		
 	}
@@ -18,9 +18,9 @@
 	//kustutan
 	if(isset($_GET["delete"])){
 		
-		$Apartment->delete($_GET["id"]);
+		$Animal->delete($_GET["id"]);
 		
-		header("Location: data.php");
+		header("Location: animals.php");
 		exit();
 	}
 	
@@ -28,12 +28,12 @@
 	
 	// kui ei ole id'd aadressireal siis suunan
 	if(!isset($_GET["id"])){
-		header("Location: data.php");
+		header("Location: animals.php");
 		exit();
 	}
 	
 	//saadan kaasa id
-	$c = $Apartment->getSingle($_GET["id"]);
+	$c = $Animal->getSingle($_GET["id"]);
 	//var_dump($c);
 	
 	if(isset($_GET["success"])){
@@ -49,16 +49,14 @@
 <h2>Muuda kirjet</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
-  	<label for="city" >Linn</label><br>
-	<input id="city" name="city" type="text" value="<?php echo $c->city;?>" ><br><br>
-  	<label for="street" >Tanav</label><br>
-	<input id="street" name="street" type="text" value="<?=$c->street;?>"><br><br>
-	<label for="area" >Pindala</label><br>
-	<input id="area" name="area" type="text" value="<?=$c->area;?>"><br><br>
-	<label for="rooms" >Tubasid</label><br>
-	<input id="rooms" name="rooms" type="text" value="<?=$c->rooms;?>"><br><br>
-  	
-	<input type="submit" name="update" value="Salvesta">
+  	<label for="type" >Liik</label><br>
+	<input id="type" name="type" type="text" value="<?php echo $c->type;?>" ><br><br>
+  	<label for="name" >Nimi</label><br>
+	<input id="name" name="name" type="text" value="<?=$c->name;?>"><br><br>
+	<label for="age" >Vanus</label><br>
+	<input id="age" name="age" type="text" value="<?=$c->age;?>"><br><br>
+	
+	<input type="submit" name="update" value="Uuenda">
   </form>
   
   
