@@ -23,6 +23,12 @@ võimalik kokku hoida, kui hoidud näiteks kategooriast: Alkohol.
 
 #Funktsionaalsuse Loetelu
 
+	Login ja Registreerimise leht
+	Leht andmete jaoks
+	leht ostude muutmiseks
+	funktsioonid ja classid
+	Stiil: Vaatame hiljem
+	
 TBD
 
 ERD: https://drive.google.com/open?id=0B7r2XlMnEQ43OUx3Y2RmX25QTTQ
