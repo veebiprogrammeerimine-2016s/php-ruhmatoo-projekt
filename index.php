@@ -3,7 +3,7 @@
 # require "/functions.php";
 
 ?>
-<?php require "../parts/header.php";?>
+<?php require "/parts/header.php";?>
 <body>
     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <script>
@@ -23,4 +23,4 @@
       };
     </script>
 </body>
-<?php require "../parts/footer.php";?>
+<?php require "/parts/footer.php";?>
