@@ -55,7 +55,9 @@
 					<input class="form-control" name="loginEmail" type="email">
 			</div>
 			<label>Parool</label><br>
-			<input name="loginPassword" placeholder="Parool" type="password">
+			<div class="form-group">
+			<input class="form-control" name="Parool" type="password">
+			</div>
 			<br><br>
 			<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Logi sisse">
 			<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Logi sisse2">
