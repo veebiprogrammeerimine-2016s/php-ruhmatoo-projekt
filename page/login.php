@@ -40,7 +40,7 @@
 	
 
 ?>
-<?php require("../header.php"); ?>
+<?php require("../loginheader.php"); ?>
 
 	<div class="container">
 	

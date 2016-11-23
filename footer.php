@@ -3,7 +3,7 @@
 <style>
   footer {
     height: 40px;
-    background: grey;
+    background:#008CBA;
 	text-align: center;
 	font-size: 30px;
 	font-family: Lucida Console;

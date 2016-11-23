@@ -16,6 +16,9 @@
 	require("../class/Interest.class.php");
 	$Interest= new Interest ($mysqli);
 	
+	require("../class/Shelter.class.php");
+	$Shelter= new Shelter ($mysqli);
+	
 	require("../class/Helper.class.php");
 	$Helper = new Helper();
 	

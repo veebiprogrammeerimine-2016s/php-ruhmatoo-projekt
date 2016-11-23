@@ -98,7 +98,7 @@
 	
 	}
 ?>
-<?php require("../header.php"); ?>
+<?php require("../loginheader.php"); ?>
 <!DOCTYPE html>
 <html>
 <style>
