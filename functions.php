@@ -2,6 +2,7 @@
 
 require("../../config.php");
 
+session_start();
 
 function getAllTyreFittings() {
 		
@@ -42,6 +43,8 @@ function getAllTyreFittings() {
 		return $result;
 }
 
+// REGISTRATION
+
 function signUP($username,$password)
 	{
 		
@@ -74,6 +77,57 @@ function signUP($username,$password)
 		$stmt->close();
 		
 	}
+	
+	// SIGN IN
+	
+	function login ($username, $password) {
+		
+		
+		$database = "if16_stanislav";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+
+		$stmt = $mysqli->prepare("
+		SELECT id, username, password 
+		FROM p_owners
+		WHERE username = ?");
+	
+		echo $mysqli->error;
+		
+		//asendan küsimärgi
+		$stmt->bind_param("s", $username);
+		
+		//määran väärtused muutujatesse
+		$stmt->bind_result($id, $usernameFromDb, $passwordFromDb);
+		$stmt->execute();
+		
+		//andmed tulid andmebaasist või mitte
+		// on tõene kui on vähemalt üks vaste
+		if($stmt->fetch()){
+			
+			//oli sellise meiliga kasutaja
+			//password millega kasutaja tahab sisse logida
+			//$hash = hash("sha512", $password);
+			if ($password == $passwordFromDb) {
+				
+				//echo "Kasutaja logis sisse ".$id;
+				
+				//määran sessiooni muutujad, millele saan ligi
+				// teistelt lehtedelt
+				$_SESSION["userId"] = $id;
+				$_SESSION["username"] = $usernameFromDb;
+				
+				//$_SESSION["message"] = "<h1>Tere tulemast!</h1>";
+				
+				header("Location: data.php");
+				exit();
+				
+			}
+			
+		} 
+	}
+	
+	
+	
 	
 ?>
 

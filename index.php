@@ -2,16 +2,21 @@
 require("../../config.php");
 require("functions.php");
 
+if(isset($_SESSION["userID"]))
+	{
+		//suunan sisselogimise lehele
+		header("Location: data.php");
+		exit();
+	}
+	
 $tyreFittings = getAllTyreFittings();
-$username = "";
-$password = "";
+
 if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
 	{
 		if( !empty($_POST["regPassword"])&& !empty($_POST["regUsername"]))
 		{
-		$username = $_POST["regUsername"];
-		$password = $_POST["regPassword"];
-		signUP($username,$password);
+
+		signUP($_POST["regUsername"],$_POST["regPassword"]);
 		
 		?>
         <script>alert("Kasutaja on tehtud!");</script>
@@ -19,6 +24,16 @@ if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
 		}
     
 	}
+		
+		if(isset($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["username"]) && !empty($_POST["password"]))
+	{
+		login($_POST["username"],$_POST["password"]);
+		if(!isset($_SESSION["userID"]))
+		{
+			?> <script> alert("Vale parool või kasutaja nimi"); </script> <?php
+		}
+	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -202,6 +217,7 @@ if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
  <!-- ====================
     FORM MODAL  LOGIN
     ======================== -->
+    <form id="log" method="POST">
 	<div id="login" class="modal fade">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -215,16 +231,16 @@ if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
                
 				 <div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+					<input name="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
 				 </div>
 				 <div class="form-group">
 					<label for="exampleInputPassword1">Password</label>
-					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+					<input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 				</div>
               </div>
               <div class="modal-footer">
                 <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                <button type="button" class="btn btn-primary">Logi sisse</button>
+                <button type="submit" class="btn btn-primary">Logi sisse</button>
 				 <div class="row">
             <div id="sign-up-form-body">
                 Teil pole veel kontot?
@@ -236,7 +252,7 @@ if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->	
-
+	</form>
 		
     <!-- jQuery first, then bootstrap js -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -245,7 +261,6 @@ if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
     <!-- our scripts -->    
         <script type="text/javascript" src="js/sc.js"></script>
         
-       
-		
+       		
   </body>
 </html>
