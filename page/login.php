@@ -251,7 +251,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
   width:1250px;
   height:200px;
   border-style:double;
-  background-color: #ffffb3;
+  background-color: #ddff99;
   border-top-left-radius:10px;
   padding-top:30;
   
@@ -325,5 +325,6 @@ li {
 	padding-right:20px;
 	
 }
+
 </style>
 <?php require("../footer.php");?>
