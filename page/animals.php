@@ -112,14 +112,14 @@
 				 </th>";
 				 
 
-		foreach($animal as $g){
+		foreach($animal as $c){
 			$html .= "<tr>";
-				$html .= "<td>".$g->id."</td>";
-				$html .= "<td>".$g->type."</td>";
-				$html .= "<td>".$g->name."</td>";
-				$html .= "<td>".$g->age."</td>";
-				$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$g->id."'><span class='glyphicon glyphicon-pencil'></span>Muuda</a></td>";
-				$html .= "<td><a class='btn btn-default btn-sm' href='booking.php?id=".$g->id."'><span class='glyphicon glyphicon'></span>Broneeri</a></td>";
+				$html .= "<td>".$c->id."</td>";
+				$html .= "<td>".$c->type."</td>";
+				$html .= "<td>".$c->name."</td>";
+				$html .= "<td>".$c->age."</td>";
+				$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span>Muuda</a></td>";
+				$html .= "<td><a class='btn btn-default btn-sm' href='booking.php?id=".$c->id."'><span class='glyphicon glyphicon'></span>Broneeri</a></td>";
 			$html .= "</tr>";	
 		}
 		
