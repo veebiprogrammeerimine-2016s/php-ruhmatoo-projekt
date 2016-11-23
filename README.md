@@ -12,9 +12,9 @@
 1. **README.md sisaldab:**
     * suurelt projekti nime; TREENI.ee
     * suurelt projekti veebirakenduse pilt;
-    * rühma liikmete nimed; Kraav, Karoliina Kullamaa, Elise Pals
+    * rühma liikmete nimed; Mariann Kraav, Karoliina Kullamaa, Elise Pals
     * eesmärki (3-4 lauset, mis probleemi üritate lahendada) - Muuta inimesed füüsiliselt aktiivsemaks võimaldades neil treeningpäevikusse oma andmeid salvestada, kaastreenijatega suhelda ja teineteist motiveerida ning soovi korral leida treeningpartner.
-    * kirjeldus (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta);
+    * kirjeldus (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta :) );
     * funktsionaalsuse loetelu prioriteedi järjekorras, nt
         * v0.1 Saab teha kasutaja ja sisselogida
         * v0.2 Saab lisada huviala
