@@ -2,8 +2,8 @@
 
     require("functions.php");
 
-    require("../class/User.class.php");
-    $user = new user($mysqli);
+    require("class/user.class.php");
+    $User = new User($mysqli);
 
     $signupEmailError = "";
     $signupPasswordError = "";
@@ -81,15 +81,7 @@
 
         $password = hash("sha512", $_POST["signupPassword"]);
 
-        //echo "parool ".$_POST["signupPassword"]."<br>";
-        //echo "räsi ".$password."<br>";
-
-        //echo $serverPassword;
-
         signup ($signupEmail, $password);
-
-
-
 
 }
 ?>
@@ -101,25 +93,15 @@
 <form method="POST">
 
     <input name="signupEmail" type="text" placeholder="Email" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
-
+	<br><br>
+	<input name="signupPassword" type="password" placeholder="Parool"> <?php echo $signupPasswordError; ?>
     <br><br>
-
-    <input name="signupPassword" type="password" placeholder="Parool"> <?php echo $signupPasswordError; ?>
-
-    <br><br>
-
     <input name="signupPassword" type="password" placeholder="Korda parooli"> <?php echo $signupPasswordError; ?>
-
     <br><br>
-
     <input name="firstName" type="name" placeholder="Eesnimi">
-
     <br><br>
-
     <input name="lastName" type="name" placeholder="Perekonnanimi">
-
     <br><br>
-
     <input type="submit" value="Loo kasutaja">
 
 
