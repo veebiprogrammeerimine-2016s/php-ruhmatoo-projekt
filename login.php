@@ -70,6 +70,6 @@
 			<input type="submit" value="Loo kasutaja">
 		
 		</form>
-		<!--Testing ISSUE-->
+		<!--Testing ISSUE   !-->
 	</body>
 </html>
