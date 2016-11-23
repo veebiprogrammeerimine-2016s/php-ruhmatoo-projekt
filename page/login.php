@@ -1,5 +1,11 @@
-<?php require "/var/www/kool/php-ruhmatoo-projekt/parts/header.php";?>
+<?php
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+  require "../parts/header.php";
+?>
+
 <body>
+<!-- Signin -->
     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <script>
       function onSignIn(googleUser) {
@@ -17,7 +23,8 @@
         console.log("ID Token: " + id_token);
       };
     </script>
-    <a href="#" onclick="signOut();">Sign out</a>
+<!-- Signout -->
+<a href="#" onclick="signOut();">Sign out</a>
 <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -27,4 +34,5 @@
   }
 </script>
 </body>
-<?php require "/var/www/kool/php-ruhmatoo-projekt/parts/footer.php";?>
+
+<?php require "../parts/footer.php";?>

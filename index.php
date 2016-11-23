@@ -1,5 +1,5 @@
 <?php
 
-header("Location: /page/login.php");
+header("Location: /php-ruhmatoo-projekt/page/login.php");
 
 ?>

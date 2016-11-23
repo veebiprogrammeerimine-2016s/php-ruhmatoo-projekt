@@ -23,9 +23,12 @@
     * Edit homework
     * Choice screens, homework screen mobile-friendly
 ## Technologies used
+    * Google API
 	
 ## Database
+
 ### Schema
 ### Set-up
+    Create database paevik;
 
 ##  Summary
