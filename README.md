@@ -5,7 +5,7 @@
 	Fast and mobile friendly
 
 ## Developers
-	Hinrek Saar - developer
+	Hinrek Saar - developer, hinrek@gmail.com
 	Alar Aasa - developer, alar@alaraasa.ee
 
 ## Functionality
