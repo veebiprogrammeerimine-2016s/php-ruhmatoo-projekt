@@ -1,2 +1,0 @@
-tere rasmus
-tere ats
