@@ -31,4 +31,20 @@ võimalik kokku hoida, kui hoidud näiteks kategooriast: Alkohol.
 	
 TBD
 
+Tabeliloomise laused
+
+CREATE TABLE WasteChase_User( 
+ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+Email varchar(30) NOT NULL,
+FirstName varchar(20),
+LastName varchar(20),
+SEX varchar(6),
+Registered timestamp
+);
+
+CREATE TABLE WasteChase_Shops(
+ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+AddedBY int(8)
+);
+
 ERD: https://drive.google.com/open?id=0B7r2XlMnEQ43OUx3Y2RmX25QTTQ
