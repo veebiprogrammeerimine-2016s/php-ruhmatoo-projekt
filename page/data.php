@@ -39,24 +39,10 @@
 <body style='background-color:Silver'>
     <head>
 	<?php require("../header.php"); ?>
+	<br>
 	Tere tulemast <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
 	<a href="?logout=1">Logi välja</a>
 </p>
-	</head>	
-        <body>
-		<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-3">
-		<a href="animals.php" class="button">Otsi looma</a>
-		</div>
-		<div class="col-sm-2"></div>
-		<div class="col-sm-3">
-		<a href="insert_animal.php" class="button">Registreeri loom</a>
-		</div>
-		</div>
-            
-                </form>
-		</body>		
 </html>		
 
 <br><br>

@@ -16,17 +16,24 @@
 </head>
 <head>
 <style>
-  header {
-    height: 50px;
-    background: grey;
-	text-align: center;
-	font-size: 30px;
-	font-family: Lucida Console;
-  }
+.button {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
 </style>
 </head>
 <body>
-<header>
-<b>Koduloomade laenutus</b>
-</header>
+<a href="data.php" class="button">Avaleht</a>
+<a href="animals.php" class="button">Loomad</a>
+<a href="insert_animal.php" class="button">Registreeri loom</a>
+<a href="animalshelter.php" class="button">Varjupaigad</a>
+<a href="contact.php" class="button">Kontakt</a>
 </body>
