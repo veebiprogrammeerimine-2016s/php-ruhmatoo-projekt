@@ -44,12 +44,12 @@ class User{
 		return $notice;
 	}
 	
-	function signup($email, $password) {
+	function signup($email, $password, $username) {
 
-		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password) VALUE (?,?)");
+		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password, username) VALUE (?,?,?)");
 		echo $this->connection->error;
 
-		$stmt->bind_param("ss",$email, $password);
+		$stmt->bind_param("sss",$email, $password, $username);
 		if ($stmt->execute() ) {
 			echo "õnnestus";
 		}	else { "ERROR".$stmt->error;

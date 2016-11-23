@@ -23,6 +23,7 @@
 	$signupEmail = "";
 	$signupUsername = "" ;
 	
+	
 	if(isset ($_POST["signupEmail"])) {
 		if(empty ($_POST["signupEmail"])){
 			$signupEmailError = "* Väli on kohustuslik!";
@@ -60,11 +61,11 @@
 	){
 		//vigu ei olnud, kõik on olemas
 		echo "Salvestan...<br>";
-		//echo "email ".$signupEmail. "<br>";
-		//echo "parool ".$_POST["signupPassword"]."<br>";
-		//	$password = hash("sha512", $_POST["signupPassword"]);
-		//echo $password."<br>";
-		// $User->signup($signupEmail, $password);
+		echo "email ".$signupEmail. "<br>";
+		echo "parool ".$_POST["signupPassword"]."<br>";
+			$password = hash("sha512", $_POST["signupPassword"]);
+		echo $password."<br>";
+		 $User->signup($signupEmail, $password, $signupUsername);
 	}
 	
 	
@@ -79,7 +80,7 @@
 		<h1>Loo kasutaja</h1>
 		
 		<form method="POST">
-		<input type="text" name="signupUsername" placeholder="Kasutajanimi" value="<?=$signupUsername;?>"> <?php echo $signupUsernameError;?>
+		<input type="username" name="signupUsername" placeholder="Kasutajanimi" value="<?=$signupUsername;?>"> <?php echo $signupUsernameError;?>
 		<br><br>
 		<input name="signupEmail" placeholder="Email" type="email" value="<?=$signupEmail;?>"> <?php echo $signupEmailError;?>
 		<br><br>
@@ -87,7 +88,7 @@
 		<br><br>
 		<input type="submit" value="Loo kasutaja">
 		<br><br>
-		<a class="link" href="http://localhost:5555/~railtoom/php-ruhmatoo-projekt/page/login.php">Kasutaja olemas?</a>
+		<a class="link" href="http://localhost:5555/~railtoom/php-ruhmatoo-projekt/page/login.php">Kasutaja olemas? Logi sisse</a>
 		</form>
 		</div>
 	</div>
