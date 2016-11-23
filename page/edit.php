@@ -16,7 +16,7 @@
 	}
 	
 	//kustutan
-	if(isset($_GET["delete"])){
+	if(isset($_GET["delete"]) && isset($_GET["id"])){
 		
 		$Animal->delete($_GET["id"]);
 		
