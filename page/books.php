@@ -16,12 +16,13 @@ foreach($books as $book){
 }
 $categories = array_unique($categories);  //et kõiki kategooriaid oleks 1
 $topic = "";
-/*
+$cat = "";
+
 if(isset($_GET["topic"])){
-	$topic = $_GET["topic"];
-	echo $topic;
+	$cat = $_GET["topic"];
+	//echo "kategooria valitud";
 }
-*/	
+	
 
 
 ?>
@@ -60,7 +61,7 @@ require("../header.php");
 		<td>
 	       <!--Näitab kus kategoorias, algul kõik -->
 			 <div id="tree">
-				<p><a href="/books.php">Valik</a>&gt; Kõik raamatud </p>  <!--??? -->
+				<p><a href="books.php">Kõik raamatud</a>&gt; <?php echo $cat;?> </p>
 			</div>
 			<!--leheküljed  1-20 21-40 jne ÜLEVAL -->
 			<div id="numeric">1-20 | 
@@ -82,17 +83,32 @@ require("../header.php");
 						if($book->image == ""){
 							$book->image = ("../image/raamat.jpg");  //kui raamatust pilti pole
 						}
-						$tableHtml .= "<td>";  //link detailse vaateni
-							$tableHtml .= '<a href="details.php?id='.$book->book_id.'"> 
-												<img src="' .$book->image. '" style= "width:128px;" >
-											</a>';
-						$tableHtml .= "</td>";
 						
-						$tableHtml .= "<td>";
-							$tableHtml .= "<div>" .$book->author."</div>";
-							$tableHtml .= '<p><a href="details.php?id='.$book->book_id.'">' .$book->title.'</a></p>';	//link detailse vaateni
-						$tableHtml .= "</td>";
-					
+						if(empty($cat)){    //aadressireal pole kategooriat näita kõiki raamatuid
+							$tableHtml .= "<td>";  //link detailse vaateni
+								$tableHtml .= '<a href="details.php?id='.$book->book_id.'"> 
+													<img src="' .$book->image. '" style= "width:128px;" >
+												</a>';
+							$tableHtml .= "</td>";
+							
+							$tableHtml .= "<td>";
+								$tableHtml .= "<div>" .$book->author."</div>";
+								$tableHtml .= '<p><a href="details.php?id='.$book->book_id.'">' .$book->title.'</a></p>';	//link detailse vaateni
+							$tableHtml .= "</td>";
+						}else{              //aadressireal on kategooria
+							if($book->category == $cat){
+							$tableHtml .= "<td>";  //link detailse vaateni
+								$tableHtml .= '<a href="details.php?id='.$book->book_id.'"> 
+													<img src="' .$book->image. '" style= "width:128px;" >
+												</a>';
+							$tableHtml .= "</td>";
+							
+							$tableHtml .= "<td>";
+								$tableHtml .= "<div>" .$book->author."</div>";
+								$tableHtml .= '<p><a href="details.php?id='.$book->book_id.'">' .$book->title.'</a></p>';	//link detailse vaateni
+							$tableHtml .= "</td>";
+							}	
+						}
 					$tableHtml .= "</tr>";
 					
 				}
