@@ -216,7 +216,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				
 
 				<input class="form-control" type=password name=registerPassword  placeholder="Vali parool" > 
-				<h3>Sisesta ees-ja perekonnanimi</h4>
+				<h4>Sisesta ees-ja perekonnanimi</h4>
 				<input class="form-control" name=FirstName placeholder="eesnimi" type="text" value="<?=$userFirstName;?>"><br>
 				<input class="form-control" name=LastName placeholder="perekonnanimi" type="text" value="<?=$userLastName;?>">
 					
@@ -241,7 +241,10 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	
 	</div>
 	</div>
-
-<div>
+<div class="container">
+	<div id="para1" >
+		<h3>Tere tulemast FacePlänt-i!</h3>
+	</div>
 </div>
+
 <?php require("../footer.php");?>

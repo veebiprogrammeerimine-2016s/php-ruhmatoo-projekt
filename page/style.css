@@ -1,24 +1,22 @@
-#signupForm
-{
-	-moz-border-radius:10px;
-	-webkit-border-radius: 10px;
-	padding: 10px;
-	padding-right: 20px;
-	padding-left: 20px;
-	
-	
-}
 
+
+#signupForm
+{	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	padding:10px;
+	padding-right:20px;
+	padding-left:20px;
+}
 h3,h4{
 	
-	color: white;
+	color:white;
 	
 }
 
 
 
 p {
-	padding: 10px;
+	padding:10px;
 }
 
 ul {
