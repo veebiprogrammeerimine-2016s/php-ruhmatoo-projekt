@@ -202,7 +202,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 		
 		
 		<div id="signupForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
-				<h3>Loo kasutaja</h3>
+				<h4>Loo kasutaja</h4>
 				<?php echo $nameError ?>
 
 				<?php echo $registerEmailError;?>
@@ -241,10 +241,89 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	
 	</div>
 	</div>
-<div class="container">
-	<div id="para1" >
+<br><br>
+	<div class="container" id="para1" >
 		<h3>Tere tulemast FacePlänt-i!</h3>
 	</div>
-</div>
+<!-- CSS sheet lõpetas töötamise, pean siia kirjutama -->
+<style>
+  #para1{text-align:center;
+  width:1250px;
+  height:200px;
+  border-style:double;
+  background-color: #ffffb3;
+  border-top-left-radius:10px;
+  padding-top:30;
+  
+  
 
+  }
+  
+  #signupForm
+{	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	padding-top:30px;
+	padding-right:30px;
+	padding-left:30px;
+}
+h3{
+	color:black;
+}
+h4{
+	
+	color:white;
+	
+}
+
+
+p {
+	padding:10px;
+}
+a {
+	
+	width: 120px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#logo{
+	padding-top:20px;
+	padding-left:20px;
+	padding-right:20px;
+	
+}
+
+#loginforms{
+	padding-top:20px;
+	padding-left:20px;
+	padding-right:20px;
+	
+}
+
+#insertPlants{
+	padding-left:20px;
+	padding-right:20px;
+	
+	
+}
+
+body{
+	font-family:helvetica;
+	
+	
+}
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+	
+}
+
+li {
+	padding-top:20px;
+	padding-left:20px;
+	padding-right:20px;
+	
+}
+</style>
 <?php require("../footer.php");?>
