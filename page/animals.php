@@ -32,7 +32,7 @@
 	
 	//otsisõna fn sisse
 	$animal = $Animal->get($q, $sort, $order);
-	
+	//kleklekle
 
 ?>
 <html>
@@ -112,7 +112,7 @@
 				 </th>";
 				 
 
-		foreach($Animal as $g){
+		foreach($animal as $g){
 			$html .= "<tr>";
 				$html .= "<td>".$g->id."</td>";
 				$html .= "<td>".$g->type."</td>";
