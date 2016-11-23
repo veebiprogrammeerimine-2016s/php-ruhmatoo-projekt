@@ -3,7 +3,7 @@
     require("functions.php");
 
     require("class/user.class.php");
-    $User = new User($mysqli);
+    $user = new user($mysqli);
 
     $signupEmailError = "";
     $signupPasswordError = "";
@@ -77,9 +77,22 @@
 
         $password = hash("sha512", $_POST["signupPassword"]);
 
+<<<<<<< HEAD
 	$signupEmail = cleanInput($signupEmail);
 		
 	$User->signUp($signupEmail, cleanInput($password), $firstname, $lastname);
+=======
+        echo "parool ".$_POST["signupPassword"]."<br>";
+        echo "räsi ".$password."<br>";
+
+        //echo $serverPassword;
+
+        signup ($signupEmail, $password);
+
+
+
+
+>>>>>>> 23267bdb0372251da0df7bb09a05f32fd94b3481
 }
 ?>
 <?php require("header.php"); ?>
@@ -90,16 +103,34 @@
 <form method="POST">
 
     <input name="signupEmail" type="text" placeholder="Email" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
-	<br><br>
-	<input name="signupPassword" type="password" placeholder="Parool"> <?php echo $signupPasswordError; ?>
+
     <br><br>
+
+    <input name="signupPassword" type="password" placeholder="Parool"> <?php echo $signupPasswordError; ?>
+
+    <br><br>
+
     <input name="signupPassword" type="password" placeholder="Korda parooli"> <?php echo $signupPasswordError; ?>
+
     <br><br>
+<<<<<<< HEAD
     <input name="firstname" type="name" placeholder="Eesnimi"> <?php echo $firstnameError; ?>
     <br><br>
     <input name="lastname" type="name" placeholder="Perekonnanimi"> <?php echo $lastnameError; ?>
+=======
+
+    <input name="firstName" type="name" placeholder="Eesnimi">
+
     <br><br>
+
+    <input name="lastName" type="name" placeholder="Perekonnanimi">
+
+>>>>>>> 23267bdb0372251da0df7bb09a05f32fd94b3481
+    <br><br>
+
     <input type="submit" value="Loo kasutaja">
+
+    <a class="btn btn-Success btn-sm" href="firstpage.php"> Loobu</a>
 
 
 </form>

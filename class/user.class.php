@@ -4,7 +4,7 @@ class User {
     function __construct($mysqli) {
         $this->connection = $mysqli;
     }
-    function signup ($email, $password) {
+    function signup ($email, $password, $firstname, $lastname) {
 
 
         $this->connection = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
