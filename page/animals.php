@@ -32,7 +32,7 @@
 	
 	//otsisõna fn sisse
 	$animal = $Animal->get($q, $sort, $order);
-	
+	//kleklekle
 
 ?>
 <html>
