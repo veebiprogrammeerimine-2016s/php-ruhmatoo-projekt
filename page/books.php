@@ -7,6 +7,23 @@ $Book = new Book($mysqli);
 //kutsun funktsiooni, et saada kõik raamatud
 $books = $Book->getBooks();
 $tableHtml = "";
+
+//Saan kõik kategooriad
+$categories = array();
+foreach($books as $book){
+	$category = $book->category;
+	array_push($categories, $category);
+}
+$categories = array_unique($categories);  //et kõiki kategooriaid oleks 1
+$topic = "";
+/*
+if(isset($_GET["topic"])){
+	$topic = $_GET["topic"];
+	echo $topic;
+}
+*/	
+
+
 ?>
 
 
@@ -30,18 +47,14 @@ require("../header.php");
 	<tr>
 	    <!--lahter 1 kategooriad -->
 		<td>
-		   
-			<div id="topic">
-				<a href="books.php?topic=kategooria1" alt="kategooria 1" title="kategooria 1">kategooria 1</a>       <!--???-->
-			</div>
-			<div id="topic">
-				<a href="books.php?topic=kategooria2" alt="kategooria 2" title="kategooria 2">kategooria 2</a>
-			</div>
-			<div id="topic">
-				<a href="books.php?topic=kategooria3" alt="kategooria 3" title="kategooria 3">kategooria 3</a>
-			</div>
-			<!--JNE-->
-													
+		<?php foreach($categories as $category){
+			$topic = "<div id='topic'>";
+			$topic .= '<a href="books.php?topic='. $category .'">'. $category .'</a>';
+			$topic .= "</div>";
+			echo $topic;
+			
+		}?>
+														
 		</td>
 		<!--lahter 2 leheküljed ja raamatud -->
 		<td>
