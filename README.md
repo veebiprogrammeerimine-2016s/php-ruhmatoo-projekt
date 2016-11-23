@@ -3,7 +3,7 @@
 
 # KAALUST ALLA 
 
-PROJEKTI rühmaliikmed: Inna Sammel, Marii Viita
+PROJEKTI rühmaliikmed: Inna Sammel, Marii Viita, Elias Rubiales
 
 Kaalust alla veebirakenduse eesmärgiks on oma tervisest ja kaalust lugu pidavale inimesele võimaldada välja arvutada enda kehamassiindeks (KMI). Inimene saab veebirakendusest tuge kaalulangetamise/tõstmise protsessis, kuna kuvab kasutaja poolt ka varasemalt sisestatud andmeid. Need lubavad jälgida kaalunäitaja muutusi.
 
@@ -21,7 +21,6 @@ Eeskujuks võtame http://kaaluabi.ee, projekti koostamisel on veel toetavateks k
             *enda pikkuse;
             *kaalunumbri;
             *kaalumise kuupäeva;
-            *füüsilise aktiivsuse (rippmenüüst erinevad kehalise aktiivsuse valikud)
             *sugu
             
             NING
@@ -33,10 +32,9 @@ Eeskujuks võtame http://kaaluabi.ee, projekti koostamisel on veel toetavateks k
             *KMI (kehamassiindeks);
             *hinnang liikumisaktiivsusele (vähene, piisav, liigu rohkem);
             *hinnang kaalule (väike, normaalkaal, ülekaal);
-            
             *kuvatakse varasemalt sisestatud kaaluandmed kuupäevaliselt kahanevas järjekorras;
+            *kliendil on võimalik liikuda tagasi eelmisele lehele;
             *klient saab soovi korral välja logida.
-            
             
 Lisame juurde  andmebaasi skeemi loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna). Jooksvalt.
 
