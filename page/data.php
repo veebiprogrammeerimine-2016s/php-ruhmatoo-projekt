@@ -5,7 +5,7 @@ require("../functions.php");
 require("../class/Helper.class.php");
 $Helper = new Helper();
 
-require("../class/Event.class.php");
+require("../class/Rides.class.php");
 $Event = new Event($mysqli);
 
 //kui ei ole sisseloginud, suunan login lehele
