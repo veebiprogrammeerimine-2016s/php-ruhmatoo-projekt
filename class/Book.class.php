@@ -26,12 +26,42 @@ class Book {
 	}
 	
 	//kõik raamatud andmebaasist
-	function getBooks() {
+	function getBooks($q, $sc) {
 		$this->connection->set_charset("utf8");
+		if($q == ""){
 		$stmt = $this->connection->prepare("
 			SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 
 			FROM project_books
 			WHERE deleted IS NULL");
+		} else {
+			$searchword = "%" .$q . "%";
+			
+			if($sc == "author"){
+				$stmt = $this->connection->prepare("
+				SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 
+				FROM project_books
+				WHERE deleted IS NULL AND author LIKE ?");
+				$stmt->bind_param("s", $searchword);
+			}
+			if($sc == "title"){
+				$stmt = $this->connection->prepare("
+				SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 
+				FROM project_books
+				WHERE deleted IS NULL AND title LIKE ?");
+				$stmt->bind_param("s", $searchword);
+			}
+			if($sc == "description"){
+				$stmt = $this->connection->prepare("
+				SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 
+				FROM project_books
+				WHERE deleted IS NULL AND description LIKE ?");
+				$stmt->bind_param("s", $searchword);
+			} else {
+				$q = "";
+				$sc = "";
+				
+			}
+		}
 		echo $this->connection->error;
 		
 		$stmt->bind_result($bookIdDb, $categoryDb, $titleDb, $authorDb, $yearDb, $conditionDb, $locationDb, $descriptionDb, $pointsDb, $createdDb, $imageDb);
@@ -63,7 +93,9 @@ class Book {
 		}
 		
 		$stmt->close();
-		
+		if(empty($result)){
+			echo "Vasteid ei leitud";
+		}
 		
 		return $result;
 	}

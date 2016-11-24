@@ -2,10 +2,31 @@
 //FUNKTSIOONIDEGA FAILID
 require("../functions.php");     
 require("../class/Book.class.php");     
-$Book = new Book($mysqli);                   
- 
+$Book = new Book($mysqli);  
+
+//muutujad
+$q = "";
+$sc = "";
+$topic = "";
+$cat = "";
+$error = "";
+
+//kas otsitakse
+if(isset($_GET["q"]) || isset($_GET["sc"])){
+	if(!isset($_GET["q"]) || !isset($_GET["sc"])){
+		$error = "Täpsusta, mida otsitakse";
+	}
+}
+if(isset($_GET["q"]) && isset($_GET["sc"])){
+	if(strlen($_GET["q"]) < 3){
+		$error = "Otsitav sõna peab olema vähemalt 2 tähemärki";
+	} else {
+		$q = $Helper->cleanInput($_GET["q"]);
+		$sc = $Helper->cleanInput($_GET["sc"]);
+	}
+}                
 //kutsun funktsiooni, et saada kõik raamatud
-$books = $Book->getBooks();
+$books = $Book->getBooks($q, $sc);
 $tableHtml = "";
 
 //Saan kõik kategooriad
@@ -15,9 +36,8 @@ foreach($books as $book){
 	array_push($categories, $category);
 }
 $categories = array_unique($categories);  //et kõiki kategooriaid oleks 1
-$topic = "";
-$cat = "";
 
+//kas kategooria on valitud
 if(isset($_GET["topic"])){
 	$cat = $_GET["topic"];
 	//echo "kategooria valitud";
@@ -41,7 +61,30 @@ require("../header.php");
 
 <!--1. RIDA....OTSING JA SORTEERIMINE-->
 	<tr>  
-	   <p>otsing ja sorteerimine</p>                               <!--???-->
+	   <form>
+	   
+			<?php if($sc == "author"){ ?>
+			<input type="radio" name="sc" value="author"  checked>autor
+			<?php } else { ?>
+			<input type="radio" name="sc" value="author">autor
+			
+			<?php } if($sc == "title"){?>
+			<input type="radio" name="sc" value="title" checked>pealkiri
+			<?php } else { ?>
+			<input type="radio" name="sc" value="title">pealkiri
+			
+			<?php }if($sc == "description"){?>
+			<input type="radio" name="sc" value="description" checked>kirjeldus
+			<?php } else { ?>
+			<input type="radio" name="sc" value="description">kirjeldus
+			<?php } ?>
+			
+			
+			<br>
+			<input type="search" name="q" value="<?=$q;?>">
+			<input type="submit" value="Otsi"><?=$error;?>
+													  
+		</form>
 	</tr>
 	
 <!--2. RIDA....KATEGOORIAD JA RAAMATUD-->
