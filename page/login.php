@@ -68,7 +68,7 @@
 
 			<label>Parool</label><br>
 			<div class="form-group">
-			<input class="form-control" name="loginPassword" type="password">
+			<input class="form-control" name="Parool" type="password">
 			</div>
 
 			<br><br>
