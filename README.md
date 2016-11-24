@@ -13,7 +13,7 @@ git config user.email romilrobtsenkov@users.noreply.github.com
 1. Tee valmis korralik veebirakendus
 
 ### Nõuded
-TLU CarPooling
+# TLU CarPooling
 
 *suurelt projekti veebirakenduse pilt;
 
@@ -33,18 +33,18 @@ Enamasti tegelevad carpoolingu teenust pakkuvad lehed pikemate vahemaadega ala T
 Meie lahendus piirduks algselt selgelt TLU'sse ja TLU'st sõitmisega ning kasutada saaksid ainult
 TLU emaili omavad isikud.
 
-Sarnased rakendused:
-*Karzoo - Euroopa carpooling
-*Wisemile - sotsiaalne transpordi võrgustik, mis ühendab vahendustasudeta vabu istekohti või pagasiruumi
-omavad autojuhid reisijate või pakisaatjatega.
+### Sarnased rakendused :
+  * Karzoo - Euroopa carpooling
+  * Wisemile - sotsiaalne transpordi võrgustik, mis ühendab vahendustasudeta vabu istekohti või pagasiruumi
+  omavad autojuhid reisijate või pakisaatjatega.
 
-Funktsionaalsuse loetelu:
-v0.1 Saab teha kasutaja(nimi, kontakt, autonr. jne) ja sisselogida
-v0.2 Saab lisada sõidu (stardi asukoht, stardi kellaaeg, sihtkoht, orienteeruv kohale jõudmise kellaaeg, ?hind?)
-v0.3 Saab näha registreeritud sõite ja soovi korral sobivale end registreerida + näeb autoomaniku kontakte, et vajadusel ühendust võtta.
-v0.4 Autojuht näeb, kes on sõidule registreerinud + kõikide kontakte, et vajadusel ühendust võtta
-v0.5 Saab lisada tagasisidet/kommentaare reisijate/autojuhtide kohta
-v0.6 Saab näha iga kasutaja kohta kirjutatud kommentaare ja hinnanguid
+### Funktsionaalsuse loetelu:
+1. Saab teha kasutaja(nimi, kontakt, autonr. jne) ja sisselogida
+2. Saab lisada sõidu (stardi asukoht, stardi kellaaeg, sihtkoht, orienteeruv kohale jõudmise kellaaeg, ?hind?)
+3. Saab näha registreeritud sõite ja soovi korral sobivale end registreerida + näeb autoomaniku kontakte, et vajadusel ühendust võtta.
+4. Autojuht näeb, kes on sõidule registreerinud + kõikide kontakte, et vajadusel ühendust võtta
+5. Saab lisada tagasisidet/kommentaare reisijate/autojuhtide kohta
+6. Saab näha iga kasutaja kohta kirjutatud kommentaare ja hinnanguid
 
 Andmebaas:
 Tabel1 - Kasutajad (cp_users)
