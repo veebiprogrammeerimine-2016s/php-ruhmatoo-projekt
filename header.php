@@ -56,7 +56,7 @@
 		  </ul>
 
 	
-		<p class="navbar-text navbar-right">Oled sisse logitud <a href='user.php?id=5'><?=$_SESSION["userEmail"];?></a> <button type="submit" class="btn btn-xs btn-default"><a href="?logout=1" style="text-decoration:none; color:black;" >Log Out</a></button></p>
+		<p class="navbar-text navbar-right">Oled sisse logitud <a href="user.php?id=<?=$_SESSION["userId"];?>"> <?=$_SESSION["userEmail"];?> </a><a class="btn btn-xs btn-primary" href="?logout=1" style="text-decoration:none; color:white;" >Log Out</a></p>
 		
 		<form class="navbar-form navbar-middle" method="POST">
 			<div class="form-group">
