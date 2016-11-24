@@ -201,26 +201,14 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				
 		
 		
-		<div id="signupForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
-				<h3>Loo kasutaja</h3>
-				<?php echo $nameError ?>
-
-				<?php echo $registerEmailError;?>
-				<?php echo $registerPasswordError;?>
+		<div id="careForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
+				<h3>MyPlänts/Edit</h3>
+				
 				
 			<div class="form-group">
 				<form method=post>
 
-				<input class="form-control" type=text  name=registerEmail  placeholder="Sisesta meiliaadress" value="<?=$registerEmail;?>"> <br>
 				
-				
-
-				<input class="form-control" type=password name=registerPassword  placeholder="Vali parool" > 
-				<h4>Sisesta ees-ja perekonnanimi</h4>
-				<input class="form-control" name=FirstName placeholder="eesnimi" type="text" value="<?=$userFirstName;?>"><br>
-				<input class="form-control" name=LastName placeholder="perekonnanimi" type="text" value="<?=$userLastName;?>">
-					
-				<br>
 				
 				
 				
@@ -243,7 +231,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	</div>
 <br>
 	<div class="container" id="para1" >
-		<h3>Tere tulemast FacePlänt-i!</h3>
+		<h3>Hooldus!</h3>
 	</div>
 <!-- CSS sheet lõpetas töötamise, pean siia kirjutama -->
 <style>
@@ -259,7 +247,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 
   }
   
-  #signupForm
+  #careForm
 {	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
 	padding-top:30px;
