@@ -47,7 +47,30 @@ ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 AddedBY int(8),
 StoreName Varchar(20) NOT NULL,
 Created timestamp
+FOREIGN KEY AddedBY REFERENCES WasteChase_Users(ID)
 );
 
+CREATE TABLE WasteChase_Purchases(
+ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+AddedBY int(8),
+FromShop varchar(20),
+Created timestamp
+FOREIGN KEY AddedBY REFERENCES WasteChase_Users(ID)
+);
+
+CREATE TABLE WasteChase_PurchaseContents(
+ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+ProductName Varchar(20) NOT NULL,
+ProductPrice int(8) NOT NULL,
+CategoryID Varchar(15) NOT NULL,
+PurchaseID int(8) NOT NULL
+FOREIGN KEY CategoryID REFERENCES WasteChase_Categories(ID)
+FOREIGN KEY PurchaseID REFERENCES WasteChase_Purchases(ID)
+);
+
+CREATE TABLE WasteChase_Categories(
+ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY,
+Category Varchar(20) NOT NULL
+);
 
 ERD: https://drive.google.com/open?id=0B7r2XlMnEQ43OUx3Y2RmX25QTTQ
