@@ -54,7 +54,7 @@ class Rides {
 
   function getUser() {
 
-    $stmt = $mysqli->prepare("SELECT interest FROM interests JOIN user_interests ON interests.id=user_interests.interest_id
+    $stmt = $mysqli->prepare("SELECT user_id, ride_ide, user_id.cp_rides  FROM interests JOIN cp_rideusers ON interests.id=user_interests.interest_id
       WHERE user_interests.user_id=?
     ");
 		//SESSION USER ID
