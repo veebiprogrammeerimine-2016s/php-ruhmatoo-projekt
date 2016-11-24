@@ -143,48 +143,66 @@
 				
 				<br>
 				
-				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Sign in 1">
-				<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Sign in 2">
+				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Sign in">
+				<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Sign in">
 			
 			</form>
 		</div>
 		<div class="col-sm-4 col-md-3 col-sm-offset-4 col-md-offset-3">
-			
-			<h1>Sign up</h1>
-			
-			<form method="POST">
+		
+		
+	<div class="container">
+		<div class="row">
+		
+			<div class="col-sm-4 col-md-3">			
+				<h1>Sign up</h1>
 				
-				<label>E-mail</label><br>
-				<input name="signupEmail" type="email" value="<?=$signupEmail;?>" > <?php echo $signupEmailError; ?>
+				<form method="POST">
 				
-				<br><br>
-				
-				<input placeholder="Parool" name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
-							
-				<br><br>
-				
-				<?php if ($gender == "male") { ?>
-					<input type="radio" name="gender" value="male" checked > Male<br>
-				<?php } else { ?>
-					<input type="radio" name="gender" value="male"> Male<br>
-				<?php } ?>
-				
-				<?php if ($gender == "female") { ?>
-					<input type="radio" name="gender" value="female" checked > Female<br>
-				<?php } else { ?>
-					<input type="radio" name="gender" value="female"> Female<br>
-				<?php } ?>
-				
-				<?php if ($gender == "other") { ?>
-					<input type="radio" name="gender" value="other" checked > Other<br>
-				<?php } else { ?>
-					<input type="radio" name="gender" value="other"> Other<br>
-				<?php } ?>
-				
-				<input type="submit" value="Loo kasutaja">
-			
-			</form>
-		</div>
+					
+					<label>E-mail</label><br>
+					<div class="form-group">
+						<input class="form-control" name="signupEmail" type="email" value="<?=$signupEmail;?>" > <?php echo $signupEmailError; ?>
+					</div>
+					
+					<br>
+					
+					<label>Password</label><br>
+					<div class="form-group">
+						<input class="form-control" placeholder="Password" name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
+					</dir>			
+					<br>
+					<label>Choose your gender:</label>
+					<br>
+					
+					<?php if ($gender == "male") { ?>
+							<input type="radio" name="gender" value="male" checked > Male<br>
+					<?php } else { ?>
+							<input type="radio" name="gender" value="male"> Male<br>
+					<?php } ?>
+					
+					<?php if ($gender == "female") { ?>
+						<input type="radio" name="gender" value="female" checked > Female<br>
+					<?php } else { ?>
+						<input type="radio" name="gender" value="female"> Female<br>
+					<?php } ?>
+					
+					<?php if ($gender == "other") { ?>
+						<input type="radio" name="gender" value="other" checked > Other<br>
+					<?php } else { ?>
+						<input type="radio" name="gender" value="other"> Other<br>
+					<?php } ?>
+					<div class="form-group">
+					
+					</div>
+					
+						<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Sign up">
+						<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Sign up">
+					
+					</form>
+				</div>	
+				<div class="col-sm-4 col-md-3 col-sm-offset-4 col-md-offset-3">
+			</div>
 		
 		
 	</div>
