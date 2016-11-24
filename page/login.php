@@ -4,26 +4,36 @@ require("header.php");
 ?>
 
 
-<title>Töömeeste otsija</title>
-<h1>Kiire abi kõigile! </h1>
+<title>Saa osa!</title>
 
-<h2>Logi Sisse</h2>
 
-<!-- Simple Textfield -->
-<form action="#">
-  <div class="mdl-textfield mdl-js-textfield">
-    <input class="mdl-textfield__input" type="email" id="sample1">
-    <label class="mdl-textfield__label" for="sample1">E-mail</label>
-  </div>
-</form>
+<div class="materialContainer">
 
-<!-- Simple Textfield -->
-<form action="#">
-  <div class="mdl-textfield mdl-js-textfield">
-    <input class="mdl-textfield__input" type="password" id="sample2">
-    <label class="mdl-textfield__label" for="sample1">Parool</label>
-  </div>
-</form>
+   <div class="box">
+
+      <div class="title">Logi Sisse</div>
+
+      <div class="input">
+         <label for="name">E-mail</label>
+         <input type="email" name="name" id="name">
+         <span class="spin"></span>
+      </div>
+
+      <div class="input">
+         <label for="pass">Parool</label>
+         <input type="password" name="pass" id="pass">
+         <span class="spin"></span>
+      </div>
+
+      <div class="button login">
+         <button><span>Logi Sisse</span> <i class="fa fa-check"></i></button>
+		   </div>
+
+      <a href="" class="pass-forgot">Unustasid parooli?</a>
+
+   </div>
+
+</div>
 
 
 		
