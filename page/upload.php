@@ -113,9 +113,9 @@
 		isset($_FILES["fileToUpload"]) && 
 		!empty($_FILES["fileToUpload"]["name"]) &&
 		(strlen($_POST["caption"])>3))	{
-			
+		$userid=$_SESSION["userId"];
 		$caption = $Helper->cleanInput($_POST["caption"]);
-		$Upload->uploadPicture($caption,$imgurl);
+		$Upload->uploadPicture($userid,$caption,$imgurl);
 			
 		}
 	

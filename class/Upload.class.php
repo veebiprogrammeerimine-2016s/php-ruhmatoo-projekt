@@ -12,7 +12,7 @@ class Upload {
 
 	
 	
-	function uploadPicture($caption,$imgurl) {
+	function uploadPicture($userid,$caption,$imgurl) {
 		
 			function compressPicture($source_url, $destination_url, $quality) {
 			
@@ -104,7 +104,7 @@ class Upload {
 				compressPicture($target_file,$target_file,40);
 				
 				
-				$stmt = $this->connection->prepare("INSERT INTO submissions (caption,imgurl,date) values (?,?,now() )");
+				$stmt = $this->connection->prepare("INSERT INTO submissions (author,caption,imgurl,date) values (?,?,?,now() )");
 				
 				echo $this->connection->error;
 				// s -string
@@ -112,7 +112,7 @@ class Upload {
 				// d- double
 				//
 				
-				$stmt->bind_param("ss", $caption, $target_file);
+				$stmt->bind_param("sss",$userid, $caption, $target_file);
 				
 				
 				if ($stmt->execute()) {
