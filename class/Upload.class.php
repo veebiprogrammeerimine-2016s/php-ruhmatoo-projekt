@@ -116,7 +116,7 @@ class Upload {
 				
 				
 				if ($stmt->execute()) {
-					header("Location: upload.php?success");
+					//header("Location: upload.php?success");
 				}
 				echo $stmt->error;
 				

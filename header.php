@@ -36,9 +36,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/~gregness/php-ruhmatoo-projekt/page/data.php">ENG meemid</a></li>
-            <li><a href="/~gregness/php-ruhmatoo-projekt/page/data.php">EST meemid</a></li>
-			<li><a href="/~gregness/php-ruhmatoo-projekt/page/upload.php">Upload</a></li>
+            <li><a href="data.php">ENG meemid</a></li>
+            <li><a href="data.php">EST meemid</a></li>
+			<li><a href="upload.php">Upload</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin CP<span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -51,10 +51,18 @@
                 <li><a href="#">One more separated link</a></li>
               </ul>
             </li>
-		  </ul>
-			
-		<p class="navbar-text navbar-right">Oled sisse logitud <?=$_SESSION["userEmail"];?> <button type="submit" class="btn btn-xs btn-primary"><a href="?logout=1" style="text-decoration:none; color:white;" >Log Out</a></button></p>
+			<li><p class="invisible">empty space</p></li>
 
+		  </ul>
+
+	
+		<p class="navbar-text navbar-right">Oled sisse logitud <?=$_SESSION["userEmail"];?> <button type="submit" class="btn btn-xs btn-default"><a href="?logout=1" style="text-decoration:none; color:black;" >Log Out</a></button></p>
+		
+		<form class="navbar-form navbar-middle" method="POST">
+			<div class="form-group">
+				<input name="searchPost" type="text" class="form-control input-sm" placeholder="Looking for something?">  <button type="submit" class="btn btn-sm btn-primary"><a href="data.php" style="text-decoration:none; color:white;" >Search</a></button>
+			</div>
+		</form>
 
         </div><!--/.nav-collapse -->
       </div>
