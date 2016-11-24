@@ -1,27 +1,27 @@
-<?php
+<?php 
 
 	require("../functions.php");
-
+	
     require("../class/Helper.class.php");
 	$Helper = new Helper();
-
+	
 	require("../class/User.class.php");
 	$User = new User($mysqli);
-
+	
 	//kui on sisse loginud siis suunan data lehele
 	if(isset($_SESSION["userId"])){
 		header("Location: data.php");
 		exit();
 	}
-
+	
 	//kui tahab kasutajat luua siis suuna signup lehele
 	/*if(isset(                            )){
 		header("Location: signup.php");
 		exit();
 	}
 	*/
-
-
+	
+	
 	//var_dump($_GET);
 	//echo "<br>";
 	//var_dump($_POST);
@@ -29,17 +29,28 @@
 	// MUUTUJAD
 	$loginEmail = "";
 
+	
+	if(isset ($_POST["loginEmail"])) {
+		if(empty ($_POST["loginEmail"])){
+			$signupEmailError = "* Väli on kohustuslik!";
+		} else{
+		$loginEmail = $_POST["loginEmail"];
+		}
+	}	
+	
+	
+	
 	$notice ="";
 	//kas kasutaja tahab sisse logida
 	if( isset($_POST["loginEmail"]) &&
 		isset($_POST["loginPassword"]) &&
 		!empty($_POST["loginEmail"]) &&
-		!empty($_POST["loginPassword"])
+		!empty($_POST["loginPassword"]) 
 	){
 		$notice = $User->login($_POST["loginEmail"], $_POST["loginPassword"]);
 	}
-
-
+	
+	
 ?>
 
 
@@ -54,10 +65,8 @@
 			<div class="form-group">
 					<input class="form-control" name="loginEmail" type="email">
 			</div>
-			<label>Parool</label><br>
-			<div class="form-group">
-			<input class="form-control" name="Parool" type="password">
-			</div>
+			<br><br>
+			<input name="loginPassword" placeholder="Parool" type="password">
 			<br><br>
 			<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Logi sisse">
 			<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Logi sisse2">
