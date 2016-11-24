@@ -32,7 +32,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href='/~gregness/php-ruhmatoo-projekt/page/data.php'>Projekt</a>
+          <a class="navbar-brand" href='data.php'>Projekt</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -56,7 +56,7 @@
 		  </ul>
 
 	
-		<p class="navbar-text navbar-right">Oled sisse logitud <?=$_SESSION["userEmail"];?> <button type="submit" class="btn btn-xs btn-default"><a href="?logout=1" style="text-decoration:none; color:black;" >Log Out</a></button></p>
+		<p class="navbar-text navbar-right">Oled sisse logitud <a href='user.php?id=5'><?=$_SESSION["userEmail"];?></a> <button type="submit" class="btn btn-xs btn-default"><a href="?logout=1" style="text-decoration:none; color:black;" >Log Out</a></button></p>
 		
 		<form class="navbar-form navbar-middle" method="POST">
 			<div class="form-group">
