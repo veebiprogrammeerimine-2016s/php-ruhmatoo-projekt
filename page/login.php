@@ -5,6 +5,7 @@ require("header.php");
 
 
 <title>Töömeeste otsija</title>
+<div style="width: 80%; margin: auto;">
 <h1>Kiire abi kõigile! </h1>
 
 <h2>Logi Sisse</h2>
@@ -24,7 +25,7 @@ require("header.php");
     <label class="mdl-textfield__label" for="sample1">Parool</label>
   </div>
 </form>
-
+</div>
 
 		
 
