@@ -25,7 +25,7 @@ võimalik kokku hoida, kui hoidud näiteks kategooriast: Alkohol.
 
 	Login ja Registreerimise leht
 	Leht andmete jaoks
-	leht ostude muutmiseks
+	leht ostude muutmiseks + poodide muutmiseks
 	funktsioonid ja classid
 	Stiil: Vaatame hiljem
 	
@@ -44,7 +44,10 @@ Registered timestamp
 
 CREATE TABLE WasteChase_Shops(
 ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-AddedBY int(8)
+AddedBY int(8),
+StoreName Varchar(20) NOT NULL,
+Created timestamp
 );
+
 
 ERD: https://drive.google.com/open?id=0B7r2XlMnEQ43OUx3Y2RmX25QTTQ
