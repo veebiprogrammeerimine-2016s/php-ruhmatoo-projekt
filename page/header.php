@@ -8,3 +8,4 @@
 <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 </head>
 <body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
