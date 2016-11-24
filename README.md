@@ -47,10 +47,10 @@ TLU emaili omavad isikud.
 6. Saab näha iga kasutaja kohta kirjutatud kommentaare ja hinnanguid
 
 ### Andmebaas:
-Tabel1 - Kasutajad (cp_users)
-Tabel2 - Registreeritud sõidud (cp_rides)
-Tabel3 - Registreeritud kasutajad sõitudele (cp_rideusers)
-Tabel4 - Tagasiside/kommentaarid/hinnangud (cp_feedback)
+* Tabel1 - Kasutajad (cp_users)
+* Tabel2 - Registreeritud sõidud (cp_rides)
+* Tabel3 - Registreeritud kasutajad sõitudele (cp_rideusers)
+* Tabel4 - Tagasiside/kommentaarid/hinnangud (cp_feedback)
 
 
 *kokkuvõte: mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
