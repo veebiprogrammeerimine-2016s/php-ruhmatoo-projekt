@@ -1,6 +1,10 @@
 .material-icons {
-	line-height: 1.7;
+<<<<<<< HEAD
+	line-height: 1.9;
+=======
+	line-height: 1.8;
 
+>>>>>>> f64f8b8aa2d0a48a0af5ef62f88b3fd47a6782eb
 }
 .box {
    position: relative;
