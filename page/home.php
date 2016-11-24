@@ -26,7 +26,7 @@ require("header.php");
         </form>
         <a class="mdl-navigation__link" href="">Kontakt</a>
         <a class="mdl-navigation__link" href="login.php">Logi sisse</a>
-        <a class="mdl-navigation__link" href="">Registreeru</a>
+        <a class="mdl-navigation__link" href="registreerumine.php">Registreeru</a>
       </nav>
     </div>
   </header>
