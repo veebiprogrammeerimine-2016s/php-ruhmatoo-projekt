@@ -78,7 +78,38 @@ class Upload {
 			}
 		
 
-	} 
+		} 
+	}
+	
+	
+	function getPictures() {
+
+			$stmt = $this->connection->prepare("
+				SELECT id,caption,imgurl
+				FROM submissions WHERE deleted is NULL
+			
+			");
+			
+		
+		$stmt->bind_result($id,$caption,$imgurl);
+		$stmt->execute();
+
+		$results = array();
+		
+		//tsükeldab nii mitu korda kui mitu rida SQL lausega tuleb
+		while ($stmt->fetch()) {
+			
+			$pictureTable = new StdClass();
+			$pictureTable->id = $id;
+			$pictureTable->caption = $caption;
+			$pictureTable->imgurl = $imgurl;
+			
+			array_push($results, $pictureTable);
+			
+		}
+		
+		return $results;
+		
 	}
 }
 ?>

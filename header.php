@@ -15,10 +15,15 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		
+		
 		<style>
+		html {position: relative;min-height: 100%;}
 		body {
 			padding-top: 70px; 
 		}
+		.wrapper{width: 500px;margin: 0 auto;font-family: Georgia, "Times New Roman", Times, serif;}
+		.wrapper > ul#results li{margin-bottom: 1px;background: #f9f9f9;padding: 20px;list-style: none;}
+		.loading-info{text-align:center;}
 		</style>
 	</head>
 	<body>
