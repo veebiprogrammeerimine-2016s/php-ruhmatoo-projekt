@@ -5,6 +5,8 @@
 
 	require("../class/Helper.class.php");
 	$Helper = new Helper($mysqli);
+	require("../class/Upload.class.php");
+	$Upload = new Upload($mysqli);
 	
 	
 	//kui ei ole sisseloginud, suunan login lehele
@@ -22,24 +24,109 @@
 		exit();
 		
 	}
+	//header("Location: ../data.php");
 
-	
-	//pre echob koodina
-	//echo "<pre>";
-	//var_dump($people);
-	//echo "</pre>";
-	
 ?>
 <?php require("../header.php"); ?>
+
+<script type="text/javascript" src="js/jquery.infinitescroll.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	//alert("siin");
+	var track_page = 1; //track user scroll as page number, right now page number is 1
+	var limit_page=10;
+	var loading  = false; //prevents multiple loads
+	var window_height = window.innerHeight;
+	load_contents(track_page); //initial content load
+	$('.load-more').hide();
+	
+	$('.load-more').on("click", function(){
+		$("#results").empty();
+		$('.loading-info').show();
+		$('.load-more').hide();
+		track_page++; //page number increment
+		load_contents(track_page); //load content
+	});
+
+	$(window).scroll(function() { //detect page scroll
+		if(loading == false){
+			if($(window).scrollTop() + $(window).height() >= $(document).height() - window.innerHeight) { //if user scrolled to bottom of the page
+				// 2 / 2
+				// 4 / 2 jääk on 
+				//console.log(track_page);
+				//console.log(limit_page);
+				if(track_page % limit_page != 0){
+					track_page++; //page number increment
+					load_contents(track_page); //load content   
+				}else{
+					$('.load-more').show();
+					
+				}
+			}
+		}
+	});     
+	//Ajax load function
+	function load_contents(track_page){
+		//alert(track_page);
+		loading = true;  //set loading flag on
+		$('.loading-info').show(); //show loading animation 
+		$.get( 'getDataPerPage.php?page='+track_page, function(data){
+			 //set loading flag off once the content is loaded
+			if(data.trim().length == 0){
+				//notify user if nothing to load
+				$('.loading-info').html("No more records!");
+				return;
+			}
+			
+			if(track_page != 1){
+				window.setTimeout(function(){
+					console.log("here");
+					$("#results").append(data); //append data into #results element
+					$('.loading-info').hide(); //hide loading animation once data is received
+					loading = false;
+
+				}, 1000);
+			} else {
+				$("#results").append(data); //append data into #results element
+				$('.loading-info').hide(); //hide loading animation once data is received
+				loading = false;
+			}
+			
+		
+		}).fail(function(xhr, ajaxOptions, thrownError) { //any errors?
+			alert(thrownError); //alert with HTTP error
+		})
+	}
+});
+</script>
+
+
 <div class="container">
 	<div class="page-header">
 		<h1>Repo</h1>
 	</div>
 	<p class="lead"></p>
-	
+	<div class="wrapper">
+		<ul id="results"><!-- results appear here --></ul>
+		<br>
+		<br>
+		<br>
+		<div class="loading-info"><img src="LoaderIcon.gif" /></div>
+		<div class="load-more">Lae veel</div>
+		
+		<br>
+		<br>
+		<br>
+	</div>
 
-Siia hakatakse pilte kuvama!
 </div>
+
+
+
+
+
+
+
 <?php //echo$_SESSION["userEmail"];?>
 
 <?//=$_SESSION["userEmail"];?>
