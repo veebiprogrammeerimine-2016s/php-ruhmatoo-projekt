@@ -15,8 +15,12 @@
 	
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
 
 
 
 </head>
-<body background = "http://homedecor.guide/wp-content/uploads/2016/06/Best-Indoor-House-Plants-Trees.jpg">
+<body background = "http://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2013/5/9/0/Original_Chelsea-Costa-Potted-Succulents-Beauty1_h.jpg.rend.hgtvcom.1280.960.jpeg">
