@@ -18,7 +18,7 @@ if(isset($_GET["q"]) || isset($_GET["sc"])){
 	}
 }
 if(isset($_GET["q"]) && isset($_GET["sc"])){
-	if(strlen($_GET["q"]) < 3){
+	if(strlen($_GET["q"]) < 2){
 		$error = "Otsitav sõna peab olema vähemalt 2 tähemärki";
 	} else {
 		$q = $Helper->cleanInput($_GET["q"]);
@@ -36,6 +36,7 @@ foreach($books as $book){
 	array_push($categories, $category);
 }
 $categories = array_unique($categories);  //et kõiki kategooriaid oleks 1
+asort($categories);                       //et kategooriad oleks a-z
 
 //kas kategooria on valitud
 if(isset($_GET["topic"])){
@@ -90,7 +91,7 @@ require("../header.php");
 <!--2. RIDA....KATEGOORIAD JA RAAMATUD-->
 	<tr>
 	    <!--lahter 1 kategooriad -->
-		<td>
+		<td valign="top">
 		<?php foreach($categories as $category){
 			$topic = "<div id='topic'>";
 			$topic .= '<a href="books.php?topic='. $category .'">'. $category .'</a>';
@@ -135,21 +136,23 @@ require("../header.php");
 							$tableHtml .= "</td>";
 							
 							$tableHtml .= "<td>";
-								$tableHtml .= "<div>" .$book->author."</div>";
-								$tableHtml .= '<p><a href="details.php?id='.$book->book_id.'">' .$book->title.'</a></p>';	//link detailse vaateni
+								$tableHtml .= '<p>Pealkiri: <a href="details.php?id='.$book->book_id.'">' .$book->title.'</a></p>';	
+								$tableHtml .= "<p>Autor: " .$book->author."</p>";
+								$tableHtml .= "<p>Aasta: " .$book->year."</p>";
 							$tableHtml .= "</td>";
 						}else{              //aadressireal on kategooria
 							if($book->category == $cat){
-							$tableHtml .= "<td>";  //link detailse vaateni
-								$tableHtml .= '<a href="details.php?id='.$book->book_id.'"> 
+								$tableHtml .= "<td>";  //link detailse vaateni
+									$tableHtml .= '<a href="details.php?id='.$book->book_id.'"> 
 													<img src="' .$book->image. '" style= "width:128px;" >
-												</a>';
-							$tableHtml .= "</td>";
+												   </a>';
+								$tableHtml .= "</td>";
 							
-							$tableHtml .= "<td>";
-								$tableHtml .= "<div>" .$book->author."</div>";
-								$tableHtml .= '<p><a href="details.php?id='.$book->book_id.'">' .$book->title.'</a></p>';	//link detailse vaateni
-							$tableHtml .= "</td>";
+								$tableHtml .= "<td>";
+									$tableHtml .= '<p>Pealkiri: <a href="details.php?id='.$book->book_id.'">' .$book->title.'</a></p>';	
+									$tableHtml .= "<p>Autor: " .$book->author."</p>";
+									$tableHtml .= "<p>Aasta: " .$book->year."</p>";
+								$tableHtml .= "</td>";
 							}	
 						}
 					$tableHtml .= "</tr>";

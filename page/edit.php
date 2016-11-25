@@ -22,7 +22,9 @@ $error = "";
 if(isset($_POST["title"])){ 
 	$category = $_POST["category"];
 	$title = $Helper->cleanInput($_POST["title"]);
+	$title = ucfirst(strtolower($title));
 	$author = $Helper->cleanInput($_POST["author"]);
+	$author = ucwords(strtolower($author));
 	$year = $Helper->cleanInput($_POST["year"]);
 	$location = $Helper->cleanInput($_POST["location"]);
 	$condition = $_POST["condition"];
