@@ -61,21 +61,24 @@ class Book {
 				$stmt = $this->connection->prepare("
 				SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 
 				FROM project_books
-				WHERE deleted IS NULL AND author LIKE ?");
+				WHERE deleted IS NULL AND author LIKE ?
+				ORDER BY $sort $orderBy");
 				$stmt->bind_param("s", $searchword);
 			}
 			if($sc == "title"){
 				$stmt = $this->connection->prepare("
 				SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 
 				FROM project_books
-				WHERE deleted IS NULL AND title LIKE ?");
+				WHERE deleted IS NULL AND title LIKE ?
+				ORDER BY $sort $orderBy");
 				$stmt->bind_param("s", $searchword);
 			}
 			if($sc == "description"){
 				$stmt = $this->connection->prepare("
 				SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 
 				FROM project_books
-				WHERE deleted IS NULL AND description LIKE ?");
+				WHERE deleted IS NULL AND description LIKE ?
+				ORDER BY $sort $orderBy");
 				$stmt->bind_param("s", $searchword);
 			} else {
 				$q = "";

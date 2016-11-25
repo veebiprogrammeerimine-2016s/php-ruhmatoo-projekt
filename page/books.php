@@ -13,11 +13,7 @@ $error = "";
 $order_by = "";
 
 //kas otsitakse
-if(isset($_GET["q"]) || isset($_GET["sc"])){
-	if(!isset($_GET["q"]) || !isset($_GET["sc"])){
-		$error = "Täpsusta, mida otsitakse";
-	}
-}
+
 if(isset($_GET["q"]) && isset($_GET["sc"])){
 	if(strlen($_GET["q"]) < 2){
 		$error = "Otsitav sõna peab olema vähemalt 2 tähemärki";
@@ -35,11 +31,12 @@ if(isset($_GET["order_by"])){
 }               
 //kutsun funktsiooni, et saada kõik raamatud
 $books = $Book->getBooks($q, $sc, $order_by);
+$onlyCategories = $Book->getBooks("", "", "");  //et kat. kuvamine poleks sõltuv kuvatavatest raamatutest
 $tableHtml = "";
 
 //Saan kõik kategooriad
 $categories = array();
-foreach($books as $book){
+foreach($onlyCategories as $book){
 	$category = $book->category;
 	array_push($categories, $category);
 }
@@ -94,10 +91,10 @@ require("../header.php");
 				<input type="search" name="q" value="<?=$q;?>">
 				<input type="submit" value="Otsi"><?=$error;?>
 														  
-			</form>
+			
 		</td>
 		<td style="text-align:right;">
-			<form>
+			
 				<select name="order_by" onchange="this.form.submit()">
 				<?php
 				$option = "";
