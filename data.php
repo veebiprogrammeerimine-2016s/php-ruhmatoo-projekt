@@ -1,4 +1,7 @@
 <?php
+
+require("functions.php");
+
 if (!isset($_SESSION["userId"])){
 		
 		//suunan sisselogimise lehele
