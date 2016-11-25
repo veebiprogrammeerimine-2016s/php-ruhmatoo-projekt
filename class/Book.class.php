@@ -26,13 +26,34 @@ class Book {
 	}
 	
 	//kõik raamatud andmebaasist
-	function getBooks($q, $sc) {
+	function getBooks($q, $sc, $order_by) {
+		$sort = "book_id";
+		$orderDescending = array('Z-A', 'uuemad', 'kallimad' );
+		if(in_array($order_by, $orderDescending)){
+			$orderBy = "DESC";
+		}else {
+			$orderBy = "ASC";
+		}
+		if($order_by == "uuemad" || $order_by == "vanemad"){
+			$sort = "year";
+		}
+		if($order_by == "odavamad" || $order_by == "kallimad"){
+			$sort = "points";
+		}
+		if($order_by == "A-Z" || $order_by == "Z-A"){
+			if($sc == "author"){
+				$sort = "author";
+			}else{
+				$sort = "title";
+			}
+		}
 		$this->connection->set_charset("utf8");
 		if($q == ""){
-		$stmt = $this->connection->prepare("
-			SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 
-			FROM project_books
-			WHERE deleted IS NULL");
+			$stmt = $this->connection->prepare("
+				SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 
+				FROM project_books
+				WHERE deleted IS NULL
+				ORDER BY $sort $orderBy");
 		} else {
 			$searchword = "%" .$q . "%";
 			

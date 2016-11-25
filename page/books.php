@@ -10,6 +10,7 @@ $sc = "";
 $topic = "";
 $cat = "";
 $error = "";
+$order_by = "";
 
 //kas otsitakse
 if(isset($_GET["q"]) || isset($_GET["sc"])){
@@ -24,9 +25,16 @@ if(isset($_GET["q"]) && isset($_GET["sc"])){
 		$q = $Helper->cleanInput($_GET["q"]);
 		$sc = $Helper->cleanInput($_GET["sc"]);
 	}
-}                
+}
+ //kas sorteerimine on valitud
+if(isset($_GET["order_by"])){
+	$order_by = $Helper->cleanInput($_GET["order_by"]);
+	if($order_by == "vaikimisi järjestus"){
+		$order_by = "ASC";
+	}
+}               
 //kutsun funktsiooni, et saada kõik raamatud
-$books = $Book->getBooks($q, $sc);
+$books = $Book->getBooks($q, $sc, $order_by);
 $tableHtml = "";
 
 //Saan kõik kategooriad
@@ -57,35 +65,58 @@ require("../header.php");
 ?>
 
 <h4>Raamatud</h4>
-<table>
+<table style="width: 100%;" >
 <tbody>
 
 <!--1. RIDA....OTSING JA SORTEERIMINE-->
-	<tr>  
-	   <form>
-	   
-			<?php if($sc == "author"){ ?>
-			<input type="radio" name="sc" value="author"  checked>autor
-			<?php } else { ?>
-			<input type="radio" name="sc" value="author">autor
-			
-			<?php } if($sc == "title"){?>
-			<input type="radio" name="sc" value="title" checked>pealkiri
-			<?php } else { ?>
-			<input type="radio" name="sc" value="title">pealkiri
-			
-			<?php }if($sc == "description"){?>
-			<input type="radio" name="sc" value="description" checked>kirjeldus
-			<?php } else { ?>
-			<input type="radio" name="sc" value="description">kirjeldus
-			<?php } ?>
-			
-			
-			<br>
-			<input type="search" name="q" value="<?=$q;?>">
-			<input type="submit" value="Otsi"><?=$error;?>
-													  
-		</form>
+	<tr> 
+		<td colspan="2">
+		   <form>
+		   
+				<?php if($sc == "author"){ ?>
+				<input type="radio" name="sc" value="author"  checked>autor
+				<?php } else { ?>
+				<input type="radio" name="sc" value="author">autor
+				
+				<?php } if($sc == "title"){?>
+				<input type="radio" name="sc" value="title" checked>pealkiri
+				<?php } else { ?>
+				<input type="radio" name="sc" value="title">pealkiri
+				
+				<?php }if($sc == "description"){?>
+				<input type="radio" name="sc" value="description" checked>kirjeldus
+				<?php } else { ?>
+				<input type="radio" name="sc" value="description">kirjeldus
+				<?php } ?>
+				
+				
+				<br>
+				<input type="search" name="q" value="<?=$q;?>">
+				<input type="submit" value="Otsi"><?=$error;?>
+														  
+			</form>
+		</td>
+		<td style="text-align:right;">
+			<form>
+				<select name="order_by" onchange="this.form.submit()">
+				<?php
+				$option = "";
+				$sortOptions = array( 'vaikimisi järjestus', 'A-Z', 'Z-A', 'uuemad', 'vanemad', 'odavamad', 'kallimad' );
+				if(isset($_GET["order_by"])){
+				$option = $_GET["order_by"];
+				}
+				foreach( $sortOptions as $value ){
+					if ($value == $option){
+						$selected = "selected = 'selected'";
+					} else {
+						$selected = "";
+					}
+				echo "<option value='$value' $selected>  $value   </option>";
+				}
+				?>
+				</select>	
+			</form>
+		</td>
 	</tr>
 	
 <!--2. RIDA....KATEGOORIAD JA RAAMATUD-->
