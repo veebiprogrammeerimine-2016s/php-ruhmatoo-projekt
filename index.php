@@ -6,12 +6,11 @@ if(isset($_SESSION["userId"]))
 	{
 		//suunan sisselogimise lehele
 		header("Location: data.php");
+		
+		
 		exit();
 	}
-	
-$tyreFittings = getAllTyreFittings();
-
-if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
+	if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
 	{
 		if( !empty($_POST["regPassword"])&& !empty($_POST["regUsername"]))
 		{
@@ -26,14 +25,19 @@ if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
     
 	}
 		
-if(isset($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["username"]) && !empty($_POST["password"]))
+if(isset($_POST["username"]) && isset($_POST["password"]))
 	{
+		
 		login($_POST["username"],$_POST["password"]);
 		if(!isset($_SESSION["userId"]))
 		{
 			?> <script> alert("Vale parool või kasutaja nimi"); </script> <?php
 		}
+		
 	}
+$tyreFittings = getAllTyreFittings();
+
+
 	
 ?>
 <!DOCTYPE html>
@@ -145,123 +149,5 @@ if(isset($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["user
       <button type="button" class="btn btn-info-outline btn-lg center-block m-y-3" data-toggle="modal" data-target="#register">Ära oota. Hakka Partneriks!</button>
       <!-- /callout button-->
       <!-- signup form -->
-<hr>
-<div class="row p-y-2 text-muted ">
-  <div class="col-md-6 col-xl-5">
-    <p><strong>Kontaktid</strong></p>
-    <p>Võtke meiega ühendust</p>
-     <img src="http://www.freeiconspng.com/uploads/email-icon-23.png" style="width:20px;heigth:20px;"> info@rehvivahetus.ee
-  </div>
-  <div class="col-md-6 col-xl-5 col-xl-offset-2">
-    <p><strong>Liitu meie uudiskirjaga!</strong></p>
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Email">
-      <span class="input-group-btn">
-        <button class="btn btn-primary" type="button">Telli</button>
-      </span>
-    </div>
-  </div>
-</div>
-<hr><!-- /signup form -->
-     <!-- footer -->
-     <div class="row p-y-1">
-  <div class="col-md-7">
-	<ul class="nav nav-inline">
-      <li class="nav-item">
-        <a class="nav-link active" href="http://www.facebook.com">Facebook</a>
-      </li>
-      
-</ul>
-  </div>
-  <div class="col-md-5 text-md-right">
-    <small>&copy; 2016 TLÜ team</small>
-  </div>
-</div>
-     <!-- /footer-->
-    </div>  <!-- container -->
-    <!-- ====================
-    FORM MODAL  REGISTER
-    ======================== -->
-    <form id="reg" method="POST">
-            <div id="register" class="modal fade">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Loo kasutaja</h4>
-              </div>
-			  
-              <div class="modal-body">
-               
-				 <div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input name="regUsername" type="email" class="form-control" id="exampleInputEmail1"  placeholder="Enter email">
-				 </div>
-				 <div class="form-group">
-					<label for="exampleInputPassword1">Password</label>
-					<input name="regPassword" type="password" class="form-control" aria-describedby="passwordHelpBlock" id="exampleInputPassword1" placeholder="Password">
-                    <p id="passwordHelpBlock" class="form-text text-muted">
-                    Parool peab olema vähemalt 8 sümboli pikkune
-                    </p>
-				</div>
-              </div>
-              <div class="modal-footer">
-                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                <button id="butt" type="submit" class="btn btn-primary"  >Registreerun</button>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-        </form>
- <!-- ====================
-    FORM MODAL  LOGIN
-    ======================== -->
-    <form id="log" method="POST">
-	<div id="login" class="modal fade">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Logi sisse</h4>
-              </div>
-              <div class="modal-body">
-               
-				 <div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input name="username" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-				 </div>
-				 <div class="form-group">
-					<label for="exampleInputPassword1">Password</label>
-					<input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-				</div>
-              </div>
-              <div class="modal-footer">
-                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                <button type="submit" class="btn btn-primary">Logi sisse</button>
-				 <div class="row">
-            <div id="sign-up-form-body">
-                Teil pole veel kontot?
-				</br>
-                <a data-toggle="modal" data-target="#register" data-dismiss="modal" style="cursor:pointer">Registreeru!</a>
-            </div>
-        </div>
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->	
-	</form>
-		
-    <!-- jQuery first, then bootstrap js -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous">
-        </script>
-    <!-- our scripts -->    
-        <script type="text/javascript" src="js/sc.js"></script>
-        
-       		
-  </body>
-</html>
+	<?php require("modals.php");
+	 require("footer.php"); ?>
