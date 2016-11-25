@@ -6,7 +6,7 @@
 
     * Rehvivahetuse online rakendus;
     
-    * Stas Majevski, Pjetr Iljukov, Juri Gussarov;
+    * Stas Majevski, Pjotr Iljukov, Juri Gussarov;
 	
     * Veebirakendus kus on erinevaid rehvivahetuse punktid ja annab võimalus broneerida endale sobiv aeg;
     * Loodame et rakendus tuleb vaja inimestele kellel on probleemid rehvivahetusega kui hooaeg algab. Üritame teha oma rakendus võimalikult lihtne ;
