@@ -129,7 +129,7 @@ if(isset($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["user
                 $html .= "<div class='card-block'>";
                 $html .= "<h4 class='card-title'>".$tyreFitting->name."</h4>";
                 $html .= "<p class='card-text'>".$tyreFitting->description."...</p>";
-                $html .= "<a href='#' class='btn btn-primary'>Tutvu lähemalt</a>";
+                $html .= "<a href='details.php?id=".$tyreFitting->id."' class='btn btn-primary'>Tutvu lähemalt</a>";
                 $html .= "</div>";
             	$html .= "</div>";
 				$html .= "</div>";

@@ -4,6 +4,44 @@ require("../../config.php");
 
 session_start();
 
+function getSingleTyreFitting($details_id){
+    	$database = "if16_stanislav";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		$stmt = $mysqli->set_charset("utf8");
+        
+		$stmt = $mysqli->prepare("SELECT name, logo, description FROM p_tyre_fittings WHERE id=?");
+
+		$stmt->bind_param("i", $details_id);
+		$stmt->bind_result($name, $logo, $description);
+		$stmt->execute();
+		
+		//tekitan objekti
+		$tyreFitting = new Stdclass();
+		
+		//saime ühe rea andmeid
+		if($stmt->fetch()){
+			// saan siin alles kasutada bind_result muutujaid
+			$tyreFitting->name = $name;
+			$tyreFitting->logo = $logo;
+			$tyreFitting->description = $description;
+			
+			
+			
+		}else{
+			// ei saanud rida andmeid kätte
+			// sellist id'd ei ole olemas
+			// see rida võib olla kustutatud
+			header("Location: index.php");
+			exit();
+		}
+		
+		$stmt->close();
+
+		
+		return $tyreFitting;
+		
+	}
+
 function getAllTyreFittings() {
 		
 		$database = "if16_stanislav";

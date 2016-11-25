@@ -11,4 +11,14 @@ if (!isset($_SESSION["userId"])){
 
 echo "Test";
 
+if (isset($_GET["logout"])) {
+		
+		session_destroy();
+		header("Location: index.php");
+		exit();
+	}
+
 ?>
+<p>
+<a href="?logout=1">Logi välja</a>
+</p>
