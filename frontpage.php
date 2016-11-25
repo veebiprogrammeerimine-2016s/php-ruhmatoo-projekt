@@ -1,8 +1,0 @@
-<?php
-
-/// lol
-
-
-// HELLO STASSSSSSSSSSSSSSSSSSSSSSS
-
-?>
