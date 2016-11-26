@@ -1,0 +1,95 @@
+body
+{
+	/*taustapilt*/ 	
+      background-image: url("http://www.freebiesgallery.com/wp-content/uploads/2013/09/white-background-1.jpg");
+	   
+       background-size: cover;   
+font-family: verdana;	
+margin: 0px;
+padding: 0px;
+   
+
+	}
+#sisestus{
+	position: fixed;
+	right:100px
+}
+#kirjeldus{
+	width:250px;
+	height:100px
+	
+}
+#otsing{
+	position: relative;
+	left:-240px;
+	top:-42px;
+	width:150px;
+	height:30px
+}
+#nupp{
+	position: relative;
+	left:-230px;
+	top:-41px;
+	width:45px;
+	height:30px;
+	   font-size: 1.2em;
+	
+}
+
+/*#iKala
+{
+
+ position:fixed relative,absolute,ficed
+}*/
+
+.nav ul {
+  list-style: none;
+  background-color: #87CEFA;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+ /* right:0px;
+  background-size: cover;  
+  position:fixed*//*relative,absolute,ficed*/
+}
+.nav li {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.2em;
+  line-height: 75px;
+  height: 75px;
+  border-bottom: 10px solid #888;
+}
+ /* tekst */
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  transition: .3s background-color;
+}
+ 
+.nav a:hover {
+  background-color: #4682B4;
+}
+ 
+ /*.nav a.active {
+  background-color: #FFFFFF;
+  color:#87CEFA;
+  cursor: default;
+}*/
+ 
+@media screen and (min-width: 600px) {
+  .nav li {
+    width: 120px;
+    border-bottom: none;
+    height: 75px;
+    line-height: 75px;
+    font-size: 1.4em;
+  }
+ 
+  .nav li {
+    display: inline-block;
+    margin-right: 5px;
+  }
+ 
+ 
+}
