@@ -1,5 +1,6 @@
 <?php
 
+
 require("../../../config.php");
 require("../functions.php");
 
@@ -157,8 +158,25 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 			}
 	
 	
-?>
-<?php require("../header.php");?>
+?><?php require("../header.php");?>
+
+  <script src="path/to/jquery.js" type="text/javascript"></script>
+   <script src="path/to/jquery.mmenu.min.js" type="text/javascript"></script>
+   <script src="path/to/jquery.mmenu.navbars.min.js" type="text/javascript"></script>
+   <link href="path/to/jquery.mmenu.css" type="text/css" rel="stylesheet" />
+   <link href="path/to/jquery.mmenu.navbars.css" type="text/css" rel="stylesheet" />
+   <script type="text/javascript">
+      $(document).ready(function() {
+         $("#my-menu").mmenu({
+            navbars: [{
+               // first navbar options
+            }, {
+               // second navbar options
+            }]
+         });
+      });
+   </script>
+
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -179,7 +197,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
         
         
       </ul>
-			<form id="loginforms" class="navbar-form navbar-right col-sm-6" method=post role="search">
+			<form id="loginforms" class="navbar-form navbar-right col-xs-offset-4 col-sm-6" method=post role="search">
                     <div class="form-group">
                         <input type="text" class="form-control" name="signupEmail" placeholder="E-maili aadress">
                     </div>
@@ -247,7 +265,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	</div>
 <!-- CSS sheet lõpetas töötamise, pean siia kirjutama -->
 <style>
-  #para1{text-align:center;
+   #para1{text-align:center;
   width:1250px;
   height:400px;
   border-style:double;
@@ -328,4 +346,5 @@ li {
 }
 
 </style>
+
 <?php require("../footer.php");?>

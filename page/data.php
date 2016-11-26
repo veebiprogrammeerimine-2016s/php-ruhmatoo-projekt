@@ -149,7 +149,7 @@
 <center>
 <br><br><br>
  <h4>Tere tulemast     <?=$_SESSION["firstName"];?>!</h4>
-<div id="signupForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
+<div id="plantsForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
 		<h3> Toataimede sisestamine </h3>
 
 		<div >
@@ -232,7 +232,73 @@
 	?></div></div><br><br>
 	
 
+<style>
 
+    #plantsForm
+{	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	padding-top:30px;
+	padding-right:30px;
+	padding-left:30px;
+	height:400px;
+}
+
+h3{
+	color:white;
+}
+h4{
+	
+	color:white;
+	
+}
+
+
+p {
+	padding:10px;
+}
+a {
+	
+	width: 120px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#logo{
+	padding-top:20px;
+	padding-left:20px;
+	padding-right:20px;
+	
+}
+
+
+
+div#insertPlants{
+	padding-left:20px;
+	padding-right:20px;
+	
+	
+}
+
+body{
+	font-family:helvetica;
+	
+	
+}
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+	
+}
+
+li {
+	padding-top:20px;
+	padding-left:20px;
+	padding-right:20px;
+	
+}
+
+</style>
 
 <?php require("../footer.php");?>
 
