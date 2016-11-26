@@ -56,18 +56,23 @@ $services = getTyreFittingServices($_GET["id"]);
           <div class="card-block">
             <h4 class="card-title"><?php echo $tyreFitting->name ?></h4>
             <p class="card-text"><?php echo $tyreFitting->description  ?></p>
+            <h4>Teenused</h4>
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
+          <?php foreach($services as $service)
+		  {?>
+          
+          <ul class="list-group">
+  			<li class="list-group-item">
+    			<span class="label label-default label-pill pull-xs-right">alates <?php echo $service->price ?> EUR</span>
+   					<?php echo ucfirst($service->category); ?>
+  			</li>
+           </ul> 
+          <?php } ?>
           <div class="card-block">
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            Täpsemad hinnad leiad<a href="<?php echo $tyreFitting->pricelist ?>" class="card-link"> SIIT</a>
           </div>
         </div>
-		<div class="col-lg-4">
+		<div class="col-lg-8">
         <iframe src="<?php echo $tyreFitting->location ?>" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
     </div>    
 	</div>        

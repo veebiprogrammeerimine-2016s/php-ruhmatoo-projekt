@@ -9,10 +9,10 @@ function getSingleTyreFitting($details_id){
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		$stmt = $mysqli->set_charset("utf8");
         
-		$stmt = $mysqli->prepare("SELECT name, logo, description,location FROM p_tyre_fittings WHERE id=?");
+		$stmt = $mysqli->prepare("SELECT name, logo, description,location,pricelist FROM p_tyre_fittings WHERE id=?");
 
 		$stmt->bind_param("i", $details_id);
-		$stmt->bind_result($name, $logo, $description,$location);
+		$stmt->bind_result($name, $logo, $description,$location,$pricelist);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -25,6 +25,7 @@ function getSingleTyreFitting($details_id){
 			$tyreFitting->logo = $logo;
 			$tyreFitting->description = $description;
 			$tyreFitting->location = $location;
+			$tyreFitting->pricelist = $pricelist;
 			
 			
 		}else{
@@ -46,24 +47,34 @@ function getTyreFittingServices($details_id){
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		$stmt = $mysqli->set_charset("utf8");
         
-		$stmt = $mysqli->prepare("SELECT name, description, category,size,price FROM p_tyre_fittings_services WHERE tyre_fitting_id=?");
-
+	/*	$stmt = $mysqli->prepare("SELECT name, description, category,size,price FROM p_tyre_fittings_services WHERE tyre_fitting_id=?");*/
+	$stmt = $mysqli->prepare("SELECT  name,description,category,size,MIN(price) FROM p_tyre_fittings_services WHERE tyre_fitting_id=? GROUP BY category;");
+		
 		$stmt->bind_param("i", $details_id);
 		$stmt->bind_result($name, $description, $category, $size, $price);
 		$stmt->execute();
 		
-		//tekitan objekti
-		$service = new Stdclass();
+		$result = array();
 		
-		//saime ühe rea andmeid
-		if($stmt->fetch()){
-			// saan siin alles kasutada bind_result muutujaid
-			$service->name = $name;
-			$service->category = $category;
-			$service->description = $description;
-			$service->size = $size;
-			$service->price = $price;
+		// tee seda seni, kuni on rida andmeid
+		// mis vastab select lausele
+		while ($stmt->fetch()) {
 			
+			//tekitan objekti
+			$i = new StdClass();
+			
+			$i->name = $name;
+			$i->category = $category;
+			$i->description = $description;
+			$i->description = $description;
+			$i->size = $size;
+			$i->price = $price;
+		
+			array_push($result, $i);
+		}
+		
+		//tekitan objekti
+		
 			
 			
 		/*}else{
@@ -73,11 +84,11 @@ function getTyreFittingServices($details_id){
 			header("Location: index.php");
 			exit();
 		}*/
-}
+
 		$stmt->close();
 
 		
-		return $service;
+		return $result;
 		
 	}
 function getAllTyreFittings() {
