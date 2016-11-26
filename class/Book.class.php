@@ -26,7 +26,7 @@ class Book {
 	}
 	
 	//kõik raamatud andmebaasist
-	function getBooks($q, $sc, $order_by) {
+	function getBooks($cat, $q, $sc, $order_by) {
 		$sort = "book_id";
 		$orderDescending = array('Z-A', 'uuemad', 'kallimad' );
 		if(in_array($order_by, $orderDescending)){
@@ -47,7 +47,17 @@ class Book {
 				$sort = "title";
 			}
 		}
+		
+		
 		$this->connection->set_charset("utf8");
+		if(!empty($cat)){
+			$stmt = $this->connection->prepare("
+				SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 
+				FROM project_books
+				WHERE deleted IS NULL AND cat=?
+				ORDER BY $sort $orderBy");
+				$stmt->bind_param("s", $cat);
+		}
 		if($q == ""){
 			$stmt = $this->connection->prepare("
 				SELECT book_id, cat, title, author, year, bookCondition, location, description, points, created, image 

@@ -28,10 +28,10 @@ if(isset($_GET["order_by"])){
 	if($order_by == "vaikimisi järjestus"){
 		$order_by = "ASC";
 	}
-}               
+}
 //kutsun funktsiooni, et saada kõik raamatud
-$books = $Book->getBooks($q, $sc, $order_by);
-$onlyCategories = $Book->getBooks("", "", "");  //et kat. kuvamine poleks sõltuv kuvatavatest raamatutest
+$books = $Book->getBooks($cat, $q, $sc, $order_by);
+$onlyCategories = $Book->getBooks("", "", "", "");  //et kat. kuvamine poleks sõltuv kuvatavatest raamatutest
 $tableHtml = "";
 
 //Saan kõik kategooriad
@@ -43,13 +43,13 @@ foreach($onlyCategories as $book){
 $categories = array_unique($categories);  //et kõiki kategooriaid oleks 1
 asort($categories);                       //et kategooriad oleks a-z
 
-//kas kategooria on valitud
-if(isset($_GET["topic"])){
-	$cat = $_GET["topic"];
-	//echo "kategooria valitud";
+ //kas kategooria on valitud
+if(isset($_GET["cat"])){
+	$cat = $Helper->cleanInput($_GET["cat"]);
+	//echo $cat;
+} else {
+	$_GET["cat"] = "";
 }
-	
-
 
 ?>
 
@@ -112,7 +112,7 @@ require("../header.php");
 				}
 				?>
 				</select>	
-			</form>
+			   <!--form-->
 		</td>
 	</tr>
 	
@@ -122,13 +122,14 @@ require("../header.php");
 		<td valign="top">
 		<?php foreach($categories as $category){
 			$topic = "<div id='topic'>";
-			$topic .= '<a href="books.php?topic='. $category .'">'. $category .'</a>';
+			$topic .= '<a href="books.php?cat='. $category .'">'. $category .'</a>';
 			$topic .= "</div>";
 			echo $topic;
 			
-		}?>
-														
+		}?>	
+		<input type="hidden" name="cat" value="<?=$_GET["cat"];?>" >
 		</td>
+		</form>
 		<!--lahter 2 leheküljed ja raamatud -->
 		<td>
 	       <!--Näitab kus kategoorias, algul kõik -->
@@ -200,4 +201,19 @@ require("../header.php");
 	</tr>
 </tbody>
 </table>
+
+<!--ajutine-->
+<table border="1">
+  <tr>
+    <th>variable</th>
+    <th>value</th>
+  </tr>
+  <?php
+    foreach($_GET as $variable => $value) {
+      echo "<tr><td>" . $variable . "</td>";
+      echo "<td>" . $value . "</td>";
+    }
+  ?>
+</table>
+<!-- -->
 <?php require("../footer.php");?>
