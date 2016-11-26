@@ -41,14 +41,18 @@ if(isset($_POST["username"])){
 		
 // kui ühtegi errorit pole kutsun funktsiooni
 if(isset($_POST["username"]) && empty($error)){	
-	$error = "Kasutaja on loodud, saate nüüd sisse logida!";
 	
-	$User->signUp($username, $email, $password);	  //signUp() on User.class php-s	
+	
+	$User->signUp($username, $email, $password);	  //signUp() on User.class php-s
+	header("Location: join.php?user=".$_POST["username"]."&joined=true");
 }
 
 //HTML
 require("../header.php");
-
+if(isset($_GET["joined"])){
+	echo "<br><br><br><p>Kasutaja " .$_GET['user']. " edukalt loodud!</p>";
+	echo "Võid nüüd sisse <a href='login.php'>logida</a>!";
+}else{
 ?>
 <p>Loo kasutaja</p>
 
@@ -61,5 +65,5 @@ require("../header.php");
 	<input type="submit" value="Loo kasutaja"><br>
 </form>
 <br>
-<?=$error;?>
+<?=$error;}?>
 <?php require("../footer.php");?>
