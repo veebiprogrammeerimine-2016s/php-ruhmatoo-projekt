@@ -9,10 +9,10 @@ function getSingleTyreFitting($details_id){
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		$stmt = $mysqli->set_charset("utf8");
         
-		$stmt = $mysqli->prepare("SELECT name, logo, description FROM p_tyre_fittings WHERE id=?");
+		$stmt = $mysqli->prepare("SELECT name, logo, description,location FROM p_tyre_fittings WHERE id=?");
 
 		$stmt->bind_param("i", $details_id);
-		$stmt->bind_result($name, $logo, $description);
+		$stmt->bind_result($name, $logo, $description,$location);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -24,7 +24,7 @@ function getSingleTyreFitting($details_id){
 			$tyreFitting->name = $name;
 			$tyreFitting->logo = $logo;
 			$tyreFitting->description = $description;
-			
+			$tyreFitting->location = $location;
 			
 			
 		}else{
@@ -41,7 +41,45 @@ function getSingleTyreFitting($details_id){
 		return $tyreFitting;
 		
 	}
+function getTyreFittingServices($details_id){
+    	$database = "if16_stanislav";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		$stmt = $mysqli->set_charset("utf8");
+        
+		$stmt = $mysqli->prepare("SELECT name, description, category,size,price FROM p_tyre_fittings_services WHERE tyre_fitting_id=?");
 
+		$stmt->bind_param("i", $details_id);
+		$stmt->bind_result($name, $description, $category, $size, $price);
+		$stmt->execute();
+		
+		//tekitan objekti
+		$service = new Stdclass();
+		
+		//saime ühe rea andmeid
+		if($stmt->fetch()){
+			// saan siin alles kasutada bind_result muutujaid
+			$service->name = $name;
+			$service->category = $category;
+			$service->description = $description;
+			$service->size = $size;
+			$service->price = $price;
+			
+			
+			
+		/*}else{
+			// ei saanud rida andmeid kätte
+			// sellist id'd ei ole olemas
+			// see rida võib olla kustutatud
+			header("Location: index.php");
+			exit();
+		}*/
+}
+		$stmt->close();
+
+		
+		return $service;
+		
+	}
 function getAllTyreFittings() {
 		
 		$database = "if16_stanislav";

@@ -28,6 +28,7 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
 		
 	}
 $tyreFitting = getSingleTyreFitting($_GET["id"]);
+$services = getTyreFittingServices($_GET["id"]);
 
 ?>
 
@@ -66,6 +67,9 @@ $tyreFitting = getSingleTyreFitting($_GET["id"]);
             <a href="#" class="card-link">Another link</a>
           </div>
         </div>
+		<div class="col-lg-4">
+        <iframe src="<?php echo $tyreFitting->location ?>" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>    
 	</div>        
 </div>
 
