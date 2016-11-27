@@ -39,11 +39,6 @@
 <body style='background-color:Silver'>
     <head>
 	<?php require("../header.php"); ?>
-	<a href="data.php">Avaleht</a>
-	<br>
-    <a href="insert_animal.php">Sisesta loom</a>
-	<br>
-	<a href="?logout=1">Logi valja</a>
 <h1>Loomad</h1>
 
 <form>
