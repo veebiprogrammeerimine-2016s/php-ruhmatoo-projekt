@@ -160,22 +160,6 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	
 ?><?php require("../header.php");?>
 
-  <script src="path/to/jquery.js" type="text/javascript"></script>
-   <script src="path/to/jquery.mmenu.min.js" type="text/javascript"></script>
-   <script src="path/to/jquery.mmenu.navbars.min.js" type="text/javascript"></script>
-   <link href="path/to/jquery.mmenu.css" type="text/css" rel="stylesheet" />
-   <link href="path/to/jquery.mmenu.navbars.css" type="text/css" rel="stylesheet" />
-   <script type="text/javascript">
-      $(document).ready(function() {
-         $("#my-menu").mmenu({
-            navbars: [{
-               // first navbar options
-            }, {
-               // second navbar options
-            }]
-         });
-      });
-   </script>
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
