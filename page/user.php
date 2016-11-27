@@ -6,6 +6,8 @@
 	require("../class/Helper.class.php");
 	$Helper = new Helper($mysqli);
 	
+	require("../class/User.class.php");
+	$User = new User($mysqli);
 	
 	//kui ei ole sisseloginud, suunan login lehele
 	if (!isset($_SESSION["userId"])) {
@@ -22,7 +24,9 @@
 		exit();
 		
 	}
-
+	
+	$userid = $_GET["id"];
+	$andmed = $User->getUserData($userid);
 	
 	//pre echob koodina
 	//echo "<pre>";
@@ -35,7 +39,39 @@
 	<div class="page-header">
 		<h1>Kasutaja leht</h1>
 	</div>
-	<p class="lead"></p>
+	<p class="lead">
+	
+	<?php 
+	$html = "<div class='row'><div class='col-sm-4 col-md-3'><table class='table table-striped table-condensed'>";
+	
+	foreach ($andmed as $a) {
+			
+			
+			
+		
+			$html .= "<tr>";
+				$html .= "<td>".$a->id."</td>";
+				$html .= "<td>".$a->caption."</td>";
+
+			$html .= "</tr>";
+		
+		}
+		
+		
+		
+	$html .= "</table></div></div>";
+	
+	echo $html;
+	?> 
+	
+	
+	
+	
+	
+	
+	
+	</p>
+	
 	
 
 </div>

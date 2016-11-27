@@ -84,6 +84,35 @@ class User {
 		$stmt->close();
 	}
 	
+	function getUserData($author) {
+		
+		$stmt = $this->connection->prepare("
+		select id, caption from submissions
+		where author = ?");
+		echo $this->connection->error;
+		
+		$stmt->bind_param("s", $author);
+		$stmt->execute();
+		$results = array();
+		$stmt->bind_result($id, $caption);
+		
+		while($stmt->fetch()){ //fetch values
+		
+			$data = new StdClass();
+			$data->id = $id;
+			$data->caption = $caption;
+			
+			
+			//echo $color."<br>";
+			array_push($results, $data);
+		}
+		
+		$stmt->close();
+		
+		return $results;
+		
+	}
+	
 	
 	
 	

@@ -3,12 +3,6 @@
 	//kuradi git ma ütlen!
 	require("../functions.php");
 
-	require("../class/Helper.class.php");
-	$Helper = new Helper($mysqli);
-	require("../class/Upload.class.php");
-	$Upload = new Upload($mysqli);
-	
-	
 	//kui ei ole sisseloginud, suunan login lehele
 	if (!isset($_SESSION["userId"])) {
 		header("Location: index.php");
@@ -34,7 +28,7 @@
 $(function() {
 	//alert("siin");
 	var track_page = 1; //track user scroll as page number, right now page number is 1
-	var limit_page=10;
+	var limit_page=5;
 	var loading  = false; //prevents multiple loads
 	var window_height = window.innerHeight;
 	load_contents(track_page); //initial content load
@@ -103,7 +97,7 @@ $(function() {
 
 <div class="container">
 	<div class="page-header">
-		<h1>Repo</h1>
+		<h1>Latest posts</h1>
 	</div>
 	<p class="lead"></p>
 	<div class="wrapper">

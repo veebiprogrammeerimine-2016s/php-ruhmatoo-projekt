@@ -4,3 +4,18 @@ põhiasjad: kuvamisleht, upload
 	second: user
 		third: pildi alla saab kommenteerida
 aadressid lühemaks !!! (või üldse ära peita)
+reCAPTCHA
+
+for(var i = 0; i < document.getElementsByClassName("badge-entry-container").length; i++){
+   var el = document.getElementsByTagName("article")[i];
+//console.log(el);
+var title = el.querySelector("header h2 a");
+var img = el.querySelector(".post-container a img");
+
+if(title){title = title.innerHTML;}
+if(img){img = img.src;}
+if(title && img){
+console.log('INSERT INTO submissions (author, caption, imgurl) VALUES (1, "'+title+'","'+img+'");');
+}
+}
+

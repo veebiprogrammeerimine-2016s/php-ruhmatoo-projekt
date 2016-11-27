@@ -116,7 +116,7 @@ class Upload {
 				
 				
 				if ($stmt->execute()) {
-					//header("Location: upload.php?success");
+					header("Location: upload.php?success");
 				}
 				echo $stmt->error;
 				
@@ -136,13 +136,15 @@ class Upload {
 	function getPictures() {
 
 			$stmt = $this->connection->prepare("
-				SELECT id,caption,imgurl
-				FROM submissions WHERE deleted is NULL
+				SELECT submissions.id,caption,imgurl,email
+				FROM submissions 
+				join user_sample on submissions.author=user_sample.id
+				WHERE deleted is NULL
 			
 			");
 			
 		
-		$stmt->bind_result($id,$caption,$imgurl);
+		$stmt->bind_result($id,$caption,$imgurl,$email);
 		$stmt->execute();
 
 		$results = array();
@@ -154,6 +156,7 @@ class Upload {
 			$pictureTable->id = $id;
 			$pictureTable->caption = $caption;
 			$pictureTable->imgurl = $imgurl;
+			$pictureTable->author = $author;
 			
 			array_push($results, $pictureTable);
 			

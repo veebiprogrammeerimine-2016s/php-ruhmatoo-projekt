@@ -54,7 +54,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>vahekaardi tiitel</title>
+		<title>Logi sisse!</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">		
 		
 		<!-- jQuery -->	
@@ -115,6 +115,8 @@
       </div>
       <p class="lead"><?php echo $loginEmailError; echo $loginPasswordError; ?><code>v0.1 login, signup</code></p>
 	  <p class="lead"><?php echo $loginEmailError; echo $loginPasswordError; ?><code>v0.2 added upload</code></p>
+	  <p class="lead"><?php echo $loginEmailError; echo $loginPasswordError; ?><code>v0.3 upload uniqid, resize and compression</code></p>
+	  <p class="lead"><?php echo $loginEmailError; echo $loginPasswordError; ?><code>v0.4 infinite scroll</code></p>
     </div>
 
 <?php require("footer.php"); ?>
