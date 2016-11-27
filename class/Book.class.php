@@ -22,6 +22,8 @@ class Book {
 		} else {
 		 	echo "ERROR ".$stmt->error;               
 		}
+		$book_id = $stmt->insert_id;        //tahan saada just lisatud raamatu id'd
+		return $book_id;
 		$stmt->close();
 	}
 	

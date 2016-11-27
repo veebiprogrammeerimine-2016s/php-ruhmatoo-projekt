@@ -4,7 +4,8 @@
 require("../functions.php");     
 require("../class/Book.class.php");     //peab olema ENNE ojekti loomist
 $Book = new Book($mysqli);               //objekt
-
+require("../class/Coin.class.php");
+$Coin = new Coin($mysqli);
 		
 //MUUTUJAD
 $category = "";
@@ -41,7 +42,8 @@ if(isset($_POST["title"])){
 if(isset($_POST["title"]) && empty($error)) {
 	$error = 'Aitäh, raamat "'.$title. '" on lisatud pakutavate raamatute nimekirja! Vajadusel saad raamatu andmeid muuta Sinu riiulis. <br> Kui raamat leiab uue omaniku, kantakse mündid Sinu kontole.';
 	$userId = $_SESSION["userId"];
-	$Book->addBook($userId, $category, $title, $author, $year, $condition, $location, $description, $coins, $image);
+	$BookId = $Book->addBook($userId, $category, $title, $author, $year, $condition, $location, $description, $coins, $image);  //funktsiooni raamatu andmebaasi lisamiseks
+	$Coin->userTransaction($BookId); //funktsioon, et lisada andmebaasi raamatu tehinguid puudutav info
 }
 ?>
 

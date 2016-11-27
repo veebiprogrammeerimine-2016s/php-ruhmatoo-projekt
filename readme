@@ -49,6 +49,16 @@ CREATE TABLE project_books (
 	-> user_id INT(11),
 	-> FOREIGN KEY (user_id) REFERENCES project_users(user_id)
 	-> );
+	
+CREATE TABLE project_points (
+	book_id INT NOT NULL UNIQUE,
+	user_id_give INT NOT NULL,
+	user_id_get INT,
+	points INT(10) NOT NULL,
+	created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	status VARCHAR(10),
+	FOREIGN KEY (book_id) REFERENCES project_books(book_id)
+	);
 
 	
 
