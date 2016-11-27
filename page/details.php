@@ -24,6 +24,8 @@ require("../header.php");
 
 <h4>Raamatu info</h4>
 <?php
+
+
 $tableHtml = "<br><br>";
 $tableHtml .= "<table>";
 	$tableHtml .= "<tr>";
@@ -50,6 +52,18 @@ $tableHtml .= "<table>";
 
 $tableHtml .= "</table>";	
 echo $tableHtml;
-?>
 
+//kui on sisse logimata kasutaja
+if(!isset($_SESSION["userId"])){
+?>
+	<br><br><p>Kui soovid seda raamatut või soovid ise mõnda raamatut pakkuda, siis <a href="login.php">logi sisse</a>.</p>
+<?php ;}
+
+//kui on sisse loginud kasutaja
+if(isset($_SESSION["userId"])){ ?>
+	<p>tuleb..</p>
+
+<?php ;} ?>
+	
+	
 <?php require("../footer.php");?>

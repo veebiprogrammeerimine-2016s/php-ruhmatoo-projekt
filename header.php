@@ -53,7 +53,7 @@ if (!isset($_SESSION["userId"])){
 <?php } else { ?>
 			<li><a href="user.php" class="btn btn-default" role="button">Sinu riiul</a></li>
 			<li><a href="books.php" class="btn btn-default" role="button">Otsi raamatuid</a></li>
-			<li><a href="edit.php" class="btn btn-default" role="button">Paku raamatuid</a></li>
+			<li><a href="add.php" class="btn btn-default" role="button">Paku raamatuid</a></li>
 			<li><a href="login.php" class="btn btn-default" role="button">Logi välja</a></li>
 
 
