@@ -159,38 +159,32 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	
 	
 ?><?php require("../header.php");?>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
 
-
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav id="nav "class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div id="logo" class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+   
+    <div id="logo" class="navbar-left" ">
       <a class="navbar-brand" href="login.php">FacePlänt</a>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li class="col-sm-8"><a href="care.php">Taimehooldus<span class="sr-only"></span></a></li>
-        
-        
-      </ul>
-			<form id="loginforms" class="navbar-form navbar-right col-xs-offset-4 col-sm-6" method=post role="search">
+	<span class="menu-trigger">MENU</span>
+    
+    <div class="nav-menu">
+      <ul class="clearfix">
+        <li><a href="care.php">Taimehooldus<span class="sr-only"></span></a></li>
+		<li><a href="#">Meist<span class="sr-only"></span></a></li>
+        <div class="navbar-right"><li>	<form method=post class="colform">
                     <div class="form-group">
                         <input type="text" class="form-control" name="signupEmail" placeholder="E-maili aadress">
-                    </div>
-                    <div class="form-group">
+                    
+                   
                         <input type="password" class="form-control" name="signupPassword" placeholder="Parool">
                     </div>
                     <button type="submit" class="btn btn-default">Logi sisse</button>
-                </form>
-      </form>
+                <span class="sr-only"></form></li></div>
+      </ul>
+			
+      
       
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -200,6 +194,8 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 
 <br><br><br><br>
 	<div class="col-lg-12 ">
+	
+				
 				
 		
 		
@@ -247,8 +243,87 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	<div class="container" id="para1" >
 		<h3>Tere tulemast FacePlänt-i!</h3>
 	</div>
+<!--JAVASCRIPT-->	
+<script>jQuery(document).ready(function() {
+
+	jQuery(".menu-trigger").click(function() {
+		
+		jQuery(".nav-menu").slideToggle(400, function(){
+			jQuery(this).toggleClass("nav-expanded").css('display', '');
+			
+		});
+	});
+
+
+});</script>
 <!-- CSS sheet lõpetas töötamise, pean siia kirjutama -->
 <style>
+	
+
+	nav{
+		height:50px;
+	}
+
+  div.nav-menu ul li a {
+		padding:15px;
+		font-size:110%;
+		float:left;
+	  
+	  
+	  
+
+  }
+  div.nav-menu ul li form {
+	  width:100%;
+	  float:right;
+  }
+    div.nav-menu ul li{
+		  float: left;
+		  border-bottom: 2px solid #d5dce4;
+		  padding: 10px;
+		  list-style:none;
+	  }
+   
+  
+  .menu-trigger {
+	  display:none;
+  }
+  @media screen and (max-width: 480px){
+	  
+	  .menu-trigger {
+		  display: block;
+		  color:#6b6b47;
+		  padding:10px;
+		  text-align:right;
+		  font-size:83%;
+		  cursor:pointer;
+		 
+	  }
+	 
+	  div.nav-menu {
+		  display: none;
+	  }
+	  
+	  div.nav-expanded{
+		  display:block;
+		  background-color:white;
+		  text-align:center;
+	  }
+	  
+	  div.nav-menu ul li{
+		  float: none;
+		  border-bottom: 2px solid #d5dce4;
+		  padding: 10px;
+		  text-align:center;
+	  }
+	  
+	  div.nav-menu ul li:last-child {
+		  border-bottom: none;
+		  padding:10px;
+	  }
+	  
+  }
+
    #para1{text-align:center;
   width:1250px;
   height:400px;
@@ -282,26 +357,16 @@ h4{
 p {
 	padding:10px;
 }
-a {
-	
-	width: 120px;
-	margin-left:auto;
-	margin-right:auto;
-}
+
 
 #logo{
-	padding-top:20px;
-	padding-left:20px;
-	padding-right:20px;
+	
+	height:50px;
+	´
 	
 }
 
-#loginforms{
-	padding-top:20px;
-	padding-left:20px;
-	padding-right:20px;
-	
-}
+
 
 #insertPlants{
 	padding-left:20px;
@@ -315,18 +380,9 @@ body{
 	
 	
 }
-ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-	
-}
 
-li {
-	padding-top:20px;
-	padding-left:20px;
-	padding-right:20px;
-	
+a{
+	color:black;
 }
 
 </style>
