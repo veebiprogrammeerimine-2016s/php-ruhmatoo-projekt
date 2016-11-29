@@ -6,7 +6,7 @@ require("../class/Helper.class.php");
 $Helper = new Helper();
 
 require("../class/Rides.class.php");
-$Event = new Event($mysqli);
+$Rides = new Rides($mysqli);
 
 //kui ei ole sisseloginud, suunan login lehele
 if (!isset($_SESSION["userId"])) {
@@ -24,3 +24,12 @@ if (isset($_GET["logout"])) {
 
 }
 ?>
+
+<h1>Data</h1>
+
+<p>
+
+    Tere tulemast <?=$_SESSION["userEmail"];?>!
+    <a href="?logout=1">logi välja</a>
+
+</p>
