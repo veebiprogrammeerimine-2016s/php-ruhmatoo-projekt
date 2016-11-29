@@ -56,7 +56,7 @@ class Note {
 				ORDER BY $sort $orderBy
 			");
 			$searchWord = "%".$q."%";
-			$stmt->bind_param("ssssssss", $searchWord, $searchWord);
+			$stmt->bind_param("ssssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord , $searchWord, $searchWord, $searchWord);
 		
 		}else{
 			//ei otsi
@@ -67,7 +67,7 @@ class Note {
 				ORDER BY $sort $orderBy
 			");
 		}
-		var_dump($stmt);
+		
 		$stmt->bind_result($id, $firstname, $lastname, $notebook, $serialnumber, $priority, $note, $color, $comment);
 		$stmt->execute();
 		

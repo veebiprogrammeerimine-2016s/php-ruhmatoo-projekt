@@ -217,7 +217,7 @@
 
 <form>
 	<input type="search" name="q" value="<?=$q;?>">
-	<input type="submit" value="Otsi">	
+	<input type="submit" value="Search">	
 </form>
 
 <?php 
@@ -244,12 +244,7 @@
 	$html = "<table class='table'>";
 		
 		$html .= "<tr>";
-			$html .= "<th>Firstname</th>";
-			$html .= "<th>Lastname</th>";
-			$html .= "<th>Notebook</th>";
-			$html .= "<th>Serialnumber</th>";
-			$html .="<th>Priority</th>";
-			$html .= "<th>Comment</th>";
+			
 		
 			$orderId = "ASC";
 			
@@ -276,12 +271,12 @@
 				$orderNote = "DESC";
 			}
 		
-			$html .= "<th>
+			/*$html .= "<th>
 			
 						<a href='?q=".$q."&sort=note&order=".$orderNote."'>
 							Märkus
 						</a>
-					</th>";
+					</th>"; */
 						
 			
 			
@@ -294,14 +289,21 @@
 				$orderColor = "DESC";
 			}
 		
-			$html .= "<th>
+			/*$html .= "<th>
 			
 						<a href='?q=".$q."&sort=color&order=".$orderColor."'>
 							Värv
 						</a>
-					</th>";
+					</th>"; */
 				
 		$html .= "</tr>";
+		
+			$html .= "<th>Firstname";
+			$html .= "<th>Lastname";
+			$html .= "<th>Notebook";
+			$html .= "<th>Serialnumber";
+			$html .= "<th>Priority";
+			$html .= "<th>Comment";
 
 	foreach ($notes as $note) {
 		$html .= "<tr>";
@@ -314,7 +316,7 @@
 			$html .= "<td>".$note->note."</td>";
 			$html .= "<td>".$note->noteColor."</td>";
 			$html .= "<td>".$note->comment."</td>";
-			$html .= "<td><a href='edit.php?id=".$note->id."'> <span class='glyphicon glyphicon-pencil'><span> edit.php</a></td>";
+			$html .= "<td><a href='edit.php?id=".$note->id."'> <span class='glyphicon glyphicon-pencil'><span></a></td>";
 		$html .= "</tr>";
 	}
 	
