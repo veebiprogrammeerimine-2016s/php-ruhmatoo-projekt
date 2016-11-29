@@ -180,4 +180,38 @@ class Book {
 		
 	}
 	
+	function getCategories(){
+		$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+			SELECT COUNT(book_id) cat, cat
+			FROM project_books
+			GROUP BY cat");
+		echo $this->connection->error;	
+		$stmt->bind_result($counterDb, $catDb);
+		$stmt->execute();
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda, kuni on rida andmeid
+	
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$category = new StdClass();
+			
+			$category->counter = $counterDb;
+			$category->cat = $catDb;
+			array_push($result, $category);
+		}
+		
+		$stmt->close();
+		if(empty($result)){
+			echo "Vasteid ei leitud";
+		}
+		
+		return $result;	
+	}
+	
 }
+?>

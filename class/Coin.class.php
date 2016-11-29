@@ -28,6 +28,58 @@ class Coin {
 		
 		$stmt->close();
 	}
+	
+	function getCoins($id, $id){
+		$this->connection->set_charset("utf8");
+		
+		//saadud mündid
+		$stmt = $this->connection->prepare("SELECT SUM(points)  
+			FROM project_points 
+			WHERE seller_id = ? AND status = 'Ok' 
+			");
+		echo $this->connection->error;
+		
+		$stmt->bind_param("i", $id);
+		if($stmt->execute()) {
+			//echo "korras";
+		}else {
+			echo "ERROR ".$stmt->error;
+		};
+		$stmt->bind_result($addCoins);
+		if($stmt->fetch()){
+			$add = $addCoins;
+	
+		}
+		$stmt->close();
+		
+		$stmt = $this->connection->prepare("SELECT SUM(points) 
+			FROM project_points 
+			WHERE buyer_id = ? 
+		");
+		echo $this->connection->error;
+		
+		$stmt->bind_param("i", $id);
+		if($stmt->execute()) {
+			//echo "korras";
+		}else {
+			echo "ERROR ".$stmt->error;
+		};
+		$stmt->bind_result($subtractCoins);
+		while($stmt->fetch()){
+			$subtract = $subtractCoins;
+
+		}
+		$total = $add - $subtract + 10;
+		/*if($total == 0){
+			$total = 10;
+		}*/
+	 
+		return $total;
+		$stmt->close(); 
+			
+	}
+	
+	
 
 }
 ?>

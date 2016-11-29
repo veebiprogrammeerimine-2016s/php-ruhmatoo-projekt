@@ -2,8 +2,13 @@
 //FUNKTSIOONIDEGA FAILID
 require("../functions.php");     
 require("../class/User.class.php");     
-$User = new User($mysqli);    
- 
+$User = new User($mysqli); 
+require("../class/Coin.class.php");     
+$Coin = new Coin($mysqli); 
+
+//funktsioon, mis arvutab kasutaja müdndid kokku
+$userCoins = $Coin->getCoins($_SESSION["userId"], $_SESSION["userId"]);
+
 
 
 ?>
@@ -14,6 +19,10 @@ require("../header.php");
 
 
 ?>
-<p>ülevaade ostud/müügid/mündid/tehingute staatus</p>
+<p>Sinu mündid: <?=$userCoins;?></p>
+<br>
+<p>Sinu vahetused</p>
+
+
 
 <?php require("../footer.php");?>

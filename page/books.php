@@ -31,10 +31,10 @@ if(isset($_GET["order_by"])){
 }
 //kutsun funktsiooni, et saada kõik raamatud
 $books = $Book->getBooks($cat, $q, $sc, $order_by);
-$onlyCategories = $Book->getBooks("", "", "", "");  //et kat. kuvamine poleks sõltuv kuvatavatest raamatutest
+$onlyCategories = $Book->getCategories(); //$Book->getBooks("", "", "", "");  //et kat. kuvamine poleks sõltuv kuvatavatest raamatutest
 $tableHtml = "";
 
-//Saan kõik kategooriad
+/*Saan kõik kategooriad
 $categories = array();
 foreach($onlyCategories as $book){
 	$category = $book->category;
@@ -42,7 +42,7 @@ foreach($onlyCategories as $book){
 }
 $categories = array_unique($categories);  //et kõiki kategooriaid oleks 1
 asort($categories);                       //et kategooriad oleks a-z
-
+*/
  //kas kategooria on valitud
 if(isset($_GET["cat"])){
 	$cat = $Helper->cleanInput($_GET["cat"]);
@@ -120,9 +120,9 @@ require("../header.php");
 	<tr>
 	    <!--lahter 1 kategooriad -->
 		<td valign="top">
-		<?php foreach($categories as $category){
-			$topic = "<div id='topic'>";
-			$topic .= '<a href="books.php?cat='. $category .'">'. $category .'</a>';
+		<?php foreach($onlyCategories as $category){
+			$topic = '<div>';
+			$topic .= '<a href="books.php?cat='. $category->cat .'">'. $category->cat .'('. $category->counter .')</a>';
 			$topic .= "</div>";
 			echo $topic;
 			
@@ -136,13 +136,29 @@ require("../header.php");
 			 <div id="tree">
 				<p><a href="books.php">Kõik raamatud</a>&gt; <?php echo $cat;?> </p>
 			</div>
-			<!--leheküljed  1-20 21-40 jne ÜLEVAL -->
-			<div id="numeric">1-20 | 
-				<a href="books.php?page=20">21-40</a> |                       <!--??? -->
-				<a href="books.php?page=40">41-60</a> | 
-				<a href="books.php?topic=kategooria1&page=60">61-80</a> |     <!--näiteks ??? -->
-				<a href="books.php?topic=kategooria2&page=80">81-100</a> |  
+			<!--leheküljed  1-20 21-40 jne ÜLEVAL 
+			jätan praegu lk nr-d välja , kõigi raamatutega toimis, aga 
+			kui konkreetne kategooria valida, siis ei saanud toimima
+			
+			if($_SERVER['QUERY_STRING'] != ""){
+				
+				parse_str($_SERVER['QUERY_STRING'], $params);
+
+				unset($params['page']);
+				$string = http_build_query($params);
+				$stringQuery = "?".$string."&";
+			}else{
+				$stringQuery = "?";
+			}
+			?>
+			
+			<div id="numeric"> 
+				<a href="books.php<?=$stringQuery;?>page=1">1-10</a> |     
+				<a href="books.php<?=$stringQuery;?>page=10">11-20</a> |          
+				<a href="books.php<?=$stringQuery;?>page=20">21-30</a> | 
 			</div>
+			-->
+			
 			<!--kõik raamatud-->
 			<div>
 			
@@ -192,11 +208,11 @@ require("../header.php");
 			?>
 			
 			</div>
-			<!--leheküljed  1-20 21-40 jne ALL -->
+			<!--leheküljed  1-20 21-40 jne ALL 
 			<div id="numeric">1-20 | 
 				<a href="books.php?page=20">21-40</a> | 
 				<a href="books.php?page=40">41-60</a> | 	
-			</div>
+			</div>  -->
 		</td>
 	</tr>
 </tbody>
