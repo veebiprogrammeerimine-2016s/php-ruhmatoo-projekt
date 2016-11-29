@@ -24,29 +24,78 @@ if (isset($_GET["logout"])) {
 
 }
 
-if ( isset($_POST["start_location"]) &&
+//Check if forms are filled
+$startLocation = "";
+$startTime = "";
+$arrivalLocation = "";
+$arrivalTime = "";
+$freeSeats = "";
+
+$emptyStartL = "*";
+$emptyStartT = "*";
+$emptyArrivalL = "*";
+$emptyArrivalT = "*";
+$emptySeats = "*";
+
+if (isset ($_POST["startLocation"])) {
+    if (empty ($_POST["startLocation"])) {
+        $emptyStartL = "* Please fill in starting location!";
+    } else {
+        $startLocation = $_POST["startLocation"];
+    }
+}
+
+if (isset ($_POST["startTime"])) {
+    if (empty ($_POST["startTime"])) {
+        $emptyStartT = "* Please fill in start time!";
+    } else {
+        $startTime = $_POST["startTime"];
+    }
+}
+
+if (isset ($_POST["arrivalLocation"])) {
+    if (empty ($_POST["arrivalLocation"])) {
+        $emptyArrivalL = "* Please fill in arrival location!";
+    } else {
+        $arrivalLocation = $_POST["arrivalLocation"];
+    }
+}
+
+if (isset ($_POST["arrivalTime"])) {
+    if (empty ($_POST["arrivalTime"])) {
+        $emptyArrivalT = "* Please fill in arrival time!";
+    } else {
+        $arrivalTime = $_POST["arrivalTime"];
+    }
+}
+
+if (isset ($_POST["freeSeats"])) {
+    if (empty ($_POST["freeSeats"])) {
+        $emptySeats = "* Please fill in number of seats!";
+    } else {
+        $freeSeats = $_POST["freeSeats"];
+    }
+}
+
+//If forms are filled
+if (isset($_POST["start_location"]) &&
 isset($_POST["start_time"]) &&
 isset($_POST["arrival_location"]) &&
 isset($_POST["arrival_time"]) &&
 isset($_POST["free_seats"]) &&
-!empty($_POST["age"]) &&
+
 !empty($_POST["start_location"]) &&
 !empty($_POST["start_time"]) &&
 !empty($_POST["arrival_location"]) &&
 !empty($_POST["arrival_time"]) &&
-!empty($_POST["free_seats"]))
+!empty($_POST["free_seats"])
+)
 
-/*
- {
-    $color = $Helper->cleanInput($_POST["start_location"]);
-    $Rides->saveEvent($Helper->cleanInput($_POST["price"]), $start_location);
-}
 
 {
-    echo "Saved.";
-    saveEvent(($_SESSION["userEmail"]),($_POST["datestamp"]),($_POST["exercise"]), ($_POST["sets"]), ($_POST["reps"]), ($_POST["weight"]));
-}
-*/
+    //echo = "Saved";
+    //$Rides->save($Helper->cleanInput($_POST["price"]), $start_location, $startTime, $arrivalLocation, $arrivalTime, $freeSeats);
+ }
 
 
 ?>

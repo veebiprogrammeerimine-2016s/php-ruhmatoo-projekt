@@ -93,7 +93,7 @@ class Rides {
 
 		echo $this->connection->error;
 
-		$stmt->bind_param("issssiis", $user_id, $start_location, $start_time, $arrival_location,
+		$stmt->bind_param("issssiis", $_SESSION["userId"], $start_location, $start_time, $arrival_location,
     $arrival_time, $free_seats, $price, $added);
 
 		if($stmt->execute()) {
