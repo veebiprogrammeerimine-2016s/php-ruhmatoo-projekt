@@ -158,8 +158,9 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 			}
 	
 	
-?><?php require("../header.php");?>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+?> <?php require("../header.php");?>
+
+
 
 <nav id="nav "class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
@@ -243,148 +244,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	<div class="container" id="para1" >
 		<h3>Tere tulemast FacePlänt-i!</h3>
 	</div>
-<!--JAVASCRIPT-->	
-<script>jQuery(document).ready(function() {
-
-	jQuery(".menu-trigger").click(function() {
-		
-		jQuery(".nav-menu").slideToggle(400, function(){
-			jQuery(this).toggleClass("nav-expanded").css('display', '');
-			
-		});
-	});
 
 
-});</script>
-<!-- CSS sheet lõpetas töötamise, pean siia kirjutama -->
-<style>
-	
-
-	nav{
-		height:50px;
-	}
-
-  div.nav-menu ul li a {
-		padding:15px;
-		font-size:110%;
-		float:left;
-	  
-	  
-	  
-
-  }
-  div.nav-menu ul li form {
-	  width:100%;
-	  float:right;
-  }
-    div.nav-menu ul li{
-		  float: left;
-		  border-bottom: 2px solid #d5dce4;
-		  padding: 10px;
-		  list-style:none;
-	  }
-   
-  
-  .menu-trigger {
-	  display:none;
-  }
-  @media screen and (max-width: 480px){
-	  
-	  .menu-trigger {
-		  display: block;
-		  color:#6b6b47;
-		  padding:10px;
-		  text-align:right;
-		  font-size:83%;
-		  cursor:pointer;
-		 
-	  }
-	 
-	  div.nav-menu {
-		  display: none;
-	  }
-	  
-	  div.nav-expanded{
-		  display:block;
-		  background-color:white;
-		  text-align:center;
-	  }
-	  
-	  div.nav-menu ul li{
-		  float: none;
-		  border-bottom: 2px solid #d5dce4;
-		  padding: 10px;
-		  text-align:center;
-	  }
-	  
-	  div.nav-menu ul li:last-child {
-		  border-bottom: none;
-		  padding:10px;
-	  }
-	  
-  }
-
-   #para1{text-align:center;
-  width:1250px;
-  height:400px;
-  border-style:double;
-  background-color: #000000;
-  border-top-left-radius:10px;
-  border-top-right-radius:10px;
-  padding-top:30;
-  opacity:0.8;
-
-  }
-  
-  #signupForm
-{	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	padding-top:30px;
-	padding-right:30px;
-	padding-left:30px;
-	height:400px;
-}
-h3{
-	color:white;
-}
-h4{
-	
-	color:white;
-	
-}
-
-
-p {
-	padding:10px;
-}
-
-
-#logo{
-	
-	height:50px;
-	´
-	
-}
-
-
-
-#insertPlants{
-	padding-left:20px;
-	padding-right:20px;
-	
-	
-}
-
-body{
-	font-family:helvetica;
-	
-	
-}
-
-a{
-	color:black;
-}
-
-</style>
 
 <?php require("../footer.php");?>
