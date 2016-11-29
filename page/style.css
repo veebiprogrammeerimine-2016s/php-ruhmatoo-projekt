@@ -74,7 +74,24 @@ a{
   border-top-right-radius:10px;
   padding-top:30;
   opacity:0.8;
+  margin-top: 20px;
 
+  }
+  
+     #para2{text-align:center;
+  width:1250px;
+  height:400px;
+  border-style:double;
+  background-color: white;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+  padding-top:30;
+  opacity:0.8;
+
+  }
+  
+  #para2 ul li h3{
+	  color:#777;
   }
   
 

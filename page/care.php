@@ -160,47 +160,25 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	$pageName = "care";
 ?>
 <?php require("../header.php");?>
-
-
-<div class="container">
-
-
 <br><br><br><br>
-	<div class="col-lg-12 ">
-				
-		
-		
-		<div id="careForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
-				<h3>MyPlänts/Edit</h3>
-				
-				
-			<div class="form-group">
-				<form method=post>
 
-				
-				
-				
-				
-				
-				<center><input class="btn btn-default" type="submit" value="Kinnita"></center>
-				
-				
+<div class="container" id ="para2">
+<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#plantsTab" aria-controls="plantsTab" role="tab" data-toggle="tab"><h3>PLÄNTS</h3></a></li>
+			<li role="presentation" style="float:right;"><a href="#Otsing" arial-controls="Otsing" role="tab" data-toggle="tab"><p>Otsing</p></a></li>
+		  </ul>
+		
+		<div role="tabpanel" class="tab-pane active" id="plantsTab">
 			
-
-
-				</form>
-				
-			</div>
-		
-
-		</div>
+			
+							
+							</div>
+        <div role="tabpanel" class="tab-pane active" id="home">
+			
+			
+							
+							</div>							
+	</div>
 	
-	
-	</div>
-	</div>
-<br>
-	<div class="container" id="para1" >
-		<h3>Hooldus!</h3>
-	</div>
 
 <?php require("../footer.php");?>
