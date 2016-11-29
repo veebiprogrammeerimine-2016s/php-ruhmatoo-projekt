@@ -195,7 +195,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				
 				
 				
-				<center><input class="btn btn-default" type="submit" value="Kinnita"></center>
+				<center><input class="btn btn-success" type="submit" value="Kinnita"></center>
 				
 				
 			
