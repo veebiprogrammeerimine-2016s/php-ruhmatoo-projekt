@@ -16,22 +16,24 @@ sarnased lehed: http://www.kixify.com/ , https://stockx.com/sneakers
 
 
 
-leht 1 - esileht
+leht 1 - esileht (sneakermarket.php)
  * näha müügilolevad jalanõud piltidena (emaili ja muid kontaktandmeid ei ole näha kui ei logi sisse)
  * saab otsida mingite tunnuste alusel
  * logi sisse/loo kasutaja vorm
 
-leht 2 - kasutaja esimene leht sisselogimisel
+leht 2 - loo kasutaja (login.php)
+ 
+leht 3 - kasutaja esimene leht sisselogimisel (sneakermarket.php)
  * pmst sama mis leht 1
  * lisaks link oma profiilile, seda muuta jne
  * lisaks link/nupp kus lisada uus müük
 
-leht 3 - kasutaja profiil
+leht 4 - kasutaja profiil (profile.php)
  * lisada/valida lemmikbrändi
  * uuendada oma andmeid jne
  * oma kuulutuste nägemine, nende muutmine, kustutamine
 
-leht 4 - uue müügi lisamisvorm
+leht 5 - kuulutuse lisamisvorm (data.php)
  * pildi lisamise võimalus
  * tootja/firma
  * jalasuurus
@@ -42,5 +44,28 @@ leht 4 - uue müügi lisamisvorm
  * meeste/naiste jalanõud
  * soovitud kontaktiviis
 
+leht 6 - kellegi teise kuulutuse vaatamine ()
+
+(leht 7) - suhtlus/kommentaarid
 
 
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
