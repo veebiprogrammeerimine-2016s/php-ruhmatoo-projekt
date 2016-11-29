@@ -52,7 +52,7 @@ $services = getTyreFittingServices($_GET["id"]);
 <div class="card">
 	<div class="row">
 		<div class='col-md-6 col-lg-4'>
-          <img class="card-img-top" src="<?php echo $tyreFitting->logo ?>" alt="Card image cap" style="width:100%;">
+			<img class="card-img-top" src="<?php echo $tyreFitting->logo ?>" alt="Card image cap" style="width:100%;">
 			<div class="card-block">
 				<h4 class="card-title"><?php echo $tyreFitting->name ?></h4>
 				<p class="card-text"><?php echo $tyreFitting->description  ?></p>
@@ -72,10 +72,27 @@ $services = getTyreFittingServices($_GET["id"]);
             Täpsemad hinnad leiad<a href="<?php echo $tyreFitting->pricelist ?>" class="card-link"> SIIT</a>
 			</div>
 		</div>
-		<div class="col-lg-8">
-			<iframe src="<?php echo $tyreFitting->location ?>" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-		</div>    
-	</div>        
+		<div class="col-lg-8 col-md-6">
+			
+			<div class="row">
+				<iframe src="<?php echo $tyreFitting->location ?>" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<label for="datetimepicker">Nimi</label>
+					<input type="text" id="datetimepicker"  style="width:100%" />
+					
+				</div>
+				<div class="col-lg-6">
+					<label for="datetimepicker">Broneeri endale aeg</label>
+					<input type="text" id="datetimepicker"  style="width:100%" />
+				</div>
+			</div>
+		
+		</div>
+		
+	</div>
+	
 </div>
 
 <?php require("modals.php");
@@ -86,5 +103,69 @@ require("footer.php");?>
             crossorigin="anonymous"></script>
     <!-- our scripts -->
 <script type="text/javascript" src="js/sc.js"></script>
+<script type="text/javascript" src="js/jquery.datetimepicker.full.js"></script>
+<?php
+
+	// date time taken
+	// open times 
+	
+	$day1 = new StdClass();
+	$day1->date = "29.11.2016";
+	$day1->available = ["10:00","11:00"];
+	
+	$day2 = new StdClass();
+	$day2->date = "30.11.2016";
+	$day2->available = ["12:00","13:00"];
+	
+	$days = [$day1, $day2];
+	
+	
+
+?>
+<script>
+	var days = <?php echo json_encode($days); ?> ;
+	console.log(days);
+	var logic = function( currentDateTime ){
+		console.log(currentDateTime);
+		
+		var dateString = currentDateTime.getDate() + "." + (currentDateTime.getMonth()+1) + "." + currentDateTime.getFullYear();
+		
+		console.log(dateString);
+		
+		for(var i = 0; i < days.length; i++){
+			var day = days[i];
+			
+			console.log(dateString + " " + day.date)
+			if(dateString == day.date){
+				
+				console.log(day.available);
+
+				this.setOptions({
+				  allowTimes: day.available
+				});
+			}
+		}
+		
+	  // 'this' is jquery object datetimepicker
+	 /* if( currentDateTime.getDay()==6 ){
+		this.setOptions({
+		  minTime:'11:00'
+		});
+	  }else
+		this.setOptions({
+		  minTime:'8:00'
+		});*/
+	};
+
+	$("#datetimepicker").datetimepicker({
+		minDate:new Date(), // yesterday is minimum date
+		allowTimes:[
+			'12:00', '13:00', '15:00',
+		],
+		format:'d.m.Y H:i',
+		onChangeDateTime:logic,
+	});
+	
+</script>
 </body>
 </html>      
