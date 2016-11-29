@@ -20,9 +20,9 @@
 
 <script data-main="scripts/main" src="../page/java.js"></script>
 
-
+<!----http://www.flowers-wallpapers.com/backgrounds/buckets-flowers-color-potted.jpg--->
 </head>
-<body background = "http://www.flowers-wallpapers.com/backgrounds/buckets-flowers-color-potted.jpg">
+<body background = "https://s-media-cache-ak0.pinimg.com/originals/9b/f3/c3/9bf3c3ea7184a7879c4c94efce4f11c9.jpg">
 
 <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">

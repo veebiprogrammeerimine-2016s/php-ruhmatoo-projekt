@@ -2,17 +2,6 @@
 
 
 
-   #para1{text-align:center;
-  width:1250px;
-  height:400px;
-  border-style:double;
-  background-color: #000000;
-  border-top-left-radius:10px;
-  border-top-right-radius:10px;
-  padding-top:30;
-  opacity:0.8;
-
-  }
   
   #signupForm
 {	-moz-border-radius:10px;
@@ -21,15 +10,9 @@
 	padding-right:30px;
 	padding-left:30px;
 	height:400px;
+	border-style:double;
 }
-h3{
-	color:white;
-}
-h4{
-	
-	color:white;
-	
-}
+
 
 
 p {
@@ -53,14 +36,14 @@ p {
 #insertPlants{
 	padding-left:20px;
 	padding-right:20px;
-	
+	border-style:double;
 	
 }
 
 #plantsForm{
 	border-radius:10px;
     padding:10px;
-	
+	border-style:double;
 }
 
 body{
@@ -94,14 +77,7 @@ a{
 
   }
   
-  #signupForm
-{	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	padding-top:30px;
-	padding-right:30px;
-	padding-left:30px;
-	height:400px;
-}
+
 h3{
 	color:white;
 }
@@ -112,9 +88,7 @@ h4{
 }
 
 
-p {
-	padding:10px;
-}
+
 
 
 
@@ -122,7 +96,7 @@ p {
 #insertPlants{
 	padding-left:20px;
 	padding-right:20px;
-	
+	border-style:double;
 	
 }
 
