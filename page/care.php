@@ -163,22 +163,22 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 <br><br><br><br>
 
 <div class="container" id ="para2">
-<ul class="nav nav-tabs" role="tablist">
+			<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#plantsTab" aria-controls="plantsTab" role="tab" data-toggle="tab"><h3>PLÄNTS</h3></a></li>
 			<li role="presentation" style="float:right;"><a href="#Otsing" arial-controls="Otsing" role="tab" data-toggle="tab"><p>Otsing</p></a></li>
 		  </ul>
-		
+	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="plantsTab">
 			
-			
+			<p>Siia tulevad Pländid!</p>
 							
-							</div>
-        <div role="tabpanel" class="tab-pane active" id="home">
+		</div>
+        <div role="tabpanel" class="tab-pane active" id="Otsing">
 			
-			
-							
-							</div>							
-	</div>
+			<p>Siia tuleb otsing!</p>
+		</div>	
+	</div>	
+</div>
 	
 
 <?php require("../footer.php");?>
