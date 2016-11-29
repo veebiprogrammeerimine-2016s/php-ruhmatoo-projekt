@@ -157,42 +157,11 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 			}
 	
 	
+	$pageName = "care";
 ?>
 <?php require("../header.php");?>
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div id="logo" class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="login.php">FacePlänt</a>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li class="col-sm-8"><a href="#">Taimehooldus<span class="sr-only"></span></a></li>
-        
-        
-      </ul>
-			<form id="loginforms" class="navbar-form navbar-right col-sm-6" method=post role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="signupEmail" placeholder="E-maili aadress">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="signupPassword" placeholder="Parool">
-                    </div>
-                    <button type="submit" class="btn btn-default">Logi sisse</button>
-                </form>
-      </form>
-      
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+
 <div class="container">
 
 
@@ -233,87 +202,5 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 	<div class="container" id="para1" >
 		<h3>Hooldus!</h3>
 	</div>
-<!-- CSS sheet lõpetas töötamise, pean siia kirjutama -->
-<style>
-  #para1{text-align:center;
-  width:1250px;
-  height:400px;
-  border-style:double;
-  background-color: #1f7a1f;
-  border-top-left-radius:10px;
-  border-top-right-radius:10px;
-  padding-top:30;
-  opacity:0.9;
 
-  }
-  
-  #careForm
-{	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	padding-top:30px;
-	padding-right:30px;
-	padding-left:30px;
-	height:400px;
-}
-h3{
-	color:white;
-}
-h4{
-	
-	color:white;
-	
-}
-
-
-p {
-	padding:10px;
-}
-a {
-	
-	width: 120px;
-	margin-left:auto;
-	margin-right:auto;
-}
-
-#logo{
-	padding-top:20px;
-	padding-left:20px;
-	padding-right:20px;
-	
-}
-
-#loginforms{
-	padding-top:20px;
-	padding-left:20px;
-	padding-right:20px;
-	
-}
-
-#insertPlants{
-	padding-left:20px;
-	padding-right:20px;
-	
-	
-}
-
-body{
-	font-family:helvetica;
-	
-	
-}
-ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-	
-}
-
-li {
-	padding-top:20px;
-	padding-left:20px;
-	padding-right:20px;
-	
-}
-
-</style>
 <?php require("../footer.php");?>

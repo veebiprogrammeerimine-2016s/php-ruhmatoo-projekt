@@ -157,39 +157,10 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				$error = $User->login($Helper->cleanInput($_POST["signupEmail"]),($Helper->cleanInput($_POST["signupPassword"])));
 			}
 	
-	
+
+	$pageName = "login";
 ?> <?php require("../header.php");?>
 
-
-
-<nav id="nav "class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-   
-    <div id="logo" class="navbar-left" ">
-      <a class="navbar-brand" href="login.php">FacePlänt</a>
-    </div>
-	<span class="menu-trigger">MENU</span>
-    
-    <div class="nav-menu">
-      <ul class="clearfix">
-        <li><a href="care.php">Taimehooldus<span class="sr-only"></span></a></li>
-		<li><a href="#">Meist<span class="sr-only"></span></a></li>
-        <div class="navbar-right"><li>	<form method=post class="colform">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="signupEmail" placeholder="E-maili aadress">
-                    
-                   
-                        <input type="password" class="form-control" name="signupPassword" placeholder="Parool">
-                    </div>
-                    <button type="submit" class="btn btn-default">Logi sisse</button>
-                <span class="sr-only"></form></li></div>
-      </ul>
-			
-      
-      
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 <div class="container">
 
 

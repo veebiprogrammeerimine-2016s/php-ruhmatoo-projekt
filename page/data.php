@@ -111,77 +111,70 @@
 		
 		}		
 	}
-	
+	$pageName="data"
 ?>
 
 <?php require("../header.php");?>
 
-<title>Kalender</title>
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div id="logo" class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="login.php">FacePlänt</a>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-        <li class="col-sm-8"><a href="#">Taimehooldus<span class="sr-only"></span></a></li>
-        
-        
-      </ul><ul class="nav navbar-nav navbar-right">
-		<li class="col-sm-8"><a href="?logout=1"> Logi välja <span class="sr-only"></span></a></li>
-           </ul>         
-                
-      
-      
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 
-<center>
-<br><br><br>
- <h4>Tere tulemast     <?=$_SESSION["firstName"];?>!</h4>
+<div class="container">
+ <p>Tere tulemast     <?=$_SESSION["firstName"];?>!</p>
 <div id="plantsForm" class="col-lg-4 col-sm-offset-8" style="background-color:rgba(0, 0, 0, 0.5)";>
-		<h3> Toataimede sisestamine </h3>
 
-		<div >
-			<form id="insertPlants" method=POST>
-				<?php echo $plantError;  ?>
-				<?php echo $wateringIntervalError;  ?>
-
-				  
-			 <h3>Sisesta taime nimetus</h3>
-				<input  class="form-control" name="user_plant" placeholder="taime nimetus"  type="text" value="<?=$plant;?>" > 
-
-			<br>
-
-				<h3>Sisesta taime kastmisintervall</h3>
-				<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number"> 
-
-			<br>
-
-				<input class="btn btn-default" type="submit" value="Salvesta">
-			<br>
+		<ul class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+			<li role="presentation"><a href="#Muutmine" aria-controls="Muutmine" role="tab" data-toggle="tab">Muutmine</a></li>
+		  </ul>
+	
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="home">
 			
-			</form>
+			
+							
+							</div>
+							<div role="tabpanel" class="tab-pane" id="Muutmine">
+							
+							<h3> Toataimede sisestamine </h3>
+
+						<div >
+							<form id="insertPlants" method=POST>
+								<?php echo $plantError;  ?>
+								<?php echo $wateringIntervalError;  ?>
+
+								  
+							 <h3>Sisesta taime nimetus</h3>
+								<input  class="form-control" name="user_plant" placeholder="taime nimetus"  type="text" value="<?=$plant;?>" > 
+
+							<br>
+
+								<h3>Sisesta taime kastmisintervall</h3>
+								<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number"> 
+
+							<br>
+
+								<input class="btn btn-default" type="submit" value="Salvesta">
+							<br>
+							
+							</form>
+							</div>
+							
+							
+
+							<div id="plantSearch" class="search">
+							<h3>Taime otsing</h3>
+							<form>
+								<input type="search" name="q" value="<?=$q;?>">
+								<input class="btn btn-default" type="submit" value="Otsi">
+							</form></div>
+							
+			
 			</div>
-			
-			
+		  </div>
 
-			<div class="col-sm-6 col-sm-offset-6">
-			<h3>Taime otsing</h3>
-			<form>
-				<input type="search" name="q" value="<?=$q;?>">
-				<input class="btn btn-default" type="submit" value="Otsi">
-			</form></div>
+		
+		
+		
 	</div>
 	
 	<?php
@@ -232,73 +225,8 @@
 	?></div></div><br><br>
 	
 
-<style>
-
-    #plantsForm
-{	-moz-border-radius:10px;
-	-webkit-border-radius:10px;
-	padding-top:30px;
-	padding-right:30px;
-	padding-left:30px;
-	height:400px;
-}
-
-h3{
-	color:white;
-}
-h4{
-	
-	color:white;
-	
-}
 
 
-p {
-	padding:10px;
-}
-a {
-	
-	width: 120px;
-	margin-left:auto;
-	margin-right:auto;
-}
-
-#logo{
-	padding-top:20px;
-	padding-left:20px;
-	padding-right:20px;
-	
-}
-
-
-
-div#insertPlants{
-	padding-left:20px;
-	padding-right:20px;
-	
-	
-}
-
-body{
-	font-family:helvetica;
-	
-	
-}
-ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-	
-}
-
-li {
-	padding-top:20px;
-	padding-left:20px;
-	padding-right:20px;
-	
-}
-
-</style>
 
 <?php require("../footer.php");?>
 
