@@ -4,7 +4,7 @@
 
 	session_start();
 
-	$database = "if16_raitkeer";
+	$database = "if16_kristarn";
 
 
 	function signup($email, $password, $firstName, $surname, $gender) {
