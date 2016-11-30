@@ -1,61 +1,68 @@
 <?php
 	//ühendan sessionniga
 	require("../functions.php");
-	
+
 	require("../class/Helper.class.php");
 	$Helper= new Helper();
-	
+
 	require("../class/Top.class.php");
 	$Top= new Top($mysqli);
-	
+
 	//kui ei ole sisse loginud, suunan login lehele
 	if(!isset($_SESSION["userId"])){
 		header("Location: login.php");
 		exit();
 	}
-	
+
 	//kas aadressireal on logout
-	if (isset($_GET["logout"])) {
+	if(isset($_GET["logout"])) {
 		session_destroy();
 		header("Location: login.php");
 		exit();
 	}
-	
+
 	//kontrollin kas tühi
-		if ( isset($_POST["tvshow"]) && 
-		isset($_POST["rating"]) && 
+	//	if(isset($_POST["age"]) &&
+		//isset($_POST["color"]) &&
+		//!empty($_POST["age"]) &&
+		//!empty($_POST["color"])
+
+		if(isset($_POST["tvshow"]) &&
+		isset($_POST["rating"]) &&
 		!empty($_POST["tvshow"]) &&
-		!empty($_POST["rating"]) 
+		!empty($_POST["rating"])
 	) {
 		$rating = $Helper->cleanInput($_POST["rating"]);
 		$Top->saveTop($Helper->cleanInput($_POST["tvshow"]), $rating);
 		header("Location: login.php");
 		exit();
 	}
-	
+
 	if(isset($_GET["q"])){
 		$q=$_GET["q"];
 	}else{
 		//ei otsi
 		$q="";
 	}
-	
+
 	//vaikimisi, kui keegi mingit linki ei vajuta
 	$sort = "id";
 	$order = "ASC";
-	
+
 	if (isset($_GET["sort"]) && isset($_GET["order"])) {
 		$sort = $_GET["sort"];
 		$order = $_GET["order"];
 	}
-	
-	
+
+
 	$people=$Top->getAllPeople($q, $sort, $order);
 	//echo"<pre>";
 	//var_dump($people[1]);
 	//echo"</pre>";
-	
+
 ?>
+
+
 <?php require("../dataheader.php");?>
 <h1>Data</h1>
 
@@ -70,8 +77,19 @@
 </p>
 
 
+
+<h2>Arhiiv</h2>
+
+<form>
+	<input type="search" name="q" value="<?=$q;?>">
+	<input type="submit" value="Otsi">
+
+</form>
+
+
 <h2>TOP 10</h2>
-<?php 
+
+<?php
 	$html="<table class='table table-striped table-condensed'>";
 		$html .="<tr>";
 			$orderId="ASC";
@@ -87,8 +105,11 @@
 							ID ".$arr."
 						</a>
 					 </th>";
-			
-			
+
+
+			$orderAge="ASC";
+
+
 			$ordertvshow="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
@@ -102,7 +123,10 @@
 							Seriaal
 						</a>
 					 </th>";
-			
+
+
+			$html .="<th>Värv</th>";
+
 			$orderrating="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
@@ -118,7 +142,7 @@
 					</th>";
 					
 			$html .="<th>Muuda</th>";
-			
+
 	$html .="</tr>";
 	//iga liikmekohta masssiiivis
 	foreach($people as $p){
@@ -128,7 +152,7 @@
 			$html .="<td>".$p->rating."</td>";
 			$html .= "<td>
 			<a class='btn btn-default btn-xs' href='edit.php?id=".$p->id."'><span class='glyphicon glyphicon-pencil'></span> Muuda</a></td>";
-			$html .="</tr>";	
+			$html .="</tr>";
 	}
 	$html .="</table>";
 	echo $html;
