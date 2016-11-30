@@ -54,7 +54,7 @@
 		<form method="POST" >
 			<label>E-post</label><br>
 			<div class="form-group">
-					<input class="form-control" name="loginEmail" type="email" value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } ?> class="textbox required email" />
+					<input class="form-control" name="loginEmail" type="email" value="<?php if(isset($_POST['loginEmail'])) { echo $_POST['loginEmail']; } ?>" class="textbox required email">
 			</div>
 			<label>Parool</label><br>
 			<div class="form-group">
