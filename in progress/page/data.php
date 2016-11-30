@@ -14,7 +14,7 @@
 		exit();
 	}*/
 	
-	//kas kasutaja tahab vÃ¤lja logida
+	//kas kasutaja tahab välja logida
 	// kas aadressireal on logout olemas
 	if (isset($_GET["logout"])) {
 		
@@ -59,19 +59,19 @@
 	$firstnameError = "";
 	$firstname = "";
 	
-	//kas on Ã¼ldse olemas
+	//kas on üldse olemas
 	if (isset ($_POST["firstname"])) {
 		
 		// oli olemas, ehk keegi vajutas nuppu
-		// kas oli tÃ¼hi
+		// kas oli tühi
 		if (empty ($_POST["firstname"])) {
 			
-			//oli tÃµesti tÃ¼hi
+			//oli tõesti tühi
 			$firstnameError = "Enter your name!";
 			
 		} else {
 				
-			// kÃµik korras, nimi ei ole tÃ¼hi ja on olemas
+			// kõik korras, nimi ei ole tühi ja on olemas
 			$firstname = $_POST["firstname"];
 		}
 		
@@ -112,7 +112,7 @@
 	
 	$q = "";
 	
-	// otsisÃµna aadressirealt
+	// otsisõna aadressirealt
 	if(isset($_GET["q"])){
 		$q = $Helper->cleanInput($_GET["q"]);
 	}
@@ -132,96 +132,115 @@
 	//echo "<pre>";
 	//var_dump($notes);
 	//echo "</pre>";
-
 ?>
 <?php require("../header.php"); ?>
 
-<h1>Create ticket</h1>
-<p>
-	Welcome, <a href="user.php"><?=$_SESSION["userEmail"];?></a>!
-	<a href="?logout=1">Log out</a>
-</p>
-<h2>Enter the information</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4 col-md-3">
+		
+	<h1>Create ticket</h1>
+	<p>
+		Welcome, <a href="user.php"><?=$_SESSION["userEmail"];?></a>!
+		<a href="?logout=1">Log out</a>
+	</p>
+	<h2>Enter the information</h2>
 
-<form method="POST">
+	<form method="POST">
+				
+			<br>
+			<div class="form-group">
+			<label><b>Name<b></label>
+			<input class="form-control" name="firstname" type="text" value="<?=$firstname;?>" > <?php echo $firstnameError; ?>
 			
-		<br>
-		
-		<label><b>Name<b></label>
-		 <br><input name="firstname" type="text" value="<?=$firstname;?>" > <?php echo $firstnameError; ?>
-		
-		<br><br>
-		
+			<br><br>
+			
+			<label><b>Lastname</b></label>
+			 <br>
+			 <div class="form-group">
+			 <input class="form-control" name="lastname" type="text" value="<?=$lastname;?>" > <?php echo $lastnameError; ?>
+			
+			<br><br>
+			
+			<label><b>PC</b></label>
+			
+			<br>
+			<div class="form-group">
+			<select class ="form-control" name="notebook">
+				<option value="asus">Asus</option>
+				<option value="dell">Dell</option>
+				<option value="lenovo">Lenovo</option>
+			</select>
+			
+			<br><br>
+			
+			<label><b>Serialnumber</b></label>
+			<div class="form-group">
+			<input class="form-control" name="serialnumber" type="text" value="<?=$serialnumber;?>" > <?php echo $serialnumberError; ?>
+			
+			<br><br>
+			
+			<label><b>Priority</b></label>
+			
+			<br>
+			<div class="form-group">
+			<select class="form-control" name="priority">
+				<option value="high">High</option>
+				<option value="normal">Normal</option>
+				<option value="low">Low</option>
+			</select>
+			
+			<br><br>
+			
+			<!--<label>Notes</label><br>
+			<div class="form-group">
+			<input class="form-control" name="note" type="text">
+			
+			<br><br>
+			
+			
+			<label>Color</label><br>
+			<input name="color" type="color">
+						
+			<br><br>-->
+			
+			<h3>Problem description:</h3>
+			
+			<div class="form-group">
+			<textarea class="form-control" name="comment" rows="5" cols="40"> </textarea>
+			</div>
+			<br> <br>
+				
+					<input class="btn btn-primary btn-sm hidden-xs" type="submit" value="Register">
+					<input class="btn btn-primary btn-sm btn-block visible-xs-block" type="submit" value="Register">
 
-		<label><b>Lastname</b></label>
-		 <br><input name="lastname" type="text" value="<?=$lastname;?>" > <?php echo $lastnameError; ?>
-		
-		<br><br>
-		
-		<label><b>PC</b></label>
-		
-		<br><br>
-		
-		<select name="notebook">
-			<option value="asus">Asus</option>
-			<option value="dell">Dell</option>
-			<option value="lenovo">Lenovo</option>
-		</select>
-		
-		<br><br>
-		
-		<label><b>Serialnumber</b></label>
-		 <br><input name="serialnumber" type="text" value="<?=$serialnumber;?>" > <?php echo $serialnumberError; ?>
-		
-		<br><br>
-		
-		<label><b>Priority</b></label>
-		
-		<br><br>
-		
-		<select name="priority">
-			<option value="high">High</option>
-			<option value="normal">Normal</option>
-			<option value="low">Low</option>
-		</select>
-		
-		<br><br>
-		
-		<label>Notes</label><br>
-		<input name="note" type="text">
-		
-		<br><br>
-		
-		
-		<label>Color</label><br>
-		<input name="color" type="color">
-					
-		<br><br>
-		
-		<h3>Problem description:</h3>
-		
-		
-		<textarea name="comment" rows="5" cols="40"> </textarea>
-		
-		<br> <br>
-		
-		<input type="submit">
+				</form>
+				</div>
+				<div class="col-sm-4 col-md-3 col-sm-offset-4 col-md-offset-3">
+			</div>
+	</div>	</div>
+</div>	
 
-
-
-	
-
-</form>
-
-<h2>Tables</h2>
-
-<form>
-	<input type="search" name="q" value="<?=$q;?>">
-	<input type="submit" value="Search">	
-</form>
+<h2>Search</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-3 col-md-4">
+		<form>
+			<div class="form-group">
+			<input class="form-control" type="search" name="q" value="<?=$q;?>">
+			<br>
+			<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Search">
+			<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Search">
+			
+					</form>
+				</div>
+				<div class="col-sm-4 col-md-3 col-sm-offset-4 col-md-offset-3">
+			</div>
+		</div>
+	</div>
+</div>
 
 <?php 
-
 	//iga liikme kohta massiivis
 	foreach ($notes as $n) {
 		
@@ -233,14 +252,11 @@
 		
 		echo "<p style='  ".$style."  '>".$n->note."</p>";
 	}
-
-
 ?>
 
 
 <h2 style="clear:both;">Information</h2>
 <?php 
-
 	$html = "<table class='table'>";
 		
 		$html .= "<tr>";
@@ -274,7 +290,7 @@
 			/*$html .= "<th>
 			
 						<a href='?q=".$q."&sort=note&order=".$orderNote."'>
-							MÃ¤rkus
+							Märkus
 						</a>
 					</th>"; */
 						
@@ -292,7 +308,7 @@
 			/*$html .= "<th>
 			
 						<a href='?q=".$q."&sort=color&order=".$orderColor."'>
-							VÃ¤rv
+							Värv
 						</a>
 					</th>"; */
 				
@@ -304,7 +320,6 @@
 			$html .= "<th>Serialnumber";
 			$html .= "<th>Priority";
 			$html .= "<th>Comment";
-
 	foreach ($notes as $note) {
 		$html .= "<tr>";
 			$html .= "<td>".$note->id."</td>";
@@ -323,6 +338,5 @@
 	$html .= "</table>";
 	
 	echo $html;
-
 ?>
 <?php require("../footer.php"); ?>
