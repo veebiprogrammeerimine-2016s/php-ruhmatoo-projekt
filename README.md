@@ -33,12 +33,13 @@ TBD
 
 Tabeliloomise laused
 
-CREATE TABLE WasteChase_User( 
+CREATE TABLE WasteChase_User(
 ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 Email varchar(30) NOT NULL,
+Password varchar(130),
 FirstName varchar(20),
 LastName varchar(20),
-SEX varchar(6),
+Gender varchar(10),
 Registered timestamp
 );
 
