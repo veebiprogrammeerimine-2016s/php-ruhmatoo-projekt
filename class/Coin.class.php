@@ -51,7 +51,7 @@ class Coin {
 	
 		}
 		$stmt->close();
-		
+		//kulutatud mündid
 		$stmt = $this->connection->prepare("SELECT SUM(points) 
 			FROM project_points 
 			WHERE buyer_id = ? 
@@ -65,19 +65,98 @@ class Coin {
 			echo "ERROR ".$stmt->error;
 		};
 		$stmt->bind_result($subtractCoins);
-		while($stmt->fetch()){
+		if($stmt->fetch()){
 			$subtract = $subtractCoins;
-
 		}
+		//münte kokku
 		$total = $add - $subtract + 10;
-		/*if($total == 0){
-			$total = 10;
-		}*/
+		
 	 
 		return $total;
 		$stmt->close(); 
 			
 	}
+	
+	//kõik kasutaja raamatud, mis ta tahab ära anda
+	function userOffers($id){
+		$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+			SELECT project_points.book_id, project_points.points, project_points.buyer_id, project_points.status, project_books.title 
+			FROM project_points, project_books
+            WHERE project_points.seller_id = ?
+			AND project_points.book_id = project_books.book_id
+			
+			
+			
+			");
+		$stmt->bind_param("i", $id);
+		echo $this->connection->error;
+		
+		$stmt->bind_result($bookIdDb, $pointsDb, $buyerDb, $statusDb, $titleDb);
+		$stmt->execute();
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda, kuni on rida andmeid
+	
+		while ($stmt->fetch()) {
+			//tekitan objekti
+			$offer = new StdClass();
+			$offer->book_id = $bookIdDb;
+			$offer->title = $titleDb;
+			$offer->points = $pointsDb;
+			$offer->buyer = $buyerDb;
+			$offer->status = $statusDb;
+			
+			
+			array_push($result, $offer);
+		}
+		
+		$stmt->close();
+		return $result;
+		
+	}
+	//kõik kasutaja raamatud, mis ta tahab saada
+	function userWishes($id){
+		$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+			SELECT project_points.book_id, project_points.points, project_points.seller_id, project_points.status, project_books.title 
+			FROM project_points, project_books
+            WHERE project_points.buyer_id = ?
+			AND project_points.book_id = project_books.book_id
+			
+			
+			
+			");
+		$stmt->bind_param("i", $id);
+		echo $this->connection->error;
+		
+		$stmt->bind_result($bookIdDb, $pointsDb, $sellerDb, $statusDb, $titleDb);
+		$stmt->execute();
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda, kuni on rida andmeid
+	
+		while ($stmt->fetch()) {
+			//tekitan objekti
+			$wish = new StdClass();
+			$wish->book_id = $bookIdDb;
+			$wish->title = $titleDb;
+			$wish->points = $pointsDb;
+			$wish->seller = $sellerDb;
+			$wish->status = $statusDb;
+			
+			
+			array_push($result, $wish);
+		}
+		
+		
+		$stmt->close();
+		return $result;	
+	} 
 	
 	
 

@@ -34,15 +34,6 @@ $books = $Book->getBooks($cat, $q, $sc, $order_by);
 $onlyCategories = $Book->getCategories(); //$Book->getBooks("", "", "", "");  //et kat. kuvamine poleks sõltuv kuvatavatest raamatutest
 $tableHtml = "";
 
-/*Saan kõik kategooriad
-$categories = array();
-foreach($onlyCategories as $book){
-	$category = $book->category;
-	array_push($categories, $category);
-}
-$categories = array_unique($categories);  //et kõiki kategooriaid oleks 1
-asort($categories);                       //et kategooriad oleks a-z
-*/
  //kas kategooria on valitud
 if(isset($_GET["cat"])){
 	$cat = $Helper->cleanInput($_GET["cat"]);
