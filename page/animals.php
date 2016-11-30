@@ -106,7 +106,7 @@
 					</a>
 				 </th>";
 				 
-// katse kas github t88tab
+
 		foreach($animal as $c){
 			$html .= "<tr>";
 				$html .= "<td>".$c->id."</td>";
