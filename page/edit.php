@@ -44,7 +44,7 @@
 ?>
 <?php require("../header.php"); ?>
 <br><br>
-<a href="animals.php"> tagasi </a>
+<a href="animals.php"> Tagasi kuulutusele </a>
 
 <h2>Muuda kirjet</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
@@ -65,3 +65,5 @@
  <br>
  <a href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a>
  <?php require("../footer.php"); ?>
+ 
+<body style='background-color:Silver'>

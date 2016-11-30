@@ -40,7 +40,10 @@
     <head>
 	<?php require("../header.php"); ?>
 	<br>
-Tere tulemast <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
+Tere tulemast koduloomade laenutuse lehele <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
+<br>
+Siin saate endale valida endale rõõmsa sõbra teatud ajaks!
+
 </p>
 </html>		
 
