@@ -1,60 +1,60 @@
 <?php
 	//ühendan sessionniga
 	require("../functions.php");
-	
+
 	require("../class/Helper.class.php");
 	$Helper= new Helper();
-	
+
 	require("../class/Top.class.php");
 	$Top= new Top($mysqli);
-	
+
 	//kui ei ole sisse loginud, suunan login lehele
 	if(!isset($_SESSION["userId"])){
 		header("Location: login.php");
 		exit();
 	}
-	
+
 	//kas aadressireal on logout
 	if (isset($_GET["logout"])) {
 		session_destroy();
 		header("Location: login.php");
 		exit();
 	}
-	
+
 	//kontrollin kas tühi
-		if ( isset($_POST["age"]) && 
-		isset($_POST["color"]) && 
+		if ( isset($_POST["age"]) &&
+		isset($_POST["color"]) &&
 		!empty($_POST["age"]) &&
-		!empty($_POST["color"]) 
+		!empty($_POST["color"])
 	) {
 		$color = $Helper->cleanInput($_POST["color"]);
 		$Top->saveTop($Helper->cleanInput($_POST["age"]), $color);
 		header("Location: login.php");
 		exit();
 	}
-	
+
 	if(isset($_GET["q"])){
 		$q=$_GET["q"];
 	}else{
 		//ei otsi
 		$q="";
 	}
-	
+
 	//vaikimisi, kui keegi mingit linki ei vajuta
 	$sort = "id";
 	$order = "ASC";
-	
+
 	if (isset($_GET["sort"]) && isset($_GET["order"])) {
 		$sort = $_GET["sort"];
 		$order = $_GET["order"];
 	}
-	
-	
+
+
 	$people=$Top->getAllPeople($q, $sort, $order);
 	//echo"<pre>";
 	//var_dump($people[1]);
 	//echo"</pre>";
-	
+
 ?>
 <?php require("../dataheader.php");?>
 <h1>Data</h1>
@@ -79,7 +79,7 @@
 
 </form>
 
-<?php 
+<?php
 	$html="<table class='table table-striped table-condensed'>";
 		$html .="<tr>";
 			$orderId="ASC";
@@ -95,8 +95,8 @@
 							ID ".$arr."
 						</a>
 					 </th>";
-			
-			
+
+
 			$orderAge="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
@@ -110,11 +110,11 @@
 							Vanus
 						</a>
 					 </th>";
-			
-			
+
+
 			$html .="<th>Värv</th>";
 			$html .="<th>Muuda</th>";
-			
+
 	$html .="</tr>";
 	//iga liikmekohta masssiiivis
 	foreach($people as $p){
@@ -124,7 +124,7 @@
 			$html .="<td>".$p->color."</td>";
 			$html .= "<td>
 			<a class='btn btn-default btn-xs' href='edit.php?id=".$p->id."'><span class='glyphicon glyphicon-pencil'></span> Muuda</a></td>";
-			$html .="</tr>";	
+			$html .="</tr>";
 	}
 	$html .="</table>";
 	echo $html;
