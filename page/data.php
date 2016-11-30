@@ -94,8 +94,8 @@ isset($_POST["free_seats"]) &&
 !empty($_POST["start_time"]) &&
 !empty($_POST["arrival_location"]) &&
 !empty($_POST["arrival_time"]) &&
-!empty($_POST["free_seats"])
-)
+!empty($_POST["free_seats"]))
+
 
 
 {
@@ -127,7 +127,7 @@ isset($_POST["free_seats"]) &&
 
     <br><br>
     <label>Start time</label><br>
-    <input name="start_time" type="date">
+    <input name="start_time" type="datetime-local">
 
     <br><br>
     <label>Arrival location</label><br>
@@ -135,7 +135,7 @@ isset($_POST["free_seats"]) &&
 
     <br><br>
     <label>Arrival time</label><br>
-    <input name="arrival_time" type="date">
+    <input name="arrival_time" type="datetime-local">
 
     <br><br>
     <label>Free seats</label><br>
