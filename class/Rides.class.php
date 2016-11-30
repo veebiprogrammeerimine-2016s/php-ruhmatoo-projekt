@@ -55,9 +55,10 @@ class Rides {
   function getUser(){
 
     $stmt = $this->connection->prepare("
-    SELECT cp_rides.user_id, cp_rides.start_location,
-    cp_rides.start_time,
-    cp_users.id
+    SELECT cp_rides.id, cp_rides.start_location,
+    cp_rides.start_time, cp_rides.arrival_location,
+    cp_rides.arrival_time, cp_rides.free_seats,
+    cp_users.name, cp_users.email
     FROM cp_rideusers
     JOIN cp_users ON cp_users.id=cp_rideusers.user_id
     JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
@@ -66,7 +67,8 @@ class Rides {
 
     echo $this->connection->error;
 		$stmt->bind_param("i", $_SESSION["userId"]);
-    $stmt->bind_result($user_id, $start_location, $start_time, $guest_id);
+    $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
+    $arrival_time, $free_seats, $guest_name, $guest_email);
     $stmt->execute();
 
     //tekitan objekti
@@ -76,10 +78,14 @@ class Rides {
     while ($stmt->fetch()) {
 
       $r = new StdClass();
-      $r->user_id = $user_id;
+      $r->ride_id = $ride_id;
       $r->start_location = $start_location;
       $r->start_time = $start_time;
-      $r->guest_id = $guest_id;
+      $r->arrival_location = $arrival_location;
+      $r->arrival_time = $arrival_time;
+      $r->free_seats= $free_seats;
+      $r->guest_name= $guest_name;
+      $r->guest_email = $guest_email;
 
       //echo $age."<br>";
       //echo $color."<br>";
