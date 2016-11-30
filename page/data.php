@@ -88,26 +88,8 @@
 <h2>TOP 10</h2>
 
 <?php
-	$html="<table class='table table-striped table-condensed'>";
+	$html="<table class='table table-bordered table-condensed'>";
 		$html .="<tr>";
-			$orderId="ASC";
-			$arr="&darr;";
-			if(isset($_GET["order"])&&
-				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="id"){
-				$orderId="DESC";
-				$arr="&uarr;";
-			}
-			$html .= "<th>
-						<a href='?q=".$q."&sort=id&order=".$orderId."'>
-							ID ".$arr."
-						</a>
-					 </th>";
-
-
-			$orderAge="ASC";
-
-
 			$ordertvshow="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
@@ -123,8 +105,6 @@
 					 </th>";
 
 
-			
-
 			$orderrating="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
@@ -138,18 +118,13 @@
 							Hinne
 						</a>
 					</th>";
-					
-			$html .="<th>Muuda</th>";
-
+		
 	$html .="</tr>";
 	//iga liikmekohta masssiiivis
 	foreach($people as $p){
 		$html .="<tr>";
-			$html .="<td>".$p->id."</td>";
 			$html .="<td>".$p->tvshow."</td>";
 			$html .="<td>".$p->rating."</td>";
-			$html .= "<td>
-			<a class='btn btn-default btn-xs' href='edit.php?id=".$p->id."'><span class='glyphicon glyphicon-pencil'></span> Muuda</a></td>";
 			$html .="</tr>";
 	}
 	$html .="</table>";
@@ -158,7 +133,7 @@
 <h2>Täna eetris</h2>
 <?php
 
-$html="<table class='table table-striped table-condensed'>";
+$html="<table class='table table-bordered table-condensed'>";
 		$html .="<tr>";
 			$ordertvshow_name="ASC";
 			$arr="&darr;";
@@ -224,7 +199,7 @@ $html="<table class='table table-striped table-condensed'>";
 <h2>Viimati hinnatud</h2>
 <?php
 
-$html="<table class='table table-striped table-condensed'>";
+$html="<table class='table table-bordered table-condensed'>";
 		$html .="<tr>";
 			$orderUsername="ASC";
 			$arr="&darr;";
