@@ -42,8 +42,7 @@ $Rides = new Rides($mysqli);
 		$Rides->getUser($Helper->cleaninput($_POST["getUser"]));
 
 	}
-
-    $rides = $Rides->get();
+    $rides = $Rides->getUser();
 
 
     if(isset($_GET["r"])) {
@@ -63,7 +62,7 @@ $Rides = new Rides($mysqli);
 
   	}
 
-  	$rides = $Rides->getUser($r, $sort, $order);
+  	$rides = $Rides->getUser();
 
   ?>
 ?>

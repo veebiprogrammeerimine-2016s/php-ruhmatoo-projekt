@@ -54,38 +54,32 @@ class Rides {
 
   function getUser(){
 
-    $stmt = $this->connection->prepare("SELECT user_id, start_location, start_time FROM cp_rideusers
-      JOIN cp_rides ON cp.rideusers.ride_id =
-       WHERE id=?");
+    $stmt = $this->connection->prepare("SELECT user_id.cp_rides, user_id.cp_rideusers, start_location, start_time, FROM cp_rideusers
+      JOIN cp_rides ON cp_rideusers.ride_id=cp_rides.id JOIN cp_users ON cp_users.id=cp_rideusers.user_id
+       WHERE user_id.cp_rides=?");
 
-    $stmt->bind_param("i", $_SESSION["userId"]);
-    $stmt->bind_result($start_location, $start_time);
+    $stmt->bind_result($id, $user_id, $start_location, $start_time);
     $stmt->execute();
 
     //tekitan objekti
-    $p = new Stdclass();
+    $results = array();
+    //tsykli sisu tehakse nii mitu korda, mitu rida
+    //SQL lausega tuleb
+    while ($stmt->fetch()) {
 
-    //saime ühe rea andmeid
-    if($stmt->fetch()){
-      // saan siin alles kasutada bind_result muutujaid
-      $r->start_location = $start_location;
-      $r->start_time = $start_time;
+      $rides = new StdClass();
+      $rides->id = $id;
+      $rides->user_id = $user_id;
+      $rides->start_location = $start_location;
+      $rides->start_time = $start_time;
 
-
-    }else{
-      // ei saanud rida andmeid kätte
-      // sellist id'd ei ole olemas
-      // see rida võib olla kustutatud
-      header("Location: data.php");
-      exit();
+      //echo $age."<br>";
+      //echo $color."<br>";
+      array_push($results, $rides);
     }
 
-    $stmt->close();
-
-    return $r;
-
+    return $results;
   }
-
   function save ($start_location, $start_time, $arrival_location,
   $arrival_time, $free_seats, $price) {
 
