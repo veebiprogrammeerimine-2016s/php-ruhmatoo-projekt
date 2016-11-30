@@ -66,7 +66,7 @@ class Rides {
 
     echo $this->connection->error;
 		$stmt->bind_param("i", $_SESSION["userId"]);
-    $stmt->bind_result($id, $user_id, $start_location, $start_time);
+    $stmt->bind_result($user_id, $start_location, $start_time, $guest_id);
     $stmt->execute();
 
     //tekitan objekti
@@ -76,10 +76,10 @@ class Rides {
     while ($stmt->fetch()) {
 
       $r = new StdClass();
-      $r->id = $id;
       $r->user_id = $user_id;
       $r->start_location = $start_location;
       $r->start_time = $start_time;
+      $r->guest_id = $guest_id;
 
       //echo $age."<br>";
       //echo $color."<br>";

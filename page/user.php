@@ -64,7 +64,7 @@ $Rides = new Rides($mysqli);
 
   	$rides = $Rides->getUser();
 
-  
+
 ?>
 
 <?php require("../header.php"); ?>
@@ -88,7 +88,7 @@ $Rides = new Rides($mysqli);
   	$html = "<table class='table table-striped table-condensed'>";
 
   		$html .= "<tr>";
-
+			//User ID related
   		$orderId = "ASC";
   		$arr="&darr;";
   		if (isset($_GET["order"]) &&
@@ -103,48 +103,72 @@ $Rides = new Rides($mysqli);
   			$html .= "<th>
   			<a href='?q=".$r."&sort=id&order=".$orderId."'>
 
-  			ID ".$arr."
+  			User ID ".$arr."
 
   			</a>
 
   			</th>";
 
+				//start_location related
 
   			$orderStart_location = "ASC";
   			$arr="&darr;";
 
   			if (isset($_GET["order"]) &&
   			$_GET["order"] == "ASC" &&
-  			$_GET["sort"] == "age") {
+  			$_GET["sort"] == "start_location") {
 
   				$orderStart_location = "DESC";
   				$arr="&uarr;";
   			}
 
   				$html .= "<th>
-  				<a href='?q=".$r."&sort=age&order=".$orderStart_location."'>
+  				<a href='?q=".$r."&sort=start_location&order=".$orderStart_location."'>
 
   				Start location ".$arr."
   				</a>
 
   				</th>";
+
+					//Start_time related
   				$orderStart_time = "ASC";
+					$arr="&darr;";
   				if (isset($_GET["order"]) &&
   				$_GET["order"] == "ASC" &&
-  				$_GET["sort"] == "color") {
+  				$_GET["sort"] == "start_time") {
 
   					$orderStart_time = "DESC";
 
   				}
 
-
   					$html .= "<th>
-  					<a href='?q=".$r."&sort=color&order=".$orderStart_time."'>
+  					<a href='?q=".$r."&sort=start_time&order=".$orderStart_time."'>
 
-  					Start time
+  					Start time ".$arr."
   					</a>
 
   					</th>";
+
+						//Guest_id related
+	  				$orderGuest_id = "ASC";
+						$arr="&darr;";
+	  				if (isset($_GET["order"]) &&
+	  				$_GET["order"] == "ASC" &&
+	  				$_GET["sort"] == "guest_id") {
+
+	  					$orderGuest_id = "DESC";
+
+	  				}
+
+	  					$html .= "<th>
+	  					<a href='?q=".$r."&sort=guest_id&order=".$orderGuest_id."'>
+
+	  					Guest ID ".$arr."
+	  					</a>
+
+	  					</th>";
+
+
 
   		$html .= "</tr>";
 
@@ -152,11 +176,17 @@ $Rides = new Rides($mysqli);
   		foreach ($rides as $r) {
 
   			$html .= "<tr>";
-  				$html .= "<td>".$r->id."</td>";
+					$html .= "<td>".$r->user_id."</td>";
   				$html .= "<td>".$r->start_location."</td>";
   				$html .= "<td>".$r->start_time."</td>";
+					$html .= "<td>".$r->guest_id."</td>";
+
+
+
+
+
           $html .= "<td>
-  							<a class='btn btn-default btn xs' href='edit.php?id=".$r->id."'>
+  							<a class='btn btn-default btn xs' href='edit.php?id=".$r->user_id."'>
   							edit.php
   							<span class='glyphicon glyphicon-pencil'></span>
   							</a>
