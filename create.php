@@ -89,28 +89,35 @@
 }
 ?>
 <?php require("header.php"); ?>
-</form>
+<div class="container">
+    <div class="row">
+        <div align="center">
+            <h1>Kasutaja loomine</h1>
+            <form method="POST">
+            <br>
+                <div class="form-group">
+                    <input name="signupEmail" type="text" placeholder="Email" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input name="signupPassword" type="password" placeholder="Parool"> <?php echo $signupPasswordError; ?>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input name="signupPassword" type="password" placeholder="Korda parooli"> <?php echo $signupPasswordError; ?>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input name="firstname" type="name" placeholder="Eesnimi"> <?php echo $firstnameError; ?>
+                </div>
+                <br>
+                <div class="form-group">
+                    <input name="lastname" type="name" placeholder="Perekonnanimi"> <?php echo $lastnameError; ?>
 
-<h1>Kasutaja loomine</h1>
-
-<form method="POST">
-
-    <input name="signupEmail" type="text" placeholder="Email" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
-    <br><br>
-    <input name="signupPassword" type="password" placeholder="Parool"> <?php echo $signupPasswordError; ?>
-    <br><br>
-    <input name="signupPassword" type="password" placeholder="Korda parooli"> <?php echo $signupPasswordError; ?>
-    <br><br>
-    <input name="firstname" type="name" placeholder="Eesnimi"> <?php echo $firstnameError; ?>
-    <br><br>
-    <input name="lastname" type="name" placeholder="Perekonnanimi"> <?php echo $lastnameError; ?>
-
-
-    <br><br>
-
-    <input type="submit" value="Loo kasutaja">
-
-    <a class="btn btn-Success btn-sm" href="firstpage.php"> Loobu</a>
+                </div>
+                <input class="btn btn-Success btn-sm" type="submit" value="Loo kasutaja">
+                <br>
+                <a class="btn btn-Success btn-sm" href="firstpage.php"> Loobu</a>
 
 
 </form>
