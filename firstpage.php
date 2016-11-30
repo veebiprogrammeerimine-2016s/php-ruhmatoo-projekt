@@ -1,7 +1,5 @@
 <?php 
 	require("functions.php");
-	require("class/user.class.php");
-	$User = new User($mysqli);
 	
 	if (isset($_SESSION["userId"])){
 
@@ -72,7 +70,17 @@
 		  
 		$error = $User->login(cleanInput($_POST["loginEmail"]), cleanInput($_POST["loginPassword"]));
 		
+		
+		if(isset($_GET["sort"])) {
+			$sort = $_GET["sort"];
 	}
+		//otsisõna funktsiooni sisse
+			
+	}
+	
+	
+	
+	$carData = $Car->getAll($sort);
 	
 ?>
 
@@ -96,13 +104,37 @@
 						<input class="form-control" type="password" name="loginPassword" placeholder="Parool">	
 						<br>
 					<input class="btn btn-success btn-sm" type="submit" value="Logi sisse">
-					<br>
+					<br><br>
 					<a class="btn btn-success btn-sm" href="create.php"> Registreeri</a>
 				</form>
 			</div>
 		</div>
 </div>
 	
+<?php 
+	
+	$html = "<table class='table table-striped'>";
+	
+	//iga liikme kohta massiivis
+	foreach($carData as $c){
+		// iga auto on $c
+		//echo $c->plate."<br>";
+		
+		$html .= "<tr>";
+			$html .= "<td>".$c->UserId."</td>";
+			$html .= "<td>".$c->RegPlate."</td>";
+			$html .= "<td>".$c->Mark."</td>";
+			$html .= "<td>".$c->Model."</td>";
+            $html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span>Muuda</a></td>";
+
+		$html .= "</tr>";
+	}
+	
+	$html .= "</table>";
+	
+	echo $html;
+	
+?>
 
 	
 <?php require ("footer.php");?>
