@@ -8,13 +8,11 @@ $Helper = new Helper();
 require("../class/Rides.class.php");
 $Rides = new Rides($mysqli);
 
-//kui ei ole sisseloginud, suunan login lehele
 if (!isset($_SESSION["userId"])) {
   header("Location: login.php");
   exit();
 }
 
-//kas aadressireal on logout
 if (isset($_GET["logout"])) {
 
   session_destroy();
@@ -23,6 +21,8 @@ if (isset($_GET["logout"])) {
   exit();
 
 }
+
+$upcomingRides = $Rides->get();
 
 //Check if forms are filled
 $start_location = "";
@@ -37,6 +37,7 @@ $emptyStartT = "*";
 $emptyArrivalL = "*";
 $emptyArrivalT = "*";
 $emptySeats = "*";
+
 
 if (isset ($_POST["start_location"])) {
     if (empty ($_POST["start_location"])) {
@@ -123,29 +124,64 @@ isset($_POST["free_seats"]) &&
 <form method="POST" >
 
     <label>Start location</label><br>
-    <input name="start_location" type="text">
+    <input name="start_location" type="text" value="<?=$start_location;?>"> <?php echo $emptyStartL; ?>
 
     <br><br>
     <label>Start time</label><br>
-    <input name="start_time" type="datetime-local">
+    <input name="start_time" type="datetime-local" value="<?=$start_time;?>"> <?php echo $emptyStartT; ?>
 
     <br><br>
     <label>Arrival location</label><br>
-    <input name="arrival_location" type="text">
+    <input name="arrival_location" type="text" value="<?=$arrival_location;?>"> <?php echo $emptyArrivalL; ?>
 
     <br><br>
     <label>Arrival time</label><br>
-    <input name="arrival_time" type="datetime-local">
+    <input name="arrival_time" type="datetime-local" value="<?=$arrival_time;?>"> <?php echo $emptyArrivalT; ?>
 
     <br><br>
     <label>Free seats</label><br>
-    <input name="free_seats" type="number">
+    <input name="free_seats" type="number" value="<?=$free_seats;?>"> <?php echo $emptySeats; ?>
 
     <br><br>
     <label>Price</label><br>
-    <input name="price" type="number">
+    <input name="price" type="number"> 
 
     <br><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit"> 
 
 </form>
+
+<h2>Find a ride</h2>
+
+<?php 
+    
+    $html = "<table>";
+    
+        $html .= "<tr>";
+            $html .= "<th>start_location</th>";
+            $html .= "<th>start_time</th>";
+            $html .= "<th>arrival_location</th>";
+            $html .= "<th>arrival_time</th>";
+            $html .= "<th>free_seats</th>";
+            $html .= "<th>price</th>";
+        $html .= "</tr>";
+        
+        //iga liikme kohta massiivis
+        foreach ($upcomingRides as $r) {
+            
+            $html .= "<tr>";
+                $html .= "<td>".$r->start_location."</td>";
+                $html .= "<td>".$r->start_time."</td>";
+                $html .= "<td>".$r->arrival_location."</td>";
+                $html .= "<td>".$r->arrival_time."</td>";
+                $html .= "<td>".$r->free_seats."</td>";
+                $html .= "<td>".$r->price."</td>";
+            $html .= "</tr>";
+        
+        }
+        
+    $html .= "</table>";
+    
+    echo $html;
+
+    ?>
