@@ -10,6 +10,10 @@
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
+
+
+        var domain = googleUser.getHostedDomain();
+        console.log(domain);
         var profile = googleUser.getBasicProfile();   
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
         console.log('Full Name: ' + profile.getName());
