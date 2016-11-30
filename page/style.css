@@ -36,7 +36,7 @@ p {
 #insertPlants{
 	padding-left:20px;
 	padding-right:20px;
-	border-style:double;
+	
 	
 }
 
@@ -106,16 +106,16 @@ h4{
 
 
 
-
-
-
-
-#insertPlants{
-	padding-left:20px;
-	padding-right:20px;
+#plantCare {
+	background-color:#f8f8f8
+	padding:20px;
+	margin:20px;
 	border-style:double;
-	
 }
+
+
+
+
 
 body{
 	font-family:helvetica;

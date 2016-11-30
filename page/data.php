@@ -155,18 +155,18 @@
 
 								<input class="btn btn-default" type="submit" value="Salvesta">
 							<br>
-							
-							</form>
-							</div>
-							
-							
-
-							<div id="plantSearch" class="search">
+								<div id="plantSearch" class="search">
 							<h3>Taime otsing</h3>
 							<form>
 								<input type="search" name="q" value="<?=$q;?>">
 								<input class="btn btn-default" type="submit" value="Otsi">
 							</form></div>
+							</form>
+							</div>
+							
+							
+
+							
 							
 			
 			</div>
