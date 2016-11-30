@@ -112,10 +112,11 @@
 				$arr="&uarr;";
 			}
 			$html .="<th>
-						<a href='?q=".$q."&sort=rating&order=".$orderrating."'
+						<a href='?q=".$q."&sort=rating&order=".$orderrating."'>
 							Hinne
 						</a>
 					</th>";
+					
 			$html .="<th>Muuda</th>";
 			
 	$html .="</tr>";
