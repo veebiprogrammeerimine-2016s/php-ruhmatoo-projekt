@@ -22,13 +22,13 @@
 	}
 	
 	//kontrollin kas tühi
-		if ( isset($_POST["age"]) && 
-		isset($_POST["color"]) && 
-		!empty($_POST["age"]) &&
-		!empty($_POST["color"]) 
+		if ( isset($_POST["tvshow"]) && 
+		isset($_POST["rating"]) && 
+		!empty($_POST["tvshow"]) &&
+		!empty($_POST["rating"]) 
 	) {
-		$color = $Helper->cleanInput($_POST["color"]);
-		$Top->saveTop($Helper->cleanInput($_POST["age"]), $color);
+		$rating = $Helper->cleanInput($_POST["rating"]);
+		$Top->saveTop($Helper->cleanInput($_POST["tvshow"]), $rating);
 		header("Location: login.php");
 		exit();
 	}
@@ -70,15 +70,7 @@
 </p>
 
 
-
-<h2>Arhiiv</h2>
-
-<form>
-	<input type="search" name="q" value="<?=$q;?>">
-	<input type="submit" value="Otsi">
-
-</form>
-
+<h2>TOP 10</h2>
 <?php 
 	$html="<table class='table table-striped table-condensed'>";
 		$html .="<tr>";
@@ -97,22 +89,33 @@
 					 </th>";
 			
 			
-			$orderAge="ASC";
+			$ordertvshow="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
 				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="age"){
-				$orderAge="DESC";
+				$_GET["sort"]=="tvshow"){
+				$ordertvshow="DESC";
 				$arr="&uarr;";
 			}
 			$html .= "<th>
-						<a href='?q=".$q."&sort=age&order=".$orderAge."'>
-							Vanus
+						<a href='?q=".$q."&sort=tvshow&order=".$ordertvshow."'>
+							Seriaal
 						</a>
 					 </th>";
 			
-			
-			$html .="<th>Värv</th>";
+			$orderrating="ASC";
+			$arr="&darr;";
+			if(isset($_GET["order"])&&
+				$_GET["order"]=="ASC"&&
+				$_GET["sort"]=="rating"){
+				$orderrating="DESC";
+				$arr="&uarr;";
+			}
+			$html .="<th>
+						<a href='?q=".$q."&sort=rating&order=".$orderrating."'
+							Hinne
+						</a>
+					</th>";
 			$html .="<th>Muuda</th>";
 			
 	$html .="</tr>";
@@ -120,8 +123,8 @@
 	foreach($people as $p){
 		$html .="<tr>";
 			$html .="<td>".$p->id."</td>";
-			$html .="<td>".$p->age."</td>";
-			$html .="<td>".$p->color."</td>";
+			$html .="<td>".$p->tvshow."</td>";
+			$html .="<td>".$p->rating."</td>";
 			$html .= "<td>
 			<a class='btn btn-default btn-xs' href='edit.php?id=".$p->id."'><span class='glyphicon glyphicon-pencil'></span> Muuda</a></td>";
 			$html .="</tr>";	
