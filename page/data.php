@@ -78,8 +78,10 @@ if (isset ($_POST["free_seats"])) {
     }
 }
 
+if(isset ($_POST["price"])) {
 
   $price = $Helper->cleanInput($_POST["price"]);
+}
 
 //If forms are filled
 if (isset($_POST["start_location"]) &&
@@ -92,8 +94,8 @@ isset($_POST["free_seats"]) &&
 !empty($_POST["start_time"]) &&
 !empty($_POST["arrival_location"]) &&
 !empty($_POST["arrival_time"]) &&
-!empty($_POST["free_seats"])
-)
+!empty($_POST["free_seats"]))
+
 
 
 {
