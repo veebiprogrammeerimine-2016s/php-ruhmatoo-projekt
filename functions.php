@@ -42,16 +42,16 @@ function getSingleTyreFitting($details_id){
 		return $tyreFitting;
 		
 	}
-function getTyreFittingServices($details_id){
+function FittingServicesMinPrice($details_id){
     	$database = "if16_stanislav";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		$stmt = $mysqli->set_charset("utf8");
         
 	/*	$stmt = $mysqli->prepare("SELECT name, description, category,size,price FROM p_tyre_fittings_services WHERE tyre_fitting_id=?");*/
-	$stmt = $mysqli->prepare("SELECT  name,description,category,size,MIN(price) FROM p_tyre_fittings_services WHERE tyre_fitting_id=? GROUP BY category;");
+	$stmt = $mysqli->prepare("SELECT id, name,description,category,size,MIN(price) FROM p_tyre_fittings_services WHERE tyre_fitting_id=? GROUP BY name ORDER BY price;");
 		
 		$stmt->bind_param("i", $details_id);
-		$stmt->bind_result($name, $description, $category, $size, $price);
+		$stmt->bind_result($id, $name, $description, $category, $size, $price);
 		$stmt->execute();
 		
 		$result = array();
@@ -63,6 +63,7 @@ function getTyreFittingServices($details_id){
 			//tekitan objekti
 			$i = new StdClass();
 			
+			$i->id = $id;
 			$i->name = $name;
 			$i->category = $category;
 			$i->description = $description;

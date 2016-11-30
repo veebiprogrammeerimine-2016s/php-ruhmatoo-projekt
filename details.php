@@ -28,7 +28,7 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
 		
 	}
 $tyreFitting = getSingleTyreFitting($_GET["id"]);
-$services = getTyreFittingServices($_GET["id"]);
+$services = FittingServicesMinPrice($_GET["id"]);
 
 ?>
 
@@ -64,7 +64,7 @@ $services = getTyreFittingServices($_GET["id"]);
 			<ul class="list-group">
 				<li class="list-group-item">
 					<span class="label label-default label-pill pull-xs-right">alates <?php echo $service->price ?> EUR</span>
-						<?php echo ucfirst($service->category); ?>
+						<?php echo ucfirst($service->name); ?>
 				</li>
            </ul> 
           <?php } ?>
@@ -73,20 +73,58 @@ $services = getTyreFittingServices($_GET["id"]);
 			</div>
 		</div>
 		<div class="col-lg-8 col-md-6">
+			<iframe src="<?php echo $tyreFitting->location ?>" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
 			
-			<div class="row">
-				<iframe src="<?php echo $tyreFitting->location ?>" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-			</div>
+            <!-- ORDER FORM -->
 			<div class="row">
 				<div class="col-lg-6">
-					<label for="datetimepicker">Nimi</label>
-					<input type="text" id="datetimepicker"  style="width:100%" />
-					
-				</div>
-				<div class="col-lg-6">
-					<label for="datetimepicker">Broneeri endale aeg</label>
-					<input type="text" id="datetimepicker"  style="width:100%" />
-				</div>
+					<form method="post" id="bookingForm">
+				
+                        <p>
+                            <label>Nimi:<span class="req-form-field">*</span></label><br  />
+                            <input type="text" name="name2" id="name" class="form-control required" required="required"/>
+                        </p>
+                         <p>
+                            <label>E-post:<span class="req-form-field">*</span></label><br  />
+                            <input type="text" name="email2" id="email" class="form-control required" required="required"/>
+                        </p>
+                        
+                        <p>
+                            <label>Telefon:<span class="req-form-field">*</span></label><br  />
+                            <input type="text" id="mobile-number" name="phone" class="form-control required" required="required"/>
+                            <input type="hidden" name="payed" value="0" />
+                        </p>
+                        <p>
+                            <label>Kommentaar:</label><br  />
+                            <input type="text" name="note" class="form-control" />
+                        </p>
+                              
+                        <br />
+          					
+					</div>
+                    <div class="col-lg-6">
+                    	
+                            <label>Teenused:<span class="req-form-field">*</span></label><br/><div style="clear:both"></div>
+                            <select class="c-select" style="width:100%;" required>
+                                  <option selected disabled></option>
+                                   <?php foreach($services as $service)
+									  {?>
+                                  			<option value="<?php echo ucfirst($service->id); ?>"><?php echo ucfirst($service->name); ?></option>
+                                   <?php } ?>
+                                 
+							</select>
+							<p></p>	
+                        
+                        <p>
+                            <label>Auto number:<span class="req-form-field">*</span></label><br  />
+                            <input type="text" name="carnumber" class="form-control required" required="required"/>
+                        </p>
+                        <label for="datetimepicker">Vali endale aeg:<span class="req-form-field">*</span></label>
+                        <input type="text" id="datetimepicker" class="form-control required"  style="width:100%" required="required" /></br></br>
+                        <input type="submit" id="order-btn" class="btn btn-success" name="bookthistime" value="Broneeri" />
+                    </div>
+                    
+            	</form>
 			</div>
 		
 		</div>
@@ -110,14 +148,18 @@ require("footer.php");?>
 	// open times 
 	
 	$day1 = new StdClass();
-	$day1->date = "29.11.2016";
+	$day1->date = "1.12.2016";
 	$day1->available = ["10:00","11:00"];
 	
 	$day2 = new StdClass();
 	$day2->date = "30.11.2016";
 	$day2->available = ["12:00","13:00"];
 	
-	$days = [$day1, $day2];
+	$day3 = new StdClass();
+	$day3->date = "2.12.2016";
+	$day3->available = ["12:00","13:00","14:00"];
+	
+	$days = [$day1, $day2,$day3];
 	
 	
 
@@ -131,39 +173,42 @@ require("footer.php");?>
 		var dateString = currentDateTime.getDate() + "." + (currentDateTime.getMonth()+1) + "." + currentDateTime.getFullYear();
 		
 		console.log(dateString);
-		
+			
 		for(var i = 0; i < days.length; i++){
 			var day = days[i];
-			
-			console.log(dateString + " " + day.date)
+
 			if(dateString == day.date){
 				
-				console.log(day.available);
-
+				console.log(day.date);
 				this.setOptions({
+				  timepicker:true,
 				  allowTimes: day.available
+				 
+				});
+				break;
+			}
+			else
+			{
+				this.setOptions({
+				  timepicker:true,
+				  allowTimes: ['00:00','01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00',
+				  			   '08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
+							   '16:00','17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+				 
 				});
 			}
+			
 		}
 		
-	  // 'this' is jquery object datetimepicker
-	 /* if( currentDateTime.getDay()==6 ){
-		this.setOptions({
-		  minTime:'11:00'
-		});
-	  }else
-		this.setOptions({
-		  minTime:'8:00'
-		});*/
 	};
 
 	$("#datetimepicker").datetimepicker({
-		minDate:new Date(), // yesterday is minimum date
-		allowTimes:[
-			'12:00', '13:00', '15:00',
-		],
+		minDate:new Date(), 
 		format:'d.m.Y H:i',
-		onChangeDateTime:logic,
+		defaultSelect:false,
+		timepicker:false,
+		onChangeDateTime:logic
+				
 	});
 	
 </script>
