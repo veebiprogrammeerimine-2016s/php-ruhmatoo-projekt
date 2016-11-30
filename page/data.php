@@ -105,8 +105,10 @@ isset($_POST["free_seats"]) &&
 <p>
 
     Welcome <?=$_SESSION["userEmail"];?>!
-    <a href="?logout=1">log out</a>
-
+    <br><br>
+    <a href="?logout=1">Log out</a>
+    <br><br>
+    <a href="user.php">User page</a>
 </p>
 
 
