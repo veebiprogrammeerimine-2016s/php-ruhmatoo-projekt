@@ -1,5 +1,6 @@
 <?php
 	require("../function/functions.php");
+	$appName = "Töömehe leidja";
 ?>
 <html>
 <header>
@@ -11,4 +12,3 @@
 
 </header>
 <body>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
