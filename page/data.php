@@ -125,7 +125,7 @@ isset($_POST["free_seats"]) &&
 
     <br><br>
     <label>Start time</label><br>
-    <input name="start_time" type="text">
+    <input name="start_time" type="date">
 
     <br><br>
     <label>Arrival location</label><br>
@@ -133,7 +133,7 @@ isset($_POST["free_seats"]) &&
 
     <br><br>
     <label>Arrival time</label><br>
-    <input name="arrival_time" type="text">
+    <input name="arrival_time" type="date">
 
     <br><br>
     <label>Free seats</label><br>
