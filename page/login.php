@@ -10,11 +10,7 @@
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
-        var profile = googleUser.getBasicProfile();
-        if (!/@tlu.ee\s*$/.test(profile.getEmail())){
-          signOut();
-          document.getElementById("error").innerHTML = "Palun sisene Tallinna Ülikooli kasutajaga.";
-        }
+        var profile = googleUser.getBasicProfile();   
         console.log("ID: " + profile.getId()); // Don't send this directly to your server!
         console.log('Full Name: ' + profile.getName());
         console.log('Given Name: ' + profile.getGivenName());
