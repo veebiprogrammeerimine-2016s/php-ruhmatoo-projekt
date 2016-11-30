@@ -1,6 +1,6 @@
 <?php 
 	require("functions.php");
-	require("class/user.class.php");
+	require("class/User.class.php");
 	$User = new User($mysqli);
 	
 	
@@ -16,7 +16,7 @@
 	if(isset($_SESSION["message"])){
 		$msg = $_SESSION["message"];
 		
-		//kui ühe näitame siis kustuta ära, et pärast refreshi ei näitaks
+		//kui ï¿½he nï¿½itame siis kustuta ï¿½ra, et pï¿½rast refreshi ei nï¿½itaks
 		unset($_SESSION["message"]);
 	}
 	
@@ -43,24 +43,17 @@
 
 
 <?php require ("header.php");?>
-
+<div class="container">
 <?=$msg;?>
 <p>
-	Tere tulemast <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
-	<a href="?logout=1">Logi välja</a>
+	Tere tulemast <a class="col-md-10" href="userpage.php"><?=$_SESSION["userEmail"];?>!</a>
+	<a href="?logout=1">Logi vï¿½lja</a>
 </p>
-
-
-<div class="container">
 		<div class="row">
-			<div class="col-sm-9">
+			<div class="col-md-10">
 				<img src="Logo.png" alt="Firma logo" style="width:250px;height:200px;">
+			</div>
 
-			</div>
-			<div class="col-sm-3">
-			
-				</form>
-			</div>
 		</div>
 	</div>
 	

@@ -1,6 +1,6 @@
 <?php 
 	require("functions.php");
-	require("class/user.class.php");
+	require("class/User.class.php");
 	$User = new User($mysqli);
 	
 	if (isset($_SESSION["userId"])){
@@ -18,7 +18,7 @@
 
 		if( empty( $_POST["signupEmail"] ) ){
 			
-			$signupEmailError = "See väli on kohustuslik";
+			$signupEmailError = "See vï¿½li on kohustuslik";
 			
 		} else {
 			
@@ -36,7 +36,7 @@
 			
 			if ( strlen($_POST["signupPassword"]) < 8 ) {
 				
-				$signupPasswordError = "Parool peab olema vähemalt 8 tähemärkki pikk";
+				$signupPasswordError = "Parool peab olema vï¿½hemalt 8 tï¿½hemï¿½rkki pikk";
 			
 			}
 		}
