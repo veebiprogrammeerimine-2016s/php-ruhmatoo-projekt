@@ -63,16 +63,16 @@
 <h2>Salvesta hobi</h2>
 <?php
     
-    $listHtml = "<ul>";
+    $listHtml = "<h5>";
 	
 	foreach($userInterests as $i){
 		
 		
-		$listHtml .= "<li>".$i->interest."</li>";
+		$listHtml .= "<p>".$i->interest."</p>";
 
 	}
     
-    $listHtml .= "</ul>";
+    $listHtml .= "</h5>";
 
 	
 	echo $listHtml;
