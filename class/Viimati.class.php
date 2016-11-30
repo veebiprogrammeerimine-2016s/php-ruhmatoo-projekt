@@ -1,20 +1,20 @@
 <?php
-class Top{
+class Viimati{
 	private $connection;
-	//kï¿½ivitataks siis kui on = new User(see jï¿½uab siia)
+	//k?ivitataks siis kui on = new User(see j?uab siia)
 
 	function __construct($mysqli){
 		//this viitab sellele klassile ja selle klassi muutujale
 		$this->connection=$mysqli;
 	}
-	/*Kï¿½IK FUNKTSIOONID */
+	/*K?IK FUNKTSIOONID */
 
-	function saveTop($tvshow, $rating) {
-		$stmt = $this->connection->prepare("INSERT INTO Top10 (tvshow, rating) VALUE (?, ?)");
+	function saveViimati($username, $comment, $rating) {
+		$stmt = $this->connection->prepare("INSERT INTO viimati_hinnatud (username, comment, rating) VALUE (?, ?, ?)");
 		echo $this->connection->error;
-		$stmt->bind_param("si", $tvshow, $rating);
+		$stmt->bind_param("ssi", $username, $comment, $rating);
 		if ( $stmt->execute() ) {
-			echo "ï¿½nnestus <br>";
+			echo "Õnnestus <br>";
 		} else {
 			echo "ERROR ".$stmt->error;
 		}
@@ -23,7 +23,7 @@ class Top{
 
 	function getAll($q, $sort, $order){
 
-		$allowedSort = ["id", "tvshow", "rating"];
+		$allowedSort = ["id", "username", "comment", "rating"];
 
 		// sort ei kuulu lubatud tulpade sisse
 		if(!in_array($sort, $allowedSort)){
@@ -41,10 +41,10 @@ class Top{
 			//otsin
 			echo"otsin: ".$q;
 			$stmt = $this->connection->prepare("
-				SELECT id, tvshow, rating
-				FROM Top10
+				SELECT id, username, comment, rating
+				FROM viimati_hinnatud
 				WHERE deleted IS NULL
-				AND ( tvshow LIKE ? OR rating LIKE ? )
+				AND ( username LIKE ? OR comment LIKE ? OR rating LIKE ? )
 				ORDER BY $sort $orderBy
 				");
 			$searchWord="%".$q."%";
@@ -52,22 +52,23 @@ class Top{
 		}else {
 			//ei otsi
 			$stmt = $this->connection->prepare("
-				SELECT id, tvshow, rating
-				FROM Top10
+				SELECT id, username, comment, rating
+				FROM viimati_hinnatud
 				WHERE deleted IS NULL
 				ORDER BY $sort $orderBy
 				");
 		}
 		//var_dump($this->connection);
 		echo $this->connection->error;
-		$stmt->bind_result($id, $tvshow, $rating);
+		$stmt->bind_result($id, $username, $comment, $rating);
 		$stmt->execute();
 		$results=array();
-		//tsï¿½klissisu toiimib seni kaua, mitu rida SQL lausega tuleb
+		//ts?klissisu toiimib seni kaua, mitu rida SQL lausega tuleb
 		while($stmt->fetch()) {
 			$human=new StdClass();
 			$human->id=$id;
-			$human->tvshow=$tvshow;
+			$human->username=$username;
+			$human->comment=$comment;
 			$human->rating=$rating;
 			//echo $rating."<br>";
 			array_push($results, $human);
@@ -77,22 +78,23 @@ class Top{
 
 
 	function getSinglePerosonData($edit_id){
- 		$stmt = $this->connection->prepare("SELECT tvshow, rating FROM Top10
+ 		$stmt = $this->connection->prepare("SELECT username, comment, rating FROM viimati_hinnatud
 		WHERE id=? AND deleted IS NULL");
  		$stmt->bind_param("i", $edit_id);
- 		$stmt->bind_result($tvshow, $rating);
+ 		$stmt->bind_result($username, $comment, $rating);
  		$stmt->execute();
  		//tekitan objekti
  		$p = new Stdclass();
- 		//saime ï¿½he rea andmeid
+ 		//saime ?he rea andmeid
  		if($stmt->fetch()){
  			// saan siin alles kasutada bind_result muutujaid
- 			$p->tvshow = $tvshow;
+ 			$p->username = $username;
  			$p->rating = $rating;
+			$p->comment = $comment;
  		}else{
- 			// ei saanud rida andmeid kï¿½tte
+ 			// ei saanud rida andmeid k?tte
  			// sellist id'd ei ole olemas
- 			// see rida vï¿½ib olla kustutatud
+ 			// see rida v?ib olla kustutatud
  			header("Location: data.php");
  			exit();
  		}
@@ -102,15 +104,15 @@ class Top{
  	}
 
 
-	function updatePerson($id, $tvshow, $rating){
- 		$stmt = $this->connection->prepare("UPDATE Top10 SET tvshow=?, rating=? WHERE id=? AND deleted IS NULL");
+	function updatePerson($id, $username, $comment, $rating){
+ 		$stmt = $this->connection->prepare("UPDATE viimati_hinnatud SET username=?, comment=?, rating=? WHERE id=? AND deleted IS NULL");
 
- 		$stmt->bind_param("sii",$tvshow, $rating, $id);
- 		// kas Ãµnnestus salvestada
+ 		$stmt->bind_param("ssii",$username, $comment, $rating, $id);
+ 		// kas õnnestus salvestada
 
  		if($stmt->execute()){
- 			// ï¿½nnestus
- 			echo "salvestus ï¿½nnestus!";
+ 			// ?nnestus
+ 			echo "salvestus ?nnestus!";
  		}
  		$stmt->close();
  		$this->connection->close();
@@ -118,13 +120,13 @@ class Top{
 
 
 	function deletePerson($id){
- 		$stmt = $this->connection->prepare("UPDATE Top10 SET deleted=NOW()
+ 		$stmt = $this->connection->prepare("UPDATE viimati_hinnatud SET deleted=NOW()
  		WHERE id=? AND deleted IS NULL");
  		$stmt->bind_param("i",$id);
- 		// kas ï¿½nnestus salvestada
+ 		// kas ?nnestus salvestada
  		if($stmt->execute()){
- 			// ï¿½nnestus
- 			echo "salvestus ï¿½nnestus!";
+ 			// ?nnestus
+ 			echo "salvestus ?nnestus!";
  		}
  		$stmt->close();
  		$this->connection->close();
