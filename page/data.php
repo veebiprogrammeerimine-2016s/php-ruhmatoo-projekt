@@ -25,11 +25,12 @@ if (isset($_GET["logout"])) {
 }
 
 //Check if forms are filled
-$startLocation = "";
-$startTime = "";
-$arrivalLocation = "";
-$arrivalTime = "";
-$freeSeats = "";
+$start_location = "";
+$start_time = "";
+$arrival_location = "";
+$arrival_time = "";
+$free_seats = "";
+$price = "";
 
 $emptyStartL = "*";
 $emptyStartT = "*";
@@ -37,45 +38,48 @@ $emptyArrivalL = "*";
 $emptyArrivalT = "*";
 $emptySeats = "*";
 
-if (isset ($_POST["startLocation"])) {
-    if (empty ($_POST["startLocation"])) {
+if (isset ($_POST["start_location"])) {
+    if (empty ($_POST["start_location"])) {
         $emptyStartL = "* Please fill in starting location!";
     } else {
-        $startLocation = $_POST["startLocation"];
+        $start_location = $Helper->cleanInput($_POST["start_location"]);
     }
 }
 
-if (isset ($_POST["startTime"])) {
-    if (empty ($_POST["startTime"])) {
+if (isset ($_POST["start_time"])) {
+    if (empty ($_POST["start_time"])) {
         $emptyStartT = "* Please fill in start time!";
     } else {
-        $startTime = $_POST["startTime"];
+        $start_time = $Helper->cleanInput($_POST["start_time"]);
     }
 }
 
-if (isset ($_POST["arrivalLocation"])) {
-    if (empty ($_POST["arrivalLocation"])) {
+if (isset ($_POST["arrival_location"])) {
+    if (empty ($_POST["arrival_location"])) {
         $emptyArrivalL = "* Please fill in arrival location!";
     } else {
-        $arrivalLocation = $_POST["arrivalLocation"];
+        $arrival_location = $Helper->cleanInput($_POST["arrival_location"]);
     }
 }
 
-if (isset ($_POST["arrivalTime"])) {
-    if (empty ($_POST["arrivalTime"])) {
+if (isset ($_POST["arrival_time"])) {
+    if (empty ($_POST["arrival_time"])) {
         $emptyArrivalT = "* Please fill in arrival time!";
     } else {
-        $arrivalTime = $_POST["arrivalTime"];
+        $arrival_time = $Helper->cleanInput($_POST["arrival_time"]);
     }
 }
 
-if (isset ($_POST["freeSeats"])) {
-    if (empty ($_POST["freeSeats"])) {
+if (isset ($_POST["free_seats"])) {
+    if (empty ($_POST["free_seats"])) {
         $emptySeats = "* Please fill in number of seats!";
     } else {
-        $freeSeats = $_POST["freeSeats"];
+        $free_seats = $Helper->cleanInput($_POST["free_seats"]);
     }
 }
+
+
+  $price = $Helper->cleanInput($_POST["price"]);
 
 //If forms are filled
 if (isset($_POST["start_location"]) &&
@@ -94,7 +98,8 @@ isset($_POST["free_seats"]) &&
 
 {
     //echo = "Saved";
-    //$Rides->save($Helper->cleanInput($_POST["price"]), $start_location, $startTime, $arrivalLocation, $arrivalTime, $freeSeats);
+    $Rides->save($start_location, $start_time, $arrival_location,
+    $arrival_time, $free_seats, $price);
  }
 
 

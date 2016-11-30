@@ -86,15 +86,16 @@ class Rides {
 
   }
 
-  function save ($ride) {
+  function save ($start_location, $start_time, $arrival_location,
+  $arrival_time, $free_seats, $price) {
 
 		$stmt = $this->connection->prepare("INSERT INTO cp_rides (user_id, start_location, start_time, arrival_location,
-    arrival_time, free_seats, price, added) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    arrival_time, free_seats, price) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 		echo $this->connection->error;
 
-		$stmt->bind_param("issssiis", $_SESSION["userId"], $start_location, $start_time, $arrival_location,
-    $arrival_time, $free_seats, $price, $added);
+		$stmt->bind_param("issssii", $_SESSION["userId"], $start_location, $start_time, $arrival_location,
+    $arrival_time, $free_seats, $price);
 
 		if($stmt->execute()) {
 			echo "Salvestamine õnnestus";
