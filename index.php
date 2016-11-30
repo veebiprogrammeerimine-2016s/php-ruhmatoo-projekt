@@ -36,13 +36,13 @@
 	
 	////
 	//sisselogimise kutsumine
-	if(isset($_POST["loginEmail"])  &&
+	if(isset($_POST["loginUsername"])  &&
 	   isset($_POST["loginPassword"]) &&
-	   !empty($_POST["loginEmail"]) &&
+	   !empty($_POST["loginUsername"]) &&
 	   !empty($_POST["loginPassword"])
 	   ) {
 		   
-		  $User->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"])); 
+		  $User->login($Helper->cleanInput($_POST["loginUsername"]), $Helper->cleanInput($_POST["loginPassword"])); 
 		  
 	}
 
@@ -94,7 +94,7 @@
 			
 			<form class="navbar-form navbar-right" method="POST">
 				<div class="form-group">
-					<input name="loginEmail" type="text" class="form-control input-sm" placeholder="Email" value = "<?php if(isset($_POST['loginEmail'])) { echo $_POST['loginEmail']; } ?>">
+					<input name="loginUsername" type="text" class="form-control input-sm" placeholder="Username" value = "<?php if(isset($_POST['loginUsername'])) { echo $_POST['loginUsername']; } ?>">
 					<input name="loginPassword" type="password" class="form-control input-sm" placeholder="Parool">
 				</div>
 				<button type="submit" class="btn btn-sm btn-success">Logi sisse</button>

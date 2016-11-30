@@ -100,7 +100,7 @@
 					<br><div class='alert alert-danger'>
 					<strong>
 					 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-					Password don't match</strong>
+					Passwords don't match</strong>
 					</div>";
 			  
 		}
@@ -109,7 +109,7 @@
 
 	if (isset ($_POST["registerEmail"]) or
 		isset ($_POST["registerPassword"]) or
-	   isset ($_POST["confirmRegisterPassword"])) {
+	    isset ($_POST["confirmRegisterPassword"])) {
 	
 	
 		if (!empty($_POST["registerEmail"]) or
@@ -127,19 +127,39 @@
 		}
 	}
 	
+	if (isset ($_POST["registerUsername"])) {
+	
+	
+		if (!empty($_POST["registerUsername"]))  
+		{
+			if (strlen($_POST["registerUsername"])<3) {
+				$userError="
+					<br><div class='alert alert-danger'>
+					<strong>
+					 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
+					Username too short</strong>
+					</div>";
+			}
+		}
+	}
+	
+	
+	
 	
 	//kõik sobis asun kutsuma registerit
 	if(isset($_POST["registerEmail"])  &&
 	   isset($_POST["registerPassword"]) &&
+	   isset($_POST["registerUsername"]) &&
 	   isset($_POST["confirmRegisterPassword"]) &&
 	   !empty($_POST["registerEmail"]) &&
+	   !empty($_POST["registerUsername"]) &&
 	   !empty($_POST["confirmRegisterPassword"]) &&
 	   !empty($_POST["registerPassword"]) &&
 	   $userError==""
 	   ) {
 		   
 		  $hashRegisterPassword = hash("sha512", $_POST["registerPassword"]);
-		  $User->register($Helper->cleanInput($_POST["registerEmail"]), $Helper->cleanInput($hashRegisterPassword)); 
+		  $User->register($Helper->cleanInput($_POST["registerUsername"]),$Helper->cleanInput($_POST["registerEmail"]), $Helper->cleanInput($hashRegisterPassword)); 
 		  
 	}
 	
@@ -216,11 +236,15 @@
 			<p class="help-block"></p>
 		  </div>
 		  <div class="form-group">
+			<label>Username</label>
+			<input type="text" class="form-control input-sm" name="registerUsername" placeholder="Username" value="<?php if(isset($_POST['username'])) { echo $_POST['username']; } ?>" /required>
+			<p class="help-block"></p>
+		  </div>
+		  <div class="form-group">
 			<label>Password</label>
 			<input type="password" class="form-control input-sm" name="registerPassword" placeholder="Password" /required>
 			<p class="help-block"></p>
 		  </div>
-		  
 		  <div class="form-group">
 			<label>Confirm Password</label>
 			<input type="password" class="form-control input-sm" name="confirmRegisterPassword"; placeholder="Confirm Password" /required>

@@ -11,21 +11,21 @@ class User {
 	
 	/* kõik funktsioonid */
 	
-	function login($email, $password) {
+	function login($username, $password) {
 		
 		$stmt = $this->connection->prepare("
-		SELECT id, email, password, created
+		SELECT id, username, email, password, created
 		FROM user_sample
-		WHERE email = ?
+		WHERE username = ?
 		");
 		
 		echo $this->connection->error;
 		
 		//asendan küsimärgi
-		$stmt->bind_param("s", $email);
+		$stmt->bind_param("s", $username);
 		
 		//rea kohta tulba väärtus
-		$stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created);
+		$stmt->bind_result($id, $usernameFromDb, $emailFromDb, $passwordFromDb, $created);
 		
 		$stmt->execute();
 		
@@ -36,10 +36,10 @@ class User {
 			$hash = hash("sha512", $password);
 			
 			if ($hash == $passwordFromDb) {
-				echo "Kasutaja $id logis sisse";
+				//echo "Kasutaja $id logis sisse";
 				
 				$_SESSION["userId"] = $id;
-				$_SESSION["userEmail"] = $emailFromDb;
+				$_SESSION["username"] = $usernameFromDb;
 				//echo "ERROR";
 				
 				header("Location:/~gregness/php-ruhmatoo-projekt/page/data.php");
@@ -52,7 +52,7 @@ class User {
 		} else {
 			
 			//ei olnud ühtegi rida
-			$notice = "Sellise emailiga ".$email." kasutajat ei ole olemas";
+			$notice = "Kasutajanimega ".$username." kasutajat ei ole olemas";
 		}
 		
 		$stmt->close();
@@ -64,12 +64,12 @@ class User {
 	
 	
 	
-	function register($email, $password) {
+	function register($username, $email, $password) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password) VALUE (?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO user_sample (username, email, password, created) VALUE (?, ?, ?, NOW())");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ss", $email, $password);
+		$stmt->bind_param("sss", $username, $email, $password);
 		
 		if ($stmt->execute()) {
 
