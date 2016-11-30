@@ -142,7 +142,7 @@
 							
 						}
 						
-						$html = "<table class='table table-sm table-striped table-hover table-condensed table-bordered  ' style='background-color:white'>";
+						$html = "<table class='table table-striped table-hover table-condensed table-bordered  ' style='background-color:white'>";
 						$html .= "<tr>";
 							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>nr</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>id</a></th>";
@@ -192,20 +192,20 @@
 								<?php echo $wateringIntervalError;  ?>
 
 								  
-								<h3>Sisesta taime nimetus</h3>
+										<h3>Sisesta taime nimetus</h3>
 								<input  class="form-control" name="user_plant" placeholder="taime nimetus"  type="text" value="<?=$plant;?>" > 
 
-								<h3>Sisesta taime kastmisintervall</h3>
+										<h3>Sisesta taime kastmisintervall</h3>
 								<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number"> 
 
 								<input class="btn btn-default" type="submit" value="Salvesta">
-							<div id="plantSearch" class="search">
-								<h3>Taime otsing</h3>
-							<form>
-								<input type="search" name="q" value="<?=$q;?>">
-								<input class="btn btn-default" type="submit" value="Otsi">
-							</form>
-							</div>
+									<div id="plantSearch" class="search">
+											<h3>Taime otsing</h3>
+										<form>
+												<input type="search" name="q" value="<?=$q;?>">
+												<input class="btn btn-default" type="submit" value="Otsi">
+										</form>
+									</div>
 							</form>
 					</div>
 							
