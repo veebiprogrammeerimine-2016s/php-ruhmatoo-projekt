@@ -44,6 +44,7 @@ class User {
 			if($stmt->fetch()){
 				
 				$hash = hash("sha512", $password);
+				echo $hash;
 				if ($hash == $passwordFromDb) {
 					
 					echo "Kasutaja logis sisse ".$id;
@@ -53,7 +54,7 @@ class User {
 					
 					$_SESSION["message"] = "<h1>Tere tulemast!</h1>";
 					
-					header("Location: data.php");
+					header("Location: homepage.php");
 					exit();
 					
 				}else {
@@ -69,5 +70,26 @@ class User {
 			return $error;
 			
 	}
+	
+	function delete($deleted)
+    {
+
+
+        $stmt = $this->connection->prepare("UPDATE repairUsers SET deleted=NOW() WHERE id=? AND deleted IS NULL");
+
+        echo $this->connection->error;
+
+        $stmt->bind_param("s", $deleted);
+
+        if ($stmt->execute()) {
+            echo "kustutamine �nnestus";
+        } else {
+            echo "ERROR " . $stmt->error;
+        }
+
+        $stmt->close();
+
+    }
+	
 }
 ?>

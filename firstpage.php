@@ -5,8 +5,8 @@
 	
 	if (isset($_SESSION["userId"])){
 
-		//header("Location: data.php");
-		//exit();
+		header("Location: homepage.php");
+		exit();
 	}
 	
 	$signupEmailError = "";
@@ -74,7 +74,6 @@
 		
 	}
 	
-
 ?>
 
 
@@ -84,29 +83,26 @@
 		<div class="row">
 			<div class="col-sm-9">
 				<img src="Logo.png" alt="Firma logo" style="width:250px;height:200px;">
-
 			</div>
 			<div class="col-sm-3">
 				<h1>Logi sisse</h1>
 				<form method="POST">
 					<p style="color:red;"><?=$error;?></p>
-					<label>E-post</label>
 					<br>
 					<div class="form-group">
 						<input class="form-control" name="loginEmail" placeholder="Email" type="text">
 					</div>
-
-					<div class="form-group">
-						<input class="form-control" type="password" name="loginPassword" placeholder="Parool">
-					</div>
-
-					<input class="btn btn-Success btn-sm" type="submit" value="Logi sisse">
-					<br><br>
-					<a class="btn btn-Success btn-sm" href="create.php"> Registreeri</a>
-
-
+					<class="form-group">
+						<input class="form-control" type="password" name="loginPassword" placeholder="Parool">	
+						<br>
+					<input class="btn btn-success btn-sm" type="submit" value="Logi sisse">
+					<br>
+					<a class="btn btn-success btn-sm" href="create.php"> Registreeri</a>
 				</form>
 			</div>
 		</div>
-	</div>
+</div>
+	
+
+	
 <?php require ("footer.php");?>
