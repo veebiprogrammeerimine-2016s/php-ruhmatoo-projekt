@@ -16,11 +16,11 @@
    
    	if(isset($_GET["s"])){
 		
-		$q = $_GET["s"];
+		$s = $_GET["s"];
 		
 	}else{
 		
-		$q = "";
+		$s = "";
 	}
 	$sort = "id";
 	$order = "ASC";
@@ -62,7 +62,7 @@
 		}	
 	
 		$html .= "<th>
-					<a href='?q=".$s."&sort=id&order=".$idOrder."'>
+					<a href='?s=".$s."&sort=id&order=".$idOrder."'>
 						Id ".$arrow."
 					</a>
 				 </th>";
@@ -75,7 +75,7 @@
 		}
 		
 		$html .= "<th>
-					<a href='?q=".$s."&sort=name&order=".$nameOrder."'>
+					<a href='?s=".$s."&sort=name&order=".$nameOrder."'>
 						Nimi ".$arrow."
 					</a>
 				 </th>";
@@ -101,7 +101,7 @@
 		}
 		
 		$html .= "<th>
-					<a href='?q=".$s."&sort=city&order=".$cityOrder."'>
+					<a href='?s=".$s."&sort=city&order=".$cityOrder."'>
 						Linn ".$arrow."
 					</a>
 				 </th>";
