@@ -1,42 +1,42 @@
-<?php 
+<?php
 class Top{
 	private $connection;
-	//käivitataks siis kui on = new User(see jõuab siia)
-	
+	//kï¿½ivitataks siis kui on = new User(see jï¿½uab siia)
+
 	function __construct($mysqli){
 		//this viitab sellele klassile ja selle klassi muutujale
 		$this->connection=$mysqli;
 	}
-	/*KÕIK FUNKTSIOONID */
+	/*Kï¿½IK FUNKTSIOONID */
 
 	function saveTop($tvshow, $rating) {
 		$stmt = $this->connection->prepare("INSERT INTO Top10 (tvshow, rating) VALUE (?, ?)");
 		echo $this->connection->error;
 		$stmt->bind_param("si", $tvshow, $rating);
 		if ( $stmt->execute() ) {
-			echo "õnnestus <br>";
+			echo "ï¿½nnestus <br>";
 		} else {
 			echo "ERROR ".$stmt->error;
 		}
 	}
-	
-	
+
+
 	function getAllPeople($q, $sort, $order){
-		
+
 		$allowedSort = ["id", "tvshow", "rating"];
-		
-		// sort ei kuulu lubatud tulpade sisse 
+
+		// sort ei kuulu lubatud tulpade sisse
 		if(!in_array($sort, $allowedSort)){
 			$sort = "id";
 		}
-		
+
 		$orderBy = "ASC";
-		
+
 		if($order == "DESC") {
 			$orderBy = "DESC";
 		}
 		echo "Sorteerin: ".$sort." ".$orderBy." ";
-		
+
 		if($q!=""){
 			//otsin
 			echo"otsin: ".$q;
@@ -58,12 +58,12 @@ class Top{
 				ORDER BY $sort $orderBy
 				");
 		}
-		
-		
+		//var_dump($this->connection);
+		echo $this->connection->error;
 		$stmt->bind_result($id, $tvshow, $rating);
 		$stmt->execute();
 		$results=array();
-		//tsüklissisu toiimib seni kaua, mitu rida SQL lausega tuleb
+		//tsï¿½klissisu toiimib seni kaua, mitu rida SQL lausega tuleb
 		while($stmt->fetch()) {
 			$human=new StdClass();
 			$human->id=$id;
@@ -74,8 +74,8 @@ class Top{
 		}
 		return $results;
 	}
-	
-	
+
+
 	function getSinglePerosonData($edit_id){
  		$stmt = $this->connection->prepare("SELECT tvshow, rating FROM Top10
 		WHERE id=? AND deleted IS NULL");
@@ -84,15 +84,15 @@ class Top{
  		$stmt->execute();
  		//tekitan objekti
  		$p = new Stdclass();
- 		//saime ühe rea andmeid
+ 		//saime ï¿½he rea andmeid
  		if($stmt->fetch()){
  			// saan siin alles kasutada bind_result muutujaid
  			$p->tvshow = $tvshow;
  			$p->rating = $rating;
  		}else{
- 			// ei saanud rida andmeid kätte
+ 			// ei saanud rida andmeid kï¿½tte
  			// sellist id'd ei ole olemas
- 			// see rida võib olla kustutatud
+ 			// see rida vï¿½ib olla kustutatud
  			header("Location: data.php");
  			exit();
  		}
@@ -100,35 +100,37 @@ class Top{
  		$this->connection->close();
  		return $p;
  	}
-	
-	
+
+
 	function updatePerson($id, $tvshow, $rating){
  		$stmt = $this->connection->prepare("UPDATE Top10 SET tvshow=?, rating=? WHERE id=? AND deleted IS NULL");
+
  		$stmt->bind_param("sii",$tvshow, $rating, $id);
- 		// kas õnnestus salvestada
+ 		// kas Ãµnnestus salvestada
+
  		if($stmt->execute()){
- 			// õnnestus
- 			echo "salvestus õnnestus!";
+ 			// ï¿½nnestus
+ 			echo "salvestus ï¿½nnestus!";
  		}
  		$stmt->close();
  		$this->connection->close();
  	}
-	
-	
+
+
 	function deletePerson($id){
  		$stmt = $this->connection->prepare("UPDATE Top10 SET deleted=NOW()
  		WHERE id=? AND deleted IS NULL");
  		$stmt->bind_param("i",$id);
- 		// kas õnnestus salvestada
+ 		// kas ï¿½nnestus salvestada
  		if($stmt->execute()){
- 			// õnnestus
- 			echo "salvestus õnnestus!";
+ 			// ï¿½nnestus
+ 			echo "salvestus ï¿½nnestus!";
  		}
  		$stmt->close();
  		$this->connection->close();
  	}
-	
-	
-	
+
+
+
 }
 ?>
