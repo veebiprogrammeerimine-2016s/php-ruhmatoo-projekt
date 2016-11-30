@@ -31,14 +31,14 @@ class User {
 	
 	function login($email, $password) {
 	
-				 $stmt = $this->connection->prepare("SELECT ID, Email, Password FROM WasteChase_User WHERE email = ? ");
+				 $stmt = $this->connection->prepare("SELECT ID, Email, firstName, Password FROM WasteChase_User WHERE email = ? ");
 				 
 				 echo $this->connection->error;
 				 
 				 $stmt->bind_param("s", $email);
 				
 				//rea kohta tulba väärtus
-				$stmt->bind_result($id, $emailFromDb, $passwordFromDb);
+				$stmt->bind_result($id, $emailFromDb, $firstNameFromDb, $passwordFromDb);
 				
 				$stmt->execute();
 				
@@ -47,6 +47,8 @@ class User {
 					//oli olemas, rida käes
 					//kasutaja sisestas sisselogimiseks
 					$hash = hash("sha512", $password);
+						
+					
 					
 					if ($hash == $passwordFromDb) {
 						
@@ -55,6 +57,8 @@ class User {
 						
 						$_SESSION["userId"] = $id;
 						$_SESSION["userEmail"] = $emailFromDb;
+						$_SESSION["userFirstName"] = $firstNameFromDb;
+						
 						
 						header("Location: data.php");
 						

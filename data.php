@@ -34,8 +34,18 @@
 		<div class="wrapper">
 		
 			<div class="box">
-		
-				<a href="?logout=1">logi välja</a>
+				<p>
+					Tere tulemast <a><?php if(!isset($_SESSION["userFirstName"])){
+						
+						echo $_SESSION["userEmail"];
+						
+					} else {
+						echo $_SESSION["userFirstName"];
+					}
+					?></a>!
+						<a href="?logout=1">logi välja</a>
+				</p>
+
 		
 				<p>Datalehe sisu</p>
 			
