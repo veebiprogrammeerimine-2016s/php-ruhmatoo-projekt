@@ -5,8 +5,8 @@
 	require("../class/Helper.class.php");
 	$Helper= new Helper();
 	
-	require("../class/Event.class.php");
-	$Event= new Event($mysqli);
+	require("../class/Top.class.php");
+	$Top= new Top($mysqli);
 	
 	//kui ei ole sisse loginud, suunan login lehele
 	if(!isset($_SESSION["userId"])){
@@ -28,7 +28,7 @@
 		!empty($_POST["color"]) 
 	) {
 		$color = $Helper->cleanInput($_POST["color"]);
-		$Event->saveEvent($Helper->cleanInput($_POST["age"]), $color);
+		$Top->saveTop($Helper->cleanInput($_POST["age"]), $color);
 		header("Location: login.php");
 		exit();
 	}
@@ -50,7 +50,7 @@
 	}
 	
 	
-	$people=$Event->getAllPeople($q, $sort, $order);
+	$people=$Top->getAllPeople($q, $sort, $order);
 	//echo"<pre>";
 	//var_dump($people[1]);
 	//echo"</pre>";

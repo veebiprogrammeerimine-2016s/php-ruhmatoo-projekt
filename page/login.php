@@ -29,6 +29,7 @@
 	// MUUTUJAD
 	$loginEmail = "";
 
+
 	$notice ="";
 	//kas kasutaja tahab sisse logida
 	if( isset($_POST["loginEmail"]) &&
@@ -58,7 +59,7 @@
 			</div>
 			<label>Parool</label><br>
 			<div class="form-group">
-			<input class="form-control" name="Parool" type="password">
+			<input class="form-control" name="loginPassword" type="password">
 			</div>
 			<br><br>
 			<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Logi sisse">
