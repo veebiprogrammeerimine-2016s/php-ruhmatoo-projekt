@@ -1,4 +1,18 @@
 <?php
+
+    require ("functions.php");
+if (isset ($_POST["RegPlate"]) &&
+    isset ($_POST["Mark"]) &&
+    isset ($_POST["Model"]) &&
+    !empty($_POST["RegPlate"]) &&
+    !empty($_POST["Mark"]) &&
+    !empty($_POST["Model"])
+){
+
+    saveCars ($_POST["RegPlate"], $_POST["Mark"], $_POST["Model"]);
+}
+
+$car=getUserCars();
 ?>
 
 <?php require ("header.php");?>
@@ -11,16 +25,40 @@
             <h1>Lisa oma sõiduk</h1>
             <form method="POST">
                 <div class="form-group">
-                    <input class="form-control" name="licencePlate" placeholder="Registreerimismärk" type="text">
+                    <input class="form-control" name="RegPlate" placeholder="Registreerimismärk" type="text">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" name="vehicleName" placeholder="Sõiduki nimi" type="text">
+                    <input class="form-control" name="Mark" placeholder="Sõiduki mark" type="text">
                 </div>
                 <div class="form-group">
-                    <input class="form-control" name="model" placeholder="Sõiduki mudel" type="text">
+                    <input class="form-control" name="Model" placeholder="Sõiduki mudel" type="text">
                 </div>
                 <input class="btn btn-success btn-sm" type="submit" value="Sisesta">
         </div>
     </div>
 </div>
+<h2>Sinu Sõidukid</h2>
+<?php
+
+$html = "<table>";
+$html .= "<tr>";
+$html .= "<th>id</th>";
+$html .= "<th>Registreerimismärk</th>";
+$html .= "<th>Sõiduki mark</th>";
+$html .= "<th>Sõiduki mudel</th>";
+$html .= "</tr>";
+
+
+foreach ($car as $c) {
+    $html .= "<tr>";
+    $html .= "<td>".$c->id."</td>";
+    $html .= "<td>".$c->RegPlate."</td>";
+    $html .= "<td>".$c->Mark."</td>";
+    $html .= "<td>".$c->Model."</td>";
+    $html .= "</tr>";
+}
+$html .= "</table>";
+echo $html;
+
+?>
 <?php require ("footer.php");?>

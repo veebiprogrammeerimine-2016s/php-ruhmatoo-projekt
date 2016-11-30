@@ -2,6 +2,7 @@
 
 
 	require("/home/rasmaavi/config.php");
+
     $database = "if16_Aavister";
     $mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $database);
 
@@ -9,7 +10,7 @@
     //$User = new User($mysqli);
 
 	session_start();
-	
+
 
 	function cleanInput($input){
 		
