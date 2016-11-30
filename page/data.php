@@ -15,24 +15,22 @@
 	}
 
 	//kas aadressireal on logout
-	if (isset($_GET["logout"])) {
+	if(isset($_GET["logout"])) {
 		session_destroy();
 		header("Location: login.php");
 		exit();
 	}
 
 	//kontrollin kas tühi
-<<<<<<< HEAD
-		if ( isset($_POST["age"]) &&
-		isset($_POST["color"]) &&
-		!empty($_POST["age"]) &&
-		!empty($_POST["color"])
-=======
-		if ( isset($_POST["tvshow"]) && 
-		isset($_POST["rating"]) && 
+	//	if(isset($_POST["age"]) &&
+		//isset($_POST["color"]) &&
+		//!empty($_POST["age"]) &&
+		//!empty($_POST["color"])
+
+		if(isset($_POST["tvshow"]) &&
+		isset($_POST["rating"]) &&
 		!empty($_POST["tvshow"]) &&
-		!empty($_POST["rating"]) 
->>>>>>> e6cf15dd3b4cbc2bcf12f7cb78aba7798e4d3ba7
+		!empty($_POST["rating"])
 	) {
 		$rating = $Helper->cleanInput($_POST["rating"]);
 		$Top->saveTop($Helper->cleanInput($_POST["tvshow"]), $rating);
@@ -63,6 +61,8 @@
 	//echo"</pre>";
 
 ?>
+
+
 <?php require("../dataheader.php");?>
 <h1>Data</h1>
 
@@ -77,7 +77,6 @@
 </p>
 
 
-<<<<<<< HEAD
 
 <h2>Arhiiv</h2>
 
@@ -87,11 +86,10 @@
 
 </form>
 
-<?php
-=======
+
 <h2>TOP 10</h2>
-<?php 
->>>>>>> e6cf15dd3b4cbc2bcf12f7cb78aba7798e4d3ba7
+
+<?php
 	$html="<table class='table table-striped table-condensed'>";
 		$html .="<tr>";
 			$orderId="ASC";
@@ -107,15 +105,12 @@
 							ID ".$arr."
 						</a>
 					 </th>";
-<<<<<<< HEAD
 
 
 			$orderAge="ASC";
-=======
-			
-			
+
+
 			$ordertvshow="ASC";
->>>>>>> e6cf15dd3b4cbc2bcf12f7cb78aba7798e4d3ba7
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
 				$_GET["order"]=="ASC"&&
@@ -128,12 +123,10 @@
 							Seriaal
 						</a>
 					 </th>";
-<<<<<<< HEAD
 
 
 			$html .="<th>Värv</th>";
-=======
-			
+
 			$orderrating="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
@@ -147,7 +140,6 @@
 							Hinne
 						</a>
 					</th>";
->>>>>>> e6cf15dd3b4cbc2bcf12f7cb78aba7798e4d3ba7
 			$html .="<th>Muuda</th>";
 
 	$html .="</tr>";

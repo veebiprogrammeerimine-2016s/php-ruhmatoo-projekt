@@ -1,4 +1,12 @@
+<html>
+  <head></head>
+  <body style="width: 100%; height: 100%;">
+
+  <div style="top: 15%; left: 35%; position: absolute;">
+
+
 <?php
+
 
 	require("../functions.php");
 
@@ -71,3 +79,7 @@
 	</div>
 </div>
 <?php require("../loginfooter.php");?>
+
+</div>
+</body>
+</html>
