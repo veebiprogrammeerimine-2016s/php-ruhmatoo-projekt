@@ -27,7 +27,7 @@ if(isset($_GET["logout"])){
 <div class="container">
 
     <h1>Data</h1>
-    <?=$msg;?>
+    
     <p>
         Tere tulemast <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
         <a href="?logout=1">Logi vÃ¤lja</a>
