@@ -54,10 +54,18 @@ class Rides {
 
   function getUser(){
 
-    $stmt = $this->connection->prepare("SELECT user_id.cp_rides, user_id.cp_rideusers, start_location, start_time, FROM cp_rideusers
-      JOIN cp_rides ON cp_rideusers.ride_id=cp_rides.id JOIN cp_users ON cp_users.id=cp_rideusers.user_id
-       WHERE user_id.cp_rides=?");
+    $stmt = $this->connection->prepare("
+    SELECT cp_rides.user_id, cp_rides.start_location,
+    cp_rides.start_time,
+    cp_users.id
+    FROM cp_rideusers
+    JOIN cp_users ON cp_users.id=cp_rideusers.user_id
+    JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
+    WHERE cp_rides.user_id=?;
+    ");
 
+    echo $this->connection->error;
+		$stmt->bind_param("i", $_SESSION["userId"]);
     $stmt->bind_result($id, $user_id, $start_location, $start_time);
     $stmt->execute();
 
@@ -67,15 +75,15 @@ class Rides {
     //SQL lausega tuleb
     while ($stmt->fetch()) {
 
-      $rides = new StdClass();
-      $rides->id = $id;
-      $rides->user_id = $user_id;
-      $rides->start_location = $start_location;
-      $rides->start_time = $start_time;
+      $r = new StdClass();
+      $r->id = $id;
+      $r->user_id = $user_id;
+      $r->start_location = $start_location;
+      $r->start_time = $start_time;
 
       //echo $age."<br>";
       //echo $color."<br>";
-      array_push($results, $rides);
+      array_push($results, $r);
     }
 
     return $results;

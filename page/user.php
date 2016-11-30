@@ -64,7 +64,7 @@ $Rides = new Rides($mysqli);
 
   	$rides = $Rides->getUser();
 
-  ?>
+  
 ?>
 
 <?php require("../header.php"); ?>
