@@ -104,7 +104,7 @@ class Top{
 	
 	function updatePerson($id, $tvshow, $rating){
  		$stmt = $this->connection->prepare("UPDATE Top10 SET tvshow=?, rating=? WHERE id=? AND deleted IS NULL");
- 		$stmt->bind_param("isi",$tvshow, $rating, $id);
+ 		$stmt->bind_param("sii",$tvshow, $rating, $id);
  		// kas õnnestus salvestada
  		if($stmt->execute()){
  			// õnnestus
