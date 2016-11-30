@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php class Car {
     private $connection;
     function __construct($mysqli){

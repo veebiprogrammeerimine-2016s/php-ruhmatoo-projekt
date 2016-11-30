@@ -1,8 +1,6 @@
 <?php 
 	require("functions.php");
-	require("class/User.class.php");
-	$User = new User($mysqli);
-	
+
 	if (isset($_SESSION["userId"])){
 
 		header("Location: homepage.php");

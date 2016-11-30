@@ -2,8 +2,6 @@
 
     require("functions.php");
 
-    require("class/user.class.php");
-    $User = new User($mysqli);
 
     $signupEmailError = "";
     $signupPasswordError = "";
