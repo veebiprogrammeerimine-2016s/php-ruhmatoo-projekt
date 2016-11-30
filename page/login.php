@@ -1,27 +1,27 @@
-<?php 
+<?php
 
 	require("../functions.php");
-	
+
     require("../class/Helper.class.php");
 	$Helper = new Helper();
-	
+
 	require("../class/User.class.php");
 	$User = new User($mysqli);
-	
+
 	//kui on sisse loginud siis suunan data lehele
 	if(isset($_SESSION["userId"])){
 		header("Location: data.php");
 		exit();
 	}
-	
+
 	//kui tahab kasutajat luua siis suuna signup lehele
 	/*if(isset(                            )){
 		header("Location: signup.php");
 		exit();
 	}
 	*/
-	
-	
+
+
 	//var_dump($_GET);
 	//echo "<br>";
 	//var_dump($_POST);
@@ -29,22 +29,21 @@
 	// MUUTUJAD
 	$loginEmail = "";
 
-	
-	
-	
-	
+
 	$notice ="";
 	//kas kasutaja tahab sisse logida
 	if( isset($_POST["loginEmail"]) &&
 		isset($_POST["loginPassword"]) &&
 		!empty($_POST["loginEmail"]) &&
-		!empty($_POST["loginPassword"]) 
+		!empty($_POST["loginPassword"])
 	){
 		$notice = $User->login($_POST["loginEmail"], $_POST["loginPassword"]);
 	}
-	
-	
+
+
 ?>
+
+
 
 
 <?php require("../loginheader.php");?>
@@ -56,7 +55,7 @@
 		<form method="POST" >
 			<label>E-post</label><br>
 			<div class="form-group">
-					<input class="form-control" name="loginEmail" type="email">
+					<input class="form-control" name="loginEmail" type="email" value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } ?> class="textbox required email" />
 			</div>
 			<label>Parool</label><br>
 			<div class="form-group">
