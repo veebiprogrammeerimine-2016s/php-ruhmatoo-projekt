@@ -55,7 +55,11 @@
 	
     $interests = $Interest->getAllInterests();
 	
+	
+	
 ?>
+
+<?php require("header2.php");?>
 <h1><a href="data.php"> < tagasi</a> Kasutaja leht</h1>
 <?=$msg;?>
 <p>

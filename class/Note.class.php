@@ -30,7 +30,7 @@ class Note {
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"],$GLOBALS["serverUsername"],$GLOBALS["serverPassword"],$GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("INSERT INTO colorNotes (kirjeldus, asukoht, kuupäev, url)  VALUES (?,?,?,?)");
+		$stmt = $mysqli->prepare("INSERT INTO colorNotes (kirjeldus, asukoht, kuupaev, url)  VALUES (?,?,?,?)");
 		
 		$stmt->bind_param("ssss", $description, $location, $date,$url);
 		
@@ -49,7 +49,7 @@ class Note {
 	
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("SELECT id, kirjeldus, asukoht, kuupäev, url FROM colorNotes");
+		$stmt = $mysqli->prepare("SELECT id, kirjeldus, asukoht, kuupaev, url FROM colorNotes");
 		$stmt->bind_result($id, $description, $location, $date, $url);
 		$stmt->execute();
 		
@@ -138,8 +138,8 @@ class Note {
 	
 	function getSingleNoteData($edit_id){
     		
-		$stmt = $this->connection->prepare("SELECT note, color FROM colorNotes WHERE id=? AND deleted IS NULL");
-
+		$stmt = $this->connection->prepare("SELECT kirjeldus, asukoht, kuupaev, url FROM colorNotes WHERE id=? AND deleted IS NULL");
+		echo $this->connection->error;
 		$stmt->bind_param("i", $edit_id);
 		$stmt->bind_result($description, $location, $date,$url);
 		$stmt->execute();
@@ -152,9 +152,11 @@ class Note {
 			//echo $note."<br>";
 			
 			$object = new StdClass();
-			$object->id = $id;
-			$object->note = $note;
-			$object->noteColor = $color;
+			$nature->id = $id;
+			$nature->description = $description;
+			$nature->location = $location;
+			$nature->day = $date;
+			$nature->url = $url;
 			
 		}else{
 			// ei saanud rida andmeid kätte
@@ -170,9 +172,9 @@ class Note {
 	}
 
 
-	function updateNote($id, $note, $color){
+	function updateNote($id, $description, $location, $day, $url){
 				
-		$stmt = $this->connection->prepare("UPDATE colorNotes SET note=?, color=? WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("UPDATE colorNotes SET kirjeldus=?, asukoht=? kuupaev=? url=? WHERE =? AND deleted IS NULL");
 		$stmt->bind_param("ssss",$description, $location, $date,$url);
 		
 		// kas õnnestus salvestada

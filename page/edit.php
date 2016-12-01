@@ -40,10 +40,14 @@
 <h2>Muuda kirjet</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
-  	<label for="note" >Märkus</label><br>
-	<textarea  id="note" name="note"><?php echo $c->note;?></textarea><br>
-  	<label for="color" >värv</label><br>
-	<input id="color" name="color" type="color" value="<?=$c->color;?>"><br><br>
+  	<label for="kirjeldus" >Märkus</label><br>
+	<textarea  id="kirjeldus" name="kirjeldus"><?php echo $c->description;?></textarea><br>
+  	<label for="asukoht" >asukoht</label><br>
+	<textarea  id="asukoht" name="asukoht"><?php echo $c->location;?></textarea><br>
+  	<label for="kuupaev" >asukoht</label><br>
+	<textarea  id="kuupaev" name="kuupaev"><?php echo $c->date;?></textarea><br>
+  	<label for="url" >url</label><br>
+	<textarea  id="url" name="url"><?php echo $c->url;?></textarea><br>
   	
 	<input type="submit" name="update" value="Salvesta">
   </form>
