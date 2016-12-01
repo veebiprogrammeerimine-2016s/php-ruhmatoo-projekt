@@ -22,14 +22,14 @@ class Rides {
     $stmt = $this->connection->prepare("
     SELECT cp_rides.id, cp_rides.user_id, cp_rides.start_location,
     cp_rides.start_time, cp_rides.arrival_location, cp_rides.arrival_time,
-    cp_rides.free_seats, cp_rides.price, cp_rides.added, cp_users.id, cp_users.email
+    cp_rides.free_seats, cp_rides.price, cp_rides.added, cp_users.email
     FROM cp_rides
     JOIN cp_users ON cp_rides.user_id=cp_users.id
     ");
     echo $this->connection->error;
 
-    $stmt->bind_result($id, $user_id, $start_location, $start_time, 
-    $arrival_location, $arrival_time, $free_seats, $price, $added, $id, $email);
+    $stmt->bind_result($id, $user_id, $start_location, $start_time,
+    $arrival_location, $arrival_time, $free_seats, $price, $added, $email);
     $stmt->execute();
 
     //tekitan massiivi
@@ -165,5 +165,46 @@ class Rides {
     $stmt->close();
 
   }
+
+  function registertoride($id){
+
+
+    $stmt = $this->connection->prepare("SELECT id FROM cp_rideusers WHERE user_id=? AND ride_id = ?");
+    echo $this->connection->error;
+    $stmt->bind_param("ii", $_SESSION["userId"], $id );
+    $stmt->execute();
+
+    if($stmt->fetch()){
+      echo "Juba regatud";
+      return;
+    }
+
+
+
+    $stmt = $this->connection->prepare("INSERT INTO cp_rideusers (user_id, ride_id) VALUES(?,?)");
+    echo $this->connection->error;
+    $stmt->bind_param("ii", $_SESSION["userId"], $id );
+
+    if(!$stmt->execute()){
+      echo "ei onnestunud";
+      return;
+    }
+
+    $stmt->close();
+
+    $stmt = $this->connection->prepare("UPDATE cp_rides SET free_seats=free_seats-1
+      WHERE id=?");
+
+    $stmt->bind_param("i", $id);
+    // kas õnnestus salvestada
+    if($stmt->execute()){
+      // õnnestus
+      echo "salvestus õnnestus!";
+    }
+
+    $stmt->close();
+
+  }
+
 }
 ?>

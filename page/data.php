@@ -22,7 +22,7 @@ if (isset($_GET["logout"])) {
 
 }
 
-$upcomingRides = $Rides->get();
+
 
 //Check if forms are filled
 $start_location = "";
@@ -38,6 +38,14 @@ $emptyArrivalL = "*";
 $emptyArrivalT = "*";
 $emptySeats = "*";
 
+if(isset($_GET["register"])){
+
+  $Rides->registertoride($_GET["register"]);
+
+  header("Location: data.php");
+  exit();
+
+}
 
 if (isset ($_POST["start_location"])) {
     if (empty ($_POST["start_location"])) {
@@ -108,7 +116,7 @@ isset($_POST["free_seats"]) &&
     exit();
  }
 
-
+$upcomingRides = $Rides->get();
 ?>
 
 <h1>Data</h1>
@@ -172,7 +180,7 @@ isset($_POST["free_seats"]) &&
 
         //iga liikme kohta massiivis
         foreach ($upcomingRides as $r) {
-
+          
             $html .= "<tr>";
                 $html .= "<td>".$r->email."</td>";
                 $html .= "<td>".$r->start_location."</td>";
@@ -181,6 +189,7 @@ isset($_POST["free_seats"]) &&
                 $html .= "<td>".$r->arrival_time."</td>";
                 $html .= "<td>".$r->free_seats."</td>";
                 $html .= "<td>".$r->price."</td>";
+                $html .= "<td><a href='?register=".$r->id."'>nupp ".$r->id."</a></td>";
             $html .= "</tr>";
 
         }
