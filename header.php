@@ -8,5 +8,4 @@
 </head>
 
 <body style="background-color:darkgrey;">
-</body>
-</html>
+<!-- Lõpu tag-id asuvad footeris!! --!>
