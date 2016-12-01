@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>WasteChase</title>
+		<link type="text/css" rel="stylesheet" href="stylesheet.css" />
+	</head>
+	
+	<body>
+		<header>
+			<h1>WasteChase</h1>
+			<p> Chasing your Spending</p>
+		</header>
+		
+		<div class="wrapper">
+		
+			<a href="data.php" id="back">Tagasi Pealehele</a>
+			
+			<a href="?logout=1" id="logout">logi välja</a>
+		
+			<div class="word">
+				<p>Sisestamise vormi pealkiri näiteks</p>
+			</div><!--.word-->
+			
+			<div class="insert boxL">
+				
+				<form method="POST" >
+	
+					<label>Siia sisestame..</label><br>
+					<input type="text" >
+					<br><br>
+					
+					<input type="submit" value="Sisesta">
+
+				</form>
+				
+			</div><!--.insertBoxL-->
+			
+		
+		</div><!--.wrapper-->
+		<footer><p>&copy; Rait Keernik</p></footer>
+	</body>
+</html>
