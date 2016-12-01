@@ -1,4 +1,4 @@
-<?php
+<?php
 class Rides {
 
   private $connection;
@@ -9,19 +9,27 @@ class Rides {
 
     $this->connection = $mysqli;
   }
-
-
-  function get() {
-
-    $stmt = $this->connection->prepare("
+/*
       SELECT id, user_id, start_location, start_time, arrival_location,
       arrival_time, free_seats, price, added
       FROM cp_rides
+
+*/
+
+  function get() {
+
+
+    $stmt = $this->connection->prepare("
+    SELECT cp_rides.id, cp_rides.user_id, cp_rides.start_location,
+    cp_rides.start_time, cp_rides.arrival_location, cp_rides.arrival_time,
+    cp_rides.free_seats, cp_rides.price, cp_rides.added, cp_users.id, cp_users.email
+    FROM cp_rides
+    JOIN cp_users ON cp_rides.user_id=cp_users.id
     ");
     echo $this->connection->error;
 
-    $stmt->bind_result($id, $user_id, $start_location, $start_time, $arrival_location,
-    $arrival_time, $free_seats, $price, $added);
+    $stmt->bind_result($id, $user_id, $start_location, $start_time, 
+    $arrival_location, $arrival_time, $free_seats, $price, $added, $id, $email);
     $stmt->execute();
 
     //tekitan massiivi
@@ -43,6 +51,7 @@ class Rides {
       $i->free_seats = $free_seats;
       $i->price = $price;
       $i->added = $added;
+      $i->email = $email;
 
       array_push($result, $i);
     }
