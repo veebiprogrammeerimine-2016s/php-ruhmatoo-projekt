@@ -99,10 +99,13 @@ isset($_POST["free_seats"]) &&
 
 
 
+
 {
     //echo = "Saved";
     $Rides->save($start_location, $start_time, $arrival_location,
     $arrival_time, $free_seats, $price);
+    header("Location: data.php");
+    exit();
  }
 
 
@@ -144,19 +147,19 @@ isset($_POST["free_seats"]) &&
 
     <br><br>
     <label>Price</label><br>
-    <input name="price" type="number"> 
+    <input name="price" type="number">
 
     <br><br>
-    <input type="submit" value="Submit"> 
+    <input type="submit" value="Submit">
 
 </form>
 
 <h2>Find a ride</h2>
 
-<?php 
-    
+<?php
+
     $html = "<table>";
-    
+
         $html .= "<tr>";
             $html .= "<th>start_location</th>";
             $html .= "<th>start_time</th>";
@@ -165,10 +168,10 @@ isset($_POST["free_seats"]) &&
             $html .= "<th>free_seats</th>";
             $html .= "<th>price</th>";
         $html .= "</tr>";
-        
+
         //iga liikme kohta massiivis
         foreach ($upcomingRides as $r) {
-            
+
             $html .= "<tr>";
                 $html .= "<td>".$r->start_location."</td>";
                 $html .= "<td>".$r->start_time."</td>";
@@ -177,11 +180,11 @@ isset($_POST["free_seats"]) &&
                 $html .= "<td>".$r->free_seats."</td>";
                 $html .= "<td>".$r->price."</td>";
             $html .= "</tr>";
-        
+
         }
-        
+
     $html .= "</table>";
-    
+
     echo $html;
 
     ?>
