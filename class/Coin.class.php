@@ -29,12 +29,12 @@ class Coin {
 		$stmt->close();
 	}
 	
-	 //FUNKTSIOON kui kasutaja muudab punkte
-	function updateCoins($user_id, $book_id, $points){
+	 //FUNKTSIOON kui kasutaja muudab punkte või kustutab raamatu
+	function updateCoins($user_id, $book_id, $points, $status){
 		$stmt = $this->connection->prepare("UPDATE project_points 
-			SET points=? 
-			WHERE book_id=? AND seller_id=? AND status IS NULL AND buyer_id IS NULL");
-		$stmt->bind_param("iii", $points, $book_id, $user_id);
+			SET points=?, status=?
+			WHERE book_id=? AND seller_id=? AND buyer_id IS NULL");
+		$stmt->bind_param("isii", $points, $status, $book_id, $user_id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
@@ -45,6 +45,7 @@ class Coin {
 		
 		$stmt->close();
 	}
+	
 	//FUNKTSIOON , et teada saada palju münte on
 	function getCoins($id, $id){
 		$this->connection->set_charset("utf8");

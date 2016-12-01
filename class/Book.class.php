@@ -214,12 +214,12 @@ class Book {
 	}
 	
 	//raamatu andmete muutmine
-	function changeData($category, $title, $author, $year, $condition, $location, $description, $coins, $image, $book_id){
+	function changeData($category, $title, $author, $year, $condition, $location, $description, $coins, $image, $book_id, $deleted){
     	$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("UPDATE project_books 
-			SET cat=?, title=?, author=?, year=?, bookCondition=?, location=?, description=?, points=?, image=?   
+			SET cat=?, title=?, author=?, year=?, bookCondition=?, location=?, description=?, points=?, image=?, deleted=?   
 			WHERE book_id=? AND deleted IS NULL");
-		$stmt->bind_param("sssisssisi", $category, $title, $author, $year, $condition, $location, $description, $coins, $image, $book_id);
+		$stmt->bind_param("sssisssissi", $category, $title, $author, $year, $condition, $location, $description, $coins, $image, $deleted, $book_id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
