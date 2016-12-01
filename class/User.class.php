@@ -87,11 +87,11 @@ class User {
 	function getUserData($author) {
 		
 		$stmt = $this->connection->prepare("
-		select id, caption from submissions
-		where author = ?");
+		select submissions.id, caption from submissions join user_sample on submissions.author=user_sample.id
+		where username = ? ");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("i", $author);
+		$stmt->bind_param("s", $author);
 		$stmt->execute();
 		$results = array();
 		$stmt->bind_result($id, $caption);
@@ -113,23 +113,7 @@ class User {
 		
 	}
 	
-	function getUserId($username) {
-		
-		$stmt = $this->connection->prepare("
-		select id from user_sample where username = ?");
-		echo $this->connection->error;
-		
-		$stmt->bind_param("s", $userId);
-		$stmt->execute();
-		$stmt->bind_result($userId);
-		
-		
-		$stmt->close();
-		
-		return $userId;
-	
-	}
-	
+
 	
 	
 	

@@ -25,15 +25,7 @@
 		
 	}
 	$username = $_GET["username"];
-	$userId= $User->getUserId($username);
-
-	echo $userId;
-	
-	
-	
-
-	$andmed = $User->getUserData($userId);
-
+	$andmed = $User->getUserData($username);
 	$search ="";
 	
 	if (isset($_GET["searchPost"]) && !empty($_GET["searchPost"])){
