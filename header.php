@@ -8,4 +8,4 @@
 </head>
 
 <body style="background-color:darkgrey;">
-<!-- Lõpu tag-id asuvad footeris!! --!>
+<!-- Lõpu tag-id asuvad footeris!! -->
