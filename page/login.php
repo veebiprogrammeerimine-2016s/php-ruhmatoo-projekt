@@ -1,7 +1,7 @@
 <?php
 require("header.php");
-
 ?>
+<link rel="stylesheet" type="text/css" href="../styles/login.css">
 
 
 <title>Saa osa!</title>
