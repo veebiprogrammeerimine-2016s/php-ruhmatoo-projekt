@@ -185,6 +185,7 @@ class Book {
 		$stmt = $this->connection->prepare("
 			SELECT COUNT(book_id) cat, cat
 			FROM project_books
+			WHERE deleted IS NULL
 			GROUP BY cat");
 		echo $this->connection->error;	
 		$stmt->bind_result($counterDb, $catDb);
@@ -226,6 +227,24 @@ class Book {
 			//echo "salvestus õnnestus!";
 		}else {
 		 	echo "ERROR func changeData ".$stmt->error;               
+		}
+		
+		$stmt->close();		
+	}
+	
+	//keegi tahab raamatut, staatust muudetakse, "deleted" väärtuseks 'pending'
+		function changeStatus($book_id, $deleted){
+    	$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("UPDATE project_books 
+			SET deleted=?   
+			WHERE book_id=? AND deleted IS NULL");
+		$stmt->bind_param("si", $deleted, $book_id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			//echo "salvestus õnnestus!";
+		}else {
+		 	echo "ERROR func changeStatus ".$stmt->error;               
 		}
 		
 		$stmt->close();		

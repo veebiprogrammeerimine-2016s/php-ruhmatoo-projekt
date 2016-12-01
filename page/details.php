@@ -6,7 +6,7 @@ $Book = new Book($mysqli);
 
 //MUUTUJAD
 $getBook = "";
-
+$status = "";
 // kui ei ole id'd aadressireal siis suunan
 if(!isset($_GET["id"])){        //book_id
 	header("Location: books.php");
@@ -17,10 +17,12 @@ if(!isset($_GET["id"])){        //book_id
 
 $singleBook = $Book->getSingle($_GET["id"]);
 
-//kui on ?get aadressireal siis login välja
+//kui on ?get aadressireal..st keegi tahab raamatut, siis kuvatakse teade
 if(isset($_GET["id"]) && isset($_GET["get"])){
 	$getBook = "Raamat on lisatud sinu <a href='user.php'>raamaturiiulisse</a>! <br> 
 	Võta omanikuga ühendust, et kokku leppida raamatu kättesaamise osas.";
+	$status = "pending";
+	$Book->changeStatus($_GET["id"], $status);
 }
 ?>
 
