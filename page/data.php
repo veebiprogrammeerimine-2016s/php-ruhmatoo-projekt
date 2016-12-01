@@ -75,7 +75,7 @@
 	//echo "</pre>";
 
 if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
-    $target_dir = "uploads/";
+    $target_dir = "../pildid/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -154,9 +154,8 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 	<form action="upload.php" method="post" enctype="multipart/form-data">
     Vali pilt mida ülesselaadida:
     <input type="file" name="fileToUpload" id="Pilt">
-    <input type="submit" value="Upload Image" name="submit">
 <br><br>
-	<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Postita">
+	<input class="btn btn-success btn-sm hidden-xs" type="submit" name="submit" value="Postita">
 </form>
 
 
