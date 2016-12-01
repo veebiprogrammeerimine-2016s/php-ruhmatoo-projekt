@@ -46,6 +46,23 @@ class Coin {
 		$stmt->close();
 	}
 	
+	//FUNKTSIOON kui tekib 'ostja'
+	function toPending($book_id, $seller_id, $buyer_id, $status){
+		$stmt = $this->connection->prepare("UPDATE project_points 
+			SET buyer_id=?, status=?
+			WHERE book_id=? AND seller_id=?");
+		$stmt->bind_param("isii", $buyer_id, $status, $book_id, $seller_id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			//echo "punktid muudetud!";
+		}else {
+		 	echo "ERROR func toPending ".$stmt->error;               
+		}
+		
+		$stmt->close();
+	}
+	
 	//FUNKTSIOON , et teada saada palju münte on
 	function getCoins($id, $id){
 		$this->connection->set_charset("utf8");

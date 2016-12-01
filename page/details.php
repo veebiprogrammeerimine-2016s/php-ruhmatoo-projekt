@@ -4,6 +4,9 @@ require("../functions.php");
 require("../class/Book.class.php");     
 $Book = new Book($mysqli); 
 
+require("../class/Coin.class.php");     
+$Coin = new Coin($mysqli);
+
 //MUUTUJAD
 $getBook = "";
 $status = "";
@@ -23,6 +26,9 @@ if(isset($_GET["id"]) && isset($_GET["get"])){
 	Võta omanikuga ühendust, et kokku leppida raamatu kättesaamise osas.";
 	$status = "pending";
 	$Book->changeStatus($_GET["id"], $status);
+	// echo $singleBook->user;  ...pakkuja id
+	$Coin->toPending($_GET["id"], $singleBook->user , $_SESSION["userId"], $status);  //raamatu id, pakkuja id, soovija id, pending
+	
 }
 ?>
 
