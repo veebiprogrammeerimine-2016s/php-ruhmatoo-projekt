@@ -1,7 +1,7 @@
 <?php
 
 	//require("functions.php")
-	require("Header.php")
+	require("Header.php");
 	
 	$reg_nr = "";
 	$car_brand = "";
