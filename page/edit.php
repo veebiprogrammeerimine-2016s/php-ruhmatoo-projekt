@@ -46,12 +46,14 @@ if($singleBook->image == ""){
 			$singleBook->image = ("../image/raamat.jpg"); //kui raamatu pilti pole
 		}
 		
-if(isset($_POST["change"]) || isset($_GET["delete"])){
-	if(isset($_GET["delete"])){
-			$status = "deleted";          //kui aadressireal deleted, siis tehingute tabelisse 'status' väärtuseks deleted
-			$deleted = "deleted";         //kui aadressireal deleted, siis raamatute tabelisse 'deleted' väärtuseks deleted
-			$error = "";
-	} else {
+
+if(isset($_GET["delete"])){
+	$status = "deleted";          //kui aadressireal deleted, siis tehingute tabelisse 'status' väärtuseks deleted
+	$deleted = "deleted";         //kui aadressireal deleted, siis raamatute tabelisse 'deleted' väärtuseks deleted
+	$error = "";
+	$msg = "Raamat kustutatud!";
+}
+if(isset($_POST["change"])) {
 		$title = $Helper->cleanInput($_POST["title"]);
 		$title = ucfirst(strtolower($title));
 		$author = $Helper->cleanInput($_POST["author"]);
@@ -63,12 +65,12 @@ if(isset($_POST["change"]) || isset($_GET["delete"])){
 		$category = $_POST["category"];
 		$condition = $_POST["condition"];
 		$coins = $_POST["points"];
-	}
-		if(empty($title) || empty($author) || empty($location) || empty($condition)){
+			if(empty($title) || empty($author) || empty($location) || empty($condition)){
 				$msg = "Oled osad andmed ära kustutanud, tärniga tähistatud väljad peavad olema täidetud!";
 			}else{
 				$error = "";
-		}
+				$msg = "Andmed edukalt muudetud!";
+			}
 }
 if(empty($error)){
 	//FUNKTSIOON, et vajadusel teises tabelis punkte muuta
@@ -78,7 +80,7 @@ if(empty($error)){
 		
 	//FUNKTSIOON, et raamatu andmeid muuta
 	$Book->changeData($category, $title, $author, $year, $condition, $location, $description, $coins, $image, $_GET["id"], $deleted);
-	$msg = "Andmed edukalt muudetud!";
+	
 		
 }
 
