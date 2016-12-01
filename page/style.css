@@ -37,7 +37,6 @@ h4{color:white;}
 }
 
    #para1{text-align:center;
-  width:1250px;
   height:400px;
   border-style:double;
   background-color: #000000;
@@ -68,8 +67,6 @@ h4{color:white;}
 /*care.php*/	
 
  #para2{text-align:center;
-  width:1250px;
-  height:400px;
   border-style:double;
   background-color: black;
   border-top-left-radius:10px;
@@ -86,7 +83,7 @@ h4{color:white;}
 	padding:10px;
 	margin:10px;
 	border-style:double;
-	height:300px;
+	
 }
 
 input:focus {
