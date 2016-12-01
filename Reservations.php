@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 	//require("functions.php")
 
 	require("Header.php");
