@@ -4,9 +4,10 @@
 	
     require("../class/Helper.class.php");
 	$Helper = new Helper();
-	
+		require("functions.php");
 	require("../class/Note.class.php");
 	$Note = new Note($mysqli);
+	$Nature = new Note($mysqli);
 	
 	//ei ole sisseloginud, suunan login lehele
 	if(!isset ($_SESSION["userId"])) {
@@ -36,6 +37,19 @@
 		$Note->saveNote($note, $color);
 		
 	}
+	if(isset($_POST["description"]) && 
+	isset($_POST["location"]) &&
+	isset($_POST["date"]) &&
+	isset($_POST["url"]) &&
+	!empty($_POST["description"]) &&
+	!empty($_POST["location"]) &&
+	!empty($_POST["date"])&& 
+	!empty($_POST["url"]))	{
+		tabelisse2 ($_POST["description"], $_POST["location"], $_POST["date"],$_POST["url"]);
+	
+	}
+	
+	
 	
 	
 	$q= "";
@@ -54,7 +68,7 @@
 	
 	
 	$notes = $Note->getAllNotes($q, $sort, $order);
-	
+	$nature2= getAllNature();
 	
 	//echo "<pre>";
 	//var_dump($notes);
@@ -137,6 +151,7 @@
 				
 				$orderNote = "DESC";
 			}
+	
 		
 			$html .= "<th>
 			
@@ -181,6 +196,29 @@
 	echo $html;
 
 ?>
+<p class="info">
+<?php 
+	foreach($nature2 as $n) {
+			$style = "width:100px; 
+				  float:right;
+				  min-height:100px; 
+				  border: 1px solid gray;";
+		echo 
+	
+		"<h2>$n->description</h2>
+				<br><br>
+				
+				<img src=' ".$n->url." '>
+				
+				
+				<br><br>
+				$n->day
+				<br><br>
+				$n->location
+				$html .= <a href='edit.php?id=".$note->id."'><span class='glyphicon-pencil>'<span> edit.php</a>";
+	}
+	?>
+</p>
 <?php require("../booter.php");?>
 
 

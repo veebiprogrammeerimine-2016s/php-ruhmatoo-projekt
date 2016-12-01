@@ -25,6 +25,59 @@ class Note {
 	}
 	
 	
+	
+		function tabelisse2 ($description, $location, $date, $url) {
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"],$GLOBALS["serverUsername"],$GLOBALS["serverPassword"],$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("INSERT INTO colorNotes (kirjeldus, asukoht, kuupäev, url)  VALUES (?,?,?,?)");
+		
+		$stmt->bind_param("ssss", $description, $location, $date,$url);
+		
+		if ($stmt->execute()) {
+			
+			echo "Edukalt postitatud! <br>";
+		} else {
+			echo "ERROR ".$stmt->error;
+		}
+	}
+	
+
+
+	
+	function getAllNature() {
+	
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("SELECT id, kirjeldus, asukoht, kuupäev, url FROM colorNotes");
+		$stmt->bind_result($id, $description, $location, $date, $url);
+		$stmt->execute();
+		
+		$results = array();
+		
+		//tsükli sisu tehakse nii mitu korda, mitu rida SQL lausega tuleb
+		while($stmt->fetch()) {
+			
+			$nature = new StdClass();
+			$nature->id = $id;
+			$nature->description = $description;
+			$nature->location = $location;
+			$nature->day = $date;
+			$nature->url = $url;
+	
+			
+			//echo $color."<br>";
+			array_push($results, $nature);
+			
+		}
+		
+		return $results;
+		
+	}
+	
+	
+	
+	
 	function getAllNotes($q, $sort, $order) {
 		$allowedSort=["id","note","color"];
 		if(!in_array($sort, $allowedSort)){
@@ -85,21 +138,23 @@ class Note {
 	
 	function getSingleNoteData($edit_id){
     		
-		$stmt = $this->connection->prepare("SELECT note, color FROM colorNotes2 WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT note, color FROM colorNotes WHERE id=? AND deleted IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($note, $color);
+		$stmt->bind_result($description, $location, $date,$url);
 		$stmt->execute();
 		
 		//tekitan objekti
 		$n = new Stdclass();
 		
 		//saime ühe rea andmeid
-		if($stmt->fetch()){
-			// saan siin alles kasutada bind_result muutujaid
-			$n->note = $note;
-			$n->color = $color;
+		if($stmt->fetch()) {
+			//echo $note."<br>";
 			
+			$object = new StdClass();
+			$object->id = $id;
+			$object->note = $note;
+			$object->noteColor = $color;
 			
 		}else{
 			// ei saanud rida andmeid kätte
@@ -117,8 +172,8 @@ class Note {
 
 	function updateNote($id, $note, $color){
 				
-		$stmt = $this->connection->prepare("UPDATE colorNotes2 SET note=?, color=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("ssi",$note, $color, $id);
+		$stmt = $this->connection->prepare("UPDATE colorNotes SET note=?, color=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("ssss",$description, $location, $date,$url);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
@@ -133,7 +188,7 @@ class Note {
 	function deleteNote($id){
 		
 		$stmt = $this->connection->prepare("
-			UPDATE colorNotes2 
+			UPDATE colorNotes
 			SET deleted=NOW() 
 			WHERE id=? AND deleted IS NULL
 		");
