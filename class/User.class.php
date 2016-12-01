@@ -91,7 +91,7 @@ class User {
 		where author = ?");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("s", $author);
+		$stmt->bind_param("i", $author);
 		$stmt->execute();
 		$results = array();
 		$stmt->bind_result($id, $caption);
@@ -111,6 +111,23 @@ class User {
 		
 		return $results;
 		
+	}
+	
+	function getUserId($username) {
+		
+		$stmt = $this->connection->prepare("
+		select id from user_sample where username = ?");
+		echo $this->connection->error;
+		
+		$stmt->bind_param("s", $userId);
+		$stmt->execute();
+		$stmt->bind_result($userId);
+		
+		
+		$stmt->close();
+		
+		return $results;
+	
 	}
 	
 	

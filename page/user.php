@@ -24,9 +24,14 @@
 		exit();
 		
 	}
+	$username = $_GET["username"];
+	$userId= $User->getUserId($username);
+
+	echo $userId;
 	
-	$userid = $_GET["id"];
-	$andmed = $User->getUserData($userid);
+	
+	
+	$andmed = $User->getUserData($userId);
 	
 	//pre echob koodina
 	//echo "<pre>";

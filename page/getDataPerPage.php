@@ -25,7 +25,7 @@
 	$position = (($page_number-1) * $item_per_page);
 
 	//fetch records using page position and item per page. 
-	$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, email 
+	$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
 	FROM submissions 
 	join user_sample on submissions.author=user_sample.id
 	ORDER BY id DESC LIMIT ?, ?");
