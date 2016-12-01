@@ -31,7 +31,21 @@
 	
 	
 	
+
 	$andmed = $User->getUserData($userId);
+
+	$search ="";
+	
+	if (isset($_GET["searchPost"]) && !empty($_GET["searchPost"])){
+		
+		//header("Location: data.php?search=".$_GET["searchPost"]);
+		//echo "test";
+		$search= $_GET["searchPost"];
+		
+	}
+	
+
+
 	
 	//pre echob koodina
 	//echo "<pre>";

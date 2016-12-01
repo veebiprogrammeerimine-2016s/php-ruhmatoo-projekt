@@ -23,16 +23,45 @@
 
 	//get current starting point of records
 	$position = (($page_number-1) * $item_per_page);
+	
+	$search= "";
+	if (isset($_GET["search"]) && !empty($_GET["search"])){
+		
+		//header("Location: data.php?search=".$_GET["searchPost"]);
+		//echo "test";
+		$search= $_GET["search"];
+		
+	}
+	
+	//var_dump ($_GET);
+
+	if ($search!=""){
+		
+		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
+		FROM submissions 
+		join user_sample on submissions.author=user_sample.id
+		WHERE caption LIKE ? OR username LIKE ?
+		ORDER BY id DESC LIMIT ?, ?");
+		
+		$search ="%".$search."%";
+		
+		$results->bind_param("ssii", $search ,$search ,$position, $item_per_page);
+		
+	}else{
+		
+		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
+		FROM submissions 
+		join user_sample on submissions.author=user_sample.id
+		ORDER BY id DESC LIMIT ?, ?");
+		$results->bind_param("ii", $position, $item_per_page); 
+
+	}
 
 	//fetch records using page position and item per page. 
-	$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
-	FROM submissions 
-	join user_sample on submissions.author=user_sample.id
-	ORDER BY id DESC LIMIT ?, ?");
+
 
 	//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
 	//for more info https://www.sanwebe.com/2013/03/basic-php-mysqli-usage
-	$results->bind_param("dd", $position, $item_per_page); 
 	$results->execute(); //Execute prepared Query
 	$results->bind_result($id, $name, $message, $author); //bind variables to prepared statement
 	
@@ -48,3 +77,6 @@
 		echo '</div>';
 	}
 ?>
+
+
+

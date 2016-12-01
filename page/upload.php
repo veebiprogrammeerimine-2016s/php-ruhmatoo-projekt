@@ -16,6 +16,16 @@
 		exit();
 	}
 	
+	$search ="";
+	
+	if (isset($_GET["searchPost"]) && !empty($_GET["searchPost"])){
+		
+		//header("Location: data.php?search=".$_GET["searchPost"]);
+		//echo "test";
+		$search= $_GET["searchPost"];
+		
+	}
+	
 	//kas aadressireal on logout
 	if (isset($_GET["logout"])) {
 		

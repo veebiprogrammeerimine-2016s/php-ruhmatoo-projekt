@@ -126,7 +126,7 @@ class User {
 		
 		$stmt->close();
 		
-		return $results;
+		return $userId;
 	
 	}
 	
