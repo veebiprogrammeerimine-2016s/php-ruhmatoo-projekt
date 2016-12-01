@@ -29,8 +29,8 @@
 			isset($_POST["notebook"]) &&
 			isset($_POST["serialnumber"]) &&
 			isset($_POST["priority"]) &&
-			isset($_POST["note"]) &&
-			isset($_POST["color"]) &&
+			//isset($_POST["note"]) &&
+			//isset($_POST["color"]) &&
 			isset($_POST["comment"]) &&
 			
 			!empty($_POST["firstname"]) &&
@@ -38,8 +38,8 @@
 			!empty($_POST["notebook"]) &&
 			!empty($_POST["serialnumber"]) &&
 			!empty($_POST["priority"]) &&
-			!empty($_POST["note"]) &&
-			!empty($_POST["color"]) &&
+			//!empty($_POST["note"]) &&
+			//!empty($_POST["color"]) &&
 			!empty($_POST["comment"])  
 	
 	) {
@@ -48,11 +48,10 @@
 		$notebook = $Helper->cleanInput($_POST["notebook"]);
 		$serialnumber = $Helper->cleanInput($_POST["serialnumber"]);
 		$priority = $Helper->cleanInput($_POST["priority"]);
-		$note = $Helper->cleanInput($_POST["note"]);
-		$color = $Helper->cleanInput($_POST["color"]);
+		//$note = $Helper->cleanInput($_POST["note"]);
+		//$color = $Helper->cleanInput($_POST["color"]);
 		$comment = $Helper->cleanInput($_POST["comment"]);
-		
-		$Note->saveNote($firstname,$lastname,$notebook,$serialnumber,$priority,$note, $color,$comment);
+		$Note->saveNote($firstname,$lastname,$notebook,$serialnumber,$priority,$comment);
 		
 		}
 		
@@ -192,7 +191,7 @@
 			
 			<br><br>
 			
-			<label>Notes</label><br>
+			<!--<label>Notes</label><br>
 			<div class="form-group">
 			<input class="form-control" name="note" type="text">
 			
@@ -201,7 +200,7 @@
 			
 			<label>Color</label><br>
 			<input name="color" type="color">
-						
+			-->			
 			<br><br>
 			
 			<h3>Problem description:</h3>
@@ -242,7 +241,7 @@
 
 <?php 
 	//iga liikme kohta massiivis
-	foreach ($notes as $n) {
+	/*foreach ($notes as $n) {
 		
 		$style = "width:100px; 
 				  float:left;
@@ -251,7 +250,7 @@
 				  background-color: ".$n->noteColor.";";
 		
 		echo "<p style='  ".$style."  '>".$n->note."</p>";
-	}
+	}*/
 ?>
 
 
@@ -328,8 +327,8 @@
 			$html .= "<td>".$note->notebook."</td>";
 			$html .= "<td>".$note->serialnumber."</td>";
 			$html .= "<td>".$note->priority."</td>";
-			$html .= "<td>".$note->note."</td>";
-			$html .= "<td>".$note->noteColor."</td>";
+			//$html .= "<td>".$note->note."</td>";
+			//$html .= "<td>".$note->noteColor."</td>";
 			$html .= "<td>".$note->comment."</td>";
 			$html .= "<td><a href='edit.php?id=".$note->id."'> <span class='glyphicon glyphicon-pencil'><span></a></td>";
 		$html .= "</tr>";

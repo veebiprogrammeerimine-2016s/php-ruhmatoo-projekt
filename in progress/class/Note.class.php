@@ -9,12 +9,12 @@ class Note {
 	
 	/* KLASSI FUNKTSIOONID */
     
-    function saveNote($firstname,$lastname,$notebook,$serialnumber,$priority,$note,$color,$comment) {
+    function saveNote($firstname,$lastname,$notebook,$serialnumber,$priority,$comment) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO notebookRepair (firstname,lastname,notebook,serialnumber,priority,note,color,comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO notebookRepair (firstname,lastname,notebook,serialnumber,priority,comment) VALUES (?, ?, ?, ?, ?, ?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssssssss", $firstname,$lastname,$notebook,$serialnumber,$priority,$note,$color,$comment);
+		$stmt->bind_param("ssssss", $firstname,$lastname,$notebook,$serialnumber,$priority,$comment);
 
 		if ( $stmt->execute() ) {
 			echo "salvestamine õnnestus";	
@@ -28,7 +28,7 @@ class Note {
 	function getAllNotes($q, $sort, $order) {
 		
 		//lubatud tulbad
-		$allowedSort = ["id","firstname","lastname","notebook","serialnumber","priority","note", "color","comment"];
+		$allowedSort = ["id", "firstname","lastname","notebook","serialnumber", "color", "comment"];
 		
 		if(!in_array($sort, $allowedSort)){
 			//ei olnud lubatud tulpade sees
@@ -41,34 +41,34 @@ class Note {
 			$orderBy = "DESC";
 		}
 		
-		echo "sorteerin ".$sort." ".$orderBy." ";
+		//echo "sorteerin ".$sort." ".$orderBy." ";
 		
 		//otsime
 		if($q != "") {
 			
-			echo "Otsin: ".$q;
+			echo "Searching... ".$q;
 			
 			$stmt = $this->connection->prepare("
-				SELECT id, firstname, lastname, notebook, serialnumber, priority, note, color, comment
+				SELECT id, firstname, lastname, notebook, serialnumber, priority, comment
 				FROM notebookRepair
 				WHERE deleted IS NULL
-				AND (note LIKE ? OR color LIKE ?)
+				AND (firstname LIKE ? OR lastname LIKE ? OR notebook LIKE ? OR serialnumber LIKE ? OR priority LIKE ? OR comment LIKE ?)
 				ORDER BY $sort $orderBy
 			");
 			$searchWord = "%".$q."%";
-			$stmt->bind_param("ssssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord , $searchWord, $searchWord, $searchWord);
+			$stmt->bind_param("ssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 		
 		}else{
 			//ei otsi
 			$stmt = $this->connection->prepare("
-				SELECT id, firstname, lastname, notebook, serialnumber, priority, note, color, comment
+				SELECT id, firstname, lastname, notebook, serialnumber, priority, comment
 				FROM notebookRepair
 				WHERE deleted IS NULL
 				ORDER BY $sort $orderBy
 			");
 		}
 		
-		$stmt->bind_result($id, $firstname, $lastname, $notebook, $serialnumber, $priority, $note, $color, $comment);
+		$stmt->bind_result($id, $firstname, $lastname, $notebook, $serialnumber, $priority, $comment);
 		$stmt->execute();
 		
 		$result = array();
@@ -85,9 +85,10 @@ class Note {
 			$object->notebook = $notebook;
 			$object->serialnumber = $serialnumber;
 			$object->priority = $priority;
-			$object->note = $note;
-			$object->noteColor = $color;
 			$object->comment = $comment;
+			//$object->note = $note;
+			//$object->noteColor = $color;
+			
 			
 			
 			
@@ -101,10 +102,10 @@ class Note {
 	
 	function getSingleNoteData($edit_id){
     		
-		$stmt = $this->connection->prepare("SELECT note, color FROM notebookRepair WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT firstname, lastname, notebook, serialnumber, priority, comment FROM notebookRepair WHERE id=? AND deleted IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($note, $color);
+		$stmt->bind_result($firstname, $lastname, $notebook, $serialnumber, $priority, $comment);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -113,9 +114,12 @@ class Note {
 		//saime ühe rea andmeid
 		if($stmt->fetch()){
 			// saan siin alles kasutada bind_result muutujaid
-			$n->note = $note;
-			$n->color = $color;
-			
+			$n->firstname = $firstname;
+			$n->lastname = $lastname;
+			$n->notebook = $notebook;
+			$n->serialnumber = $lastname;
+			$n->priority= $priority;
+			$n->comment= $comment;
 			
 		}else{
 			// ei saanud rida andmeid kätte
@@ -131,7 +135,7 @@ class Note {
 	}
 
 
-	function updateNote($id, $note, $color){
+	/*function updateNote($id, $note, $color){
 				
 		$stmt = $this->connection->prepare("UPDATE notebookRepair SET note=?, color=? WHERE id=? AND deleted IS NULL");
 		$stmt->bind_param("ssi",$note, $color, $id);
@@ -145,6 +149,7 @@ class Note {
 		$stmt->close();
 		
 	}
+	*/
 	
 	function deleteNote($id){
 		
