@@ -65,16 +65,19 @@
 			<div class="col-sm-10">
 			<h1>Andmed</h1><br>
 			</div>
-				<label for="reg_nr" class="col-sm-4 col-form-label">Registreerimisnumber</label>
+				<label class="form-check-label">
+				<label for="reg_nr" class="col-sm-10 col-form-label">Registreerimisnumber</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="reg_nr">
 				</div>
+				</label>
+				
 			</div>
 		<fieldset class="form-group row">
 			<legend class="col-form-legend col-sm-4">Sõiduki tüüp</legend>
 				<div class="col-sm-10">
 					<div class="form-check">
-				<label class="form-check-label">
+			<label class="form-check-label">
             <input class="form-check-input" type="radio" name="veichle_types" id="veichle_type1" value="Sõiduauto" checked>
             Sõiduauto
           </label>
@@ -92,26 +95,30 @@
           </label>
 							
 		  <br><br>
-				
+			
+			<label class="form-check-label">
 			<div class="form-group row">
 				<label for="car_brand" class="col-sm-4 col-form-label">Mark</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" name="car_brand" id="car_brand">
 					</div>
+					</label>
 				</div>
-				
+				<label class="form-check-label">
 				<div class="form-group row">
 				<label for="car_model" class="col-sm-4 col-form-label">Mudel</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" name="car_model" id="car_model">
 				</div>
+				</label>
 			</div>
-		
+		<label class="form-check-label">
 		<div class="form-group row">
 				<label for="telephone" class="col-sm-4 col-form-label">Telefon</label>
 				<div class="col-sm-10">
 					<input type="tel" class="form-control" name="telephone" id="telephone">
 				</div>
+				</label>
 			</div>
 
 			
