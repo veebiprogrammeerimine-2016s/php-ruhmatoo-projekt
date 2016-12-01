@@ -14,14 +14,16 @@ class User {
 	
 	function signUp ($email, $password,$userFirstName,$userLastName) {
 	
-		$stmt = $this->connection->prepare("INSERT INTO f_user (email, password,first_name, last_name) VALUES (?, ?,?,?)");
+		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password,first_name, last_name) VALUES (?, ?,?,?)");
 	
 		echo $this->connection->error;
 		
 		$stmt->bind_param("ssss", $email, $password,$userFirstName, $userLastName);
 		
 		if($stmt->execute()) {
-			echo "salvestamine toimis!:)";
+			echo '<script language="javascript">';
+			echo 'alert("message successfully sent")';
+			echo '</script>';
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
@@ -36,7 +38,7 @@ class User {
 		echo $email;
 		$stmt = $this->connection->prepare("
 		SELECT id, email, password, created ,first_name,last_name
-		FROM f_user
+		FROM user_sample
 		WHERE email = ?");
 	
 		echo $this->connection->error;
