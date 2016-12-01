@@ -110,7 +110,7 @@ class Rides {
     SELECT cp_rides.id, cp_rides.start_location,
     cp_rides.start_time, cp_rides.arrival_location,
     cp_rides.arrival_time, cp_rides.free_seats,
-    cp_users.name, cp_users.email
+    cp_rides.user_id, cp_users.email
     FROM cp_rideusers
     JOIN cp_users ON cp_users.id=cp_rideusers.user_id
     JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
@@ -120,7 +120,7 @@ class Rides {
     echo $this->connection->error;
 		$stmt->bind_param("i", $_SESSION["userId"]);
     $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
-    $arrival_time, $free_seats, $guest_name, $guest_email);
+    $arrival_time, $free_seats, $driver_name, $driver_email);
     $stmt->execute();
 
     //tekitan objekti
@@ -136,8 +136,8 @@ class Rides {
       $r->arrival_location = $arrival_location;
       $r->arrival_time = $arrival_time;
       $r->free_seats= $free_seats;
-      $r->guest_name= $guest_name;
-      $r->guest_email = $guest_email;
+      $r->driver_name= $driver_name;
+      $r->driver_email = $driver_email;
 
       //echo $age."<br>";
       //echo $color."<br>";
@@ -146,12 +146,6 @@ class Rides {
 
     return $results;
   }
-
-
-
-
-
-
 
 
   function save ($start_location, $start_time, $arrival_location,
@@ -229,8 +223,6 @@ class Rides {
       echo "Oled juba registreerinud";
       return;
     }
-
-
 
     $stmt = $this->connection->prepare("INSERT INTO cp_rideusers (user_id, ride_id) VALUES(?,?)");
     echo $this->connection->error;

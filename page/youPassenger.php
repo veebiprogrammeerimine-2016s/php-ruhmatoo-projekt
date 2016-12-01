@@ -223,7 +223,7 @@ $Rides = new Rides($mysqli);
 										$html .= "<th>
 										<a href='?q=".$r."&sort=Driver_email&order=".$orderDriver_email."'>
 
-									 Passenger email ".$arr."
+									 Driver email ".$arr."
 										</a>
 
 										</th>";
@@ -240,8 +240,8 @@ $Rides = new Rides($mysqli);
 					$html .= "<td>".$r->arrival_location."</td>";
 					$html .= "<td>".$r->arrival_time."</td>";
 					$html .= "<td>".$r->free_seats."</td>";
-					$html .= "<td>".$r->guest_name."</td>";
-					$html .= "<td>".$r->guest_email."</td>";
+					$html .= "<td>".$r->driver_name."</td>";
+					$html .= "<td>".$r->driver_email."</td>";
 
           $html .= "<td>
 
