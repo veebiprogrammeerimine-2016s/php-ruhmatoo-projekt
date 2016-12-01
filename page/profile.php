@@ -10,7 +10,7 @@ $aboutUser = "Tere! Olen lihtsalt suvaline tegelane. Elan vanas majas ja minu ju
 <div class="row">
 <div class="c-3">
 <h2>Profiil</h2>
-<img src="" style="max-width: 90%;">
+<img src="" style="width: 90%; border: 1px solid green;">
 
 <p><b>Nimi:</b> <?php echo "NULL";?></p>
 </div>

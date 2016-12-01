@@ -1,5 +1,5 @@
 <?php
-require("header.php");
+//require("header.php");
 ?>
 <link rel="stylesheet" type="text/css" href="../styles/login.css">
 

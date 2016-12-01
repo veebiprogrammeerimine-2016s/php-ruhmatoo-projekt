@@ -1,20 +1,21 @@
 <?php
 require("header.php");
 ?>
-<div class="header"><?php echo $appName;?>
+<div class="row">
+<div class="header c-6"><?php echo $appName;?></div>
+<div class="header c-6">
 <div style="display: inline-block; margin-left: 1em; float:right; height: 2em; vertical-align: middle;">
 <form style="float:left; font-size: 0.5em; margin: 0;">
 <input type="text" name="search" placeholder="Otsi...">
-<input type="submit"  value="Otsi">
-
+<input type="submit" class="button"  value="Otsi">
 </form>
-<a class="button" href="login.php" style="float: right; font-size: 20px;" >Logi sisse</a>
+<a class="button" href="login.php" style=" font-size: 20px;" >Logi sisse</a>
 </div>
 </div>
 
 <div class="row">
 
-<div class="c-3" style="border: 2px solid gray; border-top: 0; border-left: 0;">
+<div class="c-3" style="border: 2px solid gray; border-top: 0; border-left: 0; margin-bottom: 0;">
 <h3 style="margin-top: 0; margin-bottom: 0;">Sorteeri</h3>
 <form>
 <h6>Linnaosa</h6>
