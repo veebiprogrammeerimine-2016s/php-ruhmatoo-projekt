@@ -18,7 +18,7 @@ class User {
 				 // s - string
 				 // i - int
 				 // d - double
-				 $stmt->bind_param("ssss", $email, $password, $firstName, $surname, $gender);
+				 $stmt->bind_param("sssss", $email, $password, $firstName, $surname, $gender);
 				 //t'ida käsku
 				 if( $stmt->execute()){
 					 echo "õnnestus";

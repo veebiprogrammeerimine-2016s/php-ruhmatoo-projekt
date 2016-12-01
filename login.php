@@ -112,7 +112,7 @@
 		
 		$password = hash("sha512", $_POST["signupPassword"]);
 		
-		$user->signup($signupEmail, $password, $firstName, $surname, $gender);
+		$User->signup($signupEmail, $password, $firstName, $surname, $gender);
 		
 		$signupEmail = "";
 		$firstName = "";
