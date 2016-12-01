@@ -197,27 +197,27 @@
 
 ?>
 <p class="info">
+
 <?php 
-	foreach($nature2 as $n) {
-			$style = "width:100px; 
-				  float:right;
-				  min-height:100px; 
-				  border: 1px solid gray;";
-		echo 
-	
-		"<h2>$n->description</h2>
+	foreach($nature2 as $n) { ?>
+		<div class="row">
+		
+			<div class="col-md-6 col-md-offset-3">
+		
+				<h2><?=$n->description;?></h2>
 				<br><br>
 				
-				<img src=' ".$n->url." '>
+				<img width='200' src="<?=$n->url;?>">
 				
 				
 				<br><br>
-				$n->day
+				<?=$n->day;?>
 				<br><br>
-				$n->location
-				$html .= <a href='edit.php?id=".$note->id."'><span class='glyphicon-pencil>'<span> edit.php</a>";
-	}
-	?>
+				<?=$n->location;?>
+				<a href='edit.php?id=<?=$note->id;?>'><span class='glyphicon-pencil>'<span> edit.php</a>
+			</div>
+		</div>
+	<?php } ?>
 </p>
 <?php require("../booter.php");?>
 
