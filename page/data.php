@@ -19,12 +19,29 @@
 		
 	}
 	//header("Location: ../data.php");
+	
+	$search ="";
+	
+	if (isset($_GET["searchPost"]) && !empty($_GET["searchPost"])){
+		
+		//header("Location: data.php?search=".$_GET["searchPost"]);
+		//echo "test";
+		$search= $_GET["searchPost"];
+		
+	}
 
 ?>
 <?php require("../header.php"); ?>
 
 <script type="text/javascript" src="js/jquery.infinitescroll.min.js"></script>
 <script type="text/javascript">
+<?php
+	if($search != ""){
+		echo "var search = '&search=".$search."';";
+	}else{
+		echo "var search = '';";
+	}
+?>
 $(function() {
 	//alert("siin");
 	var track_page = 1; //track user scroll as page number, right now page number is 1
@@ -33,6 +50,8 @@ $(function() {
 	var window_height = window.innerHeight;
 	load_contents(track_page); //initial content load
 	$('.load-more').hide();
+	
+	
 	
 	$('.load-more').on("click", function(){
 		$("#results").empty();
@@ -64,7 +83,7 @@ $(function() {
 		//alert(track_page);
 		loading = true;  //set loading flag on
 		$('.loading-info').show(); //show loading animation 
-		$.get( 'getDataPerPage.php?page='+track_page, function(data){
+		$.get( 'getDataPerPage.php?page='+track_page + search, function(data){
 			 //set loading flag off once the content is loaded
 			if(data.trim().length == 0){
 				//notify user if nothing to load

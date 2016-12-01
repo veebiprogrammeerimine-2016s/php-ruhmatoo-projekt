@@ -63,9 +63,10 @@
 	
 		<p class="navbar-text navbar-right">Welcome back, <a href="user.php?id=<?=$_SESSION["userId"];?>"> <?=$_SESSION["username"];  ?>  </a>  <a class="btn btn-xs btn-primary" href="?logout=1" style="text-decoration:none; color:white;" >  Log Out</a></p>
 		
-		<form class="navbar-form navbar-middle" method="POST">
+		<form class="navbar-form navbar-middle" method="GET">
 			<div class="form-group">
-				<input name="searchPost" type="text" class="form-control input-sm" placeholder="Looking for something?">  <button type="submit" class="btn btn-sm btn-primary"><a href="data.php" style="text-decoration:none; color:white;" >Search</a></button>
+				<input name="searchPost" type="text" class="form-control input-sm" placeholder="Looking for something?" value="<?=$search;?>">  
+				<button type="submit" class="btn btn-sm btn-primary"><a style="text-decoration:none; color:white;" >Search</a></button>
 			</div>
 		</form>
 
