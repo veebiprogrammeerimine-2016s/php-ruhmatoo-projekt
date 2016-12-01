@@ -140,14 +140,14 @@ class Book {
 	function getSingle($id){
 		$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("
-			SELECT cat, title, author, year, bookCondition, location, description, points, image 
+			SELECT user_id, cat, title, author, year, bookCondition, location, description, points, image 
 			FROM project_books
 			WHERE book_id=?
 			AND deleted IS NULL");
 		
 
 		$stmt->bind_param("i", $id);
-		$stmt->bind_result($categoryDb, $titleDb, $authorDb, $yearDb, $conditionDb, $locationDb, $descriptionDb, $pointsDb, $imageDb);
+		$stmt->bind_result($userDb, $categoryDb, $titleDb, $authorDb, $yearDb, $conditionDb, $locationDb, $descriptionDb, $pointsDb, $imageDb);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -156,7 +156,7 @@ class Book {
 		//saime ühe rea andmeid
 		if($stmt->fetch()){
 			// saan siin alles kasutada bind_result muutujaid
-			
+			$book->user = $userDb;
 			$book->category = $categoryDb;
 			$book->title = $titleDb;
 			$book->author = $authorDb;
@@ -179,7 +179,7 @@ class Book {
 		return $book;
 		
 	}
-	
+	//kõik kategooriad + raamatute arv igas kategoorias
 	function getCategories(){
 		$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("
@@ -213,5 +213,22 @@ class Book {
 		return $result;	
 	}
 	
+	//raamatu andmete muutmine
+	function changeData($category, $title, $author, $year, $condition, $location, $description, $coins, $image, $book_id){
+    	$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("UPDATE project_books 
+			SET cat=?, title=?, author=?, year=?, bookCondition=?, location=?, description=?, points=?, image=?   
+			WHERE book_id=? AND deleted IS NULL");
+		$stmt->bind_param("sssisssisi", $category, $title, $author, $year, $condition, $location, $description, $coins, $image, $book_id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			//echo "salvestus õnnestus!";
+		}else {
+		 	echo "ERROR func changeData ".$stmt->error;               
+		}
+		
+		$stmt->close();		
+	}
 }
 ?>

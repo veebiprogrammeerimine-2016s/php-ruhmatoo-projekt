@@ -13,7 +13,7 @@ class Coin {
 		$this->connection->set_charset("utf8");
 		
 		//kannan tehingut puudutavad andmed ühest tabelist (books) teise (points)
-		$stmt = $this->connection->prepare("INSERT INTO project_points (book_id, user_id_give, points, created)
+		$stmt = $this->connection->prepare("INSERT INTO project_points (book_id, seller_id, points, created)
 		SELECT book_id, user_id, points, created
 		FROM project_books
 		WHERE book_id = ?");
@@ -23,12 +23,29 @@ class Coin {
 		if($stmt->execute()) {
 			//echo "teise tabelisse kantud";
 		} else {
-		 	echo "ERROR ".$stmt->error;               
+		 	echo "ERROR func userTransaction ".$stmt->error;               
 		}
 		
 		$stmt->close();
 	}
 	
+	 //FUNKTSIOON kui kasutaja muudab punkte
+	function updateCoins($user_id, $book_id, $points){
+		$stmt = $this->connection->prepare("UPDATE project_points 
+			SET points=? 
+			WHERE book_id=? AND seller_id=? AND status IS NULL AND buyer_id IS NULL");
+		$stmt->bind_param("iii", $points, $book_id, $user_id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			//echo "punktid muudetud!";
+		}else {
+		 	echo "ERROR func updateCoins ".$stmt->error;               
+		}
+		
+		$stmt->close();
+	}
+	//FUNKTSIOON , et teada saada palju münte on
 	function getCoins($id, $id){
 		$this->connection->set_charset("utf8");
 		

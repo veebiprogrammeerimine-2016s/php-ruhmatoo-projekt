@@ -1,75 +1,102 @@
 <?php
-
 //FUNKTSIOONIDEGA FAILID
-require("../functions.php");     
-require("../class/Book.class.php");     //peab olema ENNE ojekti loomist
-$Book = new Book($mysqli);               //objekt
-require("../class/Coin.class.php");
-$Coin = new Coin($mysqli);
-		
-//MUUTUJAD
-$category = "";
-$title = "";
-$author = "";
-$year = "";
-$location = "";
-$condition = "";
-$coins = "";
-$image = "";
-$description = "";
-$error = "";
+require("../functions.php"); 
+    
+require("../class/User.class.php");     
+$User = new User($mysqli);
 
-// kontrollin, kas väljad on täidetud
-if(isset($_POST["title"])){ 
-	$category = $_POST["category"];
+require("../class/Book.class.php");     
+$Book = new Book($mysqli);
+
+require("../class/Coin.class.php");     
+$Coin = new Coin($mysqli);
+
+
+// kui pole sisse loginud siis suunan avalehele
+if (!isset($_SESSION["userId"])){
+	session_destroy();
+	header("Location: home.php");		
+}
+
+//FUNKTSIOON, et saada raamatu andmed
+$singleBook = $Book->getSingle($_GET["id"]);    //aadressireal on raamatu id
+
+//kontrollin, et kasutaja ei saaks võõrast raamatut muuta
+if( $singleBook->user != $_SESSION["userId"]){
+	header("Location: user.php");
+}else{
+	//echo "OK";
+}
+//MUUTUJAD
+$title = $singleBook->title;
+$author = $singleBook->author;
+$year = $singleBook->year;
+$location = $singleBook->location;
+$image = $singleBook->image;
+$description = $singleBook->description;
+$category = $singleBook->category;
+$condition = $singleBook->condition;
+$coins = $singleBook->coins;
+$msg = "Täida väljad, mida tahad muuta!";
+
+if($singleBook->image == ""){
+			$singleBook->image = ("../image/raamat.jpg"); //kui raamatu pilti pole
+		}
+		
+if(isset($_POST["change"])){
+	
 	$title = $Helper->cleanInput($_POST["title"]);
 	$title = ucfirst(strtolower($title));
 	$author = $Helper->cleanInput($_POST["author"]);
 	$author = ucwords(strtolower($author));
 	$year = $Helper->cleanInput($_POST["year"]);
 	$location = $Helper->cleanInput($_POST["location"]);
-	$condition = $_POST["condition"];
-	$coins = $_POST["points"];
 	$image = $Helper->cleanInput($_POST["picture"]);
 	$description = $Helper->cleanInput($_POST["description"]);
-	if(empty($_POST["title"]) || empty($_POST["author"]) 
-		|| empty($_POST["location"]) || empty($_POST["condition"])) {
-		$error = "Tärniga tähistatud väljad on kohustuslikud!";
+	$category = $_POST["category"];
+	$condition = $_POST["condition"];
+	$coins = $_POST["points"];
+	if(empty($title) || empty($author) || empty($location) || empty($condition)){
+		$msg = "Oled osad andmed ära kustutanud, tärniga tähistatud väljad peavad olema täidetud!";
+	}else{
+		
+		//FUNKTSIOON, et vajadusel teises tabelis punkte muuta
+		if($coins != $singleBook->coins){
+			$Coin->updateCoins($_SESSION["userId"], $_GET["id"], $coins);   
+		}
+		
+		//FUNKTSIOON, et raamatu andmeid muuta
+		$Book->changeData($category, $title, $author, $year, $condition, $location, $description, $coins, $image, $_GET["id"]);
+		$msg = "<h4>Andmed edukalt muudetud!</h4>";
 		
 	}
-}
-//ühtegi errorit	
-if(isset($_POST["title"]) && empty($error)) {
-	$error = 'Aitäh, raamat "'.$title. '" on lisatud pakutavate raamatute nimekirja! Vajadusel saad raamatu andmeid muuta Sinu riiulis. <br> Kui raamat leiab uue omaniku, kantakse mündid Sinu kontole.';
-	$userId = $_SESSION["userId"];
-	$BookId = $Book->addBook($userId, $category, $title, $author, $year, $condition, $location, $description, $coins, $image);  //funktsiooni raamatu andmebaasi lisamiseks
-	$Coin->userTransaction($BookId); //funktsioon, et lisada andmebaasi raamatu tehinguid puudutav info
-}
-?>
+}	
 
+?>
 
 <?php
 //HTML
 require("../header.php");
-
-
 ?>
-<h4>Lisa raamat, mille soovid loovutada!</h4>
+<h4>Muuda raamatu andmeid</h4>
 <br>
+<img src="<?=$singleBook->image;?>" alt="book picture" style= "width:200px;" >
+<br><br>
+<?php echo $msg ."<br><br>";?>
 <form method="post">
 	
 	<select name="category">
-	<option value="Vali kategooria">Vali kategooria</option>
+	
 	
 <?php
 	$topic = array( 'Ajalugu, kultuur','Arvutid ja infotehnoloogia', 'Ehitus, tehnika', 'Elulood, memuaarid', 'Esoteerika', 
 	'Fotograafia', 'Ilukirjandus', 'Kodu ja aed', 'Kokandus', 'Kunst ja arhitektuur', 'Käsiraamatud, õppekirjandus', 'Käsitöö',
 	'Lastekirjandus', 'Loodus', 'Majandus, poliitika', 'Reisijuhid', 'Sõnastikud', 'Võõrkeelne kirjandus', 'Muu');
-	if(isset($_POST["category"]) && $_POST["category"] == "Vali kategooria"){
-		$cat = "Muu";
-	} 
+	if(isset($_POST["category"])){
+		$category = $_POST["category"];
+	}
 	foreach( $topic as $value ){
-		if ($value == $cat){
+		if ($value == $category){
 			$selected = "selected = 'selected'";
 		} else {
 			$selected = "";
@@ -80,18 +107,22 @@ require("../header.php");
 ?>
 	</select>
 	<br><br>
-	<input name="title" type="text" placeholder="Raamatu pealkiri" value="<?=$title;?>"> *<br>
-	<input name="author" type="text" placeholder="Raamatu autor" value="<?=$author;?>">*<br> 
-	<input name="year" type="year" placeholder="Ilmumise aasta" value="<?=$year;?>"><br>
-	<input name="location" type="text" placeholder="Raamatu asukoht" value="<?=$location;?>"> *<br>
+	 
+	<input name="title" type="text" placeholder="<?=$singleBook->title?>" value="<?=$title;?>"> *<br>
+	
+	<input name="author" type="text" placeholder="<?=$singleBook->author?>" value="<?=$author;?>"> *<br> 
+	
+	<input name="year" type="year" placeholder="<?=$singleBook->year?>" value="<?=$year;?>"> <br>
+	 
+	<input name="location" type="text" placeholder="<?=$singleBook->location?>" value="<?=$location;?>"> *<br>
 	<br>
-		<select name="condition">
-	<option value="">Raamatu seisukord</option>
+	Seisukord <select name="condition">
+	<option value=""><?=$singleBook->condition;?></option>
 	
 <?php
-	$cond = array( 'Uus', 'Väga hea', 'Keskmine', 'Halb' );
+	$cond = array( 'Uus', 'Väga hea', 'Hea', 'Keskmine', 'Halb' );
 	if(isset($_POST["condition"])){
-		$condition = $_POST["condition"];
+		$condition = $_POST["condition"];	
 	}
 	foreach( $cond as $value ){
 		if ($value == $condition){
@@ -105,12 +136,11 @@ require("../header.php");
 ?>
 	</select> *
 	<br><br>
-	<p>Mitu münti on raamat väärt? Vali vahemikus 1-10, kus 10 on kõige väärtuslikum:</p>
-	<select name="points">
-	
+	Väärtus müntides: <select name="points">
+	<option value=""><?=$singleBook->coins;?></option>
 <?php
 	if(isset($_POST["points"])){
-		$coins = $_POST["points"];
+		$coins = $_POST["points"];	
 	}
 	for($i=1; $i<11; $i++){
 		if($i == $coins){
@@ -123,13 +153,11 @@ require("../header.php");
 ?>
 	</select>
 	<br><br>
-	<input name="picture" type="text" placeholder="http://www.aadress.ee"> Lisa pildi aadress (URL)
+	
+	<input name="picture" value="<?=$image;?>" type="text" placeholder="http://www.aadress.ee"> Uus pildi aadress (URL)
 	<br><br>
-	<textarea name="description" rows="4" cols="50" placeholder="Kommentaar"></textarea>
+	<p>Kirjeldus</p>
+	<textarea name="description" rows="4" cols="50" placeholder="<?=$description;?>"><?=$description;?></textarea>
 	<br><br>
-	<input type="submit" value="Lisa raamat"><br>
+	<input type="submit" name="change" value="Muuda andmeid"><br>
 </form>
-<br>
-
-<?=$error;?>
-<?php require("../footer.php");?>

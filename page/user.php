@@ -22,7 +22,7 @@ $userCoins = $Coin->getCoins($_SESSION["userId"], $_SESSION["userId"]);
 //funktsioonid, et saada kasutaja pakutud/saadud raamatud
 $userOffers = $Coin->userOffers($_SESSION["userId"]);
 $userWishes = $Coin->userWishes($_SESSION["userId"]);
-echo $_SESSION['userId'];
+
 
 
 ?>
@@ -34,6 +34,11 @@ require("../header.php");
 <h4>Sinu raamaturiiul</h4>
 <p>Vabad mündid hetkeseisuga: <?=$userCoins;?></p>
 <?php 
+
+//KUI POLE RAAMATUID LISANUD EGA VALINUD
+if(empty($userWishes) && empty($userOffers)){
+	echo "Raamatute vahetamisi pole veel toimunud!";
+}
 //KUI MIDAGI ANNAB
 if(!empty($userOffers)){  ?>
 	<br>
@@ -123,12 +128,10 @@ if(!empty($userWishes)){
 			$tableWishes .= '</tr>';
 		}	
 	}
+	$tableWishes .= '</table>';
 	echo $tableWishes ;
-}if(empty($userWishes) && empty($userOffers)){
-	echo "Raamatute vahetamisi pole veel toimunud!";
 }
-?>
-	</table>
+?>  
 	</div>
 
 <?php require("../footer.php");?>

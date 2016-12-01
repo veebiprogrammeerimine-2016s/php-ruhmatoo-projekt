@@ -67,7 +67,9 @@ require("../header.php");
 	'Lastekirjandus', 'Loodus', 'Majandus, poliitika', 'Reisijuhid', 'Sõnastikud', 'Võõrkeelne kirjandus', 'Muu');
 	if(isset($_POST["category"]) && $_POST["category"] == "Vali kategooria"){
 		$cat = "Muu";
-	} 
+	} else {
+			$cat = $_POST["category"];
+	}
 	foreach( $topic as $value ){
 		if ($value == $cat){
 			$selected = "selected = 'selected'";
@@ -89,7 +91,7 @@ require("../header.php");
 	<option value="">Raamatu seisukord</option>
 	
 <?php
-	$cond = array( 'Uus', 'Väga hea', 'Keskmine', 'Halb' );
+	$cond = array( 'Uus', 'Väga hea', 'Hea', 'Keskmine', 'Halb' );
 	if(isset($_POST["condition"])){
 		$condition = $_POST["condition"];
 	}
