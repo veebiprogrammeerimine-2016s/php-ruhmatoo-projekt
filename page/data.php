@@ -161,6 +161,7 @@ isset($_POST["free_seats"]) &&
     $html = "<table>";
 
         $html .= "<tr>";
+            $html .= "<th>email</th>";
             $html .= "<th>start_location</th>";
             $html .= "<th>start_time</th>";
             $html .= "<th>arrival_location</th>";
@@ -173,6 +174,7 @@ isset($_POST["free_seats"]) &&
         foreach ($upcomingRides as $r) {
 
             $html .= "<tr>";
+                $html .= "<td>".$r->email."</td>";
                 $html .= "<td>".$r->start_location."</td>";
                 $html .= "<td>".$r->start_time."</td>";
                 $html .= "<td>".$r->arrival_location."</td>";
