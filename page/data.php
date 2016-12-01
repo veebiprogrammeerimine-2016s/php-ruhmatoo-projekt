@@ -265,7 +265,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 				<h2><?=$n->description;?></h2>
 				<br><br>
 				
-				<img width='200' src="<?=$n->url;?>">
+				<img width='600' src="<?=$n->url;?>">
 				
 				
 				<br><br>
