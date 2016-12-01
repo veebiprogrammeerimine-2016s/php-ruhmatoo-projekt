@@ -1,7 +1,7 @@
 <?php
 
-	//require("functions.php")
-	require("Header.php")
+	//require("functions.php");
+	require("Header.php");
 	
 	$reg_nr = "";
 	$car_brand = "";
@@ -21,22 +21,22 @@
 			$reg_nr = $_POST["reg_nr"];
 			
 		}
-		
+			
 	}
 	
-	if (isset ($_POST["car_brand"])) {
+		if (isset ($_POST["car_brand"])) {
 		
-		if (empty($_POST["car_brand"])) {
+			if (empty($_POST["car_brand"])) {
 			
-			$car_brand_Error = "Palun sisestage enda automark";
+				$car_brand_Error = "Palun sisestage enda automark";
 			
-		} else {
+			} else {
 			
-			$car_brand = $_POST["car_brand"];
+				$car_brand = $_POST["car_brand"];
 			
+			}
+		
 		}
-		
-	}
 	
 	if (isset($_POST["car_model"])) {
 		
@@ -96,17 +96,25 @@
 			<div class="form-group row">
 				<label for="car_brand" class="col-sm-4 col-form-label">Mark</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="car_brand">
+						<input type="text" class="form-control" name="car_brand" id="car_brand">
 					</div>
 				</div>
 				
 				<div class="form-group row">
 				<label for="car_model" class="col-sm-4 col-form-label">Mudel</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="car_model">
+					<input type="text" class="form-control" name="car_model" id="car_model">
 				</div>
 			</div>
 		
+		<br><br>
+		
+			<h1>Kliendi Andmed</h1>
+			<form method="post">
+			
+		<label for="name" class="col-sm-4 colf-form-label">
+		<div class="">
+			
 
 		</form>
 	</body>
