@@ -1,7 +1,6 @@
 <?php
 
-	//require("functions.php")
-
+	//require("functions.php");
 	require("Header.php");
 	
 	$reg_nr = "";
@@ -64,7 +63,7 @@
 		<form method="post">
 			<div class="form-group row">
 			<div class="col-sm-10">
-			<h1>Sõiduki Andmed</h1><br>
+			<h1>Andmed</h1><br>
 			</div>
 				<label for="reg_nr" class="col-sm-4 col-form-label">Registreerimisnumber</label>
 				<div class="col-sm-10">
@@ -108,13 +107,13 @@
 				</div>
 			</div>
 		
-		<br><br>
-		
-			<h1>Kliendi Andmed</h1>
-			<form method="post">
-			
-		<label for="name" class="col-sm-4 colf-form-label">
-		<div class="">
+		<div class="form-group row">
+				<label for="telephone" class="col-sm-4 col-form-label">Telefon</label>
+				<div class="col-sm-10">
+					<input type="tel" class="form-control" name="telephone" id="telephone">
+				</div>
+			</div>
+
 			
 
 		</form>
