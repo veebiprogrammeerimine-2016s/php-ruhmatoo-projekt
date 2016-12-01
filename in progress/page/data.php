@@ -192,7 +192,7 @@
 			
 			<br><br>
 			
-			<!--<label>Notes</label><br>
+			<label>Notes</label><br>
 			<div class="form-group">
 			<input class="form-control" name="note" type="text">
 			
@@ -202,7 +202,7 @@
 			<label>Color</label><br>
 			<input name="color" type="color">
 						
-			<br><br>-->
+			<br><br>
 			
 			<h3>Problem description:</h3>
 			
