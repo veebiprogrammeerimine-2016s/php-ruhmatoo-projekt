@@ -11,12 +11,29 @@ padding: 0px;
 
 	}
 #sisestus{
-	position: fixed;
-	right:100px
+	position: relative;
+	left:1400px;
+	
+	
 }
 #kirjeldus{
-	width:250px;
-	height:100px
+	width:350px;
+	height:50px;
+	
+}
+#asukoht{
+	width:350px;
+	height:50px;
+	
+}
+#kuupäev{
+	width:350px;
+	height:50px;
+	
+}
+#pilt{
+	width:350px;
+	height:50px;
 	
 }
 #otsing{
