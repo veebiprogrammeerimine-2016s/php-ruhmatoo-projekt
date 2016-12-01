@@ -7,4 +7,6 @@
 <?php require('styles.css'); ?>
 </head>
 
-<body>
+<body style="background-color:darkgrey;">
+</body>
+</html>
