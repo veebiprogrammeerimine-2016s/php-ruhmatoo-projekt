@@ -4,8 +4,11 @@ require("../functions.php");
 require("../class/Book.class.php");     
 $Book = new Book($mysqli); 
 
+//MUUTUJAD
+$getBook = "";
+
 // kui ei ole id'd aadressireal siis suunan
-if(!isset($_GET["id"])){
+if(!isset($_GET["id"])){        //book_id
 	header("Location: books.php");
 	exit();
 }                 
@@ -13,6 +16,12 @@ if(!isset($_GET["id"])){
 //kutsun funktsiooni, saadan kaasa konkreetse raamatu id
 
 $singleBook = $Book->getSingle($_GET["id"]);
+
+//kui on ?get aadressireal siis login välja
+if(isset($_GET["id"]) && isset($_GET["get"])){
+	$getBook = "Raamat on lisatud sinu <a href='user.php'>raamaturiiulisse</a>! <br> 
+	Võta omanikuga ühendust, et kokku leppida raamatu kättesaamise osas.";
+}
 ?>
 
 
@@ -36,7 +45,7 @@ $tableHtml .= "<table>";
 		$tableHtml .= "<td>";
 			$tableHtml .= ' <img src="' .$singleBook->image. '" style= "width:200px;" >';
 		$tableHtml .= "</td>";
-		
+	if(!isset($_GET["get"])){
 		$tableHtml .= "<td>";
 			$tableHtml .= "<p>Kategooria: " .$singleBook->category."</p>";
 			$tableHtml .= "<p>Münte kulub: " .$singleBook->coins. "</p>";
@@ -46,6 +55,11 @@ $tableHtml .= "<table>";
 			$tableHtml .= "<p>Asukoht: " .$singleBook->location. "</p>";
 			$tableHtml .= "<p>Kirjeldus: " .$singleBook->description. "</p>";
 		$tableHtml .= "</td>";
+	}else{
+		$tableHtml .= "<td>";
+			$tableHtml .= "<p>" . $getBook . "</p>";
+		$tableHtml .= "</td>";
+	}
 	
 	$tableHtml .= "</tr>";
 	
@@ -60,8 +74,9 @@ if(!isset($_SESSION["userId"])){
 <?php ;}
 
 //kui on sisse loginud kasutaja
-if(isset($_SESSION["userId"])){ ?>
-	<p>tuleb..</p>
+if(isset($_SESSION["userId"]) && !isset($_GET["get"])){ ?>
+	<br><br>
+	<h4><a href="?id=<?=$_GET["id"];?>&get=true">Soovin seda raamatut</a></h4> 
 
 <?php ;} ?>
 	
