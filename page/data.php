@@ -22,17 +22,43 @@ if(isset($_GET["logout"])){
 
 ?>
 
-<?php require("../header.php"); ?>
 
-<div class="container">
 
-    <h1>Data</h1>
-    
-    <p>
-        Tere tulemast <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
-        <a href="?logout=1">Logi vÃ¤lja</a>
-    </p>
+<!doctype html>
 
-</div>
-<?php require("../footer.php"); ?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigation</title>
+    <link rel="stylesheet" href="../css/navigationstyle.css">
+</head>
+<body>
+    <header>
+        <h1> UNILIFE </h1>
+    </header>
+    <nav>
+        <ul>
+            <a href="#"><li>Kodut��d</li></a>
+            <a href="#"><li>Kohustuslik kirjandus</li></a>
+            <a href="#"><li>Tunniplaan</li></a>
+            <a href="#"><li>�petajad</li></a>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <p>
+            Tere tulemast <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
+            <br>
+            <a href="?logout=1">Logi vÃ¤lja</a>
+        </p>
+
+    </div>
+
+    <section>
+        siia tulevad tabelid ja muud asjad
+    </section>
+
+</body>
+</html>
 
