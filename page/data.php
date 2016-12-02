@@ -29,19 +29,20 @@ if(isset($_GET["logout"])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Navigation</title>
+    <title>Kodutööd</title>
     <link rel="stylesheet" href="../css/navigationstyle.css">
 </head>
-<body>
+<body bgcolor = "#efe3eb">
     <header>
         <h1> UNILIFE </h1>
     </header>
     <nav>
         <ul>
-            <a href="#"><li>Kodut��d</li></a>
-            <a href="#"><li>Kohustuslik kirjandus</li></a>
-            <a href="#"><li>Tunniplaan</li></a>
-            <a href="#"><li>�petajad</li></a>
+            <li class="current"><a href="data.php">Kodutööd</a></li>
+            <li><a href="compulsory_literature.php">Kohustuslik kirjandus</a></li>
+            <li><a href="timetable.php">Tunniplaan</a></li>
+            <li><a href="teachers.php">Õpetajad</a></li>
+
         </ul>
     </nav>
 

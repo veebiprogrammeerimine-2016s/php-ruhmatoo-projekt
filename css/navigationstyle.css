@@ -5,7 +5,7 @@ body{
 }
 
 header{
-    background: #5d5d5d;
+    background: #ffffff;
     width: 100%;
     padding: 40px 0;
     color: white;
@@ -28,7 +28,7 @@ header h1 {
  }
 
  nav ul{
-     background-color: #5d5d5d;
+     background-color: #ffffff;
      overflow: hidden;
      color: white;
      padding: 0;
@@ -42,8 +42,24 @@ header h1 {
  }
 
  nav ul li:hover{
-     background-color: #5d5d5d;
+     background-color: #ffffff;
  }
+
+ nav ul li a{
+     border-radius: 1px;
+     color: #5d5d5d;
+     text-decoration: none;
+     padding: 0.6em 1.2em 0.6em 1.2em;
+     outline: 0;
+ }
+
+
+ nav ul li.current a{
+     background: #d08fe8;
+     color: #fff !important;
+     font-weight: 700;
+ }
+
 
  section{
      line-height: 1.5em;
