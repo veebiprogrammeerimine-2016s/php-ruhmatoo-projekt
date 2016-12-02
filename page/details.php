@@ -25,9 +25,10 @@ if(isset($_GET["id"]) && isset($_GET["get"])){
 	$getBook = "Raamat on lisatud sinu <a href='user.php'>raamaturiiulisse</a>! <br> 
 	Võta omanikuga ühendust, et kokku leppida raamatu kättesaamise osas.";
 	$status = "pending";
-	$Book->changeStatus($_GET["id"], $status);
-	// echo $singleBook->user;  ...pakkuja id
-	$Coin->toPending($_GET["id"], $singleBook->user , $_SESSION["userId"], $status);  //raamatu id, pakkuja id, soovija id, pending
+	//FUNKTSIOON, kui keegi ostab, siis raamat kustutakse project_books tabelis
+	$Book->deleteBook($_GET["id"]);  
+	// FUNKTSIOON, kui keegi ostab, siis raamatu staatuseks 'pending' project_points tabelis
+	$Coin->changeStatus($_GET["id"], $_SESSION["userId"], $status);  //raamatu id, soovija id, pending
 	
 }
 ?>
@@ -79,14 +80,20 @@ echo $tableHtml;
 if(!isset($_SESSION["userId"])){
 ?>
 	<br><br><p>Kui soovid seda raamatut või soovid ise mõnda raamatut pakkuda, siis <a href="login.php">logi sisse</a>.</p>
-<?php ;}
+<?php ;} ?>
 
+<?php 
 //kui on sisse loginud kasutaja
-if(isset($_SESSION["userId"]) && !isset($_GET["get"])){ ?>
+if(isset($_SESSION["userId"]) && !isset($_GET["get"])&& $singleBook->status != "pending" && $singleBook->status != "deleted"){ 
+	//kui on sisse loginud kasutaja ja see raamat on veel saadaval ?>
 	<br><br>
 	<h4><a href="?id=<?=$_GET["id"];?>&get=true">Soovin seda raamatut</a></h4> 
+	
+<?php
+;}
+?>
 
-<?php ;} ?>
+
 	
 	
 <?php require("../footer.php");?>

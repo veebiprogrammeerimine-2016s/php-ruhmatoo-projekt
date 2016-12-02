@@ -9,13 +9,21 @@ $Coin = new Coin($mysqli);
 //MUUTUJAD
 $tableOffers  = "";
 $tableWishes = "";
+$book_id = "";
+$status = "pending";  //on ostnud raamatu, aga pole veel kätte saanud
 
 // kui pole sisse loginud siis suunan avalehele
 if (!isset($_SESSION["userId"])){
 	session_destroy();
-	header("Location: home.php?");
-		
+	header("Location: home.php?");		
 }
+
+if (isset($_GET["gotIt"])){
+	$book_id = $_GET["gotIt"];
+	echo $book_id;
+	$status = "OK";  //on ostnud raamatu ja sai kätte
+}	
+
 
 //funktsioon, mis arvutab kasutaja müdndid kokku
 $userCoins = $Coin->getCoins($_SESSION["userId"], $_SESSION["userId"]);
@@ -23,7 +31,8 @@ $userCoins = $Coin->getCoins($_SESSION["userId"], $_SESSION["userId"]);
 $userOffers = $Coin->userOffers($_SESSION["userId"]);
 $userWishes = $Coin->userWishes($_SESSION["userId"]);
 
-
+//funktsioon, et muuta kätte saadud raamatu staatus OK
+$Coin->changeStatus($book_id, $_SESSION["userId"], $status);									
 
 ?>
 
@@ -110,10 +119,23 @@ if(!empty($userWishes)){
 	foreach($userWishes as $wish){
 		if($wish->status == "pending"){
 			$tableWishes  .= '<tr class="success">';
-				$tableWishes  .= '<td><a href="details.php?id='. $wish->book_id .'">'.$wish->title.'</td>';
-				$tableWishes  .= '<td>Münte kulub: '. $wish->points .'</td>';
-				$tableWishes  .= '<td>Valisid raamatu</td>';
-				$tableWishes  .= '<td> <a href="books.php?contact='. $wish->seller .'"> Võta ühendust! </a></td>';  //vaja veel teha
+				$tableWishes  .= '<form>';
+				$tableWishes  .= 	'<td><a href="details.php?id='. $wish->book_id .'">'.$wish->title.'</td>';
+				$tableWishes  .= 	'<td>Münte kulub: '. $wish->points .'</td>';
+				$tableWishes  .= 	'<td>';
+			//dropdown	
+			if ($wish->book_id == $book_id){
+				$selected = "selected = 'selected'";
+			} else {
+				$selected = "";
+			}
+				$tableWishes  .=    	'<select name="gotIt" onchange="this.form.submit()">';
+				$tableWishes  .=         	'<option value="Pole kätte saanud" >Pole kätte saanud </option>';
+				$tableWishes  .=         	'<option value = "'. $wish->book_id .'" '.$selected.' ">Olen kätte saanud </option>';
+				$tableWishes  .=    	'</select>';
+				$tableWishes  .= 	'</td>';
+				$tableWishes  .= 	'<td> <a href="books.php?contact='. $wish->seller .'"> Võta ühendust! </a></td>';  //vaja veel teha
+				$tableWishes  .= '</form>';
 				
 			$tableWishes  .= '</tr>';
 		}		

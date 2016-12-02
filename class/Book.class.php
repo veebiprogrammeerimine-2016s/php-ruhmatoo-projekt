@@ -140,14 +140,14 @@ class Book {
 	function getSingle($id){
 		$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("
-			SELECT user_id, cat, title, author, year, bookCondition, location, description, points, image 
+			SELECT user_id, cat, title, author, year, bookCondition, location, description, points, image, deleted 
 			FROM project_books
 			WHERE book_id=?
-			AND deleted IS NULL");
+			");
 		
 
 		$stmt->bind_param("i", $id);
-		$stmt->bind_result($userDb, $categoryDb, $titleDb, $authorDb, $yearDb, $conditionDb, $locationDb, $descriptionDb, $pointsDb, $imageDb);
+		$stmt->bind_result($userDb, $categoryDb, $titleDb, $authorDb, $yearDb, $conditionDb, $locationDb, $descriptionDb, $pointsDb, $imageDb, $statusDb);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -166,6 +166,7 @@ class Book {
 			$book->description = $descriptionDb;
 			$book->coins = $pointsDb;
 			$book->image = $imageDb;
+			$book->status = $statusDb;
 				
 		}else{
 			// ei saanud rida andmeid kätte
@@ -215,12 +216,12 @@ class Book {
 	}
 	
 	//raamatu andmete muutmine
-	function changeData($category, $title, $author, $year, $condition, $location, $description, $coins, $image, $book_id, $deleted){
+	function changeData($category, $title, $author, $year, $condition, $location, $description, $coins, $image, $book_id){
     	$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("UPDATE project_books 
-			SET cat=?, title=?, author=?, year=?, bookCondition=?, location=?, description=?, points=?, image=?, deleted=?   
+			SET cat=?, title=?, author=?, year=?, bookCondition=?, location=?, description=?, points=?, image=?   
 			WHERE book_id=? AND deleted IS NULL");
-		$stmt->bind_param("sssisssissi", $category, $title, $author, $year, $condition, $location, $description, $coins, $image, $deleted, $book_id);
+		$stmt->bind_param("sssisssisi", $category, $title, $author, $year, $condition, $location, $description, $coins, $image, $book_id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
@@ -232,19 +233,19 @@ class Book {
 		$stmt->close();		
 	}
 	
-	//keegi tahab raamatut, staatust muudetakse, "deleted" väärtuseks 'pending'
-		function changeStatus($book_id, $deleted){
+	//keegi ostab raamatu ära (details.php) või pakkuja ise kustutab raamatu (edit.php). 'deleted'
+		function deleteBook($book_id){
     	$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("UPDATE project_books 
-			SET deleted=?   
-			WHERE book_id=? AND deleted IS NULL");
-		$stmt->bind_param("si", $deleted, $book_id);
+		SET deleted=NOW() 
+		WHERE book_id=? AND deleted IS NULL");
+		$stmt->bind_param("i", $book_id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
 			//echo "salvestus õnnestus!";
 		}else {
-		 	echo "ERROR func changeStatus ".$stmt->error;               
+		 	echo "ERROR func deleteBook ".$stmt->error;               
 		}
 		
 		$stmt->close();		

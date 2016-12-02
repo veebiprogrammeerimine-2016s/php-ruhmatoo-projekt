@@ -48,8 +48,8 @@ if($singleBook->image == ""){
 		
 
 if(isset($_GET["delete"])){
-	$status = "deleted";          //kui aadressireal deleted, siis tehingute tabelisse 'status' väärtuseks deleted
-	$deleted = "deleted";         //kui aadressireal deleted, siis raamatute tabelisse 'deleted' väärtuseks deleted
+	$status = "deleted";     //kui aadressireal deleted, siis tehingute tabelisse 'status' väärtuseks deleted
+	$deleted = "deleted";    //kui aadressireal deleted, siis raamatute tabelis raamat kustutatakse
 	$error = "";
 	$msg = "Raamat kustutatud!";
 }
@@ -79,10 +79,12 @@ if(empty($error)){
 	}
 		
 	//FUNKTSIOON, et raamatu andmeid muuta
-	$Book->changeData($category, $title, $author, $year, $condition, $location, $description, $coins, $image, $_GET["id"], $deleted);
-	
-		
+	$Book->changeData($category, $title, $author, $year, $condition, $location, $description, $coins, $image, $_GET["id"]);		
 }
+   //FUNKTSIOON, et raamat kustutada
+   if($deleted == "deleted"){
+		$Book->deleteBook($_GET["id"]);
+   }
 
 
 ?>

@@ -46,12 +46,13 @@ class Coin {
 		$stmt->close();
 	}
 	
-	//FUNKTSIOON kui tekib 'ostja'
-	function toPending($book_id, $seller_id, $buyer_id, $status){
+	//FUNKTSIOON, et muuta tehingu staatust 
+	//kui tekib 'ostja'(details.php) siis pending, kui kätte saanud (user.php) siis OK
+	function changeStatus($book_id, $buyer_id, $status){
 		$stmt = $this->connection->prepare("UPDATE project_points 
 			SET buyer_id=?, status=?
-			WHERE book_id=? AND seller_id=?");
-		$stmt->bind_param("isii", $buyer_id, $status, $book_id, $seller_id);
+			WHERE book_id=?");
+		$stmt->bind_param("isi", $buyer_id, $status, $book_id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
