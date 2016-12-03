@@ -14,7 +14,7 @@ class User {
 	
 	function signUp ($email, $password,$userFirstName,$userLastName) {
 	
-		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password,first_name, last_name) VALUES (?, ?,?,?)");
+		$stmt = $this->connection->prepare("INSERT INTO f_user (email, password,first_name, last_name) VALUES (?, ?,?,?)");
 	
 		echo $this->connection->error;
 		
@@ -38,7 +38,7 @@ class User {
 		echo $email;
 		$stmt = $this->connection->prepare("
 		SELECT id, email, password, created ,first_name,last_name
-		FROM user_sample
+		FROM f_user
 		WHERE email = ?");
 	
 		echo $this->connection->error;

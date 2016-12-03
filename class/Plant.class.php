@@ -16,18 +16,18 @@ class Plant {
 	
 	
 	
-	function save ($plant, $watering) {
+	function save ($plant, $watering,$emailFromDb) {
 		
 		
 		$stmt = $this->connection->prepare(
-		"INSERT INTO flowers (plant, wateringInterval) VALUES (?,?)");
+		"INSERT INTO f_plant (name, watering_days,private) VALUES (?,?,?)");
 		
 		echo $this->connection->error;
 		
 		
 		
 		//asendan küsimärgi
-		$stmt->bind_param("ss", $plant,$watering);
+		$stmt->bind_param("sss", $plant,$watering,$emailFromDb);
 		
 		if ( $stmt->execute() )  {
 			

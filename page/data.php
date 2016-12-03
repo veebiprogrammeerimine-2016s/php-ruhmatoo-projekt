@@ -7,6 +7,7 @@
 	$wateringInterval="";
 	$plantError="";
 	$wateringIntervalError="";
+    $emailFromDb=$_SESSION["userEmail"];
 	
 	
 	//kui ei ole kasutaja id'd
@@ -44,8 +45,8 @@
 		!empty($_POST["waterings"])
 		)) {
 			
-			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]));
-			
+			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]),$_SESSION["userEmail"]);
+			echo $_SESSION["userEmail"];
 			header("Location: data.php");
 		    exit();
 		}
@@ -118,8 +119,8 @@
 
 
 
-<div class="container">
- <p>Tere tulemast     <?=$_SESSION["firstName"];?>!</p>
+<div class="container"><br><br><br>
+ <h3>Tere tulemast     <?=$_SESSION["firstName"];?>  <?=$_SESSION["lastName"];?>!</h3>
 <div id="plantsForm" class="col-lg-6 col-sm-offset-6" style="background-color:rgba(0, 0, 0, 0.5)";>
 
 		<ul class="nav nav-tabs" role="tablist">
