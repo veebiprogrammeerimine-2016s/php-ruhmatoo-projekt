@@ -40,16 +40,16 @@
 				<ul>
 				  <li><a href="data.php">Data</a></li>
 				  <li><a href="dataItems.php">data Items</a></li>
-				  <li><a href="dataAdd.php">data Add</a></li>
-				  <li><a class="active" href="dataEdit.php">data Edit</a></li>
+				  <li><a class="active" href="dataAdd.php">data Add</a></li>
+				  <li><a href="dataEdit.php">data Edit</a></li>
 				  <li id="logout"><a href="?logout=1" >logi välja</a></li>
 				</ul>
 			
 			</div><!--.menu-->
 		
-			<div class="insert box">
+			<div class="insert box" >
 			
-				<p>Siin lehel toimub sissekannete muutmine</p>
+				<p>Siin lehel toimub sissekannete lisamine</p>
 				
 				<form method="POST" >
 	

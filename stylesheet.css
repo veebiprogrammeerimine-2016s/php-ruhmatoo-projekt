@@ -3,7 +3,7 @@ header {
 	width: 960px;
 	height: 96px;
 	margin: 25px auto 0px auto;
-	border-radius: 5px;
+	border-radius: 5px 5px 0px 0px;
 	text-align:center;
 }
 
@@ -23,8 +23,41 @@ header {
 	padding: 25px;
 }
 
-.invitation {
-	text-align: center;
-	padding-left: 200px;
-	padding-right: 200px;
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f2f2f2;
+	border-radius: 0px 0px 5px 5px;
 }
+
+li {
+    float: left;
+}
+
+#logout {
+	float: right;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	
+}
+
+.active {
+	background-color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #d9d9d9;
+}
+
+
+
+
+
