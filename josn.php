@@ -1,5 +1,6 @@
 <?php 
 require_once("simple_html_dom.php");
+require_once("functions.php");
 //var_dump(strlen(file_get_contents("movies.json")));
 $movies = json_decode(file_get_contents("movies.json"));
 //var_dump($movies);
@@ -7,53 +8,48 @@ $movies = json_decode(file_get_contents("movies.json"));
 $b = 0;
 echo "<ol>";
 foreach($movies as $m){
-	
-	if($b == 100){ break; }
-	
-	echo "<li>".$m->title."</li>";
-	echo "<a href='https://www.rottentomatoes.com".$m->url."'>link</a><br>";
+	$actor_str = "";
+	$director_str = "";
+	if($b == 10){ break; }
 	$html = file_get_html("https://www.rottentomatoes.com".$m->url);
-	echo $html->find('div[class=info]')[0]->find('div[class=col]')[1]->plaintext."<br>";
-	echo $html->find('div[class=info]')[0]->find('div[class=col]')[3]->plaintext."<br>";
+	$rating = $html->find('div[class=info]')[0]->find('div[class=col]')[1]->plaintext;
+	$genre = $html->find('div[class=info]')[0]->find('div[class=col]')[3]->plaintext;
 	$directors = $html->find('div[class=info]')[0]->find('div')[5]->find("a");
+	$release_date = $html->find('div[class=info]')[0]->find('div[class=col]')[8]->plaintext;
 	$i=0;
-	echo "Directors: ";
 	foreach($directors as $d){
 		
 		if($i < (count($directors)-1) && count($directors) > 1){
 			
-			echo $d->plaintext.", ";
+			$director_str=$director_str.$d->plaintext.", ";
 			
 		}else{
 			
-			echo $d->plaintext;
+			$director_str=$director_str.$d->plaintext;
 			
 		}
 		$i+=1;
 	}
-	echo "<br>";
-	echo $html->find('div[class=info]')[0]->find('div[class=col]')[8]->plaintext."<br>";	
+	
 	foreach($m->posters as $p){
-		echo $p."<br>";
+		
 	}
 	$i = 0;
-	echo "Actors: ";
 	foreach($m->actors as $a){
 		
 		if($i < (count($m->actors)-1) && count($m->actors) > 1){
 			
-			echo $a.", ";
+			$actor_str = $actor_str.$a.", ";
 			
 		}else{
 			
-			echo $a;
-			
+			$actor_str = $actor_str.$a;
 		}
 		$i+=1;
 	}
-	echo "<br>".$m->runtime."<br>";
-	echo "Tomato Score: ".$m->tomatoScore."<br>";
-	echo "Synopsis: ".$m->synopsis;
+	insertToDb($m->title, "https://www.rottentomatoes.com".$m->url, $rating, 
+					$genre, $director_str, $release_date, 
+					$p, $actor_str, $m->runtime, $m->tomatoScore, $m->synopsis);
 	$b++;
 }
 echo "</ol>";
