@@ -155,6 +155,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 			){
 				
 				$error = $User->login($Helper->cleanInput($_POST["signupEmail"]),($Helper->cleanInput($_POST["signupPassword"])));
+				
 			}
 	
 

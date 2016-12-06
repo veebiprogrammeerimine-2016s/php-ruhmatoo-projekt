@@ -126,6 +126,7 @@
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#MyPlänts" aria-controls="MyPlänts" role="tab" data-toggle="tab">Minu Pländid</a></li>
 			<li role="presentation"><a href="#Muutmine" aria-controls="Muutmine" role="tab" data-toggle="tab">Muutmine</a></li>
+			<li role="presentation"><a href="#Soovitustest" aria-controls="Soovitustest" role="tab" data-toggle="tab">Plänts lehelt</a></li>
 		  </ul>
 	
 		<div class="tab-content"> <!----TABI ALGUS  --->
@@ -216,6 +217,16 @@
 							
 			
 			</div><!--- TABI TEISE PANEELI SISU LÕPP --->
+			
+			<div role="tabpanel" class="tab-pane" id="Soovitustest"> <!---Kolmanda tab-i algus--->
+				<div id="plantFromPlantsDiv">
+					<h3>Andmebaasist taime lisamine</h3>
+						<form class="form-group form-group-sm" id="plantsFromPlantsForm" >
+						
+						</form>
+					
+				</div>
+			</div><!---Kolmanda tab-i lõpp--->
 		  </div>
 
 		
