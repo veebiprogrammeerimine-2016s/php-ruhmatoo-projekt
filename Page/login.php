@@ -156,27 +156,88 @@
 
 
 <div class="container">
-	<div class="row">
-		<div class="col-sm-4 col-sm-offset-4">
+        <div class="row">
 
-			<h1>Loo kasutaja</h1>
-			<form method="POST">
-				
-				<label>E-post</label>
-				<br>
-				<div class="form-group">
-					<input class="form-control" name="signupEmail" type="text" value="<?=$signupEmail;?>"> <?=$signupEmailError;?>
-				</div>
-				
-				<br>
-				<input type="password" name="signupPassword" placeholder="Parool"> <?php echo $signupPasswordError; ?>
-				<br><br>
-				
-				<input class="btn btn-info btn-sm" type="submit" value="Loo kasutaja">
-				
-				
-			</form>
-		</div>
-	</div>
-</div>
+            <div class="col-md-8 col-md-offset-2">
+                <form role="form" method="POST" action="#">
+
+                    <legend class="text-center">Registreeri</legend>
+
+                    <fieldset>
+                        <legend>Konto andmed</legend>
+
+                        <div class="form-group col-md-6">
+                            <label for="first_name">Nimi</label>
+                            <input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="">Email</label>
+                            <input type="email" class="form-control" name="" id="" placeholder="Email">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="password">Parool</label>
+                            <input type="password" class="form-control" name="" id="password" placeholder="Password">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="confirm_password">Kinnita parool</label>
+                            <input type="password" class="form-control" name="" id="confirm_password" placeholder="Confirm Password">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="country">Maakond, kus elate</label>
+                            <select class="form-control" name="" id="country">
+                                <option>Country 1</option>
+                                <option>Country 2</option>
+                                <option>Country 3</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="found_site">How did you find out about the site?</label>
+                            <select class="form-control" name="" id="found_site">
+                                <option>Company</option>
+                                <option>Friend</option>
+                                <option>Colleague</option>
+                                <option>Advertisement</option>
+                                <option>Google Search</option>
+                                <option>Online Article</option>
+                                <option value="other" >Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12 hidden">
+                            <label for="specify">Please Specify</label>
+                            <textarea class="form-control" id="specify" name=""></textarea>
+                        </div>
+
+                    </fieldset>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="" id="">
+                                    I accept the <a href="#">terms and conditions</a>.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary">
+                                Register
+                            </button>
+                            <a href="#">Already have an account?</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
 <?php require("../footer.php"); ?>
