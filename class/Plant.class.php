@@ -16,7 +16,7 @@ class Plant {
 	
 	
 	
-	function save ($plant, $watering,$emailFromDb) {
+	function save ($plant, $watering) {
 		
 		
 		$stmt = $this->connection->prepare(
@@ -27,7 +27,7 @@ class Plant {
 		
 		
 		//asendan küsimärgi
-		$stmt->bind_param("sss", $plant,$watering,$emailFromDb);
+		$stmt->bind_param("sis", $plant,$watering,$_SESSION["userEmail"]);
 		
 		if ( $stmt->execute() )  {
 			

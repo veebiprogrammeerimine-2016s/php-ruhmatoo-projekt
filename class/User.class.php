@@ -57,6 +57,9 @@ class User {
 			
 			$hash = hash("whirlpool", $password);
 			if ($hash == $passwordFromDb) {
+				echo '<script language="javascript">';
+			echo 'alert("message successfully sent")';
+			echo '</script>';
 				
 				echo "Kasutaja logis sisse ".$id;
 				

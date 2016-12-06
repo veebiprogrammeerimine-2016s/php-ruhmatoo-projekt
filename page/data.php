@@ -47,8 +47,8 @@
 			
 			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]),$_SESSION["userEmail"]);
 			echo $_SESSION["userEmail"];
-			header("Location: data.php");
-		    exit();
+			//header("Location: data.php");
+		    //exit();
 		}
 		
 		
@@ -203,12 +203,13 @@
 								<input class="btn btn-default" type="submit" value="Salvesta">
 									<div id="plantSearch" class="search">
 											<h3>Taime otsing</h3>
-										<form>
+										
+									</div>
+							</form>
+							<form>
 												<input type="search" name="q" value="<?=$q;?>">
 												<input class="btn btn-default" type="submit" value="Otsi">
 										</form>
-									</div>
-							</form>
 					</div>
 							
 							
