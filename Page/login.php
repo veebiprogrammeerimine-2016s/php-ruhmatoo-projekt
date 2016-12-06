@@ -220,7 +220,7 @@
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" value="" id="">
-                                    I accept the <a href="#">terms and conditions</a>.
+                                    Nõustun <a href="#">tingimustega</a>.
                                 </label>
                             </div>
                         </div>
@@ -229,9 +229,9 @@
                     <div class="form-group">
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary">
-                                Register
+                                Registreeri
                             </button>
-                            <a href="#">Already have an account?</a>
+                            <a href="#">Konto juba olemas?</a>
                         </div>
                     </div>
 
