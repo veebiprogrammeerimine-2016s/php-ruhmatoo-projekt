@@ -13,10 +13,48 @@ class Plant {
 	
 	
 	
+	function getOptions() {
+		
+		
+		$stmt = $this->connection->prepare("
+			SELECT id, plant, wateringInterval
+			FROM flowers
+			WHERE deleted IS NULL");
+			
+		
+		$stmt->bind_result($id, $plant, $watering);
+		$stmt->execute();
+		
+		
+		
+		//tekitan massiivi
+		
+		$result=array();
+		
+		//Tee seda seni, kuni on rida andmeid. ($stmt->fech)
+		//Mis vastab select lausele.
+		//iga uue rea andme kohta see lause seal sees
+		
+		while($stmt->fetch()){
+			
+			//tekitan objekti
+			
+			$plantClass = new StdClass();
+			
+		    $plantClass->id=$id;
+			$plantClass->taim=$plant;
+			$plantClass->intervall=$watering;
+			
+			
+			
+			array_push($result, $plantClass);
+		}
+		
+		return $result;
+	}
 	
 	
-	
-	function save ($plant, $watering) {
+	function save ($plant, $watering,$emailFromDb) {
 		
 		
 		$stmt = $this->connection->prepare(
@@ -27,7 +65,31 @@ class Plant {
 		
 		
 		//asendan küsimärgi
-		$stmt->bind_param("sis", $plant,$watering,$_SESSION["userEmail"]);
+		$stmt->bind_param("sss", $plant,$watering,$emailFromDb);
+		
+		if ( $stmt->execute() )  {
+			
+			echo "salvestamine õnnestus";
+			
+		}  else  {
+			
+			echo "ERROR".$stmt->error;
+		}
+		
+	}
+	
+	function saveUserPlants($plant, $watering) {
+		
+		
+		$stmt = $this->connection->prepare(
+		"INSERT INTO f_userplants (plantID, userID,watering_interval) VALUES (?,?,?)");
+		
+		echo $this->connection->error;
+		
+		
+		
+		//asendan küsimärgi
+		$stmt->bind_param("iii", $plant,$_SESSION["userId"],$watering);
 		
 		if ( $stmt->execute() )  {
 			

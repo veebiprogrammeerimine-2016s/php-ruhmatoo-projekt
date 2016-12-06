@@ -9,7 +9,7 @@ if(isset($_SESSION["userID"])){
 	exit();
 }
 
-
+	
 	
 	//MUUTUJAD
 	
@@ -59,14 +59,16 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 
 <div class="container" id ="para2">
 		  <ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a href="#plantsTab" aria-controls="plantsTab" role="tab" data-toggle="tab"><h3>PLÄNTS</h3></a></li>
-			<li role="presentation" style="float:right;"><a href="#Otsing" arial-controls="Otsing" role="tab" data-toggle="tab"><p>Otsing</p></a></li>
+			<li role="presentation" class="active"><a<li role="presentation" style="float:right;"><a href="#Otsing" arial-controls="Otsing" role="tab" data-toggle="tab"><h1>PLÄNTS</h1></p></a></li>
 		  </ul>
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="plantsTab">
 			
 			<div id="plantCare" class="row col-md-8">
-			  <p>Siia tulevad Pländid!!</p>
+			  <p>Siia tulevad Pländid!!</p> <form class="form-inline" >
+												<input class="form-control type="search" name="q" value="<?=$q;?>">
+												<input class="btn btn-default" type="submit" value="Otsi">
+										</form>
 			  <?php
 						
 						$direction = "ascending";
@@ -112,19 +114,13 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 						
 						
 						echo $listHtml;?>
+						
+						
 			</div>
 
 					
 		</div>
-        <div role="tabpanel" class="tab-pane" id="Otsing">
-			
-			<p>Siia tuleb otsing!</p>
-			<h3>Taime otsing</h3>
-										<form>
-												<input type="search" name="q" value="<?=$q;?>">
-												<input class="btn btn-default" type="submit" value="Otsi">
-										</form>
-		</div>	
+      
 	</div>	
 </div>
 	

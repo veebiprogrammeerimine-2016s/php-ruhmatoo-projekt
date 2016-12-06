@@ -47,8 +47,8 @@
 			
 			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]),$_SESSION["userEmail"]);
 			echo $_SESSION["userEmail"];
-			//header("Location: data.php");
-		    //exit();
+			header("Location: data.php");
+		    exit();
 		}
 		
 		
@@ -72,7 +72,7 @@
 	}	
 		
 	
-	
+	$options = $Plant->getOptions();
 	
 	
 		
@@ -112,6 +112,18 @@
 		
 		}		
 	}
+	
+		if (isset($_POST["plant"]) &&
+		(isset($_POST["watering"]) &&
+		!empty($_POST["plant"]) &&
+		!empty($_POST["watering"])
+		)) {
+			$Plant->saveUserPlants($Helper->cleanInput($_POST["plant"]), $Helper->cleanInput($_POST["watering"]));
+			header("Location: data.php");
+		    exit();
+		}
+	
+	
 	$pageName="data"
 ?>
 
@@ -203,13 +215,12 @@
 								<input class="btn btn-default" type="submit" value="Salvesta">
 									<div id="plantSearch" class="search">
 											<h3>Taime otsing</h3>
-										
-									</div>
-							</form>
-							<form>
+										<form>
 												<input type="search" name="q" value="<?=$q;?>">
 												<input class="btn btn-default" type="submit" value="Otsi">
 										</form>
+									</div>
+							</form>
 					</div>
 							
 							
@@ -222,8 +233,27 @@
 			<div role="tabpanel" class="tab-pane" id="Soovitustest"> <!---Kolmanda tab-i algus--->
 				<div id="plantFromPlantsDiv">
 					<h3>Andmebaasist taime lisamine</h3>
-						<form class="form-group form-group-sm" id="plantsFromPlantsForm" >
-						
+					<script>
+						window.onload = function(){
+							var optionsList = document.getElementById("options");
+							optionsList.addEventListener("change", function() {
+								document.getElementById("watering").disabled = false;
+								var water = document.querySelectorAll("#options option")[optionsList.selectedIndex].dataset.water;
+								document.getElementById("watering").value = water;
+							});
+						}
+					</script>
+						<form class="form-group form-group-sm" id="plantsFromPlantsForm" method=post >
+				 					<select name="plant" id="options">
+									<option value="" disabled selected>Select your option</option>
+									<?php foreach($options as $option): ?>
+									  <option data-water="<?=$option->intervall?>" value="<?=$option->id?>"><?=$option->taim?></option>
+									 <?php endforeach; ?>
+									</select>
+									<h3>Sisesta taime kastmisintervall</h3>
+								<input disabled id="watering" class="form-control" name="watering" placeholder="mitme päeva tagant"  type ="number"> 
+
+								<input class="btn btn-default" type="submit" value="Salvesta">
 						</form>
 					
 				</div>
