@@ -1,5 +1,5 @@
 <?php 
-	
+	//require("../bootstrap.js");
 	require("../functions.php");
 	//require("../Class/User.class.php");
 	//$User = new User($mysqli);
@@ -120,33 +120,41 @@
 
 ?>
 <?php require("../header.php"); ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Logi sisse</button>
 
- <div class="container">
-	<div class="row">
-		<a class="btn btn-primary" data-toggle="modal" href="#myModal" >Login</a>
-
-        <div class="modal hide" id="myModal">
-          <div class="modal-header">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">x</button>
-            <h3>Login to MyWebsite.com</h3>
-          </div>
-          <div class="modal-body">
-            <form method="post" action='' name="login_form">
-              <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
-              <p><input type="password" class="span3" name="passwd" placeholder="Password"></p>
-              <p><button type="submit" class="btn btn-primary">Sign in</button>
-                <a href="#">Forgot Password?</a>
-              </p>
-            </form>
-          </div>
-          <div class="modal-footer">
-            New To MyWebsite.com?
-            <a href="#" class="btn btn-primary">Register</a>
-          </div>
+            <h3>Logi sisse</h3>
         </div>
+         <div class="modal-body">
+           <form method="post" action='' name="login_form">
+             <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
+             <p><input type="password" class="span3" name="passwd" placeholder="Parool"></p>
+             <p><button type="submit" class="btn btn-primary">Logi sisse</button>
+               <a href="#">Unustasid parooli?</a>
+             </p>
+           </form>
+         </div>
+         <div class="modal-footer">
+           Pole veel kasutaja?
+           <a href="#" class="btn btn-primary">Registreeri</a>
+         </div>
+       </div>
 	</div>
-</div> 
+</div>
+
+
 <div class="container">
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-4">
@@ -159,26 +167,6 @@
 				<div class="form-group">
 					<input class="form-control" name="signupEmail" type="text" value="<?=$signupEmail;?>"> <?=$signupEmailError;?>
 				</div>
-				<br><br>
-				
-				<?php if($signupGender == "male") { ?>
-					<input type="radio" name="signupGender" value="male" checked> Male<br>
-				<?php }else { ?>
-					<input type="radio" name="signupGender" value="male"> Male<br>
-				<?php } ?>
-				
-				<?php if($signupGender == "female") { ?>
-					<input type="radio" name="signupGender" value="female" checked> Female<br>
-				<?php }else { ?>
-					<input type="radio" name="signupGender" value="female"> Female<br>
-				<?php } ?>
-				
-				<?php if($signupGender == "other") { ?>
-					<input type="radio" name="signupGender" value="other" checked> Other<br>
-				<?php }else { ?>
-					<input type="radio" name="signupGender" value="other"> Other<br>
-				<?php } ?>
-				
 				
 				<br>
 				<input type="password" name="signupPassword" placeholder="Parool"> <?php echo $signupPasswordError; ?>
