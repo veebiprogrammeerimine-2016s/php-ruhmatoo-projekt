@@ -156,12 +156,7 @@ $tyreFittings = getAllTyreFittings();
     require("modals.php");
     require("footer.php");
     ?>
-    <!-- jQuery first, then bootstrap js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
-            integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
-            crossorigin="anonymous"></script>
-    <!-- our scripts -->
+
     <script type="text/javascript" src="js/sc.js"></script>
 </div>
 </body>

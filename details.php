@@ -1,7 +1,9 @@
 <?php
+
 require("functions.php");
-//require("modals.php");
-//require("index.php");
+require_once("pdf/tcpdf.php");
+
+
 if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
 	{
 		if( !empty($_POST["regPassword"])&& !empty($_POST["regUsername"]))
@@ -30,10 +32,39 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
 $tyreFitting = getSingleTyreFitting($_GET["id"]);
 $services = FittingServicesMinPrice($_GET["id"]);
 
+if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && isset($_POST["service"]) && isset($_POST["carnumber"]) && isset($_POST["datetimepicker"]))
+	{
+		if( !empty($_POST["name"])&& !empty($_POST["email"]) && !empty($_POST["phone"]) && !empty($_POST["service"]) && !empty($_POST["carnumber"]) && !empty($_POST["datetimepicker"]))
+		{
+			$success = placeOrder($_POST["name"],$_POST["email"],$_POST["phone"],$_POST["note"],$_POST["service"],$_POST["carnumber"],$_POST["datetimepicker"],$_GET["id"]);
+			
+			if ($success == true){
+				if(sendEmail($_POST["email"])){
+					$emailSent = true;
+				}else{
+					$emailError = "Unable to send email";
+				}
+			}else{
+				
+			}
+			
+         //	mail($_POST["email"],"Teade","Teie aeg on reserveeritud, saadame teile arve","info@rehvivahetus.ee");
+			//sendPDF($_POST["name"],$_POST["phone"]);
+			
+			
+								           
+		}
+	}
 ?>
-
-
-<?php  	require("header.php");?>
+<?php require("header.php");?>
+<?php if(isset($emailSent)): ?>
+	<script>
+		$(function() {
+			// kogu html on laetud
+			$('#login').modal('show');
+		});
+	</script>
+<?php endif; ?>
 <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
     <div class="">
 		<ul class="nav navbar-nav">
@@ -77,22 +108,22 @@ $services = FittingServicesMinPrice($_GET["id"]);
 			
             <!-- ORDER FORM -->
 			<div class="row">
+				<?php if(isset($emailError)): ?><div class="alert alert-danger" role="alert"><?=$emailError;?></div><?php endif; ?>
 				<div class="col-lg-6">
 					<form method="post" id="bookingForm">
-				
                         <p>
                             <label>Nimi:<span class="req-form-field">*</span></label><br  />
-                            <input type="text" name="name2" id="name" class="form-control required" required="required"/>
+                            <input type="text" name="name" id="name" class="form-control required" required="required"/>
                         </p>
                          <p>
                             <label>E-post:<span class="req-form-field">*</span></label><br  />
-                            <input type="text" name="email2" id="email" class="form-control required" required="required"/>
+                            <input type="text" name="email" id="email" class="form-control required" required="required"/>
                         </p>
                         
                         <p>
                             <label>Telefon:<span class="req-form-field">*</span></label><br  />
                             <input type="text" id="mobile-number" name="phone" class="form-control required" required="required"/>
-                            <input type="hidden" name="payed" value="0" />
+                            
                         </p>
                         <p>
                             <label>Kommentaar:</label><br  />
@@ -105,7 +136,7 @@ $services = FittingServicesMinPrice($_GET["id"]);
                     <div class="col-lg-6">
                     	
                             <label>Teenused:<span class="req-form-field">*</span></label><br/><div style="clear:both"></div>
-                            <select class="c-select" style="width:100%;" required>
+                            <select name="service" class="c-select" style="width:100%; height:38px;" required>
                                   <option selected disabled></option>
                                    <?php foreach($services as $service)
 									  {?>
@@ -120,8 +151,8 @@ $services = FittingServicesMinPrice($_GET["id"]);
                             <input type="text" name="carnumber" class="form-control required" required="required"/>
                         </p>
                         <label for="datetimepicker">Vali endale aeg:<span class="req-form-field">*</span></label>
-                        <input type="text" id="datetimepicker" class="form-control required"  style="width:100%" required="required" /></br></br>
-                        <input type="submit" id="order-btn" class="btn btn-success" name="bookthistime" value="Broneeri" />
+                        <input type="text" name="datetimepicker" id="datetimepicker" class="form-control required"  style="width:100%" required="required" /></br></br>
+                        <input type="submit" id="order-btn" class="btn btn-success" name="bookthistime"  value="Broneeri" />
                     </div>
                     
             	</form>
@@ -156,7 +187,7 @@ require("footer.php");?>
 	$day2->available = ["12:00","13:00"];
 	
 	$day3 = new StdClass();
-	$day3->date = "2.12.2016";
+	$day3->date = "5.12.2016";
 	$day3->available = ["12:00","13:00","14:00"];
 	
 	$days = [$day1, $day2,$day3];
@@ -165,12 +196,15 @@ require("footer.php");?>
 
 ?>
 <script>
+
+
 	var days = <?php echo json_encode($days); ?> ;
 	console.log(days);
 	var logic = function( currentDateTime ){
 		console.log(currentDateTime);
 		
 		var dateString = currentDateTime.getDate() + "." + (currentDateTime.getMonth()+1) + "." + currentDateTime.getFullYear();
+		
 		
 		console.log(dateString);
 			
@@ -183,7 +217,7 @@ require("footer.php");?>
 				this.setOptions({
 				  timepicker:true,
 				  allowTimes: day.available
-				 
+				
 				});
 				break;
 			}
@@ -193,23 +227,30 @@ require("footer.php");?>
 				  timepicker:true,
 				  allowTimes: ['00:00','01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00',
 				  			   '08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
-							   '16:00','17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
-				 
+							   '16:00','17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']				 				
+				
+				
+				
 				});
+				
 			}
 			
 		}
 		
 	};
-
+	/*var minDateTime =  new Date();
+		minDateTime.setHours(minDateTime.getHours());*/
 	$("#datetimepicker").datetimepicker({
-		minDate:new Date(), 
+		minDate:new Date(),
+		//minTime:minDateTime,
 		format:'d.m.Y H:i',
 		defaultSelect:false,
 		timepicker:false,
 		onChangeDateTime:logic
 				
 	});
+	
+
 	
 </script>
 </body>
