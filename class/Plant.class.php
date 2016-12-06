@@ -63,8 +63,8 @@ class Plant {
 		if($q == ""){
 			echo"ei otsi...";
 			$stmt = $this->connection->prepare("
-			SELECT id, plant, wateringInterval
-			FROM flowers
+			SELECT id, name, watering_days
+			FROM f_plant
 			WHERE deleted IS NULL
 			ORDER BY $sort $orderBy");
 			
@@ -73,8 +73,8 @@ class Plant {
 			echo"Otsib...".$q;
 			$searchWord = "%".$q."%";
 			$stmt = $this->connection->prepare(
-			"SELECT id, plant, wateringInterval from flowers WHERE
-			deleted IS NULL AND (plant LIKE ? OR wateringInterval LIKE?)ORDER BY $sort $orderBy");
+			"SELECT id, name, watering_days from f_plant WHERE
+			deleted IS NULL AND (name LIKE ? OR wateringInterval LIKE?)ORDER BY $sort $orderBy");
 			$stmt->bind_param("ss", $searchWord, $searchWord);
 			
 		}
