@@ -59,7 +59,7 @@
                 </li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#login">Logi sisse</a></li>
+				<li><a href="#login" data-toggle="modal" data-target="#myModal">Logi sisse</a></li>
 				<li><a href="login.php">Registreeri</a></li>
 			</ul>
             </div>
@@ -190,6 +190,32 @@
       </div>
 
       <hr class="featurette-divider">
+	  
+	   <div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+		
+		  <!-- Modal content-->
+		  <div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">x</button>
+					<h3>Logi sisse</h3>
+				</div>
+				 <div class="modal-body">
+				   <form method="post" action='login.php' name="login_form">
+					 <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
+					 <p><input type="password" class="span3" name="passwd" placeholder="Parool"></p>
+					 <p><button type="submit" class="btn btn-primary">Logi sisse</button>
+					   <a href="#">Unustasid parooli?</a>
+					 </p>
+				   </form>
+				 </div>
+				 <div class="modal-footer">
+				   Pole veel kasutaja?
+				   <a href="#" class="btn btn-primary">Registreeri</a>
+				 </div>
+			   </div>
+			</div>
+		</div>
 
       <!-- /END THE FEATURETTES -->
 
