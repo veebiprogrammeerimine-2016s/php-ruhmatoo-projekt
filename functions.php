@@ -224,9 +224,9 @@ function signUP($username,$password)
 		$pdf->AddPage();
 				
 		$html = "<h1>Tere</h1>";
-		/*$html .= "<br><br><br><br><br><br>";
-		$html .= "<p>".$phone."</p>";
-			*/
+		$html .= "<br><br><br><br><br><br>";
+		$html .= "<p>".$reciever."</p>";
+			
 				// output the HTML content
 		$pdf->writeHTML($html, true, false, true, false, '');
 			
@@ -240,7 +240,7 @@ function signUP($username,$password)
 
 		$from = "info@rehvivahetus.ee"; 
 		$subject = "send email with pdf attachment"; 
-		$message = "<p>Please see the attachment.</p>";
+		$message = "<p>Palun kontrollige andmed manuses.</p>";
 
 // a random hash will be necessary to send mixed content
 		$separator = md5(time());
@@ -264,7 +264,7 @@ function signUP($username,$password)
 		
 		$body = "--".$separator.$eol;
 		$body .= "Content-Transfer-Encoding: 7bit".$eol.$eol;
-		$body .= "This is a MIME encoded message.".$eol;
+		$body .= "See on automaatselt saadetud kiri, mis sisaldab Teie broneeringu info.".$eol;
 		
 		// message
 		$body .= "--".$separator.$eol;
