@@ -47,8 +47,8 @@
 			
 			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]),$_SESSION["userEmail"]);
 			echo $_SESSION["userEmail"];
-			//header("Location: data.php");
-		    //exit();
+			header("Location: data.php");
+		    exit();
 		}
 		
 		
