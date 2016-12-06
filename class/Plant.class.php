@@ -113,6 +113,9 @@ class Plant {
 		
 		
 	}
+		
+		
+	}
 	function getSingleData($edit_id){
     
 		
@@ -175,7 +178,6 @@ class Plant {
 		
 	}
 	
-}
 
 
 ?>
