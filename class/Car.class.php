@@ -20,7 +20,7 @@
     }
     function getUserCars () {
 
-        $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model FROM repairCars WHERE Deleted IS NULL");
+        $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model FROM repairCars");
         echo $this->connection->error;
 
         $stmt ->bind_result($id, $RegPlate, $Mark, $Model);
@@ -33,8 +33,8 @@
             $car = new StdClass ();
             $car->id = $id;
             $car->Tyyp = $RegPlate;
-            $car->Color = $Mark;
-            $car->Created = $Model;
+            $car->Mark = $Mark;
+            $car->Model = $Model;
 
             array_push($result, $car);
 

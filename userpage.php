@@ -9,10 +9,10 @@ if (isset ($_POST["RegPlate"]) &&
     !empty($_POST["Model"])
 ){
 
-    saveCars ($_POST["RegPlate"], $_POST["Mark"], $_POST["Model"]);
+    $Car->saveCar ($_POST["RegPlate"], $_POST["Mark"], $_POST["Model"]);
 }
 
-$car=getUserCars();
+$cars=$Car->getUserCars();
 ?>
 
 <?php require ("header.php");?>
@@ -49,10 +49,10 @@ $html .= "<th>Sõiduki mudel</th>";
 $html .= "</tr>";
 
 
-foreach ($car as $c) {
+foreach ($cars as $c) {
     $html .= "<tr>";
     $html .= "<td>".$c->id."</td>";
-    $html .= "<td>".$c->RegPlate."</td>";
+    $html .= "<td>".$c->Tyyp."</td>";
     $html .= "<td>".$c->Mark."</td>";
     $html .= "<td>".$c->Model."</td>";
     $html .= "</tr>";
