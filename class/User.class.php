@@ -66,7 +66,7 @@ class User {
 	
 	function register($username, $email, $password) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO user_sample (username, email, password, created) VALUE (?, ?, ?, NOW())");
+		$stmt = $this->connection->prepare("INSERT INTO user_sample (username, email, password, admin, created) VALUE (?, ?, ?, 0,NOW())");
 		echo $this->connection->error;
 		
 		$stmt->bind_param("sss", $username, $email, $password);
@@ -110,7 +110,6 @@ class User {
 		$stmt->close();
 		
 		return $results;
-		
 	}
 	
 

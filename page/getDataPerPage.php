@@ -70,9 +70,9 @@
 		echo '<div>';
 		echo '<table>';
 		echo '<tr><h2>'.$name.'</h2></tr>';
-		echo '<td>'."<img src=".$message." >".'</td>';
+		echo '<td>'."<a href='topic.php?topicid=$id' class='thumbnail'><img src=".$message." ></a>".'</td>';
 		echo '</table>';
-		echo "Posted by: " . $author;
+		echo "Posted by: "."<a href='user.php?username=$author';?>$author</a>";
 		echo '<br><br><br><br>';
 		echo '</div>';
 	}
