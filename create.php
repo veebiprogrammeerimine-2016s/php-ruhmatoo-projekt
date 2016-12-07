@@ -84,7 +84,7 @@
 		$signupEmail = cleanInput($signupEmail);
 		
 		$User->signup($signupEmail, cleanInput($password), $firstname, $lastname);
-        
+
 }
 ?>
 <?php require("header.php"); ?>
