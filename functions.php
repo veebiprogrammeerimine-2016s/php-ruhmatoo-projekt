@@ -4,16 +4,16 @@ require("../../config.php");
 
 session_start();
 
-function signUp ($Email, $Password, $Gender, $Date) {
+function signUp ($Email, $Password, $Date, $Gender) {
 		
 		$database = "if16_mariiviita";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
-		$stmt = $mysqli->prepare("INSERT INTO user_sample (Email, Password, Gender, Date) VALUES (?, ?, ?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO user_sample (Email, Password, Date, Gender) VALUES (?, ?, ?, ?)");
 	
 		echo $mysqli->error;
 		
-		$stmt->bind_param("sssi", $Email, $Password, $Gender, $Date);
+		$stmt->bind_param("sssi", $Email, $Password, $Date, $Gender);
 		
 		if($stmt->execute()) {
 			echo "Salvestamine õnnestus";
@@ -35,7 +35,7 @@ function signUp ($Email, $Password, $Gender, $Date) {
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
 		$stmt = $mysqli->prepare("
-		SELECT id, Email, Password, Gender, Date 
+		SELECT id, Email, Password, Date, Gender 
 		FROM user_sample
 		WHERE email = ?");
 	
@@ -45,7 +45,7 @@ function signUp ($Email, $Password, $Gender, $Date) {
 		$stmt->bind_param("s", $Email);
 		
 		//määran väärtused muutujatesse
-		$stmt->bind_result($id, $EmailFromDb, $PasswordFromDb, $GenderFromDb, $DateFromDb);
+		$stmt->bind_result($id, $EmailFromDb, $PasswordFromDb, $DateFromDb, $GenderFromDb);
 		$stmt->execute();
 		
 		//andmed tulid andmebaasist või mitte
@@ -104,3 +104,4 @@ function signUp ($Email, $Password, $Gender, $Date) {
 		$mysqli->close();
 		
 	}
+?>
