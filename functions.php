@@ -85,11 +85,11 @@ function signUp ($Email, $Password, $Date, $Gender) {
 		$database = "if16_mariiviita";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
-		$stmt = $mysqli->prepare("INSERT INTO userData (currentDate, Feeling, NumberofSteps) VALUES (?, ?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO userData (currentDate, Feeling, NumberofSteps, user_id) VALUES (?, ?, ?, ?)");
 
 		echo $mysqli->error;
 
-		$stmt->bind_param("isi", $currentDate, $Feeling, $NumberofSteps);
+		$stmt->bind_param("isii", $currentDate, $Feeling, $NumberofSteps, $_SESSION["userId"]);
 
 		if($stmt->execute()) {
 			echo "Salvestamine �nnestus";
