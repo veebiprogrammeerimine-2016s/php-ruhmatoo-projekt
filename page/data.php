@@ -204,9 +204,6 @@ $html="<table class='table table-bordered table-condensed'>";
 ?>
 			</div>
 		</div>
-</div>
-
-<div class="container">
 		<div class="col-sm-6">
 <h2>Täna eetris</h2>
 <?php
