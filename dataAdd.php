@@ -53,11 +53,32 @@
 				
 				<form method="POST" >
 	
-					<label>Siia sisestame..</label><br>
-					<input type="text" >
+					<label>Pood</label><br>
+					<input name="storeName" type="text" >
+					<br><br>
+					
+					<label>Kategooria</label><br>
+					<input name="category" type="text" >
+					<br><br>
+					
+					<label>Toode</label><br>
+					<input name="productName" type="text" >
+					<br><br>
+					
+					<label>Hind</label><br>
+					<input name="productPrice" type="number" step="0.01" min="0">
+					<br><br>
+					
+					<label>Ostukuupäev</label><br> <!--üks võimalik variant kalendri tegemiseks: http://stackoverflow.com/questions/24975667/html-input-type-date-open-calendar-by-default-->
+					<input name="shoppingDate" type="number" >
+					<br><br>
+					
+					<label>Tsekinumber</label><br>
+					<input name="receiptNumber" type="number" >
 					<br><br>
 					
 					<input type="submit" value="Sisesta">
+					
 
 				</form>
 				
