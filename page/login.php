@@ -172,11 +172,12 @@
 			<label>E-post</label><br>
 			<input class ="form-control" placeholder="E-mail" name="signupEmail" type="email" value="<?=$signupEmail;?>" > <?php echo $signupEmailError; ?>
 			
-			<br><br>
+			<br>
 			
+			<label>Parool</label><br>
 			<input class ="form-control" placeholder="Parool" name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
 						
-			<br><br>
+			<br>
 			
 			<?php if ($gender == "male") { ?>
 				<input type="radio" name="gender" value="male" checked > Mees<br>
@@ -195,6 +196,8 @@
 			<?php } else { ?>
 				<input type="radio" name="gender" value="other"> Muu<br>
 			<?php } ?>
+			
+			<br>
 			
 			<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Loo kasutaja">
 		
