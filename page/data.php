@@ -83,7 +83,9 @@
 	<a href="?logout=1">logi välja</a>
 </p>
 
-
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6">
 
 <h2>TOP 10</h2>
 
@@ -130,71 +132,7 @@
 	$html .="</table>";
 	echo $html;
 ?>
-<h2>Täna eetris</h2>
-<?php
 
-$html="<table class='table table-bordered table-condensed'>";
-		$html .="<tr>";
-			$ordertvshow_name="ASC";
-			$arr="&darr;";
-			if(isset($_GET["order"])&&
-				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="tvshow_name"){
-				$ordertvshow_name="DESC";
-				$arr="&uarr;";
-			}
-			$html .= "<th>
-						<a href='?q=".$q."&sort=tvshow_name&order=".$ordertvshow_name."'>
-							Seriaali nimi
-						</a>
-					 </th>";
-
-			$ordertime="ASC";
-			$arr="&darr;";
-			if(isset($_GET["order"])&&
-				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="time"){
-				$ordertime="DESC";
-				$arr="&uarr;";
-			}
-			$html .="<th>
-						<a href='?q=".$q."&sort=time&order=".$ordertime."'>
-							Kellaaeg
-						</a>
-					</th>";
-
-			$orderChannel="ASC";
-			$arr="&darr;";
-			if(isset($_GET["order"])&&
-				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="channel"){
-				$orderChannel="DESC";
-				$arr="&uarr;";
-			}
-			$html .= "<th>
-						<a href='?q=".$q."&sort=channel&order=".$orderChannel."'>
-							Kanal
-						</a>
-					 </th>";
-	$html .="</tr>";
-	//iga liikmekohta masssiiivis
-	foreach($people as $p){
-		$html .="<tr>";
-			$html .="<td>".$p->id."</td>";
-			$html .="<td>".$p->tvshow_name."</td>";
-			$html .="<td>".$p->time."</td>";
-			$html .="<td>".$p->channel."</td>";
-			$html .="</tr>";
-	}
-	$html .="</table>";
-	echo $html;
-
-
-
-
-
-
-?>
 
 <h2>Viimati hinnatud</h2>
 <?php
@@ -261,4 +199,76 @@ $html="<table class='table table-bordered table-condensed'>";
 
 
 ?>
+		</div>
+	</div>
+</div>
+<div class="container">
+		<div class="col-sm-6">
+<h2>Täna eetris</h2>
+<?php
+
+$html="<table class='table table-bordered table-condensed'>";
+		$html .="<tr>";
+			$ordertvshow_name="ASC";
+			$arr="&darr;";
+			if(isset($_GET["order"])&&
+				$_GET["order"]=="ASC"&&
+				$_GET["sort"]=="tvshow_name"){
+				$ordertvshow_name="DESC";
+				$arr="&uarr;";
+			}
+			$html .= "<th>
+						<a href='?q=".$q."&sort=tvshow_name&order=".$ordertvshow_name."'>
+							Seriaali nimi
+						</a>
+					 </th>";
+
+			$ordertime="ASC";
+			$arr="&darr;";
+			if(isset($_GET["order"])&&
+				$_GET["order"]=="ASC"&&
+				$_GET["sort"]=="time"){
+				$ordertime="DESC";
+				$arr="&uarr;";
+			}
+			$html .="<th>
+						<a href='?q=".$q."&sort=time&order=".$ordertime."'>
+							Kellaaeg
+						</a>
+					</th>";
+
+			$orderChannel="ASC";
+			$arr="&darr;";
+			if(isset($_GET["order"])&&
+				$_GET["order"]=="ASC"&&
+				$_GET["sort"]=="channel"){
+				$orderChannel="DESC";
+				$arr="&uarr;";
+			}
+			$html .= "<th>
+						<a href='?q=".$q."&sort=channel&order=".$orderChannel."'>
+							Kanal
+						</a>
+					 </th>";
+	$html .="</tr>";
+	//iga liikmekohta masssiiivis
+	foreach($people as $p){
+		$html .="<tr>";
+			$html .="<td>".$p->id."</td>";
+			$html .="<td>".$p->tvshow_name."</td>";
+			$html .="<td>".$p->time."</td>";
+			$html .="<td>".$p->channel."</td>";
+			$html .="</tr>";
+	}
+	$html .="</table>";
+	echo $html;
+
+
+
+
+
+
+?>
+		</div>
+</div>
 <?php require("../datafooter.php");?>
