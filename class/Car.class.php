@@ -18,12 +18,44 @@
             echo "ERROR ".$stmt->error;
         }
     }
+	
+	function getSingleData($edit_id){
+
+
+		$stmt = $this->connection->prepare("SELECT id, Mileage, DoneJob, JobCost, Comment FROM repairCars WHERE id=?");
+
+		$stmt->bind_param("i", $edit_id);
+		$stmt->bind_result($id, $Mileage, $DoneJob, $JobCost, $Comment);
+		$stmt->execute();
+
+		$car = new Stdclass();
+
+		if($stmt->fetch()){
+
+			$car->Mileage = $Mileage;
+			$car->DoneJob = $DoneJob;
+			$car->JobCost = $JobCost;
+			$car->Comment = $Comment;
+
+		}else{
+
+			header("Location: userpage.php");
+			exit();
+		}
+
+		$stmt->close();
+
+		return $car;
+
+	}
+
+	
     function getUserCars () {
 
-        $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model FROM repairCars");
+        $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model, Mileage, Donejob, JobCost, Comment FROM repairCars");
         echo $this->connection->error;
 
-        $stmt ->bind_result($id, $RegPlate, $Mark, $Model);
+        $stmt ->bind_result($id, $RegPlate, $Mark, $Model, $Mileage, $DoneJob, $JobCost, $Comment);
         $stmt -> execute ();
 
         $result = array();
@@ -35,6 +67,10 @@
             $car->Tyyp = $RegPlate;
             $car->Mark = $Mark;
             $car->Model = $Model;
+			$car->Mileage = $Mileage;
+			$car->DoneJob = $DoneJob;
+			$car->JobCost = $JobCost;
+			$car->Comment = $Comment;
 
             array_push($result, $car);
 
@@ -107,5 +143,20 @@
 
         return $result;
     }
+	
+	function update($Mileage, $DoneJob, $JobCost, $Comment){
+
+
+		$stmt = $this->connection->prepare("UPDATE repairCars SET Mileage=?, DoneJob=?, JobCost=?, Comment=? WHERE id=?");
+		$stmt->bind_param("isis",$Mileage, $DoneJob, $JobCost, $Comment);
+
+		if($stmt->execute()){
+	
+			echo "salvestus �nnestus!";
+		}
+		$stmt->close();
+
+	}
+
 }
 ?>
