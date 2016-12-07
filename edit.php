@@ -6,7 +6,7 @@
 	//kas kasutaja uuendab andmeid
 	if(isset($_POST["update"])){
 		
-		$Car->update(cleanInput($_POST["Mileage"]), cleanInput($_POST["DoneJob"]), cleanInput($_POST["JobCost"]), cleanInput($_POST["Comment"]), cleanInput($_POST["id"]));
+		$Car->saveWorkForSingleCar(cleanInput($_POST["Mileage"]), cleanInput($_POST["DoneJob"]), cleanInput($_POST["JobCost"]), cleanInput($_POST["Comment"]), cleanInput($_POST["id"]));
 		
 		header("Location: edit.php?id=".$_POST["id"]."&success=true");
         exit();	
@@ -15,7 +15,7 @@
 	
 	
 	//saadan kaasa id
-	$c = $Car->getSingleData($_GET["id"]);
+	//$c = $Car->getSingleData($_GET["id"]);
 	
 
 	
@@ -28,13 +28,13 @@
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
   	<label for="Mileage" >Läbisõit</label><br>
-	<input id="Mileage" name="Mileage" type="text" value="<?=$c->Mileage;?>" ><br><br>
+	<input id="Mileage" name="Mileage" type="text"  ><br><br>
   	<label for="DoneJob" >Tehtud töö</label><br>
-	<input id="DoneJob" name="DoneJob" type="text" value="<?=$c->DoneJob;?>"><br><br>
+	<input id="DoneJob" name="DoneJob" type="text" ><br><br>
 	<label for="JobCost" >Töö maksumus</label><br>
-	<input id="JobCost" name="JobCost" type="text" value="<?=$c->JobCost;?>"><br><br>
+	<input id="JobCost" name="JobCost" type="text" ><br><br>
 	<label for="Comment" >Kommentaar</label><br>
-	<input id="Comment" name="Comment" type="text" value="<?=$c->Comment;?>"><br><br>
+	<input id="Comment" name="Comment" type="text" ><br><br>
   	
 	<input type="submit" name="update" value="Salvesta">
   </form>

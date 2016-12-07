@@ -2,8 +2,7 @@
 
 require("functions.php");
    
-$cars=$Car->getWork($_GET["id"]);
-
+$cars=$Car->getWorks($_GET["id"]);
 ?>
 
 <h2>Sinu Sõidukid</h2>

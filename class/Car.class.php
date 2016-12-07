@@ -49,18 +49,17 @@
 
 	}
 
-	function getWork($edit_id){
+	function getWorks($carid){
 
+		$stmt = $this->connection->prepare("SELECT id, Mileage, DoneJob, JobCost, Comment FROM repairWork WHERE carId=?");
 
-		$stmt = $this->connection->prepare("SELECT id, Mileage, DoneJob, JobCost, Comment FROM repairCars WHERE id=?");
-
-		$stmt->bind_param("i", $edit_id);
+		$stmt->bind_param("i", $carid);
 		$stmt->bind_result($id, $Mileage, $DoneJob, $JobCost, $Comment);
 		$stmt->execute();
 
 		$result = array();
 
-		if($stmt->fetch()){
+		while($stmt->fetch()){
 			
 			$work = new Stdclass();
 
@@ -72,11 +71,9 @@
 			
 			array_push($result, $work);
 
-		}else{
-
-			header("Location: userpage.php");
-			exit();
 		}
+		
+		
 
 		$stmt->close();
 
@@ -86,10 +83,10 @@
 	
     function getUserCars () {
 
-        $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model, Mileage, Donejob, JobCost, Comment FROM repairCars");
+        $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model FROM repairCars");
         echo $this->connection->error;
 
-        $stmt ->bind_result($id, $RegPlate, $Mark, $Model, $Mileage, $DoneJob, $JobCost, $Comment);
+        $stmt ->bind_result($id, $RegPlate, $Mark, $Model);
         $stmt -> execute ();
 
         $result = array();
@@ -101,10 +98,6 @@
             $car->Tyyp = $RegPlate;
             $car->Mark = $Mark;
             $car->Model = $Model;
-			$car->Mileage = $Mileage;
-			$car->DoneJob = $DoneJob;
-			$car->JobCost = $JobCost;
-			$car->Comment = $Comment;
 
             array_push($result, $car);
 
@@ -183,6 +176,20 @@
 
 		$stmt = $this->connection->prepare("UPDATE repairCars SET Mileage=?, DoneJob=?, JobCost=?, Comment=? WHERE id=?");
 		$stmt->bind_param("isisi",$Mileage, $DoneJob, $JobCost, $Comment, $id);
+
+		if($stmt->execute()){
+	
+			echo "salvestus �nnestus!";
+		}
+		$stmt->close();
+
+	}
+	
+	function saveWorkForSingleCar($Mileage, $DoneJob, $JobCost, $Comment, $carid){
+
+
+		$stmt = $this->connection->prepare("INSERT INTO repairWork (Mileage, DoneJob, JobCost, Comment, carId) VALUES(?,?,?,?,?)");
+		$stmt->bind_param("isisi",$Mileage, $DoneJob, $JobCost, $Comment, $carid);
 
 		if($stmt->execute()){
 	
