@@ -84,7 +84,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href='/~gregness/php-ruhmatoo-projekt/index.php' class="navbar-brand">Projekt</a>
+          <a href='/~gregness/php-ruhmatoo-projekt/index.php' class="navbar-brand">iksd.ee</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
