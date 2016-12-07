@@ -79,14 +79,23 @@ body {
 }
 
 .hbutton {
+	padding-left: .25em;
+	padding-right: .25em;
 	text-decoration: none;
 	color: white;
 	transition: .25s;
+	border: 1px solid forestgreen;
+	border-radius: 50%;
 }
 .hbutton:hover {
-	padding-left: .5em;
-	padding-right: .5em;
-	color: lime;
+	background: green;
+	border: 1px solid green;
+	border-radius: 50%;
+}
+
+.hbutton:active {
+	background: lawngreen;
+	border: 1px solid lawngreen;
 }
 
 .button:hover {

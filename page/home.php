@@ -4,12 +4,12 @@ require("header.php");
 <div class="row">
 <div class="header c-6"><?php echo $appName;?></div>
 <div class="header c-6">
-<div style="display: inline-block; margin-left: 1em; float:right; height: 2em; vertical-align: middle;">
-<form style="float:left; font-size: 0.5em; margin: 0;">
+<div style="float:right; display: flex; justifiy-content: center; align-items: center; margin-left: 1em;">
+<form style= "font-size: 0.5em; margin: 0;">
 <input type="text" name="search" placeholder="Otsi...">
-<input type="submit" class="button"  value="Otsi">
+<input type="submit" class="button" style=""  value="Otsi">
 </form>
-<a class="button" href="login.php" style=" font-size: 20px;" >Logi sisse</a>
+<a class="button" href="login.php" >Logi sisse</a>
 </div>
 </div>
 
