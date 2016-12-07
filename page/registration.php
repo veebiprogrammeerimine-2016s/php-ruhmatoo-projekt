@@ -136,29 +136,30 @@ div {
 
 		
 	
-				<div class="container">
+	<div class="container">
 	
-				<div class="row">
-				<body style='background-color:Silver'>
-				<div class="col-sm-4 "></div>
-				<div class="col-sm-4 ">
+		<div class="row">
+		<body style='background-color:Silver'>
+			<div class="col-sm-4 "></div>
+			<div class="col-sm-4 ">
 				<h3>Loo kasutaja</h3>
 				<form method="POST">
-				<label for="fname">E-post</label><br>
-				<input type="email" id="fname" name="signupEmail"value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
+					<label for="fname">E-post</label>
+					<div class="form-group">
+						<input class="form-control" name="signupEmail" type="email" id="fname" value="<?=$signupEmail;?>"> <?php echo $signupEmailError;?>
+					</div>
 				
-				<br><br>
-				
-				<label for="lname">Parool</label><br>
-				<input type="password" id="lname" name="signupPassword" placeholder="Parool"> <?php echo $signupPasswordError;?>
-				
-				<br> <br>
+					<label for="lname">Parool</label>
+					<div class="form-group">
+						<input class="form-control" name="signupPassword" type="password" id="lname" placeholder="Parool" <?php echo $signupPasswordError;?>
+					</div>	
 	
-				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Registreeru">
-				<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Registreeru">
-				<br>
-				<a href="login.php">Tagasi logima</a>
+					<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Registreeru">
+					<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Registreeru">
+					<br>
+					<a href="login.php">Tagasi logima</a>
 				
-			<br><br>
-			</form>
-
+				</form>
+			</div>
+		</div>
+	

@@ -43,7 +43,7 @@
 <?php require("../loginheader.php"); ?>
 
 	<div class="container">
-	
+
 		<div class="row">
 		<body style='background-color:Silver'>
 			<div class="col-sm-4 "></div>
@@ -51,16 +51,16 @@
 				<h3>Logi sisse</h3>
 				<form method="POST">
 					<p style="color:red;"><?=$error;?></p>
-					 <label for="fname">E-post</label><br>
-					<input type="text" id="fname" name="loginEmail">
 					
-					<br>
-
+					<label for="fname">E-post</label>
+					<div class="form-group">
+						<input class="form-control" name="loginEmail" type="text" id="fname">
+					</div>
+						
 					<label for="lname">Parool</label><br>
-					<input type="password" id="lname" name="loginPassword" placeholder="Parool">
-					
-					<br><br>
-					
+					<div class="form-group">
+						<input class="form-control" name="loginPassword" type="password" id="lname" placeholder="Parool">
+					</div>
 					
 					<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Logi sisse">
 					<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Logi sisse">

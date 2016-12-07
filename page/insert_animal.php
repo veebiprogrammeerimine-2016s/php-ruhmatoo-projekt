@@ -65,15 +65,19 @@
 	            <br><br>
 	
 	            <label>Looma nimi</label><br>
-	            <input name="name" type="text" >
-	            <br><br>
+				<div class="form-group, col-xs-2">
+					<input class="form-control" name="name" type="text">
+				</div>
+	            <br><br><br>
 	
 	            <label>Vanus</label><br>
-	            <input name="age" type="int" >
-	            <br><br>
+                <div class="form-group, col-xs-2">
+					<input class="form-control" name="name" type="text">
+				</div>
+	            <br><br><br>
 	
-	
-	            <input type="submit" value="Salvesta">
+				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Salvesta"> <?php echo $informationError;?>	
+
 				<br><br>
                 </form>
 		</body>		

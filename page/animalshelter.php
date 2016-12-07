@@ -44,7 +44,7 @@
 <form>
 
 	<input type="search" name="s" value="<?=$s;?>">
-	<input type="submit" value="Otsi">
+	<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Otsi">
 	
 </form>
 <?php 
