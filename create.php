@@ -90,21 +90,23 @@
 <?php require("header.php"); ?>
 <div class="container">
     <div class="row">
-        <div class="col-md-6 center-block">
-            <h1>Kasutaja loomine</h1>
+        <div class="col-sm-6 col-md-4 col-sm-offset-6 col-md-offset-4">
+            <h1 style="text-align:center;" >Kasutaja Loomine</h1>
             <form method="POST">
-                <input name="signupEmail" type="text" placeholder="Email" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
+                <center><input style="text-align:center;" name="signupEmail" type="text" placeholder="Email" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
                 <br><br>
-                <input name="signupPassword" type="password" placeholder="Parool"> <?php echo $signupPasswordError; ?>
+                <input style="text-align:center;" name="signupPassword" type="password" placeholder="Parool"> <?php echo $signupPasswordError; ?>
                 <br><br>
-                <input name="signupPassword" type="password" placeholder="Korda parooli"> <?php echo $signupPasswordError; ?>
+                <input style="text-align:center;" name="signupPassword" type="password" placeholder="Korda parooli"> <?php echo $signupPasswordError; ?>
                 <br><br>
-                <input name="firstname" type="text" placeholder="Eesnimi"> <?php echo $firstnameError; ?>
+                <input style="text-align:center;" name="firstname" type="text" placeholder="Eesnimi"> <?php echo $firstnameError; ?>
                 <br><br>
-                <input name="lastname" type="text" placeholder="Perekonnanimi"> <?php echo $lastnameError; ?>
+                <input style="text-align:center;" name="lastname" type="text" placeholder="Perekonnanimi"> <?php echo $lastnameError; ?>
                 <br><br>
-                <input type="submit" value="Loo kasutaja">
-                <a class="btn btn-Success btn-sm" href="firstpage.php"> Loobu</a>
+                <input class="btn btn-success btn-sm" type="submit" value="Loo kasutaja">
+                <a class="btn btn-danger btn-sm" href="firstpage.php"> Loobu</a>
+                    <br><br>
+                    <a class="btn btn-link btn-sm" href="firstpage.php"> Tagasi avalehele</a></center></center>
             </form>
         </div>
     </div>

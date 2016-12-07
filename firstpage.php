@@ -94,7 +94,6 @@
 						<input class="form-control" type="password" name="loginPassword" placeholder="Parool">	
 						<br>
 					<input class="btn btn-success btn-sm" type="submit" value="Logi sisse">
-					<br>
 					<a class="btn btn-success btn-sm" href="create.php"> Registreeri</a>
 				</form>
 			</div>
