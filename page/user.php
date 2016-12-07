@@ -63,6 +63,7 @@
 			$html .= "<tr>";
 				$html .= "<td>".$a->id."</td>";
 				$html .= "<td>".$a->caption."</td>";
+				$html .= "<td>".$a->imgurl."</td>";
 
 			$html .= "</tr>";
 		
