@@ -22,8 +22,6 @@
 	$signUpDate = "";
 	$signUpDateError= "";
 
-
-
 	// Kontrollime, kas on üldse olemas selline muutja
 	if( isset( $_POST["signupEmail"] ) ){
 		//jah on olemas
@@ -36,25 +34,30 @@
 		}
 	}
 
-	if( isset( $_POST["signupPassword"] ) ){
 
-		if( empty( $_POST["signupPassword"] ) ){
-
-			$signupPasswordError = "Parool on kohustuslik";
-
+	if( isset( $_POST["signupEmail"] ) ){
+		//jah on
+		//kas on tühi
+		if( empty( $_POST["signupEmail"] ) ){
+			$signupEmailError = "See väli on kohustuslik";
 		} else {
-
-			// siia jõuan siis kui parool oli olemas - isset
-			// parool ei olnud tühi -empty
-
-			// kas parooli pikkus on väiksem kui 8
-			if ( strlen($_POST["signupPassword"]) < 8 ) {
-
-				$signupPasswordError = "Parool peab olema vähemalt 8 tähemärkki pikk";
-			}
+			//email olemas
+			$signupEmail = $_POST["signUpDate"];
 		}
 	}
 
+	if( isset( $_POST["signupPassword"] ) ){
+		if( empty( $_POST["signupPassword"] ) ){
+			$signupPasswordError = "Parool on kohustuslik";
+		} else {
+			// siia jõuan siis kui parool oli olemas - isset
+			// parool ei olnud tühi -empty
+			// kas parooli pikkus on väiksem kui 8
+			if ( strlen($_POST["signupPassword"]) < 8 ) {
+				$signupPasswordError = "Parool peab olema vähemalt 8 tähemärki pikk";
+			}
+		}
+	}
 
 	// GENDER
 	if( isset( $_POST["signupGender"] ) ){
@@ -62,8 +65,6 @@
 			$signupGender = $_POST["signupGender"];
 		}
 	}
-
-
 	// peab olema email ja parool
 	// ühtegi errorit
 	if ( isset($_POST["signupEmail"]) &&
@@ -77,33 +78,26 @@
 		echo "Salvestan... <br>";
 		echo "email: ".$signupEmail."<br>";
 		echo "password: ".$_POST["signupPassword"]."<br>";
-		$password = hash("sha512", $_POST["signupPassword"]);
+		$Password = hash("sha512", $_POST["signupPassword"]);
 		echo "password hashed: ".$password."<br>";
 
 		//echo $serverUsername;
 
 		// KASUTAN FUNKTSIOONI
 		$signupEmail = cleanInput($signupEmail);
-
-		signUp($signupEmail, cleanInput($password));
-
-
+		signUp($signupEmail, cleanInput($Password), cleanInput($signUpDate));
 	}
-
-
-
 
 	$error ="";
 	if ( isset($_POST["loginEmail"]) &&
 		isset($_POST["loginPassword"]) &&
 		!empty($_POST["loginEmail"]) &&
 		!empty($_POST["loginPassword"])
+		isset($_POST["signUpDate"]) &&
+		!empty($_POST["signUpDate"]) &&
 	  ) {
-
-		$error = login(cleanInput($_POST["loginEmail"]), cleanInput($_POST["loginPassword"]));
-
+		$error = login(cleanInput($_POST["loginEmail"]), cleanInput($_POST["loginPassword"]), $_POST["signUpDate"]));
 	}
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -121,12 +115,10 @@
 		<input name="loginEmail" type="text">
 		<br><br>
 
-		<input type="password" name="loginPassword" placeholder="Parool">
+		<input type="Password" name="loginPassword" placeholder="Parool">
 		<br><br>
 
 		<input type="submit" value="Logi sisse">
-
-
 	</form>
 
 
@@ -137,12 +129,12 @@
 
 		<label>E-post</label>
 		<br>
-		<input name="signupEmail" type="text" value="<?=$signupEmail;?>"> <?=$signupEmailError;?>
+		<input name="signupEmail" type="text" placeholder = "E-post" value="<?=$signupEmail;?>"> <?=$signupEmailError;?>
 		<br><br>
 
 		//PAROOLI KÜSIMINE
 		<br>
-		<input type="password" name="signupPassword" placeholder="Parool"> <?php echo $signupPasswordError; ?>
+		<input type="Password" name="signupPassword" placeholder="Parool"> <?php echo $signupPasswordError; ?>
 		<br><br>
 
 
