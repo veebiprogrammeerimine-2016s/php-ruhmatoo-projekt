@@ -7,10 +7,10 @@
 
 	require("../class/Top.class.php");
 	$Top= new Top($mysqli);
-	
+
 	require("../class/Eetris.class.php");
 	$Eetris= new Eetris($mysqli);
-	
+
 	require("../class/Viimati.class.php");
 	$Viimati= new Viimati($mysqli);
 
@@ -62,7 +62,7 @@
 
 ///////////////MILLEKS SEE ON?
 	$people=$Top->getAll($q, $sort, $order);
-	
+
 	//echo"<pre>";
 	//var_dump($people[1]);
 	//echo"</pre>";
@@ -86,6 +86,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6">
+			<div class="row">
 
 <h2>TOP 10</h2>
 
@@ -120,7 +121,7 @@
 							Hinne
 						</a>
 					</th>";
-		
+
 	$html .="</tr>";
 	//iga liikmekohta masssiiivis
 	foreach($people as $p){
@@ -132,7 +133,9 @@
 	$html .="</table>";
 	echo $html;
 ?>
+			</div>
 
+			<div class="row">
 
 <h2>Viimati hinnatud</h2>
 <?php
@@ -199,9 +202,10 @@ $html="<table class='table table-bordered table-condensed'>";
 
 
 ?>
+			</div>
 		</div>
-	</div>
 </div>
+
 <div class="container">
 		<div class="col-sm-6">
 <h2>Täna eetris</h2>
@@ -270,5 +274,6 @@ $html="<table class='table table-bordered table-condensed'>";
 
 ?>
 		</div>
+	</div>
 </div>
 <?php require("../datafooter.php");?>

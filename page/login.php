@@ -58,7 +58,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-4 col-md-3">
-		<h1>Logi sisse</h1>
+		<h1>   Logi sisse</h1>
 		<p style="color:black;"><?=$notice;?></p>
 		<form method="POST" >
 			<label>E-post</label><br>
