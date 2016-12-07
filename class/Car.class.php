@@ -144,11 +144,11 @@
         return $result;
     }
 	
-	function update($Mileage, $DoneJob, $JobCost, $Comment){
+	function update($Mileage, $DoneJob, $JobCost, $Comment, $id){
 
 
 		$stmt = $this->connection->prepare("UPDATE repairCars SET Mileage=?, DoneJob=?, JobCost=?, Comment=? WHERE id=?");
-		$stmt->bind_param("isis",$Mileage, $DoneJob, $JobCost, $Comment);
+		$stmt->bind_param("isisi",$Mileage, $DoneJob, $JobCost, $Comment, $id);
 
 		if($stmt->execute()){
 	
