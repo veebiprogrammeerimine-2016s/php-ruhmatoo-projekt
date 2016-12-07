@@ -46,10 +46,6 @@ $html .= "<th>id</th>";
 $html .= "<th>Registreerimismärk</th>";
 $html .= "<th>Sõiduki mark</th>";
 $html .= "<th>Sõiduki mudel</th>";
-$html .= "<th>Läbisõit</th>";
-$html .= "<th>Tehtud töö</th>";
-$html .= "<th>Töö maksumus</th>";
-$html .= "<th>Kommentaar</th>";
 $html .= "</tr>";
 
 
@@ -59,11 +55,8 @@ foreach ($cars as $c) {
     $html .= "<td>".$c->Tyyp."</td>";
     $html .= "<td>".$c->Mark."</td>";
     $html .= "<td>".$c->Model."</td>";
-	$html .= "<td>".$c->Mileage."</td>";
-	$html .= "<td>".$c->DoneJob."</td>";
-	$html .= "<td>".$c->JobCost."</td>";
-	$html .= "<td>".$c->Comment."</td>";
-	$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span>Muuda</a></td>";
+	$html .= "<td><a class='btn btn-default btn-sm' href='car.php?id=".$c->id."'><span class='glyphicon glyphicon-th-list'></span>Vaata ajalugu</a></td>";
+	$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-plus'></span>Lisa töid</a></td>";
     $html .= "</tr>";
 }
 $html .= "</table>";

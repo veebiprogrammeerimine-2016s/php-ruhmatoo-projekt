@@ -39,8 +39,8 @@
 
 		}else{
 
-			header("Location: userpage.php");
-			exit();
+			//header("Location: userpage.php");
+			//exit();
 		}
 
 		$stmt->close();
@@ -49,6 +49,40 @@
 
 	}
 
+	function getWork($edit_id){
+
+
+		$stmt = $this->connection->prepare("SELECT id, Mileage, DoneJob, JobCost, Comment FROM repairCars WHERE id=?");
+
+		$stmt->bind_param("i", $edit_id);
+		$stmt->bind_result($id, $Mileage, $DoneJob, $JobCost, $Comment);
+		$stmt->execute();
+
+		$result = array();
+
+		if($stmt->fetch()){
+			
+			$work = new Stdclass();
+
+			$work->id = $id;
+			$work->Mileage = $Mileage;
+			$work->DoneJob = $DoneJob;
+			$work->JobCost = $JobCost;
+			$work->Comment = $Comment;
+			
+			array_push($result, $work);
+
+		}else{
+
+			header("Location: userpage.php");
+			exit();
+		}
+
+		$stmt->close();
+
+		return $result;
+
+	}
 	
     function getUserCars () {
 
