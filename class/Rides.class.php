@@ -92,12 +92,10 @@ class Rides {
       $r->start_time = $start_time;
       $r->arrival_location = $arrival_location;
       $r->arrival_time = $arrival_time;
-      $r->free_seats= $free_seats;
-      $r->guest_name= $guest_name;
+      $r->free_seats = $free_seats;
+      $r->guest_name = $guest_name;
       $r->guest_email = $guest_email;
 
-      //echo $age."<br>";
-      //echo $color."<br>";
       array_push($results, $r);
     }
 
@@ -110,17 +108,17 @@ class Rides {
     SELECT cp_rides.id, cp_rides.start_location,
     cp_rides.start_time, cp_rides.arrival_location,
     cp_rides.arrival_time, cp_rides.free_seats,
-    cp_rides.user_id, cp_users.email
+    cp_rides.user_id, cp_users.name, cp_users.email
     FROM cp_rideusers
     JOIN cp_users ON cp_users.id=cp_rideusers.user_id
     JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
-    WHERE cp_rides.user_id=?;
+    WHERE cp_rideusers.user_id = ?;
     ");
 
     echo $this->connection->error;
 		$stmt->bind_param("i", $_SESSION["userId"]);
     $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
-    $arrival_time, $free_seats, $driver_name, $driver_email);
+    $arrival_time, $free_seats, $driver_id, $driver_name, $driver_email);
     $stmt->execute();
 
     //tekitan objekti
@@ -169,47 +167,6 @@ class Rides {
 
 	}
 
-
-  function saveUser($ride) {
-
-    $stmt = $this->connection->prepare("
-      SELECT id FROM user_interests_4
-      WHERE user_id=? AND interest_id=?
-    ");
-    $stmt->bind_param("ii", $_SESSION["userId"], $interest);
-
-    $stmt->execute();
-
-    //kas oli rida
-    if ($stmt->fetch()) {
-
-      //oli olemas
-      echo "juba olemas";
-      //pärast returni enam koodi ei vaadata
-      return;
-    }
-
-    // kui ei olnud, jõuame siia
-    $stmt->close();
-
-    $stmt = $this->connection->prepare("
-      INSERT INTO user_interests_4 (user_id, interest_id)
-      VALUES (?, ?)
-    ");
-
-    echo $this->connection->error;
-
-    $stmt->bind_param("ii", $_SESSION["userId"], $interest);
-
-    if($stmt->execute()) {
-      echo "salvestamine õnnestus";
-    } else {
-      echo "ERROR ".$stmt->error;
-    }
-
-    $stmt->close();
-
-  }
 
   function registertoride($id){
 

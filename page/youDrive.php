@@ -17,7 +17,9 @@ $Rides = new Rides($mysqli);
 	}
 
 
-  $msg = "";
+
+
+ $msg = "";
 
 	if(isset($_SESSION["message"])){
 		$msg = $_SESSION["message"];
@@ -25,6 +27,7 @@ $Rides = new Rides($mysqli);
 		//kui ühe näitame siis kustuta ära, et pärast refreshi ei näitaks
 		unset($_SESSION["message"]);
 	}
+
 
   if ( isset($_POST["getUser"]) &&
 		!empty($_POST["getUser"])
@@ -34,8 +37,6 @@ $Rides = new Rides($mysqli);
 		$Rides->getUser($Helper->cleaninput($_POST["getUser"]));
 
 	}
-    $rides = $Rides->getUser();
-
 
     if(isset($_GET["r"])) {
   		$r = $_GET["r"];

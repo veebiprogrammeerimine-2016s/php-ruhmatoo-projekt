@@ -34,6 +34,8 @@ $Rides = new Rides($mysqli);
 		$Rides->getUser($Helper->cleaninput($_POST["getUser"]));
 
 	}
+
+
     $rides = $Rides->getPassenger();
 
 
