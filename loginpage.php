@@ -1,6 +1,7 @@
 <?php
 
 	require("../../config.php");
+	require("functions.php");
 	
 	//MUUTUJAD REGISTREERIMINE
 	$signupEmail = $signupPassword = $signupUsername = $signupGender = "" ; 
@@ -31,8 +32,11 @@
 		if (empty ($_POST["signupUsername"])) {
 		$signupUsernameError = "* Väli on kohustuslik";
 		} else {
-		if (strlen ($_POST["signupUsername"]) >20)
+		if (strlen ($_POST["signupUsername"]) >20) {
 		$signupUsernameError = "* Kasutajanimi ei tohi olla pikkem kui 20 tähemärkki";
+		} else {
+		$signupUsername = $_POST ["signupUsername"];
+			}
 		}
 	}
 	
@@ -42,9 +46,14 @@
 		isset($_POST["signupEmail"]) &&
 		isset($_POST["signupPassword"])
 	)
+	if (isset($_POST["signupEmail"])&&
+		!empty($_POST["signupEmail"])
+		)
+	
 	//SALVESTAMINE
 	{
 	$signupPassword = hash("sha512", $_POST["signupPassword"]);
+	registration($signupEmail, $signupPassword, $signupUsername, $_POST["signupGender"]);
 	}	
 	
 ?>
@@ -74,7 +83,7 @@
 		
 		<!--KASUTAJANIMI REGISTREERIMINE-->
 		<br><label for="signupUsername">Sinu kasutaja nimi</label></br>
-		<input name="signupUsername" type = "signupUsername" placeholder="Kasutajanimi">
+		<input name="signupUsername" type = "signupUsername" placeholder="Kasutajanimi" value=<?=$signupUsername;?>>
 		<?php echo $signupUsernameError;?><br>
 		
 		<br>
