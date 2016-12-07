@@ -99,6 +99,7 @@ class Rides {
       array_push($results, $r);
     }
 
+    $stmt->close();
     return $results;
   }
 
@@ -107,8 +108,8 @@ class Rides {
     $stmt = $this->connection->prepare("
     SELECT cp_rides.id, cp_rides.start_location,
     cp_rides.start_time, cp_rides.arrival_location,
-    cp_rides.arrival_time, cp_rides.free_seats,
-    cp_rides.user_id, cp_users.name, cp_users.email
+    cp_rides.arrival_time, cp_rides.free_seats, cp_rides.user_id,
+    cp_users.name, cp_users.email
     FROM cp_rideusers
     JOIN cp_users ON cp_users.id=cp_rideusers.user_id
     JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
@@ -134,6 +135,7 @@ class Rides {
       $r->arrival_location = $arrival_location;
       $r->arrival_time = $arrival_time;
       $r->free_seats= $free_seats;
+      $r->driver_id= $driver_id;
       $r->driver_name= $driver_name;
       $r->driver_email = $driver_email;
 
@@ -142,6 +144,7 @@ class Rides {
       array_push($results, $r);
     }
 
+    $stmt->close();
     return $results;
   }
 

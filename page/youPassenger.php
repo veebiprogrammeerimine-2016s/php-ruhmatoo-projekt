@@ -26,12 +26,12 @@ $Rides = new Rides($mysqli);
 		unset($_SESSION["message"]);
 	}
 
-  if ( isset($_POST["getUser"]) &&
-		!empty($_POST["getUser"])
+  if ( isset($_POST["getPassenger"]) &&
+		!empty($_POST["getPassenger"])
 	  ) {
 
-		echo $_POST["getUser"];
-		$Rides->getUser($Helper->cleaninput($_POST["getUser"]));
+		echo $_POST["getPassenger"];
+		$Rides->getUser($Helper->cleaninput($_POST["getPassenger"]));
 
 	}
 
