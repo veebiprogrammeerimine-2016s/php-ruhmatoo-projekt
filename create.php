@@ -86,29 +86,21 @@
 }
 ?>
 <?php require("header.php"); ?>
-</form>
-
-<h1>Kasutaja loomine</h1>
-
-<form method="POST">
-
-    <input name="signupEmail" type="text" placeholder="Email" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
-    <br><br>
-    <input name="signupPassword" type="password" placeholder="Parool"> <?php echo $signupPasswordError; ?>
-    <br><br>
-    <input name="signupPassword" type="password" placeholder="Korda parooli"> <?php echo $signupPasswordError; ?>
-    <br><br>
-    <input name="firstname" type="name" placeholder="Eesnimi"> <?php echo $firstnameError; ?>
-    <br><br>
-    <input name="lastname" type="name" placeholder="Perekonnanimi"> <?php echo $lastnameError; ?>
-
-
-    <br><br>
-
-    <input type="submit" value="Loo kasutaja">
-
-    <a class="btn btn-Success btn-sm" href="firstpage.php"> Loobu</a>
-
-
-</form>
+<div class="container">
+    <h1>Kasutaja loomine</h1>
+    <form method="POST">
+        <input name="signupEmail" type="text" placeholder="Email" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
+        <br><br>
+        <input name="signupPassword" type="password" placeholder="Parool"> <?php echo $signupPasswordError; ?>
+        <br><br>
+        <input name="signupPassword" type="password" placeholder="Korda parooli"> <?php echo $signupPasswordError; ?>
+        <br><br>
+        <input name="firstname" type="text" placeholder="Eesnimi"> <?php echo $firstnameError; ?>
+        <br><br>
+        <input name="lastname" type="text" placeholder="Perekonnanimi"> <?php echo $lastnameError; ?>
+        <br><br>
+        <input type="submit" value="Loo kasutaja">
+        <a class="btn btn-Success btn-sm" href="firstpage.php"> Loobu</a>
+    </form>
+</div>
 <?php require("footer.php"); ?>
