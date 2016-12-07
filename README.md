@@ -4,9 +4,9 @@
     * suurelt projekti veebirakenduse pilt;
 
 **Eesmärk** (3-4 lauset, mis probleemi üritate lahendada) - Veebirakenduse eesmärk on muuta inimesed füüsiliselt aktiivsemaks võimaldades neil treeningpäevikusse oma andmeid salvestada, kaastreenijatega suhelda ja teineteist motiveerida ning soovi korral leida treeningpartner.
-** Kirjeldus** (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta) - Antud veebirakenduse eeskujuks on võetud forums.fitness.ee, kus kasutajad saavad lisada erinevaid spordialaseid teemasid. Meie rakenduse eripäraks on kasutaja enda treeningpäeviku osa, kuhu ta saab sisestada andmeid tehtud treeningute kohta.
+**Kirjeldus** (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta) - Antud veebirakenduse eeskujuks on võetud forums.fitness.ee, kus kasutajad saavad lisada erinevaid spordialaseid teemasid. Meie rakenduse eripäraks on kasutaja enda treeningpäeviku osa, kuhu ta saab sisestada andmeid tehtud treeningute kohta.
 
-**Funktsionaalsuse loetelu prioriteedi järjekorras:
+**Funktsionaalsuse loetelu prioriteedi järjekorras**:
         * v0.1 Saab teha kasutaja ja sisselogida
         * v0.2 Saab foorumis näha sisestatud teemasid
         * v0.3 Saab foorumisse ise sisestada teema
