@@ -40,7 +40,7 @@
 		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
 		FROM submissions 
 		join user_sample on submissions.author=user_sample.id
-		WHERE caption LIKE ? OR username LIKE ?
+		WHERE caption LIKE ? OR username LIKE ? AND deleted is NULL
 		ORDER BY id DESC LIMIT ?, ?");
 		
 		$search ="%".$search."%";
@@ -52,6 +52,7 @@
 		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
 		FROM submissions 
 		join user_sample on submissions.author=user_sample.id
+		WHERE deleted is NULL
 		ORDER BY id DESC LIMIT ?, ?");
 		$results->bind_param("ii", $position, $item_per_page); 
 
@@ -70,9 +71,10 @@
 		echo '<div>';
 		echo '<table>';
 		echo '<tr><h2>'.$name.'</h2></tr>';
-		echo '<td>'."<img src=".$message." >".'</td>';
+		echo '<td>'.'<img src='.$message.' >'.'</td>';
 		echo '</table>';
-		echo "Posted by: " . $author;
+		echo 'Posted by: '.$author;
+		echo '<br>Pange pildile punkt'.$Rating->pictureRating($message,$author);
 		echo '<br><br><br><br>';
 		echo '</div>';
 	}
