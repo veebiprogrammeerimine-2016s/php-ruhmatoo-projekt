@@ -2,7 +2,6 @@
   require "../parts/header.php";
 ?>
 
-<body>
 <div class="container-fluid">
   <!-- Static navbar -->
   <nav class="navbar navbar-default navbar-static-top">
@@ -28,10 +27,10 @@
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li><a href="homework.php?ryhm=1">1-rühm</a></li>
-      <li><a href="homework.php?ryhm=2">2-rühm</a></li>
-      <li><a href="homework.php?ryhm=3">3-rühm</a></li>
-      <li><a href="homework.php?ryhm=4">4-rühm</a></li>
+      <li><a href="#">1-rühm</a></li>
+      <li><a href="#">2-rühm</a></li>
+      <li><a href="#">3-rühm</a></li>
+      <li><a href="#">4-rühm</a></li>
     </ul>
   </div><br>
 
@@ -44,7 +43,7 @@
           </div>
         </div>
       ');
-    } 
+    }
   ?>
     <!-- Calendar 2-rühm -->
   <?php if(isset($_GET["ryhm"]) && $_GET["ryhm"]==2) {
@@ -55,7 +54,7 @@
           </div>
         </div>
       ');
-    } 
+    }
   ?>
     <!-- Calendar 3-rühm -->
   <?php if(isset($_GET["ryhm"]) && $_GET["ryhm"]==3) {
@@ -66,7 +65,7 @@
           </div>
         </div>
       ');
-    } 
+    }
   ?>
     <!-- Calendar 4-rühm -->
   <?php if(isset($_GET["ryhm"]) && $_GET["ryhm"]==4) {
@@ -77,7 +76,7 @@
           </div>
         </div>
       ');
-    } 
+    }
   ?>
 
 </div>
