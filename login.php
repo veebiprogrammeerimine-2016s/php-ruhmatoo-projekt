@@ -192,9 +192,22 @@
 					<input name="surname" placeholder="perekonnanimi" value="<?=$surname;?>" type="text"> <?php echo $surnameError; ?>
 					<br><br>
 					
-					<input type="radio" name="gender" value="male"> Mees<br>
-					<input type="radio" name="gender" value="female"> Naine<br>
-					<input type="radio" name="gender" value="private" checked> Ei avalda
+
+					<?php if ($gender == "male") { ?>
+						<input type="radio" name="gender" value="male" checked> Mees<br>
+					<?php } else { ?>
+						<input type="radio" name="gender" value="male" > Mees<br>
+					<?php } ?>
+					<?php if ($gender == "female") { ?>
+						<input type="radio" name="gender" value="female" checked> Naine<br>
+					<?php } else { ?>
+						<input type="radio" name="gender" value="female" > Naine<br>
+					<?php } ?>
+					<?php if ($gender == "private") { ?>
+						<input type="radio" name="gender" value="private" checked> Ei avalda<br>
+					<?php } else { ?>
+						<input type="radio" name="gender" value="private" > Ei avalda<br>
+					<?php } ?>
 					<br><br>
 
 					<input type="submit" value="Loo kasutaja">
