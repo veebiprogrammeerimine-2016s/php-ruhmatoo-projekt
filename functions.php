@@ -80,4 +80,36 @@
 			echo "ERROR ".$stmt->error;
 		}	
 	}
+	
+	//TABEL
+	
+	function allinfo(){
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], 
+		$GLOBALS["serverUsername"], 
+		$GLOBALS["serverPassword"], 
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("
+		SELECT category, pealkiri, comment, created, email
+		FROM grupp_category 
+		");
+		
+		$stmt->bind_result($category, $headline , $comment, $created, $email);
+		$stmt->execute();
+		
+		$results = array();
+		while ($stmt->fetch()) {
+			
+			$human = new StdClass();
+			$human->category = $category;
+			$human->headline = $headline;
+			$human->comment = $comment;
+			$human->created = $created;
+			$human->email = $email;
+			
+			array_push($results, $human);	
+		}
+		return $results;
+	}
 ?>

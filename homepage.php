@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	
 	require("functions.php");
 	
@@ -25,6 +25,7 @@
 	{
 	comment($_POST["category"],$_POST["headline"], $_POST["comment"], $_SESSION["userEmail"]);
 	}
+	$people = allinfo();
 
 ?>
 
@@ -42,7 +43,7 @@ Tere tulemast <?=$_SESSION["userEmail"];?>!
 </style>
 
 <body>
-	
+	<h2>Tee uue postituse</h2>
 	<form method="POST">
 	<!--KATEGOORIA-->
 	<p><label for="category">Vali eriala:</label><br>
@@ -84,12 +85,31 @@ Tere tulemast <?=$_SESSION["userEmail"];?>!
 </form>
 </body>		
 </html>
-<!--
-Balti filmi, meedia, kunstide ja kommunikatsiooni instituut
-Digitehnoloogiate instituut
-Haridusteaduste instituut
-Humanitaarteaduste instituut
-Loodus- ja terviseteaduste instituut
-Ьhiskonnateaduste instituut
-Haapsalu Kolledю
-Rakvere Kolledю-->
+
+<h2>Peab tulema nagu postitused ja foorum</h2>
+<?php 
+$html = "<table>";
+	
+		$html .= "<tr>";
+			$html .= "<th>Eriala</th>";
+			$html .= "<th>Pealkiri</th>";
+			$html .= "<th>Kommentaar</th>";
+			$html .= "<th>Postitud</th>";
+			$html .= "<th>Kasutaja</th>";	
+		$html .= "</tr>";
+		
+		//iga liikme kohta massiivis
+		foreach ($people as $p) {
+			
+		$html .= "<tr>";
+			$html .= "<td>".$p->category."</td>";
+			$html .= "<td>".$p->headline."</td>";
+			$html .= "<td>".$p->comment."</td>";
+			$html .= "<td>".$p->created."</td>";
+			$html .= "<td>".$p->email."</td>";	
+		$html .= "</tr>";
+		
+		}
+	$html .= "</table>";
+	echo $html;
+?>
