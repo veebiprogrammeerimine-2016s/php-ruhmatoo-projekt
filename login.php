@@ -7,7 +7,7 @@
 //Kui kasutaja on sisse loginud, peab suunama DATA.PHP lehele
 	if (isset($_SESSION["userId"])){
 		//Suunamine
-		header("Location: data.php");
+		header ("Location: data.php");
 		exit();
 	}
 	// MUUTUJAD
@@ -69,6 +69,10 @@
 		 $signupEmailError == "" &&
 		 empty($signupPasswordError)
 		) {
+			$signUpDate =  new DateTime($_POST['signUpDate']);
+			$signUpDate =  $signUpDate->format('Y-m-d');
+
+
 
 		// salvestame ab'i
 		echo "Salvestan... <br>";
@@ -76,6 +80,7 @@
 		echo "Password: ".$_POST["signupPassword"]."<br>";
 		$Password = hash("sha512", $_POST["signupPassword"]);
 		echo "password hashed: ".$Password."<br>";
+
 
 		//echo $serverUsername;
 
@@ -92,7 +97,7 @@
 		!empty($_POST["loginPassword"])
 	  ) {
 
-		// $error = login(cleanInput($_POST["loginEmail"]), cleanInput($_POST["loginPassword"]), cleanInput($_POST["signUpDate"]));
+		$error = login( $_POST["loginEmail"], $_POST["loginPassword"]);
 	}
 ?>
 <!DOCTYPE html>
@@ -113,8 +118,9 @@
 
 		<input name="loginEmail" type="text">
 		<br><br>
-
-		<input type="Password" name="loginPassword" placeholder="Parool">
+		<label>Parool</label>
+		<br>
+		<input type="Password" name="loginPassword">
 		<br><br>
 
 		<input type="submit" value="Logi sisse">
@@ -127,19 +133,21 @@
 
 		<label>E-post</label>
 		<br>
-		<input name="signupEmail" type="text" placeholder = "E-post" value="<?=$signupEmail;?>"> <?=$signupEmailError;?>
+		<input name="signupEmail" type="text"  value="<?=$signupEmail;?>"> <?=$signupEmailError;?>
 		<br><br>
 
 		<label>Parool</label>
 		<br>
-		<input type="Password" name="signupPassword" placeholder="Parool"> <?php echo $signupPasswordError; ?>
+		<input type="Password" name="signupPassword" > <?php echo $signupPasswordError; ?>
 		<br><br>
 
 
 		<label>Sünniaeg</label>
 		<br>
-		<input name="signUpDate" type="text" placeholder = "kk.pp.aaaa" value="<?=$signUpDate;?>"> <?=$signUpDateError;?>
+		<input name="signUpDate" type="Date"  value="<?=$signUpDate;?>"> <?=$signUpDateError;?>
 		<br><br>
+
+
 
 		<label>Sugu</label>
 		<br>

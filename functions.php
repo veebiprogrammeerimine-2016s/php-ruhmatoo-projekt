@@ -5,103 +5,100 @@ require("../../config.php");
 session_start();
 
 function signUp ($Email, $Password, $Date, $Gender) {
-		
+
 		$database = "if16_mariiviita";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-
-		$stmt = $mysqli->prepare("INSERT INTO user_sample (Email, Password, Date, Gender) VALUES (?, ?, ?, ?)");
-	
+		$stmt = $mysqli->prepare("INSERT INTO userSample (Email, Password, Date, Gender) VALUES (?, ?, ?, ?)");
 		echo $mysqli->error;
-		
-		$stmt->bind_param("sssi", $Email, $Password, $Date, $Gender);
-		
+		$stmt->bind_param("ssss", $Email, $Password, $Date, $Gender);
+
 		if($stmt->execute()) {
-			echo "Salvestamine õnnestus";
+			echo "Salvestamine ï¿½nnestus";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
-		
+
 		$stmt->close();
 		$mysqli->close();
-		
+
 	}
-	
-	
+
+
 	function login ($Email, $Password) {
-		
+
 		$error = "";
-		
+
 		$database = "if16_mariiviita";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
 		$stmt = $mysqli->prepare("
-		SELECT id, Email, Password, Date, Gender 
-		FROM user_sample
+		SELECT id, Email, Password, Date, Gender
+		FROM userSample
 		WHERE email = ?");
-	
+
 		echo $mysqli->error;
-		
-		//asendan küsimärgi
+
+		//asendan kï¿½simï¿½rgi
 		$stmt->bind_param("s", $Email);
-		
-		//määran väärtused muutujatesse
+
+		//mï¿½ï¿½ran vï¿½ï¿½rtused muutujatesse
 		$stmt->bind_result($id, $EmailFromDb, $PasswordFromDb, $DateFromDb, $GenderFromDb);
 		$stmt->execute();
-		
-		//andmed tulid andmebaasist või mitte
-		// on tõene kui on vähemalt üks vaste
+
+		//andmed tulid andmebaasist vï¿½i mitte
+		// on tï¿½ene kui on vï¿½hemalt ï¿½ks vaste
 		if($stmt->fetch()){
-			
+
 			//oli sellise meiliga kasutaja
 			//password millega kasutaja tahab sisse logida
-			$hash = hash("sha512", $password);
-			if ($hash == $passwordFromDb) {
-				
+			$hash = hash("sha512", $Password);
+			if ($hash == $PasswordFromDb) {
+
 				echo "Kasutaja logis sisse ".$id;
-				
-				//määran sessiooni muutujad, millele saan ligi
+
+				//mï¿½ï¿½ran sessiooni muutujad, millele saan ligi
 				// teistelt lehtedelt
 				$_SESSION["userId"] = $id;
 				$_SESSION["userEmail"] = $EmailFromDb;
-				
-				
+
+
 				header("Location: data.php");
 				exit();
-				
+
 			}else {
 				$error = "Parool on vale!";
 			}
-			
-			
+
+
 		} else {
-			
+
 			// ei leidnud sellise e-mailiga kasutajat
 			$error = "Sellise e-mailiga kasutajat ei ole!";
 		}
-		
+
 		return $error;
-		
+
 	}
-	
+
 	function saveUserData ($currentDate, $Feeling, $NumberofSteps) {
-		
+
 		$database = "if16_mariiviita";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
 		$stmt = $mysqli->prepare("INSERT INTO userData (currentDate, Feeling, NumberofSteps) VALUES (?, ?, ?)");
-	
+
 		echo $mysqli->error;
-		
+
 		$stmt->bind_param("isi", $currentDate, $Feeling, $NumberofSteps);
-		
+
 		if($stmt->execute()) {
-			echo "Salvestamine õnnestus";
+			echo "Salvestamine ï¿½nnestus";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
-		
+
 		$stmt->close();
 		$mysqli->close();
-		
+
 	}
 ?>
