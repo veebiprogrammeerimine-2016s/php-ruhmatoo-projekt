@@ -18,7 +18,7 @@
 
 
 
-	**Veebirakenduse nõuded:**
+**Veebirakenduse nõuded:**
     * rakendus on terviklik (täidab mingit funktsiooni ja sellega saab midagi teha);
     * terve arenduse ajal on kasutatud _git_'i ja _commit_'ide sõnumid annavad edasi tehtud muudatuste sisu; 
     * kasutusel on vähemalt 6 tabelit;
