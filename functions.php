@@ -63,4 +63,21 @@
 		return $error;
 	}
 
+	//KOMMENTAARID
+	function comment($category, $headline, $comment) {
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"],
+		$GLOBALS["serverUsername"],
+		$GLOBALS["serverPassword"],
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("INSERT INTO grupp_category (category, pealkiri, comment, email) VALUE (?, ?, ?, ?)");
+		echo $mysqli->error;
+		$stmt->bind_param("ssss",$category, $headline , $comment, $_SESSION["userEmail"]);
+		if ( $stmt->execute() ) {
+			echo "õnnestus";
+		} else {
+			echo "ERROR ".$stmt->error;
+		}	
+	}
 ?>

@@ -92,7 +92,7 @@
 		)
 	//LOOGIMINE JA FUNKTSIOON
 	{
-	$error = login($_POST["loginEmail"], $_POST["loginPassword"]);
+	$error = login($_POST["loginEmail"], $_POST["loginPassword"]); //ERROR näitab et parool vqi email on vale
 	}
 	
 ?>
@@ -108,7 +108,7 @@
 	<body>
 	<!--KASUTAJA SISENEB-->
 	<h1>Sisene</h1>
-	<p style="color:red;"><?=$error;?></p>
+	<p style="color:red;"><?=$error;?></p> <!--näitab parool/email errorit-->
 	<form method="POST">
 		
 		<!--EMAILI LOOGIMINE-->
