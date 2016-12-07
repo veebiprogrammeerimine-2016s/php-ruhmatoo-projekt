@@ -3,9 +3,18 @@
 	require("../../config.php");
 	require("functions.php");
 	
+	//SESSION
+	if (isset($_SESSION["userId"]))
+	{
+		header("Location: homepage.php");
+	}
+	
 	//MUUTUJAD REGISTREERIMINE
 	$signupEmail = $signupPassword = $signupUsername = $signupGender = "" ; 
 	$signupEmailError = $signupPasswordError = $signupUsernameError = $signupGenderError = "*";
+	//MUUTUJAD LOOGIMINE
+	$loginEmail = $loginPassword = "";
+	$loginEmailError = $loginPasswordError = $error = "";
 	
 	//REGISTREERIMINE
 	//E-POST REGISTREERIMINE
@@ -50,11 +59,41 @@
 		!empty($_POST["signupEmail"])
 		)
 	
-	//SALVESTAMINE
+	//SALVESTAMINE JA FUNKTSIOON
 	{
 	$signupPassword = hash("sha512", $_POST["signupPassword"]);
 	registration($signupEmail, $signupPassword, $signupUsername, $_POST["signupGender"]);
-	}	
+	}
+	
+	//SISSELOOGIMINE
+	//EMAIL LOOGIMINE
+	if (isset ($_POST["loginEmail"])) {
+		if (empty ($_POST["loginEmail"])) {
+		$loginEmailError = "* Väli on kohustuslik!";
+		} else {
+		$loginEmail = $_POST ["loginEmail"];
+		}
+	}
+	
+	//PAROOLI LOOGIMINE
+	if (isset ($_POST["loginPassword"])) {
+		if (empty ($_POST["loginPassword"])) {
+		$loginPasswordError = "* Väli on kohustuslik!";
+		} else {
+		$loginPassword = $_POST ["loginPassword"];
+		}
+	}
+	
+	//LOOGIMISE LÕPP
+	if (isset ($_POST["loginEmail"]) &&
+		isset ($_POST["loginPassword"])  &&
+		!empty ($_POST["loginEmail"]) &&
+		!empty ($_POST["loginPassword"])
+		)
+	//LOOGIMINE JA FUNKTSIOON
+	{
+	$error = login($_POST["loginEmail"], $_POST["loginPassword"]);
+	}
 	
 ?>
 
@@ -67,24 +106,52 @@
 	</head>
 	
 	<body>
+	<!--KASUTAJA SISENEB-->
+	<h1>Sisene</h1>
+	<p style="color:red;"><?=$error;?></p>
+	<form method="POST">
+		
+		<!--EMAILI LOOGIMINE-->
+		<label for="loginEmail">E-post</label><br>
+		<input name="loginEmail" type="loginEmail">
+		<?php echo $loginEmailError;?>
+		
+		<br><br>
+		<!--PAROOLI LOOGIMINE-->
+		<label for="loginPassword">Parool</label><br>
+		<input name="loginPassword" type="password">
+		<?php echo $loginPasswordError;?>
+		
+		<br><br>
+		
+		<input type="submit" value="Logi sisse"></br>
+	</form>
+	
+
+	<!--KASUTAJA REGISTREERIB-->
 	<h1>Loo kasutaja</h1>
 	<form method="POST">
 	<label></label>
 		
+		<p> * On kohustuslikud</p>
 		<!--EMAIL REGISTREERIMINE-->
-		<br><label for="signupEmail">E-post</label></br>
+		<label for="signupEmail">E-post</label><br>
 		<input name="signupEmail" type = "signupEmail" placeholder="E-post">
-		<?php echo $signupEmailError;?><br>
+		<?php echo $signupEmailError;?>
+		
+		<br>
 		
 		<!--PAROOL REGISTREERIMINE-->
 		<br><label for="signupPassword">Parool</label></br>
 		<input name="signupPassword" type = "password" placeholder="Parool">
-		<?php echo $signupPasswordError;?><br>
+		<?php echo $signupPasswordError;?>
+		
+		<br>
 		
 		<!--KASUTAJANIMI REGISTREERIMINE-->
 		<br><label for="signupUsername">Sinu kasutaja nimi</label></br>
 		<input name="signupUsername" type = "signupUsername" placeholder="Kasutajanimi" value=<?=$signupUsername;?>>
-		<?php echo $signupUsernameError;?><br>
+		<?php echo $signupUsernameError;?>
 		
 		<br>
 		
@@ -100,6 +167,6 @@
 		<br><br>
 	
 		<input type="submit" value="Loo kasutaja"></br>
-
+	</form>
 	</body>
 </html>
