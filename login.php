@@ -12,14 +12,12 @@
 	
 	//MUUTUJAD
 	$loginEmail = "";
-	$loginEmailError = "";
-	$loginPasswordError = "";
+	$loginEmailError = "*";
+	$loginPasswordError = "*";
 	$signupEmail = "";
-	$signupEmailError = "";
-	$signupPasswordError = "";
-	$firstNameError = "";
+	$signupEmailError = "*";
+	$signupPasswordError = "*";
 	$firstName = "";
-	$surnameError = "";
 	$surname = "";
 	$gender = "private";
 
@@ -31,7 +29,7 @@
 		
 		if (empty ($_POST["loginEmail"])) {
 			
-			$loginEmailError="Väli on kohustuslik";
+			$loginEmailError="* Väli on kohustuslik";
 		} else {
 			
 			$loginEmail = cleanInput($_POST["loginEmail"]);
@@ -42,7 +40,7 @@
 		
 		if (empty ($_POST["loginPassword"])) {
 			
-			$loginPasswordError="Väli on kohustuslik";
+			$loginPasswordError="* Väli on kohustuslik";
 
 		}
 	}
@@ -51,7 +49,7 @@
 		
 		if (empty ($_POST["signupEmail"])) {
 			
-			$signupEmailError="Väli on kohustuslik";
+			$signupEmailError="* Väli on kohustuslik";
 		} else {
 			
 			$signupEmail = cleanInput($_POST["signupEmail"]);
@@ -62,37 +60,25 @@
 		
 		if (empty ($_POST["signupPassword"])) {
 			
-			$signupPasswordError="Väli on kohustuslik";
+			$signupPasswordError="* Väli on kohustuslik";
 		
 		} else {
 			
 			if (strlen ($_POST["signupPassword"]) < 8 ) {
 				
-				$signupPasswordError="*Parool peab olema vähemalt 8 tähemärki pikk";
+				$signupPasswordError="* Parool peab olema vähemalt 8 tähemärki pikk";
 			}
 		}
 	}
 
 	if (isset ($_POST["firstName"])) {
-		
-		if (empty ($_POST["firstName"])) {
-			
-			$firstNameError="Väli on kohustuslik";
-		} else {
 			
 			$firstName = cleanInput($_POST["firstName"]);
-		}
 	}
 
 	if (isset ($_POST["surname"])) {
-	
-		if (empty ($_POST["surname"])) {
-			
-			$surnameError="Väli on kohustuslik";
-		} else {
 			
 			$surname = cleanInput($_POST["surname"]);
-		}
 	}
 	
 	if (isset ($_POST["gender"])) {
@@ -100,10 +86,8 @@
 		$gender = $_POST["gender"];
 	}
 
-	if ( $signupEmailError == "" &&
-		 $signupPasswordError == "" &&
-		 $firstNameError == "" &&
-		 $surnameError == "" &&
+	if ( $signupEmailError == "*" &&
+		 $signupPasswordError == "*" &&
 		 isset($_POST["signupEmail"]) &&
 		 isset($_POST["signupPassword"]) &&
 		 isset($_POST["firstName"]) &&
@@ -186,10 +170,10 @@
 					<input name="signupPassword" placeholder="Parool" type="password"> <?php echo $signupPasswordError; ?>
 					<br><br>
 					
-					<input name="firstName" placeholder="eesnimi" value="<?=$firstName;?>" type="text"> <?php echo $firstNameError; ?>
+					<input name="firstName" placeholder="eesnimi" value="<?=$firstName;?>" type="text">
 					<br><br>
 					
-					<input name="surname" placeholder="perekonnanimi" value="<?=$surname;?>" type="text"> <?php echo $surnameError; ?>
+					<input name="surname" placeholder="perekonnanimi" value="<?=$surname;?>" type="text">
 					<br><br>
 					
 
