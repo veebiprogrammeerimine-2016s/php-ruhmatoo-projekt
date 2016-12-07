@@ -1,19 +1,15 @@
-//MinuTunne  PHP projekt
 
 <?php
+//MinuTunne  PHP projekt
 
 	require("functions.php");
 
-	// kui on juba sisse loginud siis suunan data lehele
+//Kui kasutaja on sisse loginud, peab suunama DATA.PHP lehele
 	if (isset($_SESSION["userId"])){
-
-		//suunan sisselogimise lehele
+		//Suunamine
 		header("Location: data.php");
 		exit();
-
 	}
-
-
 	// MUUTUJAD
 	$signupEmailError = "";
 	$signupPasswordError = "";
@@ -35,14 +31,14 @@
 	}
 
 
-	if( isset( $_POST["signupEmail"] ) ){
+	if( isset( $_POST["signUpDate"] ) ){
 		//jah on
 		//kas on tühi
-		if( empty( $_POST["signupEmail"] ) ){
-			$signupEmailError = "See väli on kohustuslik";
+		if( empty( $_POST["signUpDate"] ) ){
+			$signUpDateError = "See väli on kohustuslik";
 		} else {
 			//email olemas
-			$signupEmail = $_POST["signUpDate"];
+			$signUpDate = $_POST["signUpDate"];
 		}
 	}
 
@@ -77,36 +73,39 @@
 		// salvestame ab'i
 		echo "Salvestan... <br>";
 		echo "email: ".$signupEmail."<br>";
-		echo "password: ".$_POST["signupPassword"]."<br>";
+		echo "Password: ".$_POST["signupPassword"]."<br>";
 		$Password = hash("sha512", $_POST["signupPassword"]);
-		echo "password hashed: ".$password."<br>";
+		echo "password hashed: ".$Password."<br>";
 
 		//echo $serverUsername;
 
 		// KASUTAN FUNKTSIOONI
-		$signupEmail = cleanInput($signupEmail);
-		signUp($signupEmail, cleanInput($Password), cleanInput($signUpDate));
+		// $signupEmail = cleanInput($signupEmail);
+		signUp($signupEmail, $Password, $signUpDate, $signupGender);
+
 	}
 
 	$error ="";
-	if ( isset($_POST["loginEmail"]) &&
+	if (isset($_POST["loginEmail"]) &&
 		isset($_POST["loginPassword"]) &&
 		!empty($_POST["loginEmail"]) &&
 		!empty($_POST["loginPassword"])
-		isset($_POST["signUpDate"]) &&
-		!empty($_POST["signUpDate"]) &&
 	  ) {
-		$error = login(cleanInput($_POST["loginEmail"]), cleanInput($_POST["loginPassword"]), $_POST["signUpDate"]));
+
+		// $error = login(cleanInput($_POST["loginEmail"]), cleanInput($_POST["loginPassword"]), cleanInput($_POST["signUpDate"]));
 	}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Logi sisse või registreeru kasutajaks</title>
+	<title>MinuTunne - jälgi meeleolu- ja tervisemuutusi </title>
 </head>
 <body>
 
-	<h1>Logi sisse</h1>
+ <h1>MinuTunne</h1><p> Veebirakenduse MinuTunne eesmärgiks on oma enesetundest, kaalust ja üleüldisest heaolust lugu pidavale inimesele võimaldada monitoorida enda enesetunde muutusi, liikumisaktiivsust ning vastavalt soovile jälgida kehamassiindeksi (KMI) ja kaalu muutusi. Inimene leiab veebirakendusest tuge oma enesetunde monitoorimisel ning selle seostamisel võimalike kaalumuudatustega. Samuti on rakendus hea abimees kaalumuudatuse motiveerimiseks.
+	Kasutajal on võimalik tutvuda enda varasemate enesetunde hinnangutega, liikumisaktiivsusega ning neid vastavalt vajadusele analüüsida. </p>
+
+	<h2>Logi sisse</h2>
 	<form method="POST">
 		<p style="color:red;"><?=$error;?></p>
 		<label>E-post</label>
@@ -122,45 +121,43 @@
 	</form>
 
 
-	<h1>Registreeru kasutajaks</h1>
+	<h2>Registreeru kasutajaks</h2>
 	<form method="POST">
 
-		//E-POSTI KÜSIMINE
 
 		<label>E-post</label>
 		<br>
 		<input name="signupEmail" type="text" placeholder = "E-post" value="<?=$signupEmail;?>"> <?=$signupEmailError;?>
 		<br><br>
 
-		//PAROOLI KÜSIMINE
+		<label>Parool</label>
 		<br>
 		<input type="Password" name="signupPassword" placeholder="Parool"> <?php echo $signupPasswordError; ?>
 		<br><br>
 
-
-		//SÜNNIAJA KÜSIMINE
 
 		<label>Sünniaeg</label>
 		<br>
 		<input name="signUpDate" type="text" placeholder = "kk.pp.aaaa" value="<?=$signUpDate;?>"> <?=$signUpDateError;?>
 		<br><br>
 
-
+		<label>Sugu</label>
+		<br>
 		<?php if($signupGender == "male") { ?>
-			<input type="radio" name="signupGender" value="male" checked> Male<br>
+			<input type="radio" name="signupGender" value="male" checked> Mees<br>
 		<?php }else { ?>
-			<input type="radio" name="signupGender" value="male"> Male<br>
+			<input type="radio" name="signupGender" value="male"> Mees<br>
 		<?php } ?>
 		<?php if($signupGender == "female") { ?>
-			<input type="radio" name="signupGender" value="female" checked> Female<br>
+			<input type="radio" name="signupGender" value="female" checked>  Naine<br>
 		<?php }else { ?>
-			<input type="radio" name="signupGender" value="female"> Female<br>
+			<input type="radio" name="signupGender" value="female"> Naine<br>
 		<?php } ?>
 
 		<?php if($signupGender == "other") { ?>
-			<input type="radio" name="signupGender" value="other" checked> Other<br>
+			<input type="radio" name="signupGender" value="other" checked> Muu<br>
 		<?php }else { ?>
-			<input type="radio" name="signupGender" value="other"> Other<br>
+			<input type="radio" name="signupGender" value="other"> Muu<br>
 		<?php } ?>
 
 		<input type="submit" value="Registreerun">
