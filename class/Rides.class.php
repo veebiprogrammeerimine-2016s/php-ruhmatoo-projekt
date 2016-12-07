@@ -103,6 +103,51 @@ class Rides {
 
     return $results;
   }
+
+  function getPassenger(){
+
+    $stmt = $this->connection->prepare("
+    SELECT cp_rides.id, cp_rides.start_location,
+    cp_rides.start_time, cp_rides.arrival_location,
+    cp_rides.arrival_time, cp_rides.free_seats,
+    cp_rides.user_id, cp_users.email
+    FROM cp_rideusers
+    JOIN cp_users ON cp_users.id=cp_rideusers.user_id
+    JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
+    WHERE cp_rides.user_id=?;
+    ");
+
+    echo $this->connection->error;
+		$stmt->bind_param("i", $_SESSION["userId"]);
+    $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
+    $arrival_time, $free_seats, $driver_name, $driver_email);
+    $stmt->execute();
+
+    //tekitan objekti
+    $results = array();
+    //tsykli sisu tehakse nii mitu korda, mitu rida
+    //SQL lausega tuleb
+    while ($stmt->fetch()) {
+
+      $r = new StdClass();
+      $r->ride_id = $ride_id;
+      $r->start_location = $start_location;
+      $r->start_time = $start_time;
+      $r->arrival_location = $arrival_location;
+      $r->arrival_time = $arrival_time;
+      $r->free_seats= $free_seats;
+      $r->driver_name= $driver_name;
+      $r->driver_email = $driver_email;
+
+      //echo $age."<br>";
+      //echo $color."<br>";
+      array_push($results, $r);
+    }
+
+    return $results;
+  }
+
+
   function save ($start_location, $start_time, $arrival_location,
   $arrival_time, $free_seats, $price) {
 
@@ -175,11 +220,9 @@ class Rides {
     $stmt->execute();
 
     if($stmt->fetch()){
-      echo "Juba regatud";
+      echo "Oled juba registreerinud";
       return;
     }
-
-
 
     $stmt = $this->connection->prepare("INSERT INTO cp_rideusers (user_id, ride_id) VALUES(?,?)");
     echo $this->connection->error;
