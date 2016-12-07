@@ -3,11 +3,10 @@
 	$signupEmailError = "";
 	$signupPasswordError = "";
 	
-	// kas e-post oli olemas?
 	if (isset ($_POST["signupEmail"]) ) {
 	
 		if (empty ($_POST["signupEmail"]) ) { 
-			//oli email, aga tühi
+			
 			$signupEmailError = "See väli on kohustuslik!";
 		}
 	}
@@ -18,8 +17,6 @@
 			$signupPasswordError = "See väli on kohustuslik!";
 		
 		} else {
-			// tean et parool ja see ei olnud tühi
-			// VÄHEMALT 8tähemärki
 			
 			if (strlen ($_POST["signupPassword"]) <= 8 ){
 				$signupPasswordError = "Parool peab olema 8 tähemärki pikk!";
@@ -38,9 +35,8 @@
 
 		<h1>Logi sisse</h1>
 
-		<form method="POST"> <!-- varjatud salasõna jms -->
+		<form method="POST"> 
 		
-			<!--<label>E-post</label> ... nimi jääb välja üles-->
 			<input name="loginEmail" type="email" placeholder="E-maili aadress">
 			
 			<br><br>
