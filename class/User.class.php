@@ -79,6 +79,39 @@
 		
 		return $error;
 	}
+	
+	function addToArray (){
+		
+		$stmt = $this->connection->prepare("
+			SELECT id, firstname, lastname, email, password, gender, phonenumber
+			FROM user_sample
+			WHERE id=?
+		");
+		echo $this->connection->error;
+		
+		$stmt->bind_param("i", $_SESSION["userId"]);
+		
+		$stmt->bind_result($id, $firstname, $lastname, $email, $password, $gender, $phonenumber);
+		$stmt-> execute();
+		
+		$userData = new StdClass();
+		
+		if ($stmt->fetch()){	
+			
+			$userData->id = $id;
+			$userData->firstname = $firstname;
+			$userData->lastname = $lastname;
+			$userData->email = $email;
+			$userData->password = $password;
+			$userData->gender = $gender;
+			$userData->phonenumber = $phonenumber;
+		}
+		
+		$stmt->close();
+		//$mysqli->close();
+		
+		return $userData;
+	}
 }
 
 ?>
