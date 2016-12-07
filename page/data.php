@@ -118,6 +118,7 @@ isset($_POST["free_seats"]) &&
 
 $upcomingRides = $Rides->get();
 ?>
+<?php require("../header.php"); ?>
 
 <h1>Data</h1>
 
@@ -139,7 +140,7 @@ $upcomingRides = $Rides->get();
 
     <br><br>
     <label>Start time</label><br>
-    <input name="start_time" type="datetime-local" value="<?=$start_time;?>"> <?php echo $emptyStartT; ?>
+    <input id="datetimepicker" name="start_time" type="text" value="<?=$start_time;?>"> <?php echo $emptyStartT; ?>
 
     <br><br>
     <label>Arrival location</label><br>
@@ -147,7 +148,7 @@ $upcomingRides = $Rides->get();
 
     <br><br>
     <label>Arrival time</label><br>
-    <input name="arrival_time" type="datetime-local" value="<?=$arrival_time;?>"> <?php echo $emptyArrivalT; ?>
+    <input id="datetimepickerarrival" name="arrival_time" type="text" value="<?=$arrival_time;?>"> <?php echo $emptyArrivalT; ?>
 
     <br><br>
     <label>Free seats</label><br>
@@ -161,7 +162,13 @@ $upcomingRides = $Rides->get();
     <input type="submit" value="Submit">
 
 </form>
-
+<script type="text/javascript">
+    
+    jQuery('#datetimepicker').datetimepicker({
+  lang:'et',
+});
+    jQuery('#datetimepickerarrival').datetimepicker();
+</script>
 <h2>Find a ride</h2>
 
 <?php

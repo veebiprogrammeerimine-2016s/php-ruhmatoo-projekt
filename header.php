@@ -14,6 +14,9 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="../css/jquery.datetimepicker.min.css"/ >
+	<script src="../js/jquery.datetimepicker.full.min.js"></script>
+
 	</head>
 	<body>
 
