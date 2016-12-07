@@ -9,6 +9,20 @@ class Rating {
 		$this->connection=$mysqli;
 	}
 
+	function pictureRating($id){
+		
+		$stmt = $this->connection->prepare("
+		UPDATE submissions
+		SET rating=rating+1
+		WHERE id = ?");
+		echo $this->connection->error;
+		$stmt->bind_param("i", $id);
+		
+		$stmt->execute();
+		//Execute prepared Query
+		
+		$stmt->close();
+	}
 	
 
 }
