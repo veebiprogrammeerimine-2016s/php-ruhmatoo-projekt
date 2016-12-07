@@ -17,9 +17,7 @@
 	$signupEmail = "";
 	$signupEmailError = "";
 	$signupPasswordError = "";
-	$firstNameError = "";
 	$firstName = "";
-	$surnameError = "";
 	$surname = "";
 	$gender = "private";
 
@@ -74,25 +72,13 @@
 	}
 
 	if (isset ($_POST["firstName"])) {
-		
-		if (empty ($_POST["firstName"])) {
-			
-			$firstNameError="Väli on kohustuslik";
-		} else {
 			
 			$firstName = cleanInput($_POST["firstName"]);
-		}
 	}
 
 	if (isset ($_POST["surname"])) {
-	
-		if (empty ($_POST["surname"])) {
-			
-			$surnameError="Väli on kohustuslik";
-		} else {
 			
 			$surname = cleanInput($_POST["surname"]);
-		}
 	}
 	
 	if (isset ($_POST["gender"])) {
@@ -102,8 +88,6 @@
 
 	if ( $signupEmailError == "" &&
 		 $signupPasswordError == "" &&
-		 $firstNameError == "" &&
-		 $surnameError == "" &&
 		 isset($_POST["signupEmail"]) &&
 		 isset($_POST["signupPassword"]) &&
 		 isset($_POST["firstName"]) &&
@@ -186,10 +170,10 @@
 					<input name="signupPassword" placeholder="Parool" type="password"> <?php echo $signupPasswordError; ?>
 					<br><br>
 					
-					<input name="firstName" placeholder="eesnimi" value="<?=$firstName;?>" type="text"> <?php echo $firstNameError; ?>
+					<input name="firstName" placeholder="eesnimi" value="<?=$firstName;?>" type="text">
 					<br><br>
 					
-					<input name="surname" placeholder="perekonnanimi" value="<?=$surname;?>" type="text"> <?php echo $surnameError; ?>
+					<input name="surname" placeholder="perekonnanimi" value="<?=$surname;?>" type="text">
 					<br><br>
 					
 
