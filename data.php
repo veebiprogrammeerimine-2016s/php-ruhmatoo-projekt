@@ -77,7 +77,7 @@
 		}
 ?>
 
-<h1>T�nane p�ev</h1>
+<h1>Tänane päev</h1>
 
 <form method="POST">
 <br><br>
@@ -95,6 +95,6 @@
 		<input type="submit" value="Salvesta andmed">
 
 <p>
-	<a href="?logout=1">Logi v�lja</a>
+	<a href="?logout=1">Logi välja</a>
 </p>
 </form>
