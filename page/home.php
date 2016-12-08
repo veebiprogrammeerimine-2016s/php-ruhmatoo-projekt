@@ -18,8 +18,8 @@ require("header.php");
 <div class="c-3" style="border: 2px solid gray; border-top: 0; border-left: 0; margin-bottom: 0;">
 <h3 style="margin-top: 0; margin-bottom: 0;">Sorteeri</h3>
 <form>
-<h6>Linnaosa</h6>
-<!--<input type="text" placeholder="Kesklinn" style="width: 100%;" name="district">-->
+<!--<h6>Linnaosa</h6>
+<input type="text" placeholder="Kesklinn" style="width: 100%;" name="district">-->
 <p>
 <h6>Linnaosa</h6>
 <select style="width: 100%;" name="district">
