@@ -1,5 +1,13 @@
 <?php
+require("../../config.php");
+	
 
+	session_start(); 
+	
+	
+	$database = "if16_brigitta";
+	$mysqli = new mysqli($serverHost, $serverUsername,  $serverPassword, $database);
+	
 function insertToDb($title, $movie_link, $rating, 
 					$genre, $directors, $release_date, 
 					$poster, $actors, $runtime, $tomato_score, $synopsis){
@@ -16,8 +24,27 @@ function insertToDb($title, $movie_link, $rating,
 	echo $tomato_score."<br>"; 
 	echo $synopsis."<br>";
 
-						
+	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"],  $GLOBALS["serverPassword"],  $GLOBALS["database"]);
+	$stmt = $mysqli->prepare("INSERT INTO movies_db (title, link, 
+													rating, genre,  
+													directors,  release_date, 
+													poster, actors, 
+													runtime, tomato_score, synopsis) 
+							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	echo $mysqli->error;
+	
+	$stmt->bind_param("sssssssssis", $title, $movie_link, $rating, 
+				$genre, $directors, $release_date, 
+				$poster, $actors, $runtime, $tomato_score, $synopsis);
+	if ( $stmt->execute() ) {
+		echo "salvestamine õnnestus";	
+	} else {	
+		echo "ERROR ".$stmt->error;
+	}
+								
 }
+
+
 
 
 ?>
