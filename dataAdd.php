@@ -15,8 +15,13 @@
 		header("Location: login.php");
 		exit();
 	}
+	
+	var_dump($_POST);
+	
+	
 
 ?>
+<script src="Lisaväljad.js" language="Javascript" type="text/javascript"></script>
 
 
 <!DOCTYPE html>
@@ -56,7 +61,27 @@
 					<label>Pood</label><br>
 					<input name="storeName" type="text" >
 					<br><br>
-					
+						<div id="inputs">
+							<div class="single-item">
+							<div id="dynamicInput">
+								Toode 1<br><input type="text" name="myInputs[]">
+							</div>
+
+							<div id="dynamicInput2">
+								Hind 1<br><input type="text" name="myInputs[]">
+							</div>
+							
+							<div id="dynamicInput3">
+								Kategooria 1<br><input type="text" name="myInputs[]">
+							</div>
+							<br>
+							<a href="#" onclick="remove(this.parentElement);">Kustuta</a>
+							</div>
+						</div>
+					<input type="button" value="Lisa toode" onClick="addInput('inputs');">
+					<br>
+					<?php
+					/*
 					<label>Kategooria</label><br>
 					<input name="category" type="text" >
 					<br><br>
@@ -68,7 +93,8 @@
 					<label>Hind</label><br>
 					<input name="productPrice" type="number" step="0.01" min="0">
 					<br><br>
-					
+					*/
+					?>
 					<label>Ostukuupäev</label><br> <!--üks võimalik variant kalendri tegemiseks: http://stackoverflow.com/questions/24975667/html-input-type-date-open-calendar-by-default-->
 					<input name="shoppingDate" type="number" >
 					<br><br>
