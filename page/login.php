@@ -13,6 +13,7 @@ if (!empty($_POST["name"])) {
 
 } else {
 	echo "Kasutajanime ei sisestatud";
+	$name = "";
 	$startLogin = 0;
 }
 
