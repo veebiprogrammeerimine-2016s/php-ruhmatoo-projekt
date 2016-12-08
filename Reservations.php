@@ -1,6 +1,6 @@
 <?php
 	
-	require("../../config.php");
+	require("../../../../config.php");
 	require("Functions.php");
 	
 	$reg_nr = "";
@@ -143,7 +143,8 @@
 					<input type="text" class="form-control" name="car_model" id="car_model">
 				</div>
 				</label>
-			</div>
+				
+				</div>
 		<label class="form-check-label">
 		<div class="form-group row">
 				<label for="telephone" class="col-sm-4 col-form-label">Telefon</label>
@@ -151,7 +152,7 @@
 					<input type="tel" class="form-control" name="telephone" id="telephone">
 				</div>
 				
-			</div>
+			
 			</label>
 
 
