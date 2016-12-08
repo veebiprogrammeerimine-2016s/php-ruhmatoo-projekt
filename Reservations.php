@@ -1,6 +1,6 @@
 <?php
 	
-	require("../../../../config.php");
+	//require("../../../../config.php");
 	require("Functions.php");
 	
 	$reg_nr = "";
@@ -98,7 +98,8 @@
 			<h1>Andmed</h1><br>
 			</div>
 				<label class="form-check-label">
-				<label for="reg_nr" class="col-sm-10 col-form-label">Registreerimisnumber</label>
+				<div class="form-group row">
+				<label for="reg_nr" class="col-sm-4 col-form-label">Registreerimisnumber</label>
 				<div class="col-sm-10">
 					<input class="form-control" name="reg_nr">
 				</div>
@@ -106,25 +107,16 @@
 				
 			</div>
 			
-			<?php if ($veichle_type == "Sõiduauto") { ?>
-                <input type="radio" name="veichle_type" value="sõiduauto" checked > Sõiduauto <br>
-            <?php } else { ?>
-                <input type="radio" name="veichle_type" value="sõiduauto"> Sõiduauto <br>
-            <?php } ?>
-
-            <?php if ($veichle_type == "Maastur") { ?>
-                <input type="radio" name="veichle_type" value="maastur" checked > Maastur <br>
-            <?php } else { ?>
-                <input type="radio" name="veichle_type" value="maastur"> Maastur <br>
-            <?php } ?>
-
-            <?php if ($veichle_type == "Kaubik") { ?>
-                <input type="radio" name="veichle_type" value="kaubik" checked > Kaubik <br>
-            <?php } else { ?>
-                <input type="radio" name="veichle_type" value="kaubik"> Kaubik <br>
-            <?php } ?>
+			<label class="form-check-label">
+			<div class="form-group row">
+				<label for="car_brand" class="col-sm-4 col-form-label">Sõiduki tüüp</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="car_brand" id="car_brand">
+					</div>
+					</label>
+				</div>
 							
-			<br><br>
+			<br>
 			
 			<label class="form-check-label">
 			<div class="form-group row">
@@ -149,16 +141,15 @@
 				<div class="col-sm-10">
 					<input type="tel" class="form-control" name="telephone" id="telephone">
 				</div>
-<<<<<<< HEAD
+
 				
 			
 			</label>
-=======
 			
 				</label>
 			</div>
 			
->>>>>>> d380e28102040402fe7fc4b14694cfa5a1de97e0
+
 
 
 <table>

@@ -1,6 +1,6 @@
 <?php
 
-	require("../../../../config.php");
+	require("../../config.php");
 	
 	$database = "if16_kliiva";
 
@@ -48,7 +48,7 @@
 	
 	function CleanInput($input) {
 		
-		$input = trim($input):
+		$input = trim($input);
 		$input = stripslashes($input);
 		$input = htmlspecialchars($input);
 		
