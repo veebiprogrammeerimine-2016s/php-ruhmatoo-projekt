@@ -1,3 +1,41 @@
+
+
+<?php
+echo date("d.m.Y");
+?>
+
+<html>
+<head>
+<style type="text/css">
+#clock {color:black;}
+
+
+</style>
+<script type="text/javascript">
+
+function updateClock (){
+  var currentTime = new Date ( );
+  var currentHours = currentTime.getHours ();
+  var currentMinutes = currentTime.getMinutes ();
+  var currentSeconds = currentTime.getSeconds();
+  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+  var timeOfDay = ''; 
+
+  var currentTimeString = currentHours + ":" + currentMinutes + ':' + currentSeconds+ " " + timeOfDay;
+
+  document.getElementById("clock").innerHTML = currentTimeString;
+}
+
+</script>
+</head>
+
+<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
+<span id="clock">&nbsp;</span>
+</body>
+
+</html>
+
 <?php
 
 	require("../../config.php");
