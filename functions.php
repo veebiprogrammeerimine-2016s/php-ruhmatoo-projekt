@@ -10,5 +10,17 @@
 	$database = "if16_edgar";
 	$mysqli = new mysqli($serverHost, $serverUsername,  $serverPassword, $database);
 
+    function cleanInput ($input) {
+
+            $input = trim($input);
+
+            $input = stripslashes($input);
+
+            $input = htmlspecialchars($input);
+
+    return $input;
+
+    }
+
 	
 ?>
