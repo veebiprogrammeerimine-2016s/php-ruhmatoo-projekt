@@ -84,7 +84,7 @@
 	&& empty($reg_nr_Error) && empty($car_brand_Error) && empty($car_model_Error) && empty($telephone_Error)) {
 		
 		echo "Salvestan...<br>";
-		//SaveData();
+		SaveData($reg_nr, $veichle_types, $car_brand, $car_model, $telephone);
 		
 	}
 ?>
@@ -100,7 +100,7 @@
 				<label class="form-check-label">
 				<label for="reg_nr" class="col-sm-10 col-form-label">Registreerimisnumber</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="reg_nr">
+					<input class="form-control" name="reg_nr">
 				</div>
 				</label>
 				
@@ -140,7 +140,7 @@
 				<div class="form-group row">
 				<label for="car_model" class="col-sm-4 col-form-label">Mudel</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="car_model" id="car_model">
+					<input class="form-control" name="car_model" id="car_model">
 				</div>
 				</label>
 			</div>
@@ -150,9 +150,10 @@
 				<div class="col-sm-10">
 					<input type="tel" class="form-control" name="telephone" id="telephone">
 				</div>
-				
+			
+				</label>
 			</div>
-			</label>
+			
 
 
 <table>
