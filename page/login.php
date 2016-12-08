@@ -49,13 +49,40 @@ if ($startLogin == 1) {
       </div>
 
       <div class="button login">
-         <input type="submit" value="Logi sisse" class="fa fa-check">
+        <button><span>Logi Sisse</span> <i class="fa fa-check"></i></button>
 	</div>
 	</form>
-
       <a href="" class="pass-forgot">Unustasid parooli?</a>
-	  <a href="registreerumine.php" class="register">Registreeri end!</a>
 	  <a href="home.php" class="back">Tagasi</a>
+</div>
+<div class="overbox">
+      <div class="material-button alt-2"><span class="shape"></span></div>
+
+      <div class="title">Registreeri</div>
+
+      <div class="input">
+         <label for="regname">Kasutajanimi</label>
+         <input type="text" name="regname" id="regname">
+         <span class="spin"></span>
+      </div>
+
+      <div class="input">
+         <label for="regpass">Parool</label>
+         <input type="password" name="regpass" id="regpass">
+         <span class="spin"></span>
+      </div>
+
+      <div class="input">
+         <label for="reregpass">Korda parooli</label>
+         <input type="password" name="reregpass" id="reregpass">
+         <span class="spin"></span>
+      </div>
+
+      <div class="button">
+         <button><span>Edasi</span></button>
+      </div>
+
+
    </div>
 
 </div>

@@ -102,8 +102,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	margin-top: 0.2em;
 	margin-bottom: 0.05em;
-	font-family: Roboto, sans-serif;
-	font-weight: 400;
+	font-family: Roboto, sans-serif, bold;
+	font-weight: bold;
+	
 }
 h4, h5, h6 {
 	font-size: 1em;
@@ -111,7 +112,6 @@ h4, h5, h6 {
 	margin-top: 0.25em;
 	margin-bottom: 0.25em;
 }
-
 input {
 	margin: 0.25em;
 	padding: 0.15em;
