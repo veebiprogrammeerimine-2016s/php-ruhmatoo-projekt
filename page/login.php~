@@ -37,12 +37,14 @@ if ($startLogin == 1) {
       <div class="input">
 	 <form method="post">
          <label for="name">E-mail</label>
+			<br>
          <input type="email" name="name" id="name" value="<?php echo $name; ?>">
          <span class="spin"></span>
       </div>
 
       <div class="input">
          <label for="pass">Parool</label>
+			<br>
          <input type="password" name="pass" id="pass">
          <span class="spin"></span>
       </div>

@@ -1,5 +1,6 @@
 <?php
 	require("../function/functions.php");
+	require("../function/login.php");
 	$appName = "Töömehe leidja";
 ?>
 <html>

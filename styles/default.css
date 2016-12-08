@@ -84,18 +84,15 @@ body {
 	text-decoration: none;
 	color: white;
 	transition: .25s;
-	border: 1px solid forestgreen;
-	border-radius: 50%;
 }
 .hbutton:hover {
-	background: green;
-	border: 1px solid green;
-	border-radius: 50%;
+	padding-left: .5em;
+	padding-right: .5em;
 }
 
 .hbutton:active {
-	background: lawngreen;
-	border: 1px solid lawngreen;
+	padding-left: .55em;
+	padding-right: .55em;
 }
 
 .button:hover {
