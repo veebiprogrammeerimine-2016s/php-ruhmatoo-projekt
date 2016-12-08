@@ -250,7 +250,20 @@
    color: rgba(0, 0, 0, 0.4);
    font-size: 18px;
 }
-
+.register {
+	width: 100%;
+   float: left;
+   text-align: center;
+   color: rgba(0, 0, 0, 0.4);
+   font-size: 18px;
+}
+.back {
+   width: 100%;
+   float: left;
+   text-align: center;
+   color: rgba(0, 0, 0, 0.4);
+   font-size: 18px;
+}
 .click-efect {
    position: absolute;
    top: 0;

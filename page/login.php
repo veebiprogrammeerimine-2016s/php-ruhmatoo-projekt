@@ -54,7 +54,8 @@ if ($startLogin == 1) {
 	</form>
 
       <a href="" class="pass-forgot">Unustasid parooli?</a>
-
+	  <a href="registreerumine.php" class="register">Registreeri end!</a>
+	  <a href="home.php" class="back">Tagasi</a>
    </div>
 
 </div>
