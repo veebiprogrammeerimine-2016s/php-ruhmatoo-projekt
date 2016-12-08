@@ -196,8 +196,8 @@
 					
 					</div>
 					
-						<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Sign up">
-						<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Sign up">
+						<input class="btn btn-primary btn-sm hidden-xs" type="submit" value="Sign up">
+						<input class="btn btn-primary btn-sm btn-block visible-xs-block" type="submit" value="Sign up">
 					
 					</form>
 				</div>	
