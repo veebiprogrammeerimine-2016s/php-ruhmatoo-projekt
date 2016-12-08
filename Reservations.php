@@ -6,7 +6,7 @@
 	$reg_nr = "";
 	$car_brand = "";
 	$car_model = "";
-	$veichle_types = "";
+	$veichle_type = "";
 	$reg_nr_Error = "";
 	$car_model_Error = "";
 	$car_brand_Error = "";
@@ -80,11 +80,11 @@
 		
 	}
 	
-	if (isset($_POST["reg_nr"]) && isset($_POST["veichle_types"]) && isset($_POST["car_brand"]) && isset($_POST["car_model"]) && isset($_POST["telephone"])
+	if (isset($_POST["reg_nr"]) && isset($_POST["veichle_type"]) && isset($_POST["car_brand"]) && isset($_POST["car_model"]) && isset($_POST["telephone"])
 	&& empty($reg_nr_Error) && empty($car_brand_Error) && empty($car_model_Error) && empty($telephone_Error)) {
 		
 		echo "Salvestan...<br>";
-		SaveData($reg_nr, $veichle_types, $car_brand, $car_model, $telephone);
+		SaveData($reg_nr, $veichle_type, $car_brand, $car_model, $telephone);
 		
 	}
 ?>
@@ -105,34 +105,32 @@
 				</label>
 				
 			</div>
-		<fieldset class="form-group row">
-			<legend class="col-form-legend col-sm-4">Sõiduki tüüp</legend>
-				<div class="col-sm-10">
-					<div class="form-check">
-			<label class="form-check-label">
-            <input class="form-check-input" type="radio" name="veichle_types" id="veichle_type1" value="Sõiduauto" checked>
-            Sõiduauto
-          </label>
-        </div>
-			<div class="form-check">
-				<label class="form-check-label">
-            <input class="form-check-input" type="radio" name="veichle_types" id="veichle_type2" value="Maastur">
-            Maastur
-          </label>
-        </div>
-			<div class="form-check">
-				<label class="form-check-label">
-            <input class="form-check-input" type="radio" name="veichle_types" id="veichle_type3" value="Kaubik">
-            Kaubik
-          </label>
+			
+			<?php if ($veichle_type == "Sõiduauto") { ?>
+                <input type="radio" name="veichle_type" value="sõiduauto" checked > Sõiduauto <br>
+            <?php } else { ?>
+                <input type="radio" name="veichle_type" value="sõiduauto"> Sõiduauto <br>
+            <?php } ?>
+
+            <?php if ($veichle_type == "Maastur") { ?>
+                <input type="radio" name="veichle_type" value="maastur" checked > Maastur <br>
+            <?php } else { ?>
+                <input type="radio" name="veichle_type" value="maastur"> Maastur <br>
+            <?php } ?>
+
+            <?php if ($veichle_type == "Kaubik") { ?>
+                <input type="radio" name="veichle_type" value="kaubik" checked > Kaubik <br>
+            <?php } else { ?>
+                <input type="radio" name="veichle_type" value="kaubik"> Kaubik <br>
+            <?php } ?>
 							
-		  <br><br>
+			<br><br>
 			
 			<label class="form-check-label">
 			<div class="form-group row">
 				<label for="car_brand" class="col-sm-4 col-form-label">Mark</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="car_brand" id="car_brand">
+						<input class="form-control" name="car_brand" id="car_brand">
 					</div>
 					</label>
 				</div>
