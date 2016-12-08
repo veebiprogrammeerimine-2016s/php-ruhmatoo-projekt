@@ -30,7 +30,7 @@
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("INSERT INTO data_car_and_client (Registration_nr, Veichle_type, Veichle_brand, Veichle_model, Telephone)");
+		$stmt = $mysqli->prepare("INSERT INTO data_car_and_client (Registration_nr, Veichle_type, Veichle_brand, Veichle_model, Telephone) VALUES (?, ?, ?, ?, ?)");
 		echo $mysqli->error;
 		
 		$stmt->bind_param("ssssi", $reg_nr, $veichle_types, $car_brand, $car_model, $telephone);
