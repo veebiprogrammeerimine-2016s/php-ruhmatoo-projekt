@@ -19,13 +19,13 @@ require("header.php");
 <h3 style="margin-top: 0; margin-bottom: 0;">Sorteeri</h3>
 <form>
 <h6>Linnaosa</h6>
-<input type="text" placeholder="Kesklinn" style="width: 100%;" name="district">
+<!--<input type="text" placeholder="Kesklinn" style="width: 100%;" name="district">-->
 <p>
 <h6>Linnaosa</h6>
-<select style="width: 100%;" name="formLocation">
-  <option value="">Kesklinn</option>
-  <option value="M">Kristiine</option>
-  <option value="F">Pirita</option>
+<select style="width: 100%;" name="district">
+  <option value="kesklinn">Kesklinn</option>
+  <option value="kristiine">Kristiine</option>
+  <option value="pirita">Pirita</option>
 </select>
 </p>
 <h6>Oskused</h6>
