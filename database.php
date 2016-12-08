@@ -22,14 +22,14 @@ CREATE TABLE types (
 );
 
 CREATE TABLE posts (
-	post_id INT(8) NOT NULL AUTO_INCREMENT,
-	post_content 
-	post_cat VARCHAR(255) NOT NULL,
-	post_type VARCHAR(255) NOT NULL,
-	poster VARCHAR(16) NOT NULL
-	FOREIGN KEY(post_cat) REFERENCES categories(id),
-	FOREIGN KEY(post_type) REFERENCES types(id),
-	FOREIGN KEY(poster) REFERENCES user(id)
+	post_id INT NOT NULL,
+	post_content INT NOT NULL,
+	post_cat INT NOT NULL,
+	post_type INT NOT NULL,
+	poster INT NOT NULL,
+	FOREIGN KEY(post_cat) REFERENCES categories(cat_id),
+	FOREIGN KEY(post_type) REFERENCES types(type_id),
+	FOREIGN KEY(poster) REFERENCES user(user_id)
 );
 
 
