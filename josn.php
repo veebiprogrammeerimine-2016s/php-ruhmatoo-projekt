@@ -10,26 +10,16 @@ echo "<ol>";
 foreach($movies as $m){
 	$actor_str = "";
 	$director_str = "";
-	if($b == 10){ break; }
+	if($b == 1){ break;}
 	$html = file_get_html("https://www.rottentomatoes.com".$m->url);
-	$rating = $html->find('div[class=info]')[0]->find('div[class=col]')[1]->plaintext;
-	$genre = $html->find('div[class=info]')[0]->find('div[class=col]')[3]->plaintext;
-	$directors = $html->find('div[class=info]')[0]->find('div')[5]->find("a");
-	$release_date = $html->find('div[class=info]')[0]->find('div[class=col]')[8]->plaintext;
-	$i=0;
-	foreach($directors as $d){
-		
-		if($i < (count($directors)-1) && count($directors) > 1){
-			
-			$director_str=$director_str.$d->plaintext.", ";
-			
-		}else{
-			
-			$director_str=$director_str.$d->plaintext;
-			
-		}
-		$i+=1;
-	}
+	$rating = $html->find('ul[class=info]')[0]->find('div[class=meta-value]')[0]->plaintext;
+	
+	$genre = $html->find('ul[class=info]')[0]->find('div[class=meta-value]')[1]->plaintext;
+
+	$directors = $html->find('ul[class=info]')[0]->find('div[class=meta-value]')[2]->plaintext;
+
+	$release_date = $html->find('ul[class=info]')[0]->find('div[class=meta-value]')[4]->children()[0]->plaintext;
+
 	
 	foreach($m->posters as $p){
 		
@@ -48,7 +38,7 @@ foreach($movies as $m){
 		$i+=1;
 	}
 	insertToDb($m->title, "https://www.rottentomatoes.com".$m->url, $rating, 
-					$genre, $director_str, $release_date, 
+					$genre, $directors, $release_date, 
 					$p, $actor_str, $m->runtime, $m->tomatoScore, $m->synopsis);
 	$b++;
 }
