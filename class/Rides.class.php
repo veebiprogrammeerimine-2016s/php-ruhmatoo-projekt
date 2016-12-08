@@ -71,7 +71,8 @@ class Rides {
     FROM cp_rideusers
     JOIN cp_users ON cp_users.id=cp_rideusers.user_id
     JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
-    WHERE cp_rides.user_id=?;
+    WHERE cp_rides.user_id = ?
+    ;
     ");
 
     echo $this->connection->error;
@@ -99,24 +100,26 @@ class Rides {
       array_push($results, $r);
     }
 
+    $stmt->close();
     return $results;
   }
 
   function getPassenger(){
 
     $stmt = $this->connection->prepare("
-    SELECT cp_rides.id, cp_rides.start_location,
+    SELECT cp_rideusers.ride_id, cp_rides.start_location,
     cp_rides.start_time, cp_rides.arrival_location,
     cp_rides.arrival_time, cp_rides.free_seats,
     cp_rides.user_id, cp_users.name, cp_users.email
     FROM cp_rideusers
     JOIN cp_users ON cp_users.id=cp_rideusers.user_id
     JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
-    WHERE cp_rideusers.user_id = ?;
+    WHERE cp_rideusers.user_id = ? AND cp_rides.user_id=?
+    ;
     ");
 
     echo $this->connection->error;
-		$stmt->bind_param("i", $_SESSION["userId"]);
+		$stmt->bind_param("ii", $_SESSION["userId"], $user_id);
     $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
     $arrival_time, $free_seats, $driver_id, $driver_name, $driver_email);
     $stmt->execute();
@@ -142,6 +145,7 @@ class Rides {
       array_push($results, $r);
     }
 
+    $stmt->close();
     return $results;
   }
 
@@ -171,7 +175,7 @@ class Rides {
   function registertoride($id){
 
 
-    $stmt = $this->connection->prepare("SELECT id FROM cp_rideusers WHERE user_id=? AND ride_id = ?");
+    $stmt = $this->connection->prepare("SELECT ride_id FROM cp_rideusers WHERE user_id=? AND ride_id = ?");
     echo $this->connection->error;
     $stmt->bind_param("ii", $_SESSION["userId"], $id );
     $stmt->execute();
