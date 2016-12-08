@@ -56,7 +56,7 @@ $Rides = new Rides($mysqli);
 
   	}
 
-  	$rides = $Rides->getPassenger();
+  	$rides = $Rides->getPassenger($r, $sort, $order);
 
 
 ?>
@@ -79,44 +79,41 @@ $Rides = new Rides($mysqli);
 
   		$html .= "<tr>";
 			//User ID related
-  		$orderId = "ASC";
-  		$arr="&darr;";
-  		if (isset($_GET["order"]) &&
-  		$_GET["order"] == "ASC" &&
-  		$_GET["sort"] == "id") {
+	  		$orderId = "ASC";
+	  		$arr="&darr;";
+	  		if (isset($_GET["order"]) &&
+		  		$_GET["order"] == "ASC" &&
+		  		$_GET["sort"] == "id") {
 
-  			$orderId = "DESC";
-  			$arr="&uarr;";
-  		}
+	  			$orderId = "DESC";
+	  			$arr="&uarr;";
+  			}
 
 
   			$html .= "<th>
-  			<a href='?q=".$r."&sort=id&order=".$orderId."'>
-
-  			Sõidu ID ".$arr."
-
-  			</a>
-
-  			</th>";
+  					<a href='?q=".$r."&sort=id&order=".$orderId."'>
+					Sõidu ID ".$arr."
+				</a>
+			</th>";
 
 				//start_location related
 
   			$orderStart_location = "ASC";
-  			$arr="&darr;";
+  			//$arr="&darr;";
 
-  			if (isset($_GET["order"]) &&
-  			$_GET["order"] == "ASC" &&
-  			$_GET["sort"] == "start_location") {
+  				if (isset($_GET["order"]) &&
+		  			$_GET["order"] == "ASC" &&
+		  			$_GET["sort"] == "start_location") {
 
-  				$orderStart_location = "DESC";
-  				$arr="&uarr;";
-  			}
+  					$orderStart_location = "DESC";
+  					$arr="&uarr;";
+  				}
 
   				$html .= "<th>
-  				<a href='?q=".$r."&sort=start_location&order=".$orderStart_location."'>
+  						<a href='?q=".$r."&sort=start_location&order=".$orderStart_location."'>
 
-  				Start location ".$arr."
-  				</a>
+  						Start location ".$arr."
+  					</a>
 
   				</th>";
 
