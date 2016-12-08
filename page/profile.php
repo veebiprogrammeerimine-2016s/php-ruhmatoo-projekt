@@ -5,7 +5,7 @@ $aboutUser = "Tere! Olen lihtsalt suvaline tegelane. Elan vanas majas ja minu ju
 <style>
 </style>
 <title>Kasutaja && profiil</title>
-<div class="header"><a class="hbutton" href="home.php">< </a><?php echo $appName;  ?></div>
+<div class="header"><a class="hbutton" href="home.php">< </a><?php echo $appName; ?></div>
 <body>
 <div class="row">
 <div class="c-3">
