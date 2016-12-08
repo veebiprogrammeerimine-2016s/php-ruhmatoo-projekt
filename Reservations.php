@@ -70,11 +70,11 @@
 		
 	}
 
-	if (isset($_POST["veichle_types"])) {
+	if (isset($_POST["veichle_type"])) {
 		
-		if(empty($_POST["veichle_types"])) {
+		if(empty($_POST["veichle_type"])) {
 			
-			$veichle_types = $_POST["veichle_types"];
+			$veichle_type = $_POST["veichle_type"];
 			
 		}
 		
@@ -109,14 +109,12 @@
 			
 			<label class="form-check-label">
 			<div class="form-group row">
-				<label for="car_brand" class="col-sm-4 col-form-label">Sõiduki tüüp</label>
+				<label for="veichle_type" class="col-sm-4 col-form-label">Sõiduki tüüp</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="car_brand" id="car_brand">
+						<input type="text" class="form-control" name="veichle_type" id="veichle_type">
 					</div>
 					</label>
 				</div>
-							
-			<br>
 			
 			<label class="form-check-label">
 			<div class="form-group row">
@@ -159,7 +157,7 @@
 			 $starttime = 9;
 			 $endtime = 16;
 			 
-			 $html = "";
+			$html = "";
 			 
 			$html .= "<tr>";
 			$html .= "<th>kell</th>";
@@ -171,6 +169,7 @@
 				$html .= "<th>".$day."</th>";
 
 			}
+			
 			$html .= "</tr>";
 			
 			for($j = $starttime; $j <= $endtime; $j++){
@@ -186,11 +185,15 @@
 				$html .= "<tr>";
 				$html .= "<td>".$time."</td>";
 				
+				// :00
+				
 				for($k = 0; $k < $limit; $k++){
 					
 					$day = date("d.m.Y",mktime(0, 0, 0, date("m")  , date("d")+$k, date("Y")));
+				
+					$day_t = date("d.m.Y",mktime(0, 0, 0, date("m")  , date("d"), date("Y")));
 
-					if($_GET["time"] && $_GET["time"] == $time && $_GET["date"] == $day ){
+					if(isset($_GET["time"]) && $_GET["time"] == $time && $_GET["date"] == $day ){
 						$html .= "<td><a style='height: 19px; display:block; background-color:green;' href='?date=".$day."&time=".$time."'></a></td>";
 					}else{
 						$html .= "<td><a style='height: 19px; display:block; background-color:gray;' href='?date=".$day."&time=".$time."'></a></td>";
@@ -207,12 +210,14 @@
 				
 				$html .= "<tr>";
 				
+				// :30
+				
 				$html .= "<td>".$time."</td>";
 				for($k = 0; $k < $limit; $k++){
 					
 					$day = date("d.m.Y",mktime(0, 0, 0, date("m")  , date("d")+$k, date("Y")));
 
-					if($_GET["time"] && $_GET["time"] == $time && $_GET["date"] == $day ){
+					if(isset($_GET["time"]) && $_GET["time"] == $time && $_GET["date"] == $day ){
 						$html .= "<td><a style='height: 19px; display:block; background-color:green;' href='?date=".$day."&time=".$time."'></a></td>";
 					}else{
 						$html .= "<td><a style='height: 19px; display:block; background-color:gray;' href='?date=".$day."&time=".$time."'></a></td>";
@@ -235,7 +240,7 @@
 			
 			<br>
 			
-			<input type="submit" class="btn btn-danger">
+			<input type="submit" class="btn btn-success">
 
 			
 
