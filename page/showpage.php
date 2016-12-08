@@ -5,14 +5,11 @@
 	require("../class/Helper.class.php");
 	$Helper= new Helper();
 
-	require("../class/Top.class.php");
-	$Top= new Top($mysqli);
+	/*require("../class/cast.class.php");
+	$cast= new cast($mysqli);
 
-	require("../class/Eetris.class.php");
-	$Eetris= new Eetris($mysqli);
-
-	require("../class/Viimati.class.php");
-	$Viimati= new Viimati($mysqli);
+	require("../class/Info.class.php");
+	$Info= new Info($mysqli);*/
 
 	//kui ei ole sisse loginud, suunan login lehele
 	if(!isset($_SESSION["userId"])){
@@ -39,7 +36,7 @@
 		!empty($_POST["rating"])
 	) {
 		$rating = $Helper->cleanInput($_POST["rating"]);
-		$Top->saveTop($Helper->cleanInput($_POST["tvshow"]), $rating);
+		$cast->savecast($Helper->cleanInput($_POST["tvshow"]), $rating);
 		header("Location: login.php");
 		exit();
 	}*/
@@ -61,7 +58,7 @@
 	}
 
 ///////////////MILLEKS SEE ON?
-	$people=$Top->getAll($q, $sort, $order);
+	/*$people=$cast->getAll($q, $sort, $order);*/
 
 	//echo"<pre>";
 	//var_dump($people[1]);
@@ -89,118 +86,48 @@
 			<div class="row">
 
 <h2>Seriaali tutvustus</h2>
-
-<?php
-	$html="<table class='table table-bordered table-condensed'>";
-		$html .="<tr>";
-			$ordertvshow="ASC";
-			$arr="&darr;";
-			if(isset($_GET["order"])&&
-				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="tvshow"){
-				$ordertvshow="DESC";
-				$arr="&uarr;";
-			}
-			$html .= "<th>
-						<a href='?q=".$q."&sort=tvshow&order=".$ordertvshow."'>
-							Seriaal
-						</a>
-					 </th>";
-
-
-			$orderrating="ASC";
-			$arr="&darr;";
-			if(isset($_GET["order"])&&
-				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="rating"){
-				$orderrating="DESC";
-				$arr="&uarr;";
-			}
-			$html .="<th>
-						<a href='?q=".$q."&sort=rating&order=".$orderrating."'>
-							Hinne
-						</a>
-					</th>";
-
-	$html .="</tr>";
-	//iga liikmekohta masssiiivis
-	foreach($people as $p){
-		$html .="<tr>";
-			$html .="<td>".$p->tvshow."</td>";
-			$html .="<td>".$p->rating."</td>";
-			$html .="</tr>";
-	}
-	$html .="</table>";
-	echo $html;
-?>
-			</div>
-
-			<div class="row">
-
-<h2>Seriaali tutvustus</h2>
 <?php
 
 $html="<table class='table table-bordered table-condensed'>";
 		$html .="<tr>";
-			$orderUsername="ASC";
+			$orderInfo="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
 				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="username"){
-				$orderUsername="DESC";
+				$_GET["sort"]=="info"){
+				$orderInfo="DESC";
 				$arr="&uarr;";
 			}
 			$html .= "<th>
-						<a href='?q=".$q."&sort=username&order=".$orderUsername."'>
-							Kasutajanimi
+						<a href='?q=".$q."&sort=info&order=".$orderInfo."'>
+							Seriaali tutvustus
 						</a>
 					 </th>";
 
-			$orderorderComment="ASC";
+			$orderCast="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
 				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="comment"){
-				$orderorderComment="DESC";
+				$_GET["sort"]=="cast"){
+				$orderCast="DESC";
 				$arr="&uarr;";
 			}
 			$html .="<th>
-						<a href='?q=".$q."&sort=comment&order=".$orderorderComment."'>
-							Kommentaar
+						<a href='?q=".$q."&sort=cast&order=".$orderCast."'>
+							Osalised
 						</a>
 					</th>";
-
-			$orderRating="ASC";
-			$arr="&darr;";
-			if(isset($_GET["order"])&&
-				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="rating"){
-				$orderRating="DESC";
-				$arr="&uarr;";
-			}
-			$html .= "<th>
-						<a href='?q=".$q."&sort=rating&order=".$orderRating."'>
-							Hinne
-						</a>
-					 </th>";
 	$html .="</tr>";
 	//iga liikmekohta masssiiivis
 	foreach($people as $p){
 		$html .="<tr>";
 			$html .="<td>".$p->id."</td>";
-			$html .="<td>".$p->username."</td>";
-			$html .="<td>".$p->comment."</td>";
-			$html .="<td>".$p->rating."</td>";
+			$html .="<td>".$p->info."</td>";
+			$html .="<td>".$p->cast."</td>";
 			$html .="</tr>";
 	}
 	$html .="</table>";
 	echo $html;
-
-
-
-
-
-
 ?>
 			</div>
 		</div>
@@ -226,37 +153,30 @@ $html="<table class='table table-bordered table-condensed'>";
 						</a>
 					 </th>";
 
-			$ordercomments="ASC";
+			$ordercast="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
 				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="comments"){
-				$ordercomments="DESC";
+				$_GET["sort"]=="cast"){
+				$ordercast="DESC";
 				$arr="&uarr;";
 			}
 			$html .="<th>
-						<a href='?q=".$q."&sort=comments&order=".$ordercomments."'>
+						<a href='?q=".$q."&sort=cast&order=".$ordercast."'>
 							Kommentaarid
 						</a>
 					</th>";
-
-
+	$html .="</tr>";
 	//iga liikmekohta masssiiivis
 	foreach($people as $p){
 		$html .="<tr>";
 			$html .="<td>".$p->id."</td>";
 			$html .="<td>".$p->user."</td>";
-			$html .="<td>".$p->comments."</td>";
+			$html .="<td>".$p->cast."</td>";
 			$html .="</tr>";
 	}
 	$html .="</table>";
 	echo $html;
-
-
-
-
-
-
 ?>
 		</div>
 	</div>
