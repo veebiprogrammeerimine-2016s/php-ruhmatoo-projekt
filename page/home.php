@@ -20,6 +20,14 @@ require("header.php");
 <form>
 <h6>Linnaosa</h6>
 <input type="text" placeholder="Kesklinn" style="width: 100%;" name="district">
+<p>
+<h6>Linnaosa</h6>
+<select style="width: 100%;" name="formLocation">
+  <option value="">Kesklinn</option>
+  <option value="M">Kristiine</option>
+  <option value="F">Pirita</option>
+</select>
+</p>
 <h6>Oskused</h6>
 <input type="checkbox" name="builder" value="yes"> Ehitaja <br>
 <input type="checkbox" name="pipe" value="yes"> Torumees <br>
