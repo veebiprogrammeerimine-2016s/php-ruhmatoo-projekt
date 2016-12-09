@@ -69,7 +69,7 @@ if(!empty($userOffers)){  ?>
 				$tableOffers  .= '<td><a href="details.php?id='. $offer->book_id .'">'.$offer->title.'</td>';
 				$tableOffers  .= '<td>'. $offer->points .'</td>';
 				$tableOffers  .= '<td>Soovija olemas</td>';
-				$tableOffers  .= '<td> <a href="books.php?contact='. $offer->buyer .'"> Võta ühendust! </a></td>';  //vaja veel teha
+				$tableOffers  .= 	'<td> <a href="new_pm.php?contact='. $offer->buyer .'&book='.$offer->book_id.'"> Võta ühendust! </a></td>';  //vaja veel teha
 			$tableOffers  .= '</tr>';
 		}		
 	} 
@@ -134,7 +134,7 @@ if(!empty($userWishes)){
 				$tableWishes  .=         	'<option value = "'. $wish->book_id .'" '.$selected.' ">Olen kätte saanud </option>';
 				$tableWishes  .=    	'</select>';
 				$tableWishes  .= 	'</td>';
-				$tableWishes  .= 	'<td> <a href="books.php?contact='. $wish->seller .'"> Võta ühendust! </a></td>';  //vaja veel teha
+				$tableWishes  .= 	'<td> <a href="new_pm.php?contact='. $wish->seller .'&book='.$wish->book_id.'"> Võta ühendust! </a></td>';  
 				$tableWishes  .= '</form>';
 				
 			$tableWishes  .= '</tr>';

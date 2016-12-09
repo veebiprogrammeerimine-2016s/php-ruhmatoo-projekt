@@ -91,6 +91,8 @@ if(isset($_SESSION["userId"]) && !isset($_GET["get"])&& $singleBook->status == N
 	if($userCoins >= $singleBook->coins){?>
 	<br><br>
 	<h4><a href="?id=<?=$_GET["id"];?>&get=true">Soovin seda raamatut</a></h4> 
+	<br>
+	<p>Küsi omanikult täpsemat <a href="new_pm.php?contact=<?=$singleBook->user;?>&book=<?=$_GET["id"]?>">infot</a></p>
 	
 <?php
 ; }else{?>

@@ -61,7 +61,39 @@ class User {
 		
 		return $msg;	
 	}
-	
-	
+	//saan kasutaja id järgi kasutajanimi
+	function getUsername ($user_id) {
+		$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+		SELECT username 
+		FROM project_users
+		WHERE user_id = ?");
+		echo $this->connection->error;
+		$stmt->bind_param("i", $user_id);      //asendan küsimärgi
+		$stmt->bind_result($usernameDb);
+		$stmt->execute();
+		if($stmt->fetch()) {
+			$username = $usernameDb;
+		}
+		return $username;
+	}
+	//saan kasutajanime järgi kasutaja id
+	function getUserId ($username) {
+		$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+		SELECT user_id 
+		FROM project_users
+		WHERE username = ?");
+		echo $this->connection->error;
+		$stmt->bind_param("s", $username);      //asendan küsimärgi
+		$stmt->bind_result($userIdDb);
+		$stmt->execute();
+		if($stmt->fetch()) {
+			$userId = $userIdDb;
+		} else {
+			echo "Sellist kasutajat ei leitud";
+		}
+		return $userId;
+	}
 }
 ?>
