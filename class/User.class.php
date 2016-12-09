@@ -90,10 +90,12 @@ class User {
 		$stmt->execute();
 		if($stmt->fetch()) {
 			$userId = $userIdDb;
+			return $userId;
 		} else {
-			echo "Sellist kasutajat ei leitud";
+			//echo "Sellist kasutajat ei leitud";
+			
 		}
-		return $userId;
+		
 	}
 }
 ?>

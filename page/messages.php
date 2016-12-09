@@ -13,7 +13,7 @@ require("../class/Messages.class.php");
 $Messages = new Messages($mysqli);               
 
 //MUUTUJAD
-$message = "";
+
 
 ?>
 
@@ -26,7 +26,7 @@ require("../header.php");
 
 <table style="width: 100%;">
 	<tr>
-		<td style="vertical-align: top; height: 100px;" onclick="<?=$message = 'Saada sõnum'?>">
+		<td style="vertical-align: top; height: 100px;">
 			<ul>
 				<li><a href="new_pm.php">Saada kiri</li></a>
 			

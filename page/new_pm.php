@@ -9,7 +9,8 @@ $form = true;
 $title = "";
 $book_id = "";
 $receiver_name = "";
-
+$msg = "";
+$note = "Saada kiri";
 
 
 ?>
@@ -31,15 +32,21 @@ if(isset($_GET["book"])){
 	$title = $Book->getSingle($book_id)->title;
 }
 if(isset($_POST["title"])){
+	$receiver_name = $Helper->cleanInput($_POST["receiver_name"]);
+	$title = $Helper->cleanInput($_POST["title"]);
 	if(!empty($_POST["title"]) AND !empty($_POST["msg"]) AND !empty($_POST["receiver_name"])){
-		$form = false;
-		$message = "Sõnum saadetud";
 		$sender = $Helper->cleanInput($_SESSION["userId"]);
 		$receiver_name = $Helper->cleanInput($_POST["receiver_name"]);  //vaja id-ks
 		$receiver_id = $User->getUserId ($receiver_name);  //$book->user  antud raamatu sisestaja
 		$title = $Helper->cleanInput($_POST["title"]);
 		$msg = $Helper->cleanInput($_POST["msg"]);
-		$Messages->newMessage($sender, $receiver_id, $title, $msg);
+		$note = $Messages->newMessage($sender, $receiver_id, $title, $msg);
+		if($note == "Kiri saadetud"){
+			$form = false;
+		}
+	}else{
+		$note = "Täida kõik väljad";
+		
 	}
 	
 }
@@ -48,7 +55,7 @@ if(isset($_POST["title"])){
 ?>
 <table style="width:100%;">
 	<tr >
-	    <td style="text-align: center;"><?=$message?><br><br></td>
+	    <td style="text-align: center;"><?=$note?><br><br></td>
 	</tr>
 </table>
 <?php

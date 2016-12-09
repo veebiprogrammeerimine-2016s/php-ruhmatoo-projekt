@@ -12,6 +12,7 @@ class Messages {
 	
 	//kirja saatmine teisele kasutajale
 	function newMessage($sender, $receiver, $title, $message){
+		$message = "";
 		$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("
 		INSERT INTO project_messages (sender_id, receiver_id, title, message) 
@@ -20,11 +21,12 @@ class Messages {
 		$stmt->bind_param("iiss", $sender, $receiver, $title, $message);  //asendan küsimärgid
 		
 		if($stmt->execute()) {
-			//echo "kiri saadetud";
+			$message = "Kiri saadetud";
 		} else {
-		 	echo "ERROR funcnewMessage".$stmt->error;                  
+		 	$message = "Sellist kasutajat ei leitud";                  
 		}
 		$stmt->close();
+		return $message;
 	}
 	
 }
