@@ -59,6 +59,18 @@ CREATE TABLE project_points (
 	status VARCHAR(10),
 	FOREIGN KEY (book_id) REFERENCES project_books(book_id)
 	);
+	
+CREATE TABLE project_messages(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    sender_id INT(11) NOT NULL,
+    receiver_id INT(11) NOT NULL,
+    title VARCHAR(256),
+    message TEXT,
+    sent TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    received DATETIME DEFAULT NULL,
+	sender_deleted VARCHAR(3),
+	receiver_deleted VARCHAR(3)
+    );
 
 	
 
