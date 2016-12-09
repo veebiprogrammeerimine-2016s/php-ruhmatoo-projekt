@@ -21,7 +21,13 @@ $Messages = new Messages($mysqli);
 //HTML
 require("../header.php");
 ?>
-
+<script type="text/javascript">
+$(document).ready(function($) {
+    $(".table-row").click(function() {
+        window.document.location = $(this).data("href");
+    });
+});
+</script>
 <br>
 
 <table style="width: 100%;">

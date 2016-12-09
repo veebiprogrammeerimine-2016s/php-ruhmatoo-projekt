@@ -12,7 +12,7 @@ class Messages {
 	
 	//kirja saatmine teisele kasutajale
 	function newMessage($sender, $receiver, $title, $message){
-		$message = "";
+		$note = "";
 		$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("
 		INSERT INTO project_messages (sender_id, receiver_id, title, message) 
@@ -21,26 +21,26 @@ class Messages {
 		$stmt->bind_param("iiss", $sender, $receiver, $title, $message);  //asendan küsimärgid
 		
 		if($stmt->execute()) {
-			$message = "Kiri saadetud";
+			$note = "Kiri saadetud";
 		} else {
-		 	$message = "Sellist kasutajat ei leitud";                  
+		 	$note = "Sellist kasutajat ei leitud";                  
 		}
 		$stmt->close();
-		return $message;
+		return $note;
 	}
 	
 	//kasutajale saabunud kirjad
 	function allReceived($userId){
 		$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("
-		SELECT id, sender_id, title, received, sent
+		SELECT id, sender_id, title, message, received, sent
 				FROM project_messages
 				WHERE receiver_deleted IS NULL AND receiver_id = ?
 				");
 		$stmt->bind_param("i", $userId);
 		echo $this->connection->error;
 		
-		$stmt->bind_result($messageIdDb, $senderIdDb, $titleDb, $receivedDb, $sentDb);
+		$stmt->bind_result($messageIdDb, $senderIdDb, $titleDb, $messageDb, $receivedDb, $sentDb);
 		if($stmt->execute()){
 			//echo "korras!";
 		}else {
@@ -60,6 +60,7 @@ class Messages {
 			$message->message_id = $messageIdDb;
 			$message->sender_id = $senderIdDb;
 			$message->title = $titleDb;
+			$message->content = $messageDb;
 			$message->received = $receivedDb;   //NULL kui pole avanud kirja
 			$timestamp = strtotime($sentDb);
 			$timestamp = date("d.m.Y  H:i", $timestamp);
