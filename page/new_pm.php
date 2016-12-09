@@ -21,15 +21,20 @@ if(!isset($_SESSION["userId"])){
 	header("Location:login.php");
 }
 
-//kui saan aadressirealt saaja id, siis vormi eeltäidetud kasutajanimi
+//kui saan aadressirealt saaja id, siis vormi eeltäidetud kasutajanimi... VASTAMINE v UUS kiri
 if(isset($_GET["contact"])){
 	$receiver_id = $Helper->cleanInput($_GET["contact"]);
 	$receiver_name = $User->getUsername($receiver_id);
 }
-//kui saan aadressirealt raamatu id, siis vormi eeltäidetud pealkiri raamatu pealkirjaga
+//kui saan aadressirealt raamatu id, siis vormi eeltäidetud pealkiri raamatu pealkirjaga ...UUS kiri
 if(isset($_GET["book"])){
 	$book_id = $Helper->cleanInput($_GET["book"]);
 	$title = $Book->getSingle($book_id)->title;
+}
+//kui saan aadressirealt kirja pealkirja, siis vastuses sama pealkiri.... VASTAMINE kirjale
+if(isset($_GET["title"])){
+	$title = $Helper->cleanInput($_GET["title"]);
+	
 }
 if(isset($_POST["title"])){
 	$receiver_name = $Helper->cleanInput($_POST["receiver_name"]);

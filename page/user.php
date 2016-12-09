@@ -69,7 +69,7 @@ if(!empty($userOffers)){  ?>
 				$tableOffers  .= '<td><a href="details.php?id='. $offer->book_id .'">'.$offer->title.'</td>';
 				$tableOffers  .= '<td>'. $offer->points .'</td>';
 				$tableOffers  .= '<td>Soovija olemas</td>';
-				$tableOffers  .= 	'<td> <a href="new_pm.php?contact='. $offer->buyer .'&book='.$offer->book_id.'"> Võta ühendust! </a></td>';  //vaja veel teha
+				$tableOffers  .= 	'<td> <a href="new_pm.php?contact='. $offer->buyer .'&book='.$offer->book_id.'"> Võta ühendust! </a></td>';  
 			$tableOffers  .= '</tr>';
 		}		
 	} 

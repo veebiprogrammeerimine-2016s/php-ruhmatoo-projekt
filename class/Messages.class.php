@@ -77,5 +77,23 @@ class Messages {
 		
 		return $result;
 	}
+	//kasutja avas kirja
+	function messageOpened($message_id, $receiver_id){
+		$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+		UPDATE project_messages
+		SET received = NOW()
+		WHERE id=? AND receiver_id = ?
+		");
+		$stmt->bind_param("ii", $message_id, $receiver_id);
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			//echo "salvestus õnnestus!";
+		}else {
+		 	echo "ERROR func deleteBook ".$stmt->error;               
+		}
+		
+		$stmt->close();
+	}
 	
 }
