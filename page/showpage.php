@@ -5,11 +5,11 @@
 	require("../class/Helper.class.php");
 	$Helper= new Helper();
 
-	/*require("../class/cast.class.php");
-	$cast= new cast($mysqli);
+	/*require("../class/Comments.class.php");
+	$Comments= new Comments($mysqli);*/
 
 	require("../class/Info.class.php");
-	$Info= new Info($mysqli);*/
+	$Info= new Info($mysqli);
 
 	//kui ei ole sisse loginud, suunan login lehele
 	if(!isset($_SESSION["userId"])){
