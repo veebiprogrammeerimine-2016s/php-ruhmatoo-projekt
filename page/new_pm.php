@@ -69,9 +69,9 @@ if($form){ ?>
 		<td style="text-align: left; height: 100px;">
 			<div>
 			
-					<label for="title">Pealkiri</label><input type="text" value="<?php echo $title; ?>" name="title" /><br />
+					<label for="title">Pealkiri</label><input type="text" value="<?php echo $title; ?>" name="title"  /><br />
 					
-					<label for="receiver_name">Saaja</label><input type="text" value="<?php echo $receiver_name; ?>" name="receiver_name" /><br />
+					<label for="receiver_name">Saaja</label><input type="text" placeholder="Kasutajanimi" value="<?php echo $receiver_name; ?>" name="receiver_name" /><br />
 					
 					<label for="msg">Sõnum</label><textarea cols="40" rows="5" name="msg"></textarea><br />
 					<input type="submit"  value="Saada" />

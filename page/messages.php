@@ -30,7 +30,7 @@ require("../header.php");
 			<ul>
 				<li><a href="new_pm.php">Saada kiri</li></a>
 			
-				<li>Saabunud kirjad</li>
+				<li><a href="inbox.php">Saabunud kirjad</li></a>
 
 				<li>Saadetud kirjad</li>
 			</ul>
