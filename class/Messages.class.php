@@ -96,4 +96,57 @@ class Messages {
 		$stmt->close();
 	}
 	
+		//kasutaja saadetud kirjad
+	function allSent($userId){
+		$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+		SELECT id, receiver_id, title, message, received, sent
+				FROM project_messages
+				WHERE sender_deleted IS NULL AND sender_id = ?
+				");
+		$stmt->bind_param("i", $userId);
+		echo $this->connection->error;
+		
+		$stmt->bind_result($messageIdDb, $receiverIdDb, $titleDb, $messageDb, $receivedDb, $sentDb);
+		if($stmt->execute()){
+			//echo "korras!";
+		}else {
+		 	echo "ERROR func allReceived ".$stmt->error;               
+		}
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda, kuni on rida andmeid
+	
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$message = new StdClass();
+			
+			$message->message_id = $messageIdDb;
+			$message->receiver_id = $receiverIdDb;
+			$message->title = $titleDb;
+			$message->content = $messageDb;
+			
+			$sentTimestamp = strtotime($sentDb);
+			$sentTimestamp = date("d.m.Y  H:i", $sentTimestamp);
+			$message->sent = $sentTimestamp;
+			if($receivedDb != NULL){                   //kui pole NULL, siis avatud
+				$receivedTimestamp = strtotime($receivedDb);  
+				$receivedTimestamp = date("d.m.Y", $receivedTimestamp);
+				$message->received = $receivedTimestamp;
+			}
+			
+			array_push($result, $message);
+		}
+		
+		$stmt->close();
+		if(empty($result)){
+			echo "Sa pole kirju saatnud";
+		}
+		
+		return $result;
+	}
+	
 }

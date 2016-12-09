@@ -38,7 +38,7 @@ $(document).ready(function($) {
 			
 				<li><a href="inbox.php">Saabunud kirjad</li></a>
 
-				<li>Saadetud kirjad</li>
+				<li><a href="outbox.php">Saadetud kirjad</li></a>
 			</ul>
 		</td>
 	</tr>
