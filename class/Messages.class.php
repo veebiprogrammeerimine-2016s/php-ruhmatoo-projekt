@@ -29,4 +29,52 @@ class Messages {
 		return $message;
 	}
 	
+	//kasutajale saabunud kirjad
+	function allReceived($userId){
+		$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+		SELECT id, sender_id, title, received, sent
+				FROM project_messages
+				WHERE receiver_deleted IS NULL AND receiver_id = ?
+				");
+		$stmt->bind_param("i", $userId);
+		echo $this->connection->error;
+		
+		$stmt->bind_result($messageIdDb, $senderIdDb, $titleDb, $receivedDb, $sentDb);
+		if($stmt->execute()){
+			//echo "korras!";
+		}else {
+		 	echo "ERROR func allReceived ".$stmt->error;               
+		}
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda, kuni on rida andmeid
+	
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$message = new StdClass();
+			
+			$message->message_id = $messageIdDb;
+			$message->sender_id = $senderIdDb;
+			$message->title = $titleDb;
+			$message->received = $receivedDb;   //NULL kui pole avanud kirja
+			$timestamp = strtotime($sentDb);
+			$timestamp = date("d.m.Y  H:i", $timestamp);
+			$message->sent = $timestamp;
+			
+			array_push($result, $message);
+		}
+		
+		
+		$stmt->close();
+		if(empty($result)){
+			echo "Kirju pole saabunud";
+		}
+		
+		return $result;
+	}
+	
 }
