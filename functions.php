@@ -19,7 +19,7 @@ require("../../../config.php");
 	$Plant = new Plant($mysqli);
 	$Helper = new Helper($mysqli);
 	
-	// see fail, peab olema kıigil lehtedel kus 
+	// see fail, peab olema k√µigil lehtedel kus 
 	// tahan kasutada SESSION muutujat
 	session_start();
 	

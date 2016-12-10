@@ -174,8 +174,8 @@
 							$html .= "<tr>";
 								$html .= "<td>".$i."</td>";
 								$html .= "<td>".$p->id."</td>";
-								$html .= "<td>".$p->taim."</td>";
-								$html .= "<td>".$p->intervall."</td>";
+								$html .= "<td>".$p->plants."</td>";
+								$html .= "<td>".$p->intervals."</td>";
 								$html .= "<td><a href='edit.php?id=".$p->id."'>muuda</a></td>";
 							$html .= "</tr>";
 							
@@ -247,7 +247,7 @@
 				 					<select name="plant" id="options">
 									<option value="" disabled selected>Select your option</option>
 									<?php foreach($options as $option): ?>
-									  <option data-water="<?=$option->intervall?>" value="<?=$option->id?>"><?=$option->taim?></option>
+									  <option data-water="<?=$option->intervals?>" value="<?=$option->id?>"><?=$option->plants?></option>
 									 <?php endforeach; ?>
 									</select>
 									<h3>Sisesta taime kastmisintervall</h3>

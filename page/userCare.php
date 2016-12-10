@@ -12,12 +12,19 @@ if(isset($_SESSION["userID"])){
 	
 	
 	//MUUTUJAD
-$signupEmail = "";
-$signupPassword = "";
 $signupEmailError = "";
 $signupPasswordError = "";
+	
 
-	if(isset($_GET["sort"]) && isset($_GET["direction"])){
+if (isset($_GET["logout"])) {
+		
+		session_destroy();
+		header("Location: login.php");
+		exit();
+		
+	}
+
+if(isset($_GET["sort"]) && isset($_GET["direction"])){
 		$sort=$_GET["sort"];
 		$direction=$_GET["direction"];
 	} else {
@@ -26,7 +33,6 @@ $signupPasswordError = "";
 		$direction="ascending";
 		
 	}
-	
 	
 	if(isset($_GET["q"])){
 		$q = $Helper->cleanInput($_GET["q"]);
@@ -37,15 +43,7 @@ $signupPasswordError = "";
 		
 	}	
 		
-		if(isset($_GET["sort"]) && isset($_GET["direction"])){
-		$sort=$_GET["sort"];
-		$direction=$_GET["direction"];
-	} else {
-		//kui ei ole määratud siis vaikimisi id ja ASC
-		$sort="id";
-		$direction="ascending";
 		
-	}
 	
 	if (isset($_GET["logout"])) {
 		
@@ -64,9 +62,30 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				
 				$error = $User->login($Helper->cleanInput($_POST["signupEmail"]),($Helper->cleanInput($_POST["signupPassword"])));
 			}
+if( isset($_POST["signupEmail"] )){
+	
+		if( empty($_POST["signupEmail"])) {
+			$signupEmailError = "see väli on kohustuslik";
+			
+		} else {
+			
+			//email olemas
+			$signupEmail=$_POST["signupEmail"];
+			}
+	}
+	if( isset($_POST["signupPassword"])) {
+		if( empty($_POST["signupPassword"])) {
+			$signupPasswordError = "see väli on kohustuslik";
+		}else{
+		//Siia jõuan siis, kui parool oli olemas ja parool ei olnud tühi. !ELSE!
+			if(strlen($_POST["signupPassword"])<8) {
+				$signupPasswordError = "Parool peab olema vähemalt 8 märki pikk";
+			}
+	}
+	}
 	
 	
-	$pageName = "care";
+	$pageName = "userCare";
 ?>
 <?php require("../header.php");?>
 <br><br><br><br>
@@ -98,7 +117,7 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>nr</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>id</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=watering_day&direction=".$direction."'>interval</a></th>";
+							$html .= "<th><a href='?q=".$q."&sort=watering_days&direction=".$direction."'>interval</a></th>";
 						$html .= "</tr>";
 						
 						$i = 1;

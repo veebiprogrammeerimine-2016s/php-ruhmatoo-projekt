@@ -40,9 +40,11 @@
 		
         <div id="navbar"  class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li <?php if(isset($pageName) && $pageName == "care"){ echo "class='active'"; } ?> ><a href="care.php">Taimehooldus<span class="sr-only"></span></a></li>
+				<li <?php if(isset($pageName) && $pageName == "care"){ echo "class='active'"; } ?> ><a href="<?php if(isset($pageName) && $pageName == "login"){ echo 'care.php'; } ?> <?php if(isset($pageName) && $pageName == "data"){ echo 'userCare.php'; } ?>">Taimehooldus<span class="sr-only"></span></a></li>
 				<li><a href="#">Meist<span class="sr-only"></span></a></li>
 			</ul>
+            
+            
 		  <?php if(isset($pageName) && $pageName == "login"){ ?>
           <form class="navbar-form navbar-right" method="POST">
             <div class="form-group">
@@ -54,7 +56,27 @@
             <button type="submit" class="btn btn-success">Logi sisse</button>
           </form>
 		  <?php } ?>
+            
+            <?php if(isset($pageName) && $pageName == "care"){ ?>
+          <form class="navbar-form navbar-right" method="POST">
+            <div class="form-group">
+              <input type="text" name="signupEmail" placeholder="E-maili aadress" class="form-control" value="<?=$signupEmail;?>">
+            </div>
+            <div class="form-group">
+              <input type="password" name="signupPassword" placeholder="Parool" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Logi sisse</button>
+          </form>
+		  <?php } ?>
+            
+            
 		   <?php if(isset($pageName) && $pageName == "data"){ ?>
+		   <form id="logoutNavbar" class="navbar-form navbar-right">
+				<a href="login.php">Logi välja</a>
+			</form>	
+		  <?php } ?>
+            
+            <?php if(isset($pageName) && $pageName == "userCare"){ ?>
 		   <form id="logoutNavbar" class="navbar-form navbar-right">
 				<a href="login.php">Logi välja</a>
 			</form>	

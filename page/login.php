@@ -1,16 +1,11 @@
 <?php
-
-
 require("../../../config.php");
 require("../functions.php");
-
 if(isset($_SESSION["userID"])){
 	
 	header("Location:data.php");
 	exit();
 }
-
-
 	
 	//MUUTUJAD
 	$signupEmailError = "";
@@ -26,7 +21,6 @@ if(isset($_SESSION["userID"])){
 	
 	
 	
-
 	
 	if(isset($_POST["FirstName"])){
 		
@@ -50,85 +44,49 @@ if(isset($_SESSION["userID"])){
 			
 		}
 	}
-
 	if( isset($_POST["signupEmail"] )){
-
 	
-
 		if( empty($_POST["signupEmail"])) {
-
 			$signupEmailError = "see väli on kohustuslik";
 			
 		} else {
 			
 			//email olemas
 			$signupEmail=$_POST["signupEmail"];
-
-
-
 			}
 	}
-
-
-
 	if( isset($_POST["signupPassword"])) {
-
 		if( empty($_POST["signupPassword"])) {
-
 			$signupPasswordError = "see väli on kohustuslik";
 		}else{
 		//Siia jõuan siis, kui parool oli olemas ja parool ei olnud tühi. !ELSE!
 			if(strlen($_POST["signupPassword"])<8) {
-
 				$signupPasswordError = "Parool peab olema vähemalt 8 märki pikk";
 			}
-
-
-
-
 	}
 	}
-
 	if( isset($_POST["registerEmail"] )){
-
 		
-
 		if( empty($_POST["registerEmail"])) {
-
 			$registerEmailError = "e-mail on kohustuslik";
          }else{
 			
 			//email olemas
 			$registerEmail=$_POST["registerEmail"];
-
-
-
-
 		}
 	}
-
-
-
 if( isset($_POST["registerPassword"] )){
-
 		
-
 		if( empty($_POST["registerPassword"])) {
-
 			$registerPasswordError = "parool on kohustuslik";
 			
 			
 		} else {
-
              if(strlen($_POST["registerPassword"])<8) {
-
 				$registerPasswordError = "Parool peab olema vähemalt 8 märki pikk";
 			}
-
 		}
 	}
-
-
 	
 	
 	if($registerEmailError == "" && empty ($registerPasswordError) && isset($_POST["registerEmail"])
@@ -149,7 +107,6 @@ if( isset($_POST["registerPassword"] )){
 	
 //var_dump($_POST);
 $error="";
-
 if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&& 
 			!empty($_POST["signupEmail"]) && !empty($_POST["signupPassword"])
 			){
@@ -158,7 +115,6 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 				
 			}
 	
-
 	$pageName = "login";
 ?> <?php require("../header.php");?>
 
