@@ -4,6 +4,8 @@
 	//require("../functions.php");
 	
 	include("../functions.php");
+	//require("../class/Rating.class.php");
+	//$Rating = new Rating($mysqli);
 	//sanitize post value
 	
 	if(isset($_GET["page"])){
@@ -24,6 +26,8 @@
 	//get current starting point of records
 	$position = (($page_number-1) * $item_per_page);
 	
+	$Rate= "Pane pildile punkt";
+	
 	$search= "";
 	if (isset($_GET["search"]) && !empty($_GET["search"])){
 		
@@ -40,7 +44,7 @@
 		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
 		FROM submissions 
 		join user_sample on submissions.author=user_sample.id
-		WHERE caption LIKE ? OR username LIKE ?
+		WHERE caption LIKE ? OR username LIKE ? AND deleted is NULL
 		ORDER BY id DESC LIMIT ?, ?");
 		
 		$search ="%".$search."%";
@@ -52,6 +56,7 @@
 		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
 		FROM submissions 
 		join user_sample on submissions.author=user_sample.id
+		WHERE deleted is NULL
 		ORDER BY id DESC LIMIT ?, ?");
 		$results->bind_param("ii", $position, $item_per_page); 
 
@@ -73,9 +78,26 @@
 		echo '<td>'."<a href='topic.php?topicid=$id&posted' class='thumbnail'><img src=".$message." ></a>".'</td>';
 		echo '</table>';
 		echo "Posted by: "."<a href='user.php?username=$author';?>$author</a>";
+		echo '<br>'.$Rate;
 		echo '<br><br><br><br>';
 		echo '</div>';
 	}
+	$stmt->close;
+	if (isset ($Rate)){
+		
+		$stmt = $this->connection->prepare("
+		UPDATE submissions
+		SET rating=rating+1
+		WHERE id = ?");
+		echo $this->connection->error;
+		$stmt->bind_param("i", $id);
+		
+		$stmt->execute();
+		
+	}
+	
+	
+	
 ?>
 
 
