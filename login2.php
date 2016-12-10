@@ -143,8 +143,8 @@
 	<header>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>SoundScape</h1>
-				<h3>Quality is priority</h3>
+				<h1>"nimi"</h1>
+				
 			</div> 
 		</div> 
 	</header>

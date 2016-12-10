@@ -25,7 +25,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>SoundScape</title>
+	<title>"nimi"</title>
 	<meta name="description" content="SoundScape">
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -41,8 +41,7 @@
 	<header>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>SoundScape</h1>
-				<h3>Quality is priority</h3><br>
+				<h1>"nimi"</h1><br>
 				<h4>Signed in as <a href="user.php"><?=$_SESSION["userEmail"];?></a></h4>
 				<h4><a href="?logout=1">Sign out</a></h4>
 			</div> 
