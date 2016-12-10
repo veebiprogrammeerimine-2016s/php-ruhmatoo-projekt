@@ -60,7 +60,9 @@
 			<div class="form-group">
 			  <input type="text" class="form-control" placeholder="Search">
 			</div>
-			<button type="submit" class="btn btn-default">Find</button>
+			<button type="submit" class="btn btn-default">
+			<span class="glyphicon glyphicon-search"></span>
+			</button>
 		  </form>
 		  <ul class="nav navbar-nav navbar-right">
 			
@@ -82,13 +84,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 	<header>
-		<div class="jumbotron">
+		<!--<div class="jumbotron">-->
 			<div class="container">
-				<h1>Audify</h1>
-				<h4>Signed in as <a href="user.php"><?=$_SESSION["userEmail"];?></a></h4>
-				<h4><a href="?logout=1">Sign out</a></h4>
+				<h1>Trackfeed</h1>
+				<h4>Latest uploads from people<h4>
+				
+				
 			</div> 
 		
-		</div> 
+		<!--</div> -->
 
 	</header>

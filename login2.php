@@ -123,7 +123,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>SoundScape</title>
+	<title>Audify</title>
 	<meta name="description" content="SoundScape">
 	
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -162,7 +162,9 @@
 			<div class="form-group">
 			  <input type="text" class="form-control" placeholder="Search">
 			</div>
-			<button type="submit" class="btn btn-default">Find</button>
+			<button type="submit" class="btn btn-default">
+			<span class="glyphicon glyphicon-search"></span>
+			</button>
 		  </form>
 		  <ul class="nav navbar-nav navbar-right">
 			
