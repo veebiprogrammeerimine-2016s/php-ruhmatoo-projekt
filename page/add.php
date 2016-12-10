@@ -18,6 +18,11 @@ $coins = "";
 $image = "";
 $description = "";
 $error = "";
+$note = "Lisa raamat, mille soovid loovutada!";
+
+if(isset($_GET["ok"])){
+	$note = "Raamat lisatud!";
+}
 
 // kontrollin, kas väljad on täidetud
 if(isset($_POST["title"])){ 
@@ -40,10 +45,12 @@ if(isset($_POST["title"])){
 }
 //ühtegi errorit	
 if(isset($_POST["title"]) && empty($error)) {
-	$error = 'Aitäh, raamat "'.$title. '" on lisatud pakutavate raamatute nimekirja! Vajadusel saad raamatu andmeid muuta Sinu riiulis. <br> Kui raamat leiab uue omaniku, kantakse mündid Sinu kontole.';
+	$error = 'Aitäh, raamat "'.$title. '" on lisatud pakutavate raamatute nimekirja! Vajadusel saad raamatu andmeid muuta <a  href="user.php">Sinu riiulis</a>. <br> Kui raamat leiab uue omaniku, kantakse mündid Sinu kontole.';
 	$userId = $_SESSION["userId"];
 	$BookId = $Book->addBook($userId, $category, $title, $author, $year, $condition, $location, $description, $coins, $image);  //funktsiooni raamatu andmebaasi lisamiseks
 	$Coin->userTransaction($BookId); //funktsioon, et lisada andmebaasi raamatu tehinguid puudutav info
+	header("Location: add.php?ok=true");  //et lehe refresh'ides raamatut topelt ei lisataks
+	
 }
 ?>
 
@@ -54,7 +61,7 @@ require("../header.php");
 
 
 ?>
-<h4>Lisa raamat, mille soovid loovutada!</h4>
+<h4><?=$note?></h4>
 <br>
 <form method="post">
 	

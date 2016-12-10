@@ -6,6 +6,7 @@ if (!isset($_SESSION["userId"])){
 	echo "külaline";
 }else{
 	echo "Tere " . $_SESSION["username"];
+	//<a href = "javascript:history.back()">Tagasi</a>
 }
 
 ?>
@@ -21,8 +22,7 @@ if (!isset($_SESSION["userId"])){
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>	
 	
 </head>
 
@@ -41,7 +41,7 @@ if (!isset($_SESSION["userId"])){
 <div class="container-fluid" >
      
 	<div class="row center-block">
-	 
+	
 		<ul class="nav nav-pilss nav-justified">
 			<li></li>
 			<li></li>

@@ -41,6 +41,7 @@ $status = NULL;    //project_coins tabelis on kustutamata tehingu 'status' NULL
 $deleted = NULL;   //project_books tabelis on kustutamata raamatu 'deleted' väärtus NULL
 $msg = "Täida väljad, mida tahad muuta!";
 $error = "kontrollida";
+$note = "Muuda raamatu andmeid";
 
 if($singleBook->image == ""){
 			$singleBook->image = ("../image/raamat.jpg"); //kui raamatu pilti pole
@@ -51,7 +52,8 @@ if(isset($_GET["delete"])){
 	$status = "deleted";     //kui aadressireal deleted, siis tehingute tabelisse 'status' väärtuseks deleted
 	$deleted = "deleted";    //kui aadressireal deleted, siis raamatute tabelis raamat kustutatakse
 	$error = "";
-	$msg = "Raamat kustutatud!";
+	$note = "Raamat kustutatud!";
+	$msg = "";
 }
 if(isset($_POST["change"])) {
 		$title = $Helper->cleanInput($_POST["title"]);
@@ -69,7 +71,8 @@ if(isset($_POST["change"])) {
 				$msg = "Oled osad andmed ära kustutanud, tärniga tähistatud väljad peavad olema täidetud!";
 			}else{
 				$error = "";
-				$msg = "Andmed edukalt muudetud!";
+				$note = "Andmed edukalt muudetud!";
+				$msg = "";
 			}
 }
 if(empty($error)){
@@ -93,7 +96,7 @@ if(empty($error)){
 //HTML
 require("../header.php");
 ?>
-<h4>Muuda raamatu andmeid</h4>
+<h4><?=$note?></h4>
 <br>
 <?php echo $msg ."<br><br>";?>
 

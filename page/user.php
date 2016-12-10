@@ -15,13 +15,14 @@ $status = "pending";  //on ostnud raamatu, aga pole veel kätte saanud
 // kui pole sisse loginud siis suunan avalehele
 if (!isset($_SESSION["userId"])){
 	session_destroy();
-	header("Location: home.php?");		
+	header("Location: home.php");		
 }
 
 if (isset($_GET["gotIt"])){
 	$book_id = $_GET["gotIt"];
 	echo $book_id;
 	$status = "OK";  //on ostnud raamatu ja sai kätte
+	header("Location: user.php");
 }	
 
 
@@ -46,12 +47,13 @@ require("../header.php");
 
 //KUI POLE RAAMATUID LISANUD EGA VALINUD
 if(empty($userWishes) && empty($userOffers)){
-	echo "Raamatute vahetamisi pole veel toimunud!";
+	echo "Raamatute vahetamisi pole veel toimunud!<br><br>";
+	echo 'Valides <a href="add.php">"Paku raamatuid"</a>, saad lisada raamatuid, mida soovid ära anda.<br> Valiku all <a href="books.php"> "Otsi raamatuid" </a> leiad raamatud, mida teised kasutajad loovutavad!';
 }
 //KUI MIDAGI ANNAB
 if(!empty($userOffers)){  ?>
 	<br>
-	<p>Soovid anda</p>
+	<p>Sinu lisatud raamatud</p>
 	<div class="table-responsive">
 	<table class="table table-hover table-condensed">
 		<tr>
@@ -79,7 +81,7 @@ if(!empty($userOffers)){  ?>
 			$tableOffers  .= '<td><a href="details.php?id='. $offer->book_id .'">'.$offer->title.'</td>';
 			$tableOffers  .= '<td>'. $offer->points .'</td>';
 			$tableOffers  .= '<td>Ootel</td>';
-			$tableOffers  .= '<td><a href="edit.php?id='. $offer->book_id .'"> Muuda </td>';
+			$tableOffers  .= '<td><a href="edit.php?id='. $offer->book_id .'"> Muuda / Kustuta </td>';
 			$tableOffers  .= '</tr>';	
 		} 
 	}
