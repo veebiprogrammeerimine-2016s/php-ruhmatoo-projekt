@@ -72,7 +72,7 @@ class Messages {
 		
 		$stmt->close();
 		if(empty($result)){
-			echo "Kirju pole saabunud";
+			//echo "Kirju pole saabunud";
 		}
 		
 		return $result;
@@ -143,10 +143,49 @@ class Messages {
 		
 		$stmt->close();
 		if(empty($result)){
-			echo "Sa pole kirju saatnud";
+			//echo "Saadetud kirju ei leitud";
 		}
 		
 		return $result;
+	}
+	//et kustutada outboxi kiri
+	function deleteSentMessage($message_id, $sender_id){
+    	$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+		UPDATE project_messages
+		SET sender_deleted='del' 
+		WHERE id=? AND sender_id=? AND sender_deleted IS NULL
+		");
+		$stmt->bind_param("ii", $message_id, $sender_id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			//echo "salvestus õnnestus!";
+		}else {
+		 	echo "ERROR func deleteMessage ".$stmt->error;               
+		}
+		
+		$stmt->close();		
+	}
+	
+	//et kustutada inboxi kiri
+	function deleteReceivedMessage($message_id, $receiver_id){
+    	$this->connection->set_charset("utf8");
+		$stmt = $this->connection->prepare("
+		UPDATE project_messages
+		SET receiver_deleted='del' 
+		WHERE id=? AND receiver_id=? AND receiver_deleted IS NULL
+		");
+		$stmt->bind_param("ii", $message_id, $receiver_id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			//echo "salvestus õnnestus!";
+		}else {
+		 	echo "ERROR func deleteMessage ".$stmt->error;               
+		}
+		
+		$stmt->close();		
 	}
 	
 }
