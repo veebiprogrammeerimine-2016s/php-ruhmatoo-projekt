@@ -48,7 +48,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="#">Audify</a>
+		  <a class="navbar-brand" href="#"><img src="images/audify_600x220.png" height="22px"/></a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -60,9 +60,6 @@
 			<div class="form-group">
 			  <input type="text" class="form-control" placeholder="Search">
 			</div>
-			<button type="submit" class="btn btn-default">
-			<span class="glyphicon glyphicon-search"></span>
-			</button>
 		  </form>
 		  <ul class="nav navbar-nav navbar-right">
 			
@@ -86,6 +83,7 @@
 	<header>
 		<!--<div class="jumbotron">-->
 			<div class="container">
+				
 				<h1>Trackfeed</h1>
 				<h4>Latest uploads from people<h4>
 				
