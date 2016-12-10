@@ -10,7 +10,8 @@ a{color:#777;}
 
 nav{height:0px;}  
   
-h3{color:white;}
+h3{color:white;
+}
 
 h4{color:white;}  
   
@@ -51,6 +52,10 @@ h4{color:white;}
 /*Data.php*/
 
 #logoutNavbar{padding-top:10px;}
+
+.list{
+    background-color:#fff;
+}
 
 #insertPlants{
 	padding-left:20px;
