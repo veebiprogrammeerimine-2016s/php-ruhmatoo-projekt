@@ -40,7 +40,7 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 		{
 			$success = placeOrder($_POST["name"],$_POST["email"],$_POST["phone"],$_POST["note"],$_POST["service"],$_POST["carnumber"],$_POST["datetimepicker"],$_GET["id"]);
 			$date_reserved = substr($_POST["datetimepicker"],0,10);
-			//echo $datea;
+				//echo $datea;
 			$time_reserved = substr($_POST["datetimepicker"],11,5);
 			?></br><?php
 		//	echo $timea;
