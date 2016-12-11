@@ -19,9 +19,11 @@ $image = "";
 $description = "";
 $error = "";
 $note = "Lisa raamat, mille soovid loovutada!";
+$ok = "";
 
 if(isset($_GET["ok"])){
 	$note = "Raamat lisatud!";
+	$ok ='Raamatu andmeid saab muuta <a  href="user.php">Sinu riiulis</a>. <br> Kui raamat leiab uue omaniku, kantakse mündid Sinu kontole.<br><br><strong>Lisa veel raamatuid!</strong>';
 }
 
 // kontrollin, kas väljad on täidetud
@@ -45,11 +47,11 @@ if(isset($_POST["title"])){
 }
 //ühtegi errorit	
 if(isset($_POST["title"]) && empty($error)) {
-	$error = 'Aitäh, raamat "'.$title. '" on lisatud pakutavate raamatute nimekirja! Vajadusel saad raamatu andmeid muuta <a  href="user.php">Sinu riiulis</a>. <br> Kui raamat leiab uue omaniku, kantakse mündid Sinu kontole.';
 	$userId = $_SESSION["userId"];
 	$BookId = $Book->addBook($userId, $category, $title, $author, $year, $condition, $location, $description, $coins, $image);  //funktsiooni raamatu andmebaasi lisamiseks
 	$Coin->userTransaction($BookId); //funktsioon, et lisada andmebaasi raamatu tehinguid puudutav info
 	header("Location: add.php?ok=true");  //et lehe refresh'ides raamatut topelt ei lisataks
+	
 	
 }
 ?>
@@ -62,6 +64,7 @@ require("../header.php");
 
 ?>
 <h4><?=$note?></h4>
+<p><?=$ok?></p>
 <br>
 <form method="post">
 	
@@ -89,10 +92,10 @@ require("../header.php");
 ?>
 	</select>
 	<br><br>
-	<input name="title" type="text" placeholder="Raamatu pealkiri" value="<?=$title;?>"> *<br>
-	<input name="author" type="text" placeholder="Raamatu autor" value="<?=$author;?>">*<br> 
+	<input name="title" type="text" placeholder="Raamatu pealkiri" value="<?=$title;?>"> <span class="text-danger"> * </span><br>
+	<input name="author" type="text" placeholder="Raamatu autor" value="<?=$author;?>"><span class="text-danger"> * </span><br> 
 	<input name="year" type="year" placeholder="Ilmumise aasta" value="<?=$year;?>"><br>
-	<input name="location" type="text" placeholder="Raamatu asukoht" value="<?=$location;?>"> *<br>
+	<input name="location" type="text" placeholder="Raamatu asukoht" value="<?=$location;?>"> <span class="text-danger"> * </span><br>
 	<br>
 		<select name="condition">
 	<option value="">Raamatu seisukord</option>
@@ -112,7 +115,7 @@ require("../header.php");
     echo "<option value='$value' $selected>$value</option>";
 }
 ?>
-	</select> *
+	</select> <span class="text-danger"> * </span>
 	<br><br>
 	<p>Mitu münti on raamat väärt? Vali vahemikus 1-10, kus 10 on kõige väärtuslikum:</p>
 	<select name="points">
@@ -140,5 +143,5 @@ require("../header.php");
 </form>
 <br>
 
-<?=$error;?>
+<div class="text-danger"> <?=$error;?></div>
 <?php require("../footer.php");?>

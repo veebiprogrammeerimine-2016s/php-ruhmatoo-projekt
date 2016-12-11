@@ -18,7 +18,7 @@ $error = "";
 if(isset($_POST["username"])){     		
 	if(empty($_POST["username"]) || empty($_POST["email"]) 
 		|| empty($_POST["password"]) || empty($_POST["passwordAgain"]) ) {
-		$error = "Kõik väljad on kohustuslikud!";
+		$error = "Kõik tärniga tähistatud väljad on kohustuslikud!";
 		$username = $_POST["username"];
 		$email = $_POST["email"];
 	} else {
@@ -54,16 +54,16 @@ if(isset($_GET["joined"])){
 	echo "Võid nüüd sisse <a href='login.php'>logida</a>!";
 }else{
 ?>
-<p>Loo kasutaja</p>
+<h4>Loo kasutaja</h4>
 
-<form method="post">
-	<input name="username" type="text" placeholder="Kasutajanimi" value="<?=$username;?>"> <br>
-	<input name="email" type="text" placeholder="E-post" value="<?=$email;?>"><br> 
-	<input name="password" type="password" placeholder="Salasõna"><br>
-	<input name="passwordAgain" type="password" placeholder="Salasõna uuesti"> <br>
+<form method="post" class="form-inline">
+	<input name="username" type="text" placeholder="Kasutajanimi" value="<?=$username;?>" class="form-control focusedInput"><span class="text-danger"> * </span><br>
+	<input name="email" type="text" placeholder="E-post" value="<?=$email;?>" class="form-control focusedInput"><span class="text-danger"> * </span><br> 
+	<input name="password" type="password" placeholder="Salasõna" class="form-control focusedInput"><span class="text-danger"> * </span><br>
+	<input name="passwordAgain" type="password" placeholder="Salasõna uuesti" class="form-control focusedInput"><span class="text-danger"> * </span> <br>
 	<br>
-	<input type="submit" value="Loo kasutaja"><br>
+	<input type="submit" value="Loo kasutaja" class="btn btn-default"><br>
 </form>
 <br>
-<?=$error;}?>
+<p class="text-danger"><?=$error;}?></p>
 <?php require("../footer.php");?>

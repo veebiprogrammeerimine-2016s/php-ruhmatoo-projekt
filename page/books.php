@@ -20,7 +20,7 @@ if(isset($_GET["q"]) && isset($_GET["sc"])){
 	} else {
 		$q = $Helper->cleanInput($_GET["q"]);
 		$sc = $Helper->cleanInput($_GET["sc"]);
-	}
+	} 
 }
  //kas sorteerimine on valitud
 if(isset($_GET["order_by"])){
@@ -59,34 +59,34 @@ require("../header.php");
 <!--1. RIDA....OTSING JA SORTEERIMINE-->
 	<tr> 
 		<td colspan="2">
-		   <form>
+		   <form class="form-inline">
 		   
 				<?php if($sc == "author"){ ?>
-				<input type="radio" name="sc" value="author"  checked>autor
+				<input type="radio" name="sc" value="author"  checked> autor
 				<?php } else { ?>
-				<input type="radio" name="sc" value="author">autor
+				<input type="radio" name="sc" value="author"> autor
 				
 				<?php } if($sc == "title"){?>
-				<input type="radio" name="sc" value="title" checked>pealkiri
+				<input type="radio" name="sc" value="title" checked> pealkiri
 				<?php } else { ?>
-				<input type="radio" name="sc" value="title">pealkiri
+				<input type="radio" name="sc" value="title"> pealkiri
 				
 				<?php }if($sc == "description"){?>
-				<input type="radio" name="sc" value="description" checked>kirjeldus
+				<input type="radio" name="sc" value="description" checked> kirjeldus
 				<?php } else { ?>
-				<input type="radio" name="sc" value="description">kirjeldus
+				<input type="radio" name="sc" value="description"> kirjeldus
 				<?php } ?>
 				
 				
 				<br>
-				<input type="search" name="q" value="<?=$q;?>">
-				<input type="submit" value="Otsi"><?=$error;?>
+				<input type="search" name="q" value="<?=$q;?>" class="form-control focusedInput">
+				<input type="submit" value="Otsi" class="btn btn-default"><?=$error;?>
 														  
 			
 		</td>
 		<td style="text-align:right;">
 			
-				<select name="order_by" onchange="this.form.submit()">
+				<select name="order_by" onchange="this.form.submit()" class="form-control focusedInput">
 				<?php
 				$option = "";
 				$sortOptions = array( 'vaikimisi järjestus', 'A-Z', 'Z-A', 'uuemad', 'vanemad', 'odavamad', 'kallimad' );

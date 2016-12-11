@@ -21,9 +21,9 @@ class Messages {
 		$stmt->bind_param("iiss", $sender, $receiver, $title, $message);  //asendan küsimärgid
 		
 		if($stmt->execute()) {
-			$note = "Kiri saadetud";
+			$note = "Kiri saadetud!";
 		} else {
-		 	$note = "Sellist kasutajat ei leitud";                  
+		 	$note = "Sellist kasutajat ei leitud!";                  
 		}
 		$stmt->close();
 		return $note;

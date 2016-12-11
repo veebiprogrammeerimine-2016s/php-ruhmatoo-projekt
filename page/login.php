@@ -11,7 +11,7 @@ $User = new User($mysqli);               //objekt
 $loginEmail = "";
 $loginPassword = "";
 $loginMsg = "";
-$loginEmailError = $loginPasswordError = "";
+$loginEmailError = $loginPasswordError = "*";
 
 // kui on juba sisse loginud siis suunan avalehele
 if (isset($_SESSION["userId"])){
@@ -46,16 +46,16 @@ if(isset($_POST["loginPassword"] )){
 require("../header.php");
 ?>
 
-<p>Logi sisse</p>
+<h4>Logi sisse</h4>
 
-<form method="post">
+<form method="post" class="form-inline">
 
-<input name="loginEmail" type="text" placeholder="E-post" value="<?=$loginEmail;?>">  <?php echo $loginEmailError; ?>
+<input name="loginEmail" type="text" placeholder="E-post" value="<?=$loginEmail;?>" class="form-control focusedInput">  <span class="text-danger"><?php echo $loginEmailError; ?></span>
 <br>
-<input name="loginPassword" type="password" placeholder="Salasõna"> <?php echo $loginPasswordError; ?>
+<input name="loginPassword" type="password" placeholder="Salasõna" class="form-control focusedInput"> <span class="text-danger"><?php echo $loginPasswordError; ?></span>
 <br>
 <br>
-<input name="login" type="submit" value="Logi sisse">
+<input name="login" type="submit" value="Logi sisse" class="btn btn-default">
 </form>
 <form method="post">
 <br>

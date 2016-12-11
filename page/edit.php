@@ -98,7 +98,7 @@ require("../header.php");
 ?>
 <h4><?=$note?></h4>
 <br>
-<?php echo $msg ."<br><br>";?>
+<p class="text-danger"><?php echo $msg ."<br><br>";?></p>
 
 <br><br>
 <table>
@@ -133,13 +133,13 @@ require("../header.php");
 				</select>
 				<br><br>
 				 
-				<input name="title" type="text" placeholder="<?=$singleBook->title?>" value="<?=$title;?>"> *<br>
+				<input name="title" type="text" placeholder="<?=$singleBook->title?>" value="<?=$title;?>"> <span class="text-danger"> * </span><br>
 				
-				<input name="author" type="text" placeholder="<?=$singleBook->author?>" value="<?=$author;?>"> *<br> 
+				<input name="author" type="text" placeholder="<?=$singleBook->author?>" value="<?=$author;?>"> <span class="text-danger"> * </span><br> 
 				
 				<input name="year" type="year" placeholder="<?=$singleBook->year?>" value="<?=$year;?>"> <br>
 				 
-				<input name="location" type="text" placeholder="<?=$singleBook->location?>" value="<?=$location;?>"> *<br>
+				<input name="location" type="text" placeholder="<?=$singleBook->location?>" value="<?=$location;?>"> <span class="text-danger"> * </span><br>
 				<br>
 				Seisukord <select name="condition">
 				<option value=""><?=$singleBook->condition;?></option>
@@ -159,7 +159,7 @@ require("../header.php");
 				echo "<option value='$value' $selected>$value</option>";
 			}
 			?>
-				</select> *
+				</select> <span class="text-danger"> * </span>
 				<br><br>
 				Väärtus müntides: <select name="points">
 				<option value=""><?=$singleBook->coins;?></option>

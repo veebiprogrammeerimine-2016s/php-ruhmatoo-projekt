@@ -6,7 +6,6 @@ if (!isset($_SESSION["userId"])){
 	echo "külaline";
 }else{
 	echo "Tere " . $_SESSION["username"];
-	//<a href = "javascript:history.back()">Tagasi</a>
 }
 
 ?>
@@ -16,14 +15,13 @@ if (!isset($_SESSION["userId"])){
 	<title>Raamaturiiul</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" > 
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" > -->
+	<link rel="stylesheet" href="../style/custom.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>	
-	
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script> 
 </head>
 
 <div class="container">
@@ -57,7 +55,7 @@ if (!isset($_SESSION["userId"])){
 			<li><a href="user.php" class="btn btn-default" role="button">Sinu riiul</a></li>
 			<li><a href="books.php" class="btn btn-default" role="button">Otsi raamatuid</a></li>
 			<li><a href="add.php" class="btn btn-default" role="button">Paku raamatuid</a></li>
-			<li><a href="messages.php" class="btn btn-default" role="button">Sinu teated</a></li>
+			<li><a href="inbox.php" class="btn btn-default" role="button">Sinu teated</a></li>
 			<li><a href="login.php" class="btn btn-default" role="button">Logi välja</a></li>
 
 

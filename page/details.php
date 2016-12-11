@@ -31,8 +31,7 @@ if(isset($_GET["id"]) && isset($_GET["get"])){
 	$Coin->changeStatus($_GET["id"], $_SESSION["userId"], $status);  //raamatu id, soovija id, pending
 	
 }
-//kutsun funktsiooni, et teada saada palju münte kasutajal on
-$userCoins = $Coin->getCoins($_SESSION["userId"], $_SESSION["userId"]);
+
 ?>
 
 
@@ -87,6 +86,8 @@ if(!isset($_SESSION["userId"])){
 <?php 
 //kui on sisse loginud kasutaja
 if(isset($_SESSION["userId"]) && !isset($_GET["get"])&& $singleBook->status == NULL){ 
+	//kutsun funktsiooni, et teada saada palju münte kasutajal on
+	$userCoins = $Coin->getCoins($_SESSION["userId"], $_SESSION["userId"]);
 	//kui on sisse loginud kasutaja ja see raamat on veel saadaval 
 	if($userCoins >= $singleBook->coins){?>
 	<br><br>
