@@ -138,9 +138,9 @@
 .error {color: #FF0000;font-size:14px}
 </style>
 
-<body>
+<header>
 
-<body background="images/city-wallpaper-18.jpg" height="22px"/>
+<body background="images/city-wallpaper-18.jpg" />
 
 	<nav class="navbar navbar-inverse navbar-static-top">
 	  <div class="container">
@@ -174,8 +174,9 @@
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
+	</header>
 
-	<header><center>
+	<body><center>
 		<!--<div class="jumbotron">-->
 			<div class="container">
 				<br><br><br><br>
@@ -268,7 +269,7 @@
 				</center>
 			</div> 
 		<!--</div>-->
-	</center></header>
+	</center>
 	
 
 	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
