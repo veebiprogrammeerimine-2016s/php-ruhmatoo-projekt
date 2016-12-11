@@ -31,13 +31,20 @@ if(isset($_POST["username"]) && isset($_POST["password"]))
 	}
 $tyreFitting = getSingleTyreFitting($_GET["id"]);
 $services = FittingServicesMinPrice($_GET["id"]);
-
+$times = getTyreFittingTimesAvailable($_GET["id"]);
+$date_reserved="";
+//$reserved = array($datea => []);
 if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && isset($_POST["service"]) && isset($_POST["carnumber"]) && isset($_POST["datetimepicker"]))
 	{
 		if( !empty($_POST["name"])&& !empty($_POST["email"]) && !empty($_POST["phone"]) && !empty($_POST["service"]) && !empty($_POST["carnumber"]) && !empty($_POST["datetimepicker"]))
 		{
 			$success = placeOrder($_POST["name"],$_POST["email"],$_POST["phone"],$_POST["note"],$_POST["service"],$_POST["carnumber"],$_POST["datetimepicker"],$_GET["id"]);
-			
+			$date_reserved = substr($_POST["datetimepicker"],0,10);
+			//echo $datea;
+			$time_reserved = substr($_POST["datetimepicker"],11,5);
+			?></br><?php
+		//	echo $timea;
+			//array_push($reserved,$datea,$timea);
 			if ($success == true){
 				if(sendEmail($_POST["email"])){
 					$emailSent = true;
@@ -50,9 +57,8 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 			
 		}
 	}
-	
-	$times = getTyreFittingTimesAvailable($_GET["id"]);
-//	var_dump($times);
+		
+	//var_dump($reserved);
 ?>
 <?php require("header.php");?>
 <?php if(isset($emailSent)): ?>
@@ -118,20 +124,16 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
                          <p>
                             <label>E-post:<span class="req-form-field">*</span></label><br  />
                             <input type="text" name="email" id="email" class="form-control required" required="required"/>
-                        </p>
-                        
+                        </p>                     
                         <p>
                             <label>Telefon:<span class="req-form-field">*</span></label><br  />
-                            <input type="text" id="mobile-number" name="phone" class="form-control required" required="required"/>
-                            
+                            <input type="text" id="mobile-number" name="phone" class="form-control required" required="required"/>                            
                         </p>
                         <p>
                             <label>Kommentaar:</label><br  />
                             <input type="text" name="note" class="form-control" />
-                        </p>
-                              
-                        <br />
-          					
+                        </p>                              
+                        <br />          					
 					</div>
                     <div class="col-lg-6">
                     	
@@ -153,15 +155,11 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
                         <label for="datetimepicker">Vali endale aeg:<span class="req-form-field">*</span></label>
                         <input type="text" name="datetimepicker" id="datetimepicker" class="form-control required"  style="width:100%" required="required" /></br></br>
                         <input type="submit" id="order-btn" class="btn btn-success" name="bookthistime"  value="Broneeri" />
-                    </div>
-                    
+                    </div>                    
             	</form>
-			</div>
-		
-		</div>
-		
-	</div>
-	
+			</div>		
+		</div>		
+	</div>	
 </div>
 
 <?php require("modals.php");
@@ -169,29 +167,29 @@ require("footer.php");?>
 
 <?php
 
-	// date time taken
-	// open times 
 	$days=[];
-	
-	$startDate = date("j.m.Y");
-	//echo $startDate;
+	$time = mktime(0, 0, 0, date("m")  , date("d"), date("Y"));
 	
 	$days_forecast = 14;
-	
+
 	for($i =0; $i < $days_forecast; $i++){
 		
 		$day = new StdClass();
 		$time = mktime(0, 0, 0, date("m")  , date("d")+$i, date("Y"));
-	//	echo "</br>".$time;
-		$day->date = date("j.m.Y", $time);
 			
+		$day->date = date("j.m.Y", $time);
+	/*	if($day->date == $date_reserved && isset($date_reserved)){
+		var_dump($day);	
+		}*/
+		
 		foreach($times as $t){
 			
 			
 			$dayNumber = date("N", $time);
+			
 			if($dayNumber == 7) { $dayNumber = 0;}
 			
-			//echo $day->date." ".$dayNumber." <br>";
+			echo $day->date." ".$dayNumber." <br>" ;
 			
 			if($t->day == $dayNumber){
 				$day->available = [];
@@ -204,9 +202,7 @@ require("footer.php");?>
 				//echo "$start <br>";
 				/*$end = 
 				=*/
-				
-				
-				
+								
 				for($j = 0; $j < 24; $j++){
 					//echo 
 					if(date("j.m.Y", $time) == date("j.m.Y") && intval(date("G")) + 1 >= $j){ continue; }
@@ -219,33 +215,33 @@ require("footer.php");?>
 					
 					$our_time = strtotime($time_string);
 					
-					if( $our_time >= $start && $our_time <= $close && $our_time != $lunch_begin){
-						array_push($day->available, $time_string);
+					if( $our_time >= $start && $our_time <= $close && $our_time != $lunch_begin)
+					{
+						
+						if($day->date == $date_reserved)
+						{
+							if( $our_time != strtotime($time_reserved) )
+							{
+								
+								array_push($day->available, $time_string);
+							}
+		
+						}
+						else
+						{
+							array_push($day->available, $time_string);
+						}												
 					}
 										
 					//if();)
 				}
-			}
-			
+			}			
 		}
 		
 		array_push($days, $day);
 	}
 	
 	//var_dump($days);
-
-	/*$day2 = new StdClass();
-	$day2->date = "30.11.2016";
-	$day2->available = ["12:00","13:00"];
-	
-	$day3 = new StdClass();
-	$day3->date = "5.12.2016";
-	$day3->available = ["12:00","13:00","14:00"];
-	
-	$days = [$day2,$day3];*/
-	
-	
-
 ?>
 <script>
 
@@ -257,7 +253,6 @@ require("footer.php");?>
 		console.log(currentDateTime.getDay());
 		
 		var dateString = currentDateTime.getDate() + "." + (currentDateTime.getMonth()+1) + "." + currentDateTime.getFullYear();
-		
 		
 		console.log(dateString);
 			
@@ -283,10 +278,7 @@ require("footer.php");?>
 				this.setOptions({
 				  timepicker:true,
 					allowTimes: []
-				});
-				
-				
-				
+				});				
 			}
 						
 			document.getElementById("datetimepicker").value = "";			
@@ -294,8 +286,7 @@ require("footer.php");?>
 		
 		
 	};
-	/*var minDateTime =  new Date();
-		minDateTime.setHours(minDateTime.getHours());*/
+
 	var disabled_dates = [];
 	for(var i = 0; i < days.length; i++){
 			
@@ -310,7 +301,6 @@ require("footer.php");?>
 		
 	$("#datetimepicker").datetimepicker({
 		minDate:new Date(),
-		//minTime:minDateTime,
 		format:'d.m.Y H:i',
 		defaultSelect:false,
 		timepicker:false,
