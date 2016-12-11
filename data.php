@@ -19,6 +19,9 @@
 		header("Location: login2.php");
 		exit();
 	}
+	
+
+
 ?>
 
 
@@ -33,11 +36,13 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
 
 </head>
 
-<body>
+<body background="images/city-wallpaper-18.jpg" />
+
+
 	<nav class="navbar navbar-inverse navbar-static-top">
 	  <div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -54,7 +59,11 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<li><a href="#">Upload</a></li>
+			<li>
+
+				<a href="upload.php">Upload</a>
+			
+			</li>
 		  </ul>
 		  <form class="navbar-form navbar-left">
 			<div class="form-group">
@@ -87,9 +96,34 @@
 				<h1>Trackfeed</h1>
 				<h4>Latest uploads from people<h4>
 				
-				
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
+					
+					<div id="waveform">
+					<script>
+					var wavesurfer = WaveSurfer.create({
+					container: '#waveform',
+					waveColor: 'darkorange',
+					progressColor: 'purple',
+					splitChannels: false,
+					height: 64
+					});
+
+					wavesurfer.load('http://localhost:5555/~andralla/php-ruhmatoo-projekt/uploads/test.mp3');
+					</script>
+					</div>
+					<p align="center">
+					  <button class="btn btn-primary" onclick="wavesurfer.playPause()">
+						<i class="glyphicon glyphicon-play"></i>
+						Play
+					  </button>
+					</p>
+					
+			
 			</div> 
 		
 		<!--</div> -->
 
 	</header>
+	
+</html>
+
