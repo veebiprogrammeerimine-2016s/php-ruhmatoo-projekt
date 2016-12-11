@@ -48,23 +48,23 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 				
 			}
 			
-         //	mail($_POST["email"],"Teade","Teie aeg on reserveeritud, saadame teile arve","info@rehvivahetus.ee");
-			//sendPDF($_POST["name"],$_POST["phone"]);
-			
-			
-								           
 		}
 	}
+	
+	$times = getTyreFittingTimesAvailable($_GET["id"]);
+//	var_dump($times);
 ?>
 <?php require("header.php");?>
 <?php if(isset($emailSent)): ?>
 	<script>
 		$(function() {
 			// kogu html on laetud
-			$('#login').modal('show');
+			$('#bookingMessage').modal('show');
 		});
 	</script>
 <?php endif; ?>
+<body style="padding-top:70px;">
+<div class="container">
 <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
     <div class="">
 		<ul class="nav navbar-nav">
@@ -166,23 +166,75 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 
 <?php require("modals.php");
 require("footer.php");?>   
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
-            integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
-            crossorigin="anonymous"></script>
-    <!-- our scripts -->
-<script type="text/javascript" src="js/sc.js"></script>
-<script type="text/javascript" src="js/jquery.datetimepicker.full.js"></script>
+
 <?php
 
 	// date time taken
 	// open times 
+	$days=[];
 	
-	$day1 = new StdClass();
-	$day1->date = "1.12.2016";
-	$day1->available = ["10:00","11:00"];
+	$startDate = date("j.m.Y");
+	//echo $startDate;
 	
-	$day2 = new StdClass();
+	$days_forecast = 14;
+	
+	for($i =0; $i < $days_forecast; $i++){
+		
+		$day = new StdClass();
+		$time = mktime(0, 0, 0, date("m")  , date("d")+$i, date("Y"));
+	//	echo "</br>".$time;
+		$day->date = date("j.m.Y", $time);
+			
+		foreach($times as $t){
+			
+			
+			$dayNumber = date("N", $time);
+			if($dayNumber == 7) { $dayNumber = 0;}
+			
+			//echo $day->date." ".$dayNumber." <br>";
+			
+			if($t->day == $dayNumber){
+				$day->available = [];
+				//echo $t->open." <br>";
+				$start = strtotime($t->open);
+				//echo "</br>".$start;
+				$close = strtotime($t->close);
+				$lunch_begin = strtotime($t->lunch_begin);
+				$lunch_end = strtotime($t->lunch_end);
+				//echo "$start <br>";
+				/*$end = 
+				=*/
+				
+				
+				
+				for($j = 0; $j < 24; $j++){
+					//echo 
+					if(date("j.m.Y", $time) == date("j.m.Y") && intval(date("G")) + 1 >= $j){ continue; }
+					
+					if($j < 10){
+						$time_string = "0".$j.":00";
+					}else{
+						$time_string = $j.":00";
+					}
+					
+					$our_time = strtotime($time_string);
+					
+					if( $our_time >= $start && $our_time <= $close && $our_time != $lunch_begin){
+						array_push($day->available, $time_string);
+					}
+										
+					//if();)
+				}
+			}
+			
+		}
+		
+		array_push($days, $day);
+	}
+	
+	//var_dump($days);
+
+	/*$day2 = new StdClass();
 	$day2->date = "30.11.2016";
 	$day2->available = ["12:00","13:00"];
 	
@@ -190,7 +242,7 @@ require("footer.php");?>
 	$day3->date = "5.12.2016";
 	$day3->available = ["12:00","13:00","14:00"];
 	
-	$days = [$day1, $day2,$day3];
+	$days = [$day2,$day3];*/
 	
 	
 
@@ -202,6 +254,7 @@ require("footer.php");?>
 	console.log(days);
 	var logic = function( currentDateTime ){
 		console.log(currentDateTime);
+		console.log(currentDateTime.getDay());
 		
 		var dateString = currentDateTime.getDate() + "." + (currentDateTime.getMonth()+1) + "." + currentDateTime.getFullYear();
 		
@@ -211,7 +264,7 @@ require("footer.php");?>
 		for(var i = 0; i < days.length; i++){
 			var day = days[i];
 
-			if(dateString == day.date){
+			if(dateString == day.date && day.available.length > 0){
 				
 				console.log(day.date);
 				this.setOptions({
@@ -219,34 +272,52 @@ require("footer.php");?>
 				  allowTimes: day.available
 				
 				});
+				
+				document.getElementById("datetimepicker").value = dateString + " " + currentDateTime.getHours() + ":00";
+
 				break;
 			}
 			else
 			{
+				console.log("disabling " + dateString)
 				this.setOptions({
 				  timepicker:true,
-				  allowTimes: ['00:00','01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00',
-				  			   '08:00','09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00',
-							   '16:00','17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']				 				
-				
-				
-				
+					allowTimes: []
 				});
 				
+				
+				
 			}
-			
+						
+			document.getElementById("datetimepicker").value = "";			
 		}
+		
 		
 	};
 	/*var minDateTime =  new Date();
 		minDateTime.setHours(minDateTime.getHours());*/
+	var disabled_dates = [];
+	for(var i = 0; i < days.length; i++){
+			
+		if(days[i].available.length == 0){
+				
+			disabled_dates.push(days[i].date);
+		
+		}
+	}
+	
+	console.log(disabled_dates);
+		
 	$("#datetimepicker").datetimepicker({
 		minDate:new Date(),
 		//minTime:minDateTime,
 		format:'d.m.Y H:i',
 		defaultSelect:false,
 		timepicker:false,
-		onChangeDateTime:logic
+		onChangeDateTime:logic,
+		disabledDates: disabled_dates, 
+		formatDate:'d.m.Y'
+		
 				
 	});
 	

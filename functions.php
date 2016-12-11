@@ -131,6 +131,45 @@ function getAllTyreFittings() {
 		return $result;
 }
 
+function getTyreFittingTimesAvailable($id) {
+		
+		$database = "if16_stanislav";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		$stmt = $mysqli->set_charset("utf8");
+		$stmt = $mysqli->prepare("
+			SELECT day,open,close,lunch_begin,lunch_end 
+			FROM p_open_time WHERE tyre_fitting_id = ?
+		");
+		echo $mysqli->error;
+		$stmt->bind_param("i", $id);
+		$stmt->bind_result($day,$open,$close,$lunch_begin,$lunch_end);
+		$stmt->execute();
+		
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda seni, kuni on rida andmeid
+		// mis vastab select lausele
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$i = new StdClass();
+			
+			$i->day = $day;
+			$i->open = $open;
+			$i->close = $close;
+			$i->lunch_begin = $lunch_begin;
+			$i->lunch_end = $lunch_end;
+		
+			array_push($result, $i);
+		}
+		$stmt->close();
+		$mysqli->close();
+		
+		return $result;
+}
+
 // INSERT ORDER
 
 function placeOrder($name, $email, $phone, 

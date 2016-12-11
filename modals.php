@@ -2,7 +2,9 @@
 
 
 ?>
-
+<!-- ====================
+   FORM MODAL  REGISTER
+   ======================== -->
 <form id="reg" method="POST">
     <div id="register" class="modal fade">
         <div class="modal-dialog" role="document">
@@ -77,3 +79,24 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 </form>
+<!-- ====================
+    MODAL  Booking success message
+   ======================== -->
+   <div id="bookingMessage" class="modal fade">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Broneeringu kinnitus</h4>
+                </div>
+					
+                <div class="modal-body">
+					<p>Teie broneering on kinnitatud!</p>
+                    <p>Kontrollige oma email</p>
+                    
+                </div>                
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
