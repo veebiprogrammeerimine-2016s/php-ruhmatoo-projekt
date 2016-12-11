@@ -48,7 +48,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="#"><img src="images/audify_600x220.png" height="22px"/></a>
+		  <a class="navbar-brand" href="data.php"><img src="images/audify_600x220.png" height="22px"/></a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -84,7 +84,7 @@
 		<!--<div class="jumbotron">-->
 			<div class="container">
 				
-				<h1><a href="data.php"> < Back</a> User profile</h1>
+				<h1>User profile</h1>
 
 				<p>
 					Signed in as <?=$_SESSION["userEmail"];?>
