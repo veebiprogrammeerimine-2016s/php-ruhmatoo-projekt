@@ -45,7 +45,9 @@ if(isset($_POST["loginPassword"] )){
 //HTML
 require("../header.php");
 ?>
-
+<div class="new">
+<div class="notleft">
+<br><br>
 <h4>Logi sisse</h4>
 
 <form method="post" class="form-inline">
@@ -61,4 +63,6 @@ require("../header.php");
 <br>
 <br>
 <p><?php echo $loginMsg; ?></p>
+</div>
+</div>
 <?php require("../footer.php");?>

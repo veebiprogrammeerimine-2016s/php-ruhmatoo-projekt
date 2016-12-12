@@ -96,6 +96,7 @@ if(empty($error)){
 //HTML
 require("../header.php");
 ?>
+<div class="new">
 <h4><?=$note?></h4>
 <br>
 <p class="text-danger"><?php echo $msg ."<br><br>";?></p>
@@ -215,5 +216,6 @@ require("../header.php");
 	</tr>
 </form>
 </table>
+</div>
 </div>
 <?php require("../footer.php");?>

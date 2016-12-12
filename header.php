@@ -35,7 +35,6 @@ if (!isset($_SESSION["userId"])){
 	echo "Tere " . $_SESSION["username"];
 }
 ?>
-
 <div class="content center-block">
 <div class="container-fluid" >
      
@@ -64,6 +63,8 @@ if (!isset($_SESSION["userId"])){
 		</ul>	
 	
 	</div>
+	
 <?php echo "<a href=\"javascript:history.go(-1)\">TAGASI</a>";	
 ?>	
- </div>
+
+</div>

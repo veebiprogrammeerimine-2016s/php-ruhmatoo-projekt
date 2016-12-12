@@ -21,6 +21,7 @@ $Messages = new Messages($mysqli);
 //HTML
 require("../header.php");
 ?>
+<div class="new">
 <script type="text/javascript">
 $(document).ready(function($) {
     $(".table-row").click(function() {
@@ -30,7 +31,7 @@ $(document).ready(function($) {
 </script>
 <br>
 
-<table style="width: 100%;">
+<table style="width: 80%;">
 	<tr>
 		<td style="vertical-align: center; height: 100px;">
 			<ul>

@@ -1,21 +1,18 @@
 <?php
-
 //HTML
 require("messages.php");
 
 // MUUTUJAD
 
-
 $title = "";
 $book_id = "";
 $receiver_name = "";
 $msg = "";
-$note = "Saada kiri";
+$note = "";
 $error = "";
 
 
 ?>
-
 
 <?php 
 if(!isset($_SESSION["userId"])){
@@ -61,20 +58,13 @@ if(isset($_POST["title"])){
 
 
 ?>
-
-
-
-
-
+</tr>
+</table>
+<p><?=$note?></p>
 <?php
+
 if(!isset($_GET["form"])){ ?>
-	<td>
-	<h4><?=$note?></h4>
-	</td>
-	</tr>
-	<tr>
-	<td></td>
-	<td>
+
 	<form method="post" class="form-inline">
 	<div class="table-responsive">
 	<table>
@@ -107,5 +97,5 @@ if(!isset($_GET["form"])){ ?>
 	
 <?php 
 ;} ?>
-
+</div>
 <?php require("../footer.php");?>

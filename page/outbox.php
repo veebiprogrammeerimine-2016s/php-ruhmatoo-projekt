@@ -16,9 +16,9 @@ if(!isset($_SESSION["userId"])){
 $outbox = $Messages->allSent($_SESSION["userId"]);
 ?>
 
-<table style="width:100%;">
-	<tr >
-	    <td style="text-align: left;"><h4><?=$note?><h4><br><br></td>
+<td>
+	<h4><?=$note?></h4>
+	</td>
 	</tr>
 </table>
 <form method="post">

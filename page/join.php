@@ -54,6 +54,9 @@ if(isset($_GET["joined"])){
 	echo "Võid nüüd sisse <a href='login.php'>logida</a>!";
 }else{
 ?>
+<div class="new">
+<div class="notleft">
+<br><br>
 <h4>Loo kasutaja</h4>
 
 <form method="post" class="form-inline">
@@ -66,4 +69,6 @@ if(isset($_GET["joined"])){
 </form>
 <br>
 <p class="text-danger"><?=$error;}?></p>
+</div>
+</div>
 <?php require("../footer.php");?>

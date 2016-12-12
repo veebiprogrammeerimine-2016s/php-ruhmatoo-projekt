@@ -51,6 +51,7 @@ require("../header.php");
 
 
 ?>
+<div class="new">
 <br><br>
 <div class="notleft">
 <h4>Raamatud</h4>
@@ -223,5 +224,8 @@ require("../header.php");
     }
   ?>
 </table>
-<!-- -->
+
+<!--JALUS-->
+
+</div>
 <?php require("../footer.php");?>

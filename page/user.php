@@ -41,6 +41,7 @@ $Coin->changeStatus($book_id, $_SESSION["userId"], $status);
 //HTML
 require("../header.php");
 ?>
+<div class="new">
 <br><br>
 <div class="notleft">
 <h4>Sinu raamaturiiul</h4>
@@ -159,5 +160,6 @@ if(!empty($userWishes)){
 }
 ?>  
 	</div>
+</div>
 </div>
 <?php require("../footer.php");?>

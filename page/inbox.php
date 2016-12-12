@@ -8,7 +8,7 @@ $note = "Saabunud kirjad";
 
 ?>
 
-<div class="notleft">
+
 <?php 
 if(!isset($_SESSION["userId"])){
 	header("Location:login.php");
@@ -26,9 +26,9 @@ if(!empty($_POST['to_delete'])) {
 }
 ?>
 
-<table style="width:100%;">
-	<tr >
-	    <td style="text-align: left;"><h4><?=$note?><h4><br><br></td>
+<td>
+	<h4><?=$note?></h4>
+	</td>
 	</tr>
 </table>
 
@@ -96,6 +96,6 @@ if(!isset($_GET["id"])){
 }
 ?>
 </form>
-</div>
 
+</div>
 <?php require("../footer.php");?>

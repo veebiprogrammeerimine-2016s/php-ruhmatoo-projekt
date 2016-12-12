@@ -61,7 +61,7 @@ if(isset($_POST["title"]) && empty($error)) {
 //HTML
 require("../header.php");
 ?>
-
+<div class="new">
 <br><br>
 <div class="notleft">
 <h4><?=$note?></h4>
@@ -147,4 +147,5 @@ require("../header.php");
 <br>
 
 <div class="text-danger"> <?=$error;?></div>
+</div>
 <?php require("../footer.php");?>
