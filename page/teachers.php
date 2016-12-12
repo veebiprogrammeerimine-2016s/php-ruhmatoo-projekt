@@ -1,6 +1,6 @@
 <?php
 
-require("../functions.php");
+require("functions.php");
 
 //Kui ei ole kasutaja ID
 
@@ -26,7 +26,7 @@ if(isset($_GET["logout"])){
 <head>
     <meta charset="UTF-8">
     <title>Õpetajad</title>
-    <link rel="stylesheet" href="../css/navigationstyle.css">
+    <link rel="stylesheet" href="../style_script/css/navigationstyle.css">
 </head>
 <body bgcolor = "#efe3eb">
 <header>
