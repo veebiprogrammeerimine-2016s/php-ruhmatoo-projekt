@@ -24,17 +24,20 @@
     <!-- logo -->
 		<a class="navbar-brand" href="books.php"><img alt="Brand" src="../image/logo.gif"></a>
     </div>
-</nav>
- <?php
+	<p align="right">
+	 <?php
 $quest = "";
 $_GET["logout"] = "";
 if (!isset($_SESSION["userId"])){
 	$quest = TRUE;
 	echo "Tere külaline!";
 }else{
-	echo "Tere " . $_SESSION["username"];
+	echo "Tere " . $_SESSION["username"] . "!";
 }
 ?>
+	</p>
+</nav>
+
 <div class="content center-block">
 <div class="container-fluid" >
      
@@ -46,7 +49,7 @@ if (!isset($_SESSION["userId"])){
 			<li></li>
 			<li></li>
 <?php if(!isset($_SESSION["userId"])){ ?>
-			<li><a href="home.php" class="button btn btn-default" role="button">Avaleht</a></li>
+			<li><a href="index.php" class="button btn btn-default" role="button">Avaleht</a></li>
 			<li><a href="books.php" class="button btn btn-default" role="button">Raamatud</a></li>
 			<li><a href="join.php" class="btn btn-default" role="button">Liitu</a></li>
 			<li><a href="login.php" class="btn btn-default" role="button">Logi sisse</a></li>

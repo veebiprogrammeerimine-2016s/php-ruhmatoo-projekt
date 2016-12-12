@@ -51,9 +51,10 @@ require("../header.php");
 
 
 ?>
-<div class="new">
+
 <br><br>
-<div class="notleft">
+<div class="new">
+
 <h4>Raamatud</h4>
 <table style="width: 100%;" >
 <tbody>
@@ -62,33 +63,33 @@ require("../header.php");
 	<tr> 
 		<td colspan="2">
 		   <form class="form-inline">
-		   
+		       
 				<?php if($sc == "author"){ ?>
-				<input type="radio" name="sc" value="author"  checked> autor
+				<input type="radio" name="sc" value="author"  checked>autor
 				<?php } else { ?>
-				<input type="radio" name="sc" value="author"> autor
+				<input type="radio" name="sc" value="author">autor
 				
 				<?php } if($sc == "title"){?>
-				<input type="radio" name="sc" value="title" checked> pealkiri
+				<input type="radio" name="sc" value="title" checked>pealkiri
 				<?php } else { ?>
-				<input type="radio" name="sc" value="title"> pealkiri
+				<input type="radio" name="sc" value="title">pealkiri
 				
 				<?php }if($sc == "description"){?>
-				<input type="radio" name="sc" value="description" checked> kirjeldus
+				<input type="radio" name="sc" value="description" checked>kirjeldus
 				<?php } else { ?>
-				<input type="radio" name="sc" value="description"> kirjeldus
+				<input type="radio" name="sc" value="description">kirjeldus
 				<?php } ?>
 				
 				
 				<br>
-				<input type="search" name="q" value="<?=$q;?>" class="form-control focusedInput">
-				<input type="submit" value="Otsi" class="btn btn-default"><?=$error;?>
+				<input class="form-control focusedInput" type="search" name="q" value="<?=$q;?>">
+				<input class="btn btn-default" type="submit" value="Otsi"><?=$error;?>
 														  
 			
 		</td>
-		<td style="text-align:right;">
+		<td >
 			
-				<select name="order_by" onchange="this.form.submit()" class="form-control focusedInput">
+				<select class="form-control focusedInput" name="order_by" onchange="this.form.submit()">
 				<?php
 				$option = "";
 				$sortOptions = array( 'vaikimisi järjestus', 'A-Z', 'Z-A', 'uuemad', 'vanemad', 'odavamad', 'kallimad' );
@@ -156,24 +157,24 @@ require("../header.php");
 			<div>
 			
 			<?php 				
-				$tableHtml .= "<table>";
+				$tableHtml .= '<table >';
 					
 				foreach($books as $book){
 					
-					$tableHtml .= "<tr>";
+					$tableHtml .= '<tr>';
 					
 						if($book->image == ""){
 							$book->image = ("../image/raamat.jpg");  //kui raamatust pilti pole
 						}
 						
 						if(empty($cat)){    //aadressireal pole kategooriat näita kõiki raamatuid
-							$tableHtml .= "<td>";  //link detailse vaateni
+							$tableHtml .= '<td>';  //link detailse vaateni
 								$tableHtml .= '<a href="details.php?id='.$book->book_id.'"> 
 													<img src="' .$book->image. '" style= "width:128px;" >
 												</a>';
 							$tableHtml .= "</td>";
 							
-							$tableHtml .= "<td>";
+							$tableHtml .= '<td>';
 								$tableHtml .= '<p>Pealkiri: <a href="details.php?id='.$book->book_id.'">' .$book->title.'</a></p>';	
 								$tableHtml .= "<p>Autor: " .$book->author."</p>";
 								$tableHtml .= "<p>Aasta: " .$book->year."</p>";
@@ -210,22 +211,7 @@ require("../header.php");
 	</tr>
 </tbody>
 </table>
-</div>
-<!--ajutine-->
-<table border="1">
-  <tr>
-    <th>variable</th>
-    <th>value</th>
-  </tr>
-  <?php
-    foreach($_GET as $variable => $value) {
-      echo "<tr><td>" . $variable . "</td>";
-      echo "<td>" . $value . "</td>";
-    }
-  ?>
-</table>
-
-<!--JALUS-->
 
 </div>
+<!-- -->
 <?php require("../footer.php");?>

@@ -49,15 +49,18 @@ if(isset($_POST["username"]) && empty($error)){
 
 //HTML
 require("../header.php");
-if(isset($_GET["joined"])){
-	echo "<br><br><br><p>Kasutaja " .$_GET['user']. " edukalt loodud!</p>";
-	echo "Võid nüüd sisse <a href='login.php'>logida</a>!";
-}else{
 ?>
 <div class="new">
 <div class="notleft">
 <br><br>
 <h4>Loo kasutaja</h4>
+<?php
+if(isset($_GET["joined"])){
+	echo "<br><br><br><p>Kasutaja " .$_GET['user']. " edukalt loodud!</p>";
+	echo "Võid nüüd sisse <a href='login.php'>logida</a>!";
+}else{
+?>
+
 
 <form method="post" class="form-inline">
 	<input name="username" type="text" placeholder="Kasutajanimi" value="<?=$username;?>" class="form-control focusedInput"><span class="text-danger"> * </span><br>

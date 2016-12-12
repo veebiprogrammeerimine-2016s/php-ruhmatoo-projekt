@@ -2,11 +2,6 @@
     color: red;
 }
 
-tr {
-	height: 50px;
-
-}
-
 td {
 	padding: 10px;
 	vertical-align: top;
@@ -20,14 +15,21 @@ body {
   min-height: 100vh;
 }
 
-.new {
+.new {                                /*sisu */
 	min-height: 100vh;
 	width: 100%;
 	margin: auto;
 	padding: 20px;
+	background-color: #F8F8F8;
+	opacity: 0.98;	
+}
+.index {                                /*avaleht */
+	/*min-height: 100vh;*/
+	width: 100%;
+	margin: auto;
+	padding: 20px;
 	background-color: #fff;
-	
-	
+	opacity: 0.70;	
 }
 .form-control {
   display: block;
@@ -75,16 +77,21 @@ body {
 .container-fluid{    /*menüüriba*/
 	background-color: #fff;
 	width: 100%;
-	padding: 20px;
+	padding-top: 30px;
+	padding-bottom: 25px;
+	padding-right: 50px;
 }
 
 .navbar {
 	padding-top : 15px;
 	margin-top : 2px;
+	height: 85px;
+	padding-right: 50px;
+	padding-left: 20px;
 	
 }
 .notleft{
-	width: 80%;
+	width: 90%;
 	margin: auto;
 	
 }
@@ -121,6 +128,10 @@ body {
   color: #ffffff; 
   background-color: #161617; 
   border-color: #494F57;
+}
+
+.arrow{
+    width: 30%;
 }
 
 

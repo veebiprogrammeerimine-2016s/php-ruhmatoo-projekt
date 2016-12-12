@@ -15,7 +15,7 @@ $Coin = new Coin($mysqli);
 // kui pole sisse loginud siis suunan avalehele
 if (!isset($_SESSION["userId"])){
 	session_destroy();
-	header("Location: home.php");		
+	header("Location: index.php");		
 }
 
 //FUNKTSIOON, et saada raamatu andmed
@@ -68,7 +68,7 @@ if(isset($_POST["change"])) {
 		$condition = $_POST["condition"];
 		$coins = $_POST["points"];
 			if(empty($title) || empty($author) || empty($location) || empty($condition)){
-				$msg = "Oled osad andmed ära kustutanud, tärniga tähistatud väljad peavad olema täidetud!";
+				$msg = "Oled osa andmeid ära kustutanud, tärniga tähistatud väljad peavad olema täidetud!";
 			}else{
 				$error = "";
 				$note = "Andmed edukalt muudetud!";
