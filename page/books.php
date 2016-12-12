@@ -51,7 +51,8 @@ require("../header.php");
 
 
 ?>
-
+<br><br>
+<div class="notleft">
 <h4>Raamatud</h4>
 <table style="width: 100%;" >
 <tbody>
@@ -208,7 +209,7 @@ require("../header.php");
 	</tr>
 </tbody>
 </table>
-
+</div>
 <!--ajutine-->
 <table border="1">
   <tr>

@@ -40,7 +40,7 @@ if(isset($_GET["id"]) && isset($_GET["get"])){
 require("../header.php");
 
 ?>
-
+<div class="notleft">
 <h4>Raamatu info</h4>
 <?php
 
@@ -102,7 +102,7 @@ if(isset($_SESSION["userId"]) && !isset($_GET["get"])&& $singleBook->status == N
 ; }
 }
 ?>
-
+</div>
 
 	
 	

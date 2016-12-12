@@ -60,12 +60,14 @@ if(isset($_POST["title"]) && empty($error)) {
 <?php
 //HTML
 require("../header.php");
-
-
 ?>
+
+<br><br>
+<div class="notleft">
 <h4><?=$note?></h4>
 <p><?=$ok?></p>
 <br>
+
 <form method="post" class="form-inline">
 	
 	<select name="category" class="form-control focusedInput">
@@ -141,6 +143,7 @@ require("../header.php");
 	<br><br>
 	<input type="submit" value="Lisa raamat" class="btn btn-default"><br>
 </form>
+<div>
 <br>
 
 <div class="text-danger"> <?=$error;?></div>

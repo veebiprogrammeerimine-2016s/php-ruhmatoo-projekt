@@ -32,7 +32,7 @@ $(document).ready(function($) {
 
 <table style="width: 100%;">
 	<tr>
-		<td style="vertical-align: top; height: 100px;">
+		<td style="vertical-align: center; height: 100px;">
 			<ul>
 				<li><a href="new_pm.php">Saada kiri</li></a>
 			
@@ -41,6 +41,4 @@ $(document).ready(function($) {
 				<li><a href="outbox.php">Saadetud kirjad</li></a>
 			</ul>
 		</td>
-	</tr>
-</table>	
-<br>
+	

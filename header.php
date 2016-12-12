@@ -1,14 +1,4 @@
-<?php
-$quest = "";
-$_GET["logout"] = "";
-if (!isset($_SESSION["userId"])){
-	$quest = TRUE;
-	echo "külaline";
-}else{
-	echo "Tere " . $_SESSION["username"];
-}
 
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +25,17 @@ if (!isset($_SESSION["userId"])){
 		<a class="navbar-brand" href="books.php"><img alt="Brand" src="../image/logo.gif"></a>
     </div>
 </nav>
-	
+ <?php
+$quest = "";
+$_GET["logout"] = "";
+if (!isset($_SESSION["userId"])){
+	$quest = TRUE;
+	echo "Tere külaline!";
+}else{
+	echo "Tere " . $_SESSION["username"];
+}
+?>
+
 <div class="content center-block">
 <div class="container-fluid" >
      
@@ -64,5 +64,6 @@ if (!isset($_SESSION["userId"])){
 		</ul>	
 	
 	</div>
-	
+<?php echo "<a href=\"javascript:history.go(-1)\">TAGASI</a>";	
+?>	
  </div>

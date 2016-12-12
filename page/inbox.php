@@ -8,6 +8,7 @@ $note = "Saabunud kirjad";
 
 ?>
 
+<div class="notleft">
 <?php 
 if(!isset($_SESSION["userId"])){
 	header("Location:login.php");
@@ -95,6 +96,6 @@ if(!isset($_GET["id"])){
 }
 ?>
 </form>
-
+</div>
 
 <?php require("../footer.php");?>

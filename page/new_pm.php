@@ -61,35 +61,51 @@ if(isset($_POST["title"])){
 
 
 ?>
-<table style="width:100%;">
-	<tr >
-	    <td style="text-align: center;"><?=$note?><br><br></td><br>
-	</tr>
-</table>
+
+
+
+
 
 <?php
 if(!isset($_GET["form"])){ ?>
-	<form method="post">
+	<td>
+	<h4><?=$note?></h4>
+	</td>
+	</tr>
+	<tr>
+	<td></td>
+	<td>
+	<form method="post" class="form-inline">
+	<div class="table-responsive">
 	<table>
 		<tr>
-			<td style="width: 300px;"></td>
-			<td style="text-align: left; height: 100px;">
-				<div>
-				
-						<label for="title">Pealkiri</label><input type="text" value="<?php echo $title; ?>" name="title"><span class="text-danger"> * </span><br>
-						
-						<label for="receiver_name">Saaja</label><input type="text" placeholder="Kasutajanimi" value="<?php echo $receiver_name; ?>" name="receiver_name" ><span class="text-danger"> * </span><br>
-						
-						<label for="msg">Sõnum</label><textarea cols="40" rows="5" name="msg"></textarea><span class="text-danger"> * </span><br>
-						<input type="submit"  value="Saada" />
-					
-				</div>
-			</td>
+			<td>Pealkiri<span class="text-danger"> * </span></td>
+			<td><input type="text" value="<?php echo $title; ?>" name="title" class="form-control focusedInput"></td>
 		</tr>
-
+		<tr>
+			<td>Saaja<span class="text-danger"> * </span></td>
+			<td><input type="text" placeholder="Kasutajanimi" value="<?php echo $receiver_name; ?>" name="receiver_name" class="form-control focusedInput"></td>
+		</tr>
+		<tr>
+			<td>Sõnum<span class="text-danger"> * </span></td>
+			<td><textarea cols="40" rows="5" name="msg" class="form-control focusedInput"></textarea></td>			
+		</tr>	
+		<tr>
+		<td></td>
+			<td><input type="submit"  value="Saada" class="btn btn-default"></td>
+		</tr>
+		<tr>
+		    <td colspan="2"><div class="text-danger"><?=$error?></div></td>
+		</tr>
+	
 	</table>
+	</div>
 	</form>
-	<div class="text-danger"><?=$error?></div>
+	</td>
+	</tr>
+</table>
+	
 <?php 
 ;} ?>
+
 <?php require("../footer.php");?>

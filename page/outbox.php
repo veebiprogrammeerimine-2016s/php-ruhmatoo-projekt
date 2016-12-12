@@ -7,7 +7,7 @@ require("messages.php");
 $note = "Saadetud kirjad";
 
 ?>
-
+<div class="notleft">
 <?php 
 if(!isset($_SESSION["userId"])){
 	header("Location:login.php");
@@ -91,4 +91,5 @@ if(isset($_GET["id"])){
 	
 }
 ?>
+</div>
 <?php require("../footer.php");?>
