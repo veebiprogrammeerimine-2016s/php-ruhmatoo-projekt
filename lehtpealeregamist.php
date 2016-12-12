@@ -28,10 +28,8 @@ if(isset($_SESSION["message"])) {
 	unset($_SESSION["message"]);
 }
 	
-if (isset($_POST["nameoftheseries"]) &&
-	(isset($_POST["genreoftheseries"]) &&
-	!empty($_POST["nameoftheseries"]) &&
-	!empty($_POST["genreoftheseries"])
+if (isset($_POST["nameoftheseries"]) && (isset($_POST["genreoftheseries"]) &&
+	!empty($_POST["nameoftheseries"]) && !empty($_POST["genreoftheseries"])
 	)) {
 	
 	saveSeries(cleanInput($_POST["nameoftheseries"]), $_POST["genreoftheseries"]);
@@ -82,7 +80,7 @@ if( isset($_POST["genreoftheseries"])) {
 	
 </form>
 
-<h2>Your current series</h2>
+<h2>Table of your current series</h2>
 <?php 
 $html = "<table>";	
 	$html .= "<tr>";
