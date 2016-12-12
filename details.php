@@ -46,7 +46,10 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 		//	echo $timea;
 			//array_push($reserved,$datea,$timea);
 			if ($success == true){
-				if(sendEmail($_POST["email"])){
+		
+				
+								
+				if(sendEmail($_POST["email"], $_POST["name"], $_POST["phone"], $_POST["note"], $_POST["carnumber"], $_POST["datetimepicker"])){
 					$emailSent = true;
 				}else{
 					$emailError = "Unable to send email";
