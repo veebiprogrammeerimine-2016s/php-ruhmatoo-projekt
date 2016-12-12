@@ -21,10 +21,11 @@ if (!isset($_SESSION["userId"])){
 	<link rel="stylesheet" href="../style/custom.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script> 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script> 	
 </head>
 
 <div class="container">
+
 <body>
 <!--PÄIS-->
 
@@ -35,25 +36,25 @@ if (!isset($_SESSION["userId"])){
     </div>
 </nav>
 	
-
+<div class="content center-block">
 <div class="container-fluid" >
      
-	<div class="row center-block">
+	<div class="row ">
 	
-		<ul class="nav nav-pilss nav-justified">
+		<ul id="button" class="nav nav-pilss nav-justified">
 			<li></li>
 			<li></li>
 			<li></li>
 			<li></li>
 <?php if(!isset($_SESSION["userId"])){ ?>
-			<li><a href="home.php" class="btn btn-default" role="button">Avaleht</a></li>
-			<li><a href="books.php" class="btn btn-default" role="button">Raamatud</a></li>
+			<li><a href="home.php" class="button btn btn-default" role="button">Avaleht</a></li>
+			<li><a href="books.php" class="button btn btn-default" role="button">Raamatud</a></li>
 			<li><a href="join.php" class="btn btn-default" role="button">Liitu</a></li>
 			<li><a href="login.php" class="btn btn-default" role="button">Logi sisse</a></li>
 			
 <?php } else { ?>
-			<li><a href="user.php" class="btn btn-default" role="button">Sinu riiul</a></li>
-			<li><a href="books.php" class="btn btn-default" role="button">Otsi raamatuid</a></li>
+			<li><a href="user.php"  class="btn btn-default" role="button" >Sinu riiul</a></li>
+			<li><a href="books.php" class="btn btn-default " role="button" >Otsi raamatuid</a></li>
 			<li><a href="add.php" class="btn btn-default" role="button">Paku raamatuid</a></li>
 			<li><a href="inbox.php" class="btn btn-default" role="button">Sinu teated</a></li>
 			<li><a href="login.php" class="btn btn-default" role="button">Logi välja</a></li>
