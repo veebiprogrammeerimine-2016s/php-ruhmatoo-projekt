@@ -14,6 +14,15 @@ if(!isset($_SESSION["userId"])){
 }
 //saan kõik kasutaja saadetud kirjad
 $outbox = $Messages->allSent($_SESSION["userId"]);
+
+//kutsun funktsiooni, et iga märgitud checkboxiga kiri kustutada
+	if(!empty($_POST['to_delete'])) {
+		foreach($_POST['to_delete'] as $checked) {
+            //echo $checked;
+			$Messages->deleteSentMessage($checked, $_SESSION["userId"]);
+			header("Location:outbox.php");   //sama lehe värskendus, et kustutatud oleks kustututatud
+		}
+	}
 ?>
 
 <td>
@@ -55,15 +64,6 @@ if(!isset($_GET["id"])){
 		}
 	$htmlTable .= '</table>';
 	echo $htmlTable;
-	
-	//kutsun funktsiooni, et iga märgitud checkboxiga kiri kustutada
-	if(!empty($_POST['to_delete'])) {
-		foreach($_POST['to_delete'] as $checked) {
-            //echo $checked;
-			$Messages->deleteSentMessage($checked, $_SESSION["userId"]);
-			header("Location:outbox.php");   //sama lehe värskendus, et kustutatud oleks kustututatud
-		}
-	}
 }
 ?>
 </form>

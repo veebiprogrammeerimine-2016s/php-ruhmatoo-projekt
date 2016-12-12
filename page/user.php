@@ -15,7 +15,7 @@ $status = "pending";  //on ostnud raamatu, aga pole veel kätte saanud
 // kui pole sisse loginud siis suunan avalehele
 if (!isset($_SESSION["userId"])){
 	session_destroy();
-	header("Location: home.php");		
+	header("Location: index.php");		
 }
 
 if (isset($_GET["gotIt"])){
