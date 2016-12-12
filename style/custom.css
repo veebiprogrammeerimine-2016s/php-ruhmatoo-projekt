@@ -1,3 +1,14 @@
 .text-danger {
     color: red;
 }
+
+tr {
+	height: 50px;
+
+}
+
+td {
+	padding: 10px;
+	vertical-align: top;
+}
+

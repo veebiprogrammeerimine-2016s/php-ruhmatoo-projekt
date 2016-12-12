@@ -66,9 +66,9 @@ require("../header.php");
 <h4><?=$note?></h4>
 <p><?=$ok?></p>
 <br>
-<form method="post">
+<form method="post" class="form-inline">
 	
-	<select name="category">
+	<select name="category" class="form-control focusedInput">
 	<option value="Vali kategooria">Vali kategooria</option>
 	
 <?php
@@ -92,12 +92,12 @@ require("../header.php");
 ?>
 	</select>
 	<br><br>
-	<input name="title" type="text" placeholder="Raamatu pealkiri" value="<?=$title;?>"> <span class="text-danger"> * </span><br>
-	<input name="author" type="text" placeholder="Raamatu autor" value="<?=$author;?>"><span class="text-danger"> * </span><br> 
-	<input name="year" type="year" placeholder="Ilmumise aasta" value="<?=$year;?>"><br>
-	<input name="location" type="text" placeholder="Raamatu asukoht" value="<?=$location;?>"> <span class="text-danger"> * </span><br>
+	<input name="title" type="text" placeholder="Raamatu pealkiri" value="<?=$title;?>" class="form-control focusedInput"> <span class="text-danger"> * </span><br>
+	<input name="author" type="text" placeholder="Raamatu autor" value="<?=$author;?>" class="form-control focusedInput"><span class="text-danger"> * </span><br> 
+	<input name="year" type="year" placeholder="Ilmumise aasta" value="<?=$year;?>" class="form-control focusedInput"><br>
+	<input name="location" type="text" placeholder="Raamatu asukoht" value="<?=$location;?>" class="form-control focusedInput"> <span class="text-danger"> * </span><br>
 	<br>
-		<select name="condition">
+		<select name="condition" class="form-control focusedInput">
 	<option value="">Raamatu seisukord</option>
 	
 <?php
@@ -118,7 +118,7 @@ require("../header.php");
 	</select> <span class="text-danger"> * </span>
 	<br><br>
 	<p>Mitu münti on raamat väärt? Vali vahemikus 1-10, kus 10 on kõige väärtuslikum:</p>
-	<select name="points">
+	<select name="points" class="form-control focusedInput">
 	
 <?php
 	if(isset($_POST["points"])){
@@ -135,11 +135,11 @@ require("../header.php");
 ?>
 	</select>
 	<br><br>
-	<input name="picture" type="text" placeholder="http://www.aadress.ee"> Lisa pildi aadress (URL)
+	<input name="picture" type="text" placeholder="http://www.aadress.ee" class="form-control focusedInput"> Lisa pildi aadress (URL)
 	<br><br>
-	<textarea name="description" rows="4" cols="50" placeholder="Kommentaar"></textarea>
+	<textarea name="description" rows="4" cols="50" placeholder="Kommentaar" class="form-control focusedInput"></textarea>
 	<br><br>
-	<input type="submit" value="Lisa raamat"><br>
+	<input type="submit" value="Lisa raamat" class="btn btn-default"><br>
 </form>
 <br>
 

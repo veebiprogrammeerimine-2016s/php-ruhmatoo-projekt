@@ -99,20 +99,17 @@ require("../header.php");
 <h4><?=$note?></h4>
 <br>
 <p class="text-danger"><?php echo $msg ."<br><br>";?></p>
+<br>
 
-<br><br>
+<div class="table-responsive">
 <table>
 	<tr>
-		<td valign="top">
+		<td  rowspan="8">
 			<img src="<?=$singleBook->image;?>" alt="book picture" style= "width:200px;" >
 		</td>
-		<td style="text-align:right;">
- 
-			<form method="post">
-				
-				<select name="category">
-				
-				
+<form method="post" class="form-inline">
+		<td>Kategooria </td>		
+		<td><select name="category" class="form-control focusedInput">	
 			<?php
 				$topic = array( 'Ajalugu, kultuur','Arvutid ja infotehnoloogia', 'Ehitus, tehnika', 'Elulood, memuaarid', 'Esoteerika', 
 				'Fotograafia', 'Ilukirjandus', 'Kodu ja aed', 'Kokandus', 'Kunst ja arhitektuur', 'Käsiraamatud, õppekirjandus', 'Käsitöö',
@@ -130,18 +127,33 @@ require("../header.php");
 				echo "<option value='$value' $selected>$value</option>";
 			}
 			?>
-				</select>
-				<br><br>
-				 
-				<input name="title" type="text" placeholder="<?=$singleBook->title?>" value="<?=$title;?>"> <span class="text-danger"> * </span><br>
+			</select>
 				
-				<input name="author" type="text" placeholder="<?=$singleBook->author?>" value="<?=$author;?>"> <span class="text-danger"> * </span><br> 
-				
-				<input name="year" type="year" placeholder="<?=$singleBook->year?>" value="<?=$year;?>"> <br>
-				 
-				<input name="location" type="text" placeholder="<?=$singleBook->location?>" value="<?=$location;?>"> <span class="text-danger"> * </span><br>
-				<br>
-				Seisukord <select name="condition">
+		</td>
+	</tr>
+	<tr>		
+		<td>Pealkiri<span class="text-danger"> * </span> </td>
+		<td><input name="title" type="text" placeholder="<?=$singleBook->title?>" value="<?=$title;?>" class="form-control focusedInput"> 
+		</td>	
+	</tr>
+	<tr>		
+		<td>Autor<span class="text-danger"> * </span></td>
+		<td><input name="author" type="text" placeholder="<?=$singleBook->author?>" value="<?=$author;?>" class="form-control focusedInput"> 
+		</td>	
+	</tr>
+	<tr>		
+		<td>Ilmumise aasta</td>
+		<td><input name="year" type="year" placeholder="<?=$singleBook->year?>" value="<?=$year;?>" class="form-control focusedInput"> 
+		</td>
+	</tr>
+	<tr>		
+		<td>Asukoht<span class="text-danger"> * </span></td>
+		<td><input name="location" type="text" placeholder="<?=$singleBook->location?>" value="<?=$location;?>" class="form-control focusedInput"> 
+		</td>
+	</tr>
+	<tr>
+		<td>Seisukord </td>
+		<td><select name="condition" class="form-control focusedInput">
 				<option value=""><?=$singleBook->condition;?></option>
 				
 			<?php
@@ -155,13 +167,16 @@ require("../header.php");
 					} else {
 						$selected = "";
 					}
-				
 				echo "<option value='$value' $selected>$value</option>";
 			}
 			?>
-				</select> <span class="text-danger"> * </span>
-				<br><br>
-				Väärtus müntides: <select name="points">
+				<span class="text-danger"> * </span>
+			</select> 
+		</td>
+	</tr>
+	<tr>
+		<td>Väärtus müntides:</td>
+		<td><select name="points" class="form-control focusedInput">
 				<option value=""><?=$singleBook->coins;?></option>
 			<?php
 				if(isset($_POST["points"])){
@@ -176,24 +191,29 @@ require("../header.php");
 					echo "<option value='$i' $selected>$i</option>";
 				}
 			?>
-				</select>
-				<br><br>
-				
-				<input name="picture" value="<?=$image;?>" type="text" placeholder="http://www.aadress.ee"> Uus pildi aadress (URL)
-				<br><br>
-				<p>Kirjeldus</p>
-				<textarea name="description" rows="4" cols="50" placeholder="<?=$description;?>"><?=$description;?></textarea>
-				<br><br>
-				<input type="submit" name="change" value="Muuda andmeid"><br>
-			</form>
-		</td>
+			</select>
+		</td>				
+	</tr>	
+	<tr>			
+		<td>Uus pildi aadress (URL)</td>
+		<td><input name="picture" value="<?=$image;?>" type="text" placeholder="http://www.aadress.ee" class="form-control focusedInput"> 
+		</td>				
+	</tr>
+	<tr>		
+		<td>Kirjeldus</td>
+		<td colspan="2">
+				<textarea name="description" rows="6" cols="50" placeholder="<?=$description;?>" class="form-control focusedInput" ><?=$description;?></textarea>
+		</td>			
 	</tr>
 	<tr>
 		<td>
 			<!--Kustuta link -->
 			<a href="?id=<?=$_GET["id"];?>&delete=true">Kustuta raamat</a>
 		</td>
+		<td></td>
+		<td><input type="submit" name="change" value="Muuda andmeid" class="btn btn-default"><br></td>
 	</tr>
+</form>
 </table>
-
+</div>
 <?php require("../footer.php");?>
