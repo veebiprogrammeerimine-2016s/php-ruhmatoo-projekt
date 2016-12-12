@@ -25,23 +25,23 @@
 ?>
 
 
-<html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Audify</title>
-	<meta name="description" content="SoundScape">
+	<meta name="description" content="Audify">
 	
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
 
 </head>
 
-<body background="images/city-wallpaper-18.jpg" />
+<header>
 
+<body background="images/background.jpg" />
 
 	<nav class="navbar navbar-inverse navbar-static-top">
 	  <div class="container">
@@ -53,7 +53,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="#"><img src="images/audify_600x220.png" height="22px"/></a>
+		  <a class="navbar-brand" href="data.php"><img src="images/audify_600x220.png" height="22px"/></a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -88,15 +88,21 @@
 	
 	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</body>
-	<header>
+</header>
+
+
+
+
+<body>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
+	
 		<!--<div class="jumbotron">-->
 			<div class="container">
 				
 				<h1>Trackfeed</h1>
-				<h4>Latest uploads from people<h4>
+				<h4>Latest uploads from people<h4><br><br>
 				
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
 					
 					<div id="waveform">
 					<script>
@@ -123,7 +129,7 @@
 		
 		<!--</div> -->
 
-	</header>
-	
-</html>
+</body>
+
+
 

@@ -27,7 +27,6 @@
 	<meta charset="utf-8">
 	<title>Audify</title>
 	<meta name="description" content="Audify">
-	
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -54,7 +53,7 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<li><a href="#">Upload</a></li>
+			<li><a href="upload.php">Upload</a></li>
 		  </ul>
 		  <form class="navbar-form navbar-left">
 			<div class="form-group">
