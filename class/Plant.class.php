@@ -112,7 +112,7 @@ class Plant {
 		}	
 		
 		if($sort == "interval"){
-			$sort = "wateringInterval";
+			$sort = "watering_days";
 		}
 		
 		echo "Sorteerin...";
@@ -136,14 +136,14 @@ class Plant {
 			$searchWord = "%".$q."%";
 			$stmt = $this->connection->prepare(
 			"SELECT id, name, watering_days from f_plant WHERE
-			deleted IS NULL AND (name LIKE ? OR wateringInterval LIKE?)ORDER BY $sort $orderBy");
+			deleted IS NULL AND (name LIKE ? OR watering_days LIKE ?)ORDER BY $sort $orderBy");
 			$stmt->bind_param('ss', $searchWord, $searchWord);
 			
 		}
 		echo $this->connection->error;
 		
 		
-		$stmt->bind_result($id, $plant, $watering);
+		$stmt->bind_result($id, $name, $watering);
 		$stmt->execute();
 		
 		
@@ -163,7 +163,7 @@ class Plant {
 			$plantClass = new StdClass();
 			
 		    $plantClass->id=$id;
-			$plantClass->plants=$plant;
+			$plantClass->name=$name;
 			$plantClass->intervals=$watering;
 			
 			

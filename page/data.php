@@ -160,7 +160,7 @@
 						$html .= "<tr>";
 							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>nr</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>id</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=plant&direction=".$direction."'>plant</a></th>";
+							$html .= "<th><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=interval&direction=".$direction."'>interval</a></th>";
 						$html .= "</tr>";
 						
@@ -174,7 +174,7 @@
 							$html .= "<tr>";
 								$html .= "<td>".$i."</td>";
 								$html .= "<td>".$p->id."</td>";
-								$html .= "<td>".$p->plants."</td>";
+								$html .= "<td>".$p->name."</td>";
 								$html .= "<td>".$p->intervals."</td>";
 								$html .= "<td><a href='edit.php?id=".$p->id."'>muuda</a></td>";
 							$html .= "</tr>";
