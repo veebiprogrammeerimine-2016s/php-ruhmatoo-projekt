@@ -5,8 +5,6 @@ require("functions.php");
 if (isset($_SESSION["userId"])) {
     //suunan sisselogimise lehele
     header("Location: data.php");
-
-
     exit();
 }
 if (isset($_POST["regPassword"]) && isset($_POST["regUsername"])) {
@@ -22,15 +20,16 @@ if (isset($_POST["regPassword"]) && isset($_POST["regUsername"])) {
 
 }
 
-if (isset($_POST["username"]) && isset($_POST["password"])) {
+/*if (isset($_POST["username"]) && isset($_POST["password"])) {
 
     login($_POST["username"], $_POST["password"]);
     if (!isset($_SESSION["userId"])) {
-        ?>
-        <script> alert("Vale parool või kasutaja nimi"); </script> <?php
-    }
+        */?><!--
+        <script> alert("Vale parool või kasutaja nimi"); </script> --><?php
+/*    }
 
-}
+}*/
+
 $tyreFittings = getAllTyreFittings();
 
 
@@ -47,6 +46,15 @@ $tyreFittings = getAllTyreFittings();
           integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
           crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        #login-error {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+
 </head>
 <body id="home" data-spy="scroll" data-targer=".navbar" data-offset="200"> <!-- !!!! -->
 <!-- navbar -->
@@ -154,10 +162,16 @@ $tyreFittings = getAllTyreFittings();
     <!-- signup form -->
     <?php
     require("modals.php");
+    require ("login-modal.php");
     require("footer.php");
     ?>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"
+            integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7"
+            crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/sc.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 </div>
 </body>
 </html>
