@@ -1,7 +1,7 @@
-# PHP rühmatöö projekt
+# UNILIFE
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 
-## Tööjuhend
+### Tööjuhend
 1. Üks rühma liikmetest _fork_'ib endale käesoleva repositooriumi ning annab teistele kirjutamisõiguse/ligipääsu (_Settings > Collaborators_)
 1. Muudate vastavalt _git config_'ut
 ```
