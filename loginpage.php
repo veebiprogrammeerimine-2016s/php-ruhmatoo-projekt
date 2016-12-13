@@ -53,8 +53,8 @@
 	}
 	
 	//REGISTREERIMISE LÕPP
-	if ( $signupEmailError == "*" AND
-		$signupPasswordError == "*" &&
+	if ( $signupEmailError == "" AND
+		$signupPasswordError == "" &&
 		isset($_POST["signupEmail"]) &&
 		isset($_POST["signupPassword"])
 	)
@@ -104,16 +104,13 @@
 <!DOCTYPE html>
 <html>
 		
-	<head>
-	<title>Sisselogimise leht</title>
-	</head>
-	<style type="text/css">
+<head>
+<title>Sisselogimise leht</title>
+</head>
 	
-	p {font-family: courier;
-				font-size:110%;}
-
+	<style type="text/css">
+	p {font-family: courier;font-size:110%;}
 	#clock {color:black;}
-
 	</style>
 	
 	<script type="text/javascript">
@@ -130,13 +127,14 @@
 
 	  document.getElementById("clock").innerHTML = currentTimeString;
 	}
-
 	</script>
+	
 	<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
 	<span id="clock">&nbsp;</span>
 	</body>
 
-	</html>
+</html>
+
 	<center>
 	<!--KASUTAJA SISENEB-->
 	<br><br>
@@ -154,11 +152,10 @@
 		<label for="loginPassword">Parool</label><br>
 		<input name="loginPassword" type="password">
 		<br><?php echo $loginPasswordError;?></br>
+		</p>
 		
 		<input type="submit" value="Logi sisse"></br>
 	</form>
-		</p>
-	
 
 	<!--KASUTAJA REGISTREERIB-->
 	<br><br>
@@ -189,10 +186,9 @@
 		<option value="Mees">Mees</option>
 		<option value="Naine">Naine</option>
 		<option value="Muu">Muu</option>
-		</select>
+		</select></p>
 	
-		<br><br><input type="submit" value="Loo kasutaja">
-		</p>
+		<br><input type="submit" value="Loo kasutaja"></br>
 	<img src="https://lh5.googleusercontent.com/Z3AQmIoZUPSpK8IbFqXFcs1CIFKUfwVIcdTxeMbb5qlLpIlsRq7JDcYx3GIuroXf8I_FmDdEqkDa-s0=w1280-h894-rw">
 	</center>
 </form>
