@@ -1,0 +1,143 @@
+.text-danger {
+    color: red;
+}
+
+td {
+	padding: 10px;
+	vertical-align: top;
+}
+html {
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  min-height: 100vh;
+}
+
+.new {                                /*sisu */
+	min-height: 100vh;
+	width: 100%;
+	margin: auto;
+	padding: 20px;
+	background-color: #F8F8F8;
+	opacity: 0.98;	
+}
+.index {                                /*avaleht */
+	/*min-height: 100vh;*/
+	width: 100%;
+	margin: auto;
+	padding: 20px;
+	background-color: #fff;
+	opacity: 0.70;	
+}
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  margin: 5px;
+  font-size: 14px;
+  line-height: 1.428571429;
+}
+
+.form-control :focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.focusedInput {
+    border-color: rgba(82,168,236,.8);
+    outline: 0;
+    outline: thin dotted \9;
+    -moz-box-shadow: 0 0 8px rgba(82,168,236,.6);
+    box-shadow: 0 0 8px rgba(82,168,236,.6) !important;
+}
+
+.btn {
+   
+    text-transform: uppercase;
+}
+.container {
+	width: 100%;
+	background-image: url("../image/book-978888_1920.jpg");
+	 background-repeat: repeat-y;
+	
+}
+
+.content{
+	width: 70%;
+	margin: auto;
+	padding: 30px;
+	/*background-color: #fff;
+	height: 90%; */
+}
+.container-fluid{    /*menüüriba*/
+	background-color: #fff;
+	width: 100%;
+	padding-top: 30px;
+	padding-bottom: 25px;
+	padding-right: 50px;
+}
+
+.navbar {
+	padding-top : 15px;
+	margin-top : 2px;
+	height: 85px;
+	padding-right: 50px;
+	padding-left: 20px;
+	
+}
+.notleft{
+	width: 90%;
+	margin: auto;
+	
+}
+.navbar {
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+		  width: 100%;
+}
+
+.btn-default {
+	 -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+	/*box-shadow: inset 0 1px 0 rgba(255,255,255,.15),0 1px 1px rgba(0,0,0,.075);*/
+	background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+	background-color:#f9f9f9;
+	border:1px solid #dcdcdc;
+}
+.btn-default:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c5cad4), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #c5cad4 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c5cad4', endColorstr='#ededed',GradientType=0);
+	background-color:#c5cad4;
+}
+.btn:active, .btn.active {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c5cad4), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #c5cad4 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c5cad4', endColorstr='#ededed',GradientType=0);
+	background-color:#c5cad4;
+}
+.btn-default:active, .btn-default.active {
+  color: #ffffff; 
+  background-color: #161617; 
+  border-color: #494F57;
+}
+
+.arrow{
+    width: 30%;
+}
+
+
+

@@ -1,0 +1,79 @@
+PHP projekt: Raamaturiiul
+-eesmärk: raamatute vahetus eraisikute vahel 
+-sihtrühm: kõik, kes lugeda oskavad, raamatuhuvilised inimesed (et raamatuid saada) või ka huvitud (et raamatutest lahti saada)
+-kirjeldus: võimalus pakkuda raamatuid, mida ise enam ei vajata. Samas võimalus saada raamatuid, mida teised pakuvad. Raamatute raha eest 
+ostu-müüki ei toimu. Kauplemine toimub punktidega: raamatu pakkumise/loovutamise eest saab punkte ja raamatu saamine maksab punkte. Punktide 
+süsteem on sisse viidud, et tagada tasakaal pakkumiste/soovimiste vahel. 
+
+Eeskujud näiteks: http://bookmooch.com/
+
+Liikmed:
+Karin Rikkinen
+
+Funktsionaalsuse loetelu:
+-Kasutaja loomine
+-Sisse logimine
+-Raamatute lisamine 'müügiks'
+-Otsimine märgusõna, kategooriate järgi
+-Sorteerimine: filtrid (mis seisukord), järjestamine(millal lisatud)
+<<<<<<< HEAD
+-Raamatute 'ost'
+=======
+-Raamatute 'ost'
+>>>>>>> b7e005e3377e3d9a6fd8be2a0cceed223883124c
+
+Andmebaasi tabelite SQL käsud
+
+CREATE TABLE project_users (
+    -> user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> username VARCHAR(50) NOT NULL,
+    -> email VARCHAR(128) NOT NULL,
+    -> password VARCHAR(128) NOT NULL,
+    -> joined TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -> UNIQUE(email)
+    -> );
+	
+CREATE TABLE project_books (
+    -> book_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> cat VARCHAR(255) NOT NULL,
+    -> title VARCHAR(255) NOT NULL,
+    -> author VARCHAR(128) NOT NULL,
+    -> year INT(4),
+	-> bookCondition VARCHAR(50) NOT NULL,
+	-> location VARCHAR(128) NOT NULL,
+	-> description TEXT,
+	-> points INT(2),
+	-> created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	-> deleted DATE DEFAULT NULL
+	-> image VARCHAR(500),
+	-> user_id INT(11),
+	-> FOREIGN KEY (user_id) REFERENCES project_users(user_id)
+	-> );
+	
+CREATE TABLE project_points (
+	book_id INT NOT NULL UNIQUE,
+	user_id_give INT NOT NULL,
+	user_id_get INT,
+	points INT(10) NOT NULL,
+	created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	status VARCHAR(10),
+	FOREIGN KEY (book_id) REFERENCES project_books(book_id)
+	);
+	
+CREATE TABLE project_messages(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    sender_id INT(11) NOT NULL,
+    receiver_id INT(11) NOT NULL,
+    title VARCHAR(256),
+    message TEXT,
+    sent TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    received DATETIME DEFAULT NULL,
+	sender_deleted VARCHAR(3),
+	receiver_deleted VARCHAR(3)
+    );
+
+	
+
+	
+	
+	
