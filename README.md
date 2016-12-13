@@ -16,7 +16,11 @@ TV showtime, Pogdesign, Tvguide, (Allmusic)
 
 -Leht1: Sisaldab sisselogimise või kasutaja loomise võimalust
 -Leht2: Seriaalikalender - Lisad sarju ja kalender automaatselt salvestab
--Leht3:Kasutaja profiil - näitab su välja valitud seriaale
+Leht 3: Kasutaja profiil- laseb muuta konto andmeid ja ära eemaldada vajadusel seriaale
+
+
+!##Ege
+##Sandra
 
 # PHP rühmatöö projekt
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
