@@ -171,8 +171,8 @@
 	foreach($finishData as $f){
 		
 		
-		$listHtml .= "<h1 style='description:".$f->finishDescription."'>".$f->idea."</h1>";
-		$listHtml .= "<p>idea = ".$f->finishDescription."</p>";
+		$listHtml .= "<h1>".$f->idea."</h1>";
+		$listHtml .= "<p>idea = ".$f->description."</p>";
 	}
 	
 	//echo $listHtml;
