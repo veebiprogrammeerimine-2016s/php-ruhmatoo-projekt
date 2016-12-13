@@ -273,10 +273,10 @@ function signUP($username,$password)
 		
 		
 		
-		$html .= "<table class='table table-bordered'>";
+		$html .= "<table order='0' style='padding-left: 10px; padding-bottom: 15px;'>";
 		
 		$html .= "<tr>";
-			$html .= "<th> Email </th>";
+			$html .= "<th style='border: 1px solid grey;'> Email </th>";
 			$html .= "<th> Name </th>";
 			$html .= "<th> Phone number </th>";
 			$html .= "<th> Notes </th>";
