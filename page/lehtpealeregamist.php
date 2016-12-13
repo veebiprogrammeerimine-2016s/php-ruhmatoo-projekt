@@ -1,8 +1,7 @@
 <?php
+//MUUTUJAD JMS VEEL ï¿½RA MUUTA LALA
 
-//MUUTUJAD JMS VEEL ÄRA MUUTA LALA
-//functions fail tarvis
-//require("functions.php");
+require("../functions.php");
 
 //Sisestatavad muutujad
 //$nameoftheseries="";
@@ -15,7 +14,7 @@ if (!isset($_SESSION["userId"])){
 	exit();	
 }
 
-//kui on ?logout aadressireal siis login välja
+//kui on ?logout aadressireal siis login vï¿½lja
 if (isset($_GET["logout"])) {	
 	session_destroy();
 	//header("Location: login.php");
@@ -61,8 +60,8 @@ if( isset($_POST["genreoftheseries"])) {
 <h1>Data</h1>
 <?=$msg;?>
 <p>
-	Tere tulemast <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
-	<a href="?logout=1">Logi välja</a>
+	Welcome <?=$_SESSION["userName"];?>!</a>
+	<a href="?logout=1">Log out</a>
 </p>
 
 <h2>Save at least one of you favorite series!</h2>

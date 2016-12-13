@@ -1,6 +1,9 @@
 <?php
+    require("/home/egenoor/config.php");
+    require("../functions.php");
 
-require("functions.php");
+    require("../class/User.class.php");
+    $User = new User($mysqli);
 
 //kui kasutaja on juba sisse logitud siis
 //suunan data lehele
@@ -28,7 +31,7 @@ if(isset($_POST["signupUsername"])){
 
     if(empty($_POST["signupUsername"])){
 
-        $signupUsernameError = "Sisesta kasutajanimi";
+        $signupUsernameError = "Enter username!";
     } else {
         $signupUsername = $_POST["signupUsername"];
     }
@@ -39,8 +42,8 @@ if ( isset ( $_POST["signupEmail"] ) ) {
 
     if ( empty ( $_POST["signupEmail"] ) ) {
 
-        // oli email, kuid see oli tühi
-        $signupEmailError = "See väli on kohustuslik!";
+        // oli email, kuid see oli tï¿½hi
+        $signupEmailError = "This field is mandatory!";
 
     } else {
 
@@ -56,17 +59,17 @@ if ( isset ( $_POST["signupPassword"] ) ) {
 
     if ( empty ( $_POST["signupPassword"] ) ) {
 
-        // oli password, kuid see oli tühi
-        $signupPasswordError = "See väli on kohustuslik!";
+        // oli password, kuid see oli tï¿½hi
+        $signupPasswordError = "This field is mandatory!";
 
     } else {
 
-        // tean et parool on ja see ei olnud tühi
-        // VÄHEMALT 8
+        // tean et parool on ja see ei olnud tï¿½hi
+        // Vï¿½HEMALT 8
 
         if ( strlen($_POST["signupPassword"]) < 8 ) {
 
-            $signupPasswordError = "Parool peab olema vähemalt 8 tähemärkki pikk";
+            $signupPasswordError = "Password has to be atleast 8 characters!";
 
         }
 
@@ -82,38 +85,40 @@ if ( isset ( $_POST["signupAge"] ) &&
 }
 
 
-if ( isset($_POST["signupEmail"]) &&
-    isset($_POST["signupPassword"]) &&
-	isset($_POST["signupAge"]) &&
-    $signupEmailError == "" &&
-    empty ($signupPasswordError)) {
+    if ( isset($_POST["signupEmail"]) &&
+        isset($_POST["signupPassword"]) &&
+        isset($_POST["signupAge"]) &&
+        $signupEmailError == "" &&
+        empty ($signupPasswordError)) {
 
-    echo "Salvestan...<br>";
+        echo "Saving...<br>";
 
-    $password = hash("sha512", $_POST["signupPassword"]);
+        $password = hash("sha512", $_POST["signupPassword"]);
 
-    $signupEmail = cleanInput($signupEmail);
-    $signupUsername = cleanInput($_POST["signupUsername"]);
-    signUp($signupUsername, $signupEmail, cleanInput($password), $signupAge);
+        $signupEmail = cleanInput($signupEmail);
+        $signupUsername = cleanInput($_POST["signupUsername"]);
+        signUp($signupUsername, $signupEmail, cleanInput($password), $signupAge);
 
-}
+    }
 
-$error ="";
-if (isset($_POST["loginUsername"]) &&
-    isset($_POST["loginPassword"]) &&
-    !empty($_POST["loginUsername"]) &&
-    !empty($_POST["loginPassword"])) {
+    $error ="";
+    if (isset($_POST["loginUsername"]) &&
+        isset($_POST["loginPassword"]) &&
+        !empty($_POST["loginUsername"]) &&
+        !empty($_POST["loginPassword"])) {
 
-    $error = login(cleanInput($_POST["loginUsername"]), cleanInput($_POST["loginPassword"]));
+        $error = $User->login($Helper->cleanInput($_POST["loginUsername"]),
+        $Helper->cleanInput($_POST["loginPassword"]));
 
-}
+    }
+
 
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sisselogimise lehekülg</title>
+    <title>Login/signup page</title>
 </head>
 <body>
 
@@ -127,6 +132,7 @@ if (isset($_POST["loginUsername"]) &&
     <input name="loginUsername" type="text" value="<?=$loginUsername;?>">
     <?php echo $loginUsernameError; ?>
     <br><br>
+
     <input name="loginPassword" type="password" placeholder="Password">
     <br><br>
     <input type="submit" value="Log in">
@@ -144,7 +150,7 @@ if (isset($_POST["loginUsername"]) &&
     <br><br>
 
     <label>Email:</label><br>
-    <input name="signupEmail" type="text" value="<?=$signupEmail;?>">
+    <input name="signupEmail" type="email" value="<?=$signupEmail;?>">
     <?php echo $signupEmailError; ?>
 
     <br><br>
@@ -155,9 +161,9 @@ if (isset($_POST["loginUsername"]) &&
     <br><br>
 
     <label>Age:</label><br>
-    <input name="signupAge" type="age" value="<?=$signupAge;?>">
+    <input name="signupAge" type="number" value="<?=$signupAge;?>">
 
-    <br>
+    <br><br>
 
     <input type="submit" value="Create account">
 
