@@ -95,7 +95,7 @@
 
 <body>
 	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
+	
 	
 		<!--<div class="jumbotron">-->
 			<div class="container">
@@ -103,7 +103,7 @@
 				<h1>Trackfeed</h1>
 				<h4>Latest uploads from people<h4><br><br>
 				
-					
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
 					<div id="waveform">
 					<script>
 					var wavesurfer = WaveSurfer.create({
