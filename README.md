@@ -7,7 +7,7 @@ millal seriaalid, (albumid ja lood) release'itud on ning saada teateid
 nende kohta
 
 * Suunatud inimestele vanuses: 12-50+
-*Sugu: Kõigile
+*Sugu: Kõigile 
 
 *Sarnast teenust pakkuvad leheküljed:
 TV showtime, Pogdesign, Tvguide, (Allmusic)
