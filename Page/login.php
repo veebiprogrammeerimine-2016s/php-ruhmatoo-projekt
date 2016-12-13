@@ -120,9 +120,6 @@
 
 ?>
 <?php require("../header.php"); ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <div class="container">
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Logi sisse</button>
@@ -152,109 +149,109 @@
          </div>
        </div>
 	</div>
+  </div>
 </div>
 
-
 <div class="container">
-        <div class="row">
+	<div class="row">
 
-            <div class="col-md-8 col-md-offset-2">
-                <form role="form" method="POST" action="#">
+		<div class="col-md-8 col-md-offset-2">
+			<form role="form" method="POST" action="#">
 
-                    <legend class="text-center">Registreeri</legend>
+				<legend class="text-center">Registreeri</legend>
 
-                    <fieldset>
-                        <legend>Konto andmed</legend>
+				<fieldset>
+					<legend>Konto andmed</legend>
 
-                        <div class="form-group col-md-6">
-                            <label for="first_name">Nimi</label>
-                            <input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
-                        </div>
+					<div class="form-group col-md-6">
+						<label for="first_name">Nimi</label>
+						<input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
+					</div>
 
-                        <div class="form-group col-md-12">
-                            <label for="">Email</label>
-                            <input type="email" class="form-control" name="" id="" placeholder="Email">
-                        </div>
+					<div class="form-group col-md-12">
+						<label for="">Email</label>
+						<input type="email" class="form-control" name="" id="" placeholder="Email">
+					</div>
 
-                        <div class="form-group col-md-6">
-                            <label for="password">Parool</label>
-                            <input type="password" class="form-control" name="" id="password" placeholder="Password">
-                        </div>
+					<div class="form-group col-md-6">
+						<label for="password">Parool</label>
+						<input type="password" class="form-control" name="" id="password" placeholder="Password">
+					</div>
 
-                        <div class="form-group col-md-6">
-                            <label for="confirm_password">Kinnita parool</label>
-                            <input type="password" class="form-control" name="" id="confirm_password" placeholder="Confirm Password">
-                        </div>
+					<div class="form-group col-md-6">
+						<label for="confirm_password">Kinnita parool</label>
+						<input type="password" class="form-control" name="" id="confirm_password" placeholder="Confirm Password">
+					</div>
 
-                        <div class="form-group col-md-6">
-                            <label for="county">Maakond, kus elate</label>
-                            <select class="form-control" name="" id="county">
-                                <option>Harjumaa</option>
-                                <option>Ida-Virumaa</option>
-                                <option>Tartumaa</option>
-								<option>Pärnumaa</option>
-								<option>Lääne-Virumaa</option>
-								<option>Viljandimaa</option>
-								<option>Raplamaa</option>
-								<option>Võrumaa</option>
-								<option>Saaremaa</option>
-								<option>Jõgevamaa</option>
-								<option>Järvamaa</option>
-								<option>Valgamaa</option>
-								<option>Põlvamaa</option>
-								<option>Läänemaa</option>
-								<option>Hiiumaa</option>
-                            </select>
-                        </div>
+					<div class="form-group col-md-6">
+						<label for="county">Maakond, kus elate</label>
+						<select class="form-control" name="" id="county">
+							<option>Harjumaa</option>
+							<option>Ida-Virumaa</option>
+							<option>Tartumaa</option>
+							<option>Pärnumaa</option>
+							<option>Lääne-Virumaa</option>
+							<option>Viljandimaa</option>
+							<option>Raplamaa</option>
+							<option>Võrumaa</option>
+							<option>Saaremaa</option>
+							<option>Jõgevamaa</option>
+							<option>Järvamaa</option>
+							<option>Valgamaa</option>
+							<option>Põlvamaa</option>
+							<option>Läänemaa</option>
+							<option>Hiiumaa</option>
+						</select>
+					</div>
 
-                        <div class="form-group col-md-12">
-                            <label for="found_site">How did you find out about the site?</label>
-                            <select class="form-control" name="" id="found_site">
-                                <option>Company</option>
-                                <option>Friend</option>
-                                <option>Colleague</option>
-                                <option>Advertisement</option>
-                                <option>Google Search</option>
-                                <option>Online Article</option>
-                                <option value="other" >Other</option>
-                            </select>
-                        </div>
+					<div class="form-group col-md-12">
+						<label for="found_site">How did you find out about the site?</label>
+						<select class="form-control" name="" id="found_site">
+							<option>Company</option>
+							<option>Friend</option>
+							<option>Colleague</option>
+							<option>Advertisement</option>
+							<option>Google Search</option>
+							<option>Online Article</option>
+							<option value="other" >Other</option>
+						</select>
+					</div>
 
-                        <div class="form-group col-md-6">
-                            <label for="Age">Vanus</label>
-                            <input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
-                        </div>
-						
-						<div class="form-group col-md-6">
-                            <label for="Roll">Roll</label>
-                            <input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
-                        </div>
+					<div class="form-group col-md-6">
+						<label for="Age">Vanus</label>
+						<input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
+					</div>
+					
+					<div class="form-group col-md-6">
+						<label for="Roll">Roll</label>
+						<input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
+					</div>
 
-                    </fieldset>
+				</fieldset>
 
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="" id="">
-                                    Nõustun <a href="#">tingimustega</a>.
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+				<div class="form-group">
+					<div class="col-md-12">
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" value="" id="">
+								Nõustun <a href="#">tingimustega</a>.
+							</label>
+						</div>
+					</div>
+				</div>
 
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary">
-                                Registreeri
-                            </button>
-                            <a href="#">Konto juba olemas?</a>
-                        </div>
-                    </div>
+				<div class="form-group">
+					<div class="col-md-12">
+						<button type="submit" class="btn btn-primary">
+							Registreeri
+						</button>
+						<a href="#">Konto juba olemas?</a>
+					</div>
+				</div>
 
-                </form>
-            </div>
+			</form>
+		</div>
 
-        </div>
-    </div>
+	</div>
+</div>
 <?php require("../footer.php"); ?>
