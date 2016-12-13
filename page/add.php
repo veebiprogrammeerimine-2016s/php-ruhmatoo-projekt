@@ -56,7 +56,7 @@ if(isset($_POST["title"]) && empty($error)) {
 }
 ?>
 
-
+<?php $page = "add"; ?>
 <?php
 //HTML
 require("../header.php");

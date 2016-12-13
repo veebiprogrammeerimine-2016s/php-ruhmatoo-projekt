@@ -49,17 +49,63 @@ if (!isset($_SESSION["userId"])){
 			<li></li>
 			<li></li>
 <?php if(!isset($_SESSION["userId"])){ ?>
-			<li><a href="index.php" class="button btn btn-default" role="button">Avaleht</a></li>
-			<li><a href="books.php" class="button btn btn-default" role="button">Raamatud</a></li>
-			<li><a href="join.php" class="btn btn-default" role="button">Liitu</a></li>
-			<li><a href="login.php" class="btn btn-default" role="button">Logi sisse</a></li>
+			
+			<?php if(isset($page) && $page == "index"): ?>
+				<li><a href="index.php" class="button btn btn-default active" role="button">Avaleht</a></li>
+			<?php else:?>
+				<li><a href="index.php" class="button btn btn-default" role="button">Avaleht</a></li>
+			<?php endif; ?>
+			
+			<?php if(isset($page) && $page == "books"): ?>
+				<li><a href="books.php" class="button btn btn-default active" role="button">Raamatud</a></li>
+			<?php else:?>
+				<li><a href="books.php" class="button btn btn-default" role="button">Raamatud</a></li>
+			<?php endif; ?>
+			
+			<?php if(isset($page) && $page == "join"): ?>
+				<li><a href="join.php" class="btn btn-default active" role="button">Liitu</a></li>
+				<?php else:?>
+				<li><a href="join.php" class="button btn btn-default" role="button">Liitu</a></li>
+			<?php endif; ?>
+			
+			
+			<?php if(isset($page) && $page == "login"): ?>
+				<li><a href="login.php" class="btn btn-default active" role="button">Logi sisse</a></li>
+			<?php  else : ?>
+				<li><a href="login.php" class="btn btn-default" role="button">Logi sisse</a></li>
+			<?php endif; ?>
 			
 <?php } else { ?>
-			<li><a href="user.php"  class="btn btn-default" role="button" >Sinu riiul</a></li>
-			<li><a href="books.php" class="btn btn-default " role="button" >Otsi raamatuid</a></li>
-			<li><a href="add.php" class="btn btn-default" role="button">Paku raamatuid</a></li>
-			<li><a href="inbox.php" class="btn btn-default" role="button">Sinu teated</a></li>
-			<li><a href="login.php" class="btn btn-default" role="button">Logi välja</a></li>
+
+			<?php if(isset($page) && $page == "user"): ?>
+				<li><a href="user.php"  class="btn btn-default active" role="button" >Sinu riiul</a></li>
+			<?php  else : ?>
+				<li><a href="user.php"  class="btn btn-default" role="button" >Sinu riiul</a></li>
+			<?php endif; ?>
+			
+			<?php if(isset($page) && $page == "books"): ?>
+				<li><a href="books.php" class="btn btn-default active " role="button" >Otsi raamatuid</a></li>
+			<?php  else : ?>
+				<li><a href="books.php"  class="btn btn-default" role="button" >Otsi raamatuid</a></li>
+			<?php endif; ?>
+			
+			<?php if(isset($page) && $page == "add"): ?>
+				<li><a href="add.php" class="btn btn-default active" role="button">Paku raamatuid</a></li>
+			<?php  else : ?>
+				<li><a href="add.php"  class="btn btn-default" role="button" >Paku raamatuid</a></li>
+			<?php endif; ?>
+			
+			<?php if(isset($page) && $page == "inbox"): ?>
+				<li><a href="inbox.php" class="btn btn-default active" role="button">Sinu teated</a></li>
+			<?php  else : ?>
+				<li><a href="inbox.php"  class="btn btn-default" role="button" >Sinu teated</a></li>
+			<?php endif; ?>
+			
+			<?php if(isset($page) && $page == "login"): ?>
+				<li><a href="login.php" class="btn btn-default active" role="button">Logi välja</a></li>
+			<?php  else : ?>
+				<li><a href="login.php"  class="btn btn-default" role="button" >Logi välja</a></li>
+			<?php endif; ?>
 
 
 <?php } ?>
@@ -67,7 +113,11 @@ if (!isset($_SESSION["userId"])){
 	
 	</div>
 	
-<?php echo "<a href=\"javascript:history.go(-1)\">TAGASI</a>";	
+<?php 
+if(isset($page) && $page != "index"){
+	echo "<a href=\"javascript:history.go(-1)\">TAGASI</a>";
+}
+	
 ?>	
 
 </div>

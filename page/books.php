@@ -44,7 +44,7 @@ if(isset($_GET["cat"])){
 
 ?>
 
-
+<?php $page = "books"; ?>
 <?php
 //HTML
 require("../header.php");

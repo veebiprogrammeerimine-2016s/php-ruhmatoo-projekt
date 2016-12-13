@@ -40,7 +40,7 @@ if(isset($_POST["loginPassword"] )){
 	}
 }
 ?>
-
+<?php $page = "login"; ?>
 <?php
 //HTML
 require("../header.php");

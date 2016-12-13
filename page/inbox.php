@@ -1,5 +1,5 @@
 <?php
-
+$page = "inbox";
 //HTML
 require("messages.php");
 

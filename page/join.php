@@ -47,6 +47,8 @@ if(isset($_POST["username"]) && empty($error)){
 	header("Location: join.php?user=".$_POST["username"]."&joined=true");
 }
 
+ $page = "join"; 
+
 //HTML
 require("../header.php");
 ?>

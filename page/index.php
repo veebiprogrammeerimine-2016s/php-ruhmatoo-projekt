@@ -1,3 +1,4 @@
+<?php $page = "index"; ?>
 <?php
 
 require("../header.php");

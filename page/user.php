@@ -36,7 +36,7 @@ $userWishes = $Coin->userWishes($_SESSION["userId"]);
 $Coin->changeStatus($book_id, $_SESSION["userId"], $status);									
 
 ?>
-
+<?php $page = "user"; ?>
 <?php
 //HTML
 require("../header.php");

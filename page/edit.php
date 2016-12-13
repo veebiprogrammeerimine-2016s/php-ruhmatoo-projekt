@@ -91,6 +91,7 @@ if(empty($error)){
 
 
 ?>
+<?php $page = "edit"; ?>
 
 <?php
 //HTML

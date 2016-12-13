@@ -120,9 +120,14 @@ body {
 	background-color:#c5cad4;
 }
 .btn:active, .btn.active {
-  color: #ffffff; 
-  background-color: #161617; 
-  border-color: #494F57;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c5cad4), color-stop(1, #ededed));
+	background:-moz-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #c5cad4 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #c5cad4 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c5cad4', endColorstr='#ededed',GradientType=0);
+	background-color:#c5cad4;
 }
 .btn-default:active, .btn-default.active {
   color: #ffffff; 
