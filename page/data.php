@@ -98,7 +98,7 @@
 			
 </form>
 
-<h2><form align = "center">Users and levels</h2></form>
+<h2><form align = "center">Ideas</h2></form>
 
 <form align = "center">
 	
