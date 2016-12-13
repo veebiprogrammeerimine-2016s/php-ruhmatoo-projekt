@@ -1,6 +1,6 @@
 <?php
 
-require("../functions.php");
+require("functions.php");
 
 //Kui ei ole kasutaja ID
 
@@ -15,7 +15,7 @@ if(!isset($_SESSION["userId"])){
 if(isset($_GET["logout"])){
 
     session_destroy();
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -30,7 +30,7 @@ if(isset($_GET["logout"])){
 <head>
     <meta charset="UTF-8">
     <title>Kodutööd</title>
-    <link rel="stylesheet" href="../css/navigationstyle.css">
+    <link rel="stylesheet" href="../style_script/css/navigationstyle.css">
 </head>
 <body bgcolor = "#efe3eb">
     <header>

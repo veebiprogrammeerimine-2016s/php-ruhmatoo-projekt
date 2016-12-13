@@ -1,6 +1,6 @@
 <?php
 
-require("../functions.php");
+require("functions.php");
 
 //Kui ei ole kasutaja ID
 
@@ -26,32 +26,7 @@ if(isset($_GET["logout"])){
 <head>
     <meta charset="UTF-8">
     <title>Õpetajad</title>
-    <link rel="stylesheet" href="../css/navigationstyle.css">
-
-    <style>
-        table{
-            width:60%
-        }
-        table, th, td{
-            border: 10px #d08fe8;
-            border-collapse: collapse;
-            opacity: 0.95;
-        }
-        th,td{
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #d08fe8
-            color: white
-        }
-        tr:nth-child(even){
-            background-color: lightgrey;
-        }
-        tr:nth-child(odd){
-            background-color: white;
-        }
-    </style>
+	<link rel="stylesheet" href="../style_script/css/navigationstyle.css">
 </head>
 <body bgcolor = "#efe3eb">
 <header>
