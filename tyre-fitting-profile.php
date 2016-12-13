@@ -3,37 +3,29 @@
 
 <form>
     <div class="form-group">
-        <label for="serviceName">Nimetus</label>
-        <input type="text" class="form-control" id="serviceName" placeholder="Sisestage nimetus">
+        <label for="tyreFitterName">Nimetus</label>
+        <input type="text" class="form-control" id="tyreFitterName" placeholder="Sisesta nimetus" required>
     </div>
 
     <div class="form-group">
         <label for="description">Kirjeldus</label>
-        <textarea class="form-control" id="description" rows="3"></textarea>
+        <textarea class="form-control" id="description" rows="3" required></textarea>
     </div>
 
     <div class="form-group">
-        <label for="category">Teenuse kategooria</label>
-        <input type="text" class="form-control" id="category" placeholder="Sisestage kategooria nimetus">
+        <label for="logo">Logo</label>
+        <input type="file" class="form-control-file" id="logo" placeholder="Upload logo">
     </div>
 
     <div class="form-group">
-        <label for="category">Suurus</label>
-        <select class="form-control" name="category" id="category">
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="custom">Eri suurus</option>
-        </select>
+        <label for="location">Google maps link</label>
+        <input type="text" class="form-control" id="location" placeholder="Sisesta google maps link" required>
     </div>
 
     <div class="form-group">
-        <label for="price">Teenuse hind</label>
-        <input type="number" class="form-control" id="price" placeholder="Sisestage hind">
+        <label for="priceList">Price list</label>
+        <input type="text" class="form-control" id="priceList" placeholder="Sisesta hinna link" required>
     </div>
-
 
     <input type="hidden" name="submit" />
 

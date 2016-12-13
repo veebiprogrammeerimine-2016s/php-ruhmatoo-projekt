@@ -34,7 +34,7 @@ if (isset($_GET["logout"])) {
 <div class="container" style="margin-top:150px;">
     <div class="row">
         <div class="col-md-offset-8 col-md-4">
-            <button type="button" class="btn btn-primary">
+            <button type="button" id="profile" class="btn btn-primary">
                 Profile
             </button>
 
@@ -44,11 +44,55 @@ if (isset($_GET["logout"])) {
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin-top:20px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nimi</th>
+                    <th>Kategooria</th>
+                    <th>Hind</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+                <tr>
+                    <td>1</td>
+                    <td>Rehvivahetus</td>
+                    <td>Plekkvelg</td>
+                    <td>30</td>
+                    <td><i class="fa fa-gear"></i></td>
+                    <td><i class="fa fa-trash-o"></i></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Rehvivahetus</td>
+                    <td>Valuvelg</td>
+                    <td>35</td>
+                    <td><i class="fa fa-gear"></i></td>
+                    <td><i class="fa fa-trash-o"></i></td>
+                </tr>
+            <tbody>
 
+            </tbody>
+        </table>
     </div>
 
 </div>
+
+<!--+-----------------+---------------+------+-----+---------+----------------+
+| Field           | Type          | Null | Key | Default | Extra          |
++-----------------+---------------+------+-----+---------+----------------+
+| id              | int(11)       | NO   | PRI | NULL    | auto_increment |
+| name            | varchar(30)   | YES  |     | NULL    |                |
+| description     | text          | YES  |     | NULL    |                |
+| category        | varchar(30)   | YES  |     | NULL    |                |
+| size            | float         | YES  |     | NULL    |                |
+| price           | decimal(10,0) | YES  |     | NULL    |                |
+| tyre_fitting_id | int(11)       | YES  | MUL | NULL    |                |
++-----------------+---------------+------+-----+---------+----------------+-->
+
+
 
 <?php require("office-footer.php") ?>
 
@@ -71,6 +115,26 @@ if (isset($_GET["logout"])) {
                         buttons: {
                             confirm: {
                                 label: 'Lisa',
+                                className: 'btn btn-success'
+                            }
+                        }
+                    })
+                }
+
+            });
+        });
+
+        $('#profile').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'tyre-fitting-profile.php',
+                success: function (data) {
+                    bootbox.dialog({
+                        title: 'Edit profile',
+                        message: data,
+                        buttons: {
+                            confirm: {
+                                label: 'Edit',
                                 className: 'btn btn-success'
                             }
                         }

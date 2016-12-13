@@ -42,11 +42,13 @@ if (isset($_GET["logout"])) {
                         <th colspan="2"></th>
                     </thead>
                     <tbody>
-                        <td>1</td>
-                        <td>Sample tire fitter name</td>
-                        <td>8:00-20:00</td>
-                        <td><i class="fa fa-gear"></i></td>
-                        <td><i class="fa fa-trash-o"></i></td>
+                        <tr>
+                            <td>1</td>
+                            <td>Sample tire fitter name</td>
+                            <td>8:00-20:00</td>
+                            <td><i class="fa fa-gear"></i></td>
+                            <td><i class="fa fa-trash-o"></i></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
