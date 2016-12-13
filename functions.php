@@ -1,3 +1,4 @@
+
 <?php
 
 require("../../config.php");
@@ -131,6 +132,45 @@ function getAllTyreFittings() {
 		return $result;
 }
 
+function getTyreFittingTimesAvailable($id) {
+		
+		$database = "if16_stanislav";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		$stmt = $mysqli->set_charset("utf8");
+		$stmt = $mysqli->prepare("
+			SELECT day,open,close,lunch_begin,lunch_end 
+			FROM p_open_time WHERE tyre_fitting_id = ?
+		");
+		echo $mysqli->error;
+		$stmt->bind_param("i", $id);
+		$stmt->bind_result($day,$open,$close,$lunch_begin,$lunch_end);
+		$stmt->execute();
+		
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda seni, kuni on rida andmeid
+		// mis vastab select lausele
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$i = new StdClass();
+			
+			$i->day = $day;
+			$i->open = $open;
+			$i->close = $close;
+			$i->lunch_begin = $lunch_begin;
+			$i->lunch_end = $lunch_end;
+		
+			array_push($result, $i);
+		}
+		$stmt->close();
+		$mysqli->close();
+		
+		return $result;
+}
+
 // INSERT ORDER
 
 function placeOrder($name, $email, $phone, 
@@ -207,8 +247,8 @@ function signUP($username,$password)
 		
 	}
 	
-	//SEND EMAIL
-	function sendEmail($reciever)
+	
+	function sendEmail($reciever, $name, $phone, $note, $carnumber, $booktime)
 	{
 		
 			$to = $reciever;
@@ -222,10 +262,44 @@ function signUP($username,$password)
 			
 				// add a page
 		$pdf->AddPage();
+		
+
+
 				
-		$html = "<h1>Tere</h1>";
+		$html = "<h1>Tere, palun kontrollige oma andmeid</h1>";
 		$html .= "<br><br><br><br><br><br>";
-		$html .= "<p>".$reciever."</p>";
+		
+		
+		
+		
+		
+		$html .= "<table order='0' style='padding-left: 10px; padding-bottom: 15px;'>";
+		
+		$html .= "<tr>";
+			$html .= "<th style='border: 1px solid grey;'> Email </th>";
+			$html .= "<th> Name </th>";
+			$html .= "<th> Phone number </th>";
+			$html .= "<th> Notes </th>";
+			$html .= "<th> Auto number </th>";
+			$html .= "<th> Aeg </th>";
+		$html .= "</tr>";	
+		$html .= "<tr>";
+			$html .= "<td>".$reciever."</td>";
+			$html .= "<td>".$name."</td>";
+			$html .= "<td>".$phone."</td>";
+			$html .= "<td>".$note."</td>";
+			$html .= "<td>".$carnumber."</td>";
+			$html .= "<td>".$booktime."</td>";
+		$html .= "</tr>";
+		$html .= "</table>";
+		
+		//$html .= "<p>".$reciever."</p>";
+		//$html .= "<p>".$name."</p>";
+		//$html .= "<p>".$phone."</p>";
+		//$html .= "<p>".$note."</p>";
+		//$html .= "<p>".$carnumber."</p>";
+		
+		//$html .= "<p>".$booktime."</p>";
 			
 				// output the HTML content
 		$pdf->writeHTML($html, true, false, true, false, '');
@@ -365,7 +439,6 @@ function signUP($username,$password)
 		} 
 	}
 	
-	
-	
+
 	
 ?>
