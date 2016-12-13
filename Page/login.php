@@ -221,7 +221,7 @@
 						<!--<div class="form-group col-md-6">
                             <label for="Roll">Roll (Müüa/Ostja)</label>
                             <input type="text" class="form-control" name="" id="first_name">-->
-                        </div>
+        
 
 
 				</fieldset>
@@ -239,7 +239,7 @@
 
 
                     <div class="form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <button type="submit" class="btn btn-primary">
                                Registreeri <a href="login.php"</a>
                             </button>
@@ -249,6 +249,7 @@
 
 			</form>
 		</div>
+	</div>
 
 	</div>
 </div>
