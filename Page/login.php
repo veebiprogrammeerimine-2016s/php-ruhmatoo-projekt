@@ -160,7 +160,7 @@
 
 				<legend class="text-center">Registreeri</legend>
 
-<<<<<<< HEAD
+
                     <fieldset>
                         <div class="form-group col-md-6">
                             <label for="first_name">Nimi</label>
@@ -181,30 +181,7 @@
                             <label for="confirm_password">Kinnita parool</label>
                             <input type="password" class="form-control" name="" id="confirm_password">
                         </div>
-=======
-				<fieldset>
-					<legend>Konto andmed</legend>
 
-					<div class="form-group col-md-6">
-						<label for="first_name">Nimi</label>
-						<input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
-					</div>
-
-					<div class="form-group col-md-12">
-						<label for="">Email</label>
-						<input type="email" class="form-control" name="" id="" placeholder="Email">
-					</div>
-
-					<div class="form-group col-md-6">
-						<label for="password">Parool</label>
-						<input type="password" class="form-control" name="" id="password" placeholder="Password">
-					</div>
-
-					<div class="form-group col-md-6">
-						<label for="confirm_password">Kinnita parool</label>
-						<input type="password" class="form-control" name="" id="confirm_password" placeholder="Confirm Password">
-					</div>
->>>>>>> 0cfbec26fa0150699412c71cbddc310167c4f22d
 
 					<div class="form-group col-md-6">
 						<label for="county">Maakond, kus elate</label>
@@ -227,7 +204,7 @@
 						</select>
 					</div>
 
-<<<<<<< HEAD
+
                         <div class="form-group col-md-6">
                             <label for="Age">Vanus</label>
                             <input type="text" class="form-control" name="" id="first_name">
@@ -245,30 +222,7 @@
                             <label for="Roll">Roll (Müüa/Ostja)</label>
                             <input type="text" class="form-control" name="" id="first_name">-->
                         </div>
-=======
-					<div class="form-group col-md-12">
-						<label for="found_site">How did you find out about the site?</label>
-						<select class="form-control" name="" id="found_site">
-							<option>Company</option>
-							<option>Friend</option>
-							<option>Colleague</option>
-							<option>Advertisement</option>
-							<option>Google Search</option>
-							<option>Online Article</option>
-							<option value="other" >Other</option>
-						</select>
-					</div>
 
-					<div class="form-group col-md-6">
-						<label for="Age">Vanus</label>
-						<input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
-					</div>
-					
-					<div class="form-group col-md-6">
-						<label for="Roll">Roll</label>
-						<input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
-					</div>
->>>>>>> 0cfbec26fa0150699412c71cbddc310167c4f22d
 
 				</fieldset>
 
@@ -283,7 +237,7 @@
 					</div>
 				</div>
 
-<<<<<<< HEAD
+
                     <div class="form-group">
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary">
@@ -291,16 +245,7 @@
                             </button>
                         </div>
                     </div>
-=======
-				<div class="form-group">
-					<div class="col-md-12">
-						<button type="submit" class="btn btn-primary">
-							Registreeri
-						</button>
-						<a href="#">Konto juba olemas?</a>
-					</div>
-				</div>
->>>>>>> 0cfbec26fa0150699412c71cbddc310167c4f22d
+
 
 			</form>
 		</div>

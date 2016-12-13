@@ -52,8 +52,8 @@
                   <ul class="dropdown-menu">
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">veinid</li>
-					<li><a href="tooted.php">Valge vein</a></li>
-                    <li><a href="#punane">Punane vein</a></li>
+					<li><a href="valged.php">Valge vein</a></li>
+                    <li><a href="punased.php">Punane vein</a></li>
                   </ul>
                 </li>
 				

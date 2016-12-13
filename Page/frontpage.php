@@ -27,7 +27,7 @@
             <div class="carousel-caption">
               <h1>Another example headline.</h1>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+              <p><a class="btn btn-lg btn-primary" href="valged.php" role="button">Valged veinid</a></p>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
             <div class="carousel-caption">
               <h1>One more for good measure.</h1>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+              <p><a class="btn btn-lg btn-primary" href="punased.php" role="button">Punased veinid</a></p>
             </div>
           </div>
         </div>
