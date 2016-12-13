@@ -77,5 +77,49 @@
 		
 	}
 	
+	function upload($email, $fileToUpload){
+	
+
+		$database = "if16_andralla_2";
+			$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+			
+		
+			if ($mysqli->connect_error) {
+				die('Connect Error: ' . $mysqli->connect_error);
+			}
+			
+			$stmt = $mysqli->prepare("INSERT INTO upload (failinimi, email) VALUES (?, ?)");
+			
+			echo $mysqli->error;
+
+			$stmt->bind_param("ss", $email, $fileToUpload);
+			
+		
+			if($stmt->execute()) {
+				echo "Saved";			
+			} else {
+				echo "ERROR ".$stmt->error;
+			}
+			
+			$stmt->close();
+			$mysqli->close();
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 ?>
