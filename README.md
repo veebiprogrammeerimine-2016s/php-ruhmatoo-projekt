@@ -1,4 +1,20 @@
-# PHP rühmatöö projekt
+Nimi: IDEAS FOR WEBSITE PROJECT
+
+Liikmed: Anna Gubskaja, Mihhail Kuzmin
+
+Eesmärk: 
+	Luua veebisait nende inimeste jaoks, kes otsivad endale lihtsaid ja originaalseid veebilehtede ideid ning nendele, kes soovivad enda ideid pakkuda.
+	Selline veebisait oleks kasulik tulevatele tudengitele kes otsivad ideid projektide loomiseks, kuna me ise raiskasime palju aega selleks, et
+	leida huvitav idee enda projekti jaoks.
+Kirjeldus: 
+	Veebileht on suunatud kõigile inimestele, kes on huvitatud veebiprogrammeerimisest, aga peamine sihtrühm on Informaatika eriala üliõppilased.
+	Pakutud ideed ei pea olema väga keerulised, sest orienteeriv kasutajate sihtrühm ei ole veebiprogrammeerimises väga osakas.
+Funktsionaalsuse loetelu:
+	Leht 1 Signup ja login
+	Leht 2 Võimalus lisada enda idee ja selle kirjeldus, mis aga ei ole kohustuslik
+	Leht 3 Tabel pakutud ideedega ning võimalus neid hinnata, otsing märksõnade kaudu ning järjestus kõrgemate hinnangute järgi.
+
+**************************************************************************************************************************************************************
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 
 ## Tööjuhend
