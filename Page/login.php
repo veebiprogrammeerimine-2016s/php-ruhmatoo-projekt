@@ -89,7 +89,7 @@
 		 isset($_POST["signupAge"]) &&
 		 isset($_POST["signupCounty"]) &&
 		 isset($_POST["signupRoll"]) &&
-		 isset($_POST["signupFirstName"]) &&
+		 isset($_POST["signupName"]) &&
 		 $signupEmailError == "" && 
 		 empty($signupPasswordError)
 		) {
@@ -187,11 +187,23 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="country">Maakond, kus elate</label>
-                            <select class="form-control" name="" id="country">
-                                <option>Country 1</option>
-                                <option>Country 2</option>
-                                <option>Country 3</option>
+                            <label for="county">Maakond, kus elate</label>
+                            <select class="form-control" name="" id="county">
+                                <option>Harjumaa</option>
+                                <option>Ida-Virumaa</option>
+                                <option>Tartumaa</option>
+								<option>Pärnumaa</option>
+								<option>Lääne-Virumaa</option>
+								<option>Viljandimaa</option>
+								<option>Raplamaa</option>
+								<option>Võrumaa</option>
+								<option>Saaremaa</option>
+								<option>Jõgevamaa</option>
+								<option>Järvamaa</option>
+								<option>Valgamaa</option>
+								<option>Põlvamaa</option>
+								<option>Läänemaa</option>
+								<option>Hiiumaa</option>
                             </select>
                         </div>
 
@@ -208,9 +220,14 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-12 hidden">
-                            <label for="specify">Please Specify</label>
-                            <textarea class="form-control" id="specify" name=""></textarea>
+                        <div class="form-group col-md-6">
+                            <label for="Age">Vanus</label>
+                            <input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
+                        </div>
+						
+						<div class="form-group col-md-6">
+                            <label for="Roll">Roll</label>
+                            <input type="text" class="form-control" name="" id="first_name" placeholder="First Name">
                         </div>
 
                     </fieldset>
