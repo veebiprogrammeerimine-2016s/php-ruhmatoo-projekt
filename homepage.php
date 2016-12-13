@@ -26,7 +26,6 @@
 	comment($_POST["category"],$_POST["headline"], $_POST["comment"], $_SESSION["userEmail"]);
 	}
 	$people = allinfo();
-
 ?>
 
 <html>
@@ -39,7 +38,6 @@ Tere tulemast <?=$_SESSION["userEmail"];?>!
 		color:#A11F2F;
 		font-weight: 600;
 	}
-	
 </style>
 
 <body>
@@ -87,29 +85,30 @@ Tere tulemast <?=$_SESSION["userEmail"];?>!
 </html>
 
 <h2>Peab tulema nagu postitused ja foorum</h2>
+
+
 <?php 
 $html = "<table>";
 	
-		$html .= "<tr>";
-			$html .= "<th>Eriala</th>";
-			$html .= "<th>Pealkiri</th>";
-			$html .= "<th>Kommentaar</th>";
-			$html .= "<th>Postitud</th>";
-			$html .= "<th>Kasutaja</th>";	
-		$html .= "</tr>";
-		
-		//iga liikme kohta massiivis
-		foreach ($people as $p) {
-			
-		$html .= "<tr>";
-			$html .= "<td>".$p->category."</td>";
-			$html .= "<td>".$p->headline."</td>";
-			$html .= "<td>".$p->comment."</td>";
-			$html .= "<td>".$p->created."</td>";
-			$html .= "<td>".$p->email."</td>";	
-		$html .= "</tr>";
-		
-		}
-	$html .= "</table>";
-	echo $html;
+	$html .= "<tr>";
+		$html .= "<th>Eriala</th>";
+		$html .= "<th>Pealkiri</th>";
+		$html .= "<th>Kommentaar</th>";
+		$html .= "<th>Postitud</th>";
+		$html .= "<th>Kasutaja</th>";	
+	$html .= "</tr>";
+
+	
+	foreach ($people as $p) {
+	$html .= "<tr>";
+		$html .= "<td><a href='homepage.php?id='>".$p->id."</a></td>";
+		$html .= "<td>".$p->category."</td>";
+		$html .= "<td>".$p->headline."</td>";
+		$html .= "<td>".$p->created."</td>";
+		$html .= "<td>".$p->email."</td>";	
+	$html .= "</tr>";
+	}
+
+$html .= "</table>";
+echo $html
 ?>

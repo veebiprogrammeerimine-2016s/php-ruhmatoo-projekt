@@ -2,6 +2,8 @@
 
 	require("../../config.php");
 	require("functions.php");
+	require("header.php");
+	
 	
 	//SESSION
 	if (isset($_SESSION["userId"]))
@@ -11,7 +13,7 @@
 	
 	//MUUTUJAD REGISTREERIMINE
 	$signupEmail = $signupPassword = $signupUsername = $signupGender = "" ; 
-	$signupEmailError = $signupPasswordError = $signupUsernameError = $signupGenderError = "*";
+	$signupEmailError = $signupPasswordError = $signupUsernameError = $signupGenderError = "";
 	//MUUTUJAD LOOGIMINE
 	$loginEmail = $loginPassword = "";
 	$loginEmailError = $loginPasswordError = $error = "";
@@ -104,69 +106,70 @@
 	<head>
 	<title>Sisselogimise leht</title>
 	</head>
-	
+		<style>
+		p {font-family: courier;
+			font-size:110%;}
+		</style>
+	<center>
 	<body>
 	<!--KASUTAJA SISENEB-->
-	<h1>Sisene</h1>
+	<br><br>
+	<img src="https://lh4.googleusercontent.com/GwAbWmRpaRkh5GEW6ctGTo3I-_C0l3pTrO-Oo82h0I5o-h9rdBElpZiisM0-hh-NNwF5YKFNWD9_YXA=w1280-h894">
 	<p style="color:red;"><?=$error;?></p> <!--näitab parool/email errorit-->
 	<form method="POST">
 		
 		<!--EMAILI LOOGIMINE-->
+		<p>
 		<label for="loginEmail">E-post</label><br>
 		<input name="loginEmail" type="loginEmail">
-		<?php echo $loginEmailError;?>
+		<br><?php echo $loginEmailError;?></br>
 		
-		<br><br>
 		<!--PAROOLI LOOGIMINE-->
 		<label for="loginPassword">Parool</label><br>
 		<input name="loginPassword" type="password">
-		<?php echo $loginPasswordError;?>
-		
-		<br><br>
+		<br><?php echo $loginPasswordError;?></br>
 		
 		<input type="submit" value="Logi sisse"></br>
 	</form>
+		</p>
 	
 
 	<!--KASUTAJA REGISTREERIB-->
-	<h1>Loo kasutaja</h1>
+	<br><br>
+	<img src="https://lh4.googleusercontent.com/jORZ4neAxo2lqm9wWNm4Q9HH4uznDkRAK_CetxGyy5sD2faICEaz4QYnsPhR4fTwprdT1RQi2KFgNoA=w1280-h845">
 	<form method="POST">
 	<label></label>
-		
-		<p> * On kohustuslikud</p>
+	
 		<!--EMAIL REGISTREERIMINE-->
+		<p>
 		<label for="signupEmail">E-post</label><br>
 		<input name="signupEmail" type = "signupEmail" placeholder="E-post">
-		<?php echo $signupEmailError;?>
-		
-		<br>
+		<br><?php echo $signupEmailError;?></br>
 		
 		<!--PAROOL REGISTREERIMINE-->
 		<br><label for="signupPassword">Parool</label></br>
 		<input name="signupPassword" type = "password" placeholder="Parool">
-		<?php echo $signupPasswordError;?>
-		
-		<br>
+		<br><?php echo $signupPasswordError;?></br>
 		
 		<!--KASUTAJANIMI REGISTREERIMINE-->
 		<br><label for="signupUsername">Sinu kasutaja nimi</label></br>
 		<input name="signupUsername" type = "signupUsername" placeholder="Kasutajanimi" value=<?=$signupUsername;?>>
-		<?php echo $signupUsernameError;?>
-		
-		<br>
-		
+		<br><?php echo $signupUsernameError;?></br>
+
 		<!--SUGU REGISTREERIMINE-->
-		<p><label for="signupGender">Sugu:</label><br>
-		<select name = "signupGender"  id="signupGender" required><br><br>
+		<br><label for="signupGender">Sugu:</label></br>
+		<select name = "signupGender"  id="signupGender" required>
 		<option value="">Näita</option>
 		<option value="Mees">Mees</option>
 		<option value="Naine">Naine</option>
 		<option value="Muu">Muu</option>
 		</select>
-		
-		<br><br>
 	
-		<input type="submit" value="Loo kasutaja"></br>
+		<br><br><input type="submit" value="Loo kasutaja">
+		</p>
+	<img src="https://lh5.googleusercontent.com/Z3AQmIoZUPSpK8IbFqXFcs1CIFKUfwVIcdTxeMbb5qlLpIlsRq7JDcYx3GIuroXf8I_FmDdEqkDa-s0=w1280-h894-rw">
+	</center>
 	</form>
 	</body>
+	
 </html>

@@ -91,17 +91,18 @@
 		$GLOBALS["database"]);
 		
 		$stmt = $mysqli->prepare("
-		SELECT category, pealkiri, comment, created, email
+		SELECT id, category, pealkiri, comment, created, email
 		FROM grupp_category 
 		");
 		
-		$stmt->bind_result($category, $headline , $comment, $created, $email);
+		$stmt->bind_result($id, $category, $headline , $comment, $created, $email);
 		$stmt->execute();
 		
 		$results = array();
 		while ($stmt->fetch()) {
 			
 			$human = new StdClass();
+			$human->id = $id;
 			$human->category = $category;
 			$human->headline = $headline;
 			$human->comment = $comment;
