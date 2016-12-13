@@ -4,6 +4,7 @@
 	require("functions.php");
 	require("header.php");
 	
+	echo date("d.m.Y");
 	
 	//SESSION
 	if (isset($_SESSION["userId"]))
@@ -106,12 +107,37 @@
 	<head>
 	<title>Sisselogimise leht</title>
 	</head>
-		<style>
-		p {font-family: courier;
-			font-size:110%;}
-		</style>
+	<style type="text/css">
+	
+	p {font-family: courier;
+				font-size:110%;}
+
+	#clock {color:black;}
+
+	</style>
+	
+	<script type="text/javascript">
+	function updateClock (){
+	  var currentTime = new Date ( );
+	  var currentHours = currentTime.getHours ();
+	  var currentMinutes = currentTime.getMinutes ();
+	  var currentSeconds = currentTime.getSeconds();
+	  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+	  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+	  var timeOfDay = ''; 
+
+	  var currentTimeString = currentHours + ":" + currentMinutes + ':' + currentSeconds+ " " + timeOfDay;
+
+	  document.getElementById("clock").innerHTML = currentTimeString;
+	}
+
+	</script>
+	<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
+	<span id="clock">&nbsp;</span>
+	</body>
+
+	</html>
 	<center>
-	<body>
 	<!--KASUTAJA SISENEB-->
 	<br><br>
 	<img src="https://lh4.googleusercontent.com/GwAbWmRpaRkh5GEW6ctGTo3I-_C0l3pTrO-Oo82h0I5o-h9rdBElpZiisM0-hh-NNwF5YKFNWD9_YXA=w1280-h894">
@@ -169,7 +195,10 @@
 		</p>
 	<img src="https://lh5.googleusercontent.com/Z3AQmIoZUPSpK8IbFqXFcs1CIFKUfwVIcdTxeMbb5qlLpIlsRq7JDcYx3GIuroXf8I_FmDdEqkDa-s0=w1280-h894-rw">
 	</center>
-	</form>
-	</body>
-	
+</form>
+</body>
 </html>
+
+<?php
+echo date("d.m.Y");
+?>
