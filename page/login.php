@@ -190,7 +190,7 @@
 		<div class="col-sm-4 col-md-3">
 
 
-			<h1>Logi sisse &lt;a href="#"&gt;</h1>
+			<h1>Logi sisse </h1>
 				<p style="color:red;"><?=$notice;?></p>
 				<form method="POST" >
 

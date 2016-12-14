@@ -41,7 +41,7 @@ class Rides {
       cp_rides.free_seats, cp_rides.price, cp_rides.added, cp_users.email
       FROM cp_rides
       JOIN cp_users ON cp_rides.user_id=cp_users.id
-      WHERE cp_rides.id = ? AND (cp_rides.user_id LIKE ? OR cp_rides.start_location LIKE ?
+      WHERE cp_rides.id = ? OR (cp_rides.user_id LIKE ? OR cp_rides.start_location LIKE ?
       OR cp_rides.start_time LIKE ? OR cp_rides.arrival_location LIKE ? OR
       cp_rides.arrival_time LIKE ? OR cp_rides.free_seats LIKE ? OR cp_rides.price LIKE ?
       OR cp_rides.added LIKE ? OR cp_users.email LIKE ?)
