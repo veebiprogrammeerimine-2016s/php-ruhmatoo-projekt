@@ -116,7 +116,7 @@ function signUp ($Email, $Password, $Date, $Gender) {
 			WHERE user_id=?
 		");
 		echo $mysqli->error;
-		$stmt->bind_param("i", $_SESSION["user_id"]);
+		$stmt->bind_param("i", $_SESSION["userId"]);
 		$stmt->bind_result($currentDate, $Feeling, $NumberofSteps);
 		$stmt->execute();
 		
@@ -131,7 +131,7 @@ function signUp ($Email, $Password, $Date, $Gender) {
 			//tekitan objekti
 			$UserData = new StdClass();
 			
-			$UserData->Date = $Date;
+			$UserData->Date = $currentDate;
 			$UserData->Feeling = $Feeling;
 			$UserData->NumberofSteps = $NumberofSteps;
 			

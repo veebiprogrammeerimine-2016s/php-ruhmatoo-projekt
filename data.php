@@ -74,7 +74,7 @@
 
 			saveUserData ($date, $Feeling, $NumberofSteps);
 
-		header("Location: data2.php");
+		header("Location: data.php");
 		exit();
 		}
 		
@@ -106,9 +106,13 @@
 		<input name="NumberofSteps" type="Numberofsteps" value="<?=$NumberofSteps;?>"> <?php echo $NumberofStepsError; ?>
 <br><br>
 		<input type="submit" value="Salvesta andmed">
+		<br>
+		<br>
+		
+		
 <p></p>		
 </form>	
-
+<a href="data2.php" class="btn">Mis on minu KMI?</a>
 <h2>Minu enesetunne ja liikumisaktiivsus</h2>
 <?php 
 	
@@ -140,7 +144,7 @@
 	
 	
 ?>
-
+	
 	<a href="?logout=1">Logi välja</a>
 </p>
 </form>
