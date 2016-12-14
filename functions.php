@@ -1,5 +1,5 @@
 <?php
-require("../../config.php");
+require("../../../config.php");
 	
 
 	session_start(); 
@@ -7,24 +7,6 @@ require("../../config.php");
 	
 	$database = "if16_brigitta";
 	$mysqli = new mysqli($serverHost, $serverUsername,  $serverPassword, $database);
-	
-function movieExists($link){
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"],  $GLOBALS["serverPassword"],  $GLOBALS["database"]);
-	$stmt = $mysqli->prepare("SELECT id FROM movies_db WHERE link=?");
-	echo $mysqli->error;
-	
-	$stmt->bind_param("s", $link);	
-	$stmt->bind_result($id);	
-	$stmt->execute();
-	if ( $stmt->fetch() ) {
-		$stmt->close();
-		return true;	
-	} else {	
-		$stmt->close();
-		return false;
-	}
-	
-}
 	
 function insertToDb($title, $movie_link, $rating, 
 					$genre, $directors, $release_date, 
@@ -62,7 +44,27 @@ function insertToDb($title, $movie_link, $rating,
 								
 }
 
+function getGenreFromDb() {
+	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		
+	$stmt = $mysqli->prepare("SELECT DISTINCT genre from movies_db");
+	$stmt->bind_result($genre);
+	$stmt->execute();
+	$result = array();
+	
+	while($stmt->fetch()) {
+	
+		$object = new StdClass();
+		$object->genre = $genre;
+		
+		array_push($result, $object);
+		
+	}
+	foreach($result as $item) {
+		echo '<p>genre: '.$item->genre.'</p>';
+	}
 
 
+}
 
 ?>
