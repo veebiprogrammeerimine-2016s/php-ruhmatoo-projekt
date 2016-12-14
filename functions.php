@@ -101,4 +101,26 @@ function signUp ($Email, $Password, $Date, $Gender) {
 		$mysqli->close();
 
 	}
+
+	function saveUserLW  ($length, $weight) {
+
+		$database = "if16_mariiviita";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+
+		$stmt = $mysqli->prepare("INSERT INTO userLW (user_id, length, weight) VALUES (?, ?, ?)");
+
+		echo $mysqli->error;
+
+		$stmt->bind_param("iii", $length, $weight, $_SESSION["userId"]);
+
+		if($stmt->execute()) {
+			echo "Salvestamine �nnestus";
+		} else {
+			echo "ERROR ".$stmt->error;
+		}
+
+		$stmt->close();
+		$mysqli->close();
+
+	}
 ?>
