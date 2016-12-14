@@ -90,14 +90,17 @@ if( isset($_POST["signupEmail"] )){
 <?php require("../header.php");?>
 <br><br><br><br>
 
-<br><br><br><br>
 
-<div class="container" id ="para2">
-		  <h3>Pländid ja hooldus</h3>  <form>
-												<input type="search" name="q" value="<?=$q;?>">
-												<input class="btn btn-default" type="submit" value="Otsi">
-										</form>
-			 <div id="para2Table" class="container col-lg-12"> <?php
+<div class=container>
+		              <h3>Pländid ja hooldus</h3>  
+    <form>
+                
+				<input type="search" name="q" value="<?=$q;?>">
+				<input class="btn btn-success" type="submit" value="Otsi">
+    </form>
+</div>
+<div class="container" id="para2TableHolder">
+			 <div id="para2Table" class="container col-lg-9 sm-offset-6"> <?php
 						
 						$direction = "ascending";
 						if (isset($_GET["direction"])){
@@ -107,13 +110,13 @@ if( isset($_POST["signupEmail"] )){
 							
 						}
 						
-						$html = "<table class='table  table-hover table-condensed col-lg-8'>";
+						$html = "<table  class='table  table-hover'>";
 						$html .= "<tr>";
 							
                             $html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>pilt</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>id</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=watering_day&direction=".$direction."'>interval</a></th>";
+							$html .= "<th><a href='?q=".$q."&sort=name&direction=".$direction."'>taime nimetus</a></th>";
+							$html .= "<th><a href='?q=".$q."&sort=watering_day&direction=".$direction."'>kastmisvahemik</a></th>";
 						$html .= "</tr>";
 						
 						$i = 1;
@@ -128,9 +131,9 @@ if( isset($_POST["signupEmail"] )){
 								
                                 $html .= '<td><img src="'.$p->url. '" style= "width:128px" ></td>';
 								$html .= "<td>".$p->id."</td>";
-								$html .= "<td>".$p->name."</td>";
+								$html .= "<td>".$p->name."<a href='edit.php?id=".$p->id."'>muuda</a></td>";
 								$html .= "<td>".$p->intervals."</td>";
-								$html .= "<td><a href='edit.php?id=".$p->id."'>muuda</a></td>";
+								
 							$html .= "</tr>";
 							
 							$i += 1;
@@ -147,7 +150,7 @@ if( isset($_POST["signupEmail"] )){
 						echo $listHtml;?>
                 </div>	
 						
-			</div>
+</div>	
 
-					
+		
 <?php require("../footer.php");?>
