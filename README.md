@@ -1,7 +1,7 @@
 Nimi: IDEAS FOR WEBSITE PROJECT
 
 Liikmed: Anna Gubskaja, Mihhail Kuzmin
-
+hoho
 Eesmärk: 
 	Luua veebisait nende inimeste jaoks, kes otsivad endale lihtsaid ja originaalseid veebilehtede ideid ning nendele, kes soovivad enda ideid pakkuda.
 	Selline veebisait oleks kasulik tulevatele tudengitele kes otsivad ideid projektide loomiseks, kuna me ise raiskasime palju aega selleks, et
@@ -61,4 +61,4 @@ git config user.email romilrobtsenkov@users.noreply.github.com
 * **Abimaterjale:** [Veebirakenduste loomine PHP ja MySQLi abil](http://minitorn.tlu.ee/~jaagup/kool/java/loeng/veebipr/veebipr1.pdf), [PHP with MySQL Essential Training] (http://www.lynda.com/MySQL-tutorials/PHP-MySQL-Essential-Training/119003-2.html)
 
 
-asdsadasdsad
+asdsadasdsasds
