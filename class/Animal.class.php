@@ -28,7 +28,7 @@ class Animal {
 		
 	function get($q, $sort, $order) {
 		
-		$allowedSort = ["id", "type", "name", "age"];
+		$allowedSort = ["id", "type", "name", "age", "shelter"];
 		
 		if(!in_array($sort, $allowedSort)){
 			// ei ole lubatud tulp
@@ -51,20 +51,20 @@ class Animal {
 			echo "Otsib: ".$q;
 			
 			$stmt = $this->connection->prepare("
-				SELECT id, type, name, age
+				SELECT id, type, name, age, shelter
 				FROM g_animals
 				WHERE deleted IS NULL 
-				AND (type LIKE ? OR name LIKE ? OR age LIKE ?)
+				AND (type LIKE ? OR name LIKE ? OR age LIKE ? OR shelter LIKE ?)
 				ORDER BY $sort $orderBy
 			");
 			$searchWord = "%".$q."%";
-			$stmt->bind_param("sss", $searchWord, $searchWord, $searchWord);
+			$stmt->bind_param("ssss", $searchWord, $searchWord, $searchWord, $searchWord);
 			
 			
 		} else {
 			
 			$stmt = $this->connection->prepare("
-				SELECT id, type, name, age
+				SELECT id, type, name, age, shelter
 				FROM g_animals
 				WHERE deleted IS NULL
 				ORDER BY $sort $orderBy
@@ -74,7 +74,7 @@ class Animal {
 		
 		echo $this->connection->error;
 		
-		$stmt->bind_result($id, $type, $name, $age);
+		$stmt->bind_result($id, $type, $name, $age, $shelter);
 		$stmt->execute();
 		
 		
@@ -92,6 +92,7 @@ class Animal {
 			$Animal->type = $type;
 			$Animal->name = $name;
 			$Animal->age = $age;
+			$Animal->shelter = $shelter;
 			
 
 			// iga kord massiivi lisan juurde nr märgi
@@ -106,10 +107,10 @@ class Animal {
 	
 	function getSingle($edit_id){
 
-		$stmt = $this->connection->prepare("SELECT type, name, age FROM `g_animals` WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT type, name, age, shelter FROM `g_animals` WHERE id=? AND deleted IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($type, $name, $age);
+		$stmt->bind_result($type, $name, $age, $shelter);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -121,6 +122,7 @@ class Animal {
 			$Animal->type = $type;
 			$Animal->name = $name;
 			$Animal->age = $age;
+			$Animal->shelter = $shelter;
 			
 			
 		}else{
@@ -138,13 +140,13 @@ class Animal {
 		
 	}
 
-	function save ($type, $name, $age) {
+	function save ($type, $name, $age, $shelter) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO g_animals (type, name, age) VALUES (?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO g_animals (type, name, age, shelter) VALUES (?, ?, ?, ?)");
 	
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssi", $type, $name, $age);
+		$stmt->bind_param("ssis", $type, $name, $age, $shelter);
 		
 		if($stmt->execute()) {
 			echo "Salvestamine onnestus";
@@ -159,8 +161,8 @@ class Animal {
 	
 	function update($id, $type, $name, $age){
     	
-		$stmt = $this->connection->prepare("UPDATE g_animals SET type=?, name=?, age=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("ssi",$type, $name, $age);
+		$stmt = $this->connection->prepare("UPDATE g_animals SET type=?, name=?, age=?, shelter=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("ssis",$type, $name, $age, $shelter);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){

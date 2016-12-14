@@ -32,5 +32,5 @@ Kasutaja info ehk user
 
 Avaleht
 
-Autorid: Henri Vajak, Tanel Maas, Cleven Lehispuu
+Autorid: Henri Vajak, Tanel Maasalu, Cleven Lehispuu
 

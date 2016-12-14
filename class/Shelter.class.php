@@ -132,5 +132,40 @@ function getSingle($edit_id) {
 		$stmt->close();
 		
 	}
+function getAll() {
+		
+		$database = "if16_Tanelmaas_1";
+		$this-> connection= new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $this-> connection->prepare("
+			SELECT id, name
+			FROM g_animalshelters
+		");
+		echo $this-> connection->error;
+		
+		$stmt->bind_result($id, $name);
+		$stmt->execute();
+		
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda seni, kuni on rida andmeid
+		// mis vastab select lausele
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$i = new StdClass();
+			
+			$i->id = $id;
+			$i->name = $name;
+		
+			array_push($result, $i);
+		}
+		
+		$stmt->close();
+		
+		return $result;
+	}
 }
 ?>

@@ -22,27 +22,33 @@
    
    if ( isset($_POST["type"]) &&
 	     isset($_POST["name"]) &&
-		 isset($_POST["age"]) &&
+		 isset($_POST["age"])&&
+		 isset($_POST["shelter"]) 	 &&
 		 !empty($_POST["type"]) &&
 		 !empty($_POST["name"]) &&
-		 !empty($_POST["age"])		 ) {
+		 !empty($_POST["age"])&&
+		 !empty($_POST["shelter"])		 ) {
 			
 		  
 		$type = cleanInput($_POST["type"]);
         $name = cleanInput($_POST["name"]);
         $age = cleanInput($_POST["age"]);
+		$shelter = cleanInput($_POST["shelter"]);
 		
-		$Animal->save($_POST["type"], $_POST["name"], $_POST["age"]);
+		$Animal->save($_POST["type"], $_POST["name"], $_POST["age"], $_POST["shelter"]);
 	}
 	
 	 if (empty($_POST["type"]) &&
 		empty($_POST["name"]) &&
-		empty($_POST["age"]))
+		empty($_POST["age"])&&
+		empty($_POST["shelter"]))
 {
 			 $informationError = "Täita tuleb kõik väljad!";
 			 
 		}
-
+		
+		
+		$shelter =$Shelter->getAll();
 ?>
 
 <html>
@@ -56,28 +62,43 @@
             <form method="POST">
 				<label>Liik</label><br>
 	            <select name="type" id="type" name="type">
-				<option value="dog">Koer</option>
-				<option value="cat">Kass</option>
-				<option value="parrot">Papagoi</option>
-				<option value="rabbit">Janes</option>
-				<option value="other">Muu</option>
+				<option value="Koer">Koer</option>
+				<option value="Kass">Kass</option>
+				<option value="Papagoi">Papagoi</option>
+				<option value="Janes">Janes</option>
+				<option value="Muu">Muu</option>
 				</select>
 	            <br><br>
 	
 	            <label>Looma nimi</label><br>
-				<div class="form-group, col-xs-2">
-					<input class="form-control" name="name" type="text">
-				</div>
-	            <br><br><br>
+	            <input name="name" type="text" >
+	            <br><br>
 	
 	            <label>Vanus</label><br>
-                <div class="form-group, col-xs-2">
-					<input class="form-control" name="name" type="text">
-				</div>
-	            <br><br><br>
+	            <input name="age" type="int" >
+	            <br><br>
+				
+				<label>Varjupaik</label><br>
+				<select name="shelter" type="text">
+				
+				<?php
+            
+				$listHtml = "";
+        	
+				foreach($shelter as $x){
+        		
+        		
+        		$listHtml .= "<option value='".$x->id."'>".$x->name."</option>";
+        
+				}
+        	
+				echo $listHtml;
+            
+        ?>
+    </select>
 	
-				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Salvesta"> <?php echo $informationError;?>	
-
+	
+	            <input type="submit" value="Salvesta">
 				<br><br>
                 </form>
 		</body>		

@@ -56,24 +56,19 @@
             <form method="POST">
 			
 	            <label>Varjupaiga nimi</label><br>
-                <div class="form-group, col-xs-2">
-					<input class="form-control" name="name" type="text">
-				</div>
+	            <input name="name" type="text" >
 	            <br><br>
 	
 	            <label>Maakond</label><br>
-                <div class="form-group, col-xs-2">
-					<input class="form-control" name="county" type="text">
-				</div>
+	            <input name="county" type="text" >
 	            <br><br>
 				
 				<label>Linn</label><br>
-                <div class="form-group, col-xs-2">
-					<input class="form-control" name="city" type="text">
-				</div>
+	            <input name="city" type="text" >
 	            <br><br>
 	
-				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Salvesta"> <?php echo $informationError;?>	
+	
+	            <input type="submit" value="Salvesta">
 				<br><br>
                 </form>
 		</body>		
