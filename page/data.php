@@ -61,7 +61,7 @@
 				echo $mysqli->error;
 				$stmt->execute();
 			
-				echo "Aitäh hinnagu eest";
+				echo "Aitäh hinnaguu eest";
 			}
 		
 		
@@ -123,7 +123,13 @@ $(function() {
 	});     
 	//Ajax load function
 	function load_contents(track_page){
-		//alert(track_page);
+		/*
+		
+		SEE SIIN VIRISEB KUI LIIGA PALJU KERID
+		if(track_page%2==0){
+			alert("Olen kerinud "+track_page+" lehekülge, äkki aitab ?");
+		}
+		*/
 		loading = true;  //set loading flag on
 		$('.loading-info').show(); //show loading animation 
 		$.get( 'getDataPerPage.php?page='+track_page + search, function(data){
