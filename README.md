@@ -15,7 +15,6 @@ git config user.email romilrobtsenkov@users.noreply.github.com
 ### Nõuded
 # TLU CarPooling
 
-*suurelt projekti veebirakenduse pilt;
 
 Joosep Juhanson, Taaniel Kõmmus
 
