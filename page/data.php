@@ -106,14 +106,21 @@ isset($_POST["free_seats"]) &&
 !empty($_POST["free_seats"]))
 
 
-
-
 {
     //echo = "Saved";
     $Rides->save($start_location, $start_time, $arrival_location,
     $arrival_time, $free_seats, $price);
     header("Location: data.php");
     exit();
+ }
+
+ if ( isset($_POST["get"]) &&
+   !empty($_POST["get"])
+   ) {
+
+   echo $_POST["get"];
+   $upcomingRides->get($Helper->cleaninput($_POST["get"]));
+
  }
 
  if(isset($_GET["r"])) {
@@ -134,6 +141,7 @@ isset($_POST["free_seats"]) &&
  }
 
 $upcomingRides = $Rides->get($r, $sort, $order);
+
 ?>
 <?php require("../header.php"); ?>
 
@@ -367,3 +375,5 @@ $upcomingRides = $Rides->get($r, $sort, $order);
     echo $html;
 
     ?>
+
+<?php require("../footer.php"); ?>

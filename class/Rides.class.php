@@ -32,29 +32,26 @@ class Rides {
     $orderBy = "DESC";
   }
 
-  //echo "Sorteerin: ".$sort." ".$orderBy." ";
-
-
 
     if ($r != "") {
-      //otsin
-      //echo "Otsin: ".$q;
-
+      //echo "Otsin: ".$r;
       $stmt = $this->connection->prepare("
       SELECT cp_rides.id, cp_rides.user_id, cp_rides.start_location,
       cp_rides.start_time, cp_rides.arrival_location, cp_rides.arrival_time,
       cp_rides.free_seats, cp_rides.price, cp_rides.added, cp_users.email
       FROM cp_rides
       JOIN cp_users ON cp_rides.user_id=cp_users.id
-      WHERE cp_users.email = ? AND (cp_rides.start_location LIKE ?
+      WHERE cp_rides.id = ? AND (cp_rides.user_id LIKE ? OR cp_rides.start_location LIKE ?
       OR cp_rides.start_time LIKE ? OR cp_rides.arrival_location LIKE ? OR
-      cp_rides.arrival_time LIKE ? OR cp_rides.free_seats LIKE ? OR cp_rides.price LIKE ?)
+      cp_rides.arrival_time LIKE ? OR cp_rides.free_seats LIKE ? OR cp_rides.price LIKE ?
+      OR cp_rides.added LIKE ? OR cp_users.email LIKE ?)
       ORDER BY $sort $orderBy
       ");
 
       $searchWord = "%".$r."%";
-      $stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord,
-      $searchWord, $searchWord, $searchWord);
+      $stmt->bind_param("ssssssssss", $searchWord, $searchWord,
+      $searchWord, $searchWord, $searchWord, $searchWord,
+      $searchWord, $searchWord, $searchWord, $searchWord);
 
     } else {
     $stmt = $this->connection->prepare("
@@ -80,20 +77,20 @@ class Rides {
     while ($stmt->fetch()) {
 
       //tekitan objekti
-      $i = new StdClass();
+      $upcomingRides = new StdClass();
 
-      $i->id = $id;
-      $i->user_id = $user_id;
-      $i->start_location = $start_location;
-      $i->start_time = $start_time;
-      $i->arrival_location = $arrival_location;
-      $i->arrival_time = $arrival_time;
-      $i->free_seats = $free_seats;
-      $i->price = $price;
-      $i->added = $added;
-      $i->email = $email;
+      $upcomingRides->id = $id;
+      $upcomingRides->user_id = $user_id;
+      $upcomingRides->start_location = $start_location;
+      $upcomingRides->start_time = $start_time;
+      $upcomingRides->arrival_location = $arrival_location;
+      $upcomingRides->arrival_time = $arrival_time;
+      $upcomingRides->free_seats = $free_seats;
+      $upcomingRides->price = $price;
+      $upcomingRides->added = $added;
+      $upcomingRides->email = $email;
 
-      array_push($result, $i);
+      array_push($result, $upcomingRides);
     }
 
     $stmt->close();
@@ -123,11 +120,7 @@ class Rides {
 
   //echo "Sorteerin: ".$sort." ".$orderBy." ";
 
-
-
     if ($r != "") {
-      //otsin
-      //echo "Otsin: ".$q;
 
       $stmt = $this->connection->prepare("
       SELECT cp_rides.id, cp_rides.start_location,
@@ -158,12 +151,13 @@ class Rides {
     FROM cp_rideusers
     JOIN cp_users ON cp_users.id=cp_rideusers.user_id
     JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
-    WHERE cp_rides.user_id = ? ORDER BY $sort $orderBy
-    ;
+    WHERE cp_rides.user_id = ?
+    ORDER BY $sort $orderBy
     ");
- }
+
     echo $this->connection->error;
     $stmt->bind_param("i", $_SESSION["userId"]);
+  }
     $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
     $arrival_time, $free_seats, $guest_name, $guest_email);
     $stmt->execute();
