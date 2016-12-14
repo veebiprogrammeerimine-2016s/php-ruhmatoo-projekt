@@ -72,18 +72,8 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 <br><br><br><br>
 
 <div class="container" id ="para2">
-		  <ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active"><a<li role="presentation" style="float:right;"><a href="#Otsing" arial-controls="Otsing" role="tab" data-toggle="tab"><h1>PLÄNTS</h1></p></a></li>
-		  </ul>
-	<div class="tab-content">
-		<div role="tabpanel" class="tab-pane active" id="plantsTab">
-			
-			<div id="plantCare" class="row col-md-8">
-			  <p>Siia tulevad Pländid!!</p> <form class="form-inline" >
-												<input class="form-control" type="search" name="q" value="<?=$q;?>">
-												<input class="btn btn-default" type="submit" value="Otsi">
-										</form>
-			  <?php
+		  <h3>Pländid ja hooldus</h3>
+			 <div id="para2Table" class="container col-lg-12"> <?php
 						
 						$direction = "ascending";
 						if (isset($_GET["direction"])){
@@ -93,9 +83,10 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 							
 						}
 						
-						$html = "<table class='table table-striped table-hover table-condensed table-bordered  ' style='background-color:white'>";
+						$html = "<table class='table  table-hover table-condensed col-lg-8'>";
 						$html .= "<tr>";
-							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>nr</a></th>";
+							
+                            $html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>pilt</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>id</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=watering_day&direction=".$direction."'>interval</a></th>";
@@ -107,11 +98,13 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 							//iga taim on $p
 							//echo $p->taim."<br>";
 						
-							
+                            $image="<img src'$p->url' width='175' height='200'/>";
+                            
 							$html .= "<tr>";
-								$html .= "<td>".$i."</td>";
+								
+                                $html .= '<td><img src="'.$p->url. '" style= "width:128px" ></td>';
 								$html .= "<td>".$p->id."</td>";
-								$html .= "<td>".$p->plants."</td>";
+								$html .= "<td>".$p->name."</td>";
 								$html .= "<td>".$p->intervals."</td>";
 								$html .= "<td><a href='edit.php?id=".$p->id."'>muuda</a></td>";
 							$html .= "</tr>";
@@ -128,15 +121,11 @@ if( isset($_POST["signupEmail"]) && isset($_POST["signupPassword"])&&
 						
 						
 						echo $listHtml;?>
-						
+                </div>	
 						
 			</div>
 
 					
-		</div>
-      
-	</div>	
-</div>
-	
+
 
 <?php require("../footer.php");?>

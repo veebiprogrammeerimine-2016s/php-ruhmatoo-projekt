@@ -125,9 +125,9 @@ class Plant {
 		if($q == ""){
 			echo"ei otsi...";
 			$stmt = $this->connection->prepare("
-			SELECT id, name, watering_days
+			SELECT url, id, name, watering_days
 			FROM f_plant
-			WHERE deleted IS NULL
+			WHERE (deleted IS NULL) AND (private IS NULL)
 			ORDER BY $sort $orderBy");
 			
 		
@@ -135,15 +135,15 @@ class Plant {
 			echo"Otsib...".$q;
 			$searchWord = "%".$q."%";
 			$stmt = $this->connection->prepare(
-			"SELECT id, name, watering_days from f_plant WHERE
-			deleted IS NULL AND (name LIKE ? OR watering_days LIKE ?)ORDER BY $sort $orderBy");
+			"SELECT url, id, name, watering_days from f_plant WHERE
+			deleted IS NULL AND (name LIKE ? OR watering_days LIKE ?) AND (private IS NULL) ORDER BY $sort $orderBy");
 			$stmt->bind_param('ss', $searchWord, $searchWord);
 			
 		}
 		echo $this->connection->error;
 		
 		
-		$stmt->bind_result($id, $name, $watering);
+		$stmt->bind_result($url, $id, $name, $watering);
 		$stmt->execute();
 		
 		
@@ -162,6 +162,7 @@ class Plant {
 			
 			$plantClass = new StdClass();
 			
+            $plantClass->url=$url;
 		    $plantClass->id=$id;
 			$plantClass->name=$name;
 			$plantClass->intervals=$watering;

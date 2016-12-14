@@ -9,9 +9,16 @@ body{font-family:helvetica;	}
 a{color:#777;}
 
 nav{height:0px;}  
+
   
 h3{color:white;
 }
+table{
+    border:0;
+    border-radius:10px;
+    
+}
+
 
 h4{color:white;}  
   
@@ -76,10 +83,16 @@ h4{color:white;}
   background-color: black;
   border-top-left-radius:10px;
   border-top-right-radius:10px;
-  padding-top:30;
-  opacity:0.8;
+  padding-top:30; 
+   
+  
 
   }
+#para2Table{
+    background-color:#e3e5dc;
+    border-radius:10px;
+}
+
   
   #para2 ul li h3{color:#777;}
   
@@ -87,7 +100,7 @@ h4{color:white;}
 	background-color:black;
 	padding:10px;
 	margin:10px;
-	border-style:double;
+	
 	
 }
 

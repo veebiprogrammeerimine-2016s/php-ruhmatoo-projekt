@@ -130,7 +130,7 @@ if( isset($_POST["signupEmail"] )){
 							$html .= "<tr>";
 								$html .= "<td>".$i."</td>";
 								$html .= "<td>".$p->id."</td>";
-								$html .= "<td>".$p->plants."</td>";
+								$html .= "<td>".$p->name."</td>";
 								$html .= "<td>".$p->intervals."</td>";
 								$html .= "<td><a href='edit.php?id=".$p->id."'>muuda</a></td>";
 							$html .= "</tr>";
