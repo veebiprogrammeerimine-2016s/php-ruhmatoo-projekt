@@ -1,43 +1,7 @@
 <?php
-echo date("d.m.Y");
-?>
-
-<html>
-<head>
-<style type="text/css">
-#clock {color:black;}
-
-
-</style>
-<script type="text/javascript">
-
-function updateClock (){
-  var currentTime = new Date ( );
-  var currentHours = currentTime.getHours ();
-  var currentMinutes = currentTime.getMinutes ();
-  var currentSeconds = currentTime.getSeconds();
-  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-  var timeOfDay = ''; 
-
-  var currentTimeString = currentHours + ":" + currentMinutes + ':' + currentSeconds+ " " + timeOfDay;
-
-  document.getElementById("clock").innerHTML = currentTimeString;
-}
-
-</script>
-</head>
-
-<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
-<span id="clock">&nbsp;</span>
-</body>
-
-</html>
-
-<h1 align="center">Foorumi pealkiri</h1>
-<?php
 	
 	require("functions.php");
+	require("header.php");
 	
 	if (!isset ($_SESSION["userId"])) {
 		header("Location: loginpage.php");
@@ -63,23 +27,65 @@ function updateClock (){
 	comment($_POST["category"],$_POST["headline"], $_POST["comment"], $_SESSION["userEmail"]);
 	}
 	$people = allinfo();
+?>
 
+<h2>Tere tulemast <?=$_SESSION["userEmail"];?> ! </h2>
+
+<center>
+<?php 
+$html = "<table>";
+	
+	$html .= "<tr>";
+		$html .= "<th>Eriala</th>";
+		$html .= "<th>Pealkiri</th>";
+		$html .= "<th>Kommentaar</th>";
+		$html .= "<th>Postitud</th>";
+		$html .= "<th>Kasutaja</th>";	
+	$html .= "</tr>";
+
+	
+	foreach ($people as $p) {
+	$html .= "<tr>";
+		$html .= "<td>".$p->id."</td>";
+		$html .= "<td><a href='homepage.php?id='>".$p->category."</a></td>";
+		$html .= "<td>".$p->headline."</td>";
+		$html .= "<td>".$p->created."</td>";
+		$html .= "<td>".$p->email."</td>";	
+	$html .= "</tr>";
+	}
+
+$html .= "</table>";
+echo $html
 ?>
 
 <html>
-Tere tulemast <?=$_SESSION["userEmail"];?>!
-<a href="?logout=1">Logi välja</a>
-
-<style>
-	
-	.cat_col{
-		color:#A11F2F;
-		font-weight: 600;
-	}
-	
+<style type="text/css">
+	.cat_col {color:A11F2F; font-weight: 600;}
+	p {font-family: courier;font-size:110%;}
+	h2 {font-family: courier;}
+	clock {color:black;}
 </style>
 
-<body>
+<script type="text/javascript">
+	function updateClock (){
+	  var currentTime = new Date ( );
+	  var currentHours = currentTime.getHours ();
+	  var currentMinutes = currentTime.getMinutes ();
+	  var currentSeconds = currentTime.getSeconds();
+	  currentMinutes = ( currentMinutes < 10 ? "0" : "" )  currentMinutes;
+	  currentSeconds = ( currentSeconds < 10 ? "0" : "" )  currentSeconds;
+	  var timeOfDay = ''; 
+
+	  var currentTimeString = currentHours  ":"  currentMinutes  ':'  currentSeconds " "  timeOfDay;
+
+	  document.getElementById("clock").innerHTML = currentTimeString;
+	}
+
+</script>
+<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
+<span id="clock">&nbsp;</span>
+
+	<body>
 	<h2>Tee uue postituse</h2>
 	<form method="POST">
 	<!--KATEGOORIA-->
@@ -146,42 +152,22 @@ Tere tulemast <?=$_SESSION["userEmail"];?>!
 	</select>
 	<br><br>
 	<!--pealkiri-->
-	<label for="headline">Teema pealkiri</label><br>
-	<input name="headline">
+	<label for="headline">Uue postitus:</label><br>
+	<input placeholder="Pealkiri" name="headline">
 	<br>
 	<!--Kommentaar-->
-	<textarea rows="4" cols="50" name="comment">Comment...</textarea>
+	<textarea rows="4" cols="50" placeholder="Kirjuta milline probleem sul tekkis.." name="comment"></textarea>
+	
 	<br><br>
 	<input type="submit" value="postita">
 	
+	<br><br>
+	<a href="?logout=1">Logi välja</a>
+	
+	<br><br>
 </form>
 </body>		
 </html>
+</center>
 
-<h2>Peab tulema nagu postitused ja foorum</h2>
-<?php 
-$html = "<table>";
-	
-		$html .= "<tr>";
-			$html .= "<th>Eriala</th>";
-			$html .= "<th>Pealkiri</th>";
-			$html .= "<th>Kommentaar</th>";
-			$html .= "<th>Postitud</th>";
-			$html .= "<th>Kasutaja</th>";	
-		$html .= "</tr>";
-		
-		//iga liikme kohta massiivis
-		foreach ($people as $p) {
-			
-		$html .= "<tr>";
-			$html .= "<td>".$p->category."</td>";
-			$html .= "<td>".$p->headline."</td>";
-			$html .= "<td>".$p->comment."</td>";
-			$html .= "<td>".$p->created."</td>";
-			$html .= "<td>".$p->email."</td>";	
-		$html .= "</tr>";
-		
-		}
-	$html .= "</table>";
-	echo $html;
-?>
+<?php echo date("d.m.Y");?>

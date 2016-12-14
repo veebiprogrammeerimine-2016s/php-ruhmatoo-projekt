@@ -1,45 +1,8 @@
-
-
-<?php
-echo date("d.m.Y");
-?>
-
-<html>
-<head>
-<style type="text/css">
-#clock {color:black;}
-
-
-</style>
-<script type="text/javascript">
-
-function updateClock (){
-  var currentTime = new Date ( );
-  var currentHours = currentTime.getHours ();
-  var currentMinutes = currentTime.getMinutes ();
-  var currentSeconds = currentTime.getSeconds();
-  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-  var timeOfDay = ''; 
-
-  var currentTimeString = currentHours + ":" + currentMinutes + ':' + currentSeconds+ " " + timeOfDay;
-
-  document.getElementById("clock").innerHTML = currentTimeString;
-}
-
-</script>
-</head>
-
-<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
-<span id="clock">&nbsp;</span>
-</body>
-
-</html>
-
 <?php
 
 	require("../../config.php");
 	require("functions.php");
+	require("header.php");
 	
 	//SESSION
 	if (isset($_SESSION["userId"]))
@@ -49,7 +12,7 @@ function updateClock (){
 	
 	//MUUTUJAD REGISTREERIMINE
 	$signupEmail = $signupPassword = $signupUsername = $signupGender = "" ; 
-	$signupEmailError = $signupPasswordError = $signupUsernameError = $signupGenderError = "*";
+	$signupEmailError = $signupPasswordError = $signupUsernameError = $signupGenderError = "";
 	//MUUTUJAD LOOGIMINE
 	$loginEmail = $loginPassword = "";
 	$loginEmailError = $loginPasswordError = $error = "";
@@ -88,8 +51,8 @@ function updateClock (){
 	}
 	
 	//REGISTREERIMISE LÕPP
-	if ( $signupEmailError == "*" AND
-		$signupPasswordError == "*" &&
+	if ( $signupEmailError == "" AND
+		$signupPasswordError == "" &&
 		isset($_POST["signupEmail"]) &&
 		isset($_POST["signupPassword"])
 	)
@@ -139,72 +102,91 @@ function updateClock (){
 <!DOCTYPE html>
 <html>
 		
-	<head>
-	<title>Sisselogimise leht</title>
-	</head>
+<head>
+<title>Sisselogimise leht</title>
+</head>
 	
-	<body>
+	<style type="text/css">
+	p {font-family: courier;font-size:110%;}
+	#clock {color:black;}
+	</style>
+	
+	<script type="text/javascript">
+	function updateClock (){
+	  var currentTime = new Date ( );
+	  var currentHours = currentTime.getHours ();
+	  var currentMinutes = currentTime.getMinutes ();
+	  var currentSeconds = currentTime.getSeconds();
+	  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+	  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+	  var timeOfDay = ''; 
+
+	  var currentTimeString = currentHours + ":" + currentMinutes + ':' + currentSeconds+ " " + timeOfDay;
+
+	  document.getElementById("clock").innerHTML = currentTimeString;
+	}
+	</script>
+	
+	<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
+	<span id="clock">&nbsp;</span>
+	</body>
+
+</html>
+
+	<center>
 	<!--KASUTAJA SISENEB-->
-	<h1>Sisene</h1>
+	<img src="https://pp.vk.me/c836721/v836721149/140c3/uzbMJ-ysjsM.jpg" width="100px">
 	<p style="color:red;"><?=$error;?></p> <!--näitab parool/email errorit-->
 	<form method="POST">
 		
 		<!--EMAILI LOOGIMINE-->
+		<p>
 		<label for="loginEmail">E-post</label><br>
-		<input name="loginEmail" type="loginEmail">
-		<?php echo $loginEmailError;?>
+		<input name="loginEmail" type="loginEmail" value=<?=$loginEmail;?>>
+		<br><?php echo $loginEmailError;?></br>
 		
-		<br><br>
 		<!--PAROOLI LOOGIMINE-->
 		<label for="loginPassword">Parool</label><br>
 		<input name="loginPassword" type="password">
-		<?php echo $loginPasswordError;?>
-		
-		<br><br>
+		<br><?php echo $loginPasswordError;?></br>
+		</p>
 		
 		<input type="submit" value="Logi sisse"></br>
 	</form>
-	
 
 	<!--KASUTAJA REGISTREERIB-->
-	<h1>Loo kasutaja</h1>
+	<img src="https://pp.vk.me/c836721/v836721149/140ca/yIj8IGDH6BM.jpg" width="200px">
 	<form method="POST">
 	<label></label>
-		
-		<p> * On kohustuslikud</p>
+	
 		<!--EMAIL REGISTREERIMINE-->
+		<p>
 		<label for="signupEmail">E-post</label><br>
-		<input name="signupEmail" type = "signupEmail" placeholder="E-post">
-		<?php echo $signupEmailError;?>
-		
-		<br>
+		<input name="signupEmail" type = "signupEmail" placeholder="E-post" value=<?=$signupEmail;?>>
+		<br><?php echo $signupEmailError;?></br>
 		
 		<!--PAROOL REGISTREERIMINE-->
 		<br><label for="signupPassword">Parool</label></br>
 		<input name="signupPassword" type = "password" placeholder="Parool">
-		<?php echo $signupPasswordError;?>
-		
-		<br>
+		<br><?php echo $signupPasswordError;?></br>
 		
 		<!--KASUTAJANIMI REGISTREERIMINE-->
 		<br><label for="signupUsername">Sinu kasutaja nimi</label></br>
 		<input name="signupUsername" type = "signupUsername" placeholder="Kasutajanimi" value=<?=$signupUsername;?>>
-		<?php echo $signupUsernameError;?>
-		
-		<br>
-		
+		<br><?php echo $signupUsernameError;?></br>
+
 		<!--SUGU REGISTREERIMINE-->
-		<p><label for="signupGender">Sugu:</label><br>
-		<select name = "signupGender"  id="signupGender" required><br><br>
+		<br><label for="signupGender">Sugu:</label></br>
+		<select name = "signupGender"  id="signupGender" required>
 		<option value="">Näita</option>
 		<option value="Mees">Mees</option>
 		<option value="Naine">Naine</option>
 		<option value="Muu">Muu</option>
-		</select>
-		
-		<br><br>
+		</select></p>
 	
-		<input type="submit" value="Loo kasutaja"></br>
-	</form>
-	</body>
+		<br><input type="submit" value="Loo kasutaja"></br>
+	</center>
+</form>
+</body>
 </html>
+<?php echo date("d.m.Y");?>
