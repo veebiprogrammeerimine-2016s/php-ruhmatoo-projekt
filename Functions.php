@@ -1,49 +1,27 @@
-<?php
+<?php 
 
 	require("../../config.php");
 	
 	$database = "if16_kliiva";
 
-	
-	
-	function SaveFeedback($Name, $Telephone, $Email, $Add_info) {
+
+	function SaveReservation($reg_nr, $veichle_type, $car_brand, $car_model, $telephone_nr) {
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		
-		$stmt = $mysqli->prepare("INSERT INTO feedback_data (Name, Email, Telephone, Additional_info) VALUES (?, ?, ?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO Reservation_Data (Registration_Nr, Veichle_Type, Car_Brand, Car_Model, Telephone_Nr) VALUES (?, ?, ?, ?, ?) ");
 		echo $mysqli->error;
 		
-		$stmt->bind_param("siss", $Name, $Email, $Telephone, $Add_info);
-		if ($stmt->execute()) {
+		$stmt->bind_param("ssssi", $reg_nr, $veichle_type, $car_brand, $car_model, $telephone_nr);
+		if($stmt->execute()) {
 			
 			echo "Salvestamine õnnestus";
 			
 		} else {
 			
-			echo "Ilmnes viga".$stmt->error;
+			echo "Ilmnes viga ".$stmt->error;
 			
 		}
 		
-	}
-	
-	function SaveData($reg_nr, $veichle_type, $car_brand, $car_model, $telephone) {
-		
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		
-		$stmt = $mysqli->prepare("INSERT INTO data_car_and_client (Registration_nr, Veichle_type, Veichle_brand, Veichle_model, Telephone) VALUES (?, ?, ?, ?, ?)");
-		echo $mysqli->error;
-		
-		$stmt->bind_param("ssssi", $reg_nr, $veichle_type, $car_brand, $car_model, $telephone);
-		if ($stmt->execute()) {
-			
-			echo "Salvestamine õnnestus";
-			
-			
-		} else {
-			
-			echo "Ilmnes viga".$stmt->error;
-			
-		}
 	}
 	
 	function CleanInput($input) {
@@ -55,4 +33,6 @@
 		return $input;
 		
 	}
+
+	
 ?>

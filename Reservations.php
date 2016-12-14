@@ -1,156 +1,164 @@
 <?php
-	
-	//require("../../../../config.php");
+
+	require("../../config.php");
 	require("Functions.php");
 	
-	$reg_nr = "";
+	$veichle_type = "";
 	$car_brand = "";
 	$car_model = "";
-	$veichle_type = "";
-	$reg_nr_Error = "";
-	$car_model_Error = "";
-	$car_brand_Error = "";
-	$telephone = "";
-	$telephone_Error = "";
+	$reg_nr = "";
+	$telephone_nr = "";
+	$car_model_error = "";
+	$car_brand_error = "";
+	$reg_nr_error = "";
+	$telephone_nr_error = "";
+	$veichle_type_error = "";
 	
 	
-	if (isset ($_POST["reg_nr"])) {
-		
-		if (empty($_POST["reg_nr"])) {
-			
-			$reg_nr_Error = "Palun sisestage registreerimisnumber";
-			
-		} else {
-			
-			$reg_nr = $_POST["reg_nr"];
-			
-		}
-			
-	}
-	
-		if (isset ($_POST["car_brand"])) {
-		
-			if (empty($_POST["car_brand"])) {
-			
-				$car_brand_Error = "Palun sisestage enda automark";
-			
-			} else {
-			
-				$car_brand = $_POST["car_brand"];
-			
-			}
-		
-		}
-	
-	if (isset($_POST["car_model"])) {
-		
-		if (empty($_POST["car_model"])) {
-			
-			$car_model_Error = "Palun sisestage enda automudel";
-			
-		} else {
-			
-			$car_model = $_POST["car_model"];
-			
-		}
-		
-	}
-	
-	if (isset($_POST["telephone"])) {
-		
-		if (empty($_POST["telephone"])) {
-			
-			$telephone_Error = "Palun sisestage enda automudel";
-			
-		} else {
-			
-			$telephone = $_POST["telephone"];
-			
-		}
-		
-	}
-
-	if (isset($_POST["veichle_type"])) {
+	if(isset($_POST["veichle_type"])) {
 		
 		if(empty($_POST["veichle_type"])) {
 			
-			$veichle_type = $_POST["veichle_type"];
+			$veichle_type_error = "Palun valige auto tüüp";
+			
+		} else {
+			
+			$veichle_type = CleanInput($_POST["veichle_type"]);
 			
 		}
 		
 	}
 	
-	if (isset($_POST["reg_nr"]) && isset($_POST["veichle_type"]) && isset($_POST["car_brand"]) && isset($_POST["car_model"]) && isset($_POST["telephone"])
-	&& empty($reg_nr_Error) && empty($car_brand_Error) && empty($car_model_Error) && empty($telephone_Error)) {
+	
+	if(isset($_POST["reg_nr"])) {
 		
-		echo "Salvestan...<br>";
-		SaveData($reg_nr, $veichle_type, $car_brand, $car_model, $telephone);
+		if(empty($_POST["reg_nr"])) {
+			
+			$reg_nr_error = "Palun sisestage auto registreerimisnumber";
+			
+		} else {
+			
+			$reg_nr = CleanInput($_POST["reg_nr"]);
+			
+		}
 		
 	}
+	
+	if(isset($_POST["car_brand"])) {
+		
+		if(empty($_POST["car_brand"])) {
+			
+			$car_brand_error = "Palun sisestage automark";
+			
+		} else {
+			
+			$car_brand = CleanInput($_POST["car_brand"]);
+			
+		}
+		
+	}
+	
+	
+	if(isset($_POST["car_model"])) {
+		
+		if(empty($_POST["car_model"])) {
+			
+			$car_model_error = "Palun sisestage auto mudel";
+			
+		} else {
+			
+			$car_model = CleanInput($_POST["car_model"]);
+			
+		}
+		
+	}
+	
+	if(isset($_POST["telephone_nr"])) {
+		
+		if(empty($_POST["telephone_nr"])) {
+			
+			$telephone_nr_error = "Palun sisestage oma telefoni nr";
+			
+		} else {
+			
+			$telephone_nr = $_POST["telephone_nr"];
+			
+		}
+		
+	}
+	
+	if(isset($_POST["reg_nr"]) &&
+	   isset($_POST["veichle_type"]) &&
+	   isset($_POST["car_brand"]) &&
+	   isset($_POST["car_model"]) &&
+	   isset($_POST["telephone_nr"]) &&
+	   empty($reg_nr_error) &&
+	   empty($veichle_type_error) &&
+	   empty($car_brand_error) &&
+	   empty($car_model_error) &&
+	   empty($telephone_nr_error)
+	) {
+		
+		echo "Salvestan....<br>";
+		echo "Sõiduki tüüp ".$veichle_type."<br>";
+		SaveReservation($reg_nr, $veichle_type, $car_brand, $car_model, $telephone_nr);
+		
+	}
+
 ?>
 
-<?php require("Header.php");?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Broneerimise Leht</title>
+	</head>
+	<body>
 
-	<div class="container">
+		
+		<h1>Andmed</h1>
+		
 		<form method="POST">
-			<div class="form-group row">
-			<div class="col-sm-10">
-			<h1>Andmed</h1><br>
-			</div>
-				<label class="form-check-label">
-				<div class="form-group row">
-				<label for="reg_nr" class="col-sm-4 col-form-label">Registreerimisnumber</label>
-				<div class="col-sm-10">
-					<input class="form-control" name="reg_nr">
-				</div>
-				</label>
-				
-			</div>
 			
-			<label class="form-check-label">
-			<div class="form-group row">
-				<label for="veichle_type" class="col-sm-4 col-form-label">Sõiduki tüüp</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="veichle_type" id="veichle_type">
-					</div>
-					</label>
-				</div>
+			<label>Registreerimisnumber</label><br>
+			<input name="reg_nr" type="text"> <?php echo $reg_nr_error; ?>
 			
-			<label class="form-check-label">
-			<div class="form-group row">
-				<label for="car_brand" class="col-sm-4 col-form-label">Mark</label>
-					<div class="col-sm-10">
-						<input class="form-control" name="car_brand" id="car_brand">
-					</div>
-					</label>
-				</div>
-				<label class="form-check-label">
-				<div class="form-group row">
-				<label for="car_model" class="col-sm-4 col-form-label">Mudel</label>
-				<div class="col-sm-10">
-					<input class="form-control" name="car_model" id="car_model">
-				</div>
-				</label>
-				
-				</div>
-		<label class="form-check-label">
-		<div class="form-group row">
-				<label for="telephone" class="col-sm-4 col-form-label">Telefon</label>
-				<div class="col-sm-10">
-					<input type="tel" class="form-control" name="telephone" id="telephone">
-				</div>
+			<br><br>
+			
+			<?php if ($veichle_type == "Sõiduauto") { ?>
+                <input type="radio" name="veichle_type" value="Sõiduauto" checked > Sõiduauto<br>
+            <?php } else { ?>
+                <input type="radio" name="veichle_type" value="Sõiduauto"> Sõiduauto<br>
+            <?php } ?>
 
-				
-			
-			</label>
-			
-				</label>
-			</div>
-			
+            <?php if ($veichle_type == "Maastur") { ?>
+                <input type="radio" name="veichle_type" value="Maastur" checked > Maastur<br>
+            <?php } else { ?>
+                <input type="radio" name="veichle_type" value="Maastur"> Maastur<br>
+            <?php } ?>
 
-
-
-<table>
+            <?php if ($veichle_type == "Kaubik") { ?>
+                <input type="radio" name="veichle_type" value="Kaubik" checked > Kaubik<br>
+            <?php } else { ?>
+                <input type="radio" name="veichle_type" value="Kaubik"> Kaubik<br>
+            <?php } ?><br>
+			
+			
+			<label>Mark</label><br>
+			<input name="car_brand" type="text"> <?php echo $car_brand_error; ?>
+			
+			<br><br>
+			
+			<label>Mudel</label><br>
+			<input name="car_model" type="text"> <?php echo $car_model_error; ?>
+						
+			<br><br>
+			
+			<label>Telefon</label><br>
+			<input name="telephone_nr" type="tel"> <?php echo $telephone_nr_error; ?>
+			
+			<br><br>
+			
+			<table>
 			<?php 
 							 
 			 $limit = 7;
@@ -237,13 +245,11 @@
 			?>
 			</table>
 			
+			<br><br>
 			
-			<br>
-			
-			<input type="submit" class="btn btn-success">
-
-			
-
+			<input type="submit" value="Broneeri">
+		
 		</form>
+
 	</body>
 </html>
