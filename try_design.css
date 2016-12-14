@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+	background-color: lightgrey;
+	width: 150px;
+	height: 125px;
+	border: 5px solid red;
+	paddiing: 150px;
+	margin: 25px;
+}
+</style>
+</head>
+<body>
+
+<h2>Genre </h2>
+<div>Comedy</div>
+
+</body>
+</html>
