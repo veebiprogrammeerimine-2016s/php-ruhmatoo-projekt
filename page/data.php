@@ -163,7 +163,7 @@ $upcomingRides = $Rides->get();
 
 </form>
 <script type="text/javascript">
-    
+
     jQuery('#datetimepicker').datetimepicker({
   lang:'et',
 });
@@ -173,7 +173,7 @@ $upcomingRides = $Rides->get();
 
 <?php
 
-    $html = "<table>";
+  $html = "<table class='table table-striped table-condensed'>";
 
         $html .= "<tr>";
             $html .= "<th>email</th>";
@@ -187,7 +187,7 @@ $upcomingRides = $Rides->get();
 
         //iga liikme kohta massiivis
         foreach ($upcomingRides as $r) {
-          
+
             $html .= "<tr>";
                 $html .= "<td>".$r->email."</td>";
                 $html .= "<td>".$r->start_location."</td>";

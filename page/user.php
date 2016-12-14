@@ -25,46 +25,6 @@ $Rides = new Rides($mysqli);
 		exit();
 	}
 
-  $msg = "";
-
-	if(isset($_SESSION["message"])){
-		$msg = $_SESSION["message"];
-
-		//kui ühe näitame siis kustuta ära, et pärast refreshi ei näitaks
-		unset($_SESSION["message"]);
-	}
-
-  if ( isset($_POST["getUser"]) &&
-		!empty($_POST["getUser"])
-	  ) {
-
-		echo $_POST["getUser"];
-		$Rides->getUser($Helper->cleaninput($_POST["getUser"]));
-
-	}
-    $rides = $Rides->getUser();
-
-
-    if(isset($_GET["r"])) {
-  		$r = $_GET["r"];
-
-  	} else {
-  		//ei otsi
-  		$r = "";
-  	}
-
-  	$sort = "id";
-  	$order = "ASC";
-
-  	if (isset($_GET["sort"]) && isset($_GET["order"])) {
-  		$sort = $_GET["sort"];
-  		$order = $_GET["order"];
-
-  	}
-
-  	$rides = $Rides->getUser();
-
-
 ?>
 
 <?php require("../header.php"); ?>
@@ -77,7 +37,7 @@ $Rides = new Rides($mysqli);
 <br>
 
 <h4><a href="data.php"> Back</a></h4>
-<?=$msg;?>
+
 
 <h4><a href="youDrive.php">YouDrive</a></h4>
 
