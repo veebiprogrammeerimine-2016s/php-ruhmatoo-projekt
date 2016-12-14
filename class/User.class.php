@@ -88,20 +88,21 @@ class User {
 	function getUserData($author) {
 		
 		$stmt = $this->connection->prepare("
-		select submissions.id, caption from submissions join user_sample on submissions.author=user_sample.id
+		select submissions.id, caption, imgurl from submissions join user_sample on submissions.author=user_sample.id
 		where username = ? ");
 		echo $this->connection->error;
 		
 		$stmt->bind_param("s", $author);
 		$stmt->execute();
 		$results = array();
-		$stmt->bind_result($id, $caption);
+		$stmt->bind_result($id, $caption, $imgurl);
 		
 		while($stmt->fetch()){ //fetch values
 		
 			$data = new StdClass();
 			$data->id = $id;
 			$data->caption = $caption;
+			$data->imgurl = $imgurl;
 			
 			
 			//echo $color."<br>";
