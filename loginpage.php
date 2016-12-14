@@ -106,30 +106,6 @@
 <title>Sisselogimise leht</title>
 </head>
 	
-	<style type="text/css">
-	p {font-family: courier;font-size:110%;}
-	#clock {color:black;}
-	</style>
-	
-	<script type="text/javascript">
-	function updateClock (){
-	  var currentTime = new Date ( );
-	  var currentHours = currentTime.getHours ();
-	  var currentMinutes = currentTime.getMinutes ();
-	  var currentSeconds = currentTime.getSeconds();
-	  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-	  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-	  var timeOfDay = ''; 
-
-	  var currentTimeString = currentHours + ":" + currentMinutes + ':' + currentSeconds+ " " + timeOfDay;
-
-	  document.getElementById("clock").innerHTML = currentTimeString;
-	}
-	</script>
-	
-	<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
-	<span id="clock">&nbsp;</span>
-	</body>
 
 </html>
 
@@ -190,3 +166,27 @@
 </body>
 </html>
 <?php echo date("d.m.Y");?>
+<style type="text/css">
+	p {font-family: courier;font-size:110%;}
+	#clock {color:black;}
+	</style>
+	
+	<script type="text/javascript">
+	function updateClock (){
+	  var currentTime = new Date ( );
+	  var currentHours = currentTime.getHours ();
+	  var currentMinutes = currentTime.getMinutes ();
+	  var currentSeconds = currentTime.getSeconds();
+	  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+	  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+	  var timeOfDay = ''; 
+
+	  var currentTimeString = currentHours + ":" + currentMinutes + ':' + currentSeconds+ " " + timeOfDay;
+
+	  document.getElementById("clock").innerHTML = currentTimeString;
+	}
+	</script>
+	
+	<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
+	<span id="clock">&nbsp;</span>
+	</body>
