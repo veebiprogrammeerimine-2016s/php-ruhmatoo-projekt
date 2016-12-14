@@ -16,16 +16,56 @@ class Rides {
 
 */
 
-  function get() {
+  function get($q, $sort, $order) {
+
+    $allowedSort = ["email", "start_location", "start_time",
+    "arrival_location", "arrival_time", "free_seats", "price"];
+
+    if(!in_array ($sort, $allowedSort)) {
+      $sort = "id";
+    }
+
+    $orderBy = "ASC";
 
 
+  if($order == "DESC") {
+    $orderBy = "DESC";
+  }
+
+  //echo "Sorteerin: ".$sort." ".$orderBy." ";
+
+
+
+    if ($q != "") {
+      //otsin
+      //echo "Otsin: ".$q;
+
+      $stmt = $this->connection->prepare("
+      SELECT cp_rides.id, cp_rides.user_id, cp_rides.start_location,
+      cp_rides.start_time, cp_rides.arrival_location, cp_rides.arrival_time,
+      cp_rides.free_seats, cp_rides.price, cp_rides.added, cp_users.email
+      FROM cp_rides
+      JOIN cp_users ON cp_rides.user_id=cp_users.id
+      WHERE cp_users.email = ? AND (cp_rides.start_location LIKE ?
+      OR cp_rides.start_time LIKE ? OR cp_rides.arrival_location LIKE ? OR
+      cp_rides.arrival_time LIKE ? OR cp_rides.free_seats LIKE ? OR cp_rides.price LIKE ?)
+      ORDER BY $sort $orderBy
+      ");
+
+      $searchWord = "%".$q."%";
+      $stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord,
+      $searchWord, $searchWord, $searchWord);
+
+    } else {
     $stmt = $this->connection->prepare("
     SELECT cp_rides.id, cp_rides.user_id, cp_rides.start_location,
     cp_rides.start_time, cp_rides.arrival_location, cp_rides.arrival_time,
     cp_rides.free_seats, cp_rides.price, cp_rides.added, cp_users.email
     FROM cp_rides
     JOIN cp_users ON cp_rides.user_id=cp_users.id
+    ORDER BY $sort $orderBy
     ");
+  }
     echo $this->connection->error;
 
     $stmt->bind_result($id, $user_id, $start_location, $start_time,
@@ -60,6 +100,9 @@ class Rides {
 
     return $result;
   }
+
+
+
 
   function getUser($r, $sort, $order) {
 
@@ -101,9 +144,9 @@ class Rides {
         ORDER BY $sort $orderBy
       ");
 
-      $searchWord = "%".$q."%";
-      $stmt->bind_param("sssssssssi", $searchWord, $searchWord, $searchWord, $searchWord,
-      $searchWord, $searchWord, $searchWord, $searchWord, $_SESSION["userId"]);
+      $searchWord = "%".$r."%";
+      $stmt->bind_param("issssssss", $_SESSION["userId"], $searchWord, $searchWord, $searchWord, $searchWord,
+      $searchWord, $searchWord, $searchWord, $searchWord);
 
     } else {
 
@@ -120,7 +163,7 @@ class Rides {
     ");
  }
     echo $this->connection->error;
-		$stmt->bind_param("i", $_SESSION["userId"]);
+    $stmt->bind_param("i", $_SESSION["userId"]);
     $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
     $arrival_time, $free_seats, $guest_name, $guest_email);
     $stmt->execute();

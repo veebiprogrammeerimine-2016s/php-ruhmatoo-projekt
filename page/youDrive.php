@@ -39,7 +39,7 @@ $Rides = new Rides($mysqli);
 	}
 
 	if(isset($_GET["r"])) {
-		$q = $_GET["r"];
+		$r = $_GET["r"];
 
 	} else {
 		//ei otsi
@@ -66,6 +66,13 @@ $Rides = new Rides($mysqli);
 
 <h4><a href="user.php"> Back</a></h4>
 <?=$msg;?>
+
+<h2>Search </h2>
+
+<form>
+	<input type="search" name="r" value="<?=$r;?>">
+	<input type="submit" value="Search">
+</form>
 
 
 <h2>Registered rides</h2>
@@ -234,7 +241,7 @@ $Rides = new Rides($mysqli);
 
 										</th>";
 
-										
+
 
 										$html .= "<th>
 

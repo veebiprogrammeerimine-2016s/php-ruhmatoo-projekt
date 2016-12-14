@@ -116,11 +116,28 @@ isset($_POST["free_seats"]) &&
     exit();
  }
 
-$upcomingRides = $Rides->get();
+ if(isset($_GET["q"])) {
+   $q = $_GET["q"];
+
+ } else {
+   //ei otsi
+   $q = "";
+ }
+
+ $sort = "id";
+ $order = "ASC";
+
+ if (isset($_GET["sort"]) && isset($_GET["order"])) {
+   $sort = $_GET["sort"];
+   $order = $_GET["order"];
+
+ }
+
+$upcomingRides = $Rides->get($q, $sort, $order);
 ?>
 <?php require("../header.php"); ?>
 
-<h1>Data</h1>
+<h1>TLU CarPooling</h1>
 
 <p>
 
@@ -169,6 +186,15 @@ $upcomingRides = $Rides->get();
 });
     jQuery('#datetimepickerarrival').datetimepicker();
 </script>
+
+<h2>Search </h2>
+
+<form>
+	<input type="search" name="q" value="<?=$q;?>">
+	<input type="submit" value="Search">
+</form>
+
+
 <h2>Find a ride</h2>
 
 <?php
