@@ -47,6 +47,7 @@
 <p>Sugu: <?php echo $userData->gender;?></p>
 <p>Telefoninumber: <?php echo $userData->phonenumber;?></p>
 
+<p><a class="btn btn-default btn-sm" href="editUser.php"><span class='glyphicon glyphicon-pencil'></span> Muuda andmeid</a></p>
 
 </div>
 <?php require("../footer.php"); ?>
