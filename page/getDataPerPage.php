@@ -26,7 +26,7 @@
 	//get current starting point of records
 	$position = (($page_number-1) * $item_per_page);
 	
-	$Rate= "Pane pildile punkt";
+	
 	
 	$search= "";
 	if (isset($_GET["search"]) && !empty($_GET["search"])){
@@ -76,15 +76,13 @@
 		echo '<table>';
 		echo '<tr><h2>'.$name.'</h2></tr>';
 		echo '<td>'."<a href='topic.php?topicid=$id&posted' class='thumbnail'><img src=".$message." ></a>".'</td>';
+		echo '<tr><td>'."Posted by: "."<a href='user.php?username=$author';?>$author</a>".'</td>';
+		echo '<td align="right">'.'<a href="?addRate='.$id.'"><span class="glyphicon glyphicon-fire">Ignite(rate)</span></a>'.'</td></tr>';
 		echo '</table>';
-		echo "Posted by: "."<a href='user.php?username=$author';?>$author</a>";
-		echo '<br>'.$Rate;
-		echo '<br><br><br><br>';
+		echo '<br><br>';
 		echo '</div>';
 	}
 
-	
-	
 	
 ?>
 

@@ -29,6 +29,49 @@
 		$search= $_GET["searchPost"];
 		
 	}
+	
+	
+	if (isset($_GET["addRate"])){
+		
+			$stmt = $mysqli->prepare("SELECT user_id FROM ratings WHERE user_id=? AND pic_id=?");
+			echo $mysqli->error;
+			$stmt->bind_param("ii", $_SESSION["userId"], $_GET["addRate"]);
+			$stmt->execute();
+			
+			if($stmt->fetch()){
+				//sai ühe rea
+				echo "juba olemas";
+			}else{
+				
+				$stmt->close();
+				
+				$stmt = $mysqli->prepare("
+			
+				INSERT INTO ratings(user_id, pic_id) 
+				VALUES (?,?)");
+				echo $mysqli->error;
+				$stmt->bind_param("ii", $_SESSION["userId"],$_GET["addRate"]);
+				$stmt->execute();
+			
+				$stmt->close();
+				$stmt = $mysqli->prepare("
+			
+				INSERT INTO submissions(rating) 
+				VALUES (rating+1)");
+				echo $mysqli->error;
+				$stmt->execute();
+			
+				echo "Aitäh hinnaguu eest";
+			}
+		
+		
+			
+
+	}else{
+
+		//echo "katki";
+		
+	}
 
 ?>
 <?php require("../header.php"); ?>
@@ -80,7 +123,13 @@ $(function() {
 	});     
 	//Ajax load function
 	function load_contents(track_page){
-		//alert(track_page);
+		/*
+		
+		SEE SIIN VIRISEB KUI LIIGA PALJU KERID
+		if(track_page%2==0){
+			alert("Olen kerinud "+track_page+" lehekülge, äkki aitab ?");
+		}
+		*/
 		loading = true;  //set loading flag on
 		$('.loading-info').show(); //show loading animation 
 		$.get( 'getDataPerPage.php?page='+track_page + search, function(data){
