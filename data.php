@@ -74,8 +74,8 @@
 
 			saveUserData ($date, $Feeling, $NumberofSteps);
 
-		//header("Location: data.php");
-		//exit();
+		header("Location: data2.php");
+		exit();
 		}
 ?>
 

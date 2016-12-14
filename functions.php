@@ -123,4 +123,5 @@ function signUp ($Email, $Password, $Date, $Gender) {
 		$mysqli->close();
 
 	}
+
 ?>
