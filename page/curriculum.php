@@ -29,10 +29,10 @@
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-      <li><a href="homework.php?ryhm=1">1-rühm</a></li>
-      <li><a href="homework.php?ryhm=2">2-rühm</a></li>
-      <li><a href="homework.php?ryhm=3">3-rühm</a></li>
-      <li><a href="homework.php?ryhm=4">4-rühm</a></li>
+      <li><a href="#">1-rühm</a></li>
+      <li><a href="#">2-rühm</a></li>
+      <li><a href="#">3-rühm</a></li>
+      <li><a href="#">4-rühm</a></li>
     </ul>
   </div><br>
 
