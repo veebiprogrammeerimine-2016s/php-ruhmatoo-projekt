@@ -1,8 +1,6 @@
 # IziPäevik - http://kool.iziveeb.ee
 ## Description
-	Adding DTI Bachelor lectures and classes into an easy-to-read calendar, shown by study area, year and group
-	Possibility to change the table and save it into your account or a PDF file
-	Fast and mobile friendly
+    Simple site for school homework & curicculum
 
 ## Developers
 	Hinrek Saar - developer, hinrek@gmail.com
@@ -10,25 +8,12 @@
 
 ## Functionality
 
-###To-do:
-    * Account creation with student data, TLU account. Log-in.
-    * Calendar is mobile-friendly
-    * Get and display specific calendar data from ASIO
-    * Group calendar data by study-area, year and group
-    * Display user specific calendar data
-    * Add and remove calendar data with lesson code
-    * Save calendar into PDF
-    * Save new calendar for single user
-    * Add homework for specific lesson, specific date
-    * Edit homework
-    * Choice screens, homework screen mobile-friendly
+##To-do:
+    * Add events to calendar from form (Google API) 
+    * Add curriculum data drom scraper directly to Google calendar (Google API) 
 ## Technologies used
     * Google API
-	
-## Database
-
-### Schema
-### Set-up
-    Create database paevik;
+	* Bootstrap
 
 ##  Summary
+    **WORK IN PROGRES**
