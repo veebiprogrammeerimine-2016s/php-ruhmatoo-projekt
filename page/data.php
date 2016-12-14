@@ -116,12 +116,12 @@ isset($_POST["free_seats"]) &&
     exit();
  }
 
- if(isset($_GET["q"])) {
-   $q = $_GET["q"];
+ if(isset($_GET["r"])) {
+   $r = $_GET["r"];
 
  } else {
    //ei otsi
-   $q = "";
+   $r = "";
  }
 
  $sort = "id";
@@ -133,7 +133,7 @@ isset($_POST["free_seats"]) &&
 
  }
 
-$upcomingRides = $Rides->get($q, $sort, $order);
+$upcomingRides = $Rides->get($r, $sort, $order);
 ?>
 <?php require("../header.php"); ?>
 
@@ -190,7 +190,7 @@ $upcomingRides = $Rides->get($q, $sort, $order);
 <h2>Search </h2>
 
 <form>
-	<input type="search" name="q" value="<?=$q;?>">
+	<input type="search" name="r" value="<?=$r;?>">
 	<input type="submit" value="Search">
 </form>
 
@@ -202,13 +202,148 @@ $upcomingRides = $Rides->get($q, $sort, $order);
   $html = "<table class='table table-striped table-condensed'>";
 
         $html .= "<tr>";
-            $html .= "<th>email</th>";
-            $html .= "<th>start_location</th>";
-            $html .= "<th>start_time</th>";
-            $html .= "<th>arrival_location</th>";
-            $html .= "<th>arrival_time</th>";
-            $html .= "<th>free_seats</th>";
-            $html .= "<th>price</th>";
+            //User Email related
+        		$orderEmail = "ASC";
+        		$arr="&darr;";
+        		if (isset($_GET["order"]) &&
+        		$_GET["order"] == "ASC" &&
+        		$_GET["sort"] == "email") {
+
+        			$orderEmail = "DESC";
+        			$arr="&uarr;";
+        		}
+
+        			$html .= "<th>
+        			<a href='?q=".$r."&sort=email&order=".$orderEmail."'>
+
+        			Email ".$arr."
+
+        			</a>
+
+        			</th>";
+
+              $orderStart_location = "ASC";
+        			$arr="&darr;";
+
+        			if (isset($_GET["order"]) &&
+        			$_GET["order"] == "ASC" &&
+        			$_GET["sort"] == "start_location") {
+
+        				$orderStart_location = "DESC";
+        				$arr="&uarr;";
+        			}
+
+        				$html .= "<th>
+        				<a href='?q=".$r."&sort=start_location&order=".$orderStart_location."'>
+
+        				Start location ".$arr."
+        				</a>
+
+        				</th>";
+
+      					//Start_time related
+        				$orderStart_time = "ASC";
+      					$arr="&darr;";
+        				if (isset($_GET["order"]) &&
+        				$_GET["order"] == "ASC" &&
+        				$_GET["sort"] == "start_time") {
+
+        					$orderStart_time = "DESC";
+      						$arr="&uarr;";
+
+        				}
+
+        					$html .= "<th>
+        					<a href='?q=".$r."&sort=start_time&order=".$orderStart_time."'>
+
+        					Start time ".$arr."
+        					</a>
+
+        					</th>";
+
+      	  				$orderArrival_location = "ASC";
+      						$arr="&darr;";
+      	  				if (isset($_GET["order"]) &&
+      	  				$_GET["order"] == "ASC" &&
+      	  				$_GET["sort"] == "arrival_location ") {
+
+      	  					$orderArrival_location  = "DESC";
+      							$arr="&uarr;";
+
+      	  				}
+
+      	  					$html .= "<th>
+      	  					<a href='?q=".$r."&sort=arrival_location &order=".$orderArrival_location ."'>
+
+      	  					Arrival location ".$arr."
+      	  					</a>
+
+      	  					</th>";
+
+      							$orderArrival_time= "ASC";
+      							$arr="&darr;";
+      							if (isset($_GET["order"]) &&
+      							$_GET["order"] == "ASC" &&
+      							$_GET["sort"] == "arrival_time") {
+
+      								$orderArrival_time = "DESC";
+      								$arr="&uarr;";
+
+      							}
+
+      								$html .= "<th>
+      								<a href='?q=".$r."&sort=arrival_time&order=".$orderArrival_time."'>
+
+      								Time of arrival ".$arr."
+      								</a>
+
+      								</th>";
+
+      								$orderFree_seats= "ASC";
+      								$arr="&darr;";
+      								if (isset($_GET["order"]) &&
+      								$_GET["order"] == "ASC" &&
+      								$_GET["sort"] == "free_seats") {
+
+      									$orderFree_seats = "DESC";
+      									$arr="&uarr;";
+
+      								}
+
+      									$html .= "<th>
+      									<a href='?q=".$r."&sort=free_seats&order=".$orderFree_seats."'>
+
+      									Free seats ".$arr."
+      									</a>
+
+      									</th>";
+
+      									$orderPrice= "ASC";
+      									$arr="&darr;";
+      									if (isset($_GET["order"]) &&
+      									$_GET["order"] == "ASC" &&
+      									$_GET["sort"] == "price") {
+
+      										$orderPrice = "DESC";
+      										$arr="&uarr;";
+                        }
+                          $html .= "<th>
+        									<a href='?q=".$r."&sort=price&order=".$orderPrice."'>
+
+        								  Price ".$arr."
+        									</a>
+
+        									</th>";
+
+                          $html .= "<th>
+
+        								  Register
+        									</a>
+
+        									</th>";
+
+
+
         $html .= "</tr>";
 
         //iga liikme kohta massiivis
@@ -222,7 +357,7 @@ $upcomingRides = $Rides->get($q, $sort, $order);
                 $html .= "<td>".$r->arrival_time."</td>";
                 $html .= "<td>".$r->free_seats."</td>";
                 $html .= "<td>".$r->price."</td>";
-                $html .= "<td><a href='?register=".$r->id."'>nupp ".$r->id."</a></td>";
+                $html .= "<td><a href='?register=".$r->id."'>Ride-ID ".$r->id."</a></td>";
             $html .= "</tr>";
 
         }

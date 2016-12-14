@@ -16,7 +16,7 @@ class Rides {
 
 */
 
-  function get($q, $sort, $order) {
+  function get($r, $sort, $order) {
 
     $allowedSort = ["email", "start_location", "start_time",
     "arrival_location", "arrival_time", "free_seats", "price"];
@@ -36,7 +36,7 @@ class Rides {
 
 
 
-    if ($q != "") {
+    if ($r != "") {
       //otsin
       //echo "Otsin: ".$q;
 
@@ -52,7 +52,7 @@ class Rides {
       ORDER BY $sort $orderBy
       ");
 
-      $searchWord = "%".$q."%";
+      $searchWord = "%".$r."%";
       $stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord,
       $searchWord, $searchWord, $searchWord);
 
