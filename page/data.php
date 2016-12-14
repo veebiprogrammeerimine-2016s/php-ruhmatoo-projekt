@@ -29,6 +29,24 @@
 		$search= $_GET["searchPost"];
 		
 	}
+	
+	
+	if (isset($_GET["addRate"])){
+		
+		
+		
+			$stmt = $mysqli->prepare("
+			INSERT INTO rating(user_id, post_id, rate) 
+			VALUES (?,?,rate+1)");
+			echo $mysqli->error;
+			$stmt->bind_param("ii", $_SESSION["userId"],$_GET["addRate"]);
+			$stmt->execute();
+
+	}else{
+
+		echo "katki";
+		
+	}
 
 ?>
 <?php require("../header.php"); ?>
