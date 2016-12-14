@@ -16,12 +16,14 @@
 	//MUUTUJAD
 	$loginEmailError = "";
 	$loginPasswordError = "";
+	$userNameError = "";
 	$firstNameError = "";
 	$lastNameError = "";
 	$signupEmailError = "";
 	$signupPasswordError = "";
 	$phoneNumberError = "";
 	
+	$userName = "";
 	$firstName = "";
 	$lastName = "";
 	$loginEmail = "";
@@ -42,6 +44,18 @@
 	if (isset ($_POST["loginPassword"]) ){ 
 		if (empty ($_POST["loginPassword"]) ){ 
 			$loginPasswordError = "Palun sisesta parool!";		
+		}
+	}
+	
+	if (isset ($_POST["userName"]) ){
+		if (empty ($_POST["userName"]) ){
+			$userNameError = "See väli on kohustuslik!";		
+		} else {
+			if (!preg_match("/^[a-zA-Z0-9]*$/",$_POST["userName"])) { 
+				$userNameError = "Kasutajanimes võib kasutada vaid tähti ja numbreid!"; 
+			} else {
+				$userName = $_POST["userName"];
+			}
 		}
 	}
 	
@@ -139,7 +153,7 @@
 		echo "telefoni number ".$phoneNumber."<br>";*/
 		
 		//echo $serverPassword;
-		$msg = $User->signup($Helper->cleanInput($firstName), $Helper->cleanInput($lastName), $Helper->cleanInput($signupEmail), $Helper->cleanInput($password), $Helper->cleanInput($gender), $Helper->cleanInput($phoneNumber)); //cleanInput igale muutujale eraldi teha
+		$msg = $User->signup($Helper->cleanInput($userName), $Helper->cleanInput($firstName), $Helper->cleanInput($lastName), $Helper->cleanInput($signupEmail), $Helper->cleanInput($password), $Helper->cleanInput($gender), $Helper->cleanInput($phoneNumber)); //cleanInput igale muutujale eraldi teha
 	}
 	
 	$notice = "";
@@ -176,6 +190,11 @@
 		
 		<form method="POST">
 			<p><span style="color:red; font-size: 10pt">* </span><span style="font-size: 10pt">Kohustuslik väli</span></p>
+			<label>Kasutajanimi <span style="color:red">*</span></label>
+			<br>
+			<input name="userName" type="text" value= "<?=$userName;?>"> <?php echo $userNameError; ?>
+			
+			<br><br>
 			<label>Eesnimi <span style="color:red">*</span></label>
 			<br>
 			<input name="firstName" type="text" value= "<?=$firstName;?>"> <?php echo $firstNameError; ?>

@@ -14,15 +14,15 @@
 	
 	/*TEISED FUNKTSIOONID*/
 	
-	function signup ($firstName, $lastName, $email, $password, $gender, $phoneNumber){
+	function signup ($userName, $firstName, $lastName, $email, $password, $gender, $phoneNumber){
 		//selle sees muutujad pole väljapoole nähtavad
 		
 		//$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-		$stmt = $this->connection->prepare("INSERT INTO user_sample(firstname, lastname, email, password, gender, phonenumber) VALUES(?,?,?,?,?,?)");
+		$stmt = $this->connection->prepare("INSERT INTO user_sample(username, firstname, lastname, email, password, gender, phonenumber) VALUES(?,?,?,?,?,?,?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssssss", $firstName, $lastName, $email, $password, $gender, $phoneNumber); //$signupEmail emailiks lihtsalt
+		$stmt->bind_param("sssssss", $userName, $firstName, $lastName, $email, $password, $gender, $phoneNumber); //$signupEmail emailiks lihtsalt
 		
 		$msg = "";
 		if($stmt->execute()) {
@@ -41,7 +41,7 @@
 		$error = "";
 		
 		$stmt = $this->connection->prepare("
-			SELECT id, firstname, email, password, created
+			SELECT id, username, firstname, email, password, created
 			FROM user_sample
 			WHERE email = ?
 		");
@@ -51,7 +51,7 @@
 		$stmt->bind_param("s", $email); //s-string
 		
 		//määran tulpadele muutujad
-		$stmt->bind_result($id, $firstNameFromDb, $emailFromDb, $passwordFromDb, $created); //Db-database
+		$stmt->bind_result($id, $userNameFromDb, $firstNameFromDb, $emailFromDb, $passwordFromDb, $created); //Db-database
 		$stmt->execute(); //päring läheb läbi executiga, isegi kui ühtegi vastust ei tule
 		
 		if($stmt->fetch()) { //fetch küsin rea andmeid
@@ -62,6 +62,7 @@
 				echo "kasutaja ".$id." logis sisse";
 				
 				$_SESSION["userId"] = $id;
+				$_SESSION["userName"] = $userNameFromDb;
 				$_SESSION["email"] = $emailFromDb;
 				$_SESSION["firstName"] = $firstNameFromDb;
 				
