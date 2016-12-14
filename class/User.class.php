@@ -74,11 +74,12 @@ class User {
 		if ($stmt->execute()) {
 
 
-			header("Location:/~gregness/php-ruhmatoo-projekt/page/register.php?success");
+			header("Location:?success");
 			exit();
 			
 		} else {
-			header("Location:/~gregness/php-ruhmatoo-projekt/page/register.php?duplicate");
+			//header("Location:/~gregness/php-ruhmatoo-projekt/page/register.php?duplicate");
+			header("Location:?duplicate");
 			exit();
 		}
 		$stmt->close();
