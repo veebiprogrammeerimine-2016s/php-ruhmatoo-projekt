@@ -185,7 +185,7 @@ class Rides {
     return $results;
   }
 
-  function getPassenger(){
+  function getPassenger($r, $sort, $order){
 
     $stmt = $this->connection->prepare("
     SELECT cp_rideusers.ride_id, cp_rides.start_location,
@@ -211,19 +211,19 @@ class Rides {
     //SQL lausega tuleb
     while ($stmt->fetch()) {
 
-      $r = new StdClass();
-      $r->ride_id = $ride_id;
-      $r->start_location = $start_location;
-      $r->start_time = $start_time;
-      $r->arrival_location = $arrival_location;
-      $r->arrival_time = $arrival_time;
-      $r->free_seats= $free_seats;
-      $r->driver_name= $driver_name;
-      $r->driver_email = $driver_email;
+      $rides = new StdClass();
+      $rides->ride_id = $ride_id;
+      $rides->start_location = $start_location;
+      $rides->start_time = $start_time;
+      $rides->arrival_location = $arrival_location;
+      $rides->arrival_time = $arrival_time;
+      $rides->free_seats= $free_seats;
+      $rides->driver_name= $driver_name;
+      $rides->driver_email = $driver_email;
 
       //echo $age."<br>";
       //echo $color."<br>";
-      array_push($results, $r);
+      array_push($results, $rides);
     }
 
     $stmt->close();

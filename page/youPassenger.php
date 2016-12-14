@@ -35,8 +35,24 @@ $Rides = new Rides($mysqli);
 
 	}
 
+	if(isset($_GET["r"])) {
+		$r = $_GET["r"];
 
-    $rides = $Rides->getPassenger();
+	} else {
+		//ei otsi
+		$r = "";
+	}
+
+	$sort = "id";
+	$order = "ASC";
+
+	if (isset($_GET["sort"]) && isset($_GET["order"])) {
+		$sort = $_GET["sort"];
+		$order = $_GET["order"];
+
+	}
+
+    $rides = $Rides->getPassenger($r, $sort, $order);
 
 
     if(isset($_GET["r"])) {
@@ -125,6 +141,7 @@ $Rides = new Rides($mysqli);
   				$_GET["sort"] == "start_time") {
 
   					$orderStart_time = "DESC";
+						$arr="&uarr;";
 
   				}
 
@@ -143,7 +160,8 @@ $Rides = new Rides($mysqli);
 	  				$_GET["order"] == "ASC" &&
 	  				$_GET["sort"] == "Arrival_location ") {
 
-	  					$orderArrival_location  = "DESC";
+	  					$orderArrival_location = "DESC";
+							$arr="&uarr;";
 
 	  				}
 
@@ -162,6 +180,7 @@ $Rides = new Rides($mysqli);
 							$_GET["sort"] == "Arrival_time") {
 
 								$orderArrival_time = "DESC";
+								$arr="&uarr;";
 
 							}
 
@@ -180,6 +199,7 @@ $Rides = new Rides($mysqli);
 								$_GET["sort"] == "Free_seats") {
 
 									$orderFree_seats = "DESC";
+									$arr="&uarr;";
 
 								}
 
@@ -198,11 +218,12 @@ $Rides = new Rides($mysqli);
 									$_GET["sort"] == "Driver_name") {
 
 										$orderDriver_name= "DESC";
+										$arr="&uarr;";
 
 									}
 
 										$html .= "<th>
-										<a href='?q=".$r."&sort=Guest_name&order=".$orderDriver_name."'>
+										<a href='?q=".$r."&sort=Driver_name&order=".$orderDriver_name."'>
 
 									 Driver ".$arr."
 										</a>
@@ -216,6 +237,7 @@ $Rides = new Rides($mysqli);
 										$_GET["sort"] == "Driver_email") {
 
 											$orderDriver_email = "DESC";
+											$arr="&uarr;";
 
 										}
 
