@@ -5,100 +5,144 @@ require("../../config.php");
 session_start();
 
 function signUp ($Email, $Password, $Date, $Gender) {
-
+		
 		$database = "if16_mariiviita";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-		$stmt = $mysqli->prepare("INSERT INTO userSample (Email, Password, Date, Gender) VALUES (?, ?, ?, ?)");
-		echo $mysqli->error;
-		$stmt->bind_param("ssss", $Email, $Password, $Date, $Gender);
 
+		$stmt = $mysqli->prepare("INSERT INTO user_sample (Email, Password, Date, Gender) VALUES (?, ?, ?, ?)");
+	
+		echo $mysqli->error;
+		
+		$stmt->bind_param("sssi", $Email, $Password, $Date, $Gender);
+		
 		if($stmt->execute()) {
-			echo "Salvestamine ï¿½nnestus";
+			echo "Salvestamine õnnestus";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
-
+		
 		$stmt->close();
 		$mysqli->close();
-
+		
 	}
-
-
+	
+	
 	function login ($Email, $Password) {
-
+		
 		$error = "";
-
+		
 		$database = "if16_mariiviita";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
 		$stmt = $mysqli->prepare("
-		SELECT id, Email, Password, Date, Gender
+		SELECT id, Email, Password, Date, Gender 
 		FROM userSample
 		WHERE email = ?");
-
+	
 		echo $mysqli->error;
-
-		//asendan kï¿½simï¿½rgi
+		
+		//asendan küsimärgi
 		$stmt->bind_param("s", $Email);
-
-		//mï¿½ï¿½ran vï¿½ï¿½rtused muutujatesse
+		
+		//määran väärtused muutujatesse
 		$stmt->bind_result($id, $EmailFromDb, $PasswordFromDb, $DateFromDb, $GenderFromDb);
 		$stmt->execute();
-
-		//andmed tulid andmebaasist vï¿½i mitte
-		// on tï¿½ene kui on vï¿½hemalt ï¿½ks vaste
+		
+		//andmed tulid andmebaasist või mitte
+		// on tõene kui on vähemalt üks vaste
 		if($stmt->fetch()){
-
+			
 			//oli sellise meiliga kasutaja
 			//password millega kasutaja tahab sisse logida
 			$hash = hash("sha512", $Password);
 			if ($hash == $PasswordFromDb) {
-
+				
 				echo "Kasutaja logis sisse ".$id;
-
-				//mï¿½ï¿½ran sessiooni muutujad, millele saan ligi
+				
+				//määran sessiooni muutujad, millele saan ligi
 				// teistelt lehtedelt
 				$_SESSION["userId"] = $id;
 				$_SESSION["userEmail"] = $EmailFromDb;
-
-
+				
+				
 				header("Location: data.php");
 				exit();
-
+				
 			}else {
 				$error = "Parool on vale!";
 			}
-
-
+			
+			
 		} else {
-
+			
 			// ei leidnud sellise e-mailiga kasutajat
 			$error = "Sellise e-mailiga kasutajat ei ole!";
 		}
-
+		
 		return $error;
-
+		
 	}
-
+	
 	function saveUserData ($currentDate, $Feeling, $NumberofSteps) {
-
+		
 		$database = "if16_mariiviita";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
-		$stmt = $mysqli->prepare("INSERT INTO userData (currentDate, Feeling, NumberofSteps) VALUES (?, ?, ?)");
-
+		$stmt = $mysqli->prepare("INSERT INTO userData (currentDate, Feeling, NumberofSteps, user_id) VALUES (?, ?, ?, ?)");
+	
 		echo $mysqli->error;
-
-		$stmt->bind_param("isi", $currentDate, $Feeling, $NumberofSteps);
-
+		
+		$stmt->bind_param("ssi", $currentDate, $Feeling, $NumberofSteps, $SESSION["user_id"]);
+		
 		if($stmt->execute()) {
-			echo "Salvestamine ï¿½nnestus";
+			echo "Salvestamine õnnestus";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
-
+		
 		$stmt->close();
 		$mysqli->close();
-
+		
+	}
+	
+	function getUserData() {
+		
+		$database = "if16_mariiviita";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $mysqli->prepare("
+			SELECT currentDate, Feeling, NumberofSteps
+			FROM userData
+			WHERE user_id=?
+		");
+		echo $mysqli->error;
+		$stmt->bind_param("i", $_SESSION["user_id"]);
+		$stmt->bind_result($currentDate, $Feeling, $NumberofSteps);
+		$stmt->execute();
+		
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda seni, kuni on rida andmeid
+		// mis vastab select lausele
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$UserData = new StdClass();
+			
+			$UserData->Date = $Date;
+			$UserData->Feeling = $Feeling;
+			$UserData->NumberofSteps = $NumberofSteps;
+			
+			//echo $plate."<br>";
+			// iga kord massiivi lisan juurde nr märgi
+			array_push($result, $UserData);
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+		return $result;
 	}
 ?>

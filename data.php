@@ -75,6 +75,8 @@
 		header("Location: data.php");
 		exit();		
 		}
+		
+	$users=getUserData();	
 ?>
 	
 <h1>Tänane päev</h1>
@@ -88,9 +90,10 @@
 		<label><h3>Enesetunne</h3></label>
 		
 			<form>
-			  <input list="feelings" name="feeling">
+			  <input list="feelings" name="feelings">
 			  <datalist id="feelings">
 				<option value="Suurepärane">
+				<option value="Hea">
 				<option value="Rahuldav">
 				<option value="Halb">
 				<option value="Väga halb">
@@ -104,7 +107,37 @@
 		<input type="submit" value="Salvesta andmed">
 		
 <p>
-	<a href="?logout=1">Logi välja</a>
 </p>		
-</form>		
+</form>	
 
+<h2>Minu enesetunne ja liikumisaktiivsus</h2>
+<?php 
+	
+	$html = "<table>";
+	
+	$html .= "<tr>";
+		$html .= "<th>Kuupäev</th>";
+		$html .= "<th>Enesetunne</th>";
+		$html .= "<th>Sammude arv</th>";
+	$html .= "</tr>";
+	
+	//iga liikme kohta massiivis
+	foreach($users as $u){
+		
+		$html .= "<tr>";
+			$html .= "<td>".$u->Date."</td>";
+			$html .= "<td>".$u->Feeling."</td>";
+			$html .= "<td>".$u->NumberofSteps."</td>";
+		$html .= "</tr>";
+	}
+	
+	$html .= "</table>";
+	
+	echo $html;
+	
+	
+	$listHtml = "<br><br>";
+	
+	
+	
+?>
