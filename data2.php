@@ -64,7 +64,7 @@ echo '<img src="weight.jpg"/>';
 <label><h3>Kaal</h3></label>
 <input name="weight" type="weight" value="<?=$weight;?>"> <?php echo $weightError; ?>
 <br><br>
-<input type="submit" value="Arvutan KMI">
+<input type="submit" value="Arvuta">
 
 
 </form>

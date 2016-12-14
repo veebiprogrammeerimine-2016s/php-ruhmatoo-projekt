@@ -107,7 +107,7 @@ function signUp ($Email, $Password, $Date, $Gender) {
 		$database = "if16_mariiviita";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
-		$stmt = $mysqli->prepare("INSERT INTO userLW (user_id, length, weight) VALUES (?, ?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO userLW (length, weight, user_id) VALUES (?, ?, ?)");
 
 		echo $mysqli->error;
 
