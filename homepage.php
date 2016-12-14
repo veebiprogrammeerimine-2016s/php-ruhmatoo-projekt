@@ -130,7 +130,6 @@ echo $html
 	<a href="?logout=1">Logi välja</a>
 	
 	<br><br>
-	<img src="https://lh5.googleusercontent.com/Z3AQmIoZUPSpK8IbFqXFcs1CIFKUfwVIcdTxeMbb5qlLpIlsRq7JDcYx3GIuroXf8I_FmDdEqkDa-s0=w1280-h894-rw">
 </form>
 </body>		
 </html>

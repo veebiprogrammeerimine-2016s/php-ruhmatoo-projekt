@@ -1,8 +1,7 @@
 <html>
 <head>
 <center>
-<img src="https://lh5.googleusercontent.com/nY_kbTMVBE8BpV72IfR9XELqWgoeHytCcQjJRiVkGmXK4fbgKiHCbuhq3oKhnx6w2Ww8D821qkf1YQY=w1280-h894-rw">
-<img src="https://lh5.googleusercontent.com/Z3AQmIoZUPSpK8IbFqXFcs1CIFKUfwVIcdTxeMbb5qlLpIlsRq7JDcYx3GIuroXf8I_FmDdEqkDa-s0=w1280-h894-rw">
+<img src="https://pp.vk.me/c836721/v836721149/140bc/Ror6KdJGs6o.jpg" width="800px">
 <center>
 </head>
 <body>

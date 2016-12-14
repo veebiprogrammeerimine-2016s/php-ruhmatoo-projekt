@@ -4,8 +4,6 @@
 	require("functions.php");
 	require("header.php");
 	
-	echo date("d.m.Y");
-	
 	//SESSION
 	if (isset($_SESSION["userId"]))
 	{
@@ -137,15 +135,14 @@
 
 	<center>
 	<!--KASUTAJA SISENEB-->
-	<br><br>
-	<img src="https://lh4.googleusercontent.com/GwAbWmRpaRkh5GEW6ctGTo3I-_C0l3pTrO-Oo82h0I5o-h9rdBElpZiisM0-hh-NNwF5YKFNWD9_YXA=w1280-h894">
+	<img src="https://pp.vk.me/c836721/v836721149/140c3/uzbMJ-ysjsM.jpg" width="100px">
 	<p style="color:red;"><?=$error;?></p> <!--näitab parool/email errorit-->
 	<form method="POST">
 		
 		<!--EMAILI LOOGIMINE-->
 		<p>
 		<label for="loginEmail">E-post</label><br>
-		<input name="loginEmail" type="loginEmail">
+		<input name="loginEmail" type="loginEmail" value=<?=$loginEmail;?>>
 		<br><?php echo $loginEmailError;?></br>
 		
 		<!--PAROOLI LOOGIMINE-->
@@ -158,15 +155,14 @@
 	</form>
 
 	<!--KASUTAJA REGISTREERIB-->
-	<br><br>
-	<img src="https://lh4.googleusercontent.com/jORZ4neAxo2lqm9wWNm4Q9HH4uznDkRAK_CetxGyy5sD2faICEaz4QYnsPhR4fTwprdT1RQi2KFgNoA=w1280-h845">
+	<img src="https://pp.vk.me/c836721/v836721149/140ca/yIj8IGDH6BM.jpg" width="200px">
 	<form method="POST">
 	<label></label>
 	
 		<!--EMAIL REGISTREERIMINE-->
 		<p>
 		<label for="signupEmail">E-post</label><br>
-		<input name="signupEmail" type = "signupEmail" placeholder="E-post">
+		<input name="signupEmail" type = "signupEmail" placeholder="E-post" value=<?=$signupEmail;?>>
 		<br><?php echo $signupEmailError;?></br>
 		
 		<!--PAROOL REGISTREERIMINE-->
@@ -189,12 +185,8 @@
 		</select></p>
 	
 		<br><input type="submit" value="Loo kasutaja"></br>
-	<img src="https://lh5.googleusercontent.com/Z3AQmIoZUPSpK8IbFqXFcs1CIFKUfwVIcdTxeMbb5qlLpIlsRq7JDcYx3GIuroXf8I_FmDdEqkDa-s0=w1280-h894-rw">
 	</center>
 </form>
 </body>
 </html>
-
-<?php
-echo date("d.m.Y");
-?>
+<?php echo date("d.m.Y");?>
