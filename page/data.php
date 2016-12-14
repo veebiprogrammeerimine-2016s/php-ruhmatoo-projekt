@@ -33,18 +33,43 @@
 	
 	if (isset($_GET["addRate"])){
 		
-		
-		
-			$stmt = $mysqli->prepare("
-			INSERT INTO rating(user_id, post_id, rate) 
-			VALUES (?,?,rate+1)");
+			$stmt = $mysqli->prepare("SELECT user_id FROM ratings WHERE user_id=? AND pic_id=?");
 			echo $mysqli->error;
-			$stmt->bind_param("ii", $_SESSION["userId"],$_GET["addRate"]);
+			$stmt->bind_param("ii", $_SESSION["userId"], $_GET["addRate"]);
 			$stmt->execute();
+			
+			if($stmt->fetch()){
+				//sai ühe rea
+				echo "juba olemas";
+			}else{
+				
+				$stmt->close();
+				
+				$stmt = $mysqli->prepare("
+			
+				INSERT INTO ratings(user_id, pic_id) 
+				VALUES (?,?)");
+				echo $mysqli->error;
+				$stmt->bind_param("ii", $_SESSION["userId"],$_GET["addRate"]);
+				$stmt->execute();
+			
+				$stmt->close();
+				$stmt = $mysqli->prepare("
+			
+				INSERT INTO submissions(rating) 
+				VALUES (rating+1)");
+				echo $mysqli->error;
+				$stmt->execute();
+			
+				echo "Aitäh hinnagu eest";
+			}
+		
+		
+			
 
 	}else{
 
-		echo "katki";
+		//echo "katki";
 		
 	}
 
