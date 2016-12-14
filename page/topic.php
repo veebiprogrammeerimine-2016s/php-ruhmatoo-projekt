@@ -9,6 +9,12 @@
 	require("../class/User.class.php");
 	$User = new User($mysqli);
 	
+	require("../class/Comment.class.php");
+	$Comment = new Comment($mysqli);
+	
+	require("../class/Post.class.php");
+	$Post = new Post($mysqli);
+	
 	//kui ei ole sisseloginud, suunan login lehele
 	if (!isset($_SESSION["userId"])) {
 		header("Location: index.php");
@@ -26,6 +32,32 @@
 	}
 	$search ="";
 	
+	$topic=$_GET["topicid"];
+	
+	if (isset($_POST["comment"])) {
+		
+		if(!empty($_POST["comment"])) {
+			
+			$Comment->insertComment($topic,$_SESSION["userId"],$Helper->cleanInput($_POST["comment"]));
+		}
+		
+	}
+	
+	$postError="";
+	$postedTrue="";
+	
+	$postedTrue=$_GET['posted'];
+	
+	if ($postedTrue=="true") {
+		
+		$postError= "Your post was submitted!";
+	}
+	elseif ($postedTrue=="false") {
+			
+			$postError= "Something went wrong...";
+	}
+	
+	
 	if (isset($_GET["searchPost"]) && !empty($_GET["searchPost"])){
 		
 		//header("Location: data.php?search=".$_GET["searchPost"]);
@@ -33,53 +65,98 @@
 		$search= $_GET["searchPost"];
 		
 	}
-	$topic=$_GET["topicid"];
+	$html="";
+	$html2="";
+	if (isset($_GET["topicid"])){
+		
+		$topic = $_GET["topicid"];
+		$results=$Post->getTopicPost($topic);
+		$results2=$Comment->getComments($topic);
+		
+	}
 	
-	$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
-		FROM submissions 
-		join user_sample on submissions.author=user_sample.id
-		where submissions.id = $topic");
 	
-
-	$results->execute(); //Execute prepared Query
-	$results->bind_result($id, $name, $message, $author); //bind variables to prepared statement
 	//pre echob koodina
 	//echo "<pre>";
 	//var_dump($people);
 	//echo "</pre>";
 	
+
+	
 ?>
 <?php require("../header.php"); ?>
 <div class="container">
 	<div class="page-header">
-		<h1>Topic nr x</h1>
+		<h1>Thread #<?php echo $topic; ?></h1>
 	</div>
+
+
+	
+	
 	<p class="lead">
+	<div class='container'>
+	<div class='row'><div class='col-lg-4'>
+	<?php
+	foreach ($results as $r) {
+			
+			
+			
+		
+			$html .= "<div><table>";
+				$html .= "<tr><h2>".$r->name."</h2></tr>";
+				$html .= "<td><img src=".$r->message."></td></table>";
+				$html .= "<a href='user.php?username=".$r->author."'></a><br><br><br><br>";
+
+			$html .= "</div>";
+		
+		}
+	
+	echo $html;
+	?>
+	</div></div>
+	</p>
+	
+	
+	
 	
 	
 	
 	<?php
-	while($results->fetch()){ //fetch values
-		echo '<div>';
-		echo '<table>';
-		echo '<tr><h2>'.$name.'</h2></tr>';
-		echo '<td>'."<img src=".$message." >".'</td>';
-		echo '</table>';
-		echo "Posted by: "."<a href='user.php?username=$author';?>$author</a>";
-		echo '<br><br><br><br>';
-		echo '</div>';
-	}
+	foreach ($results2 as $r2) {
+			
+			
+			
+		
+
+				$html2 .= "	<div class='well well-sm'><b>".$r2->userid."</b><br><br>";
+				$html2 .= $r2->comment;
+				$html2 .= "<br><br><small class='text-muted'>Postitatud ".$r2->aeg."</small></div>";
+		
+		}
+	
+	echo $html2;
 	?>
 	
+
 	
 	
 	
 	
-	</p>
+	<form class="form-inline" role="form" method="post">
+		<input class="form-control input" type="text" name="comment" placeholder="Kirjuta kommentaar" />
+			<div class="form-group">
+				<button class="btn btn-default">Postita</button>
+			</div>
+	</form>
+	<br><br>
 	
+	<h3><?php echo $postError;?></h3>
 	
 
+	
 </div>
+</div>
+
 <?php //echo$_SESSION["userEmail"];?>
 
 <?//=$_SESSION["userEmail"];?>
