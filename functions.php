@@ -89,11 +89,11 @@ function signUp ($Email, $Password, $Date, $Gender) {
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
 		$stmt = $mysqli->prepare("INSERT INTO userData (currentDate, Feeling, NumberofSteps, user_id) VALUES (?, ?, ?, ?)");
-	
+
 		echo $mysqli->error;
-		
-		$stmt->bind_param("ssi", $currentDate, $Feeling, $NumberofSteps, $SESSION["user_id"]);
-		
+
+		$stmt->bind_param("ssii", $currentDate, $Feeling, $NumberofSteps, $_SESSION["userId"]);
+
 		if($stmt->execute()) {
 			echo "Salvestamine õnnestus";
 		} else {
@@ -145,4 +145,28 @@ function signUp ($Email, $Password, $Date, $Gender) {
 		
 		return $result;
 	}
+
+
+	function saveUserLW  ($length, $weight) {
+
+		$database = "if16_mariiviita";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+
+		$stmt = $mysqli->prepare("INSERT INTO userLW (length, weight, user_id) VALUES (?, ?, ?)");
+
+		echo $mysqli->error;
+
+		$stmt->bind_param("iii", $length, $weight, $_SESSION["userId"]);
+
+		if($stmt->execute()) {
+			echo "Salvestamine ï¿½nnestus";
+		} else {
+			echo "ERROR ".$stmt->error;
+		}
+
+		$stmt->close();
+		$mysqli->close();
+
+	}
+
 ?>
