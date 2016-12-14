@@ -82,19 +82,7 @@
 		echo '<br><br><br><br>';
 		echo '</div>';
 	}
-	$stmt->close;
-	if (isset ($Rate)){
-		
-		$stmt = $this->connection->prepare("
-		UPDATE submissions
-		SET rating=rating+1
-		WHERE id = ?");
-		echo $this->connection->error;
-		$stmt->bind_param("i", $id);
-		
-		$stmt->execute();
-		
-	}
+
 	
 	
 	
