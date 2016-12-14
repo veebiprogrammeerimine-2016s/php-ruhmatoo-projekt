@@ -9,7 +9,14 @@ div {
 	border: 5px solid red;
 	paddiing: 150px;
 	margin: 25px;
+
+	.flex-container {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around:
+	}
 }
+
 </style>
 </head>
 <body>
@@ -19,3 +26,4 @@ div {
 
 </body>
 </html>
+
