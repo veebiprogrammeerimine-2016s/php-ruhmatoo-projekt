@@ -6,6 +6,8 @@
 	//kas kasutaja uuendab andmeid
 	if(isset($_POST["update"])){
 		
+		echo "Töö salvestamine õnnestus!";
+		
 		$Car->saveWorkForSingleCar(cleanInput($_POST["Mileage"]), cleanInput($_POST["DoneJob"]), cleanInput($_POST["JobCost"]), cleanInput($_POST["Comment"]), cleanInput($_POST["id"]));
 		
 		header("Location: edit.php?id=".$_POST["id"]."&success=true");
@@ -13,11 +15,14 @@
 		
 	}
 	
-	
-	//saadan kaasa id
 	//$c = $Car->getSingleData($_GET["id"]);
-	
+	//var_dump($c);
 
+	if(isset($_GET["delete"])){
+		
+		$Car->deleteCar($_GET["id"]);
+	
+	} 
 	
 ?>
 <?php require ("header.php");?>
@@ -39,6 +44,9 @@
 	<input type="submit" name="update" value="Salvesta">
   </form>
   
+  <br><br>
+  
+  <a href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a>
 
 <?php require ("footer.php");?>
   

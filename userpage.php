@@ -12,7 +12,26 @@ if (isset ($_POST["RegPlate"]) &&
     $Car->saveCar ($_POST["RegPlate"], $_POST["Mark"], $_POST["Model"]);
 }
 
-$cars=$Car->getUserCars();
+
+
+if(isset($_GET["q"])){
+
+		$q = $_GET["q"];
+
+	} else {
+		//otsisõna tühi
+		$q = "";
+	}
+
+	$sort = "id";
+
+	if(isset($_GET["sort"])) {
+		$sort = $_GET["sort"];
+	}
+
+	$cars=$Car->getUserCars();
+		//otsisõna funktsiooni sisse
+	$carData = $Car->getAll($q, $sort);
 ?>
 
 <?php require ("header.php");?>
@@ -34,9 +53,18 @@ $cars=$Car->getUserCars();
                     <input class="form-control" name="Model" placeholder="Sõiduki mudel" type="text">
                 </div>
                 <input class="btn btn-success btn-sm" type="submit" value="Sisesta">
+			</form>
         </div>
     </div>
 </div>
+
+<h2>Autod</h2>
+
+<form method="GET">
+
+	<input type="search" name="q" value="<?=$q;?>">
+	<input type="submit" value="Otsi">
+</form>
 <h2>Sinu Sõidukid</h2>
 <?php
 

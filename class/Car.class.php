@@ -22,7 +22,7 @@
 	function getSingleData($edit_id){
 
 
-		$stmt = $this->connection->prepare("SELECT id, Mileage, DoneJob, JobCost, Comment FROM repairCars WHERE id=?");
+		$stmt = $this->connection->prepare("SELECT id, Mileage, DoneJob, JobCost, Comment FROM repairWork WHERE id=? AND deleted IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
 		$stmt->bind_result($id, $Mileage, $DoneJob, $JobCost, $Comment);
@@ -83,7 +83,7 @@
 	
     function getUserCars () {
 
-        $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model FROM repairCars");
+        $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model FROM repairCars WHERE deleted IS NULL");
         echo $this->connection->error;
 
         $stmt ->bind_result($id, $RegPlate, $Mark, $Model);
@@ -113,7 +113,6 @@
             //ei ole lubatud tulp
             $sort = "UserId";
         }
-
         if($q != "") {
 
             echo "Otsib: ".$q;
@@ -195,6 +194,25 @@
 	
 			echo "salvestus �nnestus!";
 		}
+		$stmt->close();
+
+	}
+	
+	function deleteCar ($deleted) {
+
+
+		$stmt = $this->connection->prepare("UPDATE repairCars SET deleted=NOW() WHERE id=? AND deleted IS NULL");
+
+		echo $this->connection->error;
+		
+		$stmt->bind_param("s", $deleted);
+
+		if($stmt->execute()) {
+			echo "kustutamine �nnestus";
+		} else {
+		 	echo "ERROR ".$stmt->error;
+		}
+
 		$stmt->close();
 
 	}

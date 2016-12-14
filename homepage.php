@@ -36,6 +36,57 @@
 		exit();
 	}
 	
+	//kas otsib
+	if(isset($_GET["q"])){
+
+		$q = $_GET["q"];
+
+	} else {
+		//otsisõna tühi
+		$q = "";
+	}
+
+	$sort = "id";
+
+	if(isset($_GET["sort"])) {
+		$sort = $_GET["sort"];
+	}
+
+		//otsisõna funktsiooni sisse
+		$carData = $Car->getAll($q, $sort);
+	
+	$html = "<table class='table table-striped'>";
+		//iga liikme kohta massiivis
+	foreach($carData as $c){
+		// iga auto on $c
+		//echo $c->plate."<br>";
+		
+		$html .= "<tr>";
+			$html .= "<td>".$c->UserId."</td>";
+			$html .= "<td>".$c->RegPlate."</td>";
+			$html .= "<td>".$c->Mark."</td>";
+			$html .= "<td>".$c->Model."</td>";
+            $html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span>Muuda</a></td>";
+
+		$html .= "</tr>";
+	}
+	
+	$html .= "</table>";
+	
+	echo $html;
+	
+	
+	$listHtml = "<br><br>";
+	
+	foreach($carData as $c){
+		
+		
+		$listHtml .= "<p>RegPlate = ".$c->RegPlate."</p>";
+		$listHtml .= "<p>Mark = ".$c->Mark."</p>";
+		$listHtml .= "<p>Model = ".$c->Model."</p>";
+	}
+	
+	echo $listHtml;
 	
 ?>
 
@@ -55,6 +106,14 @@
 		</div>
 	</div>
 	
+	
+<h2>Autod</h2>
+
+<form>
+
+	<input type="search" name="q" value="<?=$q;?>">
+	<input type="submit" value="Otsi">
+</form>
 
 	
 <?php require ("footer.php");?>
