@@ -4,9 +4,16 @@
 p {padding:10px;
 	color:#777;}
   
-body{font-family:helvetica;	}
+body{font-family:helvetica;
+    
+background-image:url("https://s-media-cache-ak0.pinimg.com/originals/9b/f3/c3/9bf3c3ea7184a7879c4c94efce4f11c9.jpg");
+background-size: cover;
+background-attachment:scroll;
+background-repeat: no-repeat;}
 
 a{color:#777;}
+
+
 
 nav{height:0px;}  
 
@@ -16,8 +23,10 @@ h3{color:white;
 table{
     border:0;
     border-radius:10px;
-    
+    table-layout:fixed;
 }
+
+
 
 
 h4{color:white;}  
@@ -91,8 +100,12 @@ h4{color:white;}
 #para2Table{
     background-color:#e3e5dc;
     border-radius:10px;
+    align-content: center;
 }
 
+#para2TalbeHolder{
+    align-content: center;
+}
   
   #para2 ul li h3{color:#777;}
   
