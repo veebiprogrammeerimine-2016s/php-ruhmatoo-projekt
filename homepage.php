@@ -86,7 +86,7 @@ echo $html
 <span id="clock">&nbsp;</span>
 
 	<body>
-	<h2>Tee uue postituse</h2>
+	<h2>Tee uus postitus</h2>
 	<form method="POST">
 	<!--KATEGOORIA-->
 	<p><label for="category">Vali eriala:</label><br>
