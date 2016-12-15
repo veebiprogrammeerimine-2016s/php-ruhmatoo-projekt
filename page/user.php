@@ -59,7 +59,7 @@
 	
 ?>
 
-<?php require("header2.php");?>
+<?php require("header3.php");?>
 <h1><a href="data.php"> < tagasi</a> Kasutaja leht</h1>
 <?=$msg;?>
 <p>
