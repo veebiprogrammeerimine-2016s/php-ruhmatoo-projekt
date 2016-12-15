@@ -53,12 +53,14 @@
 		
 	}else{
 		
-		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
-		FROM submissions 
+		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username, 
+		(SELECT count(*) FROM ratings WHERE user_id=? AND pic_id=submissions.id)
+		FROM submissions
 		join user_sample on submissions.author=user_sample.id
 		WHERE deleted is NULL
 		ORDER BY id DESC LIMIT ?, ?");
-		$results->bind_param("ii", $position, $item_per_page); 
+		//echo $mysqli->error;
+		$results->bind_param("iii", $_SESSION["userId"], $position, $item_per_page); 
 
 	}
 
@@ -68,7 +70,7 @@
 	//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
 	//for more info https://www.sanwebe.com/2013/03/basic-php-mysqli-usage
 	$results->execute(); //Execute prepared Query
-	$results->bind_result($id, $name, $message, $author); //bind variables to prepared statement
+	$results->bind_result($id, $name, $message, $author, $rated); //bind variables to prepared statement
 	
 	//output results from database
 	while($results->fetch()){ //fetch values
@@ -77,12 +79,34 @@
 		echo '<tr><h2>'.$name.'</h2></tr>';
 		echo '<td>'."<a href='topic.php?topicid=$id&posted' class='thumbnail'><img src=".$message." ></a>".'</td>';
 		echo '<tr><td>'."Posted by: "."<a href='user.php?username=$author';?>$author</a>".'</td>';
-		echo '<td align="right">'.'<a href="?addRate='.$id.'"><span class="glyphicon glyphicon-fire">Ignite(rate)</span></a>'.'</td></tr>';
+		
+		$class = "";
+		//echo $rated;
+		if($rated){
+			$class = " rated";
+		}
+		
+		echo '<td align="right">'.'<a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-fire">Ignite(rate)</span></a>'.'</td></tr>';
 		echo '</table>';
 		echo '<br><br>';
 		echo '</div>';
 	}
 	
+	/*function userRatingExists($id, $mysqli){
+		
+		$stmt = $mysqli->prepare("SELECT user_id, pic_id FROM ratings WHERE user_id=? AND pic_id=?");
+			echo $mysqli->error;
+			$stmt->bind_param("ii", $_SESSION["userId"], $id);
+			$stmt->execute();
+			
+			if($stmt->fetch()){
+				//sai ühe rea
+				return true;
+			}else{
+				
+				return false;
+			}
+	}*/
 	
 	
 ?>

@@ -40,7 +40,8 @@
 			
 			if($stmt->fetch()){
 				//sai ühe rea
-				echo "juba olemas";
+				echo '{"success": false, "message":"juba olemas"}';
+				exit();
 			}else{
 				
 				$stmt->close();
@@ -61,7 +62,8 @@
 				echo $mysqli->error;
 				$stmt->execute();
 			
-				echo "Aitäh hinnaguu eest";
+				echo '{"success": true, "message":"Aitäh hinnangu eest"}';
+				exit();
 			}
 		
 		
@@ -86,6 +88,7 @@
 	}
 ?>
 $(function() {
+		
 	//alert("siin");
 	var track_page = 1; //track user scroll as page number, right now page number is 1
 	var limit_page=5;
@@ -123,13 +126,13 @@ $(function() {
 	});     
 	//Ajax load function
 	function load_contents(track_page){
-		/*
 		
-		SEE SIIN VIRISEB KUI LIIGA PALJU KERID
+	/*	
+		//SEE SIIN VIRISEB KUI LIIGA PALJU KERID
 		if(track_page%2==0){
 			alert("Olen kerinud "+track_page+" lehekülge, äkki aitab ?");
 		}
-		*/
+	*/	
 		loading = true;  //set loading flag on
 		$('.loading-info').show(); //show loading animation 
 		$.get( 'getDataPerPage.php?page='+track_page + search, function(data){
@@ -159,7 +162,53 @@ $(function() {
 			alert(thrownError); //alert with HTTP error
 		})
 	}
+	
+	
+	
+	
+	
+	
 });
+
+/* ADD RATING*/
+function addRating(el){
+	
+	console.log(el);
+	
+	var id = el.dataset.id;
+	
+	$.get( "data.php?addRate="+id, function( data ) {
+		
+	var result = JSON.parse(data);
+	  console.log(result);
+	  if(result.success){
+		  
+		  el.className += " rated";
+		  /*
+		  var p = document.createElement("p");
+		  p.innerHTML = result.message;
+		  el.appendChild(p);
+		  
+		  window.setTimeout(function(){
+			  el.removeChild(p);
+		  },1000);
+		  */
+	  }else{
+		  //ei õnnestunud
+		  el.className += " rated";
+		  /*
+		  var p = document.createElement("p");
+		  p.innerHTML = result.message;
+		  el.appendChild(p);
+		  
+		  window.setTimeout(function(){
+			  el.removeChild(p);
+		  },1000);
+		  */
+	  }
+	}); 
+}
+
 </script>
 
 
