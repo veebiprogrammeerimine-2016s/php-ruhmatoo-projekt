@@ -65,24 +65,31 @@ function insertToDb($title, $movie_link, $rating,
 function getGenreFromDb() {
 	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-	$stmt = $mysqli->prepare("SELECT DISTINCT genre from movies_db");
+	$stmt = $mysqli->prepare("SELECT DISTINCT genre FROM movies_db ORDER BY genre");
 	$stmt->bind_result($genre);
 	$stmt->execute();
 	$result = array();
 	
 	while($stmt->fetch()) {
-	
+		if(count($result)>= 26){
+			break;
+		}
+		$x = "";
 		$object = new StdClass();
-		$object->genre = $genre;
-		
-		array_push($result, $object);
-		
-	}
-	foreach($result as $item) {
-		echo '<p>genre: '.$item->genre.'</p>';
-	}
-}
+		$x = explode(",", $genre);
+		foreach($x as $i){
+			$object->genre = $i;
+			if(!in_array($object->genre, $result)){
+				array_push($result, $object->genre);
+			}
+			
+		}
+	
 
+	}
+
+	return $result;
+}
 function searchFromDb($keyword){
 	$keyword = "%".$keyword."%";
 	$mysqli = new mysqli($GLOBALS["serverHost"], 
@@ -116,4 +123,25 @@ function searchFromDb($keyword){
 	
 }
 
+function searchByGenre($genre){
+		$genre = "%".$genre."%";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		$stmt = $mysqli->prepare("SELECT poster
+							FROM movies_db
+							WHERE genre LIKE ? 
+							ORDER BY RAND() 
+							LIMIT 1");
+		echo $mysqli->error;
+		$stmt->bind_param("s", $genre);
+		$stmt->bind_result($poster);
+		$stmt->execute();
+		$result = array();
+		while($stmt->fetch()) {
+			$object = new StdClass();
+			$object->poster = $poster;
+			array_push($result, $object);
+		}
+		return $result;
+		
+}
 ?>

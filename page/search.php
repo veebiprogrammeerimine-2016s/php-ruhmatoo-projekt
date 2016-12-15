@@ -13,7 +13,21 @@ include '../functions.php';
 	</head>
 <body>
 
-<?php getGenreFromDb(); ?>
+<?php 
+
+
+$genres = getGenreFromDb(); 
+foreach($genres as $g){
+	echo $g."<br>";
+	$poster = searchByGenre($g);
+	foreach($poster as $p){
+		echo "<img src=".$p->poster."><br>";	
+	}
+
+	
+	
+}
+?>
 
 </body>
 
