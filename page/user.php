@@ -59,9 +59,10 @@
 	
 ?>
 
+
 <?php require("header3.php");?>
 <a href="data.php"> < tagasi</a> <h1> <font color="blue"> Kasutaja Profiil </font> </h1>
-<?=$msg;?>
+
 <p>
 	<h3>Tere tulemast  <?=$_SESSION["userEmail"];?>!</h3>
 	<a href="?logout=1">Logi välja</a>
@@ -97,28 +98,3 @@
 
 
 
-<h2>Kasutaja hobid</h2>
-<form method="POST">
-	
-	<label>Hobi/huviala nimi</label><br>
-	<select name="userInterest" type="text">
-        <?php
-            
-            $listHtml = "";
-        	
-        	foreach($interests as $i){
-        		
-        		
-        		$listHtml .= "<option value='".$i->id."'>".$i->interest."</option>";
-        
-        	}
-        	
-        	echo $listHtml;
-            
-        ?>
-    </select>
-    	
-	
-	<input type="submit" value="Lisa">
-	
-</form>
