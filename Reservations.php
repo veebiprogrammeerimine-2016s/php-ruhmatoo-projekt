@@ -247,11 +247,11 @@
 
 			?>
 			</table>
-			
 			<br><br>
 			
-			<input type="submit" value="Broneeri" class="btn btn-success">
+			<input type="submit" value="Broneeri" class="btn btn-primary">
 		
+			<br><br>			
 		</form>
 
 	</body>
