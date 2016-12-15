@@ -29,6 +29,7 @@ if ($sendFeedback == 1) {
 	$sql = "INSERT INTO feedback (title, content) values ('".$title."','". $content."')";
 	if ($conn->query($sql) == TRUE) {
 		$feedbackSuccessful = 1;
+		$feedbackFailed = 0;
 	} else {
 		$feedbackFailed = 1;
 	}

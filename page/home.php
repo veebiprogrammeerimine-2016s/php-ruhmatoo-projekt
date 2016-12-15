@@ -1,6 +1,16 @@
 <?php
 require("header.php");
+
+$conn = new mysqli($server, $user, $pass, $db);
+
+$sql = "SELECT id, name FROM districts ORDER BY name";
+$districts = $conn->query($sql);
+if ($conn->connect_error) {
+	die("Ühendus nurjus: " . $conn->connect_error);
+}
+
 ?>
+
 <div class="row">
 <div class="header c-6"><?php echo $appName;?></div>
 <div class="header c-6">
@@ -9,7 +19,7 @@ require("header.php");
 <input type="text" name="search" placeholder="Otsi...">
 <input type="submit" class="button" style=""  value="Otsi">
 </form>
-<a class="button" href="login.php" >Logi sisse</a>
+<a class="button" href="login.php">Logi sisse</a>
 </div>
 </div>
 
@@ -23,9 +33,14 @@ require("header.php");
 <p>
 <h6>Linnaosa</h6>
 <select style="width: 100%;" name="district">
-  <option value="kesklinn">Kesklinn</option>
-  <option value="kristiine">Kristiine</option>
-  <option value="pirita">Pirita</option>
+  <?php 
+	if ($districts->num_rows > 0) {
+		while($row = $districts->fetch_assoc()) {
+			echo "<option value='".$row["id"]."'>".$row["name"]."</option>";
+	}
+	}
+	$conn->close()
+  ?>
 </select>
 </p>
 <h6>Oskused</h6>
