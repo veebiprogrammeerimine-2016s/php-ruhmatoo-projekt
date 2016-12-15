@@ -114,9 +114,10 @@ if( isset($_POST["signupEmail"] )){
 						$html .= "<tr>";
 							
                             $html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>pilt</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>id</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=name&direction=".$direction."'>taime nimetus</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=watering_day&direction=".$direction."'>kastmisvahemik</a></th>";
+							$html .= "<th style='width:20px'><a href='?q=".$q."&sort=id&direction=".$direction."'>id</a></th>";
+							$html .= "<th style='width:250px'><a href='?q=".$q."&sort=name&direction=".$direction."'>taime nimetus</a></th>";
+							$html .= "<th style='width:100px'><a href='?q=".$q."&sort=watering_day&direction=".$direction."'>kastmine</a></th>";
+                            $html .= "<th style='width:300px''>nõuanded</th>";
 						$html .= "</tr>";
 						
 						$i = 1;
@@ -133,6 +134,7 @@ if( isset($_POST["signupEmail"] )){
 								$html .= "<td>".$p->id."</td>";
 								$html .= "<td>".$p->name."<a href='edit.php?id=".$p->id."'>muuda</a></td>";
 								$html .= "<td>".$p->intervals."</td>";
+                                $html .= "<td>".$p->tip."</td>";
 								
 							$html .= "</tr>";
 							
