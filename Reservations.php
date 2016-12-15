@@ -251,6 +251,16 @@
 			<br><br>
 			
 			<input type="submit" value="Broneeri" class="btn btn-primary">
+			
+			
+			
+			<input type=button onClick="parent.open('http://greeny.cs.tlu.ee/~kerta/veebiprogrammeerimine/php-ruhmatoo-projekt/php-ruhmatoo-projekt/tagasiside.html')" value='Tagasiside' >
+		
+						
+						
+	
+			
+
 		
 			<br><br>			
 		</form>
