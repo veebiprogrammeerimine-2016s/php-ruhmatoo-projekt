@@ -8,6 +8,7 @@ require("../../../config.php");
 	$database = "if16_brigitta";
 	$mysqli = new mysqli($serverHost, $serverUsername,  $serverPassword, $database);
 	
+<<<<<<< HEAD
 function movieExists($link){
 	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"],  $GLOBALS["serverPassword"],  $GLOBALS["database"]);
 	$stmt = $mysqli->prepare("SELECT id FROM movies_db WHERE link=?");
@@ -26,6 +27,8 @@ function movieExists($link){
 	
 }
 	
+=======
+>>>>>>> e56efdd11d22452368b05d339b60f152ded20085
 function insertToDb($title, $movie_link, $rating, 
 					$genre, $directors, $release_date, 
 					$poster, $actors, $runtime, $tomato_score, $synopsis){
@@ -62,10 +65,38 @@ function insertToDb($title, $movie_link, $rating,
 								
 }
 
+=======
+function getGenreFromDb() {
+	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+		
+	$stmt = $mysqli->prepare("SELECT DISTINCT genre from movies_db");
+	$stmt->bind_result($genre);
+	$stmt->execute();
+	$result = array();
+	
+	while($stmt->fetch()) {
+	
+		$object = new StdClass();
+		$object->genre = $genre;
+		
+		array_push($result, $object);
+		
+	}
+	foreach($result as $item) {
+		echo '<p>genre: '.$item->genre.'</p>';
+	}
+>>>>>>> e56efdd11d22452368b05d339b60f152ded20085
+=======
+}
+
+>>>>>>> e56efdd11d22452368b05d339b60f152ded20085
+<<<<<<< HEAD
 function searchFromDb($keyword){
 	$keyword = "%".$keyword."%";
-	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"],  $GLOBALS["serverPassword"],  $GLOBALS["database"]);
-
+	$mysqli = new mysqli($GLOBALS["serverHost"], 
+						$GLOBALS["serverUsername"],  
+						$GLOBALS["serverPassword"],  
+						$GLOBALS["database"]);
 	$stmt = $mysqli->prepare("SELECT title, link, release_date, poster
 							FROM movies_db
 							WHERE title LIKE ? OR synopsis LIKE ? OR actors LIKE ?
@@ -84,8 +115,7 @@ function searchFromDb($keyword){
 		$object->mlink = $link;
 		$object->release_date = $release_date;
 		$object->poster = $poster;
-		
-
+<<<<<<< HEAD
 		array_push($result, $object);
 		
 	}
@@ -93,4 +123,5 @@ function searchFromDb($keyword){
 	return $result;
 	
 }
+
 ?>
