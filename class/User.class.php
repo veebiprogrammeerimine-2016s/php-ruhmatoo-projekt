@@ -113,6 +113,63 @@
 		
 		return $userData;
 	}
+	
+		function editData($edit_id){
+		$stmt = $this->connection->prepare("SELECT email, phonenumber FROM user_sample WHERE id=? AND deleted IS NULL");
+		echo $this->connection->error;
+		$stmt->bind_param("i", $edit_id);
+		$stmt->bind_result($email, $phonenumber);
+		$stmt->execute();
+		
+		//tekitan objekti
+		$person = new Stdclass();
+		
+		//saime ühe rea andmeid
+		if($stmt->fetch()){
+			// saan siin alles kasutada bind_result muutujaid
+			$person->email = $email;
+			$person->phonenumber = $phonenumber;
+			
+		}else{
+			// ei saanud rida andmeid kätte
+			// sellist id'd ei ole olemas
+			// see rida võib olla kustutatud
+			header("Location: edit.php");
+			exit();
+		}
+		
+		$stmt->close();
+		return $person;
+	}
+	
+	function deleteData($id){
+		$stmt = $this->connection->prepare("UPDATE user_sample SET deleted=NOW() WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("i",$id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			// õnnestus
+			echo "kustutamine õnnestus!";
+		}
+		
+		$stmt->close();	
+	}
+	
+	function update($id, $email, $phonenumber){
+    	
+		$stmt = $this->connection->prepare("UPDATE user_sample SET email=?, phonenumber=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("ssi",$email, $phonenumber, $id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			// õnnestus
+			echo "salvestus õnnestus!";
+		}
+		
+		$stmt->close();
+	}
 }
+
+
 
 ?>
