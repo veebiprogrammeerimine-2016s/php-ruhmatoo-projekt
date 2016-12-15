@@ -24,6 +24,9 @@
 		.wrapper{width: 500px;margin: 0 auto;font-family: Georgia, "Times New Roman", Times, serif;}
 		.wrapper > ul#results li{margin-bottom: 1px;background: #f9f9f9;padding: 20px;list-style: none;}
 		.loading-info{text-align:center;}
+		.form-control {
+			width:33%;
+		}
 		</style>
 	</head>
 	<body>

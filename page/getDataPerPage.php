@@ -74,10 +74,8 @@
 	while($results->fetch()){ //fetch values
 		echo '<div>';
 		echo '<table>';
-		echo '<tr><h2>'.$name.'</h2></tr>';
-		echo '<td>'."<a href='topic.php?topicid=$id&posted' class='thumbnail'><img src=".$message." ></a>".'</td>';
-		echo '<tr><td>'."Posted by: "."<a href='user.php?username=$author';?>$author</a>".'</td>';
-		echo '<td align="right">'.'<a href="?addRate='.$id.'"><span class="glyphicon glyphicon-fire">Ignite(rate)</span></a>'.'</td></tr>';
+		echo '<tr><h2>'.$name.'<a href="?addRate='.$id.'"><span style="font-size:35px; color:tomato;" class="glyphicon glyphicon-fire"></span></a></h2></tr>';
+		echo '<td>'."<a href='topic.php?topicid=$id&posted'><img src=".$message." ></a>".'</td>';
 		echo '</table>';
 		echo '<br><br>';
 		echo '</div>';
