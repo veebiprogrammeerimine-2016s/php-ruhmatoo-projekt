@@ -9,6 +9,7 @@
 	$appName = "Töömehe leidja";
 ?>
 <html>
+<meta charset='utf-8'>
 <header>
 
 <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
