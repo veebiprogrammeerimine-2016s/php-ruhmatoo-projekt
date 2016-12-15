@@ -59,7 +59,7 @@
 	
 ?>
 
-<?php require("header3.php");?>
+<?php require("header2.php");?>
 <h1><a href="data.php"> < tagasi</a> Kasutaja leht</h1>
 <?=$msg;?>
 <p>
@@ -97,28 +97,3 @@
 
 
 
-<h2>Kasutaja hobid</h2>
-<form method="POST">
-	
-	<label>Hobi/huviala nimi</label><br>
-	<select name="userInterest" type="text">
-        <?php
-            
-            $listHtml = "";
-        	
-        	foreach($interests as $i){
-        		
-        		
-        		$listHtml .= "<option value='".$i->id."'>".$i->interest."</option>";
-        
-        	}
-        	
-        	echo $listHtml;
-            
-        ?>
-    </select>
-    	
-	
-	<input type="submit" value="Lisa">
-	
-</form>

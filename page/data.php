@@ -75,7 +75,7 @@
 	//echo "</pre>";
 
 if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
-    $target_dir = "../pildid/";
+    $target_dir = "pildid/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
