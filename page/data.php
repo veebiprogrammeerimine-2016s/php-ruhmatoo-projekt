@@ -181,7 +181,7 @@ function upload(){
 
 <?php 
 
-	//iga liikme kohta massiivis
+	/*iga liikme kohta massiivis
 	foreach ($notes as $n) {
 		
 		$style = "width:100px; 
@@ -191,12 +191,12 @@ function upload(){
 				  background-color: ".$n->noteColor.";";
 		
 		echo "<p style='  ".$style."  '>".$n->note."</p>";
-	}
+	}*/
 
 
 ?>
 
- <h2 style="clear:both;">Tabel</h2>
+ <h1 style="clear:both;">Foorum</h1>
 <?php 
 	/*$html = "<table class='table'>";
 		
