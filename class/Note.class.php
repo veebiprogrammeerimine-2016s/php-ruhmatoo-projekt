@@ -138,20 +138,20 @@ class Note {
 	
 	function getSingleNoteData($edit_id){
     		
-		$stmt = $this->connection->prepare("SELECT kirjeldus, asukoht, kuupaev, url FROM colorNotes WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT id, kirjeldus, asukoht, kuupaev, url FROM colorNotes WHERE id=? AND deleted IS NULL");
 		echo $this->connection->error;
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($description, $location, $date,$url);
+		$stmt->bind_result($id, $description, $location, $date,$url);
 		$stmt->execute();
 		
 		//tekitan objekti
-		$n = new Stdclass();
+		$nature = new Stdclass();
 		
 		//saime ühe rea andmeid
 		if($stmt->fetch()) {
 			//echo $note."<br>";
 			
-			$object = new StdClass();
+			//$nature = new StdClass();
 			$nature->id = $id;
 			$nature->description = $description;
 			$nature->location = $location;
@@ -167,7 +167,7 @@ class Note {
 		}
 		
 		$stmt->close();		
-		return $n;
+		return $nature;
 		
 	}
 

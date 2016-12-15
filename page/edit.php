@@ -33,20 +33,23 @@
 
 	
 ?>
-<?php require("../header3.php");?>
+<?php require("header3.php");?>
 <br><br>
 <a href="data.php"> tagasi </a>
 
 <h2>Muuda kirjet</h2>
+<br>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
   	<label for="kirjeldus" >Märkus</label><br>
 	<textarea  id="kirjeldus" name="kirjeldus"><?php echo $c->description;?></textarea><br>
   	<label for="asukoht" >asukoht</label><br>
-	<textarea  id="asukoht" name="asukoht"><?php echo $c->location;?></textarea><br>
+	<input  id="asukoht" name="asukoht"><?php echo $c->location;?></input><br>
   	<label for="kuupaev" >kuupäev</label><br>
-	<textarea  id="kuupaev" name="kuupaev"><?php echo $c->date;?></textarea><br>
-  	<label for="url" >url</label><br>
+	<input  id="kuupaev" name="kuupaev"><?php echo $c->date;?></input><br>
+  	<label for="url" >url</label>
+	<br>
+	<img width='300' src="<?=$c->url;?>">
 	<textarea  id="url" name="url"><?php echo $c->url;?></textarea><br>
   	
 	<input type="submit" name="update" value="Salvesta">

@@ -289,7 +289,7 @@ function upload(){
 				<?=$n->day;?>
 				<br><br>
 				<?=$n->location;?>
-				<a href='edit.php?id=<?=$note->id;?>'><span class='glyphicon-pencil>'<span> edit.php</a>
+				<a href='edit.php?id=<?=$n->id;?>'><span class='glyphicon-pencil>'<span> edit.php</a>
 			</div>
 		</div>
 	<?php } ?>
