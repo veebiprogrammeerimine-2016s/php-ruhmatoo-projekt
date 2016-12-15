@@ -40,12 +40,17 @@
 	if(isset($_POST["description"]) && 
 	isset($_POST["location"]) &&
 	isset($_POST["date"]) &&
-	isset($_POST["url"]) &&
 	!empty($_POST["description"]) &&
 	!empty($_POST["location"]) &&
-	!empty($_POST["date"])&& 
-	!empty($_POST["url"]))	{
-		tabelisse2 ($_POST["description"], $_POST["location"], $_POST["date"],$_POST["url"]);
+	!empty($_POST["date"]))	{
+		$notice = upload();
+		if(isset($notice->name)){
+			
+			tabelisse2 ($_POST["description"], $_POST["location"], $_POST["date"],$notice->name);
+
+		}else{
+			echo $notice;
+		}
 	
 	}
 	
@@ -73,55 +78,67 @@
 	//echo "<pre>";
 	//var_dump($notes);
 	//echo "</pre>";
+function upload(){
 	
-if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
-    $target_dir = "pildid/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-            
-            // save file name to DB here
-            
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
-    }
-}else{
-    echo "Please select the file that you want to upload!";
+	var_dump($_FILES);
+	if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
+		$target_dir = "../pildid/";
+		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		$uploadOk = 1;
+		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		// Check if image file is a actual image or fake image
+		if(isset($_POST["submit"])) {
+			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+			if($check !== false) {
+				echo "File is an image - " . $check["mime"] . ".";
+				$uploadOk = 1;
+			} else {
+				echo "File is not an image.";
+				$uploadOk = 0;
+			}
+		}
+		// Check if file already exists
+		if (file_exists($target_file)) {
+			echo "Sorry, file already exists.";
+			$uploadOk = 0;
+		}
+		// Check file size
+		if ($_FILES["fileToUpload"]["size"] > 500000) {
+			echo "Sorry, your file is too large.";
+			$uploadOk = 0;
+		}
+		// Allow certain file formats
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+		&& $imageFileType != "gif" ) {
+			echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			$uploadOk = 0;
+		}
+		// Check if $uploadOk is set to 0 by an error
+		if ($uploadOk == 0) {
+			echo "Sorry, your file was not uploaded.";
+		// if everything is ok, try to upload file
+		} else {
+			
+			
+			$target_file = $target_dir.uniqid().".".$imageFileType;
+			
+			
+			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+				echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+				
+				// save file name to DB here
+				$a = new StdClass();
+				$a->name = $target_file;
+				return $a;
+				
+			} else {
+				return "Sorry, there was an error uploading your file.";
+			}
+		}
+	}else{
+		return "Please select the file that you want to upload!";
+	}
+	
 }
 ?>
 
@@ -143,15 +160,15 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 	   
 <h1>Tere tulemast <a href="user.php"><?=$_SESSION["userEmail"];?></a>!</h1>
 
-<form method="POST" id="sisestus">
+<form method="POST" id="sisestus" enctype="multipart/form-data">
 <h2>Uus Postitus</h2>
 <br>
 
 	<input id="kirjeldus" class ="form-control" name="description" placeholder="Kirjeldus" type="text"> <br>
 	<input id="Asukoht"class ="form-control" name="location" placeholder="Asukoht" type="text"> <br>
 	<input id="Kuupäev"class ="form-control" name="date" placeholder="Kuupäev" type="text"> <br>
-	<input id="Pilt"class ="form-control" name="url" placeholder="Pilt" type="text"> <br>
-	<form action="upload.php" method="post" enctype="multipart/form-data">
+
+	
     Vali pilt mida ülesselaadida:
     <input type="file" name="fileToUpload" id="Pilt">
 <br><br>
@@ -164,7 +181,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 
 <?php 
 
-	/*//iga liikme kohta massiivis
+	//iga liikme kohta massiivis
 	foreach ($notes as $n) {
 		
 		$style = "width:100px; 
@@ -181,7 +198,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 
  <h2 style="clear:both;">Tabel</h2>
 <?php 
-	$html = "<table class='table'>";
+	/*$html = "<table class='table'>";
 		
 		$html .= "<tr>";
 		
@@ -255,7 +272,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 
 ?>
 <p class="info">
-<h2 style="clear:both;">Postitused</h2>
+
 <?php 
 	foreach($nature2 as $n) { ?>
 		<div class="row">

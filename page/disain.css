@@ -16,6 +16,12 @@ padding: 0px;
 	
 	
 }
+#kasutaja{
+	position: relative;
+	left:900px;
+	
+	
+}
 #kirjeldus{
 	width:350px;
 	height:50px;
