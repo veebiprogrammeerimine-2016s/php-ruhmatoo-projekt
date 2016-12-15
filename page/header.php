@@ -1,7 +1,11 @@
 <?php
 	require("../function/functions.php");
 	require("../function/login.php");
-	require("../../config.php");
+	if (file_exists("../../config.php"))  {
+		require("../../config.php");
+	} else {
+		require("../../../../config.php");
+	}
 	$appName = "Töömehe leidja";
 ?>
 <html>
