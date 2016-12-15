@@ -8,7 +8,8 @@ $districts = $conn->query($sql);
 if ($conn->connect_error) {
 	die("Ühendus nurjus: " . $conn->connect_error);
 }
-
+$skillsql = "SELECT id, skill FROM skills ORDER BY skill";
+$skills = $conn->query($skillsql);
 ?>
 
 <div class="row">
@@ -44,9 +45,18 @@ if ($conn->connect_error) {
 </select>
 </p>
 <h6>Oskused</h6>
+<?php
+	if ($skills->num_rows > 0) {
+		while($row = $skills->fetch_assoc()) {
+			echo "<input type='checkbox' name'".$row["id"]."' value='y'>".$row["skill"]."<br>";	
+		}	
+	}
+?>
+<!--
 <input type="checkbox" name="builder" value="yes"> Ehitaja <br>
 <input type="checkbox" name="pipe" value="yes"> Torumees <br>
 <input type="checkbox" name="electrician" value="yes"> Elektrik <br>
+-->
 <h6>Populaarsus</h6>
 <input type="radio" name="popularity" value="3">Vähetuntud
 <input type="radio" name="popularity" value="5">Keskmine
