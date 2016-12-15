@@ -4,9 +4,12 @@
 html {
 	--main-color: cadetblue;
 	--main-button: cornflowerblue;
-	--main-border: darkcyan;
+	--main-border: cornflowerblue;
 	--hl-button: darkcyan;
 	--hl-border: cornflowerblue;
+	--main-text: black;
+	--main-header: white;
+
 	font-family: Roboto, sans-serif;
 	margin: 0;
 	padding: 0;
@@ -62,7 +65,7 @@ body {
 
 .header {
 	background: var(--main-color);
-	color: white;
+	color: var(--main-header);
 	font-family: Roboto, sans-serif;
 	font-size: 2em;
 	font-weight: 300;
@@ -86,7 +89,7 @@ body {
 	font-size: 20px;
 	padding: 0.15em;
 	text-decoration: none;
-	color: white;
+	color: var(--main-text);
 	background: var(--main-button);
 	padding: 0.25em;
 	transition: 0.25s;
@@ -98,7 +101,7 @@ body {
 	padding-left: .25em;
 	padding-right: .25em;
 	text-decoration: none;
-	color: white;
+	color: var(--main-text);
 	transition: .25s;
 }
 .hbutton:hover {
@@ -128,10 +131,24 @@ h4, h5, h6 {
 	margin-top: 0.25em;
 	margin-bottom: 0.25em;
 }
-input {
+
+select {
 	margin: 0.25em;
 	padding: 0.15em;
 	font-size: 20px;
+	background: none;
+	border: none;
+	color: var(--main-text);
+	border-bottom: 2px solid var(--main-border);
+}
+
+input {
+	color: var(--main-text);
+	padding: 0.15em;
+	font-size: 20px;
 	margin: 0;
+	border: none;
+	background: var(--main-color);
+	border-bottom: 2px solid var(--main-border);
 }
 

@@ -2,6 +2,8 @@
 require("header.php");
 
 $conn = new mysqli($server, $user, $pass, $db);
+$conn->query("SET NAMES 'utf8'");
+$conn->query("SET CHARACTER SET 'utf8'");
 
 $sql = "SELECT id, name FROM districts ORDER BY name";
 $districts = $conn->query($sql);
