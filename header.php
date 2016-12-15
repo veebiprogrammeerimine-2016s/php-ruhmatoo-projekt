@@ -26,6 +26,14 @@
 		.loading-info{text-align:center;}
 		.form-control {
 			width:33%;
+
+		.rated,
+		.rated:hover,
+		.rated:focus {
+			color: red;
+		}
+		.rating {
+			cursor:pointer;
 		}
 		</style>
 	</head>
