@@ -47,8 +47,9 @@ class Upload {
 		$ext = substr($_FILES["fileToUpload"]["name"], strrpos($_FILES["fileToUpload"]["name"], "."));
 		$_FILES["fileToUpload"]["name"] = uniqid() . $ext;
 		//$_FILES["fileToUpload"]["name"]=uniqid();
-		$target_dir = "uploads/";
+		$target_dir = "/home/gregness/public_html/php-ruhmatoo-projekt/page/uploads/";
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		$target_file_corrected = "/~gregness/php-ruhmatoo-projekt/page/uploads/" . basename($_FILES["fileToUpload"]["name"]);
 		
 		
 		
@@ -82,7 +83,7 @@ class Upload {
 			header("Location: upload.php?exists");
 		}*/
 		// Check file size
-		if ($_FILES["fileToUpload"]["size"] > 500000) {
+		if ($_FILES["fileToUpload"]["size"] > 5000000) {
 			$uploadOk = 0;
 			header("Location: upload.php?large");
 		}
@@ -112,7 +113,7 @@ class Upload {
 				// d- double
 				//
 				
-				$stmt->bind_param("sss",$userid, $caption, $target_file);
+				$stmt->bind_param("sss",$userid, $caption, $target_file_corrected);
 				
 				
 				if ($stmt->execute()) {

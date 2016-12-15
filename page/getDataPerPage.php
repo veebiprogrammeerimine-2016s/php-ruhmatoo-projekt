@@ -91,23 +91,7 @@
 		echo '</table>';
 		echo '<br><br>';
 		echo '</div>';
-	}
-	
-	/*function userRatingExists($id, $mysqli){
-		
-		$stmt = $mysqli->prepare("SELECT user_id, pic_id FROM ratings WHERE user_id=? AND pic_id=?");
-			echo $mysqli->error;
-			$stmt->bind_param("ii", $_SESSION["userId"], $id);
-			$stmt->execute();
-			
-			if($stmt->fetch()){
-				//sai ühe rea
-				return true;
-			}else{
-				
-				return false;
-			}
-	}*/
+	} 
 	
 	
 ?>
