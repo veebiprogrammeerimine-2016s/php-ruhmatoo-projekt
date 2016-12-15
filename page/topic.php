@@ -105,7 +105,7 @@
 			$html .= "<div><table>";
 				$html .= "<tr><h2>".$r->name."</h2></tr>";
 				$html .= "<td><img src=".$r->message."></td></table>";
-				$html .= "<a href='user.php?username=".$r->author."'>Postitatud kasutaja ".$r->author." poolt</a><br><br><br><br>";
+				$html .= "<a href='user.php?username=".$r->author."'></a><br><br><br><br>";
 
 			$html .= "</div>";
 		

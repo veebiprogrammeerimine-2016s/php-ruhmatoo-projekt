@@ -88,12 +88,28 @@
 		}
 		
 		echo '<td align="right">'.'<a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-fire">Ignite(rate)</span><span class="counter">'.$count.'</span></a>'.'</td></tr>';
-
 		echo '</table>';
 		echo '<br><br>';
 		echo '</div>';
 	}
-
+	
+	/*function userRatingExists($id, $mysqli){
+		
+		$stmt = $mysqli->prepare("SELECT user_id, pic_id FROM ratings WHERE user_id=? AND pic_id=?");
+			echo $mysqli->error;
+			$stmt->bind_param("ii", $_SESSION["userId"], $id);
+			$stmt->execute();
+			
+			if($stmt->fetch()){
+				//sai ühe rea
+				return true;
+			}else{
+				
+				return false;
+			}
+	}*/
+	
+	
 ?>
 
 
