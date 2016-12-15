@@ -33,7 +33,7 @@
 					<li class="btn navbar"><a href="info.php">Info</a></li>
 					<li class="btn navbar"><a href="#">Kontakt</a></li>
 					<li class="btn navbar"><a href="user.php">Profiil</a></li>
-					<li class="btn navbar"><a href="?logout=1">Logi v‰lja</a></li>
+					<li class="btn navbar"><a href="?logout=1">Logi v√§lja</a></li>
 					 <form class ="form-wrapper">
 					<!--<input id="otsing"  type="search" name="q" value="<?=$q;?>">
 					<input id="nupp" type="submit" value="Otsi">-->
