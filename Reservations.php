@@ -1,7 +1,6 @@
+
 <?php
 
-	//Broneerimis leht
-	
 	require("../../config.php");
 	require("Functions.php");
 	
@@ -119,7 +118,7 @@
 		
 		<h1>Andmed</h1><br>
 		
-		<form method="POST">
+<form method="POST">
 			
 			<label>Registreerimisnumber</label><br>
 			<div class="form-group">
@@ -257,3 +256,4 @@
 
 	</body>
 </html>
+
