@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-           <a class="navbar-brand" href="login.php">
+           <a class="navbar-brand" href=<?php if(isset($pageName) && $pageName == "login"){ echo "login.php";}?><?php if(isset($pageName) && $pageName == "care"){ echo "login.php";}?><?php if(isset($pageName) && $pageName == "data"){ echo "data.php";}?><?php if(isset($pageName) && $pageName == "userCare"){ echo "data.php";}?> >
 			FacePlänt
 		  </a>
         </div>
