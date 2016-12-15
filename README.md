@@ -10,6 +10,9 @@ eesmärgiks pakkuda võimalust kõige kiiremaks rehvivahetuseks.
 Kirjeldus - Sihtrühmaks on kõik inimesed, kellel on olemas juhiload ning sõiduk (Kaubik, maastur jne). Eripäraks
 meie veebirakenduse juures on see, et me pakume välja kõige kiirema aja inimestele (olenemata asukohast).
 
+Funktsionaalsuse loetelu - v0.1 Saab esilehel tagasisidet anda, v0.2 Saab broneerida aega (algne olek - puudub veel kalendri salvestus),
+v0.3 Plaanitud (Saada tööle kalendri aja salvestuse)
+
 Andmebaasi skeem pildina + tabelite loomise SQL laused -
 
 CREATE TABLE Reservation_Data(
