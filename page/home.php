@@ -50,7 +50,8 @@ $skills = $conn->query($skillsql);
 <?php
 	if ($skills->num_rows > 0) {
 		while($row = $skills->fetch_assoc()) {
-			echo "<input type='checkbox' name'".$row["id"]."' value='y'>".$row["skill"]."<br>";	
+			echo "<input type='checkbox' name='skill[]' value='".$row["id"]."'>".$row["skill"]."<br>";	
+			//echo "<input type='checkbox' name='".$row["id"]."' value='y'>".$row["skill"]."<br>";	
 		}	
 	}
 ?>
