@@ -26,8 +26,10 @@ if(isset($_GET["s"])){
 		<div class="input-group">
 			<input type="search" name="s" value="<?=$s;?>"class="form-control" placeholder="Enter title, keywords etc...">
 				<span class="input-group-btn">
+				<a href="results.php?search=".$s>
 					<button class="btn btn-info" type="submit">Search</button>
-					<a class="btn btn-success" type="button" href="results.php?search=".$s>Search</a>
+				</a>
+					
 				</span>
 		</div>
 	</div>

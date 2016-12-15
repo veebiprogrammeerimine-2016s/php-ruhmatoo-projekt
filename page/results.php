@@ -11,9 +11,8 @@ $search = searchFromDb($s);
 echo "<ol>";
 foreach($search as $s){
 	echo "<li>".$s->title."</li>";
-	echo $s->mlink."<br>";
 	echo $s->release_date."<br>";
-	echo $s->poster."<br>";
+	echo "<a href=".$s->mlink."><img src=".$s->poster."></a><br>";
 }
 echo "</ol>";
 ?>

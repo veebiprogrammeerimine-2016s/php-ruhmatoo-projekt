@@ -1,6 +1,5 @@
 <?php
 require('../header.php');
-require('../try_design.css');
 include '../functions.php';
 
 ?>
