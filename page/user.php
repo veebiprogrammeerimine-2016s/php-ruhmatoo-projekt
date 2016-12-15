@@ -53,17 +53,19 @@
 	<p class="lead">
 	
 	<?php 
-	$html = "<div class='row'><div class='col-sm-4 col-md-3'><table class='table table-striped table-condensed'>";
+	$html = "<div class='c'><div class='col-sm-4 col-md-3'><table class='table table-striped table-condensed'>";
 	
 	foreach ($andmed as $a) {
 			
 			
 			
 		
-			$html .= "<tr>";
-				$html .= "<td>".$a->caption."</td>";
-				$html .= '<td><a href=topic.php?topicid='.$a->id.'><img src="'.$a->imgurl.'" alt="some_text" style="width:100px;height:100px;"></a> </td>';
-			$html .= "</tr>";
+			$html .= "<tbody>";
+			
+				$html .= "<th>".$a->caption."</th>";
+				$html .= '<td><a href=topic.php?topicid='.$a->id.'><img src="'.$a->imgurl.'" alt="some_text" style="width:200px;height:200px;"></a> </td>';
+			
+			$html .= "</tbody>";
 		
 		}
 		
