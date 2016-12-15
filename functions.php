@@ -1,5 +1,5 @@
 <?php
-require("../../config.php");
+require("../../../config.php");
 	
 
 	session_start(); 
@@ -9,7 +9,7 @@ require("../../config.php");
 	$mysqli = new mysqli($serverHost, $serverUsername,  $serverPassword, $database);
 	
 function movieExists($link){
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"],  $GLOBALS["serverPassword"],  $GLOBALS["database"]);
+	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"],  $GLOBALS["serverPassword"],  $GLOBALS["database"]);
 	$stmt = $mysqli->prepare("SELECT id FROM movies_db WHERE link=?");
 	echo $mysqli->error;
 	
@@ -62,7 +62,35 @@ function insertToDb($title, $movie_link, $rating,
 								
 }
 
+function searchFromDb($keyword){
+	$keyword = "%".$keyword."%";
+	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"],  $GLOBALS["serverPassword"],  $GLOBALS["database"]);
 
+	$stmt = $mysqli->prepare("SELECT title, link, release_date, poster
+							FROM movies_db
+							WHERE title LIKE ? OR synopsis LIKE ? OR actors LIKE ?
+							OR directors LIKE ? OR genre LIKE ?");
+	
+	echo $mysqli->error;
+							
+	$stmt->bind_param("sssss", $keyword, $keyword, $keyword, $keyword, $keyword);
+	
+	$stmt->bind_result($title, $link, $release_date, $poster);
+	$stmt->execute();
+	$result = array();
+	while($stmt->fetch()) {
+		$object = new StdClass();
+		$object->title = $title;
+		$object->mlink = $link;
+		$object->release_date = $release_date;
+		$object->poster = $poster;
+		
 
-
+		array_push($result, $object);
+		
+	}
+	
+	return $result;
+	
+}
 ?>
