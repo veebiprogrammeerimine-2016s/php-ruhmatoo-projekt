@@ -60,10 +60,10 @@
 ?>
 
 <?php require("header3.php");?>
-<h1><a href="data.php"> < tagasi</a> Kasutaja leht</h1>
+<a href="data.php"> < tagasi</a> <h1> <font color="blue"> Kasutaja Profiil </font> </h1>
 <?=$msg;?>
 <p>
-	Tere tulemast <?=$_SESSION["userEmail"];?>!
+	<h3>Tere tulemast  <?=$_SESSION["userEmail"];?>!</h3>
 	<a href="?logout=1">Logi välja</a>
 </p>
 
