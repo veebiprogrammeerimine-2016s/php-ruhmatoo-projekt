@@ -33,7 +33,7 @@
 
 	
 ?>
-<?php require("../header.php");?>
+<?php require("../header3.php");?>
 <br><br>
 <a href="data.php"> tagasi </a>
 
@@ -44,7 +44,7 @@
 	<textarea  id="kirjeldus" name="kirjeldus"><?php echo $c->description;?></textarea><br>
   	<label for="asukoht" >asukoht</label><br>
 	<textarea  id="asukoht" name="asukoht"><?php echo $c->location;?></textarea><br>
-  	<label for="kuupaev" >asukoht</label><br>
+  	<label for="kuupaev" >kuupäev</label><br>
 	<textarea  id="kuupaev" name="kuupaev"><?php echo $c->date;?></textarea><br>
   	<label for="url" >url</label><br>
 	<textarea  id="url" name="url"><?php echo $c->url;?></textarea><br>

@@ -73,7 +73,7 @@
 	//echo "<pre>";
 	//var_dump($notes);
 	//echo "</pre>";
-
+	
 if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
     $target_dir = "../pildid/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -164,7 +164,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 
 <?php 
 
-	//iga liikme kohta massiivis
+	/*//iga liikme kohta massiivis
 	foreach ($notes as $n) {
 		
 		$style = "width:100px; 
@@ -181,7 +181,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 
  <h2 style="clear:both;">Tabel</h2>
 <?php 
-	/*$html = "<table class='table'>";
+	$html = "<table class='table'>";
 		
 		$html .= "<tr>";
 		
@@ -255,7 +255,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 
 ?>
 <p class="info">
-
+<h2 style="clear:both;">Postitused</h2>
 <?php 
 	foreach($nature2 as $n) { ?>
 		<div class="row">
