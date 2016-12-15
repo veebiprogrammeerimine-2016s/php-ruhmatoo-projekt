@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 
@@ -56,6 +55,10 @@
 <body>
 
 <div class="dropdown">
+  <button class="dropbtn">Home</button>
+</div>
+
+<div class="dropdown">
   <button class="dropbtn">Pictures</button>
   <div class="dropdown-content">
     <a href="#">Nature</a>
@@ -89,9 +92,3 @@
 
 </body>
 </html>
-=======
-
-<center><big><strong>About us </strong></big></center>
-</p>
-
->>>>>>> 3bc494766b8c287636718df5ad9440598a1efbbe
