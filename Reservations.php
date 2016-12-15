@@ -1,5 +1,7 @@
 <?php
 
+	//Broneerimis leht
+	
 	require("../../config.php");
 	require("Functions.php");
 	
