@@ -54,7 +54,8 @@
 	}else{
 		
 		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username, 
-		(SELECT count(*) FROM ratings WHERE user_id=? AND pic_id=submissions.id)
+		(SELECT count(*) FROM ratings WHERE user_id=? AND pic_id=submissions.id), 
+		(SELECT count(*) FROM ratings WHERE pic_id=submissions.id)
 		FROM submissions
 		join user_sample on submissions.author=user_sample.id
 		WHERE deleted is NULL
@@ -70,7 +71,7 @@
 	//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
 	//for more info https://www.sanwebe.com/2013/03/basic-php-mysqli-usage
 	$results->execute(); //Execute prepared Query
-	$results->bind_result($id, $name, $message, $author, $rated); //bind variables to prepared statement
+	$results->bind_result($id, $name, $message, $author, $rated, $count); //bind variables to prepared statement
 	
 	//output results from database
 	while($results->fetch()){ //fetch values
@@ -86,7 +87,7 @@
 			$class = " rated";
 		}
 		
-		echo '<td align="right">'.'<a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-fire">Ignite(rate)</span></a>'.'</td></tr>';
+		echo '<td align="right">'.'<a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-fire">Ignite(rate)</span><span class="counter">'.$count.'</span></a>'.'</td></tr>';
 		echo '</table>';
 		echo '<br><br>';
 		echo '</div>';

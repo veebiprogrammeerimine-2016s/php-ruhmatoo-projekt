@@ -184,6 +184,11 @@ function addRating(el){
 	  if(result.success){
 		  
 		  el.className += " rated";
+		  console.log(el.querySelector(".counter"));
+		  var count = el.querySelector(".counter").innerHTML;
+		  count = parseInt(count) + 1;
+		  el.querySelector(".counter").innerHTML = count;
+		  
 		  /*
 		  var p = document.createElement("p");
 		  p.innerHTML = result.message;
@@ -196,6 +201,7 @@ function addRating(el){
 	  }else{
 		  //ei õnnestunud
 		  el.className += " rated";
+		  console.log(el.querySelector(".counter"));
 		  /*
 		  var p = document.createElement("p");
 		  p.innerHTML = result.message;
