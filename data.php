@@ -1,7 +1,7 @@
 <?php
 	
 	require("functions.php");
-	
+	require("class/Upload.class.php");
 	
 	//kui ei ole kasutaja id'd
 	
@@ -89,7 +89,13 @@
 	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </header>
+<?php
+	
+	///siit kuvan andmeid
 
+
+
+?>
 
 
 
