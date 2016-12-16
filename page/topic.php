@@ -87,7 +87,7 @@
 <?php require("../header.php"); ?>
 <div class="container">
 	<div class="page-header">
-		<h1>Thread #<?php echo $topic; ?></h1>
+		<h1>Teema #<?php echo $topic; ?></h1>
 	</div>
 
 
@@ -128,9 +128,8 @@
 			
 		
 
-				$html2 .= "	<div class='well well-sm'><b>".$r2->userid."</b><br><br>";
-				$html2 .= $r2->comment;
-				$html2 .= "<br><br><small class='text-muted'>Postitatud ".$r2->aeg."</small></div>";
+				$html2 .= "Kommentaarid<div class='well well-sm'><b>".$r2->userid."</b><small style='float:right;'class='text-muted'>".$r2->aeg."</small><br><br>";
+				$html2 .= $r2->comment."<br><br></div>";
 		
 		}
 	

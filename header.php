@@ -63,6 +63,9 @@
 			font-size: 30px;
 			font-family: "Arial", Verdana, Sans-serif;
 		}
+		.well {
+			width: 50%;
+		}
 		</style>
 	</head>
 	<body>
