@@ -1,5 +1,5 @@
 <?php 
-	//�hendan sessiooniga
+	//ühendan sessiooniga
 	require("../functions.php");
 
 	require("../class/Helper.class.php");
@@ -73,7 +73,8 @@
 		
 		if (!empty($_POST["caption"])) {
 		
-			if (strlen($_POST["caption"])<3) {
+			if (strlen($_POST["caption"])<3 &&
+				strlen($_POST["caption"])>30) {
 			
 					header("Location: upload.php?short");
 			
@@ -89,7 +90,7 @@
 						<br><div class='alert alert-danger'>
 						<strong>
 						 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-						Error: Empty field(s)</strong>
+						Tühjasi väljasi ei tohi olla</strong>
 						</div>";
 				 
 	}
@@ -100,7 +101,7 @@
 						<br><div class='alert alert-danger'>
 						<strong>
 						 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-						Error: Caption too short (minimum 4 letters)</strong>
+						Pealkiri peab olema vähemalt 3 tähemärki</strong>
 						</div>";
 				 
 	}
@@ -110,8 +111,8 @@
 				 $uploadError="
 						<br><div class='alert alert-success'>
 						<strong>
-						 <span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>
-							Your post was submitted! Check it out here: (siia tuleb postituse link)</strong>
+						<span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>
+						Sinu postitus laeti üles! Trehva üle: (siia tuleb postituse link)</strong>
 						</div>";
 				 
 	}
@@ -136,39 +137,27 @@
 	//echo "</pre>";
 	
 ?>
-
 <?php require("../header.php"); ?>
-<br><br>
 <div class="container">
-<div class="page-header">
-	<h1>Loo uus postitus</h1>
-
-<p class="lead">
-</p>
-
-</div>
+	<div class="page-header">
+		<h1>Loo uus postitus</h1>
+	</div>
 <form method=post enctype="multipart/form-data">
   <div class="form-group">
-    <label>Caption</label>
+    <label>Postituse pealkiri</label>
     <input type="text" name="caption" id="caption" class="form-control" placeholder="Insert a caption here">
   </div>
+  
   <div class="form-group">
-    <label for="exampleInputFile">File input</label>
+    <label for="exampleInputFile">Pildifail</label>
     <input type="file" name="fileToUpload"  id="fileToUpload">
-    <p class="help-block">Lisainfo tuleb siia alla.</p>
+    <p class="help-block">Lubatud formaadid on bmp, png, jpg ja jpeg. Maksimaalne suurus 5mb</p>
   </div>
 
-  <button type="submit" name="submit" class="btn btn-default">Submit</button>
+  <button type="submit" name="submit" class="btn btn-default">Lae üles</button>
 </form>
 
 <?php echo $uploadError; ?>
 
 </div>
-<?php //echo$_SESSION["userEmail"];?>
-
-<?//=$_SESSION["userEmail"];?>
-
-
-
-
 <?php require("../footer.php"); ?>

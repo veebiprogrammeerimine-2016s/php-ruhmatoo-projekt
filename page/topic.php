@@ -105,7 +105,7 @@
 			$html .= "<div><table>";
 				$html .= "<tr><h2>".$r->name."</h2></tr>";
 				$html .= "<td><img src=".$r->message."></td></table>";
-				$html .= "<a href='user.php?username=".$r->author."'></a><br><br><br><br>";
+				$html .= "Posted by <a href='user.php?username=".$r->author."'>". $r->author.'</a>';
 
 			$html .= "</div>";
 		

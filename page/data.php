@@ -222,7 +222,7 @@ function addRating(el){
 
 <div class="container">
 	<div class="page-header">
-		<h1>Latest posts</h1>
+		<h1>Hiljutised postitused</h1>
 	</div>
 	<p class="lead"></p>
 	<div class="wrapper">
@@ -231,7 +231,7 @@ function addRating(el){
 		<br>
 		<br>
 		<div class="loading-info"><img src="LoaderIcon.gif" /></div>
-		<div class="load-more">Lae veel</div>
+		<div class="load-more"></div>
 		
 		<br>
 		<br>
