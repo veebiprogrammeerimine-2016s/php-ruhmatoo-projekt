@@ -101,7 +101,7 @@
 						<br><div class='alert alert-danger'>
 						<strong>
 						 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-						Pealkiri peab olema vähemalt 3 tähemärki</strong>
+						Pealkiri peab olema vähemalt 3 tähemärki ning võib olla kuni 30 tähemärki pikk</strong>
 						</div>";
 				 
 	}
