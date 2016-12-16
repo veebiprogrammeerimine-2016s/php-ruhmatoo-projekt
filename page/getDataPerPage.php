@@ -41,7 +41,9 @@
 
 	if ($search!=""){
 		
-		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
+		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username,
+		(SELECT count(*) FROM ratings WHERE user_id=? AND pic_id=submissions.id), 
+		(SELECT count(*) FROM ratings WHERE pic_id=submissions.id)
 		FROM submissions 
 		join user_sample on submissions.author=user_sample.id
 		WHERE caption LIKE ? OR username LIKE ? AND deleted is NULL
@@ -49,7 +51,7 @@
 		
 		$search ="%".$search."%";
 		
-		$results->bind_param("ssii", $search ,$search ,$position, $item_per_page);
+		$results->bind_param("issii", $_SESSION["userId"],$search ,$search ,$position, $item_per_page);
 		
 	}else{
 		
@@ -75,19 +77,18 @@
 	
 	//output results from database
 	while($results->fetch()){ //fetch values
-		echo '<div>';
-		echo '<table>';
-		echo '<tr><h2>'.$name.'</h2></tr>';
-		echo '<td>'."<a href='topic.php?topicid=$id&posted' class='thumbnail'><img src=".$message." ></a>".'</td>';
-		echo '<tr><td>'."Posted by: "."<a href='user.php?username=$author';?>$author</a>".'</td>';
-		
+	
 		$class = "";
 		//echo $rated;
 		if($rated){
 			$class = " rated";
+		} else {
+			$class= " unrated";
 		}
-		
-		echo '<td align="right">'.'<a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-fire">Ignite(rate)</span><span class="counter">'.$count.'</span></a>'.'</td></tr>';
+		echo '<br><div>';
+		echo '<table>';
+		echo '<tr><h2>'.$name . ' <a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-fire"></span><span class="counter ">'.$count.'</span></a></h2></tr>';
+		echo '<td>'."<a href='topic.php?topicid=$id&posted'><img src=".$message." ></a>".'</td>';
 		echo '</table>';
 		echo '<br><br>';
 		echo '</div>';
