@@ -82,8 +82,6 @@
 		//echo $rated;
 		if($rated){
 			$class = " rated";
-		} else {
-			$class= " unrated";
 		}
 		echo '<br><div>';
 		echo '<table>';

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Oled sisse logitud</title>
+		<title>iksd.ee portaal</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">		
 		<meta charset="UTF-8">
 		<!-- jQuery -->	
@@ -48,11 +48,16 @@
 		.form-control {
 			width: 30%;
 		}
+		a {
+			color:#bdc3c7;
+		}
 		a:hover {
 			text-decoration:none;
+			color:#bdc3c7;
 		}
 		a:active {
 			text-decoration:none;
+			color:#bdc3c7;
 		}
 		.iksdee {
 			font-size: 30px;

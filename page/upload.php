@@ -73,7 +73,8 @@
 		
 		if (!empty($_POST["caption"])) {
 		
-			if (strlen($_POST["caption"])<3) {
+			if (strlen($_POST["caption"])<3 &&
+				strlen($_POST["caption"])>30) {
 			
 					header("Location: upload.php?short");
 			
