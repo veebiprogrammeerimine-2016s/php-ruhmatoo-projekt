@@ -113,8 +113,10 @@
 	$error="";
 	if(isset($_POST["loginEmail"]) && isset ($_POST["loginPassword"]) &&
 		!empty($_POST["loginEmail"]) && !empty($_POST["loginPassword"])
-		){
-			$error=login($_POST["loginEmail"], $_POST["loginPassword"]);
+		)
+		
+		{
+		$error=login($_POST["loginEmail"], $_POST["loginPassword"]);
 	}
 
 ?>

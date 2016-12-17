@@ -23,18 +23,31 @@
 		header("Location: login2.php");
 		exit();
 	}
+
 	
 
 //UPLOAD
 	$url="";
 	$caption = "fileToUpload";
+	$captionError="Please insert title";
+	
 	if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 		$target_dir = "uploads/";
 		$url = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$uploadOk = 1;
 		
 		$imageFileType = pathinfo($url,PATHINFO_EXTENSION);
-
+		
+		//check if user wrote title
+		if(isset($_POST["caption"])){			
+			if(empty($_POST["caption"])){				
+				echo $captionError;
+				$uploadOk = 0;
+			}else{				
+				$caption=$_POST["caption"];
+			}
+		}
+		
 		// Check if file already exists
 		if (file_exists($url)) {
 			echo "Sorry, file already exists.";
@@ -57,12 +70,14 @@
 		} else {
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $url)) {
 				echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-				//echo $filename;
+				
 				// save file name to DB here
 				
 				$userid=$_SESSION["userId"];
 				$caption =($_POST["caption"]); //$caption = $Helper->cleanInput($_POST["caption"]);
 				$Upload->uploadAudio($userid,$caption,$url);
+				header("location: data.php");
+				
 				
 				
 			} else {
@@ -72,6 +87,10 @@
 	}else{
 		echo "Please select the file that you want to upload!";
 	}
+	
+	
+	
+	
 
 	
 ?>

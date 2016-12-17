@@ -61,7 +61,7 @@
 				$_SESSION["userEmail"] = $emailFromDb;
 				
 				//m‰‰ran sessiooni muutujad millele saan ligi teistelt lehtedelt
-				// !!!!! header("Location: data.php");
+				header("Location: data.php");
 			
 			}else{
 				$error = "wrong password";
