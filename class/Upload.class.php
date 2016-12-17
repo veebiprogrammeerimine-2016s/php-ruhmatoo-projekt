@@ -40,40 +40,44 @@ class Upload {
 	}
 	
 
-	function getAudio(/*siia ei unusta*/) {
+	function getAudio() {
 
-			$stmt = $this->connection->prepare("
-				SELECT uploads.id,caption,url,email
+		$database = "if16_andralla_2";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		$stmt = $mysqli->prepare("SELECT uploads.id,caption,url
 				FROM uploads 
 				join user_sample on uploads.author=user_sample.id
-				WHERE rating is NULL
-			
-			");
-			
-		
-		$stmt->bind_result($id,$caption,$url,$email);
+				WHERE rating is NULL");
+		$stmt->bind_result($id, $caption, $author);
 		$stmt->execute();
+		echo $mysqli->error;
+		
+		
 
-		$results = array();
-		
-		
+		//tekitan massiivi
+		$result = array();
+		// tee seda seni kuni on rida andmeid
+		// mis vastab select lausele
+		// fetch annab andmeid yhe rea kaupa
 		while ($stmt->fetch()) {
 			
-			$pictureTable = new StdClass();
-			$pictureTable->id = $id;
-			$pictureTable->caption = $caption;
-			$pictureTable->url = $url;
-			$pictureTable->author = $author;
+			//tekitan objekti
+			$audio = new StdClass();
 			
-			array_push($results, $pictureTable);
+			$audio -> id = $id;
+			$audio -> author =$author;
+			$audio -> caption =$caption;
 			
+			// iga kord massiivi lisan juurde nr m2rgi
+			array_push($result, $audio);
 		}
 		
-		return $results;
+		$stmt->close();
+		$mysqli->close();
+		
+		return $result;
 		
 	}
-	
-	
 	
 	
 	

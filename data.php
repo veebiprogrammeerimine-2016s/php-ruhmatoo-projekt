@@ -2,7 +2,7 @@
 	
 	require("functions.php");
 	require("class/Upload.class.php");
-	
+	$Upload = new Upload($mysqli);
 	//kui ei ole kasutaja id'd
 	
 	if(!isset ($_SESSION["userId"])){
@@ -20,8 +20,13 @@
 		exit();
 	}
 	
-
-
+	//saan audio andmed
+	$audioData = $Upload->getAudio();
+	/*echo "<pre>";
+	var_dump($audioData);	
+	echo "</pre>";
+	*/
+	
 ?>
 
 
@@ -89,13 +94,7 @@
 	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </header>
-<?php
-	
-	///siit kuvan andmeid
 
-
-
-?>
 
 
 
@@ -134,6 +133,26 @@
 			
 			</div> 
 		
+		<?php require("showUploads.php");?>
+		<?php
+		$html = "<table class='table table-hover table-bordered '>";
+		
+		foreach($audioData as $c){
+			//iga auto on $c
+			//echo $c->plate. "<br>";
+			$html .= "<tr>";
+				$html .= "<td>".$c->id."</td>";
+				$html .= "<td>".$c->caption."</td>"; 
+			
+			
+			$html .= "</tr>";
+		}
+		$html .= "</table>";
+		echo $html;
+		
+		?>
+
+	
 		<!--</div> -->
 
 </body>
