@@ -30,13 +30,13 @@
 	$caption = "fileToUpload";
 	if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 		$target_dir = "uploads/";
-		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		$url = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$uploadOk = 1;
 		
-		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		$imageFileType = pathinfo($url,PATHINFO_EXTENSION);
 
 		// Check if file already exists
-		if (file_exists($target_file)) {
+		if (file_exists($url)) {
 			echo "Sorry, file already exists.";
 			$uploadOk = 0;
 		}
@@ -55,7 +55,7 @@
 			echo "Sorry, your file was not uploaded.";
 		// if everything is ok, try to upload file
 		} else {
-			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $url)) {
 				echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 				//echo $filename;
 				// save file name to DB here
