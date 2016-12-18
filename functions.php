@@ -48,8 +48,7 @@ function placeOrder($name, $email, $phone,
     $stmt->close();
 
 }
-
-function sendEmail($reciever)
+function sendEmail($reciever, $name, $phone, $note, $carnumber, $booktime)
 {
 
     $to = $reciever;
@@ -64,9 +63,39 @@ function sendEmail($reciever)
     // add a page
     $pdf->AddPage();
 
-    $html = "<h1>Tere</h1>";
+
+
+
+    $html = "<h1>Tere, palun kontrollige oma andmeid</h1>";
     $html .= "<br><br><br><br><br><br>";
-    $html .= "<p>".$reciever."</p>";
+
+    $html .= "<table order='0' style='padding-left: 10px; padding-bottom: 15px;'>";
+
+    $html .= "<tr>";
+    $html .= "<th style='border: 1px solid grey;'> Email </th>";
+    $html .= "<th> Name </th>";
+    $html .= "<th> Phone number </th>";
+    $html .= "<th> Notes </th>";
+    $html .= "<th> Auto number </th>";
+    $html .= "<th> Aeg </th>";
+    $html .= "</tr>";
+    $html .= "<tr>";
+    $html .= "<td>".$reciever."</td>";
+    $html .= "<td>".$name."</td>";
+    $html .= "<td>".$phone."</td>";
+    $html .= "<td>".$note."</td>";
+    $html .= "<td>".$carnumber."</td>";
+    $html .= "<td>".$booktime."</td>";
+    $html .= "</tr>";
+    $html .= "</table>";
+
+    //$html .= "<p>".$reciever."</p>";
+    //$html .= "<p>".$name."</p>";
+    //$html .= "<p>".$phone."</p>";
+    //$html .= "<p>".$note."</p>";
+    //$html .= "<p>".$carnumber."</p>";
+
+    //$html .= "<p>".$booktime."</p>";
 
     // output the HTML content
     $pdf->writeHTML($html, true, false, true, false, '');
