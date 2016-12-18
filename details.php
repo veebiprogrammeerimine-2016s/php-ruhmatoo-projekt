@@ -2,36 +2,17 @@
 
 require("functions.php");
 require_once("pdf/tcpdf.php");
+require("classes/owner_class.php");
+require("classes/tyrefitting_class.php");
 
+$Owner = new Owner($mysqli);
+$TyreFitting = new TyreFitting($mysqli);
 
-if(isset($_POST["regPassword"]) && isset($_POST["regUsername"]))
-	{
-		if( !empty($_POST["regPassword"])&& !empty($_POST["regUsername"]))
-		{
+$Owner->LoginRegValidation($Owner);
 
-		signUP($_POST["regUsername"],$_POST["regPassword"]);
-		
-		?>
-        <script>alert("Kasutaja on tehtud!");</script>
-        <?php
-		
-		}
-   
-	}
-		
-if(isset($_POST["username"]) && isset($_POST["password"]))
-	{
-		
-		login($_POST["username"],$_POST["password"]);
-		if(!isset($_SESSION["userId"]))
-		{
-			?> <script> alert("Vale parool või kasutaja nimi"); </script> <?php
-		}
-		
-	}
-$tyreFitting = getSingleTyreFitting($_GET["id"]);
-$services = FittingServicesMinPrice($_GET["id"]);
-$times = getTyreFittingTimesAvailable($_GET["id"]);
+$tyreFitting = $TyreFitting->getSingleTyreFitting($_GET["id"]);
+$services = $TyreFitting->FittingServicesMinPrice($_GET["id"]);
+$times = $TyreFitting->getTyreFittingTimesAvailable($_GET["id"]);
 $date_reserved="";
 //$reserved = array($datea => []);
 if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && isset($_POST["service"]) && isset($_POST["carnumber"]) && isset($_POST["datetimepicker"]))
@@ -42,7 +23,8 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 			$date_reserved = substr($_POST["datetimepicker"],0,10);
 				//echo $datea;
 			$time_reserved = substr($_POST["datetimepicker"],11,5);
-			?></br><?php
+			echo "</br>";?>
+<?php
 		//	echo $timea;
 			//array_push($reserved,$datea,$timea);
 			if ($success == true){
@@ -118,27 +100,27 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 				<div class="col-lg-6">
 					<form method="post" id="bookingForm">
                         <p>
-                            <label>Nimi:<span class="req-form-field">*</span></label><br  />
+                            <label for="name">Nimi:<span class="req-form-field">*</span></label><br  />
                             <input type="text" name="name" id="name" class="form-control required" required="required"/>
                         </p>
                          <p>
-                            <label>E-post:<span class="req-form-field">*</span></label><br  />
+                            <label for="email">E-post:<span class="req-form-field">*</span></label><br  />
                             <input type="text" name="email" id="email" class="form-control required" required="required"/>
                         </p>                     
                         <p>
-                            <label>Telefon:<span class="req-form-field">*</span></label><br  />
+                            <label for="mobile-number">Telefon:<span class="req-form-field">*</span></label><br  />
                             <input type="text" id="mobile-number" name="phone" class="form-control required" required="required"/>                            
                         </p>
                         <p>
-                            <label>Kommentaar:</label><br  />
-                            <input type="text" name="note" class="form-control" />
+                            <label for="note">Kommentaar:</label><br  />
+                            <input type="text" name="note" id="note" class="form-control" />
                         </p>                              
                         <br />          					
 					</div>
                     <div class="col-lg-6">
                     	
-                            <label>Teenused:<span class="req-form-field">*</span></label><br/><div style="clear:both"></div>
-                            <select name="service" class="c-select" style="width:100%; height:38px;" required>
+                            <label for="service">Teenused:<span class="req-form-field">*</span></label><br/><div style="clear:both"></div>
+                            <select name="service" id="service" class="c-select" style="width:100%; height:38px;" required>
                                   <option selected disabled></option>
                                    <?php foreach($services as $service)
 									  {?>
@@ -149,15 +131,15 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 							<p></p>	
                         
                         <p>
-                            <label>Auto number:<span class="req-form-field">*</span></label><br  />
-                            <input type="text" name="carnumber" class="form-control required" required="required"/>
+                            <label for="carnumber">Auto number:<span class="req-form-field">*</span></label><br  />
+                            <input type="text" name="carnumber" id="carnumber" class="form-control required" required="required"/>
                         </p>
                         <label for="datetimepicker">Vali endale aeg:<span class="req-form-field">*</span></label>
-                        <input type="text" name="datetimepicker" id="datetimepicker" class="form-control required"  style="width:100%" required="required" /></br></br>
+                        <input type="text" name="datetimepicker" id="datetimepicker" class="form-control required"  style="width:100%" required="required" /><br><br>
                         <input type="submit" id="order-btn" class="btn btn-success" name="bookthistime"  value="Broneeri" />
-                    </div>                    
-            	</form>
-			</div>		
+                    </div>
+                </form>
+			</div>
 		</div>		
 	</div>	
 </div>
@@ -189,7 +171,7 @@ require("footer.php");?>
 			
 			if($dayNumber == 7) { $dayNumber = 0;}
 			
-			echo $day->date." ".$dayNumber." <br>" ;
+		//	echo $day->date." ".$dayNumber." <br>" ;
 			
 			if($t->day == $dayNumber){
 				$day->available = [];
