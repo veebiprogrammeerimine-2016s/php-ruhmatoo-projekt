@@ -10,20 +10,17 @@ class Upload {
 	}
 	
 	
-	function uploadAudio($userid,$caption,$url){
+	/*TEISED FUNKTSIOONID*/
 	
-
-			$database = "if16_andralla_2";
-			$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-			
+	function uploadAudio($userid,$caption,$url){
 		
 			if ($mysqli->connect_error) {
 				die('Connect Error: ' . $mysqli->connect_error);
 			}
 			
-			$stmt = $mysqli->prepare("INSERT INTO uploads (author, caption, url) VALUES (?,?,?)");
+			$stmt=$this->connection->prepare("INSERT INTO uploads (author, caption, url) VALUES (?,?,?)");
 			
-			echo $mysqli->error;
+			echo $this->connection->error;
 
 			$stmt->bind_param("sss", $userid,$caption,$url);
 			
@@ -42,15 +39,13 @@ class Upload {
 
 	function getAudio() {
 
-		$database = "if16_andralla_2";
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-		$stmt = $mysqli->prepare("SELECT uploads.id,caption,url
+		$stmt=$this->connection->prepare("SELECT uploads.id,caption,url
 				FROM uploads 
 				join user_sample on uploads.author=user_sample.id
 				WHERE rating is NULL");
 		$stmt->bind_result($id, $caption, $author);
 		$stmt->execute();
-		echo $mysqli->error;
+		echo $this->connection->error;
 		
 		
 
@@ -73,7 +68,6 @@ class Upload {
 		}
 		
 		$stmt->close();
-		$mysqli->close();
 		
 		return $result;
 		
