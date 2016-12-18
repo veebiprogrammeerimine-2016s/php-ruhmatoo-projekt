@@ -142,7 +142,7 @@
 
 <header>
 
-<body background="images/city-wallpaper-18.jpg" />
+<body background="../images/city-wallpaper-18.jpg" />
 
 	<nav class="navbar navbar-inverse navbar-static-top">
 	  <div class="container">
@@ -155,7 +155,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="login2.php"><img src="images/audify_600x220.png" height="22px"/></a>
+		  <a class="navbar-brand" href="login2.php"><img src="../images/audify_600x220.png" height="22px"/></a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -182,7 +182,7 @@
 		<!--<div class="jumbotron">-->
 			<div class="container">
 				<br><br><br><br>
-				<img src="images/audify.png"/>
+				<img src="../images/audify.png"/>
 				
 				
 				<div class="row">

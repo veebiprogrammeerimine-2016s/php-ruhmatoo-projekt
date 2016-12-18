@@ -5,7 +5,7 @@
 	
 	//ühendus
 	$database = "if16_andralla_2";
-	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+	$mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $database);
 	
 	//klassid
 	require("class/User.class.php");
