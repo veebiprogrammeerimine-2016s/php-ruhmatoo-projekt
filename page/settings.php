@@ -1,53 +1,41 @@
-<?php
+<?php 
 	
 	require("../functions.php");
 	
-	$Upload = new Upload($mysqli);
 	//kui ei ole kasutaja id'd
-	
-	if(!isset ($_SESSION["userId"])){
-	
-		//suunan sisselogimise lehele 
+	if (!isset($_SESSION["userId"])){
+		
+		//suunan sisselogimise lehele
 		header("Location: login2.php");
 		exit();
-		
 	}
-
+	
+	
 	//kui on ?logout aadressireal siis login välja
-	if(isset($_GET["logout"])){
+	if (isset($_GET["logout"])) {
+		
 		session_destroy();
 		header("Location: login2.php");
 		exit();
 	}
 	
-	//saan audio andmed
-	$audioData = $Upload->getAudio();
-	/*echo "<pre>";
-	var_dump($audioData);	
-	echo "</pre>";
-	*/
-	
 ?>
 
-
-
+<html>
 <head>
 	<meta charset="utf-8">
 	<title>Audify</title>
 	<meta name="description" content="Audify">
-	
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
 
+
 </head>
 
 <header>
-
-<body background="../images/background.jpg" />
-
 	<nav class="navbar navbar-inverse navbar-static-top">
 	  <div class="container">
 		<!-- Brand and toggle get grouped for better mobile display -->
@@ -64,11 +52,7 @@
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		  <ul class="nav navbar-nav">
-			<li>
-
-				<a href="upload.php">Upload</a>
-			
-			</li>
+			<li><a href="upload.php">Upload</a></li>
 		  </ul>
 		  <form class="navbar-form navbar-left">
 			<div class="form-group">
@@ -95,48 +79,20 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </header>
 
-
-
-
 <body>
-	
-	
-	
-		<!--<div class="jumbotron">-->
-			<div class="container">
-				
-				<h1>Trackfeed</h1>
-				<h4>Latest uploads from people<h4><br><br>
-				
-					
-					
+	<!--<div class="jumbotron">-->
+		<div class="container">
 			
-			</div> 
-		
-		
-		<?php
-		$html = "<table class='table table-hover table-bordered '>";
-		
-		foreach($audioData as $c){
-			//iga auto on $c
-			//echo $c->plate. "<br>";
-			$html .= "<tr>";
-				$html .= "<td>".$c->id."</td>";
-				$html .= "<td>".$c->caption."</td>"; 
-				
-			
-			
-			$html .= "</tr>";
-		}
-		$html .= "</table>";
-		echo $html;
-		
-		?>
+			<h1>User settings</h1>
 
+			<p>
+				Signed in as <?=$_SESSION["userEmail"];?>
+				<a href="?logout=1">Sign out</a>
+			</p>
+			Change email, password
+			
+		</div> 
 	
-		<!--</div> -->
+	<!--</div> -->
 
-</body>
-
-
-
+</body></html>
