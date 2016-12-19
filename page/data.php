@@ -37,6 +37,20 @@ if(isset($_SESSION["message"])) {
 <p>
 	Welcome <?=$_SESSION["userName"];?>!
 	<br><br>
+	
+	<h2>To continue, please add at least one series to your calender!</h2>
+	<form method="POST">
+	
+	<input name="series" type="text">
+	<br><br>
+	
+	
+	
+	<input type="submit" value="Save">
+	</form>
+	
+	
+	
 	<a href="?logout=1"> Log out</a>
 </p>
 
