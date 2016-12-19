@@ -95,9 +95,8 @@ if ( isset ( $_POST["signupAge"] ) &&
 
         $password = hash("sha512", $_POST["signupPassword"]);
 
-        $signupEmail = cleanInput($signupEmail);
-        $signupUsername = cleanInput($_POST["signupUsername"]);
-        signUp($signupUsername, $signupEmail, cleanInput($password), $signupAge);
+        $User->signUp($Helper->cleanInput($_POST['signupUsername']), $Helper->cleanInput($_POST['signupEmail']),
+        $Helper->cleanInput ($password),$Helper->cleanInput($_POST['signupAge']));
 
     }
 
