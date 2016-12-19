@@ -1,7 +1,16 @@
 <?php
 
     require ("functions.php");
-if (isset ($_POST["RegPlate"]) &&
+
+    if (!isset($_SESSION["userId"])){
+
+    //suunan sisselogimise lehele
+        header("Location: firstpage.php");
+        exit();
+
+}
+if  (
+    isset ($_POST["RegPlate"]) &&
     isset ($_POST["Mark"]) &&
     isset ($_POST["Model"]) &&
     !empty($_POST["RegPlate"]) &&
@@ -25,14 +34,16 @@ if(isset($_GET["q"])){
 
 	$sort = "id";
 
-	if(isset($_GET["sort"])) {
+	    if(isset($_GET["sort"])) {
 		$sort = $_GET["sort"];
 	}
 
-	$cars=$Car->getUserCars();
+	$cars=$Car->getAll($q, $sort);
 		//otsisõna funktsiooni sisse
-	$carData = $Car->getAll($q, $sort);
+	//$carData = $Car->getAll($q, $sort);
 ?>
+
+<a href="homepage.php">kodulehele </a>
 
 <?php require ("header.php");?>
 <div class="container">
@@ -80,7 +91,7 @@ $html .= "</tr>";
 foreach ($cars as $c) {
     $html .= "<tr>";
     $html .= "<td>".$c->id."</td>";
-    $html .= "<td>".$c->Tyyp."</td>";
+    $html .= "<td>".$c->RegPlate."</td>";
     $html .= "<td>".$c->Mark."</td>";
     $html .= "<td>".$c->Model."</td>";
 	$html .= "<td><a class='btn btn-default btn-sm' href='car.php?id=".$c->id."'><span class='glyphicon glyphicon-th-list'></span>Vaata ajalugu</a></td>";

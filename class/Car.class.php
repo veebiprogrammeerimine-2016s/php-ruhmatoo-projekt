@@ -5,11 +5,11 @@
     }
     function saveCar ($RegPlate, $Mark, $Model) {
 
-        $stmt = $this->connection->prepare("INSERT INTO repairCars (RegPlate, Mark, Model) VALUES (?, ?, ?)");
+        $stmt = $this->connection->prepare("INSERT INTO repairCars (UserId, RegPlate, Mark, Model) VALUES (?, ?, ?, ?)");
 
         echo $this->connection->error;
 
-        $stmt->bind_param("sss", $RegPlate, $Mark, $Model);
+        $stmt->bind_param("isss",$_SESSION["userId"], $RegPlate, $Mark, $Model);
 
         if ($stmt->execute()) {
 
@@ -83,7 +83,7 @@
 	
     function getUserCars () {
 
-        $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model FROM repairCars WHERE deleted IS NULL");
+            $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model FROM repairCars WHERE deleted IS NULL");
         echo $this->connection->error;
 
         $stmt ->bind_result($id, $RegPlate, $Mark, $Model);
@@ -108,7 +108,7 @@
     }
     function getAll($q, $sort) {
 
-        $allowedSort = ["UserId", "RegPlate", "Mark", "Model"];
+        $allowedSort = ["RegPlate", "Mark", "Model"];
         if(!in_array($sort, $allowedSort)) {
             //ei ole lubatud tulp
             $sort = "UserId";
@@ -118,21 +118,24 @@
             echo "Otsib: ".$q;
 
             $stmt = $this->connection->prepare("
-			SELECT UserId, RegPlate, Mark, Model
+			SELECT id, RegPlate, Mark, Model
 			FROM repairCars
-			WHERE deleted IS NULL AND UserId = ?
+			WHERE deleted IS NULL
 			AND (RegPlate LIKE ? OR Mark LIKE ? OR Model LIKE ?)
 			ORDER BY $sort
 			
 			");
+
+
             $searchWord="%".$q."%";
-            $stmt->bind_param("iss", $_SESSION["UserId"], $searchWord, $searchWord);
+            $stmt->bind_param("sss", $searchWord, $searchWord, $searchWord);
+
 
         } else {
             $stmt = $this->connection->prepare("
-			SELECT UserId, RegPlate, Mark, Model
+			SELECT id, RegPlate, Mark, Model
 			FROM repairCars
-			WHERE deleted IS NULL AND UserId = ?
+			WHERE deleted IS NULL
 			ORDER BY $sort 
 			");
 
@@ -140,7 +143,7 @@
         }
         echo $this->connection->error;
 
-        $stmt->bind_result($UserId, $RegPlate, $Mark, $Model);
+        $stmt->bind_result($id ,$RegPlate, $Mark, $Model);
         $stmt->execute();
 
 
@@ -152,16 +155,16 @@
         while ($stmt->fetch()) {
 
             //tekitan objekti
-            $car = new StdClass();
+            $Car = new StdClass();
 
-            $Car->id = $UserId;
+            $Car->id = $id;
             $Car->RegPlate = $RegPlate;
             $Car->Mark = $Mark;
             $Car->Model = $Model;
 
             //echo $plate."<br>";
             // iga kord massiivi lisan juurde nr m�rgi
-            array_push($result, $RegPlate);
+            array_push($result, $Car);
         }
 
         $stmt->close();

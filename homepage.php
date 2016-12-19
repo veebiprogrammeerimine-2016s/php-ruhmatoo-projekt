@@ -53,41 +53,8 @@
 	}
 
 		//otsisõna funktsiooni sisse
-		$carData = $Car->getAll($q, $sort);
-	
-	$html = "<table class='table table-striped'>";
-		//iga liikme kohta massiivis
-	foreach($carData as $c){
-		// iga auto on $c
-		//echo $c->plate."<br>";
-		
-		$html .= "<tr>";
-			$html .= "<td>".$c->UserId."</td>";
-			$html .= "<td>".$c->RegPlate."</td>";
-			$html .= "<td>".$c->Mark."</td>";
-			$html .= "<td>".$c->Model."</td>";
-            $html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span>Muuda</a></td>";
+		$carData = $Car->getUserCars();
 
-		$html .= "</tr>";
-	}
-	
-	$html .= "</table>";
-	
-	echo $html;
-	
-	
-	$listHtml = "<br><br>";
-	
-	foreach($carData as $c){
-		
-		
-		$listHtml .= "<p>RegPlate = ".$c->RegPlate."</p>";
-		$listHtml .= "<p>Mark = ".$c->Mark."</p>";
-		$listHtml .= "<p>Model = ".$c->Model."</p>";
-	}
-	
-	echo $listHtml;
-	
 ?>
 
 
@@ -115,5 +82,30 @@
 	<input type="submit" value="Otsi">
 </form>
 
+<?php
+
+$html = "<table>";
+$html .= "<tr>";
+$html .= "<th>id</th>";
+$html .= "<th>Registreerimismärk</th>";
+$html .= "<th>Sõiduki mark</th>";
+$html .= "<th>Sõiduki mudel</th>";
+$html .= "</tr>";
+
+
+foreach ($carData as $c) {
+    $html .= "<tr>";
+    $html .= "<td>".$c->id."</td>";
+    $html .= "<td>".$c->Tyyp."</td>";
+    $html .= "<td>".$c->Mark."</td>";
+    $html .= "<td>".$c->Model."</td>";
+    $html .= "<td><a class='btn btn-default btn-sm' href='car.php?id=".$c->id."'><span class='glyphicon glyphicon-th-list'></span>Vaata ajalugu</a></td>";
+    $html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-plus'></span>Lisa töid</a></td>";
+    $html .= "</tr>";
+}
+$html .= "</table>";
+echo $html;
+
+?>
 	
 <?php require ("footer.php");?>

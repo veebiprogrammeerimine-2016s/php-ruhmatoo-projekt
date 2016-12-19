@@ -2,7 +2,14 @@
 	//edit.php
 	require("functions.php");
     $Car = new Car($mysqli);
-	
+
+	if (!isset($_SESSION["userId"])){
+
+	//suunan sisselogimise lehele
+		header("Location: firstpage.php");
+		exit();
+	}
+
 	//kas kasutaja uuendab andmeid
 	if(isset($_POST["update"])){
 		
