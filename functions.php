@@ -12,7 +12,7 @@
 	$User=new User($mysqli);
 	
 	require("class/Upload.class.php");
-	$User=new User($mysqli);
+	$Upload=new Upload($mysqli);
 	
 	require("class/Helper.class.php");
 	$Helper=new Helper($mysqli);

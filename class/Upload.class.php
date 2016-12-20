@@ -13,11 +13,15 @@ class Upload {
 	/*TEISED FUNKTSIOONID*/
 	
 	function uploadAudio($userid,$caption,$url){
-		
+			
+			$database = "if16_andralla_2";
+			$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+
+			/*
 			if ($mysqli->connect_error) {
 				die('Connect Error: ' . $mysqli->connect_error);
 			}
-			
+			*/
 			$stmt=$this->connection->prepare("INSERT INTO uploads (author, caption, url) VALUES (?,?,?)");
 			
 			echo $this->connection->error;

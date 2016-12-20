@@ -1,9 +1,10 @@
 <?php 
 	
 	require("../functions.php");
-	
+	include_once("../class/Upload.class.php");
+
 	$mysqli = "";
-	$Upload = new Upload($mysqli);
+
 	
 	
 	//kui ei ole kasutaja id'd
@@ -31,7 +32,7 @@
 	$captionError="Please insert title";
 	
 	if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
-		$target_dir = "uploads/";
+		$target_dir = "../uploads/";
 		$url = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$uploadOk = 1;
 		

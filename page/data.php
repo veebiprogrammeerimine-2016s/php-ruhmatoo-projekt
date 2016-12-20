@@ -96,12 +96,8 @@
 </header>
 
 
-
-
 <body>
-	
-	
-	
+
 		<!--<div class="jumbotron">-->
 			<div class="container">
 				
@@ -129,10 +125,10 @@
 			$html .= "</tr>";
 		}
 		$html .= "</table>";
-		echo $html;
-		
+		echo $html;	
 		?>
 
+		
 	
 		<!--</div> -->
 

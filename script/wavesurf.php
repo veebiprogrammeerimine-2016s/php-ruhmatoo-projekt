@@ -10,7 +10,7 @@
 					height: 64
 					});
 
-					wavesurfer.load('$url');
+					wavesurfer.load('');
 					</script>
 					</div>
 					<p align="left">
