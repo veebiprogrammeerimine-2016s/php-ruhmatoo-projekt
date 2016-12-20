@@ -1,6 +1,7 @@
 <?php
 
 require("../functions.php");
+require("database.php");
 
 //kui ei ole kasutaja id'd
 if (!isset($_SESSION["userId"])) {
@@ -31,16 +32,23 @@ if(isset($_SESSION["message"])) {
 
 ?>
 
+
+
+
 <h1>TV Show Calendar</h1>
-<?=$msg;?>
 
 <p>
-	Welcome <?=$_SESSION["userName"];?>!
+	<h2>Welcome <?=$_SESSION["userName"];?>!</h2>
 	<br><br>
 	
-	<h2>To continue, please add at least one series to your calender!</h2>
+	<h3>To continue, please add at least one series to your calender!</h3>
 	<form method="POST">
 	
+	
+	
+	<?php
+	//siin peaks saama kasutaja valida loetelust seriaali, mida oma kalendrisse lisada
+	?>
 	<input name="series" type="text">
 	<br><br>
 	
@@ -49,10 +57,5 @@ if(isset($_SESSION["message"])) {
 	<input type="submit" value="Save">
 	</form>
 	
-	
-	
 	<a href="?logout=1"> Log out</a>
 </p>
-
-<br><br>
-<br><br>
