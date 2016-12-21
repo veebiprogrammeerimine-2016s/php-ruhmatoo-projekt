@@ -17,6 +17,15 @@ $signupPassword = "";
 $signupEmailError = "";
 $signupPasswordError = "";
 
+if (isset($_GET["deleted"])){
+		
+		$Plant->deleteOne($_GET["id"]);
+        $Plant->deleteTwo($_GET["id"]);
+			header("Location: data.php");
+			exit();
+		
+	}
+
 	if(isset($_GET["sort"]) && isset($_GET["direction"])){
 		$sort=$_GET["sort"];
 		$direction=$_GET["direction"];

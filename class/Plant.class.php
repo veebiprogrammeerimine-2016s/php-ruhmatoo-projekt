@@ -277,11 +277,11 @@ class Plant {
 
 
 	function getSingleData($edit_id){
-    
+        $user=$_SESSION["userEmail"];
 		
-		$stmt = $this->connection->prepare("SELECT plant, wateringInterval FROM flowers WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT name, watering_days FROM f_plant WHERE id=? AND deleted IS NULL AND private=?");
 
-		$stmt->bind_param("i", $edit_id);
+		$stmt->bind_param("is", $edit_id,$user);
 		$stmt->bind_result($plant, $wateringInterval);
 		$stmt->execute();
 		
@@ -291,8 +291,8 @@ class Plant {
 		//saime ühe rea andmeid
 		if($stmt->fetch()){
 			// saan siin alles kasutada bind_result muutujaid
-			$plantFromDb->plant = $plant;
-			$plantFromDb->interval = $wateringInterval;
+			$plantFromDb->name = $plant;
+			$plantFromDb->watering_days= $wateringInterval;
 			
 			
 		}else{
@@ -308,7 +308,7 @@ class Plant {
 	}
 	function deleteOne($id){
 		
-		$stmt = $this->connection->prepare("UPDATE flowers SET deleted='yes' WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("UPDATE f_userplants SET deleted='yes' WHERE id=? AND deleted IS NULL");
 		$stmt->bind_param("s",$id);
 		
 		// kas õnnestus salvestada
@@ -316,7 +316,17 @@ class Plant {
 			// õnnestus
 			echo "kustutamine õnnestus!";
 		}
+    }
+    function deleteTwo($id){
 		
+		$stmt = $this->connection->prepare("UPDATE f_plant SET deleted='yes' WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("s",$id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			// õnnestus
+			echo "kustutamine õnnestus!";
+		}    
 		
 		
 		
@@ -325,7 +335,7 @@ class Plant {
 
 	function update($id, $plant, $wateringInterval){
 		
-		$stmt = $this->connection->prepare("UPDATE flowers SET plant=?, wateringInterval=? WHERE id=?");
+		$stmt = $this->connection->prepare("UPDATE f_plant SET name=?, watering_days=? WHERE id=?");
 		$stmt->bind_param("ssi",$plant, $wateringInterval, $id);
 		
 		// kas õnnestus salvestada

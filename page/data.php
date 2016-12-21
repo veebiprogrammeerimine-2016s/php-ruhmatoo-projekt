@@ -18,6 +18,10 @@
 		exit();
 		
 	}
+		
+
+
+
 	
 	
 	
@@ -159,10 +163,9 @@
 						
 						$html = "<table class='table table-striped table-hover table-condensed table-bordered  ' style='background-color:white'>";
 						$html .= "<tr>";
-							$html .= "<th><a href='?q=".$q."&sort=plantID&direction=".$direction."'>nr</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=plantID&direction=".$direction."'>id</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=interval&direction=".$direction."'>interval</a></th>";
+							$html .= "<th style='width:30px'><a href='?q=".$q."&sort=plantID&direction=".$direction."'>id</a></th>";
+							$html .= "<th style='width:300px'><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
+							$html .= "<th style='width:50px'><a href='?q=".$q."&sort=interval&direction=".$direction."'>kasta</a></th>";
 						$html .= "</tr>";
 						
 						$i = 1;
@@ -173,11 +176,10 @@
 						
 							
 							$html .= "<tr>";
-								$html .= "<td>".$i."</td>";
 								$html .= "<td>".$p->id."</td>";
 								$html .= "<td>".$p->name."</td>";
 								$html .= "<td>".$p->intervals."</td>";
-								$html .= "<td><a href='edit.php?id=".$p->id."'>muuda</a></td>";
+								$html .= "<td style='width:50px'><button><a href='edit.php?id=".$p->id."'>Muuda</a></button><br><button class='submit' type='submit' value='.$p->id.' name='op'>Kustuta</button></td>";
 							$html .= "</tr>";
 							
 							$i += 1;

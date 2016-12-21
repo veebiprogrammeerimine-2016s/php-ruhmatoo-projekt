@@ -7,6 +7,7 @@
 	if (isset($_GET["deleted"])){
 		
 		$Plant->deleteOne($_GET["id"]);
+        $Plant->deleteTwo($_GET["id"]);
 			header("Location: data.php");
 			exit();
 		
@@ -46,9 +47,9 @@
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
   	<label for="plant_name" >Taime nimi</label><br>
-	<input id="plant_name" name="plant" type="text" value="<?php echo $p->plant;?>" ><br><br>
+	<input id="plant_name" name="plant" type="text" value="<?php echo $p->name;?>" ><br><br>
   	<label for="watering_interval" >Kastmisintervall</label><br>
-	<input id="watering_interval" name="interval" type="text" value="<?php echo $p->interval;?>"><br><br>
+	<input id="watering_interval" name="interval" type="text" value="<?php echo $p->watering_days;?>"><br><br>
   	
 	<input type="submit" name="update" value="Salvesta">
 	<br><br>
