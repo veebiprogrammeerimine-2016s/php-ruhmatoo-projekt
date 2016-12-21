@@ -46,6 +46,7 @@
 		)) {
 			
 			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]),$_SESSION["userEmail"]);
+            $Plant->saveSecond($Helper->cleanInput($_POST["user_plant"]),$_SESSION["userEmail"]);
 			echo $_SESSION["userEmail"];
 			header("Location: data.php");
 		    exit();
@@ -64,10 +65,10 @@
 	
 	if(isset($_GET["q"])){
 		$q = $Helper->cleanInput($_GET["q"]);
-		$plantData = $Plant->getAll($q, $sort, $direction);
+		$plantData = $Plant->getAllUserPlants($q, $sort, $direction);
 	} else {
 		$q="";
-		$plantData = $Plant->getAll($q,$sort,$direction);
+		$plantData = $Plant->getAllUserPlants($q,$sort,$direction);
 		
 	}	
 		
@@ -158,8 +159,8 @@
 						
 						$html = "<table class='table table-striped table-hover table-condensed table-bordered  ' style='background-color:white'>";
 						$html .= "<tr>";
-							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>nr</a></th>";
-							$html .= "<th><a href='?q=".$q."&sort=id&direction=".$direction."'>id</a></th>";
+							$html .= "<th><a href='?q=".$q."&sort=plantID&direction=".$direction."'>nr</a></th>";
+							$html .= "<th><a href='?q=".$q."&sort=plantID&direction=".$direction."'>id</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
 							$html .= "<th><a href='?q=".$q."&sort=interval&direction=".$direction."'>interval</a></th>";
 						$html .= "</tr>";

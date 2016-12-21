@@ -15,7 +15,6 @@ require("../../../config.php");
 	
 	
 	$User = new User($mysqli);
-	
 	$Plant = new Plant($mysqli);
 	$Helper = new Helper($mysqli);
 	

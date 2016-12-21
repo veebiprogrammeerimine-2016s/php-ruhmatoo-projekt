@@ -59,13 +59,9 @@ class Plant {
 		
 		$stmt = $this->connection->prepare(
 		"INSERT INTO f_plant (name, watering_days,private) VALUES (?,?,?)");
-		
+        
 		echo $this->connection->error;
-		
-		
-		
-		//asendan küsimärgi
-		$stmt->bind_param("sss", $plant,$watering,$emailFromDb);
+        $stmt->bind_param("sss", $plant,$watering,$emailFromDb);
 		
 		if ( $stmt->execute() )  {
 			
@@ -74,22 +70,38 @@ class Plant {
 		}  else  {
 			
 			echo "ERROR".$stmt->error;
-		}
+		}}
+        
+    function saveSecond($plant,$emailFromDb){
+         $stmt = $this->connection->prepare("Insert into f_userplants(plantID,watering_interval,private) select id,watering_days, private FROM f_plant WHERE name=? and private=?");
+       
+        echo $ths->connectin->error;
+        $stmt->bind_param("ss",$plant,$emailFromDb);
+        
+        if ($stmt->execute()){
+            echo "salvestamine õnnestus";
+        } else {
+            echo "ERROR".$stmt->error;
+        }
+    }    
 		
-	}
+		
+		
+		
+        
 	
 	function saveUserPlants($plant, $watering) {
 		
 		
 		$stmt = $this->connection->prepare(
-		"INSERT INTO f_userplants (plantID, userID,watering_interval) VALUES (?,?,?)");
+		"INSERT INTO f_userplants (plantID, userID,watering_interval,private) VALUES (?,?,?,?)");
 		
 		echo $this->connection->error;
 		
 		
 		
 		//asendan küsimärgi
-		$stmt->bind_param("iii", $plant,$_SESSION["userId"],$watering);
+		$stmt->bind_param("iiis", $plant,$_SESSION["userId"],$watering,$_SESSION["userEmail"]);
 		
 		if ( $stmt->execute() )  {
 			
@@ -182,7 +194,88 @@ class Plant {
 	}
 		
 		
+	
+
+	function getAllUserPlants($q,$sort,$direction) {
+		
+		$allowedSortOptions = ["plantID", "name", "interval"];
+			
+		if(!in_array($sort,$allowedSortOptions)){
+			
+			$sort="plantID";
+		}	
+		$user=$_SESSION["userEmail"];
+		if($sort == "interval"){
+			$sort = "watering_days";
+		}
+		
+		echo "Sorteerin...";
+
+		$orderBy="ASC";
+		if($direction=="descending"){
+			$orderBy="DESC";
+		}	
+		
+		if($q == ""){
+			echo"ei otsi...";
+			$stmt = $this->connection->prepare("
+            SELECT plantID, name, watering_days from f_plant
+            join f_userplants ON f_userplants.plantID=f_plant.id WHERE f_userplants.private='$user' OR f_plant.private='$user'
+			AND f_plant.deleted IS NULL 
+			ORDER BY $sort $orderBy");
+			
+            
+		
+		} else {
+			echo"Otsib...".$q;
+			$searchWord = "%".$q."%";
+			$stmt = $this->connection->prepare(
+			"SELECT plantID, name, watering_days from f_plant
+            join f_userplants ON f_userplants.plantID=f_plant.id WHERE f_userplants.private='$user' OR f_plant.private='$user'
+			AND f_plant.deleted IS NULL AND (name LIKE ? OR watering_days LIKE ?) ORDER BY $sort $orderBy");
+			$stmt->bind_param('ss', $searchWord, $searchWord);
+			
+		}
+		echo $this->connection->error;
+		
+		
+		$stmt->bind_result($id, $name, $watering);
+		$stmt->execute();
+		
+		
+		
+		//tekitan massiivi
+		
+		$result=array();
+		
+		//Tee seda seni, kuni on rida andmeid. ($stmt->fech)
+		//Mis vastab select lausele.
+		//iga uue rea andme kohta see lause seal sees
+		
+		while($stmt->fetch()){
+			
+			//tekitan objekti
+			
+			$plantClass = new StdClass();
+			
+		    $plantClass->id=$id;
+			$plantClass->name=$name;
+			$plantClass->intervals=$watering;
+			
+			
+			
+			array_push($result, $plantClass);
+		}
+		
+		return $result;
+		
+		
 	}
+		
+		
+	
+
+
 	function getSingleData($edit_id){
     
 		
@@ -245,6 +338,6 @@ class Plant {
 		
 	}
 	
-
+}
 
 ?>
