@@ -63,7 +63,7 @@
 <?=$msg;?>
 <p>
 	Tere tulemast <a class="col-md-10" href="userpage.php"><?=$_SESSION["userEmail"];?>!</a>
-	<a href="?logout=1">Logi v�lja</a>
+	<a href="?logout=1">Logi välja</a>
 </p>
 		<div class="row">
 			<div class="col-md-10">
@@ -84,12 +84,14 @@
 
 <?php
 
-$html = "<table>";
+$html = "<table class='table table-hover'>";
 $html .= "<tr>";
 $html .= "<th>id</th>";
 $html .= "<th>Registreerimismärk</th>";
 $html .= "<th>Sõiduki mark</th>";
 $html .= "<th>Sõiduki mudel</th>";
+$html .= "<th>Ajalugu</th>";
+$html .= "<th>Muuda</th>";
 $html .= "</tr>";
 
 

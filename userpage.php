@@ -72,19 +72,25 @@ if(isset($_GET["q"])){
 <h2>Autod</h2>
 
 <form method="GET">
-
-	<input type="search" name="q" value="<?=$q;?>">
-	<input type="submit" value="Otsi">
+    <div class="form-group">
+        <div class="col-md-4">
+            <input class="form-control" type="search" name="q" value="<?=$q;?>"><br>
+        </div>
+            <input type="submit" value="Otsi">
+    </div>
 </form>
+<br><br>
 <h2>Sinu Sõidukid</h2>
 <?php
 
-$html = "<table>";
+$html = "<table class='table table-striped'>";
 $html .= "<tr>";
 $html .= "<th>id</th>";
 $html .= "<th>Registreerimismärk</th>";
 $html .= "<th>Sõiduki mark</th>";
 $html .= "<th>Sõiduki mudel</th>";
+$html .= "<th>Ajalugu</th>";
+$html .= "<th>Muuda</th>";
 $html .= "</tr>";
 
 
