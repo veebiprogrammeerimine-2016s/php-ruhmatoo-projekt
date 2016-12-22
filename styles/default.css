@@ -2,11 +2,11 @@
 
 
 html {
-	--main-color: forestgreen;
-	--main-button: green;
-	--main-border: darkgreen;
-	--hl-button: limegreen;
-	--hl-border: green;
+	--main-color: #cc9966;
+	--main-button: #ac7339;
+	--main-border: #ac7339;
+	--hl-button: #ac7339;
+	--hl-border: #ac7339;
 	--main-text: black;
 	--main-header: white;
 
@@ -20,7 +20,7 @@ body {
 	padding: 0;
 	position: static;
 	margin-bottom: 8em;
-    background-image: url(https://static.pexels.com/photos/164474/pexels-photo-164474.jpeg);
+    background-image: url(https://static.pexels.com/photos/172289/pexels-photo-172289.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;
