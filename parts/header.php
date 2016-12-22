@@ -20,6 +20,9 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- CSS -->
+    <link href="../css/signin.css" rel="stylesheet">
+    <link href="../css/site.css" rel="stylesheet">
 
 </head>
 <body>

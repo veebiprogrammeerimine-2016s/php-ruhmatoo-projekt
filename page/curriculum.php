@@ -1,12 +1,10 @@
-<?php
-require "../parts/header.php";
-?>
+<?php require "../parts/header.php"; ?>
 
 <div class="container-fluid">
 
     <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                         aria-expanded="false" aria-controls="navbar">
@@ -17,6 +15,10 @@ require "../parts/header.php";
                 <ul class="nav navbar-nav">
                     <li><a href="homework.php">Kodused tööd</a></li>
                     <li class="active"><a href="#">Tunniplaan</a></li>
+                </ul>
+                <!-- Navbar right side -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="admin.php">Admin</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -68,6 +70,5 @@ require "../parts/header.php";
     </table>
 
 </div>
-</body>
 
 <?php require "../parts/footer.php"; ?>
