@@ -60,6 +60,7 @@
 <?php
 // --- UPLOAD PHP ---
 
+$alertMsg = "";
 
 if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
@@ -67,9 +68,11 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	$target_dir = "uploads/";
 	$target_file = $target_dir.basename($uploadName);
 	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+	
 	$uploadName = uniqid().".".$imageFileType;
 	$target_file = $target_dir.basename($uploadName);
 	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+	
 	$uploadTmp = $_FILES["fileToUpload"]["tmp_name"];
 	$uploadSize = $_FILES["fileToUpload"]["size"];
 	
@@ -109,16 +112,21 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	}
 	
 	
+	
 	if($uploadOk == 0) {
 		echo "<br>Faili ei ole üles laetud.";
+		$alertMsg = "<div class='alert alert-warning' role='alert'>Faili ei ole üles laetud</div>";
+		
 	} else {
 		if (move_uploaded_file($uploadTmp, $target_file)) {
-			echo "<br>Pilt nimega ".basename($uploadName)." on üles laetud.";
+			echo "<br>Pilt nimega ".basename($uploadName)." on üles laetud</div>";
+			$alertMsg = "<div class='alert alert-success' role='alert'>Pilt on üles laetud!";
 			
 			
 			
 		} else {
 			echo "<br>Üleslaadimisel ilmnes tõrge.";
+			$alertMsg = "<div class='alert alert-danger' role='alert'>Üleslaadimisel ilmnes tõrge</div>";
 		}
 	}
 	
@@ -145,43 +153,77 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
 
 <!--KUULUTUSE ÜLESLAADIMISVORM-->
+
+				<!--
+				<label>Description</label><br>
+				<textarea rows="2" cols="40" name="description" type="text" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43"></textarea><br><br>
+				-->
 	
-	<h2>Sell Sneakers</h2>
 
-		<form method="POST">
+<h2>Sell Sneakers</h2>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<h3>Create a post</h3>
+				<form method="POST">
+					<div class="form-group">	
+						<label for="price">Price ($)</label>
+						<input type="integer" name="price" class="form-control" placeholder="ex. 490" id="price">
+					</div>
+					<div class="form-group">
+						<label for="contact-email">Contact E-Mail</label>
+						<input type="text" name="contactemail" value="<?=$_SESSION["userEmail"];?>" class="form-control" id="contact-email">
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Save & Post" class="btn btn-default">
+					</div>
+				</form>
+				<h3>Upload an image</h3>
+				<form action="data.php" method="post" enctype="multipart/form-data">
+					<div class="form-group">
+						<div>
+							<?php echo $alertMsg; ?>
+						</div>
+						
+						<label for="fileToUpload">Uploadi pilt:</label><br>
+						<label class="btn btn-primary" for="fileToUpload">
+							<input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
+							Browse
+						</label>
+					</div>
+					<div class="form-group">
+						<input type="submit" name="submitUpload" value="Upload Image" class="btn btn-default">
+					</div>
+					
+					<!--<div class="container">
+						<div class="row">
+							<div class="col-md-3">
+								<?php //echo $alertMsg; ?>
+							</div>
+						</div>
+					</div>-->
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
 
-			<label><b>Create a post</b></label><br><br>
-		
-			<label>Description</label><br>
-			<textarea rows="2" cols="40" name="description" type="text" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43"></textarea><br><br>
-			
-			<label>Price ($)</label><br>
-			<input name="price" type="integer" placeholder="ex. 490"><br><br>
-			
-			<label>Contact E-Mail</label><br>
-			<input name="contactemail" type="text" value="<?=$_SESSION["userEmail"];?>">
-			
-			<br><br>
-			<input type="submit" value="Save & Post">
-
-		</form>
-
-
-<!--UPLOAD VORM-->
-
+<!--UPLOAD VORM
 		<form action="data.php" method="post" enctype="multipart/form-data">
 			Uploadi pilt:
 			<input type="file" name="fileToUpload" id="fileToUpload">
 			<input type="submit" value="Upload Image" name="submitUpload">
 		</form>
-			
+
 			
 	<h2>Market</h2>
 	<form>
 		<input type="search" name="q" value="<?=$q;?>">
 		<input type="submit" value="Search"><br><br>
 	</form>
-
+-->
+	
 
 	<?php
 
