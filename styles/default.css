@@ -29,7 +29,7 @@ body {
     background-repeat: no-repeat;
     min-height: 100vh;
 }
-	
+
 
 .footer {
 	clear: both;
@@ -79,7 +79,7 @@ body {
 .header {
 	background: var(--main-color);
 	color: var(--main-header);
-	font-family: Roboto, sans-serif;
+	font-family: "Roboto", sans-serif;
 	font-size: 2em;
 	font-weight: 300;
 	padding: 0.5em;
@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 0.05em;
 	font-family: Roboto, sans-serif, bold;
 	font-weight: bold;
-	
+
 }
 h4, h5, h6 {
 	font-size: 1em;
@@ -169,4 +169,3 @@ input {
 	background: var(--main-color);
 	border-bottom: 2px solid var(--main-border);
 }
-
