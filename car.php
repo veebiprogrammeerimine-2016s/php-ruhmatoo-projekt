@@ -5,14 +5,14 @@ require("functions.php");
 $cars=$Car->getWorks($_GET["id"]);
 ?>
 
-<h2>Sinu Sõidukid</h2>
+<h2>Tehtud tÃ¶Ã¶d</h2>
 <?php
 
-$html = "<table>";
+$html = "<table class='table table-hover'>";
 $html .= "<tr>";
-$html .= "<th>Läbisõit</th>";
-$html .= "<th>Tehtud töö</th>";
-$html .= "<th>Töö maksumus</th>";
+$html .= "<th>LÃ¤bisÃµit</th>";
+$html .= "<th>Tehtud tÃ¶Ã¶</th>";
+$html .= "<th>TÃ¶Ã¶ maksumus</th>";
 $html .= "<th>Kommentaar</th>";
 $html .= "</tr>";
 
@@ -29,4 +29,5 @@ $html .= "</table>";
 echo $html;
 
 ?>
+
 <?php require ("footer.php");?>

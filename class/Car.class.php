@@ -80,26 +80,27 @@
 		return $result;
 
 	}
-	
-    function getUserCars () {
 
-            $stmt = $this->connection->prepare("SELECT id, RegPlate, Mark, Model FROM repairCars WHERE deleted IS NULL");
+    function getUserCars ($id, $RegPlate, $Mark, $Model) {
+
+        $stmt = $this->connection->prepare("SELECT id, UserId, RegPlate, Mark, Model FROM repairCars WHERE deleted IS NULL");
         echo $this->connection->error;
 
-        $stmt ->bind_result($id, $RegPlate, $Mark, $Model);
+        $stmt ->bind_result($id, $_SESSION["userId"], $RegPlate, $Mark, $Model);
         $stmt -> execute ();
 
         $result = array();
 
         while ($stmt->fetch()) {
 
-            $car = new StdClass ();
-            $car->id = $id;
-            $car->Tyyp = $RegPlate;
-            $car->Mark = $Mark;
-            $car->Model = $Model;
+            $Car = new StdClass ();
+            $Car->id = $id;
+            $Car->UserId = $UserId;
+            $Car->RegPlate = $RegPlate;
+            $Car->Mark = $Mark;
+            $Car->Model = $Model;
 
-            array_push($result, $car);
+            array_push($result, $Car);
 
         }
 
@@ -181,7 +182,7 @@
 
 		if($stmt->execute()){
 	
-			echo "salvestus �nnestus!";
+			echo "salvestus õnnestus!";
 		}
 		$stmt->close();
 
@@ -195,7 +196,7 @@
 
 		if($stmt->execute()){
 	
-			echo "salvestus �nnestus!";
+			echo "salvestus õnnestus!";
 		}
 		$stmt->close();
 
@@ -211,7 +212,7 @@
 		$stmt->bind_param("s", $deleted);
 
 		if($stmt->execute()) {
-			echo "kustutamine �nnestus";
+			echo "kustutamine õnnestus";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}

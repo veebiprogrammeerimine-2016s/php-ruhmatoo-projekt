@@ -38,9 +38,7 @@
 	
 	//kas otsib
 	if(isset($_GET["q"])){
-
 		$q = $_GET["q"];
-
 	} else {
 		//otsisõna tühi
 		$q = "";
@@ -52,35 +50,47 @@
 		$sort = $_GET["sort"];
 	}
 
-		//otsisõna funktsiooni sisse
-		$carData = $Car->getUserCars();
+	$cars=$Car->getAll($q, $sort);
 
 ?>
 
 
 <?php require ("header.php");?>
 <div class="container">
-<?=$msg;?>
-<p>
-	Tere tulemast <a class="col-md-10" href="userpage.php"><?=$_SESSION["userEmail"];?>!</a>
-	<a href="?logout=1">Logi välja</a>
-</p>
-		<div class="row">
-			<div class="col-md-10">
-				<img src="Logo.png" alt="Firma logo" style="width:250px;height:200px;">
-			</div>
 
-		</div>
-	</div>
+<p class="text-right">
+	<span class="text-right" style="font-size:30px;"> Tere tulemast </span> <a style="font-size:30px; class="text-right" href="userpage.php"><?=$_SESSION["userEmail"];?></a>
+	<br>
+	<a class="text-right"  href="?logout=1">Logi välja <span class="glyphicon glyphicon-log-out"> </span></a>
+</p>
+	<head>
+		<style>
+			body  {
+				background-image: url("Logo.png");
+				background-size: 300px 300px;
+				background-repeat: no-repeat;
+			}
+		</style>
+	</head>
+	<body>
+</div>
 	
 	
 <h2>Autod</h2>
 
-<form>
-
-	<input type="search" name="q" value="<?=$q;?>">
-	<input type="submit" value="Otsi">
-</form>
+<div class="container-fluid">
+	<form class="form-inline">
+		<div class="row">
+			<form>
+				<input class="form-control" type="search" name="q" value="<?=$q;?>">
+				<button type="submit" class="btn btn-primary">
+					<i class="glyphicon glyphicon-search"></i>
+				</button>
+			</form>
+		</div>
+	</form>
+</div>
+<br>
 
 <?php
 
@@ -91,18 +101,16 @@ $html .= "<th>Registreerimismärk</th>";
 $html .= "<th>Sõiduki mark</th>";
 $html .= "<th>Sõiduki mudel</th>";
 $html .= "<th>Ajalugu</th>";
-$html .= "<th>Muuda</th>";
 $html .= "</tr>";
 
 
-foreach ($carData as $c) {
+foreach ($cars as $c) {
     $html .= "<tr>";
     $html .= "<td>".$c->id."</td>";
-    $html .= "<td>".$c->Tyyp."</td>";
+    $html .= "<td>".$c->RegPlate."</td>";
     $html .= "<td>".$c->Mark."</td>";
     $html .= "<td>".$c->Model."</td>";
     $html .= "<td><a class='btn btn-default btn-sm' href='car.php?id=".$c->id."'><span class='glyphicon glyphicon-th-list'></span>Vaata ajalugu</a></td>";
-    $html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-plus'></span>Lisa töid</a></td>";
     $html .= "</tr>";
 }
 $html .= "</table>";
