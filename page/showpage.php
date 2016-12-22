@@ -6,10 +6,11 @@
 	$Helper= new Helper();
 
 	/*require("../class/Comments.class.php");
-	$Comments= new Comments($mysqli);
+
+	$Comments= new Comments($mysqli);*/
 
 	require("../class/Info.class.php");
-	$Info= new Info($mysqli);*/
+	$Info= new Info($mysqli);
 
 	//kui ei ole sisse loginud, suunan login lehele
 	if(!isset($_SESSION["userId"])){
