@@ -1,5 +1,5 @@
 <?php
-require("header.php")
+require("header.php");
 $sendFeedback = 0;
 $feedbackSuccessful = 0;
 $feedbackFailed = 0;
@@ -37,4 +37,4 @@ $feedbackSent = 0;
 </body>
 
 
-<?php require("footer.php") ?>
+<?php require("footer.php"); ?>
