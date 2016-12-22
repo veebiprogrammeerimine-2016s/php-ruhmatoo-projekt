@@ -56,6 +56,66 @@
 	
 ?>
 
+
+<?php
+// --- UPLOAD PHP ---
+
+if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
+	
+	$target_dir = "uploads/";
+	$target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
+	$uploadOk = 1;
+	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+	
+	if(isset($_POST["submitUpload"])) {
+		$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+		if($check !== false) {
+			echo "Files is an image - ".$check["mime"].".";
+			$uploadOk = 1;
+			
+		} else {
+			echo "File is not an image.";
+			$upload = 0;
+		}
+	}
+	
+	if(file_exists($target_file)) {
+		echo "Selline fail on juba olemas";
+		$uploadOk = 0;
+	}
+	
+	if($imageFileType != "jpg" &&
+		$imageFileType != "png" &&
+		$imageFileType != "jpeg" &&
+		$imageFileType != "gif") {
+			echo "Ainult .jpg, .jpeg, .png ja .gif formaadid on lubatud";
+			$uploadOk = 0;
+		}
+	
+	if($uploadOk == 0) {
+		echo "Faili ei ole üles laetud.";
+	} else {
+		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+			echo "Pilt nimega ".basename($_FILES["fileToUpload"]["name"])." on üles laetud.";
+			
+			
+			
+		} else {
+			echo "Üleslaadimisel ilmnes tõrge.";
+		}
+	}
+	
+} else {
+	echo "Vali pilt, mida soovid  üles laadida.";
+}
+
+
+
+?>
+
+
+
+
 <?php require("../header.php"); ?>
 <div class="container">
 	<h1>
@@ -67,6 +127,10 @@
 
 	</p>
 
+	
+
+<!--KUULUTUSE ÜLESLAADIMISVORM-->
+	
 	<h2>Sell Sneakers</h2>
 
 		<form method="POST">
@@ -85,10 +149,18 @@
 			<br><br>
 			<input type="submit" value="Save & Post">
 
-
-
 		</form>
-		
+
+
+<!--UPLOAD VORM-->
+
+		<form action="data.php" method="post" enctype="multipart/form-data">
+			Uploadi pilt:
+			<input type="file" name="fileToUpload" id="fileToUpload">
+			<input type="submit" value="Upload Image" name="submitUpload">
+		</form>
+			
+			
 	<h2>Market</h2>
 	<form>
 		<input type="search" name="q" value="<?=$q;?>">
