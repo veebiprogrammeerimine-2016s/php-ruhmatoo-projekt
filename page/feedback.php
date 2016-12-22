@@ -42,7 +42,7 @@ if ($sendFeedback == 1) {
 
 <header>
 <div class="row">
-<div class="header c-12">Tagasiside</div>
+<div class="header c-12"><a class="hbutton" href="home.php">< </a>Tagasiside</div>
 </div>
 </header>
 
