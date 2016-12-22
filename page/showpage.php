@@ -5,8 +5,8 @@
 	require("../class/Helper.class.php");
 	$Helper= new Helper();
 
-	/*require("../class/cast.class.php");
-	$cast= new cast($mysqli);
+	/*require("../class/Comments.class.php");
+	$Comments= new Comments($mysqli);
 
 	require("../class/Info.class.php");
 	$Info= new Info($mysqli);*/
@@ -157,12 +157,12 @@ $html="<table class='table table-bordered table-condensed'>";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
 				$_GET["order"]=="ASC"&&
-				$_GET["sort"]=="cast"){
+				$_GET["sort"]=="comments"){
 				$ordercast="DESC";
 				$arr="&uarr;";
 			}
 			$html .="<th>
-						<a href='?q=".$q."&sort=cast&order=".$ordercast."'>
+						<a href='?q=".$q."&sort=comments&order=".$ordercast."'>
 							Kommentaarid
 						</a>
 					</th>";
@@ -172,7 +172,7 @@ $html="<table class='table table-bordered table-condensed'>";
 		$html .="<tr>";
 			$html .="<td>".$p->id."</td>";
 			$html .="<td>".$p->user."</td>";
-			$html .="<td>".$p->cast."</td>";
+			$html .="<td>".$p->comments."</td>";
 			$html .="</tr>";
 	}
 	$html .="</table>";
