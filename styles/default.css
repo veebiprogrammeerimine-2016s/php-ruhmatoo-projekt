@@ -102,7 +102,6 @@ body {
 	color: var(--main-text);
 	background: var(--main-button);
 	padding: 0.25em;
-	transition: 0.25s;
 	margin-top: auto;
 	margin-bottom: auto;
 }
@@ -112,7 +111,6 @@ body {
 	padding-right: .25em;
 	text-decoration: none;
 	color: var(--main-text);
-	transition: .25s;
 }
 .hbutton:hover {
 	padding-left: .5em;
@@ -164,5 +162,5 @@ input {
 	margin: 0;
 	border: none;
 	background: var(--main-color);
-	border-bottom: 2px solid var(--main-border);
+	border-bottom: 1px solid var(--main-border);
 }
