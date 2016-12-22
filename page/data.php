@@ -119,6 +119,7 @@
 			$html .= "<tr>";
 				$html .= "<td>".$c->id."</td>";
 				$html .= "<td>".$c->caption."</td>"; 
+				$html .= "<td>".$c->author."</td>"; 
 				
 			
 			
@@ -126,10 +127,17 @@
 		}
 		$html .= "</table>";
 		echo $html;	
-		?>
-
 		
-	
+		?>
+		
+
+		<?php
+			foreach(glob('../uploads/*', GLOB_NOSORT) as $sound)   
+			{  
+				require('../script/wavesurf.php');      
+			}  
+			
+		?>
 		<!--</div> -->
 
 </body>

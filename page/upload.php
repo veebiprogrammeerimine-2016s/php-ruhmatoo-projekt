@@ -30,9 +30,11 @@
 	$url="";
 	$caption = "fileToUpload";
 	$captionError="Please insert title";
+	$target_dir = "../uploads/";
+	
 	
 	if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
-		$target_dir = "../uploads/";
+		
 		$url = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$uploadOk = 1;
 		
@@ -88,11 +90,9 @@
 		echo "Please select the file that you want to upload!";
 	}
 	
-	
-	
-	
 
 	
+
 ?>
 
 
@@ -170,16 +170,6 @@
 						<input type="text" name="caption" id="caption" class="form-control" placeholder="Insert a title here"><br>
 						<input type="submit" value="Upload Audio" name="submit">
 					</form>
-
-			
 				
-			
-					
-					
-					
 				
-		
-		<!--</div> -->
-
-</body>
 
