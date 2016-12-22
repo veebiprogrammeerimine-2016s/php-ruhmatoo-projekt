@@ -60,53 +60,68 @@
 <?php
 // --- UPLOAD PHP ---
 
+
 if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
+	$uploadName = $_FILES["fileToUpload"]["name"];
 	$target_dir = "uploads/";
-	$target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
-	$uploadOk = 1;
+	$target_file = $target_dir.basename($uploadName);
 	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+	$uploadName = uniqid().".".$imageFileType;
+	$target_file = $target_dir.basename($uploadName);
+	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+	$uploadTmp = $_FILES["fileToUpload"]["tmp_name"];
+	$uploadSize = $_FILES["fileToUpload"]["size"];
 	
+	$uploadOk = 1;
+	
+	// check if it's a pic
 	if(isset($_POST["submitUpload"])) {
-		$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+		$check = getimagesize($uploadTmp);
 		if($check !== false) {
-			echo "Files is an image - ".$check["mime"].".";
+			echo "<br>Fail on pilt - ".$check["mime"].".";
 			$uploadOk = 1;
 			
 		} else {
-			echo "File is not an image.";
+			echo "<br>Fail ei ole pilt.";
 			$upload = 0;
 		}
 	}
 	
+	// check if filename is unique
 	if(file_exists($target_file)) {
-		echo "Selline fail on juba olemas";
+		echo "<br>Sellise nimega fail on juba olemas";
 		$uploadOk = 0;
 	}
 	
+	// check pic formats
 	if($imageFileType != "jpg" &&
 		$imageFileType != "png" &&
 		$imageFileType != "jpeg" &&
 		$imageFileType != "gif") {
-			echo "Ainult .jpg, .jpeg, .png ja .gif formaadid on lubatud";
+			echo "<br>Ainult .jpg, .jpeg, .png ja .gif formaadid on lubatud";
 			$uploadOk = 0;
 		}
 	
+	if($uploadSize > 5000000) {
+		echo "<br>Fail on liiga suur.";
+		$uploadOk = 0;
+	}
+	
+	
 	if($uploadOk == 0) {
-		echo "Faili ei ole üles laetud.";
+		echo "<br>Faili ei ole üles laetud.";
 	} else {
-		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-			echo "Pilt nimega ".basename($_FILES["fileToUpload"]["name"])." on üles laetud.";
+		if (move_uploaded_file($uploadTmp, $target_file)) {
+			echo "<br>Pilt nimega ".basename($uploadName)." on üles laetud.";
 			
 			
 			
 		} else {
-			echo "Üleslaadimisel ilmnes tõrge.";
+			echo "<br>Üleslaadimisel ilmnes tõrge.";
 		}
 	}
 	
-} else {
-	echo "Vali pilt, mida soovid  üles laadida.";
 }
 
 
