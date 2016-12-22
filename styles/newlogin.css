@@ -89,7 +89,7 @@
   color: #EF3B3A;
 }
 body {
- background-image: url(https://static.pexels.com/photos/172289/pexels-photo-172289.jpeg);
+    background-image: url(https://static.pexels.com/photos/172289/pexels-photo-172289.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     min-height: 100vh;      
