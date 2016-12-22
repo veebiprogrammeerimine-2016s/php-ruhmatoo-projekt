@@ -26,7 +26,7 @@ if ($startLogin == 1) {
 <link rel="stylesheet" type="text/css" href="../styles/login.css">
 
 
-<title>Töömehe leidja</title>
+<title>Sisselogimine</title>
 
 
 <div class="materialContainer">
@@ -37,15 +37,15 @@ if ($startLogin == 1) {
 
       <div class="input">
 	 <form method="post">
-         <label for="name">E-mail</label>
-         <input type="email" name="name" id="name" value="<?php echo $name; ?>">
+         <input type="email" name="loginemail" id="email" value="<?php echo $name; ?>">
          <span class="spin"></span>
+		 <label for="email">E-mail</label>
       </div>
 
       <div class="input">
-         <label for="pass">Parool</label>
-         <input type="password" name="pass" id="pass">
+         <input type="password" name="loginpass" id="pass">
          <span class="spin"></span>
+		 <label for="pass">Parool</label>
       </div>
 
       <div class="button login">

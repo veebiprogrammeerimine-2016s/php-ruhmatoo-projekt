@@ -68,8 +68,8 @@
    background: forestgreen;
 }
 .input,
-.input label,
 .input input,
+.input label,
 .input .spin,
 .button,
 .button button .button.login button i.fa,
@@ -77,7 +77,8 @@
 .material-button .shape:after,
 .button.login button {
    transition: 300ms cubic-bezier(.4, 0, .2, 1);
-   -webkit-transition: 300ms cubic-bezier(.4, 0, .2, 1);  
+   -webkit-transition: 300ms cubic-bezier(.4, 0, .2, 1); 
+   -ms-transition: 300ms cubic-bezier(.4, 0, .2, 1);
 }
 .material-button,
 .alt-2,

@@ -14,6 +14,7 @@ $skillsql = "SELECT id, skill FROM skills ORDER BY skill";
 $skills = $conn->query($skillsql);
 ?>
 
+<title>Töömehe leidja</title>
 <div class="row">
 <div class="header c-6"><?php echo $appName;?></div>
 <div class="header c-6">
@@ -28,7 +29,7 @@ $skills = $conn->query($skillsql);
 
 <div class="row">
 
-<div class="c-3" style="border: 2px solid gray; border-top: 0; border-left: 0; margin-bottom: 0;">
+<div class="c-3" style="border: 2px solid gray; border-top: 0; border-left: 0; margin-bottom: 0; background: white;">
 <h3 style="margin-top: 0; margin-bottom: 0;">Sorteeri</h3>
 <form>
 <!--<h6>Linnaosa</h6>
