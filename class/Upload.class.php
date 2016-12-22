@@ -30,7 +30,7 @@ class Upload {
 
 			try {
 				$img = new abeautifulsite\SimpleImage($destination_url);
-				$img->best_fit(400, 400)->save($destination_url);
+				$img->best_fit(600, 600)->save($destination_url);
 			} catch(Exception $e) {
 				echo 'Error: ' . $e->getMessage();
 			}
@@ -78,10 +78,7 @@ class Upload {
 			}
 		}
 		// Check if file already exists
-		/*if (file_exists($target_file)) {
-			$uploadOk = 0;
-			header("Location: upload.php?exists");
-		}*/
+
 		// Check file size
 		if ($_FILES["fileToUpload"]["size"] > 5000000) {
 			$uploadOk = 0;

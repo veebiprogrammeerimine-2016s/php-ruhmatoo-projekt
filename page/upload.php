@@ -147,12 +147,26 @@
     <label>Postituse pealkiri</label>
     <input type="text" name="caption" id="caption" class="form-control" placeholder="Insert a caption here">
   </div>
-  
+  <button class="btn btn-xs" type="button" data-toggle="collapse" data-target="#lisainfo" aria-expanded="false" aria-controls="lisainfo">
+		Lisainfo
+		</button>
+		<div class="collapse" id="lisainfo">
+		<br>
+		  <div class="well well-sm">
+			Pilt peab olema .bmp, .gif, .png, .jpg või .jpeg formaadis ning maksimaalselt 5mb.
+		  </div>
+		</div>
+		
   <div class="form-group">
+  <br>
     <label for="exampleInputFile">Pildifail</label>
     <input type="file" name="fileToUpload"  id="fileToUpload">
-    <p class="help-block">Lubatud formaadid on bmp, png, jpg ja jpeg. Maksimaalne suurus 5mb</p>
+    <p class="help-block">
+		
+	</p>
   </div>
+  
+  
 
   <button type="submit" name="submit" class="btn btn-default">Lae üles</button>
 </form>

@@ -85,7 +85,7 @@
 		}
 		echo '<br><div>';
 		echo '<table>';
-		echo '<tr><h2>'.$name . ' <a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-fire"></span><span class="counter ">'.$count.'</span></a></h2></tr>';
+		echo '<tr><h2>'.$name . ' <a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="counter ">'.$count.'</span></a></h2></tr>';
 		echo '<td>'."<a href='topic.php?topicid=$id&posted'><img src=".$message." ></a>".'</td>';
 		echo '</table>';
 		echo '<br><br>';

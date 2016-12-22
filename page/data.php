@@ -139,7 +139,7 @@ $(function() {
 			 //set loading flag off once the content is loaded
 			if(data.trim().length == 0){
 				//notify user if nothing to load
-				$('.loading-info').html("No more records!");
+				$('.loading-info').html("jõudsid lõppu :(");
 				return;
 			}
 			
@@ -238,7 +238,16 @@ function addRating(el){
 
 </div>
 
-
+<div class="search">
+<form class="navbar-form navbar-middle" method="GET">
+    <div class="input-group">
+      <input type="text" name="searchPost" class="form-control" placeholder="ei leia midagi?" value="<?=$search;?>">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">otsi</button>
+      </span>
+    </div>
+	</form>
+</div>
 
 
 
