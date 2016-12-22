@@ -33,6 +33,9 @@ if ($startLogin == 1) {
       <input type="password" placeholder="Parool"/>
       <button>login</button>
       <p class="message">Pole kasutaja? <a href="register.php">Registreeri!</a></p>
+	  <p class="message">Unustasid parooli?<a href="">Abi</a></p>
+	  <p class="message"><a href="home.php">Kodu</a></p>
+	  
     </form>
   </div>
 </div>
