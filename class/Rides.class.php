@@ -125,11 +125,11 @@ class Rides {
       $stmt = $this->connection->prepare("
       SELECT cp_rides.id, cp_rides.start_location,
       cp_rides.start_time, cp_rides.arrival_location,
-      cp_rides.arrival_time, cp_rides.free_seats,
+      cp_rides.arrival_time, cp_rides.free_seats, cp_rideusers.user_id,
       cp_users.name, cp_users.email
-      FROM cp_rideusers
-      JOIN cp_users ON cp_users.id=cp_rideusers.user_id
-      JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
+      FROM cp_rides
+      LEFT JOIN cp_rideusers ON cp_rides.id=cp_rideusers.ride_id
+      LEFT JOIN cp_users ON cp_users.id=cp_rideusers.user_id
       WHERE cp_rides.user_id = ?
         AND (cp_rides.id LIKE ? OR cp_rides.start_location LIKE ? OR cp_rides.start_time LIKE ?
         OR cp_rides.arrival_location LIKE ? OR cp_rides.arrival_time LIKE ?
@@ -185,45 +185,6 @@ class Rides {
     $stmt->close();
     return $results; }
 
-    /*
-    $stmt = $this->connection->prepare("
-    SELECT cp_rides.id, cp_rides.start_location,
-    cp_rides.start_time, cp_rides.arrival_location,
-    cp_rides.arrival_time, cp_rides.free_seats
-    FROM cp_rides
-    JOIN cp_users ON cp_users.id=cp_rides.user_id
-    WHERE cp_rides.user_id = ?
-    ORDER BY $sort $orderBy
-    ");
-
-
-    echo $this->connection->error;
-    $stmt->bind_param("i", $_SESSION["userId"]);
-  }
-    $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
-    $arrival_time, $free_seats);
-    $stmt->execute();
-
-    //tekitan objekti
-    $results = array();
-    //tsykli sisu tehakse nii mitu korda, mitu rida
-    //SQL lausega tuleb
-    while ($stmt->fetch()) {
-
-      $r = new StdClass();
-      $r->ride_id = $ride_id;
-      $r->start_location = $start_location;
-      $r->start_time = $start_time;
-      $r->arrival_location = $arrival_location;
-      $r->arrival_time = $arrival_time;
-      $r->free_seats = $free_seats;
-
-      array_push($results, $r);
-    }
-
-    $stmt->close();
-    return $results;
-  }*/
 
   function getPassenger($r, $sort, $order){
 

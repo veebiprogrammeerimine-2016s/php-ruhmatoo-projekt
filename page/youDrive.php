@@ -216,7 +216,7 @@ $Rides = new Rides($mysqli);
 
 										$html .= "<th>
 										<a href='?q=".$r."&sort=guest_name&order=".$orderGuest_name."'>
-
+										
 									 Passenger ".$arr."
 										</a>
 
@@ -269,7 +269,7 @@ $Rides = new Rides($mysqli);
 
 
   							<a class='btn btn-default btn xs' href='edit.php?id=".$r->ride_id."'>
-  							edit.php
+  							Edit
   							<span class='glyphicon glyphicon-pencil'></span>
   							</a>
   							</td>";

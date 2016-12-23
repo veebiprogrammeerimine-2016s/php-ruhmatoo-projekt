@@ -145,55 +145,69 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 ?>
 <?php require("../header.php"); ?>
 
-<h1>TLU CarPooling</h1>
+<div class="container">
+  <div class="row">
 
-<p>
+  <div class="col-sm-4 col-md-3">
 
-    Welcome <?=$_SESSION["userEmail"];?>!
+    <h1>TLU CarPooling</h1>
+
+    <p>
+
+        Welcome <?=$_SESSION["userEmail"];?>!
+        <br>
+        <a href="?logout=1">Log out</a>
+        <br>
+        <a href="user.php">User page</a>
+    </p>
+
+
+    <h2>Register a ride</h2>
+    <form method="POST" >
+
+    <label>Start location</label> <?php echo $emptyStartL; ?>
+    <div class ="form-group">
+      <input class = "form-control" name="start_location" type="text" value="<?=$start_location;?>">
+    </div>
+
+    <label>Start time</label> <?php echo $emptyStartT; ?>
+    <div class ="form-group">
+    <input class = "form-control" id="datetimepicker" name="start_time" type="text" value="<?=$start_time;?>">
+    </div>
+
+    <label>Arrival location</label> <?php echo $emptyArrivalL; ?>
+    <div class ="form-group">
+    <input class = "form-control" name="arrival_location" type="text" value="<?=$arrival_location;?>">
+    </div>
+
+    <label>Arrival time</label> <?php echo $emptyArrivalT; ?>
+    <div class ="form-group">
+    <input class = "form-control" id="datetimepickerarrival" name="arrival_time" type="text" value="<?=$arrival_time;?>">
+    </div>
+
+    <label>Free seats</label> <?php echo $emptySeats; ?>
+    <div class ="form-group">
+    <input class = "form-control" name="free_seats" type="number" value="<?=$free_seats;?>">
+    </div>
+
+    <label>Price</label>
+    <div class ="form-group">
+    <input class = "form-control" name="price" type="number">
+    </div>
+
+      <input class="btn btn-success btn-sm hidden-xs" type="submit" value="Submit">
+      <input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Submit">
     <br><br>
-    <a href="?logout=1">Log out</a>
-    <br><br>
-    <a href="user.php">User page</a>
-</p>
+    </form>
+    <script type="text/javascript">
 
+        jQuery('#datetimepicker').datetimepicker({
+      lang:'et',
+    });
+        jQuery('#datetimepickerarrival').datetimepicker();
+    </script>
 
-<h2>Register a ride</h2>
-<form method="POST" >
-
-    <label>Start location</label><br>
-    <input name="start_location" type="text" value="<?=$start_location;?>"> <?php echo $emptyStartL; ?>
-
-    <br><br>
-    <label>Start time</label><br>
-    <input id="datetimepicker" name="start_time" type="text" value="<?=$start_time;?>"> <?php echo $emptyStartT; ?>
-
-    <br><br>
-    <label>Arrival location</label><br>
-    <input name="arrival_location" type="text" value="<?=$arrival_location;?>"> <?php echo $emptyArrivalL; ?>
-
-    <br><br>
-    <label>Arrival time</label><br>
-    <input id="datetimepickerarrival" name="arrival_time" type="text" value="<?=$arrival_time;?>"> <?php echo $emptyArrivalT; ?>
-
-    <br><br>
-    <label>Free seats</label><br>
-    <input name="free_seats" type="number" value="<?=$free_seats;?>"> <?php echo $emptySeats; ?>
-
-    <br><br>
-    <label>Price</label><br>
-    <input name="price" type="number">
-
-    <br><br>
-    <input type="submit" value="Submit">
-
-</form>
-<script type="text/javascript">
-
-    jQuery('#datetimepicker').datetimepicker({
-  lang:'et',
-});
-    jQuery('#datetimepickerarrival').datetimepicker();
-</script>
+</div>
 
 <h2>Search </h2>
 
