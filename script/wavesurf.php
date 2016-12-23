@@ -1,4 +1,4 @@
-<!-- main wavesurfer.js lib -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.2.3/wavesurfer.min.js"></script>
 
 <div id="waveform"></div>
@@ -9,7 +9,6 @@
     Play
   </button>
 </p>
-
 
 <script>
 var wavesurfer = WaveSurfer.create({

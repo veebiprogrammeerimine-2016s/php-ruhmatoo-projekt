@@ -3,7 +3,7 @@ class Upload {
 
 	private $connection;
 	
-	//funktsioon käivitatakse siis kui on 'new User(see jõuab siia)'
+	//funktsioon kÃ¤ivitatakse siis kui on 'new User(see jÃµuab siia)'
 	function __construct($mysqli){
 	//'this' viitab sellele klassile ja klassi muutujale
 	$this->connection=$mysqli;
@@ -43,11 +43,9 @@ class Upload {
 
 	function getAudio() {
 
-		$stmt=$this->connection->prepare("SELECT uploads.id,caption,url
-				FROM uploads 
-				join user_sample on uploads.author=user_sample.id
-				WHERE rating is NULL");
-		$stmt->bind_result($id, $caption, $author);
+		$stmt=$this->connection->prepare("SELECT caption, email from uploads join
+		user_sample on user_sample.id=uploads.author");
+		$stmt->bind_result($caption, $email);
 		$stmt->execute();
 		echo $this->connection->error;
 		
@@ -63,9 +61,8 @@ class Upload {
 			//tekitan objekti
 			$audio = new StdClass();
 			
-			$audio -> id = $id;
-			$audio -> author =$author;
 			$audio -> caption =$caption;
+			$audio -> email =$email;
 			
 			// iga kord massiivi lisan juurde nr m2rgi
 			array_push($result, $audio);

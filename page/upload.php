@@ -29,10 +29,13 @@
 //UPLOAD
 	$url="";
 	$caption = "fileToUpload";
-	$captionError="Please insert title";
+	$captionError="";
 	$target_dir = "../uploads/";
-	
-	
+	$error="";
+	$existsError="";
+	$typeError="";
+	$sizeError="";
+	$success="";
 	if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 		
 		$url = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -43,35 +46,35 @@
 		//check if user wrote title
 		if(isset($_POST["caption"])){			
 			if(empty($_POST["caption"])){				
-				echo $captionError;
+				$captionError="Please insert title";
 				$uploadOk = 0;
 			}else{				
 				$caption=$_POST["caption"];
 			}
-		}
 		
+		}
 		// Check if file already exists
 		if (file_exists($url)) {
-			echo "Sorry, file already exists.";
+			$existsError= "Sorry, file already exists.";
 			$uploadOk = 0;
 		}
 		// Check file size
 		if ($_FILES["fileToUpload"]["size"] > 50000000) {
-			echo "Sorry, your file is too large.";
+			$sizeError= "Sorry, your file is too large.";
 			$uploadOk = 0;
 		}
 		// Allow certain file formats
 		if($imageFileType != "mp3" && $imageFileType != "wav") {
-			echo "Sorry, only MP3 and WAV files are allowed.";
+			$typeError= "Sorry, only MP3 and WAV files are allowed.";
 			$uploadOk = 0;
 		}
 		// Check if $uploadOk is set to 0 by an error
 		if ($uploadOk == 0) {
-			echo "Sorry, your file was not uploaded.";
+			//$error="Sorry, your file was not uploaded.";
 		// if everything is ok, try to upload file
 		} else {
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $url)) {
-				echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+				$success= "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 				
 				// save file name to DB here
 				
@@ -83,15 +86,12 @@
 				
 				
 			} else {
-				echo "Sorry, there was an error uploading your file.";
+				$error;
 			}
 		}
 	}else{
-		echo "Please select the file that you want to upload!";
+		
 	}
-	
-
-	
 
 ?>
 
@@ -169,7 +169,14 @@
 						<label>Insert title</label>
 						<input type="text" name="caption" id="caption" class="form-control" placeholder="Insert a title here"><br>
 						<input type="submit" value="Upload Audio" name="submit">
+						<p style="color:red;"><?=$captionError;?></p>
+						<p style="color:red;"><?=$sizeError;?></p>
+						<p style="color:red;"><?=$typeError;?></p>
+						<p style="color:red;"><?=$existsError;?></p>
+						<p style="color:red;"><?=$error;?></p>
+						<p><?=$success;?></p>
 					</form>
 				
-				
+			</div>
 
+</body>

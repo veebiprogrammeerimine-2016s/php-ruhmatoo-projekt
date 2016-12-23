@@ -13,7 +13,7 @@
 		
 	}
 
-	//kui on ?logout aadressireal siis login v‰lja
+	//kui on ?logout aadressireal siis login v√§lja
 	if(isset($_GET["logout"])){
 		session_destroy();
 		header("Location: login2.php");
@@ -104,39 +104,26 @@
 				<h1>Trackfeed</h1>
 				<h4>Latest uploads from people<h4><br><br>
 				
-					
-					
-			
+
 			</div> 
-		
-		
-		<?php
-		$html = "<table class='table table-hover table-bordered '>";
-		
-		foreach($audioData as $c){
-			//iga auto on $c
-			//echo $c->plate. "<br>";
-			$html .= "<tr>";
-				$html .= "<td>".$c->id."</td>";
-				$html .= "<td>".$c->caption."</td>"; 
-				$html .= "<td>".$c->author."</td>"; 
-				
-			
-			
-			$html .= "</tr>";
-		}
-		$html .= "</table>";
-		echo $html;	
-		
-		?>
 		
 <div class="container">
 	<div class="jumbotron">
 		<p>
-		<?php
+		<?php //displays waveform, song name(caption) and uploader(email)..
 			foreach(glob('../uploads/*', GLOB_NOSORT) as $sound)   
 			{  
-				require('../script/wavesurf.php');      
+				require('../script/wavesurf.php');
+				foreach($audioData as $c){
+					$html = "<table class='table table-hover table-bordered '>";
+					$html .= "<tr>";
+						$html .= "<td>".$c->caption."</td>"; 
+						$html .= "<td align=right>".$c->email."</td>"; 				
+					$html .= "</tr>";
+				}
+				$html .= "</table>";
+				echo $html;	
+				
 			}  
 		?>
 		</p>
