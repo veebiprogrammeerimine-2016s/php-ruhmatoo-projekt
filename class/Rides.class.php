@@ -141,16 +141,16 @@ class Rides {
       $stmt->bind_param("issssssss", $_SESSION["userId"], $searchWord, $searchWord, $searchWord, $searchWord,
       $searchWord, $searchWord, $searchWord, $searchWord);
 
-    if ($r == "") {
+    } else {
 
     $stmt = $this->connection->prepare("
     SELECT cp_rides.id, cp_rides.start_location,
     cp_rides.start_time, cp_rides.arrival_location,
-    cp_rides.arrival_time, cp_rides.free_seats,
+    cp_rides.arrival_time, cp_rides.free_seats, cp_rideusers.user_id,
     cp_users.name, cp_users.email
-    FROM cp_rideusers
-    JOIN cp_users ON cp_users.id=cp_rideusers.user_id
-    JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
+    FROM cp_rides
+    LEFT JOIN cp_rideusers ON cp_rides.id=cp_rideusers.ride_id
+    LEFT JOIN cp_users ON cp_users.id=cp_rideusers.user_id
     WHERE cp_rides.user_id = ?
     ORDER BY $sort $orderBy
     ");
@@ -159,7 +159,7 @@ class Rides {
     $stmt->bind_param("i", $_SESSION["userId"]);
   }
     $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
-    $arrival_time, $free_seats, $guest_name, $guest_email);
+    $arrival_time, $free_seats, $guest_id, $guest_name, $guest_email);
     $stmt->execute();
 
     //tekitan objekti
@@ -175,6 +175,7 @@ class Rides {
       $r->arrival_location = $arrival_location;
       $r->arrival_time = $arrival_time;
       $r->free_seats = $free_seats;
+      $r->guest_id = $guest_id;
       $r->guest_name = $guest_name;
       $r->guest_email = $guest_email;
 
@@ -184,8 +185,7 @@ class Rides {
     $stmt->close();
     return $results; }
 
-    else {
-
+    /*
     $stmt = $this->connection->prepare("
     SELECT cp_rides.id, cp_rides.start_location,
     cp_rides.start_time, cp_rides.arrival_location,
@@ -223,7 +223,7 @@ class Rides {
 
     $stmt->close();
     return $results;
-  }
+  }*/
 
   function getPassenger($r, $sort, $order){
 
