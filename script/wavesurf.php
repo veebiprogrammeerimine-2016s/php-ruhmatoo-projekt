@@ -9,6 +9,8 @@
     Play
   </button>
 </p>
+
+
 <script>
 var wavesurfer = WaveSurfer.create({
   container: '#waveform',

@@ -130,14 +130,19 @@
 		
 		?>
 		
-
+<div class="container">
+	<div class="jumbotron">
+		<p>
 		<?php
 			foreach(glob('../uploads/*', GLOB_NOSORT) as $sound)   
 			{  
 				require('../script/wavesurf.php');      
 			}  
-			
 		?>
+		</p>
+		
+	</div>
+</div>
 		<!--</div> -->
 
 </body>
