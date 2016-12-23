@@ -141,7 +141,7 @@ class Rides {
       $stmt->bind_param("issssssss", $_SESSION["userId"], $searchWord, $searchWord, $searchWord, $searchWord,
       $searchWord, $searchWord, $searchWord, $searchWord);
 
-    } else {
+    if ($r == "") {
 
     $stmt = $this->connection->prepare("
     SELECT cp_rides.id, cp_rides.start_location,
@@ -177,6 +177,46 @@ class Rides {
       $r->free_seats = $free_seats;
       $r->guest_name = $guest_name;
       $r->guest_email = $guest_email;
+
+      array_push($results, $r);
+    }
+
+    $stmt->close();
+    return $results; }
+
+    else {
+
+    $stmt = $this->connection->prepare("
+    SELECT cp_rides.id, cp_rides.start_location,
+    cp_rides.start_time, cp_rides.arrival_location,
+    cp_rides.arrival_time, cp_rides.free_seats
+    FROM cp_rides
+    JOIN cp_users ON cp_users.id=cp_rides.user_id
+    WHERE cp_rides.user_id = ?
+    ORDER BY $sort $orderBy
+    ");
+
+
+    echo $this->connection->error;
+    $stmt->bind_param("i", $_SESSION["userId"]);
+  }
+    $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
+    $arrival_time, $free_seats);
+    $stmt->execute();
+
+    //tekitan objekti
+    $results = array();
+    //tsykli sisu tehakse nii mitu korda, mitu rida
+    //SQL lausega tuleb
+    while ($stmt->fetch()) {
+
+      $r = new StdClass();
+      $r->ride_id = $ride_id;
+      $r->start_location = $start_location;
+      $r->start_time = $start_time;
+      $r->arrival_location = $arrival_location;
+      $r->arrival_time = $arrival_time;
+      $r->free_seats = $free_seats;
 
       array_push($results, $r);
     }

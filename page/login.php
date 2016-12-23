@@ -36,7 +36,7 @@
 			if (empty ($_POST["signupEmail"])) {
 
 				// on tühi
-				$signupEmailError = "* Väli on kohustuslik!";
+				$signupEmailError = "* Field is required!";
 
 			} else {
 				// email on olemas ja õige
@@ -55,7 +55,7 @@
 
 			if (empty ($_POST["signupPassword"])) {
 
-				$signupPasswordError = "* Väli on kohustuslik!";
+				$signupPasswordError = "* Field is required!";
 
 			} else {
 
@@ -77,7 +77,7 @@
 
 			if (empty ($_POST["firstname"])) {
 
-				$firstnameError = "* Väli on kohustuslik!";
+				$firstnameError = "* Field is required!";
 
 			}  else {
 
@@ -96,7 +96,7 @@
 
 			if (empty ($_POST["lastname"])) {
 
-				$lastnameError = "* Väli on kohustuslik!";
+				$lastnameError = "* Field is required!";
 
 			} else {
 
@@ -138,7 +138,7 @@
 		if (empty ($_POST["loginEmail"])) {
 
 
-			$loginEmailError = "* Unustasid e-maili!";
+			$loginEmailError = "* Email is required!";
 
 		} else {
 
@@ -157,7 +157,7 @@
 		if (empty ($_POST["loginPassword"])) {
 
 
-			$loginPasswordError = "* Unustasid parooli!";
+			$loginPasswordError = "* Password is required!";
 
 		} else {
 
@@ -190,25 +190,25 @@
 		<div class="col-sm-4 col-md-3">
 
 
-			<h1>Logi sisse </h1>
+			<h1>Login </h1>
 				<p style="color:red;"><?=$notice;?></p>
 				<form method="POST" >
 
-				<label>E-post</label>
+				<label>Email</label>
 
 			<div class ="form-group">
 				<input class = "form-control" name="loginEmail" type="email" value="<?=$loginEmail;?>"> <?php echo $loginEmailError; ?>
 			</div>
 
-				<label>Parool</label>
+				<label>Password</label>
 
 				<div class ="form-group">
 					<input class = "form-control" name="loginPassword" type="password"> <?php echo $loginPasswordError; ?>
 				</div>
 
 
-				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Logi sisse">
-				<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Logi sisse">
+				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Login">
+				<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Login">
 
 		</form>
 
@@ -216,40 +216,40 @@
 
 	<div class="col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3">
 
-		<h1>Loo kasutaja</h1>
+		<h1>Sign Up</h1>
 
 		<form method="POST" >
 
 
-			<label>E-post</label> <?php echo $signupEmailError; ?>
+			<label>Email</label> <?php echo $signupEmailError; ?>
 
 		<div class ="form-group">
 			<input class = "form-control" name="signupEmail" type="email" value="<?=$signupEmail;?>">
 		</div>
 
 
-			<label>Parool</label> <?php echo $signupPasswordError; ?>
+			<label>Password</label> <?php echo $signupPasswordError; ?>
 
 			<div class ="form-group">
 				<input class = "form-control" name="signupPassword" type="password">
 			</div>
 
 
-			<label> Eesnimi</label> <?php echo $firstnameError; ?>
+			<label> Name</label> <?php echo $firstnameError; ?>
 
 			<div class ="form-group">
 				<input class = "form-control" name="firstname" type="text" value="<?=$firstname;?>">
 			</div>
 
 
-			<label> Perekonnanimi</label> <?php echo $lastnameError; ?>
+			<label> Surname</label> <?php echo $lastnameError; ?>
 
 			<div class ="form-group">
 				<input class = "form-control" name="lastname" type="text" value="<?=$lastname;?>">
 			</div>
 
-			<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Loo kasutaja">
-			<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Loo kasutaja">
+			<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Sign Up">
+			<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Sign Up">
 
 		</form>
 

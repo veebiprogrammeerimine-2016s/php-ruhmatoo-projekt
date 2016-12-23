@@ -98,7 +98,7 @@ $Rides = new Rides($mysqli);
   			$html .= "<th>
   			<a href='?q=".$r."&sort=id&order=".$orderId."'>
 
-  			Sõidu ID ".$arr."
+  			Ride ID ".$arr."
 
   			</a>
 
