@@ -136,7 +136,7 @@ class Sneakers {
 	//display pictures
 	function getAllImages() {
 		
-		$stmt = $this->connection->prepare("SELECT name, description FROM sm_uploads");
+		$stmt = $this->connection->prepare("SELECT name, description FROM sm_uploads WHERE deleted IS NULL");
 		$stmt->bind_result($imgname, $imgdescription);
 		$stmt->execute();
 		

@@ -1,0 +1,28 @@
+
+
+1 - kasutajate tabel
+| id | firstname | lastname | dateofbirth | gender | shoesize | country | city | email | password | created | userlevel |
+
+
+2 - kasutaja muu info
+| kasutajaid | fav_brand | fav_model |
+
+
+3 - piltide tabel
+| id |  name  | description | primary |  deleted  |  flagged  |
+| 1  | a.jpg  | tekst       | yes     | 01.01.17  | 01.01.17  |
+
+
+4 - kuulutuste tabel
+| id | userid | brand | model | type | usershoesize | condition | price | description | imgname | contactmethod |
+| 1  | 21     | 3     |       | men  | 46           | used      | 500   | tekst       | a.jpg   | 1             |
+
+
+5 - tootjate/brändide tabel
+| id | name |
+
+
+6 - kontaktiviiside tabel
+| id | method |
+| 1  | email  |
+| 2  | phone  |

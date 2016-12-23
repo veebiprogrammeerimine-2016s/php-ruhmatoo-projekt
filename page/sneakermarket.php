@@ -57,24 +57,6 @@ $images = $Sneakers->getAllImages();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
 
 <?php require("../header.php"); ?>
@@ -85,15 +67,6 @@ $images = $Sneakers->getAllImages();
 </head>
 
 <div class="container">
-
-
-	<h3>Ajutine menüü</h3>
-	<p>
-		<a href="profile.php">Minu profiil</a><br>
-		<a href="data.php">Uus kuulutus</a><br>
-		<a href="?logout=1">Logi valja</a>
-	</p>
-
 
 
 	
