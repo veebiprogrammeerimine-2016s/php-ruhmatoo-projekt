@@ -46,3 +46,10 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Google API
+scraper/client_secret.json
+scraper/composer.json
+scraper/composer.lock
+scraper/vendor
+
+

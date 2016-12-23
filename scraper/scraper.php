@@ -1,8 +1,26 @@
 <?php
 
+error_reporting(E_ALL);
 include "simple_html_dom.php";
 require_once("functions.php");
+require_once "vendor/autoload.php";
 mb_internal_encoding("iso-8859-1");
+session_start();
+
+if ((isset($_SESSION)) && (!empty($_SESSION))) {
+    print_r($_SESSION);
+}
+
+$client = new Google_Client();
+$client->setApplicationName("Izipäevik");
+$client->setClientId("####");
+$client->setClientSecret(__DIR__ . "/client_secret.json");
+$client->setRedirectUri("####");
+$client->setDeveloperKey("####");
+$authUrl = $client->createAuthUrl();
+
+$cal = new Google_Service_Calendar($client);
+
 // Specialization
 if (isset($_GET["ryhm"])) {
     $ryhm = $_GET["ryhm"];
@@ -10,7 +28,7 @@ if (isset($_GET["ryhm"])) {
     $ryhm = "IFIFB-1";
 }
 
-// Current date in MASIO
+// Current date in MASIO - Unix time
 if (isset($_GET["time"])) {
     $time = $_GET["time"];
 } else {
@@ -43,8 +61,7 @@ foreach ($html->find('div.dayname') as $dates) {
     $datesExplode[1] = monthToDate($datesExplode[1]);
     $datesFinished = implode($datesExplode); // Rename full month name to number
 }
-//->getAttribute('id')
-//echo (count($html->find('div#mASIO')[0]->children()));
+
 foreach ($html->find('div#mASIO')[0]->children() as $div) {
     if ($div->getAttribute('class') == "dayname") {
         $div = strip_tags($div);
@@ -52,7 +69,7 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
         array_shift($dayExplode);
         $dayExplode[1] = monthToDate($dayExplode[1]);
         $dayFinished = implode($dayExplode);
-        echo "////////" . $dayFinished . "\\\\\\\\\\\\\\\\<br>";
+        //echo "////////" . $dayFinished . "\\\\\\\\\\\\\\\\<br>";
     } else {
         $spans = $div->find("span");
         if (count($spans) > 0) {
@@ -81,14 +98,14 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
             }
 
             //$subject = array_shift($subject);
-            echo "Rühm " . $group . " | ";
-            echo "Kell " . $time . " | ";
-            echo $lessonCode . " | ";
-            echo $lessonName . " | ";
-            echo $teacher . " | ";
-            echo $room . "<br>";
+            //echo "Rühm " . $group . " | ";
+            //echo "Kell " . $time . " | ";
+            //echo $lessonCode . " | ";
+            //echo $lessonName . " | ";
+            //echo $teacher . " | ";
+            //echo $room . "<br>";
 
-            echo "<br>";
+            //echo "<br>";
         }
 
     }
