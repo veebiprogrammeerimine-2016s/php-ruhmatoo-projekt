@@ -230,19 +230,17 @@ class Rides {
     $stmt = $this->connection->prepare("
     SELECT cp_rideusers.ride_id, cp_rides.start_location,
     cp_rides.start_time, cp_rides.arrival_location,
-    cp_rides.arrival_time, cp_rides.free_seats,
-    cp_rides.user_id, cp_users.name, cp_users.email
-    FROM cp_rideusers
-    JOIN cp_users ON cp_users.id=cp_rideusers.user_id
-    JOIN cp_rides ON cp_rides.id=cp_rideusers.ride_id
-    WHERE cp_rideusers.user_id = ? AND cp_rides.user_id=?
-    ;
+    cp_rides.arrival_time, cp_rides.free_seats, cp_users.name, cp_users.email
+    FROM cp_rides
+    JOIN cp_users ON cp_users.id=cp_rides.user_id
+    JOIN cp_rideusers ON cp_rideusers.ride_id=cp_rides.id
+    WHERE cp_rideusers.user_id = ?
     ");
 
     echo $this->connection->error;
-		$stmt->bind_param("ii", $_SESSION["userId"], $user_id);
+		$stmt->bind_param("i", $_SESSION["userId"]);
     $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
-    $arrival_time, $free_seats, $driver_id, $driver_name, $driver_email);
+    $arrival_time, $free_seats, $driver_name, $driver_email);
     $stmt->execute();
 
     //tekitan objekti
