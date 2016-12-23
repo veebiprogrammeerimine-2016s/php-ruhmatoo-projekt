@@ -133,6 +133,24 @@ class Sneakers {
 		$stmt->close();
 	}
 	
+	//display pictures
+	function getAllImages() {
+		
+		$stmt = $this->connection->prepare("SELECT name, description FROM sm_uploads");
+		$stmt->bind_result($imgname, $imgdescription);
+		$stmt->execute();
+		
+		$result = array();
+		while($stmt->fetch()) {
+			$img = new stdclass();
+			$img->name = $imgname;
+			$img->description = $imgdescription;
+			array_push($result, $img);
+		}
+		$stmt->close();
+		return $result;
+	}
+	
 	
 	
 	

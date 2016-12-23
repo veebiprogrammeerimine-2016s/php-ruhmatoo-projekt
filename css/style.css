@@ -1,0 +1,13 @@
+.thumbnail img{
+    width: 200px;
+    height: 150px;
+}
+
+.thumbnail{
+    width: 300px;
+    height: 500px;
+}
+
+body{
+	background-color: red;
+}

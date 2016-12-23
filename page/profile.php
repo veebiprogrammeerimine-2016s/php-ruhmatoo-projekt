@@ -24,8 +24,12 @@
 ?>
 <?php require("../header.php"); ?>
 
-<h1>Your Profile</h1><h2><a href="data.php">Back</a></h2>
-<h2>	
+<h1>Your Profile</h1>
+
+<a href="sneakermarket.php">Esileht</a><br>
+<a href="data.php">Kuulutused</a><br>
+
+<h3>	
 	Email: <?php $ProfileInfo->profileEmail(); ?><br>
 	Gender: <?php $ProfileInfo->profileGender(); ?><br>
 	Age: <?php $ProfileInfo->profileAge(); ?><br>
@@ -33,7 +37,7 @@
 	City: <?php $ProfileInfo->profileCity(); ?><br>
 	Shoe Size: <?php $ProfileInfo->profileShoesize(); ?><br>
 	Created: <?php $ProfileInfo->profileCreated(); ?>
-</h2>
+</h3>
 
 <h1>Your Market</h1>
 <?php

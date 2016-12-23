@@ -60,7 +60,7 @@ class User {
 				$_SESSION["userId"]=$id;
 				$_SESSION["userEmail"]=$emailFromDb;
 				
-				header("Location: data.php");
+				header("Location: sneakermarket.php");
 				exit();
 				
 			}else {

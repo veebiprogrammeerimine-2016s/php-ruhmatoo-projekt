@@ -16,7 +16,7 @@
 	if(isset($_GET["logout"])){
 		
 		session_destroy();
-		header("Location:login.php");
+		header("Location: login.php");
 		exit();
 		
 	}
@@ -108,13 +108,14 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 			$uploadOk = 0;
 		}
 	
+	// check upload size
 	if($uploadSize > 5000000) {
 		echo "<br>Fail on liiga suur.";
 		$uploadOk = 0;
 	}
 	
 	
-	
+	// if there are no problems, uploads image
 	if($uploadOk == 0) {
 		echo "<br>Faili ei ole üles laetud.";
 		$alertMsg = "<div class='alert alert-warning' role='alert'>Faili ei ole üles laetud</div>";
@@ -143,24 +144,17 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 
 <?php require("../header.php"); ?>
 <div class="container">
-	<h1>
-		Welcome<a href="user.php"> <?=$_SESSION["userEmail"];?></a>!
-	</h1>
-	<p>
-		<a href="profile.php">Minu profiil</a>
-		<br><a href="?logout=1">Logi valja</a>
+<!--
+<h1>Welcome<a href="user.php"> <?//=$_SESSION["userEmail"];?></a>!</h1>
+-->
 
+	<p>
+		<a href="sneakermarket.php">Esileht</a><br>
+		<a href="profile.php">Minu profiil</a><br>
+		<a href="?logout=1">Logi valja</a>
 	</p>
 
-	
 
-<!--KUULUTUSE ÜLESLAADIMISVORM-->
-
-				<!--
-				<label>Description</label><br>
-				<textarea rows="2" cols="40" name="description" type="text" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43"></textarea><br><br>
-				-->
-	
 
 <h2>Sell Sneakers</h2>
 	<div class="container">
@@ -172,43 +166,40 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 						<label for="price">Price ($)</label>
 						<input type="integer" name="price" class="form-control" placeholder="ex. 490" id="price">
 					</div>
+					
 					<div class="form-group">
 						<label for="contact-email">Contact E-Mail</label>
 						<input type="text" name="contactemail" value="<?=$_SESSION["userEmail"];?>" class="form-control" id="contact-email">
 					</div>
+					
 					<div class="form-group">
-						<input type="submit" value="Save & Post" class="btn btn-default">
+						<input type="submit" value="Save & Post" class="btn btn-success">
 					</div>
 				</form>
+				
 				<h3>Upload an image</h3>
 				<form action="data.php" method="post" enctype="multipart/form-data">
+					
 					<div class="form-group">
 						<div>
 							<?php echo $alertMsg; ?>
 						</div>
 						<label for="fileToUpload">Uploadi pilt:</label><br>
 						<label class="btn btn-primary" for="fileToUpload">
+							<span class="glyphicon glyphicon-folder-open"></span>
 							<input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
 							Browse
 						</label>
 					</div>
+					
 					<div class="form-group">
 						<label for="description">Description</label>
 						<textarea type="text" name="description" cols="40" rows="2" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43" class="form-control" id="description"></textarea>
 					</div>
 					
-					
 					<div class="form-group">
-						<input type="submit" name="submitUpload" value="Upload Image" class="btn btn-default">
-					</div>
-					
-					<!--<div class="container">
-						<div class="row">
-							<div class="col-md-3">
-								<?php //echo $alertMsg; ?>
-							</div>
-						</div>
-					</div>-->
+						<input type="submit" name="submitUpload" value="Upload Image" class="btn btn-success">
+					</div>	
 				</form>
 			</div>
 		</div>
@@ -216,14 +207,8 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
 	
 
-<!--UPLOAD VORM
-		<form action="data.php" method="post" enctype="multipart/form-data">
-			Uploadi pilt:
-			<input type="file" name="fileToUpload" id="fileToUpload">
-			<input type="submit" value="Upload Image" name="submitUpload">
-		</form>
 
-			
+<!--
 	<h2>Market</h2>
 	<form>
 		<input type="search" name="q" value="<?=$q;?>">
@@ -232,7 +217,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 -->
 	
 
-	<?php
+<?php
 
 		$direction="ascending";
 		if(isset($_GET["direction"])){
@@ -265,7 +250,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 		echo $html;
 
 
-	?>
+?>
 </div>
 
 <?php require("../footer.php"); ?>
