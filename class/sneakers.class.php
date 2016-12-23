@@ -117,6 +117,26 @@ class Sneakers {
 		
 		return $result;
 	}
+	
+	
+	//picture upload
+	function uploadImages($name, $description) {
+		$stmt = $this->connection->prepare("INSERT INTO sm_uploads (name, description) VALUES (?, ?)");
+		echo $this->connection->error;
+		$stmt->bind_param("ss", $name, $description);
 		
+		if($stmt->execute()) {
+			echo "Salvestamine õnnestus";
+		} else {
+			echo "ERROR".$stmt->error;
+		}
+		$stmt->close();
+	}
+	
+	
+	
+	
+	
+	
 }
 ?>

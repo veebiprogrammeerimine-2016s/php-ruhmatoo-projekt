@@ -28,8 +28,10 @@
 		
 		$Sneakers->savesneaker($Helper->cleanInput($_POST["contactemail"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]));
 		
-		
 	}
+	
+	
+	
 	
 	if(isset($_GET["sort"]) && isset($_GET["direction"])){
 		$sort=$_GET["sort"];
@@ -122,7 +124,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 			echo "<br>Pilt nimega ".basename($uploadName)." on üles laetud</div>";
 			$alertMsg = "<div class='alert alert-success' role='alert'>Pilt on üles laetud!";
 			
-			
+			$Sneakers->uploadImages($uploadName, $Helper->cleanInput($_POST["description"]));
 			
 		} else {
 			echo "<br>Üleslaadimisel ilmnes tõrge.";
@@ -184,13 +186,18 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 						<div>
 							<?php echo $alertMsg; ?>
 						</div>
-						
 						<label for="fileToUpload">Uploadi pilt:</label><br>
 						<label class="btn btn-primary" for="fileToUpload">
 							<input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
 							Browse
 						</label>
 					</div>
+					<div class="form-group">
+						<label for="description">Description</label>
+						<textarea type="text" name="description" cols="40" rows="2" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43" class="form-control" id="description"></textarea>
+					</div>
+					
+					
 					<div class="form-group">
 						<input type="submit" name="submitUpload" value="Upload Image" class="btn btn-default">
 					</div>
