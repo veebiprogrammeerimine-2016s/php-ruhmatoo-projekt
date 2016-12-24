@@ -1,8 +1,14 @@
 <?php
 
 require("functions.php");
-   
+
+
+
 $cars=$Car->getWorks($_GET["id"]);
+
+if(isset($_GET["delete"])){
+	$Car->deleteWork($_GET["id"]);
+}
 ?>
 
 <h2>Tehtud tööd</h2>
@@ -23,6 +29,9 @@ foreach ($cars as $c) {
 	$html .= "<td>".$c->DoneJob."</td>";
 	$html .= "<td>".$c->JobCost."</td>";
 	$html .= "<td>".$c->Comment."</td>";
+	if($c->userId == $_SESSION["userId"]){
+		$html .= "<td><a href='?id=".$_GET["id"]."&delete=".$c->id."'>Kustuta</a></td>";
+	}
     $html .= "</tr>";
 }
 $html .= "</table>";

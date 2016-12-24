@@ -51,10 +51,10 @@
 
 	function getWorks($carid){
 
-		$stmt = $this->connection->prepare("SELECT id, Mileage, DoneJob, JobCost, Comment FROM repairWork WHERE carId=?");
+		$stmt = $this->connection->prepare("SELECT id, userId, Mileage, DoneJob, JobCost, Comment FROM repairWork WHERE carId=?");
 
 		$stmt->bind_param("i", $carid);
-		$stmt->bind_result($id, $Mileage, $DoneJob, $JobCost, $Comment);
+		$stmt->bind_result($id, $userId, $Mileage, $DoneJob, $JobCost, $Comment);
 		$stmt->execute();
 
 		$result = array();
@@ -64,6 +64,7 @@
 			$work = new Stdclass();
 
 			$work->id = $id;
+			$work->userId = $userId;
 			$work->Mileage = $Mileage;
 			$work->DoneJob = $DoneJob;
 			$work->JobCost = $JobCost;
@@ -81,12 +82,12 @@
 
 	}
 
-    function getUserCars ($id, $RegPlate, $Mark, $Model) {
+    function getUserCars () {
 
-        $stmt = $this->connection->prepare("SELECT id, UserId, RegPlate, Mark, Model FROM repairCars WHERE deleted IS NULL");
+        $stmt = $this->connection->prepare("SELECT id, UserId, RegPlate, Mark, Model FROM repairCars WHERE UserId=? AND deleted IS NULL");
         echo $this->connection->error;
-
-        $stmt ->bind_result($id, $_SESSION["userId"], $RegPlate, $Mark, $Model);
+        $stmt ->bind_param("i", $_SESSION["userId"]);
+        $stmt ->bind_result($id, $UserId, $RegPlate, $Mark, $Model);
         $stmt -> execute ();
 
         $result = array();
@@ -191,8 +192,8 @@
 	function saveWorkForSingleCar($Mileage, $DoneJob, $JobCost, $Comment, $carid){
 
 
-		$stmt = $this->connection->prepare("INSERT INTO repairWork (Mileage, DoneJob, JobCost, Comment, carId) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("isisi",$Mileage, $DoneJob, $JobCost, $Comment, $carid);
+		$stmt = $this->connection->prepare("INSERT INTO repairWork (Mileage, DoneJob, JobCost, Comment, carId, userId) VALUES(?,?,?,?,?,?)");
+		$stmt->bind_param("isisii",$Mileage, $DoneJob, $JobCost, $Comment, $carid, $_SESSION["userId"]);
 
 		if($stmt->execute()){
 	
@@ -220,6 +221,24 @@
 		$stmt->close();
 
 	}
+
+    function deleteWork ($deleted) {
+
+
+        $stmt = $this->connection->prepare("UPDATE repairWork SET deleted=NOW() WHERE userId=? AND deleted IS NULL");
+
+        echo $this->connection->error;
+
+        $stmt->bind_param("s",$deleted);
+        if($stmt->execute()) {
+            echo "kustutamine õnnestus";
+        } else {
+            echo "ERROR ".$stmt->error;
+        }
+
+        $stmt->close();
+
+    }
 
 }
 ?>

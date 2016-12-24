@@ -22,7 +22,7 @@ if  (
 }
 
 $carData="";
-if  (
+/*if  (
     isset($_POST["id"]) &&
     isset($_POST["RegPlate"]) &&
     isset($_POST["Mark"]) &&
@@ -34,7 +34,10 @@ if  (
 )
 {
     $carData = $Car->getUserCars($_POST["id"], $_POST["RegPlate"], $_POST["Mark"], $_POST["Model"]);
-}
+}*/
+
+
+$carData = $Car->getUserCars();
 
 ?>
 

@@ -58,21 +58,15 @@
 <?php require ("header.php");?>
 <div class="container">
 
+	<div class="col-md-6">
+		<img src="Logo.png" alt="Firma logo" style="...">
+	</div>
+
 <p class="text-right">
 	<span class="text-right" style="font-size:30px;"> Tere tulemast </span> <a style="font-size:30px; class="text-right" href="userpage.php"><?=$_SESSION["userEmail"];?></a>
 	<br>
 	<a class="text-right"  href="?logout=1">Logi välja <span class="glyphicon glyphicon-log-out"> </span></a>
 </p>
-	<head>
-		<style>
-			body  {
-				background-image: url("Logo.png");
-				background-size: 300px 300px;
-				background-repeat: no-repeat;
-			}
-		</style>
-	</head>
-	<body>
 </div>
 	
 	
