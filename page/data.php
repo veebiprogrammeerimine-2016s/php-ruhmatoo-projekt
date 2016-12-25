@@ -1,7 +1,8 @@
 <?php
 
 require("../functions.php");
-require("database.php");
+
+
 
 //kui ei ole kasutaja id'd
 if (!isset($_SESSION["userId"])) {
@@ -32,11 +33,64 @@ if(isset($_SESSION["message"])) {
 
 ?>
 
+<?php
+if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
+    $target_dir = "profilepics/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+    // Check if image file is a actual image or fake image
+    if(isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+    // Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $uploadOk = 0;
+    }
+    // Check file size
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+    // Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+    && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+            
+            // save file name to DB 
+            $database = $database = "if16_ege";
+			$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+            $stmt = mysqli_query($mysqli,"UPDATE username SET image = '".$_FILES['file']['name']."' WHERE username = '".$_SESSION['userName']."'");
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+	}else{
+		
+	}
+?>
 
-
-
+<!DOCTYPE html>
 <h1>TV Show Calendar</h1>
-
+<html>
+<body>
 <p>
 	<h2>Welcome <?=$_SESSION["userName"];?>!</h2>
 	<br><br>
@@ -44,18 +98,25 @@ if(isset($_SESSION["message"])) {
 	<h3>To continue, please add at least one series to your calender!</h3>
 	<form method="POST">
 	
+
+	<select name="user_tv_db">
+		<?php getSeriesData() ?>
+	</select>
 	
-	
-	<?php
-	//siin peaks saama kasutaja valida loetelust seriaali, mida oma kalendrisse lisada
-	?>
-	<input name="series" type="text">
+	<br><br>
+	<form action="upload.php" method="post" enctype="multipart/form-data">
+		<h3>Also add a profile image:</h3>
+		<input type="file" name="fileToUpload" id="fileToUpload" >
+		<br><br>
+		<input type="submit" value="Upload Image" name="submit">
+	</form>
+
+</body>
+</html>
 	<br><br>
 	
-	
-	
-	<input type="submit" value="Save">
+	<input type="submit" value="Ready!">
 	</form>
-	
+	<br><br>
 	<a href="?logout=1"> Log out</a>
 </p>

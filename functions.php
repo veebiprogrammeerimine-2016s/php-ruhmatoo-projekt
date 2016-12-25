@@ -10,41 +10,20 @@ $mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $database);
 require("class/Helper.class.php");
 $Helper = new Helper();
 
-function insertToDb($title, $movie_link, $rating, 
-					$genre, $directors, $release_date, 
-					$poster, $actors, $runtime, $tomato_score, $synopsis){
-	
-	echo "<li>".$title."</li>";
-	echo $movie_link."<br>"; 
-	echo $rating."<br>";
-	echo $genre."<br>";
-	echo $directors."<br>";
-	echo $release_date."<br>";
-	echo $poster."<br>"; 
-	echo $actors."<br>";
-	echo $runtime."<br>";
-	echo $tomato_score."<br>"; 
-	echo $synopsis."<br>";
 
-	$mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $database);
-	$stmt = $mysqli->prepare("INSERT INTO movies_db (title, link, 
-													rating, genre,  
-													directors,  release_date, 
-													poster, actors, 
-													runtime, tomato_score, synopsis) 
-							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-	echo $mysqli->error;
+
+function getSeriesData() {
+	$database = "if16_ege";
+	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 	
-	$stmt->bind_param("sssssssssis", $title, $movie_link, $rating, 
-				$genre, $directors, $release_date, 
-				$poster, $actors, $runtime, $tomato_score, $synopsis);
-	if ( $stmt->execute() ) {
-		echo "salvestamine õnnestus";	
-	} else {	
-		echo "ERROR ".$stmt->error;
+	$myData = mysql_query("SELECT title FROM user_tv_db");
+	while($record = mysql_fetch_array($myData)) {
+		echo '<option value="' . $record['title'] . '">' . $record['title'] . '</option>';
 	}
-								
+	$mysqli->close();
 }
+
+
 
 
 ?>
