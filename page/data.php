@@ -33,13 +33,13 @@
 		unset($_SESSION["message"]);
 	}
 	
-	
+	//var_dump($_POST);
 	if ( isset($_POST["idea"]) && 
-		isset($_POST["idea"]) && 
-		!empty($_POST["description"]) && 
+		isset($_POST["description"]) && 
+		!empty($_POST["idea"]) && 
 		!empty($_POST["description"])
 	  ) {
-		  
+		  //echo "siin";
 		$Finish->save($Helper->cleanInput($_POST["idea"]), $Helper->cleanInput($_POST["description"]));
 		
 	}
@@ -91,7 +91,7 @@
 			<p><label for="idea">Idea:</label><br>
 					<input name= "idea" type="text" id="idea" required>
 			<p><label for="description">Idea description:</label><br>
-					<input name= "decsription" type="text" id="description" required>
+					<input name= "description" type="text" id="description" required>
 
 			
 			<input type="submit" value="Complete">

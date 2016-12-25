@@ -32,7 +32,7 @@
 	$signupEmailError = "";
 	$signupPasswordError = "";
 	$signupEmail = "";
-	$signupGender = "";
+	$signupGender = "male";
 	$loginEmail = "";
 	$loginPassword = "";
 	$loginEmailError = "";
@@ -174,43 +174,42 @@
 
 ?>
 
-	
 <!DOCTYPE html>
-
-<html>
-<body>
-
-<form align="center"><font face = "Comic Sans MS"><h1>EASY IDEAS FOR WEBSITE PROJECT</h1></font></form>
-
-</body>
-		<form align="center"><h1><font face = "Comic Sans MS"><i>Sign in</i></font></h1></form>
-		<form method = "POST" align="center">
-			<p style="color:red;"><?=$error;?></p>
-			<!--<label>E-post</label><br>-->
-			<input name="loginEmail" type = "email" placeholder="Email" value ="<?php echo $loginEmail; ?>"> <?php echo $loginEmailError; ?>
-			<br><br>
-			<input name="loginPassword" type = "password" placeholder="Password"> <?php echo $loginPasswordError; ?>
-			<br><br>
-			<input type="image" src="https://s12.postimg.org/g7fipmmgt/button.png" value="">
-		</form>
-
-	</body>
-</html>
-
-<form align="center"><h1><h1><font face = "Comic Sans MS"><i>Create account</i></font></h1></form>
-		<form method = "POST" align="center">
-			<!--<label>E-post</label><br>-->
-			<input name="signupEmail" type = "email" placeholder="Email" value ="<?php echo $signupEmail; ?>"><?php echo $signupEmailError; ?>
-			<br><br>
-			<input name="signupPassword" type="password" placeholder="Password"><?php echo $signupPasswordError; ?>
-			<br><br>
-			<input name ="nickname" type = "text" placeholder = "Nickname"><?php echo $nicknameError; ?><br></br>
-			<select name="gender">
-			<option value="1" selected= "selected">male</option>
-			<option value="2">female</option>
-			<option value="3">other</option>
-			</select>
-		<p>
-		
-			<input type="image" src="https://s9.postimg.org/z5ko9xsy7/button_2.png" value="">
-		</form>
+ 
+ <html>
+ <body>
+ 
+ <form align="center"><font face = "Comic Sans MS"><h1>EASY IDEAS FOR WEBSITE PROJECT</h1></font></form>
+ 
+ </body>
+ 		<form align="center"><h1><font face = "Comic Sans MS"><i>Sign in</i></font></h1></form>
+ 		<form method = "POST" align="center">
+ 			<p style="color:red;"><?=$error;?></p>
+ 			<!--<label>E-post</label><br>-->
+ 			<input name="loginEmail" type = "email" placeholder="Email" value ="<?php echo $loginEmail; ?>"> <?php echo $loginEmailError; ?>
+ 			<br><br>
+ 			<input name="loginPassword" type = "password" placeholder="Password"> <?php echo $loginPasswordError; ?>
+ 			<br><br>
+ 			<input type="image" src="https://s12.postimg.org/g7fipmmgt/button.png" value="">
+ 		</form>
+ 
+ 	</body>
+ </html>
+ 
+ <form align="center"><h1><h1><font face = "Comic Sans MS"><i>Create account</i></font></h1></form>
+ 		<form method = "POST" align="center">
+ 			<!--<label>E-post</label><br>-->
+ 			<input name="signupEmail" type = "email" placeholder="Email" value ="<?php echo $signupEmail; ?>"><?php echo $signupEmailError; ?>
+ 			<br><br>
+ 			<input name="signupPassword" type="password" placeholder="Password"><?php echo $signupPasswordError; ?>
+ 			<br><br>
+ 			<input name ="nickname" type = "text" placeholder = "Nickname"><?php echo $nicknameError; ?><br></br>
+ 			<select name="gender">
+ 			<option value="1" selected= "selected">male</option>
+ 			<option value="2">female</option>
+ 		<option value="3">other</option>
+ 		</select>
+ 		<p>
+ 		
+ 			<input type="image" src="https://s9.postimg.org/z5ko9xsy7/button_2.png" value="">
+ 		</form> 
