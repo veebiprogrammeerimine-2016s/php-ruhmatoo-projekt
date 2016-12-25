@@ -16,10 +16,10 @@
 	}
 
 	//kuulutuse lisamisvormi php
-	if(isset($_POST["contactemail"]) && isset($_POST["description"]) && isset($_POST["price"]) &&
-		!empty($_POST["contactemail"]) && !empty($_POST["description"]) && !empty($_POST["price"])
+	if(isset($_POST["model"]) && isset($_POST["description"]) && isset($_POST["price"]) && isset($_POST["heading"]) &&
+		!empty($_POST["model"]) && !empty($_POST["description"]) && !empty($_POST["price"]) && !empty($_POST["heading"])
 		) {
-		$Sneakers->savesneaker($Helper->cleanInput($_POST["contactemail"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]));
+		$Sneakers->savesneaker($Helper->cleanInput($_POST["heading"]), $Helper->cleanInput($_POST["model"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]));
 	}
 	
 	
@@ -30,6 +30,10 @@
 
 <?php
 // --- UPLOAD PHP ---
+
+$recentPostData = $Sneakers->getRecentPost();
+$recentPostId = $recentPostData->id;
+$primaryPicture = 1;
 
 $alertMsg = "";
 
@@ -94,7 +98,8 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 			echo "<br>Pilt nimega ".basename($uploadName)." on üles laetud</div>";
 			$alertMsg = "<div class='alert alert-success' role='alert'>Pilt on üles laetud!";
 			
-			$Sneakers->uploadImages($uploadName, $Helper->cleanInput($_POST["description"]));
+			$Sneakers->uploadImages($uploadName, $recentPostId, $primaryPicture);
+			
 			
 		} else {
 			echo "<br>Üleslaadimisel ilmnes tõrge.";
@@ -103,6 +108,11 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	}
 	
 }
+
+
+
+
+
 
 
 
@@ -116,53 +126,95 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 <div class="container">
 	
 	<ul class="nav nav-tabs">
-		<li role="presentation" class="active"><a href="#">Loo kuulutus</a></li>
+		<li role="presentation" class="active"><a href="#">Uus kuulutus</a></li>
 		<li role="presentation"><a href="myposts.php">Minu kuulutused</a></li>
 	</ul>
 
 	<div class="row">
-		<div class="col-md-3">
-			<h3>Create a post</h3>
-			<form method="POST">
-				<div class="form-group">	
-					<label for="price">Price ($)</label>
-					<input type="integer" name="price" class="form-control" placeholder="ex. 490" id="price">
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Loo kuulutus</h3>
 				</div>
-				
-				<div class="form-group">
-					<label for="contact-email">Contact E-Mail</label>
-					<input type="text" name="contactemail" value="<?=$_SESSION["userEmail"];?>" class="form-control" id="contact-email">
+				<div class="panel-body">
+					<form method="POST">
+					
+						<div class="form-group">
+							<label for="heading">Pealkiri</label>
+							<input type="text" name="heading" class="form-control" placeholder="kuulutuse pealkiri" id="heading">
+						</div>
+					
+						<div class="form-group">
+							<label for="model">Mudel</label>
+							<input type="text" name="model" class="form-control" placeholder="mudeli nimi" id="model">
+						</div>
+					
+						<div class="form-group">	
+							<label for="price">Hind</label>
+							<input type="integer" name="price" class="form-control" placeholder="ex. 490" id="price">
+						</div>
+
+						<div class="form-group">
+							<label for="description">Kirjeldus</label>
+							<textarea type="text" name="description" cols="40" rows="2" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43" class="form-control" id="description"></textarea>
+						</div>
+						
+						<div class="form-group">
+							<input type="submit" value="Salvesta" class="btn btn-success">
+						</div>
+						
+					</form>
 				</div>
-				
-				<div class="form-group">
-					<input type="submit" value="Save & Post" class="btn btn-success">
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Sinu viimati lisatud kuulutus</h3>
 				</div>
-			</form>
-			
-			<h3>Upload an image</h3>
-			<form action="data.php" method="post" enctype="multipart/form-data">
-				
-				<div class="form-group">
-					<div>
-						<?php echo $alertMsg; ?>
-					</div>
-					<label for="fileToUpload">Uploadi pilt:</label><br>
-					<label class="btn btn-primary" for="fileToUpload">
-						<span class="glyphicon glyphicon-folder-open"></span>
-						<input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
-						Browse
-					</label>
+				<div class="panel-body">
+					
+<?php
+
+	echo $recentPostData->heading."<br>".$recentPostData->model."<br>".$recentPostData->price."<br>".$recentPostData->description."<br>";
+	echo "Userid: ".$_SESSION["userId"]."<br>Recent post id: ".$recentPostId;
+
+
+
+?>
+					
+					
 				</div>
-				
-				<div class="form-group">
-					<label for="description">Description</label>
-					<textarea type="text" name="description" cols="40" rows="2" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43" class="form-control" id="description"></textarea>
+			</div>		
+		</div>		
+		
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Lisa pilt</h3>
 				</div>
-				
-				<div class="form-group">
-					<input type="submit" name="submitUpload" value="Upload Image" class="btn btn-success">
-				</div>	
-			</form>
+				<div class="panel-body">
+					<form action="data.php" method="post" enctype="multipart/form-data">
+						
+						<div class="form-group">
+							<div>
+								<?php echo $alertMsg; ?>
+							</div>
+							<label for="fileToUpload">Uploadi pilt:</label><br>
+							<label class="btn btn-primary" for="fileToUpload">
+								<span class="glyphicon glyphicon-folder-open"></span>
+								<input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
+								Browse
+							</label>
+						</div>
+						
+						<div class="form-group">
+							<input type="submit" name="submitUpload" value="Lisa pilt" class="btn btn-success">
+						</div>	
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

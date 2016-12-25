@@ -73,10 +73,10 @@ $images = $Sneakers->getAllImages();
 	foreach($images as $i) {
 		$html .= "<div class='col-md-3'>";
 			$html .= "<div class='thumbnail'>";
-				$html .= "<img src='uploads/".$i->name."'>";
+				$html .= "<img src='../uploads/".$i->name."'>";
 				$html .= "<div class='caption'>";
 					$html .= "<h3>Kuulutuse pealkiri</h3>";
-					$html .= "<p>".$i->description."</p>";
+					//$html .= "<p>".$i->description."</p>";
 					$html .= "<p><a href='#' class='btn btn-primary' role='button'>Vaata</a></p>";
 				$html .= "</div>";
 			$html .= "</div>";

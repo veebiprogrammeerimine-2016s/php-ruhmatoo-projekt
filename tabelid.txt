@@ -70,7 +70,8 @@ CREATE TABLE sm_uploads(
 	name VARCHAR(50),
 	primarypic INT,
 	deleted DATE,
-	flagged DATE
+	flagged DATE,
+	postid INT
 );
 
 
@@ -90,7 +91,7 @@ CREATE TABLE sm_posts(
 	userid INT,
 	FOREIGN KEY(brandid) REFERENCES sm_brands(id),
 	FOREIGN KEY(imgid) REFERENCES sm_uploads(id),
-	FOREIGN KEY(userid) REFERENCES sm_users(id)
+	FOREIGN KEY(userid) REFERENCES proov1(id)
 );
 
 

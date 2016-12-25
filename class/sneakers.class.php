@@ -9,17 +9,17 @@ class Sneakers {
 
 		}
 
-	function savesneaker ($contactemail, $description, $price) {
+	function savesneaker ($heading, $model, $description, $price) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO sneakers(user, contactemail, description, price) VALUES(?, ?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO sm_posts (userid, heading, model, description, price) VALUES (?, ?, ?, ?, ?)");
 	
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssss", $_SESSION["userEmail"], $contactemail, $description, $price);
+		$stmt->bind_param("isssi", $_SESSION["userId"], $heading, $model, $description, $price);
 		
 		if($stmt->execute()) {
 			
-			echo "salvestamine onnestus";
+			echo "salvestamine õnnestus";
 			
 		} else {
 			
@@ -117,13 +117,55 @@ class Sneakers {
 		
 		return $result;
 	}
+
 	
 	
+	function getRecentPost() {
+		$stmt = $this->connection->prepare("SELECT id, heading, model, price, description FROM sm_posts WHERE userid = ? ORDER BY id DESC LIMIT 1");
+		$stmt->bind_param("i", $_SESSION["userId"]);
+		$stmt->bind_result($id, $heading, $model, $price, $description);
+		$stmt->execute();
+		
+		$recentPost = new StdClass();
+		if($stmt->fetch()) {
+			$recentPost->id = $id;
+			$recentPost->heading = $heading;
+			$recentPost->model = $model;
+			$recentPost->price = $price;
+			$recentPost->description = $description;
+		} else {
+			echo "Ei saanud andmeid kätte..";
+		}
+		$stmt->close();
+		return $recentPost;
+	}
+	
+	
+	function matchPostAndImage($recentpostid) {
+		$stmt = $this->connection->prepare("SELECT id, name FROM sm_uploads WHERE postid = ?");
+		$stmt->bind_param("i", $recentpostid);
+		$stmt->bind_result($id, $name);
+		$stmt->execute();
+		
+		$imageId = new StdClass();
+		if($stmt->fetch()) {
+			$imageId->id = $id;
+			$imageId->name = $name;
+		} else {
+			echo "Ei saanud pildinime kätte";
+		}
+		$stmt->close();
+		return $imageId;
+	}
+	
+	
+
+
 	//picture upload
-	function uploadImages($name, $description) {
-		$stmt = $this->connection->prepare("INSERT INTO sm_uploads (name, description) VALUES (?, ?)");
+	function uploadImages($name, $postid, $primarypic) {
+		$stmt = $this->connection->prepare("INSERT INTO sm_uploads (name, postid, primarypic) VALUES (?, ?, ?)");
 		echo $this->connection->error;
-		$stmt->bind_param("ss", $name, $description);
+		$stmt->bind_param("sii", $name, $postid, $primarypic);
 		
 		if($stmt->execute()) {
 			echo "Salvestamine õnnestus";
@@ -132,29 +174,42 @@ class Sneakers {
 		}
 		$stmt->close();
 	}
+
 	
+
 	//display pictures
 	function getAllImages() {
 		
-		$stmt = $this->connection->prepare("SELECT name, description FROM sm_uploads WHERE deleted IS NULL");
-		$stmt->bind_result($imgname, $imgdescription);
+		$stmt = $this->connection->prepare("SELECT name FROM sm_uploads WHERE deleted IS NULL");
+		$stmt->bind_result($imgname);
 		$stmt->execute();
 		
 		$result = array();
 		while($stmt->fetch()) {
 			$img = new stdclass();
 			$img->name = $imgname;
-			$img->description = $imgdescription;
 			array_push($result, $img);
 		}
 		$stmt->close();
 		return $result;
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>
