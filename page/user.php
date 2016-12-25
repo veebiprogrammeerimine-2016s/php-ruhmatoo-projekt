@@ -54,7 +54,23 @@
     $userLevels = $Level->getUser();
 	
 ?>
-
+<?php require("../header.php"); ?>
+<div class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			 <a class="navbar-brand" href="data.php"><i class="fa fa-home" aria-hidden="true"></i> Avaleht</a> 
+		</div>
+			<ul class="nav navbar-nav">
+				<li><a href="addidea.php"><span class="glyphicon glyphicon-plus"></span> Lisa Idee</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="user.php"><i class="fa fa-user-circle" aria-hidden="true"></i><?=$_SESSION["userEmail"];?></a></li>
+				<li><a href="?logout=1"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="container">
 <h1><a href="data.php"> < Back</a><p>User account</h1>
 <?=$msg;?>
 <p>
@@ -117,3 +133,5 @@
 	<input type="submit" value="Add">
 	
 </form>
+</div>
+<?php require("../footer.php"); ?>

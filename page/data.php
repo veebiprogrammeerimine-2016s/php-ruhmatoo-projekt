@@ -76,39 +76,45 @@
 	//var_dump($carData);
 	//echo "</pre>";
 ?>
+<?php require("../header.php"); ?>
+<div class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			 <a class="navbar-brand" href="data.php"><i class="fa fa-home" aria-hidden="true"></i> Avaleht</a> 
+		</div>
+			<ul class="nav navbar-nav">
+				<li><a href="addidea.php"><span class="glyphicon glyphicon-plus"></span> Lisa Idee</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="user.php"><i class="fa fa-user-circle" aria-hidden="true"></i><?=$_SESSION["userEmail"];?></a></li>
+				<li><a href="?logout=1"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
 
 <?=$msg;?>
-<p>
-	<form align = "center">Welcome <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
-	<a href="?logout=1">Logout</a></form>
-</p>
+<div class="container">
+	<div class="row">
+		<div class="col-md 5 text-center">
+			<h3 class="text center">Looking for ideas?</h3>
+		</div>
+	</div>
+	<div class="row">
+		<form>
+			<div class="col-md-offset-4 col-md-4">
+				<input type="search" class="form-control input-sm" name="q" value="<?=$q;?>" placeholder="Type in keyword...">
+			</div>
+			<div class="col-sm-2">
+				<button type="submit" class = "btn btn-success btn-sm btn-block"><span class="glyphicon glyphicon-search"></span> Search</button>
+			</div>
+		</form>
+	</div>
+	<br>
 
-
-<h2><form align = "center">Please add your idea!</h2></form>
-
-<form method="POST" align = "center">
-			
-			<p><label for="idea">Idea:</label><br>
-					<input name= "idea" type="text" id="idea" required>
-			<p><label for="description">Idea description:</label><br>
-					<input name= "decsription" type="text" id="description" required>
-
-			
-			<input type="submit" value="Complete">
-			
-</form>
-
-<h2><form align = "center">Ideas</h2></form>
-
-<form align = "center">
-	
-	<input type="search" name="q" value="<?=$q;?>">
-	<input type="submit" value="Search">
-
-</form>
 
 <?php 
-	
+
 	$html = "<table class='table table-striped'>";
 	
 
@@ -181,3 +187,5 @@
 	
 
 ?>
+</div>
+<?php require("../footer.php"); ?>

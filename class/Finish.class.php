@@ -40,13 +40,13 @@ class Finish {
 		if ($order == "DESC") {
 			$orderBy = "DESC";
 		}
-		echo "Sorting: ".$sort." ".$orderBy." ";
+		//echo "Sorting: ".$sort." ".$orderBy." ";
 		
 		
 		//kas otsib
 		if ($q != "") {
 			
-			echo "Looking for: ".$q;
+			//echo "Looking for: ".$q;
 			
 			$stmt = $this->connection->prepare("
 				SELECT id, idea, description

@@ -172,45 +172,71 @@
 	}
 	
 
-?>
+?> 
+<?php require("../header.php"); ?>
 
-	
-<!DOCTYPE html>
+<div class="container">
+	<div class="jumbotron text-center">
+		<form><font face = "Comic Sans MS"><h1>EASY IDEAS FOR WEBSITE PROJECT</h1></font></form> 
+	</div>
+		<div class="row">
+			<div class="col-md-3 col-sm-3 col-md-offset-1 col-sm-offset-1">
+				<form method = "POST">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h2 class="text-center">Sign in</h2>
+						</div>
+					</div>
+					<p style="color:red;"><?=$error;?></p>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-envelope-open-o" aria-hidden="true"></i></span>
+						<input class="form-control" id="loginEmail" name="loginEmail" type = "email" placeholder="Email" required value="<?=$loginEmail?>">
+						<div class="help-block with-errors"></div>
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+						<input class="form-control" id="loginPassword" name="loginPassword" type = "password" placeholder="Password" required value="<?=$loginPassword?>">
+						<div class="help-block with-errors"></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-4"></div>
+							<div class="col-md-4 text-center">
+								<input class = "btn btn-success btn-sm btn-block" type ="submit" value = "Log in">
+							</div>
+					</div>
+				</form>
+			</div>
 
-<html>
-<body>
+			<div class="col-md-3 col-sm-3 col-md-offset-3 col-sm-offset-3">
+				<form method = "POST">
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<h2 class="text-center">Create account</h2>
+						</div>
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-envelope-open-o" aria-hidden="true"></i></span>
+						<input class="form-control" id="signupEmail" name="signupEmail" type = "email" placeholder="Email" value ="<?php echo $signupEmail; ?>"><?php echo $signupEmailError; ?>
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+						<input class="form-control" id="signupPassword" name="signupPassword" type="password" placeholder="Password"><?php echo $signupPasswordError; ?>
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+						<input class="form-control" id="nickname" name ="nickname" type = "text" placeholder = "Nickname"><?php echo $nicknameError; ?>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-4"></div>
+							<div class="col-md-4 text-center">
+								<input class = "btn btn-success btn-sm btn-block" type ="submit" value = "Sign up">
+							</div>
+					</div>
+				</form>
+			</div>
+		</div>
+</div>
 
-<form align="center"><font face = "Comic Sans MS"><h1>EASY IDEAS FOR WEBSITE PROJECT</h1></font></form>
-
-</body>
-		<form align="center"><h1><font face = "Comic Sans MS"><i>Sign in</i></font></h1></form>
-		<form method = "POST" align="center">
-			<p style="color:red;"><?=$error;?></p>
-			<!--<label>E-post</label><br>-->
-			<input name="loginEmail" type = "email" placeholder="Email" value ="<?php echo $loginEmail; ?>"> <?php echo $loginEmailError; ?>
-			<br><br>
-			<input name="loginPassword" type = "password" placeholder="Password"> <?php echo $loginPasswordError; ?>
-			<br><br>
-			<input type="image" src="https://s12.postimg.org/g7fipmmgt/button.png" value="">
-		</form>
-
-	</body>
-</html>
-
-<form align="center"><h1><h1><font face = "Comic Sans MS"><i>Create account</i></font></h1></form>
-		<form method = "POST" align="center">
-			<!--<label>E-post</label><br>-->
-			<input name="signupEmail" type = "email" placeholder="Email" value ="<?php echo $signupEmail; ?>"><?php echo $signupEmailError; ?>
-			<br><br>
-			<input name="signupPassword" type="password" placeholder="Password"><?php echo $signupPasswordError; ?>
-			<br><br>
-			<input name ="nickname" type = "text" placeholder = "Nickname"><?php echo $nicknameError; ?><br></br>
-			<select name="gender">
-			<option value="1" selected= "selected">male</option>
-			<option value="2">female</option>
-			<option value="3">other</option>
-			</select>
-		<p>
-		
-			<input type="image" src="https://s9.postimg.org/z5ko9xsy7/button_2.png" value="">
-		</form>
+<?php require("../footer.php"); ?>
