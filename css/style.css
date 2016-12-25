@@ -1,13 +1,9 @@
 .thumbnail img{
-    width: 200px;
+    width: 230px;
     height: 150px;
 }
 
 .thumbnail{
-    width: 300px;
-    height: 500px;
-}
-
-body{
-	background-color: red;
+    width: 250px;
+    height: 320px;
 }

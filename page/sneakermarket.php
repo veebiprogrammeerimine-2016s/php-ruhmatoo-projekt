@@ -61,17 +61,10 @@ $images = $Sneakers->getAllImages();
 
 <?php require("../header.php"); ?>
 
-<!-- ma ei saanud millegipärast css faili tööle kui see oma folderis on, ajutiselt tegin siia -->
-<head>
-<link rel="stylesheet" type="text/css" href="style.css">
-</head>
+
+<!-- displayed posts -->
 
 <div class="container">
-
-
-	
-	
-<!-- all posts -->
 <?php
 
 
@@ -97,20 +90,10 @@ $images = $Sneakers->getAllImages();
 
 
 ?>
-
-	
-
-
-
 </div>
 
 
 
-<div class="container">
-
-
-
-</div>
 
 
 

@@ -2,20 +2,20 @@
 
 	require("../functions.php");
 
-	//kui ei ole kasutaja id'd
+	//kui ei ole kasutaja id'd suunan sisselogimise lehele
 	if(!isset($_SESSION["userId"])){
-		
-		//suunan sisselogimise lehele
 		header("Location: login.php");
 		exit();
 	}
 
+	//logout
 	if(isset($_GET["logout"])){
 		session_destroy();
 		header("Location: login.php");
 		exit();
 	}
 
+	//kuulutuse lisamisvormi php
 	if(isset($_POST["contactemail"]) && isset($_POST["description"]) && isset($_POST["price"]) &&
 		!empty($_POST["contactemail"]) && !empty($_POST["description"]) && !empty($_POST["price"])
 		) {
@@ -36,7 +36,7 @@ $alertMsg = "";
 if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
 	$uploadName = $_FILES["fileToUpload"]["name"];
-	$target_dir = "uploads/";
+	$target_dir = "../uploads/";
 	$target_file = $target_dir.basename($uploadName);
 	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 	
@@ -49,7 +49,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
 	$uploadOk = 1;
 	
-	// check if it's a pic
+	// kontroll kas on pilt
 	if(isset($_POST["submitUpload"])) {
 		$check = getimagesize($uploadTmp);
 		if($check !== false) {
@@ -62,13 +62,13 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 		}
 	}
 	
-	// check if filename is unique
+	// kontroll kas failinime on unikaalne
 	if(file_exists($target_file)) {
 		echo "<br>Sellise nimega fail on juba olemas";
 		$uploadOk = 0;
 	}
 	
-	// check pic formats
+	// pildiformaatide kontroll
 	if($imageFileType != "jpg" &&
 		$imageFileType != "png" &&
 		$imageFileType != "jpeg" &&
@@ -77,14 +77,14 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 			$uploadOk = 0;
 		}
 	
-	// check upload size
+	// faili suuruse kontroll
 	if($uploadSize > 5000000) {
 		echo "<br>Fail on liiga suur.";
 		$uploadOk = 0;
 	}
 	
 	
-	// if there are no problems, uploads image
+	// kui eelnevad kontrollid läbitud, siis uploadib pildi
 	if($uploadOk == 0) {
 		echo "<br>Faili ei ole üles laetud.";
 		$alertMsg = "<div class='alert alert-warning' role='alert'>Faili ei ole üles laetud</div>";

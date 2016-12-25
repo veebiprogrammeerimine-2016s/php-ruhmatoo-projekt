@@ -1,7 +1,7 @@
 
 
 1 - kasutajate tabel
-| id | firstname | lastname | dateofbirth | gender | shoesize | country | city | email | password | created | userlevel |
+| id | firstname | lastname | dateofbirth | gender | shoesize | country | city | username | email | password | created | userlevel |
 
 
 2 - kasutaja muu info
@@ -9,20 +9,95 @@
 
 
 3 - piltide tabel
-| id |  name  | description | primary |  deleted  |  flagged  |
-| 1  | a.jpg  | tekst       | yes     | 01.01.17  | 01.01.17  |
+| id |  name  | primary |  deleted  |  flagged  |
+| 1  | a.jpg  | yes     | 01.01.17  | 01.01.17  |
 
 
 4 - kuulutuste tabel
-| id | userid | brand | model | type | usershoesize | condition | price | description | imgname | contactmethod |
-| 1  | 21     | 3     |       | men  | 46           | used      | 500   | tekst       | a.jpg   | 1             |
+| id | heading   | brandid | model | type | usershoesize | condition | price | description | imgid | userid | contactmethod |
+| 1  | pealkiri  | 3       |       | men  | joiniga?     | used      | 500   | tekst       | 25    | 21     | 1             |
 
 
 5 - tootjate/brändide tabel
-| id | name |
+| id | brand |
 
 
 6 - kontaktiviiside tabel
 | id | method |
 | 1  | email  |
 | 2  | phone  |
+| 3  | pm     |
+
+
+
+1 - kasutajate tabel
+
+CREATE TABLE sm_users(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	firstname VARCHAR(100),
+	lastname VARCHAR(100),
+	dateofbirth DATE,
+	gender VARCHAR(30),
+	shoesize INT (2),
+	country VARCHAR(100),
+	city VARCHAR(100),
+	username VARCHAR(30) NOT NULL,
+	email VARCHAR(255) NOT NULL,
+	password VARCHAR(128) NOT NULL,
+	created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	userlevel INT,
+	UNIQUE (username),
+	UNIQUE (email)
+);
+
+
+
+2 - kasutaja muu info
+
+CREATE TABLE sm_userinfo(
+	userid INT,
+	fav_brand VARCHAR(100),
+	fav_model VARCHAR(100),
+	FOREIGN KEY(userid) REFERENCES sm_users(id)
+);
+
+
+
+3 - piltide tabel
+
+CREATE TABLE sm_uploads(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(50),
+	primarypic INT,
+	deleted DATE,
+	flagged DATE
+);
+
+
+
+4 - kuulutuste tabel
+
+CREATE TABLE sm_posts(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	heading VARCHAR(50),
+	brandid INT,
+	model VARCHAR(100),
+	type VARCHAR(30),
+	sneakercondition VARCHAR(30),
+	price DECIMAL(8, 2),
+	description VARCHAR(255),
+	imgid INT,
+	userid INT,
+	FOREIGN KEY(brandid) REFERENCES sm_brands(id),
+	FOREIGN KEY(imgid) REFERENCES sm_uploads(id),
+	FOREIGN KEY(userid) REFERENCES sm_users(id)
+);
+
+
+
+5 - tootjate/brändide tabel
+
+CREATE TABLE sm_brands(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	brand VARCHAR(100)
+);
