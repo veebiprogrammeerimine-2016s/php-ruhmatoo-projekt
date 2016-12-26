@@ -16,18 +16,17 @@
     * Google API
 	* Bootstrap
 
-##  Summary
+## Summary
     **WORK IN PROGRES**
 
-## -Setup
-    * Scraper
-        In scraper folder, run "php composer.phar require google/apiclient:^2.0 " in command line
-        Get secret key JSON from Google API Manager, rename it to "client_secret.json"
-        In scraper.php:
-            setClientId = Izipaevik Client ID from Google API Manager
-            setRedirectUri = scraper.php in testing/production
-            setDeveloperKey = API Key from Google API Manager
-        
+## Setup       
+### --Scraper
+    In scraper folder, run "php composer.phar require google/apiclient:^2.0 " in command line
+    Get secret key JSON from Google API Manager, rename it to "client_secret.json"
+    In scraper.php:
+        setClientId = Izipaevik Client ID from Google API Manager
+        setRedirectUri = scraper.php in testing/production
+        setDeveloperKey = API Key from Google API Manager
 
 ### --MySQL
     1. Create database:
