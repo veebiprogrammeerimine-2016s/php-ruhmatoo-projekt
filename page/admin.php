@@ -1,6 +1,21 @@
 <?php
+require ("../functions.php");
+require("../class/User.class.php");
+$User = new User($mysqli);
 
+require("../class/Helper.class.php");
+$Helper = new Helper();
 
+// If active session found
+if (isset($_SESSION["userId"])) {
+    header("Location: homework.php");
+    exit();
+}
+
+// Try to login
+if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"]) && !empty($_POST["loginPassword"]) && !empty($_POST["loginEmail"])) {
+    $User->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));
+}
 
 ?>
 
@@ -28,18 +43,22 @@
             </div><!--/.nav-collapse -->
         </div>
     </nav>
-
+</div> <!-- /container -->
 <div class="container">
     <!-- Signin -->
-    <form class="form-signin">
+    <form method="POST" class="form-signin">
         <h2 class="form-signin-heading">Lõpuboss</h2>
+
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus
+               name="loginEmail">
+
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Parool" required>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Parool" required
+               name="loginPassword">
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Use salt</button>
     </form>
-
 </div> <!-- /container -->
 
 <?php require "../parts/footer.php"; ?>
