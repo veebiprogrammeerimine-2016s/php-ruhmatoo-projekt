@@ -8,6 +8,9 @@
 	require("class/Helper.class.php");
 	$Helper = new Helper($mysqli);
 	
+	require("class/Post.class.php");
+	$Post = new Post($mysqli);
+	
 	$loginEmailError="";
 	$loginPasswordError="";
 	
@@ -45,16 +48,14 @@
 		  $User->login($Helper->cleanInput($_POST["loginUsername"]), $Helper->cleanInput($_POST["loginPassword"])); 
 		  
 	}
-
-	
-	
-	
-	
+	$five ="1";
+	$results= $Post->onlyFive($five);
+	$html="";
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Logi sisse!</title>
+		<title>iksd.ee</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">		
 		
 		<!-- jQuery -->	
@@ -67,9 +68,6 @@
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-		
 	</head>
 	<body>
 
@@ -84,12 +82,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href='/~gregness/php-ruhmatoo-projekt/index.php' class="navbar-brand">iksd.ee</a>
+          <a class="navbar-brand" href='index.php'><span style="font-size: 30px;
+			font-family: Arial, Verdana, Sans-serif;">iksd.ee  </span></h2><span class="glyphicon glyphicon-sunglasses"></a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a>Logi sisse, et saada rohkem privileege</a></li>
-			<li><a href='/~gregness/php-ruhmatoo-projekt/page/register.php'>Loo uus konto</a></li>
+			<li><p class="invisible">tyhi ruum</p></li>
+			<li><p class="invisible">tyhi ruum</p></li>
+
+			<!-- <li><a href='/~gregness/php-ruhmatoo-projekt/page/register.php'>Pole veel kasutajat?</a></li>-->
+			<li><a href="page/register.php">Pole veel kasutajat? Klikka siia!</a></li>
 		  </ul>
 			
 			<form class="navbar-form navbar-right" method="POST">
@@ -121,28 +122,70 @@
 	
 	
 	
-	<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
+	
+	
+	<p class="lead">
+	<div class='container'>
+	<div class='row'><div class='col-lg-4'>
+	<?php
+	foreach ($results as $r) {
+			
+			
+			
+		
+			$html .= "<div><table>";
+				$html .= "<tr><h2>".$r->name."</h2></tr>";
+				$html .= "<td><img src=".$r->message."></td></table>";
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			$html .= "</div>";
+		
+		}
+	
+	echo $html;
+	?>
+	</div></div>
+	<br>
+	Tahad rohkem näha? Logi sisse!
+	</p>
+	
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Uue kasutaja loomine</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form action="action.php" method="post" id="form" role="form"  onsubmit="return validate_all('results');">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Kasutajanimi</label>
+              <input type="text" class="form-control" name="login" placeholder="Sisesta kasutajanimi" value="{login}">
+            </div>
+			<div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+              <input type="text" name="email" class="form-control" id="usrname" placeholder="Sisesta email" value="{email}">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-asterisk"></span> Parool</label>
+              <input type="password" name="pass" class="form-control" placeholder="Sisesta parool" value="{pass>
+            </div>
+			<div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-asterisk"></span> Kinnita parool</label>
+              <input type="password" class="form-control" name="cpass" placeholder="Sisesta uuesti parool" value="{cpass}">
+            </div>
+              <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Salvesta</button>
+          </form>
+		  <?php echo $Pelmeen;?>
+		  <h3 id="results"></h3>
+		  {errors}
+        </div>
+
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      
     </div>
-  </div>
-</div>
+  </div> 
 
 <?php require("footer.php"); ?>

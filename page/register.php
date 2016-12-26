@@ -17,7 +17,7 @@
 		$userError="
 				<br>
 		  		<div class='alert alert-success'>
-				<strong><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Your account was successfully created!</strong>
+				<strong><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Oled regatud!</strong>
 				</div>";
 	}
 	
@@ -25,7 +25,7 @@
 		$userError="
 				<br>
 		  		<div class='alert alert-danger'>
-				<strong><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> Error: Email address exists</strong>
+				<strong><span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'></span> Email/kasutajanimi juba kasutusel</strong>
 				</div>";
 	}
 	// kui on sisseloginud siis suunan data lehele
@@ -47,7 +47,7 @@
 	if (isset ($_POST["loginPassword"])) {
 		if (empty($_POST["loginPassword"]))  {
 			
-			$loginPasswordError = "<br><span style='color: red'>Parool j�i sisestamata</span>";
+			$loginPasswordError = "<br><span style='color: red'>Parool jäi sisestamata</span>";
 		}
 	}
 	
@@ -82,7 +82,7 @@
 				<strong>
 				 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
 				
-				All fields are required</strong>
+				Kõik väljad on kohustuslikud</strong>
 				</div>";
 		} else {
 			
@@ -101,9 +101,19 @@
 					<br><div class='alert alert-danger'>
 					<strong>
 					 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-					Passwords don't match</strong>
+					Paroolid peavad identsed olema</strong>
 					</div>";
 			  
+		}
+		
+		else if(strlen($_POST["registerPassword"])<10) {
+			
+				$userError="
+					<br><div class='alert alert-danger'>
+					<strong>
+					 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
+					Parool olema vähemalt 10 tähemärgi pikkune</strong>
+					</div>";
 		}
 	}
 	
@@ -122,7 +132,7 @@
 					<br><div class='alert alert-danger'>
 					<strong>
 					 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-					Email too short</strong>
+					Email liiga lühike</strong>
 					</div>";
 			}
 		}
@@ -138,7 +148,7 @@
 					<br><div class='alert alert-danger'>
 					<strong>
 					 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-					Username too short</strong>
+					Kasutajanimi peab olema vähemalt 3 tähemärki</strong>
 					</div>";
 			}
 		}
@@ -147,7 +157,7 @@
 	
 	
 	
-	//k�ik sobis asun kutsuma registerit
+	//kõik sobis asun kutsuma registerit
 	if(isset($_POST["registerEmail"])  &&
 	   isset($_POST["registerPassword"]) &&
 	   isset($_POST["registerUsername"]) &&
@@ -200,13 +210,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href='/~gregness/php-ruhmatoo-projekt/index.php'class="navbar-brand">iksd.ee</a>
+          <a class="navbar-brand" href='../index.php'><span style="font-size: 30px;
+			font-family: Arial, Verdana, Sans-serif;">iksd.ee  </span></h2><span class="glyphicon glyphicon-sunglasses"></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a>Logi sisse, et saada rohkem privileege</a></li>
-		  </ul>
-			
 			<form class="navbar-form navbar-right" method="POST">
 				<div class="form-group">
 					<input name="loginUsername" type="text" class="form-control input-sm" placeholder="Username" value = "<?php if(isset($_POST['loginUsername'])) { echo $_POST['loginUsername']; } ?>">
@@ -214,45 +221,40 @@
 				</div>
 				<button type="submit" class="btn btn-sm btn-success">Logi sisse</button>
 			</form>
-
-
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 	<br><br>
     <!-- Begin page content -->
     <div class="container">
-		<style>
-
-		</style>
-      <div class="page-header">
-        <h1>Uue konto loomine</h1>
-      </div>
-
-		<div class="col-lg-4">	  
-			  <form method="POST">
+	<br><br>
+		<div class="col-md-4 col-md-offset-3">	  
+			<div class="page-header">
+				<h1>Uue konto loomine</h1>
+			</div>
+		<form method="POST">
 		  <div class="form-group">
-			<label>Email address</label>
-			<input type="email" class="form-control input-sm" name="registerEmail" placeholder="Email" value="<?php if(isset($_POST['registerEmail'])) { echo $_POST['registerEmail']; } ?>" /required>
+			<span class="glyphicon glyphicon-envelope"></span>  <label> Email</label>
+			<input type="email" class="form-control input-sm" name="registerEmail" placeholder="Sisesta email" value="<?php if(isset($_POST['registerEmail'])) { echo $_POST['registerEmail']; } ?>" /required>
 			<p class="help-block"></p>
 		  </div>
 		  <div class="form-group">
-			<label>Username</label>
-			<input type="text" class="form-control input-sm" name="registerUsername" placeholder="Username" value="<?php if(isset($_POST['username'])) { echo $_POST['username']; } ?>" /required>
+			<span class="glyphicon glyphicon-user"></span>    <label>  Kasutajanimi</label>
+			<input type="text" class="form-control input-sm" name="registerUsername" placeholder="Sisesta kasutajanimi" value="<?php if(isset($_POST['username'])) { echo $_POST['username']; } ?>" /required>
 			<p class="help-block"></p>
 		  </div>
 		  <div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control input-sm" name="registerPassword" placeholder="Password" /required>
+			<span class="glyphicon glyphicon-asterisk"></span>   <label> Parool</label>
+			<input type="password" class="form-control input-sm" name="registerPassword" placeholder="Sisesta parool" /required>
 			<p class="help-block"></p>
 		  </div>
 		  <div class="form-group">
-			<label>Confirm Password</label>
-			<input type="password" class="form-control input-sm" name="confirmRegisterPassword"; placeholder="Confirm Password" /required>
+			<span class="glyphicon glyphicon-asterisk"></span>    <label> Kinnita parool</label>
+			<input type="password" class="form-control input-sm" name="confirmRegisterPassword"; placeholder="Korda parooli" /required>
 			<p class="help-block"></p>
 		  </div>
 
-		  <button type="submit" class="btn btn-default">Register</button>
+		  <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok">  </span>  Salvesta</button>
 		</form>
 		
 		<?php echo $userError; ?>

@@ -138,6 +138,11 @@
 	
 ?>
 <?php require("../header.php"); ?>
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 <div class="container">
 	<div class="page-header">
 		<h1>Loo uus postitus</h1>
@@ -147,15 +152,9 @@
     <label>Postituse pealkiri</label>
     <input type="text" name="caption" id="caption" class="form-control" placeholder="Insert a caption here">
   </div>
-  <button class="btn btn-xs" type="button" data-toggle="collapse" data-target="#lisainfo" aria-expanded="false" aria-controls="lisainfo">
-		Lisainfo
-		</button>
-		<div class="collapse" id="lisainfo">
-		<br>
-		  <div class="well well-sm">
-			Pilt peab olema .bmp, .gif, .png, .jpg või .jpeg formaadis ning maksimaalselt 5mb.
-		  </div>
-		</div>
+  
+  <a data-toggle="tooltip" title="Pilt peab olema .bmp, .gif, .png, .jpg või .jpeg formaadis ning maksimaalselt 5mb.">Lisainfo</a>
+
 		
   <div class="form-group">
   <br>

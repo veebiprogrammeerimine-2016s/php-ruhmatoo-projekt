@@ -116,7 +116,35 @@ class Post {
 	}
 	
 	
-	
+	function onlyFive($five) {
+		
+		$stmt = $this->connection->prepare("SELECT submissions.id, caption, imgurl
+		FROM submissions WHERE deleted is NULL
+		ORDER BY id DESC LIMIT ?");
+		$stmt->bind_param("i", $five);
+		
+		$stmt->execute(); //Execute prepared Query
+		$results = array();
+		$stmt->bind_result($id, $name, $message);
+		
+		while($stmt->fetch()){ //fetch values
+		
+			$data = new StdClass();
+			$data->id = $id;
+			$data->name = $name;
+			$data->message = $message;
+			
+			
+			//echo $color."<br>";
+			array_push($results, $data);
+		}
+		
+		$stmt->close();
+		
+		return $results;
+		
+		
+	}
 	
 	
 }

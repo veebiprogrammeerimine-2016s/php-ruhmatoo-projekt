@@ -88,14 +88,14 @@
             <span class="icon-bar">test</span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href='data.php'><span class="iksdee">iksd.ee  </span></h2><span class="glyphicon glyphicon-sunglasses"></span>
+          <a class="navbar-brand" href='data.php'><span class="iksdee">iksd.ee  </span></h2><span class="glyphicon glyphicon-sunglasses"></a>
         </div>
           <ul class="nav navbar-nav">
             <li><a href="data.php">postitused </a></li>
 			<li><a href="upload.php"> uus postitus</a></li>
 			<li><p class="invisible">tyhi ruum</p></li>
 		  </ul>
-		<p class="navbar-text navbar-right">tere, <a href="user.php?username=<?=$_SESSION["username"];?>"> <?=$_SESSION["username"];  ?>  </a>  <a class="btn btn-xs btn-primary" href="?logout=1" style="text-decoration:none; color:white;" >logi välja</a></p>
+		<p class="navbar-text navbar-right">Tere, <a href="user.php?username=<?=$_SESSION["username"];?>"> <?=$_SESSION["username"];  ?>  </a>  <a class="btn btn-xs btn-primary" href="?logout=1" style="text-decoration:none; color:white;" >logi välja</a></p>
 
 
         </div><!--/.nav-collapse -->
