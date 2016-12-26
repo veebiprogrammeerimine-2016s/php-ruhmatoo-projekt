@@ -120,6 +120,14 @@ class Sneakers {
 
 	
 	
+	
+	
+	
+	
+	
+	// funktsioon kasutaja viimase postituse andmete kättesaamiseks
+	// kontrollida - ainult sisselogitud kasutaja andmed, kasutaja sisestatud kirjetest viimane
+	
 	function getRecentPost() {
 		$stmt = $this->connection->prepare("SELECT id, heading, model, price, description FROM sm_posts WHERE userid = ? ORDER BY id DESC LIMIT 1");
 		$stmt->bind_param("i", $_SESSION["userId"]);
@@ -161,7 +169,8 @@ class Sneakers {
 	
 
 
-	//picture upload
+	//****** PILTIDE ÜLESLAADIMINE ******
+	
 	function uploadImages($name, $postid, $primarypic) {
 		$stmt = $this->connection->prepare("INSERT INTO sm_uploads (name, postid, primarypic) VALUES (?, ?, ?)");
 		echo $this->connection->error;
@@ -177,26 +186,40 @@ class Sneakers {
 
 	
 
-	//display pictures
-	function getAllImages() {
+	
+	/* ****** FUNKTSIOON ESILEHEL KUVATAVATE KUULUTUSTE ANDMETE JAOKS ******
+	
+	kontrollida:
+	1 - kas tulevad kõikide kasutajate kuulutused, kus:
+		1.1 - primarypic (ehk pilt, mida kuvatakse kuulutuse esilehel) on 1
+		1.2. - deleted on NULL
+	2 - mis saab, kui kasutaja kustutab pildi (deleted ei ole NULL)? - mida kuvatakse?
+	3 - kas kasutaja saab muuta primarypici?
+	
+	*/
+	
+	function getAllPosts() {
 		
-		$stmt = $this->connection->prepare("SELECT name FROM sm_uploads WHERE deleted IS NULL");
-		$stmt->bind_result($imgname);
+		$stmt = $this->connection->prepare("SELECT heading, model, price, description, name FROM sm_posts p JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL) u ON p.id=u.postid");
+		$stmt->bind_result($heading, $model, $price, $description, $imgname);
 		$stmt->execute();
 		
 		$result = array();
+		
 		while($stmt->fetch()) {
-			$img = new stdclass();
-			$img->name = $imgname;
-			array_push($result, $img);
+			
+			$sneakerPost = new StdClass();
+			$sneakerPost->heading = $heading;
+			$sneakerPost->model = $model;
+			$sneakerPost->price = $price;
+			$sneakerPost->description = $description;
+			$sneakerPost->name = $imgname;
+			
+			array_push($result, $sneakerPost);
 		}
 		$stmt->close();
 		return $result;
 	}
-
-
-
-
 
 
 

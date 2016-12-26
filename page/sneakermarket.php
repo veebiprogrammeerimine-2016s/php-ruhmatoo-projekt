@@ -45,7 +45,7 @@
 
 // karl-erik
 
-$images = $Sneakers->getAllImages();
+$allPosts = $Sneakers->getAllPosts();
 
 
 
@@ -62,7 +62,12 @@ $images = $Sneakers->getAllImages();
 <?php require("../header.php"); ?>
 
 
-<!-- displayed posts -->
+<!-- 
+****** kuvatakse kõikide kasutajate postitused ****** 
+
+andmed tulevad $allPosts muutujast
+
+-->
 
 <div class="container">
 <?php
@@ -70,13 +75,13 @@ $images = $Sneakers->getAllImages();
 
 	$html = "<div class='row'>";
 		
-	foreach($images as $i) {
+	foreach($allPosts as $p) {
 		$html .= "<div class='col-md-3'>";
 			$html .= "<div class='thumbnail'>";
-				$html .= "<img src='../uploads/".$i->name."'>";
+				$html .= "<img src='../uploads/".$p->name."'>";
 				$html .= "<div class='caption'>";
-					$html .= "<h3>Kuulutuse pealkiri</h3>";
-					//$html .= "<p>".$i->description."</p>";
+					$html .= "<h3>".$p->heading."</h3>";
+					$html .= "<p>".$p->description."</p>";
 					$html .= "<p><a href='#' class='btn btn-primary' role='button'>Vaata</a></p>";
 				$html .= "</div>";
 			$html .= "</div>";

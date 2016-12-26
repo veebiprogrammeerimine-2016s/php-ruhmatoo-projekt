@@ -3,39 +3,45 @@
 	require("../functions.php");
 
 	//kui ei ole kasutaja id'd suunan sisselogimise lehele
-	if(!isset($_SESSION["userId"])){
+	if(!isset($_SESSION["userId"])) {
 		header("Location: login.php");
 		exit();
 	}
 
 	//logout
-	if(isset($_GET["logout"])){
+	if(isset($_GET["logout"])) {
 		session_destroy();
 		header("Location: login.php");
 		exit();
 	}
 
-	//kuulutuse lisamisvormi php
+	$submitBtn = "";
+	$submitUploadBtn = "disabled";
+
+// ****** KUULUTUSE LISAMISVORMI PHP ******
+	
 	if(isset($_POST["model"]) && isset($_POST["description"]) && isset($_POST["price"]) && isset($_POST["heading"]) &&
 		!empty($_POST["model"]) && !empty($_POST["description"]) && !empty($_POST["price"]) && !empty($_POST["heading"])
 		) {
 		$Sneakers->savesneaker($Helper->cleanInput($_POST["heading"]), $Helper->cleanInput($_POST["model"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]));
+		
+		$submitBtn = "disabled";
+		$submitUploadBtn = "";
 	}
-	
-	
-
-	
-?>
+		
 
 
-<?php
-// --- UPLOAD PHP ---
+
+// *** muutujad ***
 
 $recentPostData = $Sneakers->getRecentPost();
 $recentPostId = $recentPostData->id;
-$primaryPicture = 1;
+$primaryPicture = 0;
 
 $alertMsg = "";
+
+
+// ****** UPLOAD PHP ******
 
 if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
@@ -96,9 +102,17 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	} else {
 		if (move_uploaded_file($uploadTmp, $target_file)) {
 			echo "<br>Pilt nimega ".basename($uploadName)." on üles laetud</div>";
-			$alertMsg = "<div class='alert alert-success' role='alert'>Pilt on üles laetud!";
+			
+			$alertMsg = "<div class='alert alert-success' role='alert'>Pilt on üles laetud!</div>";
+			$primaryPicture = 1;
 			
 			$Sneakers->uploadImages($uploadName, $recentPostId, $primaryPicture);
+			
+			$submitBtn = "";
+			$submitUploadBtn = "disabled";
+			
+			//header("Location: data.php?upload=true");
+			//exit();
 			
 			
 		} else {
@@ -106,7 +120,6 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 			$alertMsg = "<div class='alert alert-danger' role='alert'>Üleslaadimisel ilmnes tõrge</div>";
 		}
 	}
-	
 }
 
 
@@ -116,57 +129,67 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 
 
 
+
+require("../header.php"); 
 ?>
 
 
 
-
-<?php require("../header.php"); ?>
-
 <div class="container">
 	
+	
+	<!-- **** KUULUTUSTE LEHE ALAMMENÜÜ **** -->
+	
 	<ul class="nav nav-tabs">
-		<li role="presentation" class="active"><a href="#">Uus kuulutus</a></li>
+		<li role="presentation" class="active"><a href="#">Loo kuulutus</a></li>
 		<li role="presentation"><a href="myposts.php">Minu kuulutused</a></li>
 	</ul>
-
+	
+	
+	<!-- **** KUULUTUSE PÕHIANDMETE SISESTAMISVÄLJAD **** -->
+	
 	<div class="row">
 		<div class="col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Loo kuulutus</h3>
+					<h3 class="panel-title">Uus kuulutus</h3>
 				</div>
 				<div class="panel-body">
 					<form method="POST">
-					
-						<div class="form-group">
-							<label for="heading">Pealkiri</label>
-							<input type="text" name="heading" class="form-control" placeholder="kuulutuse pealkiri" id="heading">
-						</div>
-					
-						<div class="form-group">
-							<label for="model">Mudel</label>
-							<input type="text" name="model" class="form-control" placeholder="mudeli nimi" id="model">
-						</div>
-					
-						<div class="form-group">	
-							<label for="price">Hind</label>
-							<input type="integer" name="price" class="form-control" placeholder="ex. 490" id="price">
-						</div>
+						<fieldset <?php echo $submitBtn; ?>>
+						
+							<div class="form-group">
+								<label for="heading">Pealkiri</label>
+								<input type="text" name="heading" class="form-control" placeholder="kuulutuse pealkiri" id="heading">
+							</div>
+						
+							<div class="form-group">
+								<label for="model">Mudel</label>
+								<input type="text" name="model" class="form-control" placeholder="mudeli nimi" id="model">
+							</div>
+						
+							<div class="form-group">	
+								<label for="price">Hind</label>
+								<input type="integer" name="price" class="form-control" placeholder="ex. 490" id="price">
+							</div>
 
-						<div class="form-group">
-							<label for="description">Kirjeldus</label>
-							<textarea type="text" name="description" cols="40" rows="2" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43" class="form-control" id="description"></textarea>
-						</div>
-						
-						<div class="form-group">
-							<input type="submit" value="Salvesta" class="btn btn-success">
-						</div>
-						
+							<div class="form-group">
+								<label for="description">Kirjeldus</label>
+								<textarea type="text" name="description" cols="40" rows="2" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43" class="form-control" id="description"></textarea>
+							</div>
+							
+							<div class="form-group">
+								<input type="submit" name="submit" value="Loo uus kuulutus" class="btn btn-success">
+							</div>
+							
+						</fieldset>
 					</form>
 				</div>
 			</div>
 		</div>
+		
+		
+		<!-- **** VIIMATI LISATUD KUULUTUSE PREVIEW **** -->
 		
 		<div class="col-md-4">
 			<div class="panel panel-default">
@@ -174,11 +197,42 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 					<h3 class="panel-title">Sinu viimati lisatud kuulutus</h3>
 				</div>
 				<div class="panel-body">
+				
+					<form method="POST" class="form-horizontal">
+						<div class="form-group">
+							<label class="col-md-2 control-label">Pealkiri</label>
+							<div class="col-md-9 col-md-offset-1">
+								<p class="form-control-static"><?php echo $recentPostData->heading; ?></p>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-2 control-label">Mudel</label>
+							<div class="col-md-9 col-md-offset-1">
+								<p class="form-control-static"><?php echo $recentPostData->model; ?></p>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-2 control-label">Hind</label>
+							<div class="col-md-9 col-md-offset-1">
+								<p class="form-control-static"><?php echo $recentPostData->price." €"; ?></p>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="col-md-2 control-label">Kirjeldus</label>
+							<div class="col-md-9 col-md-offset-1">
+								<p class="form-control-static"><?php echo $recentPostData->description; ?></p>
+							</div>
+						</div>
+						
+					</form>
 					
 <?php
 
-	echo $recentPostData->heading."<br>".$recentPostData->model."<br>".$recentPostData->price."<br>".$recentPostData->description."<br>";
-	echo "Userid: ".$_SESSION["userId"]."<br>Recent post id: ".$recentPostId;
+	//echo $recentPostData->heading."<br>".$recentPostData->model."<br>".$recentPostData->price."<br>".$recentPostData->description."<br>";
+	//echo "Userid: ".$_SESSION["userId"]."<br>Recent post id: ".$recentPostId;
 
 
 
@@ -189,29 +243,35 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 			</div>		
 		</div>		
 		
+		
+		<!-- **** KUULUTUSELE PEAMISE (KUVATAVA) PILDI LISAMISE PANEL **** -->
+		
 		<div class="col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Lisa pilt</h3>
+					<h3 class="panel-title">Lisa kuulutuse esilehe pilt</h3>
 				</div>
 				<div class="panel-body">
 					<form action="data.php" method="post" enctype="multipart/form-data">
+						<fieldset <?php echo $submitUploadBtn; ?>>
 						
-						<div class="form-group">
-							<div>
-								<?php echo $alertMsg; ?>
+							<div class="form-group">
+								<div>
+									<?php echo $alertMsg; ?>
+								</div>
+								
+								<label for="fileToUpload">Uploadi pilt:</label><br>
+								<label class="btn btn-default btn-file" for="fileToUpload">
+									<span class="glyphicon glyphicon-folder-open"></span>
+									&nbsp;Vali...<input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
+								</label>
 							</div>
-							<label for="fileToUpload">Uploadi pilt:</label><br>
-							<label class="btn btn-primary" for="fileToUpload">
-								<span class="glyphicon glyphicon-folder-open"></span>
-								<input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
-								Browse
-							</label>
-						</div>
+
+							<div class="form-group">
+								<input type="submit" name="submitUpload" value="Lisa pilt" class="btn btn-success">
+							</div>
 						
-						<div class="form-group">
-							<input type="submit" name="submitUpload" value="Lisa pilt" class="btn btn-success">
-						</div>	
+						</fieldset>
 					</form>
 				</div>
 			</div>

@@ -14,8 +14,8 @@
 
 
 4 - kuulutuste tabel
-| id | heading   | brandid | model | type | usershoesize | condition | price | description | imgid | userid | contactmethod |
-| 1  | pealkiri  | 3       |       | men  | joiniga?     | used      | 500   | tekst       | 25    | 21     | 1             |
+| id | heading   | brandid | model | type | condition | price | description | imgid | userid | contactmethod |
+| 1  | pealkiri  | 3       |       | men  | used      | 500   | tekst       | 25    | 21     | 1             |
 
 
 5 - tootjate/brändide tabel
@@ -71,7 +71,8 @@ CREATE TABLE sm_uploads(
 	primarypic INT,
 	deleted DATE,
 	flagged DATE,
-	postid INT
+	postid INT,
+	FOREIGN KEY(postid) REFERENCES sm_posts(id)
 );
 
 
@@ -87,10 +88,8 @@ CREATE TABLE sm_posts(
 	sneakercondition VARCHAR(30),
 	price DECIMAL(8, 2),
 	description VARCHAR(255),
-	imgid INT,
 	userid INT,
 	FOREIGN KEY(brandid) REFERENCES sm_brands(id),
-	FOREIGN KEY(imgid) REFERENCES sm_uploads(id),
 	FOREIGN KEY(userid) REFERENCES proov1(id)
 );
 
@@ -102,3 +101,19 @@ CREATE TABLE sm_brands(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	brand VARCHAR(100)
 );
+
+
+
+SELECT heading, model, price, description, name
+	FROM sm_posts p
+	JOIN sm_uploads u ON p.id=u.postid;
+
+
+SELECT heading, model, price, description, name
+	FROM sm_posts p
+	JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL) u ON p.id=u.postid;
+
+
+SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL;
+
+
