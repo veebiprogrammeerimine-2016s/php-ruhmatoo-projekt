@@ -38,12 +38,12 @@
 			$stmt->bind_param("ii", $_SESSION["userId"], $_GET["addRate"]);
 			$stmt->execute();
 			
-			if($stmt->fetch()){
+			if($stmt->fetch()) {
 				//sai ühe rea
 				echo '{"success": false, "message":"juba olemas"}';
 				exit();
-			}else{
-				
+			} else {
+	
 				$stmt->close();
 				
 				$stmt = $mysqli->prepare("
@@ -57,9 +57,9 @@
 				$stmt->close();
 				$stmt = $mysqli->prepare("
 			
-				INSERT INTO submissions(rating) 
-				VALUES (rating+1)");
+				UPDATE submissions set rating=(rating+1) where id=(?)");
 				echo $mysqli->error;
+				$stmt->bind_param("i", $_GET["addRate"]);
 				$stmt->execute();
 			
 				echo '{"success": true, "message":"Aitäh hinnangu eest"}';
@@ -189,6 +189,7 @@ function addRating(el){
 		  count = parseInt(count) + 1;
 		  el.querySelector(".counter").innerHTML = count;
 		  
+			
 		  /*
 		  var p = document.createElement("p");
 		  p.innerHTML = result.message;
