@@ -33,13 +33,13 @@
 		unset($_SESSION["message"]);
 	}
 	
-	//var_dump($_POST);
+	
 	if ( isset($_POST["idea"]) && 
-		isset($_POST["description"]) && 
-		!empty($_POST["idea"]) && 
+		isset($_POST["idea"]) && 
+		!empty($_POST["description"]) && 
 		!empty($_POST["description"])
 	  ) {
-		  //echo "siin";
+		  
 		$Finish->save($Helper->cleanInput($_POST["idea"]), $Helper->cleanInput($_POST["description"]));
 		
 	}
@@ -76,44 +76,39 @@
 	//var_dump($carData);
 	//echo "</pre>";
 ?>
-<?php require("../header.php"); ?>
-<div class="navbar navbar-inverse navbar-static-top">
-	<div class="container">
-		<div class="navbar-header">
-			 <a class="navbar-brand" href="data.php"><i class="fa fa-home" aria-hidden="true"></i> Homepage</a> 
-		</div>
-			<ul class="nav navbar-nav">
-				<li><a href="addidea.php"><span class="glyphicon glyphicon-plus"></span> Add your idea</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="user.php"><i class="fa fa-user-circle" aria-hidden="true"></i><?=$_SESSION["userEmail"];?></a></li>
-				<li><a href="?logout=1"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-			</ul>
-		</div>
-	</div>
-</div>
 
+<h1>Data</h1>
 <?=$msg;?>
-<div class="container">
-	<div class="row">
-		<div class="col-md 5 text-center">
-			<h3 class="text center">Looking for ideas?</h3>
-		</div>
-	</div>
-	<div class="row">
-		<form>
-			<div class="col-md-offset-4 col-md-4">
-				<input type="search" class="form-control input-sm" name="q" value="<?=$q;?>" placeholder="Type in keyword...">
-			</div>
-			<div class="col-sm-2">
-				<button type="submit" class = "btn btn-success btn-sm btn-block"><span class="glyphicon glyphicon-search"></span> Search</button>
-			</div>
-		</form>
-	</div>
-	<br>
+<p>
+	<form align = "center">Welcome <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
+	<a href="?logout=1">Logout</a></form>
+</p>
+
+
+<h2>Please add your idea!</h2>
+<form method="POST" align = "center">
+			
+			<p><label for="idea">Idea:</label><br>
+					<input name= "idea" type="text" id="idea" required>
+			<p><label for="description">Idea description:</label><br>
+					<input name= "decsription" type="text" id="description" required>
+
+			
+			<input type="submit" value="Complete">
+			
+</form>
+
+<h2>Users</h2>
+
+<form align = "center">
+	
+	<input type="search" name="q" value="<?=$q;?>">
+	<input type="submit" value="Search">
+
+</form>
 
 <?php 
-
+	
 	$html = "<table class='table table-striped'>";
 	
 
@@ -141,18 +136,13 @@
 			$arrow = "&uarr;";
 		}
 		$html .= "<th>
-					<a href='?q=".$q."&sort=idea&order=".$levelOrder."'>
-						idea
+					<a href='?q=".$q."&sort=level&order=".$levelOrder."'>
+						level
 					</a>
 				 </th>";
 		$html .= "<th>
 					<a href='?q=".$q."&sort=description'>
 						description
-					</a>
-				 </th>";
-		$html .= "<th>
-					<a href='?q=".$q."&sort=user&order=".$levelOrder."'>
-						user
 					</a>
 				 </th>";
 	$html .= "</tr>";
@@ -164,9 +154,8 @@
 		
 		$html .= "<tr>";
 			$html .= "<td>".$f->id."</td>";
-			$html .= "<td>".$f->idea."</td>";
+			$html .= "<td>".$f->level."</td>";
 			$html .= "<td>".$f->description."</td>";
-			$html .= "<td>".$f->user."</td>";
 			$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$f->id."'><span class='glyphicon glyphicon-pencil'></span> Edit</a></td>";
 			
 		$html .= "</tr>";
@@ -182,8 +171,8 @@
 	foreach($finishData as $f){
 		
 		
-		$listHtml .= "<h1>".$f->idea."</h1>";
-		$listHtml .= "<p>idea = ".$f->description."</p>";
+		$listHtml .= "<h1 style='description:".$f->finishDescription."'>".$f->level."</h1>";
+		$listHtml .= "<p>level = ".$f->finishDescription."</p>";
 	}
 	
 	//echo $listHtml;
@@ -192,5 +181,3 @@
 	
 
 ?>
-</div>
-<?php require("../footer.php"); ?>

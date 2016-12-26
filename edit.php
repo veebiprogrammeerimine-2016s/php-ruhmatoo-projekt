@@ -47,28 +47,14 @@
 
 	
 ?>
-<?php require("../header.php"); ?>
-<div class="navbar navbar-inverse navbar-static-top">
-	<div class="container">
-		<div class="navbar-header">
-			 <a class="navbar-brand" href="data.php"><i class="fa fa-home" aria-hidden="true"></i> Homepage</a> 
-		</div>
-			<ul class="nav navbar-nav">
-				<li><a href="addidea.php"><span class="glyphicon glyphicon-plus"></span> Add your idea</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="user.php"><i class="fa fa-user-circle" aria-hidden="true"></i><?=$_SESSION["userEmail"];?></a></li>
-				<li><a href="?logout=1"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-			</ul>
-		</div>
-	</div>
-</div>
-<div class="container">
+
+<a href="data.php"> Back </a>
+
 <h2>Edit</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
-  	<label for="number_idea" >Idea</label><br>
-	<input id="number_idea" name="idea" type="text" value="<?php echo $f->idea;?>" ><br><br>
+  	<label for="number_level" >Level</label><br>
+	<input id="number_level" name="level" type="text" value="<?php echo $f->level;?>" ><br><br>
   	<label for="description" >Description</label><br>
 	<input id="description" name="description" type="text" value="<?=$f->description;?>"><br><br>
   	
@@ -80,5 +66,3 @@
  <br>
  <br>
  <a href="?id=<?=$_GET["id"];?>&delete=true">Delete</a>
-</div>
-<?php require("../footer.php"); ?>
