@@ -43,7 +43,7 @@
     );
 
 ### --Config.php
-    * Should be located one level up from your site. See functions.php require("../config.php");
+    * Should not be uploaded to Github
     <?php
     
         $serverHost = "your host name";
