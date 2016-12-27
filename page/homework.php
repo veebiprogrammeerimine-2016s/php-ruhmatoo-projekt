@@ -1,3 +1,11 @@
+<?php
+if (isset($_GET["logout"])) {
+    session_destroy();
+    header("Location: admin.php");
+    exit();
+}
+
+?>
 <?php require "../parts/header.php"; ?>
 
     <div class="container-fluid">
@@ -18,6 +26,7 @@
                     <!-- Navbar right side -->
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="admin.php">Admin</a></li>
+                        <li><a href="?logout=1">Logout</a> </li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

@@ -1,5 +1,5 @@
 <?php
-require ("../functions.php");
+require("../functions.php");
 require("../class/User.class.php");
 $User = new User($mysqli);
 
@@ -12,9 +12,10 @@ if (isset($_SESSION["userId"])) {
     exit();
 }
 
-// Try to login
+// Login
+$error = "";
 if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"]) && !empty($_POST["loginPassword"]) && !empty($_POST["loginEmail"])) {
-    $User->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));
+    $error = $User->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));
 }
 
 ?>
@@ -48,6 +49,7 @@ if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"]) && !empty($_PO
     <!-- Signin -->
     <form method="POST" class="form-signin">
         <h2 class="form-signin-heading">Lõpuboss</h2>
+        <p style="color:red;"><?=$error;?></p> <!-- if error -->
 
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus

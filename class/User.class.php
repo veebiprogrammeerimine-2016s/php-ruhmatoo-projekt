@@ -12,9 +12,13 @@ class User
     /* Login */
     function login($email, $password)
     {
+       // $error = "";
+
         $stmt = $this->connection->prepare("SELECT id, email, password, created 
 		FROM admins
 		WHERE email = ?");
+
+        echo $this->connection->error;
 
         $stmt->bind_param("s", $email);
         $stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created);
@@ -26,8 +30,14 @@ class User
                 $_SESSION["userEmail"] = $emailFromDb;
                 header("Location: homework.php");
                 exit();
+            } else {
+                $error = "Vale parool!";
             }
 
+
+        } else {
+            $error = "Ei leidu sellist kasutajat!";
         }
+        return $error;
     }
 }
