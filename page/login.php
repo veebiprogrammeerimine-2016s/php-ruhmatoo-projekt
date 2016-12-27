@@ -54,7 +54,12 @@
 			if (!preg_match("/^[a-zA-Z0-9]*$/",$_POST["userName"])) { 
 				$userNameError = "Kasutajanimes võib kasutada vaid tähti ja numbreid!"; 
 			} else {
-				$userName = $_POST["userName"];
+				$userNameExists= $User->checkName($Helper->cleanInput($_POST["userName"]));
+				if ($userNameExists == true ) {
+					$userNameError = "Selline kasutajanimi on juba kasutusel!";
+				} else {
+					$userName = $_POST["userName"];
+				}
 			}
 		}
 	}
@@ -90,8 +95,13 @@
 			//echo "email oli tühi";
 			$signupEmailError = "See väli on kohustuslik!";		
 		} else {
-			//email on õige, salvestan väärtuse muutujasse
-			$signupEmail = $_POST["signupEmail"];
+			$userEmailExists= $User->checkEmail($Helper->cleanInput($_POST["signupEmail"]));
+			if ($userEmailExists == true ) {
+				$signupEmailError = "Selline email on juba kasutusel!";
+			} else {
+				//email on õige, salvestan väärtuse muutujasse
+				$signupEmail = $_POST["signupEmail"];
+			}
 		}
 	}
 	
@@ -128,12 +138,14 @@
 	}
 	
 	//Kus tean, et ühtegi viga ei olnud ja saan kasutaja andmed salvestada.
-	if (isset ($_POST["firstName"])
+	if (isset ($_POST["userName"])
+		&& isset ($_POST["firstName"])
 		&& isset ($_POST["lastName"])
 		&& isset($_POST["signupEmail"])
 		&& isset ($_POST["signupPassword"])
 		//pole kohustuslik	&& isset ($_POST["gender"])
 		//pole kohustuslik	&& isset ($_POST["phoneNumber"])
+		&& empty($userNameError) 
 		&& empty($firstNameError) 
 		&& empty($lastNameError) 
 		&& empty($signupEmailError) 

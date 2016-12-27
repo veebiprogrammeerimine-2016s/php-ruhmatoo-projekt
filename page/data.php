@@ -125,7 +125,7 @@
 	<div class="data" style="padding-left:20px;padding-right:20px"> 
 		<br>
 		<p><b>
-			Tere tulemast <a href="user.php"><?=$_SESSION["firstName"];?>!</a>
+			Tere tulemast <a href="user.php"> <?=$_SESSION["firstName"];?> <?=$_SESSION["lastName"];?> (<?=$_SESSION["userName"];?>)</a>!
 			<a href="?logout=1">Logi välja</a>
 		</b></p>
 		<p> <b> <?=$topic_del_msg;?> </b> </p>

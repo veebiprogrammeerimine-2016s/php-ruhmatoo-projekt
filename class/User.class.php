@@ -19,7 +19,7 @@
 		
 		//$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
-		$stmt = $this->connection->prepare("INSERT INTO user_sample(username, firstname, lastname, email, password, gender, phonenumber) VALUES(?,?,?,?,?,?,?)");
+		$stmt = $this->connection->prepare("INSERT INTO users(username, firstname, lastname, email, password, gender, phonenumber) VALUES(?,?,?,?,?,?,?)");
 		echo $this->connection->error;
 		
 		$stmt->bind_param("sssssss", $userName, $firstName, $lastName, $email, $password, $gender, $phoneNumber); //$signupEmail emailiks lihtsalt
@@ -36,13 +36,81 @@
 		return $msg;
 	}
 	
+	function checkName ($username) {
+		
+		$userNameExists = true; 
+		
+		$stmt = $this->connection->prepare("
+			SELECT * 
+			FROM users
+			WHERE username = '".$username."'
+		");
+		
+		echo $this->connection->error;
+		
+		$stmt->execute();
+		
+		$usernames = array();
+		
+		while ($stmt->fetch()) {
+						
+			$u = new StdClass();
+			
+			$u->username = $username;
+		
+			array_push($usernames, $u);
+		}
+		
+		$result = count($usernames);
+		
+		if ($result == 0) {
+			$userNameExists = false;
+		}
+		
+		return $userNameExists;
+	}
+	
+	function checkEmail ($email) {
+		
+		$userEmailExists = true; 
+		
+		$stmt = $this->connection->prepare("
+			SELECT * 
+			FROM users
+			WHERE email = '".$email."'
+		");
+		
+		echo $this->connection->error;
+		
+		$stmt->execute();
+		
+		$emails = array();
+		
+		while ($stmt->fetch()) {
+						
+			$e = new StdClass();
+			
+			$e->email = $email;
+		
+			array_push($emails, $e);
+		}
+		
+		$result = count($emails);
+		
+		if ($result == 0) {
+			$userEmailExists = false;
+		}
+		
+		return $userEmailExists;
+	}
+	
 	function login ($email, $password){
 		
 		$error = "";
 		
 		$stmt = $this->connection->prepare("
-			SELECT id, username, firstname, email, password, created
-			FROM user_sample
+			SELECT id, username, firstname, lastname, email, password, created
+			FROM users
 			WHERE email = ?
 		");
 		echo $this->connection->error;
@@ -51,7 +119,7 @@
 		$stmt->bind_param("s", $email); //s-string
 		
 		//määran tulpadele muutujad
-		$stmt->bind_result($id, $userNameFromDb, $firstNameFromDb, $emailFromDb, $passwordFromDb, $created); //Db-database
+		$stmt->bind_result($id, $userNameFromDb, $firstNameFromDb, $lastNameFromDb, $emailFromDb, $passwordFromDb, $created); //Db-database
 		$stmt->execute(); //päring läheb läbi executiga, isegi kui ühtegi vastust ei tule
 		
 		if($stmt->fetch()) { //fetch küsin rea andmeid
@@ -65,6 +133,7 @@
 				$_SESSION["userName"] = $userNameFromDb;
 				$_SESSION["email"] = $emailFromDb;
 				$_SESSION["firstName"] = $firstNameFromDb;
+				$_SESSION["lastName"] = $lastNameFromDb;
 				
 				//suunaks uuele lehele
 				header("Location: data.php");
@@ -85,7 +154,7 @@
 		
 		$stmt = $this->connection->prepare("
 			SELECT id, firstname, lastname, email, password, gender, phonenumber
-			FROM user_sample
+			FROM users
 			WHERE id=?
 		");
 		echo $this->connection->error;
@@ -115,7 +184,7 @@
 	}
 	
 		function editData($edit_id){
-		$stmt = $this->connection->prepare("SELECT email, phonenumber FROM user_sample WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT email, phonenumber FROM users WHERE id=? AND deleted IS NULL");
 		echo $this->connection->error;
 		$stmt->bind_param("i", $edit_id);
 		$stmt->bind_result($email, $phonenumber);
@@ -143,7 +212,7 @@
 	}
 	
 	function deleteData($id){
-		$stmt = $this->connection->prepare("UPDATE user_sample SET deleted=NOW() WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("UPDATE users SET deleted=NOW() WHERE id=? AND deleted IS NULL");
 		$stmt->bind_param("i",$id);
 		
 		// kas õnnestus salvestada
@@ -157,7 +226,7 @@
 	
 	function update($id, $email, $phonenumber){
     	
-		$stmt = $this->connection->prepare("UPDATE user_sample SET email=?, phonenumber=? WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("UPDATE users SET email=?, phonenumber=? WHERE id=? AND deleted IS NULL");
 		$stmt->bind_param("ssi",$email, $phonenumber, $id);
 		
 		// kas õnnestus salvestada
