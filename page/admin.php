@@ -49,7 +49,7 @@ if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"]) && !empty($_PO
     <!-- Signin -->
     <form method="POST" class="form-signin">
         <h2 class="form-signin-heading">Lõpuboss</h2>
-        <p style="color:red;"><?=$error;?></p> <!-- if error -->
+        <p style="color:red;"><?= $error; ?></p> <!-- if error -->
 
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus
