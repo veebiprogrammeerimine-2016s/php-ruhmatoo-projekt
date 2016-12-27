@@ -30,7 +30,12 @@ if (isset($_GET["logout"])) {
                     <!-- Navbar right side -->
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="admin.php">Admin</a></li>
-                        <li><a href="?logout=1">Logout</a></li>
+                        <?php if (isset($_SESSION["userId"])) {
+                            echo('
+                           <li><a href = "?logout=1" > Logout</a ></li >
+                           ');
+                        }
+                        ?>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
