@@ -41,26 +41,12 @@ function monthToDate($month)
     if ($month == "detsember") {
         return "12";
     }
+}
 
-    /*
-    HTML Simple HTMl DOM Parser memory leak fix
-    http://stackoverflow.com/questions/18090212/php-simple-html-dom-parser-memory-leak-usage 
-    */
-//     function clean_all(&$items,$leave = ''){
-//     foreach($items as $id => $item){
-//         if($leave && ((!is_array($leave) && $id == $leave) || (is_array($leave) && in_array($id,$leave)))) continue;
-//         if($id != 'GLOBALS'){
-//             if(is_object($item) && ((get_class($item) == 'simple_html_dom') || (get_class($item) == 'simple_html_dom_node'))){
-//                 $items[$id]->clear();
-//                 unset($items[$id]);
-//             }else if(is_array($item)){
-//                 $first = array_shift($item);
-//                 if(is_object($first) && ((get_class($first) == 'simple_html_dom') || (get_class($first) == 'simple_html_dom_node'))){
-//                     unset($items[$id]);
-//                 }
-//                 unset($first);
-//             }
-//         }
-//     }
-// }
+function expandHomeDirectory($path) {
+    $homeDirectory = getenv('HOME');
+    if (empty($homeDirectory)) {
+        $homeDirectory = getenv('HOMEDRIVE') . getenv('HOMEPATH');
+    }
+    return str_replace('~', realpath($homeDirectory), $path);
 }

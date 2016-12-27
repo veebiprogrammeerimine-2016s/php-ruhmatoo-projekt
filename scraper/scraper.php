@@ -3,36 +3,87 @@
 error_reporting(E_ALL);
 include "simple_html_dom.php";
 require_once("functions.php");
-require_once "vendor/autoload.php";
+require_once  __DIR__ . "/vendor/autoload.php";
 mb_internal_encoding("iso-8859-1");
 session_start();
 
-if ((isset($_SESSION)) && (!empty($_SESSION))) {
-    print_r($_SESSION);
-}
+define('APPLICATION_NAME', 'Izipäevik');
+define('SCOPES', implode(' ', array(
+        Google_Service_Calendar::CALENDAR)
+));
+define('CREDENTIALS_PATH', '~/.credentials/calendar-php-quickstart.json');
+define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
+define('CLIENT_ID', "####.apps.googleusercontent.com");
+define('DEVELOPER_KEY', "####");
+define('REDIRECT_URI', "http://####/scraper/scraper.php");
 
 $client = new Google_Client();
-$client->setApplicationName("Izipäevik");
-$client->setClientId("####");
-$client->setClientSecret(__DIR__ . "/client_secret.json");
-$client->setRedirectUri("####");
-$client->setDeveloperKey("####");
-$authUrl = $client->createAuthUrl();
+$client->setApplicationName(APPLICATION_NAME);
+$client->setClientId(CLIENT_ID);
+$client->setClientSecret(CLIENT_SECRET_PATH);
+$client->setRedirectUri(REDIRECT_URI);
+$client->setDeveloperKey(DEVELOPER_KEY);
+$client->setScopes(SCOPES);
 
-$cal = new Google_Service_Calendar($client);
+//!!!FOR LOCAL DEVELOPMENT!!!
+//$client->setHttpClient(new \GuzzleHttp\Client(array(
+//    'verify' => false,
+//)));
+
+$credentialsPath = expandHomeDirectory(CREDENTIALS_PATH);
+if (file_exists($credentialsPath)) {
+    $accessToken = json_decode(file_get_contents($credentialsPath), true);
+} else {
+    // Request authorization from the user.
+    $authUrl = $client->createAuthUrl();
+    printf("Open the following link in your browser:\n%s\n", $authUrl);
+    if (isset($_GET["code"])) {
+        $authCode = trim($_GET["code"]);
+    } else if (php_sapi_name() == 'cli') {
+        $authCode = trim(fgets(STDIN));
+    }
+    if (isset($authCode)){
+        // Exchange authorization code for an access token.
+        $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+
+        // Store the credentials to disk.
+        if (!file_exists(dirname($credentialsPath))) {
+            mkdir(dirname($credentialsPath), 0700, true);
+        }
+        file_put_contents($credentialsPath, json_encode($accessToken));
+        printf("Credentials saved to %s\n", $credentialsPath);
+    }
+}
+
+if(isset($accessToken)){
+    // Refresh the token if it's expired.
+    $client->setAccessToken($accessToken);
+    if ($client->isAccessTokenExpired()) {
+        $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+        file_put_contents($credentialsPath, json_encode($client->getAccessToken()));
+    }
+}
+
+
+
+$service = new Google_Service_Calendar($client);
 
 // Specialization
-if (isset($_GET["ryhm"])) {
+if (isset($_GET["ryhm"]) && !isset($_SESSION["ryhm"])) {
     $ryhm = $_GET["ryhm"];
-} else {
+} else if (!isset($_SESSION["ryhm"])) {
     $ryhm = "IFIFB-1";
+} else {
+    $ryhm = $_SESSION["ryhm"];
 }
 
 // Current date in MASIO - Unix time
-if (isset($_GET["time"])) {
+if (isset($_GET["time"]) && !isset($_SESSION["time"])) {
     $time = $_GET["time"];
-} else {
+} else if (!isset($_SESSION["time"])) {
     $time = time();
+} else {
+    $time = $_SESSION["ryhm"];
 }
 
 // Group if exists for filtering results
@@ -47,6 +98,7 @@ $data = array();
 $url = 'http://www.tlu.ee/masio/index.php?id=ryhm&ryhm=' . $ryhm . '&time=' . $time . '#MASIO';
 $html = file_get_html($url);
 // GET DATES
+$year = date("Y", $time);
 foreach ($html->find('div.dayname') as $dates) {
 
     //$spans = $dates->find("span");
@@ -67,13 +119,19 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
         $div = strip_tags($div);
         $dayExplode = explode(' ', $div);
         array_shift($dayExplode);
+        $dayExplode[0] = str_replace(".", "", $dayExplode[0]);
         $dayExplode[1] = monthToDate($dayExplode[1]);
-        $dayFinished = implode($dayExplode);
-        //echo "////////" . $dayFinished . "\\\\\\\\\\\\\\\\<br>";
+        $dayFinished = $year . "-" . $dayExplode[1] . "-" . $dayExplode[0];
+
     } else {
         $spans = $div->find("span");
         if (count($spans) > 0) {
             $time = $spans[0]->innertext;
+            $time = explode("-", $time);
+            $timeStart = $time[0];
+            $timeEnd = $time[1];
+            $timeStart = $datesFinished . "T" . $timeStart;
+            $timeEnd = $datesFinished . "T" . $timeEnd;
             $room = $spans[1]->innertext;
             $subject = $spans[2]->innertext;
 
@@ -96,19 +154,49 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
                 $group = "ALL";
                 $teacher = $subject[0];
             }
-
-            //$subject = array_shift($subject);
+            $subject = array_shift($subject);
             //echo "Rühm " . $group . " | ";
+            //echo "date: " . $dayFinished . " | ";
             //echo "Kell " . $time . " | ";
             //echo $lessonCode . " | ";
             //echo $lessonName . " | ";
             //echo $teacher . " | ";
             //echo $room . "<br>";
 
-            //echo "<br>";
+            echo "<br>";
+
+            $summary = $lessonCode . " " . $lessonName;
+            $event = new Google_Service_Calendar_Event(array(
+                'summary' => $summary,
+                'location' => "Tallinn University",
+                'description' => 'Ruum: ' . $room . '. Õppejõud: ' . $teacher,
+                'start' => array(
+                    'dateTime' => $timeStart,
+                    'timeZone' => 'Europe/Tallinn',
+                ),
+                'end' => array(
+                    'dateTime' => $timeEnd,
+                    'timeZone' => 'Europe/Tallinn',
+                ),
+            ));
+
+            if ($grupp = 'ALL') {
+                $event = $service->events->insert('grupp1', $event);
+                $event = $service->events->insert('grupp2', $event);
+                $event = $service->events->insert('grupp3', $event);
+                $event = $service->events->insert('grupp4', $event);
+            } else {
+                $groupName = 'grupp'.$group;
+                $event = $service->events->insert($groupName, $event);
+            }
+
+            printf('Event created: %s\n', $event->htmlLink);
         }
 
     }
+//    if ($date){
+
+//    }
 
 }
 
