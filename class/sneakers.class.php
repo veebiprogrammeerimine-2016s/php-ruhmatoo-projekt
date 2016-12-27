@@ -9,26 +9,28 @@ class Sneakers {
 
 		}
 
+
+
+/****** UUE KUULUTUSE ANDMETE SISESTAMINE ******
+	data.php
+*/
 	function savesneaker ($heading, $model, $description, $price) {
 		
 		$stmt = $this->connection->prepare("INSERT INTO sm_posts (userid, heading, model, description, price) VALUES (?, ?, ?, ?, ?)");
-	
+		
 		echo $this->connection->error;
 		
 		$stmt->bind_param("isssi", $_SESSION["userId"], $heading, $model, $description, $price);
 		
 		if($stmt->execute()) {
-			
 			echo "salvestamine õnnestus";
-			
 		} else {
-			
 			echo "ERROR".$stmt->error;
 		}
-		
 		$stmt->close();
-		
 	}
+	
+	
 	
 	function getallsneakers($q, $sort, $direction) {
 		
@@ -125,9 +127,11 @@ class Sneakers {
 	
 	
 	
-	// funktsioon kasutaja viimase postituse andmete kättesaamiseks
-	// kontrollida - ainult sisselogitud kasutaja andmed, kasutaja sisestatud kirjetest viimane
+/* funktsioon kasutaja viimase postituse andmete kättesaamiseks
+	data.php
 	
+	kontrollida - ainult sisselogitud kasutaja andmed, kasutaja sisestatud kirjetest viimane
+*/	
 	function getRecentPost() {
 		$stmt = $this->connection->prepare("SELECT id, heading, model, price, description FROM sm_posts WHERE userid = ? ORDER BY id DESC LIMIT 1");
 		$stmt->bind_param("i", $_SESSION["userId"]);
@@ -169,8 +173,9 @@ class Sneakers {
 	
 
 
-	//****** PILTIDE ÜLESLAADIMINE ******
-	
+/****** PILTIDE ÜLESLAADIMINE ******
+	data.php
+*/	
 	function uploadImages($name, $postid, $primarypic) {
 		$stmt = $this->connection->prepare("INSERT INTO sm_uploads (name, postid, primarypic) VALUES (?, ?, ?)");
 		echo $this->connection->error;
@@ -187,21 +192,20 @@ class Sneakers {
 	
 
 	
-	/* ****** FUNKTSIOON ESILEHEL KUVATAVATE KUULUTUSTE ANDMETE JAOKS ******
-	
+/****** FUNKTSIOON ESILEHEL KUVATAVATE KUULUTUSTE ANDMETE JAOKS ******
+	sneakermarket.php
+
 	kontrollida:
 	1 - kas tulevad kõikide kasutajate kuulutused, kus:
 		1.1 - primarypic (ehk pilt, mida kuvatakse kuulutuse esilehel) on 1
 		1.2. - deleted on NULL
 	2 - mis saab, kui kasutaja kustutab pildi (deleted ei ole NULL)? - mida kuvatakse?
 	3 - kas kasutaja saab muuta primarypici?
-	
-	*/
-	
+*/
 	function getAllPosts() {
 		
-		$stmt = $this->connection->prepare("SELECT heading, model, price, description, name FROM sm_posts p JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL) u ON p.id=u.postid");
-		$stmt->bind_result($heading, $model, $price, $description, $imgname);
+		$stmt = $this->connection->prepare("SELECT postid, heading, model, price, description, name FROM sm_posts p JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL) u ON p.id=u.postid");
+		$stmt->bind_result($postid, $heading, $model, $price, $description, $imgname);
 		$stmt->execute();
 		
 		$result = array();
@@ -209,6 +213,7 @@ class Sneakers {
 		while($stmt->fetch()) {
 			
 			$sneakerPost = new StdClass();
+			$sneakerPost->postid = $postid;
 			$sneakerPost->heading = $heading;
 			$sneakerPost->model = $model;
 			$sneakerPost->price = $price;
@@ -220,6 +225,76 @@ class Sneakers {
 		$stmt->close();
 		return $result;
 	}
+
+
+
+
+	function getSinglePostData($singlepostid) {
+		
+		$stmt = $this->connection->prepare("SELECT postid, heading, model, price, description, name FROM sm_posts p
+											JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL AND postid = ?) u ON p.id=u.postid;");
+		$stmt->bind_param("i", $singlepostid);
+		$stmt->bind_result($postid, $heading, $model, $price, $description, $name);
+		$stmt->execute();
+		
+		$singlePostData = new StdClass();
+		
+		if($stmt->fetch()) {
+			$singlePostData->postid = $postid;
+			$singlePostData->heading = $heading;
+			$singlePostData->model = $model;
+			$singlePostData->price = $price;
+			$singlePostData->description = $description;
+			$singlePostData->name = $name;
+		} else {
+			echo "andmete kättesaamisel ilmnes tõrge";
+		}
+		$stmt->close();
+		return $singlePostData;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

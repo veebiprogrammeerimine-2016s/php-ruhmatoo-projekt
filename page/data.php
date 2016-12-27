@@ -1,24 +1,26 @@
 <?php
 
-	require("../functions.php");
+require("../functions.php");
 
-	//kui ei ole kasutaja id'd suunan sisselogimise lehele
+//kui ei ole kasutaja id'd suunan sisselogimise lehele
 	if(!isset($_SESSION["userId"])) {
 		header("Location: login.php");
 		exit();
 	}
 
-	//logout
+//logout
 	if(isset($_GET["logout"])) {
 		session_destroy();
 		header("Location: login.php");
 		exit();
 	}
 
-	$submitBtn = "";
-	$submitUploadBtn = "disabled";
+$submitBtn = "";
+$submitUploadBtn = "disabled";
 
-// ****** KUULUTUSE LISAMISVORMI PHP ******
+
+
+/****** KUULUTUSE ANDMETE SALVESTAMISVORMI PHP ******/
 	
 	if(isset($_POST["model"]) && isset($_POST["description"]) && isset($_POST["price"]) && isset($_POST["heading"]) &&
 		!empty($_POST["model"]) && !empty($_POST["description"]) && !empty($_POST["price"]) && !empty($_POST["heading"])
@@ -32,7 +34,7 @@
 
 
 
-// *** muutujad ***
+/*** muutujad ***/
 
 $recentPostData = $Sneakers->getRecentPost();
 $recentPostId = $recentPostData->id;
@@ -41,7 +43,8 @@ $primaryPicture = 0;
 $alertMsg = "";
 
 
-// ****** UPLOAD PHP ******
+
+/****** UPLOAD PHP ******/
 
 if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
@@ -59,7 +62,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
 	$uploadOk = 1;
 	
-	// kontroll kas on pilt
+// kontroll kas on pilt
 	if(isset($_POST["submitUpload"])) {
 		$check = getimagesize($uploadTmp);
 		if($check !== false) {
@@ -72,13 +75,13 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 		}
 	}
 	
-	// kontroll kas failinime on unikaalne
+// kontroll kas failinimi on unikaalne
 	if(file_exists($target_file)) {
 		echo "<br>Sellise nimega fail on juba olemas";
 		$uploadOk = 0;
 	}
 	
-	// pildiformaatide kontroll
+// pildiformaatide kontroll
 	if($imageFileType != "jpg" &&
 		$imageFileType != "png" &&
 		$imageFileType != "jpeg" &&
@@ -87,14 +90,14 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 			$uploadOk = 0;
 		}
 	
-	// faili suuruse kontroll
+// faili suuruse kontroll
 	if($uploadSize > 5000000) {
 		echo "<br>Fail on liiga suur.";
 		$uploadOk = 0;
 	}
-	
-	
-	// kui eelnevad kontrollid läbitud, siis uploadib pildi
+
+
+// kui eelnevad kontrollid läbitud, siis uploadib pildi
 	if($uploadOk == 0) {
 		echo "<br>Faili ei ole üles laetud.";
 		$alertMsg = "<div class='alert alert-warning' role='alert'>Faili ei ole üles laetud</div>";
@@ -138,7 +141,7 @@ require("../header.php");
 <div class="container">
 	
 	
-	<!-- **** KUULUTUSTE LEHE ALAMMENÜÜ **** -->
+<!-- **** KUULUTUSTE LEHE ALAMMENÜÜ **** -->
 	
 	<ul class="nav nav-tabs">
 		<li role="presentation" class="active"><a href="#">Loo kuulutus</a></li>
@@ -146,7 +149,7 @@ require("../header.php");
 	</ul>
 	
 	
-	<!-- **** KUULUTUSE PÕHIANDMETE SISESTAMISVÄLJAD **** -->
+<!-- **** KUULUTUSE PÕHIANDMETE SISESTAMISVÄLJAD **** -->
 	
 	<div class="row">
 		<div class="col-md-4">
@@ -189,7 +192,7 @@ require("../header.php");
 		</div>
 		
 		
-		<!-- **** VIIMATI LISATUD KUULUTUSE PREVIEW **** -->
+<!-- **** VIIMATI LISATUD KUULUTUSE PREVIEW **** -->
 		
 		<div class="col-md-4">
 			<div class="panel panel-default">
@@ -226,7 +229,6 @@ require("../header.php");
 								<p class="form-control-static"><?php echo $recentPostData->description; ?></p>
 							</div>
 						</div>
-						
 					</form>
 					
 <?php
@@ -244,7 +246,7 @@ require("../header.php");
 		</div>		
 		
 		
-		<!-- **** KUULUTUSELE PEAMISE (KUVATAVA) PILDI LISAMISE PANEL **** -->
+<!-- **** KUULUTUSELE PEAMISE (ESILEHE) PILDI LISAMISE PANEL **** -->
 		
 		<div class="col-md-4">
 			<div class="panel panel-default">

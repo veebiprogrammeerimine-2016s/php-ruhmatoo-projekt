@@ -113,7 +113,17 @@ SELECT heading, model, price, description, name
 	FROM sm_posts p
 	JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL) u ON p.id=u.postid;
 
-
+	
 SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL;
+
+	
+SELECT postid, heading, model, price, description, name
+	FROM sm_posts p
+	JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL) u ON p.id=u.postid;
+
+	
+SELECT postid, heading, model, price, description, name
+	FROM sm_posts p
+	JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL AND postid = 1) u ON p.id=u.postid;
 
 
