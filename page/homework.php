@@ -40,8 +40,8 @@ if(isset($_GET["logout"])){
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="../style_script/css/bootstrap.min.css">
     <!-- Font Awesome and Pixeden Icon Stroke icon fonts-->
-    <link rel="stylesheet" href="../style_script/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../style_script/fonts/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="../style_script/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style_script/css/pe-icon-7-stroke.css">
     <!-- Google fonts - Roboto-->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <!-- lightbox-->
