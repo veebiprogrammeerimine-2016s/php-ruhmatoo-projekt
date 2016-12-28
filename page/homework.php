@@ -47,7 +47,9 @@ if(isset($_GET["logout"])){
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
 </head>
+
 <body>
 <!-- navbar-->
 <header class="header">
@@ -95,7 +97,75 @@ if(isset($_GET["logout"])){
             </ul>
         </div>
         <h1 class="heading">Kodutööd</h1>
-        <p class="lead">Võibolla lisada mingi tekst</p>
+        <form class="form-horizontal" method="post">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Kodutööd</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="hwTitle">Kirjeldus</label>
+                    <div class="col-md-4">
+                        <input id="hwTitle" name="title" type="text" placeholder="Lisa siia lühike kirjeldus" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="hwClass">Klass</label>
+                    <div class="col-md-4">
+                        <select id="hwClass" name="class" class="form-control">
+                            <option value="Õppimine kõrgkoolis">Õppimine kõrgkoolis</option>
+                            <option value="Veebiprogammeerimine">Veebiprogammeerimine</option>
+                            <option value="Diskreetsed struktuurid">Diskreetsed struktuurid</option>
+                            <option value="Programmeerimise alused">Programmeerimise alused</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="hwType">Tüüp</label>
+                    <div class="col-md-4">
+                        <select id="hwType" name="type" class="form-control">
+                            <option value="Kodutöö">Kodutöö</option>
+                            <option value="Eksam">Eksam</option>
+                            <option value="Essee">Essee</option>
+                            <option value="Esitlus">Esitlus</option>
+                            <option value="Rühmatöö">Rühmatöö</option>
+                            <option value="Kontrolltöö">Kontrolltöö</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="hwPriority">Prioriteet</label>
+                    <div class="col-md-4">
+                        <select id="hwPriority" name="priority" class="form-control">
+                            <option value="Tähtis">Tähtis</option>
+                            <option value="Mitte-tähtis">Mitte-tähtis</option>
+                            <option value="Meh">Meh</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="hwSubmit"></label>
+                    <div class="col-md-4">
+                        <input type="submit" name="submit" id="hwSubmit" value="Salvesta">
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+
+
+
     </div>
 </section>
 

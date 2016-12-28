@@ -1,3 +1,21 @@
+<?php
+
+    require("functions.php");
+    require("../class/User.class.php");
+
+    $User = new User($mysqli);
+
+    // Kui on sisse loginud, siis suunan data lehele.
+    if(isset($_SESSION["userId"])){
+
+        header("Location: data.php");
+        exit();
+    }
+?>
+
+
+
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -50,51 +68,43 @@
               <div id="signup">
 
 
-                <form action="login.php" method="post">
+                <form action="login.php" method="post" >
 
 
 
                 <div class="top-row">
-                  <div class="field-wrap">
-                    <label>
-                      Eesnimi<span class="req">*</span>
-                    </label>
-                    <input type="text" name="signupFirstname" required autocomplete="off" />
-                  </div>
 
-                  <div class="field-wrap">
-                    <label>
-                      Perekonnanimi<span class="req">*</span>
-                    </label>
-                    <input type="text" name="signupLastname" required autocomplete="off"/>
+                    <div class="field-wrap">
+                        <label>Eesnimi<span class="req">*</span></label>
+                        <input type="text" name="signupFirstname" required autocomplete="off"/>
+                    </div>
 
-                  </div>
+
+                    <div class="field-wrap">
+                        <label>Perekonnanimi<span class="req">*</span></label>
+                        <input type="text" name="signupLastname" required autocomplete="off"/>
+                    </div>
+
                 </div>
 
 
 
                 <div class="field-wrap">
-                  <label>
-                    E-mail<span class="req">*</span>
-                  </label>
+                  <label>E-mail<span class="req">*</span></label>
                   <input type="email" name="signupEmail" required autocomplete="off"/>
                 </div>
 
 
 
                 <div class="field-wrap">
-                  <label>
-                    Parool<span class="req">*</span>
-                  </label>
+                  <label>Parool<span class="req">*</span></label>
                   <input type="password" name="signupPassword" required autocomplete="off"/>
                 </div>
 
 
 
                 <div class="field-wrap">
-                  <label>
-                    Sisesta parool uuesti<span class="req">*</span>
-                  </label>
+                  <label>Sisesta parool uuesti<span class="req">*</span></label>
                   <input type="password" required autocomplete="off"/>
                 </div>
 

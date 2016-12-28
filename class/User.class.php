@@ -84,6 +84,7 @@ class User {
 		
 		$stmt->close();
         header("Location: index.php");
+        exit();
 		
 		
 	}

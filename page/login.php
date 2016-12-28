@@ -1,83 +1,105 @@
 <?php
 
-require("functions.php");
-require("../class/User.class.php");
-$User = new User($mysqli);
+    require("functions.php");
+    require("../class/User.class.php");
 
+    $User = new User($mysqli);
 
+    // Kui on sisse loginud, siis suunan data lehele.
+    if(isset($_SESSION["userId"])){
 
-// Kui on sisse loginud, siis suunan data lehele.
-if(isset($_SESSION["userId"])){
-
-    header("Location: data.php");
-    exit();
-}
-
-
-
-$signupEmailError = "";
-$signupPasswordError = "";
-$signupEmail = "";
-
-
-
-if(isset($_POST["signupEmail"])) {
-    if (empty($_POST["signupEmail"])) {
-        $signupEmailError = "See väli on kohustuslik!";
-    } else {
-        $signupEmail = $_POST["signupEmail"];
+        header("Location: data.php");
+        exit();
     }
-}
 
 
 
-if( isset( $_POST["signupPassword"] ) ){
+    $signupEmailError = "";
+    $signupPasswordError = "";
+    $signupEmail = "";
+    $signupFirstName = "";
+    $signupLastName = "";
+    $error = "";
 
-    if( empty( $_POST["signupPassword"] ) ){
-        $signupPasswordError = "Parool on kohustuslik";
 
-    } else {
-        // Kas parooli pikkus on väiksem kui 8
-        if ( strlen($_POST["signupPassword"]) < 8 ) {
-            $signupPasswordError = "Parool peab olema vähemalt 8 tähemärkki pikk";
+
+    if(isset($_POST["signupFirstname"])){
+
+        if(!empty($_POST["signupFirstname"])){
+
+            $signupFirstName = $_POST["signupFirstname"];
+
         }
+
     }
-}
 
 
+    if(isset($_POST["signupLastname"])){
 
-// Peab olema email ja parool
-if (isset($_POST["signupEmail"]) &&
-    isset($_POST["signupPassword"]) &&
-    $signupEmailError == "" &&
-    empty($signupPasswordError))
+        if(!empty($_POST["signupLastname"])){
 
-{
-    echo "Salvestan...";
-    echo "email: ".$signupEmail."<br>";
-    echo "password: ".$_POST["signupPassword"]."<br>";
+            $signupLastName = $_POST["signupLastname"];
 
-    $password = hash("sha512", $_POST["signupPassword"]);
-    $signupEmail = $Helper->cleanInput($signupEmail);
-    $User->signUp($signupEmail, $Helper->cleanInput($password));
+        }
+
+    }
 
 
-}else{
-    header("Location: index.php");
-}
+    // Kui registreerimis-formis emaili pole, tekitab errori, muidu salvestab formi sisu muutujasse.
+    if(isset($_POST["signupEmail"])){
+
+        if (empty($_POST["signupEmail"])){
+
+            $signupEmailError = "See väli on kohustuslik!";
+
+        }else{
+
+            $signupEmail = $_POST["signupEmail"];
+        }
+
+    }
 
 
+    // Kui registreerimis-formis ei ole parooli pandud või see on liiga lühike tekitab errori.
+    if( isset( $_POST["signupPassword"] ) ){
 
-$error ="";
-if (isset($_POST["loginEmail"]) &&
-    isset($_POST["loginPassword"]) &&
-    !empty($_POST["loginEmail"]) &&
-    !empty($_POST["loginPassword"])
-) {
+        if( empty( $_POST["signupPassword"] ) ){
 
-    $error = $User->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));
+            $signupPasswordError = "Parool on kohustuslik";
 
-}
+        }else{
+
+            // Kas parooli pikkus on väiksem kui 8
+            if ( strlen($_POST["signupPassword"]) < 8 ){
+                $signupPasswordError = "Parool peab olema vähemalt 8 tähemärkki pikk";
+
+            }
+
+        }
+
+    }
+
+
+    // Kui paroolid on olemas ning nendega seoses errorit polnud, tekitab kasutaja.
+    // Muidu redirectib tagasi, kustutades sellega formi sisu.
+    if (isset($_POST["signupEmail"]) && isset($_POST["signupPassword"]) && $signupEmailError == "" && $signupPasswordError == ""){
+
+        $password = hash("sha512", $_POST["signupPassword"]);
+        $signupEmail = $Helper->cleanInput($signupEmail);
+        $User->signUp($signupEmail, $Helper->cleanInput($password));
+
+    }else{
+        header("Location: index.php");
+
+    }
+
+
+    // Kui sisselogimis-form on saadetud ning millegagi täidetud, logi sisse.
+    if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"]) && !empty($_POST["loginEmail"]) && !empty($_POST["loginPassword"])){
+
+        $error = $User->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));
+
+    }
 
 ?>
 
