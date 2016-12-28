@@ -48,8 +48,6 @@ if(isset($_GET["logout"])){
     <link rel="stylesheet" href="../style_script/css/lightbox.min.css">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="../style_script/css/style.blue.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../style_script/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="../style_script/img/favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
@@ -268,7 +266,7 @@ if(isset($_GET["logout"])){
 <!-- Javascript files-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></>
 <script src="../style_script/js/bootstrap.min.js"></>
-<script src="../style_scriptjs/jquery.cookie.js"> </>
+<script src="../style_script/js/jquery.cookie.js"> </>
     <script src="../style_script/js/lightbox.min.js"></>
         <script src="../style_script/js/front.js"></>
 
