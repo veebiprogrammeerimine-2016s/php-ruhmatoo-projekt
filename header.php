@@ -23,15 +23,10 @@ if(isset($_GET["s"])){
 		<h1>NoTime2Spare</h1>
 	</div>
 	<div class="col-md-6" style="padding-top: 20px">
-		<div class="input-group">
-			<input type="search" name="s" value="<?=$s;?>"class="form-control" placeholder="Enter title, keywords etc...">
-				<span class="input-group-btn">
-				<a href="results.php?search=".$s>
-					<button class="btn btn-info" type="submit">Search</button>
-				</a>
-					
-				</span>
-		</div>
+		<form>
+			<input type="search" name="s" value="<?=$s;?>" placeholder="Enter keywords...">
+			<a href='results.php?search='><button class="btn-md btn-info" type="submit">Search</button></a>
+		</form>		
 	</div>
 </div>
 

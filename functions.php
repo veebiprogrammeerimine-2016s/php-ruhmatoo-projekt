@@ -91,6 +91,7 @@ function getGenreFromDb() {
 	return $result;
 }
 function searchFromDb($keyword){
+	$keyword = str_replace("+", '%', $keyword);
 	$keyword = "%".$keyword."%";
 	$mysqli = new mysqli($GLOBALS["serverHost"], 
 						$GLOBALS["serverUsername"],  
@@ -123,25 +124,46 @@ function searchFromDb($keyword){
 	
 }
 
+//function getThumbnail(){
+	
+	//md5();
+	
+	//while()
+//}
+
 function searchByGenre($genre){
 		$genre = "%".$genre."%";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $mysqli->prepare("SELECT poster
+		$stmt = $mysqli->prepare("SELECT poster, genre
 							FROM movies_db
 							WHERE genre LIKE ? 
 							ORDER BY RAND() 
 							LIMIT 1");
 		echo $mysqli->error;
 		$stmt->bind_param("s", $genre);
-		$stmt->bind_result($poster);
+		$stmt->bind_result($poster, $movGenre);
 		$stmt->execute();
 		$result = array();
-		while($stmt->fetch()) {
+		if($stmt->fetch()) {
 			$object = new StdClass();
 			$object->poster = $poster;
+			$object->genre = $movGenre;
 			array_push($result, $object);
 		}
 		return $result;
 		
+}
+
+function cleanInput($input) {
+	
+	return htmlspecialchars(stripslashes(trim(($input))));
+}
+function makeFriendly($string){
+    $string = strtolower(trim($string));
+    $string = str_replace("'", '', $string);
+    $string = preg_replace('#[^a-z\-]+#', '+', $string);
+    $string = preg_replace('#_{2,}#', '+', $string);
+    $string = preg_replace('#_-_#', '+', $string);
+    return preg_replace('#(^_+|_+$)#D', '+', $string);
 }
 ?>
