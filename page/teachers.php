@@ -63,6 +63,7 @@ if(isset($_GET["logout"])){
                     <li><a href="data.php">Kodu</a></li>
                     <li><a href="timetable.php">Tunniplaan</a></li>
                     <li><a href="homework.php">Kodutööd</a></li>
+                    <li><a href="compulsory_literature.php">Kohustuslik kirjandus</a></li>
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Materjalid <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="https://www.tlu.ee/asio/kalenterit2/index.php?guest=intranet/tu&lang=est">ASIO</a></li>
