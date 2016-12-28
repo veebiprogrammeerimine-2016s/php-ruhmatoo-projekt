@@ -1,6 +1,6 @@
 <?php 
-	//ühendan sessiooniga
-	//kuradi git ma ütlen!
+	//Ã¼hendan sessiooniga
+	//kuradi git ma Ã¼tlen!
 	require("../functions.php");
 
 	require("../class/Helper.class.php");
@@ -50,7 +50,7 @@
 	
 	if ($postedTrue=="true") {
 		
-		$postError= "Your post was submitted!";
+		$postError= "Your comment was submitted!";
 	}
 	elseif ($postedTrue=="false") {
 			
@@ -72,6 +72,25 @@
 		$topic = $_GET["topicid"];
 		$results=$Post->getTopicPost($topic);
 		$results2=$Comment->getComments($topic);
+		
+	}
+	$userId=$_SESSION["userId"];
+	if (isset($_POST["reportC"])){
+		
+		$reportedCID=$_POST["commentId"];
+		$Comment->reportComment($reportedCID,$userId,$topic);
+		
+	}
+	
+	if (isset($_GET["dup"])) {
+		
+		$postError="Oled juba teatanud selle kommentaari kohta!";
+		
+	}
+	
+	if (isset($_GET["suc"])) {
+		
+		$postError="TÃ¤name teavituse eest!";
 		
 	}
 	
@@ -120,7 +139,6 @@
 	
 	
 	
-	
 	<?php
 	foreach ($results2 as $r2) {
 			
@@ -128,17 +146,31 @@
 			
 		
 
-				$html2 .= "Kommentaarid<div class='well well-sm'><b>".$r2->userid."</b><small style='float:right;'class='text-muted'>".$r2->aeg."</small><br><br>";
-				$html2 .= $r2->comment."<br><br></div>";
+				$html2 .= "Kommentaarid<div class='well well-sm'><b>".$r2->userid."</b><span class='hidden'>".$r2->commentid."</span><small style='float:right;'class='text-muted'>".$r2->aeg."</small><br><br>";
+				$html2 .= $r2->comment."<br>";
+				$html2 .= "<small style='float:right;'class='text-muted'>"."<a class='report' href='#myModal' data-toggle='modal'><span class='glyphicon glyphicon-ban-circle'></a>"."</small><br></div>";
 		
 		}
 	
 	echo $html2;
 	?>
 	
-
-	
-	
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+	    <div class="modal-content">
+			<div class="modal-header" style="padding:50px 50px;">
+				<h2>Kas tegemist on ebasobiliku kommentaariga?</h2><br>
+				<form method="post">
+				<div class="row">
+					<button type="submit" name="reportC" class="btn btn-block btn-default">Jah</button>
+					<button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Ei</button>
+					<input type="hidden" name="commentId" value="<?php  echo $r2->commentid; ?>">
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
 	
 	
 	<form class="form-inline" role="form" method="post">

@@ -146,6 +146,20 @@ class Post {
 		
 	}
 	
+	function deletePost($id) {
+		$stmt = $this->connection->prepare("
+		update submissions set deleted=now() where id=?
+		");
+		$stmt->bind_param("i", $id);
+		$stmt->execute(); //Execute prepared Query
+		if($stmt->execute()) {
+			header("Location:?success");
+		} else {
+			header("Location:?failed");
+		}
+		$stmt->close();
+	}
+	
 	
 }
 ?>

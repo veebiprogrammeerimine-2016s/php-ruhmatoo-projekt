@@ -76,6 +76,15 @@
 		.input-group {
 			width:25%;
 		}
+
+		.report:active {
+			text-decoration:none;
+			color:	#F08080;
+		}
+		.report:hover {
+			text-decoration:none;
+			color:	#F08080;
+		}
 		</style>
 	</head>
 	<body>
