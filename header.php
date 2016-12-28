@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
+
+
 	<head>
+		<div id="header">
 		<title>Sisselogimise leht</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -15,12 +18,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/jquery.datetimepicker.min.css"/ >
-	<script src="../js/jquery.datetimepicker.full.min.js"></script>
+		<script src="../js/jquery.datetimepicker.full.min.js"></script>
 
+		<link rel="stylesheet" type="text/css" href="../css/common.css"/ >
+
+	<div class="col-xs-offset-5 col-md-offset-5"><h3>TLU CarPooling</h3></div>
+</div>
 	</head>
 	<body>
 
-
-		<div class="row">
-		  <div class="col-md-4 col-md-offset-4"><h4>TLU CarPooling</h4></div>
-		</div>
+		<br>

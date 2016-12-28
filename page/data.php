@@ -22,8 +22,6 @@ if (isset($_GET["logout"])) {
 
 }
 
-
-
 //Check if forms are filled
 $start_location = "";
 $start_time = "";
@@ -239,7 +237,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
         			$arr="&uarr;";
         		}
 
-        			$html .= "<th>
+        			$html .= "<th bgcolor='#fff482'>
         			<a href='?q=".$r."&sort=email&order=".$orderEmail."'>
 
         			Email ".$arr."
@@ -259,7 +257,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
         				$arr="&uarr;";
         			}
 
-        				$html .= "<th>
+        				$html .= "<th bgcolor='#ffbb5b'>
         				<a href='?q=".$r."&sort=start_location&order=".$orderStart_location."'>
 
         				Start location ".$arr."
@@ -279,7 +277,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
         				}
 
-        					$html .= "<th>
+        					$html .= "<th bgcolor='#fff482'>
         					<a href='?q=".$r."&sort=start_time&order=".$orderStart_time."'>
 
         					Start time ".$arr."
@@ -298,7 +296,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
       	  				}
 
-      	  					$html .= "<th>
+      	  					$html .= "<th bgcolor='#ffbb5b'>
       	  					<a href='?q=".$r."&sort=arrival_location &order=".$orderArrival_location ."'>
 
       	  					Arrival location ".$arr."
@@ -317,7 +315,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
       							}
 
-      								$html .= "<th>
+      								$html .= "<th bgcolor='#fff482'>
       								<a href='?q=".$r."&sort=arrival_time&order=".$orderArrival_time."'>
 
       								Time of arrival ".$arr."
@@ -336,7 +334,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
       								}
 
-      									$html .= "<th>
+      									$html .= "<th bgcolor='#ffbb5b'>
       									<a href='?q=".$r."&sort=free_seats&order=".$orderFree_seats."'>
 
       									Free seats ".$arr."
@@ -353,7 +351,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
       										$orderPrice = "DESC";
       										$arr="&uarr;";
                         }
-                          $html .= "<th>
+                          $html .= "<th bgcolor='#fff482'>
         									<a href='?q=".$r."&sort=price&order=".$orderPrice."'>
 
         								  Price ".$arr."
@@ -361,7 +359,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
         									</th>";
 
-                          $html .= "<th>
+                          $html .= "<th bgcolor='#ffbb5b'>
 
         								  Register
         									</a>
