@@ -107,7 +107,7 @@
   	<label for="asukoht" >asukoht</label><br>
 	<input  id="asukoht" name="asukoht"><?php echo $c->location;?></input><br>
   	<label for="kuupaev" >kuupäev</label><br>
-	<input  id="kuupaev" name="kuupaev"><?php echo $c->date;?></input><br>
+	<input  id="kuupaev" name="kuupaev"><?php echo $c->day;?></input><br>
   	<label for="url" >url</label>
 	<br>
 	<img width='300' src="<?=$c->url;?>">

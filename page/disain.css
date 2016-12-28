@@ -11,9 +11,9 @@ padding: 0px;
 
 	}
 #sisestus{
-	position: relative;
-	left:1400px;
-	
+	position:absolute;
+	right:100;
+
 	
 }
 #kasutaja{
@@ -23,11 +23,13 @@ padding: 0px;
 	
 }
 #kirjeldus{
+
 	width:350px;
 	height:50px;
 	
 }
 #asukoht{
+
 	width:350px;
 	height:50px;
 	
