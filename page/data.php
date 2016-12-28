@@ -161,6 +161,14 @@ $upcomingRides = $Rides->get($r, $sort, $order);
         <a href="user.php">User page</a>
     </p>
 
+    <form>
+      <h2>Search </h2>
+      <div class ="form-group">
+      <input class = "form-control" type="search" name="r" value="<?=$r;?>">
+      </div>
+      <input class="btn btn-success btn-sm hidden-xs" type="submit" value="Search">
+      <input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Search">
+    </form>
 
     <h2>Register a ride</h2>
     <form method="POST" >
@@ -207,23 +215,19 @@ $upcomingRides = $Rides->get($r, $sort, $order);
         jQuery('#datetimepickerarrival').datetimepicker();
     </script>
 
+
 </div>
 
-<h2>Search </h2>
-
-<form>
-	<input type="search" name="r" value="<?=$r;?>">
-	<input type="submit" value="Search">
-</form>
-
-
-<h2>Find a ride</h2>
 
 <?php
 
-  $html = "<table class='table table-striped table-condensed'>";
-
+  $html = "<div class='col-md-8'>";
+    $html = "<div class='table'>";
+    $html = "<table class='table-striped table-condensed table-bordered'>";
+    $html .= "<h2>Find a ride</h2>";
+    //$html .= "<br>";
         $html .= "<tr>";
+
             //User Email related
         		$orderEmail = "ASC";
         		$arr="&darr;";
@@ -384,7 +388,9 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
         }
 
-    $html .= "</table>";
+        $html .= "</table>";
+      $html .= "</div>";
+  $html .= "</div>";
 
     echo $html;
 
