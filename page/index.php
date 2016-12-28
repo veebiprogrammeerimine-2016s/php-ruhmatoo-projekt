@@ -39,8 +39,6 @@
   <link rel="stylesheet" href="../style_script/css/lightbox.min.css">
   <!-- theme stylesheet-->
   <link rel="stylesheet" href="../style_script/css/style.default.css" id="theme-stylesheet">
-  <!-- Custom stylesheet - for your changes-->
-  <link rel="stylesheet" href="../style_script/css/custom.css">
   <!-- Favicon-->
   <link rel="shortcut icon" href="../style_script/img/favicon.png">
   <!-- Tweaks for older IEs--><!--[if lt IE 9]>
