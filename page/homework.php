@@ -32,8 +32,8 @@ if(isset($_GET["logout"])){
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="../style_script/css/bootstrap.min.css">
     <!-- Font Awesome and Pixeden Icon Stroke icon fonts-->
-    <link rel="stylesheet" href="../fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../fonts/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="../style_script/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="../style_script/fonts/pe-icon-7-stroke.css">
     <!-- Google fonts - Roboto-->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <!-- lightbox-->
@@ -62,7 +62,7 @@ if(isset($_GET["logout"])){
                 <ul class="nav navbar-nav">
                     <li><a href="data.php">Kodu</a></li>
                     <li><a href="timetable.php">Tunniplaan</a></li>
-                    <li><a href="homework.php">Kodutööd</a></li>
+                    <li class="active"><a href="homework.php">Kodutööd</a></li>
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Materjalid <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="https://www.tlu.ee/asio/kalenterit2/index.php?guest=intranet/tu&lang=est">ASIO</a></li>
@@ -79,7 +79,7 @@ if(isset($_GET["logout"])){
                             </li>
                         </ul>
                     </li>
-                    <li class="active"><a href="teachers.php">Kontaktid</a></li>
+                    <li><a href="teachers.php">Kontaktid</a></li>
                 </ul><a href="?logout=1" data-toggle="modal" data-target="#login-modal" class="btn navbar-btn btn-ghost"><i class="fa fa-sign-out"></i>Logi välja</a>
             </div>
         </div>
@@ -91,62 +91,13 @@ if(isset($_GET["logout"])){
         <div class="breadcrumbs">
             <ul class="breadcrumb">
                 <li><a href="data.php">Kodu</a></li>
-                <li>Kontaktid</li>
+                <li>Kodutööd</li>
             </ul>
         </div>
-        <h1 class="heading">Kontaktid</h1>
+        <h1 class="heading">Kodutööd</h1>
         <p class="lead">Võibolla lisada mingi tekst</p>
     </div>
 </section>
-
-
-<table align="center" class="table table-striped table-hover " color="black">
-
-    <tr>
-        <th>Nimi</th>
-        <th>Amet</th>
-        <th>Aine</th>
-        <th>Kontaktid</th>
-        <th>Ruum</th>
-    </tr>
-    <tr>
-        <td>Romil Rõbtsenkov</td>
-        <td>Tarkvaratehnika õpetaja</td>
-        <td>Veebiprogrammeerimine</td>
-        <td>romil.robtsenkov@tlu.ee</td>
-        <td>A-430</td>
-    </tr>
-    <tr>
-        <td>Jaagup Kippar</td>
-        <td>Tarkvaratehnika lektor</td>
-        <td>Andmebaaside projekteerimine</td>
-        <td>jaagup.kippar@tlu.ee</td>
-        <td>A-426</td>
-    </tr>
-    <tr>
-        <td>Inga Petuhhov</td>
-        <td>Tarkvaratehnika õpetaja</td>
-        <td>Programmeerimise alused</td>
-        <td>inga.petuhhov@tlu.ee</td>
-        <td>A-427</td>
-    </tr>
-    <tr>
-        <td>Tanel Toova</td>
-        <td>Süsteemiadministraator</td>
-        <td>Operatsioonisüsteemide alused</td>
-        <td>tanel.toova@tlu.ee</td>
-        <td>A-432</td>
-    </tr>
-    <tr>
-        <td>Tatjana Tamberg</td>
-        <td>Matemaatika dotsent</td>
-        <td>Diskreetsed struktuurid</td>
-        <td>tatjana.tamberg@tlu.ee</td>
-        <td>A-441</td>
-    </tr>
-</table>
-
-<br><br><br><br>
 
 <footer class="footer">
     <div class="footer__block">
@@ -209,3 +160,4 @@ if(isset($_GET["logout"])){
 
         </body>
         </html>
+
