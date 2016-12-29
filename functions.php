@@ -71,7 +71,7 @@ function getGenreFromDb() {
 	$result = array();
 	
 	while($stmt->fetch()) {
-		if(count($result)>= 26){
+		if(count($result)>= 14){
 			break;
 		}
 		$x = "";

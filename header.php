@@ -25,12 +25,11 @@ if(isset($_GET["s"])){
 	<div class="col-md-6" style="padding-top: 20px">
 		<form>
 			<input type="search" name="s" value="<?=$s;?>" placeholder="Enter keywords...">
-			<a href='results.php?search='><button class="btn-md btn-info" type="submit">Search</button></a>
+			<button class="btn btn-md btn-info" type="submit">Search</button>
 		</form>		
 	</div>
 </div>
 
 </head>
 
-<body style="background-color:darkgrey;">
-<!-- Lõpu tag-id asuvad footeris!! -->
+<body style="background-image: url('448.jpg');">

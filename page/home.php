@@ -1,6 +1,6 @@
 <?php
-require('../header.php');
 include '../functions.php';
+require('../header.php');
 
 echo "<div class=container>";
 echo "<div class=row>";
