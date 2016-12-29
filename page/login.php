@@ -207,8 +207,8 @@
 				</div>
 
 
-				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Login">
-				<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Login">
+				<input class="btn btn-sm hidden-xs" type="submit" value="Login">
+				<input class="btn btn-sm btn-block visible-xs-block" type="submit" value="Login">
 
 		</form>
 
@@ -248,8 +248,8 @@
 				<input class = "form-control" name="lastname" type="text" value="<?=$lastname;?>">
 			</div>
 
-			<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Sign Up">
-			<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Sign Up">
+			<input class="btn btn-sm hidden-xs" type="submit" value="Sign Up">
+			<input class="btn btn-sm btn-block visible-xs-block" type="submit" value="Sign Up">
 
 		</form>
 

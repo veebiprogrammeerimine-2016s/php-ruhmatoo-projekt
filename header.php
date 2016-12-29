@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="../css/jquery.datetimepicker.min.css"/ >
 		<script src="../js/jquery.datetimepicker.full.min.js"></script>
 
-		<link rel="stylesheet" type="text/css" href="../css/common.css"/ >
+		<link rel="stylesheet" type="text/css" href="../css/common-styles.css"/ >
 
 	<div class="col-xs-offset-5 col-md-offset-5"><h3>TLU CarPooling</h3></div>
 </div>

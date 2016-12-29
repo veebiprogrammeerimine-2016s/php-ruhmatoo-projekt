@@ -164,8 +164,8 @@ $upcomingRides = $Rides->get($r, $sort, $order);
       <div class ="form-group">
       <input class = "form-control" type="search" name="r" value="<?=$r;?>">
       </div>
-      <input class="btn btn-success btn-sm hidden-xs" type="submit" value="Search">
-      <input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Search">
+      <input class="btn btn-sm hidden-xs" type="submit" value="Search">
+      <input class="btn btn-sm btn-block visible-xs-block" type="submit" value="Search">
     </form>
 
     <h2>Register a ride</h2>
@@ -201,8 +201,8 @@ $upcomingRides = $Rides->get($r, $sort, $order);
     <input class = "form-control" name="price" type="number">
     </div>
 
-      <input class="btn btn-success btn-sm hidden-xs" type="submit" value="Submit">
-      <input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Submit">
+      <input class="btn btn-sm hidden-xs" type="submit" value="Submit">
+      <input class="btn btn-sm btn-block visible-xs-block" type="submit" value="Submit">
     <br><br>
     </form>
     <script type="text/javascript">
@@ -221,7 +221,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
   $html = "<div class='col-md-8'>";
     $html = "<div class='table'>";
-    $html = "<table class='table-striped table-condensed table-bordered'>";
+    $html = "<table class='table-striped table-condensed'>";
     $html .= "<h2>Find a ride</h2>";
     //$html .= "<br>";
         $html .= "<tr>";
@@ -237,7 +237,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
         			$arr="&uarr;";
         		}
 
-        			$html .= "<th bgcolor='#fff482'>
+        			$html .= "<th>
         			<a href='?q=".$r."&sort=email&order=".$orderEmail."'>
 
         			Email ".$arr."
@@ -257,7 +257,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
         				$arr="&uarr;";
         			}
 
-        				$html .= "<th bgcolor='#ffbb5b'>
+        				$html .= "<th>
         				<a href='?q=".$r."&sort=start_location&order=".$orderStart_location."'>
 
         				Start location ".$arr."
@@ -277,7 +277,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
         				}
 
-        					$html .= "<th bgcolor='#fff482'>
+        					$html .= "<th>
         					<a href='?q=".$r."&sort=start_time&order=".$orderStart_time."'>
 
         					Start time ".$arr."
@@ -296,7 +296,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
       	  				}
 
-      	  					$html .= "<th bgcolor='#ffbb5b'>
+      	  					$html .= "<th>
       	  					<a href='?q=".$r."&sort=arrival_location &order=".$orderArrival_location ."'>
 
       	  					Arrival location ".$arr."
@@ -315,7 +315,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
       							}
 
-      								$html .= "<th bgcolor='#fff482'>
+      								$html .= "<th>
       								<a href='?q=".$r."&sort=arrival_time&order=".$orderArrival_time."'>
 
       								Time of arrival ".$arr."
@@ -334,7 +334,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
       								}
 
-      									$html .= "<th bgcolor='#ffbb5b'>
+      									$html .= "<th>
       									<a href='?q=".$r."&sort=free_seats&order=".$orderFree_seats."'>
 
       									Free seats ".$arr."
@@ -351,7 +351,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
       										$orderPrice = "DESC";
       										$arr="&uarr;";
                         }
-                          $html .= "<th bgcolor='#fff482'>
+                          $html .= "<th>
         									<a href='?q=".$r."&sort=price&order=".$orderPrice."'>
 
         								  Price ".$arr."
@@ -359,7 +359,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
         									</th>";
 
-                          $html .= "<th bgcolor='#ffbb5b'>
+                          $html .= "<th>
 
         								  Register
         									</a>
