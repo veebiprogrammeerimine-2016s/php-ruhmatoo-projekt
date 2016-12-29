@@ -22,7 +22,7 @@ foreach($movies as $m){
 	$release_date = "";
 	echo $b." ";
 	
-	if($b == 425){ break;}
+	if($b == 1000){ break;}
 	echo $m->title." TITLE ===============================================<br>";
 	
 	if (movieExists("https://www.rottentomatoes.com".$m->url)){

@@ -5,9 +5,9 @@ require("../header.php");
 
 $i = 0;
 $b = 0;
-if(isset($_GET["l"])){
+if(isset($_GET["limit"])){
 	
-	$b = $_GET["l"];
+	$b = $_GET["limit"];
 	
 }
 echo "<div class=container>";
@@ -33,12 +33,12 @@ echo "</div></div>";
 ?>
 <div class="row">
 	<div class="col-md-2">
-		<a class="btn btn-info" type="button" href="results.php?s='<?php echo $s."?l=".$b-5; ?>'">Previous</a>
+		<a class="btn btn-info" type="button" href="results.php?s='<?php echo $s."?limit=".$b-5; ?>'">Previous</a>
 	</div>
 	<div class="col-md-8">
 	</div>
 	<div class="col-md-2">
-		<a class="btn btn-info" type="button" href="results.php?s='<?php echo $s."?l=".$b+5; ?>'">Next</a>
+		<a class="btn btn-info" type="button" href="results.php?s='<?php echo $s."?limit=".$b+5; ?>'">Next</a>
 	</div>
 </div>
 <br>
