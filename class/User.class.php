@@ -237,8 +237,19 @@
 		
 		$stmt->close();
 	}
-}
 
+	function saveExercise($exercise, $sets, $repeats) {
+	
+		$stmt = $this->connection->prepare("INSERT INTO exercises (exercise, sets, repeats) VALUES (?, ?, ?)");
+		echo $this->connection->error;
+		
+		$stmt->bind_param("sss", $exercise, $sets, $repeats);
+		
+		if ($stmt->execute()) {
+			echo "Salvestamine õnnestus";
+		} else {
+			echo "ERROR".$stmt->error;
+		}
+	}
 
-
-?>
+}?>
