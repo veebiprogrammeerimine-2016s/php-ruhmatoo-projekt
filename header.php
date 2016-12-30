@@ -1,3 +1,9 @@
+<?php 
+	require("../CSS.php");
+	
+	$username = $_SESSION["userName"];
+?>
+
 <!DOCTYPE html>
 <html>
 	<head class="header">
@@ -14,30 +20,36 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		
-		<div class="header">
-			<p>TREENI.EE</p>
-			<?php 
-				echo "Tere!";
-			?>
 		
-		</div>
-		<style type="text/css">
-		.header {
-			overflow: hidden;
-			height:70px;
-			background: rgba(240, 240, 240, .5);
-			width:1500px;
-			
-		}
-		
-		.form_login{
-			position: absolute;
-			top: 10px;
-			left: 80%;
-			margin-left:-250px;
-			width: 500px; 
-		}
-		
-		</style>
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="glyphicon glyphicon-user"></span>
+			  </button>
+			  <a class="navbar-brand" href="data.php">
+				<img alt="Brand" src="../logo.png" width="300" height="200">
+			  </a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav pull-right">
+					 <li class="active1 navbar-text hidden-xs">
+						<?php 
+							echo "Oled sisse loginud kasutajaga " ;
+						?>
+					</li>
+					<li class="active2">
+						<?php 
+						echo "<a href='user.php'><i><b>".$username."</b></i> </a>";
+						?>
+					</li>
+					<li class="active3">
+						<a href="?logout=1">Logi välja</a>
+					</li>
+				</ul>
+		  </div>
+	 </div>
+	</nav>
+	
 	</head>
 <body>

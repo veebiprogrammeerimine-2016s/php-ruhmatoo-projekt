@@ -30,7 +30,7 @@
 			$msg = "KASUTAJA LOODUD!";
 		} else {
 			//echo "ERROR".$stmt->error;
-			$msg = "<p style='color:red;'>SELLINE E-POST ON JUBA KASUTUSEL!</p>";
+			//$msg = "<p style='color:red;'>SELLINE E-POST ON JUBA KASUTUSEL!</p>";
 		}
 		
 		return $msg;

@@ -8,6 +8,8 @@
 	require("../class/Helper.class.php");
 	$Helper = new Helper($mysqli);
 	
+	require("../CSS.php");
+	
 	//var_dump - näitab kõike, mis muutuja sees
 	//var_dump($_GET);
 	//echo "<br>";
@@ -182,71 +184,6 @@
 		
 ?>
 
-	<style type="text/css">
-		.header {
-			overflow: hidden;
-			height:70px;
-			background: rgba(240, 240, 240, .5);
-			width:1365px;
-			border-bottom: 2px solid #696969;
-			
-		}
-		
-		.form_login{
-			position: absolute;
-			top: 10px;
-			left: 80%;
-			margin-left:-250px;
-			width: 500px; 
-		}
-		
-		.signup_background{
-			position: absolute;
-			left: 20px;
-			top: 85px;
-			background: rgba(240, 240, 240, .5);
-			height: 453px;
-			width: 500px;
-			border-radius: 25px;
-		}
-			
-		.background {
-			background-size: 1400px 550px;
-			background-repeat: no-repeat;
-			background-color: black;
-		}
-		
-		.last_forms {
-			position: absolute;
-			left: 230px;
-			top: 50px;
-		}
-		
-		.bottom{
-			position: absolute;
-			left: 20px;
-			top: 500px;
-		}
-		
-		.text{
-			position: absolute;
-			left: 1000px;
-			top: -450px;
-		}
-		
-		#colorstrip{
-			position: absolute;
-			top: 550px;
-			width: 100%; 
-			border-style: solid;
-			border-width: 2px;
-			border-color: #696969;
-		}
-		
-		
-		
-	</style>
-
 <!DOCTYPE html>
 <html>
 	<head class="header">
@@ -265,21 +202,67 @@
 	</head>
 		
 	<body class="background" background="../esilehele.jpg">
-		<div class="header">
-			<p>TREENI.EE</p>
-			<form class='form_login' method='POST'>
-				<input name='loginEmail' type='email' placeholder='E-post' value= '<?=$loginEmail;?>'>
-						
-				<input name='loginPassword' type='password' placeholder='Parool'>
-						
-				<input type='submit' value = 'Logi sisse'> <br>
-				
-				<p style='color:red;'><?php echo $loginEmailError; ?> <?php echo $loginPasswordError; ?></p>
-				<p style='color:red;'><?=$notice;?></p>
-			</form>
 
+	<nav class="navbar">
+	  <div class="container-fluid">
+		<div class="navbar-header">
+		  <a class="navbar-brand" href="login.php">
+			<img alt="Brand" src="../logo.png" width="300" height="200">
+		  </a>
+		</div>
+		
+		<div class=" navbar-form navbar-left visible-xs">
+			<p style='color:red;'><?php echo $loginEmailError; ?> <?php echo $loginPasswordError; ?><?=$notice;?></p>
+			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Logi sisse</button>
+
+			<div id="myModal" class="modal fade" role="dialog">
+			  <div class="modal-dialog">
+			  
+				<div class="modal-content">
+				  <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Logi sisse</h4>
+				  </div>
+				  <div class="modal-body">
+					<form class="pop_up_form" method='POST'>
+						<ul class="nav navbar-nav">
+							 <li class="active">
+							 
+								<input name='loginEmail' type='email' placeholder='E-post' class="form-control input-sm"  value= '<?=$loginEmail;?>'>
+										
+								<input name='loginPassword' type='password' class="form-control input-sm" placeholder='Parool'>
+										
+								<input type='submit' value = 'Logi sisse'> <br>
+							
+							</li>
+						</ul>
+					</form>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Välju</button>
+				  </div>
+				</div>
+
+			  </div>
+			</div>
 		</div>
 	
+		<form class="navbar-form navbar-left pull-right hidden-xs" method='POST'>
+			<ul class="nav navbar-nav">
+				 <li class="active">
+					<input name='loginEmail' type='email' placeholder='E-post' class="form-control input-sm"  value= '<?=$loginEmail;?>'>
+							
+					<input name='loginPassword' type='password' class="form-control input-sm" placeholder='Parool'>
+							
+					<input type='submit' value = 'Logi sisse'> <br>
+					
+					<p style='color:red;'><?php echo $loginEmailError; ?> <?php echo $loginPasswordError; ?><?=$notice;?></p>
+				</li>
+			</ul>
+		</form>
+	  </div>
+	</nav>
+		
 	<div class="signup_background">
 	<div class="heading" style="padding-left:30px;">
 		<h1 style="color:black;">Loo kasutaja</h1>	
@@ -355,7 +338,5 @@
 		</div>
 		<p class="bottom" style="color:white;">Mis on TREENI.EE? &#8194  &#8194 Kontakt</p>
 	</div>
-	<div id="colorstrip"/>
-	<b><p class="text" style="color:8B4500; font-size:18pt;" >TREENI.EE aitab kiirelt ja mugavalt koostada treeningpäevikut, leida vastuseid spordiga seonduvatele küsimustele ning leida endale treeningkaaslane!</p></b>
 	</body>
 </html>
