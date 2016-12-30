@@ -8,17 +8,21 @@ require_once("functions.php");
 require_once(__DIR__ . "/vendor/autoload.php");
 mb_internal_encoding("iso-8859-1");
 
-if (isset($_GET["logout"])) {
+if(isset($_GET["logout"])){
     session_destroy();
+    echo("<br><a href='scraper.php'>Log in again</a><br>");
     exit();
+} else {
+    echo("<a href='scraper.php?logout=1'>LOG OUT</a><br>");
 }
+echo ("<br><a href='scraper.php?time=" . time() . "'>Täna</a> <br>");
 
 define('APPLICATION_NAME', 'Izipäevik');
 define('SCOPES', implode(' ', array(
         Google_Service_Calendar::CALENDAR)
 ));
 define('CREDENTIALS_PATH', '~/.credentials/calendar-php-quickstart.json');
-define('CLIENT_SECRET_PATH', __DIR__ . '/client_secret.json');
+define('CLIENT_SECRET', '####');
 define('CLIENT_ID', "####");
 define('DEVELOPER_KEY', "####");
 define('REDIRECT_URI', "http://####/scraper/scraper.php");
@@ -26,7 +30,7 @@ define('REDIRECT_URI', "http://####/scraper/scraper.php");
 $client = new Google_Client();
 $client->setApplicationName(APPLICATION_NAME);
 $client->setClientId(CLIENT_ID);
-$client->setClientSecret(CLIENT_SECRET_PATH);
+$client->setClientSecret(CLIENT_SECRET);
 $client->setRedirectUri(REDIRECT_URI);
 $client->setDeveloperKey(DEVELOPER_KEY);
 $client->setScopes(SCOPES);
@@ -36,27 +40,27 @@ $client->setScopes(SCOPES);
 //    'verify' => false,
 //)));
 
-$credentialsPath = expandHomeDirectory(CREDENTIALS_PATH);
-
-// Request authorization from the user.
-if (!isset($_GET["code"])){
-    // Request authorization from the user.
-    $authUrl = $client->createAuthUrl();
-    header("Location:" . $authUrl);
+if (isset($_SESSION["accessToken"])) {
+    $accessToken = $_SESSION["accessToken"];
+    if (isset($_GET["code"])){
+        //Remove google auth code from GET
+        header("Location: scraper.php");
+    }
 } else {
-    $authCode = trim($_GET["code"]);
+    if (!isset($_GET["code"])){
+        // Request authorization from the user.
+        $authUrl = $client->createAuthUrl();
+        header("Location:" . $authUrl);
+    } else {
+        $authCode = trim($_GET["code"]);
+    }
 }
 
-if (php_sapi_name() == 'cli') {
-    $authCode = trim(fgets(STDIN));
-}
 
-if (isset($authCode)){
+if (isset($authCode) && !isset($_SESSION["accessToken"])){
     // Exchange authorization code for an access token.
     $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
-    echo("<br>Access token: ");
-    var_dump($accessToken);
-    echo ("<br>");
+    $_SESSION["accessToken"] = $accessToken;
 }
 
 if(isset($accessToken) && !empty($accessToken)){
@@ -80,6 +84,7 @@ if (isset($_GET["ryhm"]) && !isset($_SESSION["ryhm"])) {
 }
 
 // Current date in MASIO - Unix time
+// 1485856800 for IFIFB-1 Semester 2
 if (isset($_GET["time"]) && !isset($_SESSION["time"])) {
     $time = $_GET["time"];
 } else if (!isset($_SESSION["time"])) {
@@ -87,15 +92,6 @@ if (isset($_GET["time"]) && !isset($_SESSION["time"])) {
 } else {
     $time = $_SESSION["time"];
 }
-$time = 1473886800;
-// Group if exists for filtering results
-if (isset($_GET["grupp"])) {
-    $grupp = $_GET["grupp"];
-} else {
-    $grupp = 1;
-}
-
-$data = array();
 
 $url = 'http://www.tlu.ee/masio/index.php?id=ryhm&ryhm=' . $ryhm . '&time=' . $time . '#MASIO';
 $html = file_get_html($url);
@@ -128,12 +124,12 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
     } else {
         $spans = $div->find("span");
         if (count($spans) > 0) {
-            $time = $spans[0]->innertext;
-            $time = explode("-", $time);
-            $timeStart = $time[0];
-            $timeEnd = $time[1];
-            $timeStart = $datesFinished . "T" . $timeStart;
-            $timeEnd = $datesFinished . "T" . $timeEnd;
+            $lessonTime = $spans[0]->innertext;
+            $lessonTime = explode("-", $time);
+            $timeStart = $lessonTime[0];
+            $timeEnd = $lessonTime[1];
+            $timeStart = $dayFinished . "T" . $timeStart;
+            $timeEnd = $dayFinished . "T" . $timeEnd;
             $room = $spans[1]->innertext;
             $subject = $spans[2]->innertext;
 
@@ -158,8 +154,7 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
             }
             $subject = array_shift($subject);
             //echo "Rühm " . $group . " | ";
-            //echo "date: " . $dayFinished . " | ";
-            //echo "Kell " . $time . " | ";
+            //echo "START: " . $timeStart . " | END: ". $timeEnd . " | ";
             //echo $lessonCode . " | ";
             //echo $lessonName . " | ";
             //echo $teacher . " | ";
@@ -196,15 +191,5 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
         }
 
     }
-//    if ($date){
-
-//    }
 
 }
-
-//clear_all($html);
-//var_dump($data["G1"]);
-
-echo("<a href='scraper.php?logout=1'>END</a>");
-
-?>

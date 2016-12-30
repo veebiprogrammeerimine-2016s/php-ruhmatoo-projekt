@@ -22,11 +22,11 @@
 ## Setup       
 ### --Scraper
     In scraper folder, run "php composer.phar require google/apiclient:^2.0 " in command line
-    Get secret key JSON from Google API Manager, rename it to "client_secret.json", move to scraper folder.
     In scraper.php:
         CLIENT_ID = Izipaevik Client ID from Google API Manager
         REDIRECT_URI = ####.com/scraper/scraper.php
         DEVELOPER_KEY = API Key from Google API Manager
+        CLIENT_SECRET = Secret key from Google API Manager
 
 ### --MySQL
     1. Create database:
