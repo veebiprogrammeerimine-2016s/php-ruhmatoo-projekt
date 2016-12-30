@@ -10,8 +10,9 @@ namespace donatj;
  * @license http://opensource.org/licenses/mit-license.php
  *
  */
+	
 class SimpleCalendar {
-
+	
 	/**
 	 * Array of Week Day Names
 	 *
@@ -98,6 +99,7 @@ class SimpleCalendar {
 	 * @return string HTML of the Calendar
 	 */
 	public function show( $echo = true ) {
+	
 		if( $this->wday_names ) {
 			$wdays = $this->wday_names;
 		} else {
@@ -106,7 +108,7 @@ class SimpleCalendar {
 				$wdays[] = strftime('%a', time() - $today + ($i * 86400));
 			}
 		}
-
+		
 		$this->array_rotate($wdays, $this->offset);
 		$wday    = date('N', mktime(0, 0, 1, $this->now['mon'], 1, $this->now['year'])) - $this->offset;
 		$no_days = cal_days_in_month(CAL_GREGORIAN, $this->now['mon'], $this->now['year']);
@@ -172,5 +174,5 @@ class SimpleCalendar {
 			array_push($data, array_shift($data));
 		}
 	}
-
 }
+?>
