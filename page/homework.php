@@ -299,7 +299,44 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for=""></label>
                     <div class="col-md-4">
-                        <button id="" name="" class="btn btn-primary">Salvesta</button>
+                        <button id="" name="" class="btn btn-primary" type="submit">Salvesta</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
+        <form class="form-horizontal" method="post">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Õppeaine</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="classname">Nimi</label>
+                    <div class="col-md-4">
+                        <input id="classname" name="classname" type="text" placeholder="" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="classteacher">Õpetaja</label>
+                    <div class="col-md-4">
+                        <select id="classteacher" name="classteacher" class="form-control">
+                            <option value="1">Romil Robtšenkov</option>
+                            <option value="2">Tanel Toova</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton">Single Button</label>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" type="submit">Salvesta</button>
                     </div>
                 </div>
 
@@ -308,6 +345,10 @@
 
 
     </div>
+
+
+
+
 </section>
 
 <footer class="footer">
