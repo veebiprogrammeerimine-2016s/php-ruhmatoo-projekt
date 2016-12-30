@@ -46,9 +46,13 @@
     <link rel="shortcut icon" href="../style_script/img/favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
+
+
+
 <!-- navbar-->
 <header class="header">
     <div role="navigation" class="navbar navbar-default">
@@ -205,5 +209,6 @@
         <script src="../style_script/js/lightbox.min.js"></script>
         <script src="../style_script/js/front.js"></script>
         <!---->
+
 </body>
 </html>
