@@ -51,7 +51,7 @@
   <div class="container">
     <div class="content">
       <link rel="stylesheet" href="../style_script/css/style.css">
-      <h1><b>This is UNILIFE</b></h1>
+      <h1><b>UNILIFE</b></h1>
       <div>
         <div class="form">
 
