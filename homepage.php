@@ -88,7 +88,7 @@
 
 <?php
 
-$html = "<table class='table table-hover'>";
+$html = "<table class='table table-striped'>";
 $html .= "<tr>";
 $html .= "<th>id</th>";
 $html .= "<th>Registreerimismärk</th>";
