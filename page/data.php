@@ -46,9 +46,13 @@
     <link rel="shortcut icon" href="../style_script/img/favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
+
+
+
 <!-- navbar-->
 <header class="header">
     <div role="navigation" class="navbar navbar-default">
@@ -199,12 +203,13 @@
             </div>
         </div>
     </footer>
+
     <!-- Javascript files-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../style_script/js/bootstrap.min.js"></script>
-    <script src="../style_script/js/jquery.cookie.js"> </script>
-    <script src="../style_script/js/lightbox.min.js"></script>
-    <script src="../style_script/js/front.js"></script>
-    <!---->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></>
+    <script src="../style_script/js/bootstrap.min.js"></>
+    <script src="../style_script/js/jquery.cookie.js"> </>
+        <script src="../style_script/js/lightbox.min.js"></>
+            <script src="../style_script/js/front.js"></>
+
 </body>
 </html>
