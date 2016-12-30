@@ -126,7 +126,7 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="homeworkDescription">Kirjeldus</label>
+                    <label class="col-md-4 control-label" for="homeworkDescription">Kirjeldus(*)</label>
                     <div class="col-md-4">
                         <input name="homeworkDescription" id="homeworkDescription" type="text" placeholder="Lisa siia lühike kirjeldus" class="form-control input-md">
 
@@ -136,7 +136,7 @@
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectbasic">Klass</label>
+                    <label class="col-md-4 control-label" for="selectbasic">Klass(*)</label>
                     <div class="col-md-4">
                         <select name="homeworkClass" class="form-control">
                             <option value="Õppimine kõrgkoolis">Õppimine kõrgkoolis</option>
@@ -150,7 +150,7 @@
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectbasic">Tüüp</label>
+                    <label class="col-md-4 control-label" for="selectbasic">Tüüp(*)</label>
                     <div class="col-md-4">
                         <select name="homeworkType" class="form-control">
                             <option value="Kodutöö">Kodutöö</option>
@@ -166,7 +166,7 @@
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectbasic">Prioriteet</label>
+                    <label class="col-md-4 control-label" for="selectbasic">Prioriteet(*)</label>
                     <div class="col-md-4">
                         <select name="homeworkPriority" class="form-control">
                             <option value="Tähtis">Tähtis</option>
@@ -179,7 +179,7 @@
 
                 <!-- Date -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="date">Tähtaeg</label>
+                    <label class="col-md-4 control-label" for="date">Tähtaeg(*)</label>
                     <div class="col-md-4">
                         <input class="form-control" id="date" name="date" placeholder="DD/MM/YYY" type="text"/>
                     </div>
@@ -231,7 +231,7 @@
 
         </script>
 
-        <form class="form-horizontal" method="post" name="readingform">
+        <form class="form-horizontal" method="post" id="readingform">
             <fieldset>
 
                 <!-- Form Name -->
@@ -239,25 +239,25 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="bookname">Raamatu nimi</label>
+                    <label class="col-md-4 control-label" for="bookname">Raamatu nimi(*)</label>
                     <div class="col-md-4">
-                        <input id="bookname" name="bookname" type="text" placeholder="" class="form-control input-md" required="">
+                        <input id="bookname" name="bookname" type="text" placeholder="" class="form-control input-md">
 
                     </div>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="bookauthor">Autor</label>
+                    <label class="col-md-4 control-label" for="bookauthor">Autor(*)</label>
                     <div class="col-md-4">
-                        <input id="bookauthor" name="bookauthor" type="text" placeholder="" class="form-control input-md" required="">
+                        <input id="bookauthor" name="bookauthor" type="text" placeholder="" class="form-control input-md">
 
                     </div>
                 </div>
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="bookclass">Õppeaine</label>
+                    <label class="col-md-4 control-label" for="bookclass">Õppeaine(*)</label>
                     <div class="col-md-4">
                         <select id="bookclass" name="bookclass" class="form-control">
                             <option value="1">Õppimine kõrgkoolis</option>
@@ -279,7 +279,23 @@
             </fieldset>
         </form>
 
-        <form class="form-horizontal" method="post" id="teacherform">
+        <script>
+
+            $("#readingform").validate({
+
+                debug: true,
+                rules: {
+                    bookname: {required: true},
+                    bookauthor: {required: true}},
+
+                messages:{
+                    bookname: {required: "Palun sisestage raamatu nimi."},
+                    bookauthor: {required: "Palun sisestage raamatu autor."}}
+            });
+
+        </script>
+
+        <form class="form-horizontal" method="post" id="teacherform" name="teacherform">
             <fieldset>
 
                 <!-- Form Name -->
@@ -287,27 +303,26 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="teacher">Nimi</label>
+                    <label class="col-md-4 control-label" for="teacher">Nimi(*)</label>
                     <div class="col-md-4">
-                        <input id="teacher" name="teacher" type="text" placeholder="" class="form-control input-md" required="">
+                        <input id="teacher" name="teacher" type="text" class="form-control input-md" >
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="roomnumber">Ruuminumber(*)</label>
+                    <div class="col-md-4">
+                        <input id="roomnumber" name="roomnumber" placeholder="(T302)" type="text" class="form-control input-md" >
 
                     </div>
                 </div>
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="roomnumber">Ruuminumber</label>
+                    <label class="col-md-4 control-label" for="email">Email(*)</label>
                     <div class="col-md-4">
-                        <input id="roomnumber" name="roomnumber" type="text" placeholder="" class="form-control input-md" required="">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="email">Email</label>
-                    <div class="col-md-4">
-                        <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
+                        <input id="email" name="email" type="text" placeholder="(keegi.õppejõud@tlu.ee)" class="form-control input-md" >
 
                     </div>
                 </div>
@@ -316,8 +331,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="material">Kodulehe aadress</label>
                     <div class="col-md-4">
-                        <input id="material" name="material" type="text" placeholder="" class="form-control input-md">
-
+                        <input id="material" name="material" placeholder="(http://www.mingisait.tlu.ee)" type="text" class="form-control input-md">
                     </div>
                 </div>
 
@@ -332,7 +346,29 @@
             </fieldset>
         </form>
 
-        <form class="form-horizontal" method="post" id="classform">
+
+        <script>
+
+            $("#teacherform").validate({
+
+                rules: {
+                    teacher: {required: true},
+                    roomnumber: {required: true},
+                    email: {required: true, email: true},
+                    material: {url: true}},
+
+                messages:{
+                    teacher: {required: "Palun sisestage õpetaja nimi."},
+                    bookauthor: {required: "Palun sisestage õppejõu ametiruum."},
+                    email: {required: "Palun sisestage õppejõu email", email: "Palun sisestage korrektne email"},
+                    material: {url: "Palun sisestage korrektne http link."}
+            }});
+
+        </script>
+
+
+
+        <form class="form-horizontal" method="post" id="classform" name="classform">
             <fieldset>
 
                 <!-- Form Name -->
@@ -340,16 +376,24 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="classname">Nimi</label>
+                    <label class="col-md-4 control-label" for="classname">Nimi(*)</label>
                     <div class="col-md-4">
-                        <input id="classname" name="classname" type="text" placeholder="" class="form-control input-md" required="">
+                        <input id="classname" name="classname" type="text" placeholder="(Andmebaaside programmeerimine)" class="form-control input-md" >
 
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="classcode">Ainekood(*)</label>
+                    <div class="col-md-4">
+                        <input id="classcode" name="classcode" placeholder="(IFI6013.DT)" type="text" class="form-control input-md">
                     </div>
                 </div>
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="classteacher">Õpetaja</label>
+                    <label class="col-md-4 control-label" for="classteacher">Õpetaja(*)</label>
                     <div class="col-md-4">
                         <select id="classteacher" name="classteacher" class="form-control">
                             <option value="1">Romil Robtšenkov</option>
@@ -358,9 +402,10 @@
                     </div>
                 </div>
 
+
+
                 <!-- Button -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="singlebutton">Single Button</label>
                     <div class="col-md-4">
                         <button class="btn btn-primary" name="sendClass" type="submit">Salvesta</button>
                     </div>
@@ -368,6 +413,21 @@
 
             </fieldset>
         </form>
+
+        <script>
+
+            $("#classform").validate({
+
+                rules: {
+                    classname: {required: true},
+                    classcode: {required: true}},
+
+                messages:{
+                    classname: {required: "Palun sisestage õppeaine nimi."},
+                    classcode: {required: "Palun sisestage ainekood."}
+                }});
+
+        </script>
 
 
     </div>
