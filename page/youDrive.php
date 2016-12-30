@@ -16,9 +16,6 @@ $Rides = new Rides($mysqli);
 		exit();
 	}
 
-
-
-
  $msg = "";
 
 	if(isset($_SESSION["message"])){
@@ -62,25 +59,35 @@ $Rides = new Rides($mysqli);
 
 <?php require("../header.php"); ?>
 
+<div class="container">
+
+
+	<div class="col-sm-4 col-md-3">
+
+
 <h2> YouDrive</h2>
 
 <h4><a href="user.php"> Back</a></h4>
 <?=$msg;?>
 
-<h2>Search </h2>
-
 <form>
-	<input type="search" name="r" value="<?=$r;?>">
-	<input type="submit" value="Search">
+	<h2>Search </h2>
+	<div class ="form-group">
+	<input class = "form-control" type="search" name="r" value="<?=$r;?>">
+	</div>
+	<input class="btn btn-sm hidden-xs" type="submit" value="Search">
+	<input class="btn btn-sm btn-block visible-xs-block" type="submit" value="Search">
 </form>
 
-
-<h2>Registered rides</h2>
+</div>
 
   <?php
 
 
-  	$html = "<table class='table table-striped table-condensed'>";
+	$html = "<div class='col-md-8'>";
+		$html = "<div class='table'>";
+		$html = "<table class='table-striped table-condensed'>";
+		$html .= "<h2>Registered rides</h2>";
 
   		$html .= "<tr>";
 			//User ID related
@@ -216,7 +223,7 @@ $Rides = new Rides($mysqli);
 
 										$html .= "<th>
 										<a href='?q=".$r."&sort=guest_name&order=".$orderGuest_name."'>
-										
+
 									 Passenger ".$arr."
 										</a>
 
@@ -240,7 +247,6 @@ $Rides = new Rides($mysqli);
 										</a>
 
 										</th>";
-
 
 
 										$html .= "<th>
@@ -268,7 +274,7 @@ $Rides = new Rides($mysqli);
           $html .= "<td>
 
 
-  							<a class='btn btn-default btn xs' href='edit.php?id=".$r->ride_id."'>
+  							<a class='btn' href='edit.php?id=".$r->ride_id."'>
   							Edit
   							<span class='glyphicon glyphicon-pencil'></span>
   							</a>
@@ -279,9 +285,11 @@ $Rides = new Rides($mysqli);
   		}
 
   	$html .= "</table>";
+		$html .= "</div>";
+	$html .= "</div>";
 
   	echo $html;
 
   ?>
-
+</div>
 <?php require("../footer.php"); ?>

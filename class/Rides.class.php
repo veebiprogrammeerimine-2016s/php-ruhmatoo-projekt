@@ -186,7 +186,24 @@ class Rides {
     return $results; }
 
 
-  function getPassenger($r, $sort, $order){
+  function getPassenger($r, $sort, $order) {
+
+    $allowedSort = ["ride_id", "start_location", "start_time",
+    "arrival_location", "arrival_time", "free_seats", "price",
+    "name", "email"];
+
+    if(!in_array ($sort, $allowedSort)) {
+      $sort = "ride_id";
+    }
+
+    $orderBy = "ASC";
+
+
+  if($order == "DESC") {
+    $orderBy = "DESC";
+  }
+
+  if ($r != "") {
 
     $stmt = $this->connection->prepare("
     SELECT cp_rideusers.ride_id, cp_rides.start_location,
@@ -196,6 +213,27 @@ class Rides {
     JOIN cp_users ON cp_users.id=cp_rides.user_id
     JOIN cp_rideusers ON cp_rideusers.ride_id=cp_rides.id
     WHERE cp_rideusers.user_id = ?
+      AND (cp_rideusers.ride_id LIKE ? OR cp_rides.start_location LIKE ? OR cp_rides.start_time LIKE ?
+      OR cp_rides.arrival_location LIKE ? OR cp_rides.arrival_time LIKE ?
+      OR cp_rides.free_seats LIKE ? OR cp_users.name LIKE ? OR cp_users.email LIKE ?)
+      ORDER BY $sort $orderBy
+    ");
+
+    $searchWord = "%".$r."%";
+    $stmt->bind_param("issssssss", $_SESSION["userId"], $searchWord, $searchWord, $searchWord, $searchWord,
+    $searchWord, $searchWord, $searchWord, $searchWord);
+
+  } else {
+
+    $stmt = $this->connection->prepare("
+    SELECT cp_rideusers.ride_id, cp_rides.start_location,
+    cp_rides.start_time, cp_rides.arrival_location,
+    cp_rides.arrival_time, cp_rides.free_seats, cp_users.name, cp_users.email
+    FROM cp_rides
+    JOIN cp_users ON cp_users.id=cp_rides.user_id
+    JOIN cp_rideusers ON cp_rideusers.ride_id=cp_rides.id
+    WHERE cp_rideusers.user_id = ?
+    ORDER BY $sort $orderBy
     ");
 
     echo $this->connection->error;
@@ -203,26 +241,26 @@ class Rides {
     $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
     $arrival_time, $free_seats, $driver_name, $driver_email);
     $stmt->execute();
-
+    }
     //tekitan objekti
     $results = array();
     //tsykli sisu tehakse nii mitu korda, mitu rida
     //SQL lausega tuleb
     while ($stmt->fetch()) {
 
-      $rides = new StdClass();
-      $rides->ride_id = $ride_id;
-      $rides->start_location = $start_location;
-      $rides->start_time = $start_time;
-      $rides->arrival_location = $arrival_location;
-      $rides->arrival_time = $arrival_time;
-      $rides->free_seats= $free_seats;
-      $rides->driver_name= $driver_name;
-      $rides->driver_email = $driver_email;
+      $r = new StdClass();
+      $r->ride_id = $ride_id;
+      $r->start_location = $start_location;
+      $r->start_time = $start_time;
+      $r->arrival_location = $arrival_location;
+      $r->arrival_time = $arrival_time;
+      $r->free_seats= $free_seats;
+      $r->driver_name= $driver_name;
+      $r->driver_email = $driver_email;
 
       //echo $age."<br>";
       //echo $color."<br>";
-      array_push($results, $rides);
+      array_push($results, $r);
     }
 
     $stmt->close();

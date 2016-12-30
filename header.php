@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-
+	<div id="container">
 
 	<head>
 		<div id="header">
@@ -22,9 +22,8 @@
 
 		<link rel="stylesheet" type="text/css" href="../css/common-styles.css"/ >
 
-	<div class="col-xs-offset-5 col-md-offset-5"><h3>TLU CarPooling</h3></div>
+	<h3>TLU CarPooling</h3>
 </div>
 	</head>
 	<body>
-
-		<br>
+		<br><br>

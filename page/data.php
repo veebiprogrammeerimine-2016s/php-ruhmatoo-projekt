@@ -146,7 +146,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 <div class="container">
 
 
-  <div class="col-sm-4 col-md-3">
+  <div class="col-sm-4 col-md-3 col-md-8">
 
     <h1>TLU CarPooling</h1>
 
@@ -222,10 +222,9 @@ $upcomingRides = $Rides->get($r, $sort, $order);
   $html = "<div class='col-md-8'>";
     $html = "<div class='table'>";
     $html = "<table class='table-striped table-condensed'>";
-    $html .= "<h2>Find a ride</h2>";
+      $html .= "<h2>Find a ride</h2>";
     //$html .= "<br>";
         $html .= "<tr>";
-
             //User Email related
         		$orderEmail = "ASC";
         		$arr="&darr;";
