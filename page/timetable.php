@@ -151,11 +151,11 @@ if(isset($_GET["logout"])){
     </div>
 </footer>
 <!-- Javascript files-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></>
-<script src="../style_script/js/bootstrap.min.js"></>
-<script src="../style_script/js/jquery.cookie.js"> </>
-    <script src="../style_script/js/lightbox.min.js"></>
-        <script src="../style_script/js/front.js"></>
-
-        </body>
-        </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="../style_script/js/bootstrap.min.js"></script>
+<script src="../style_script/js/jquery.cookie.js"> </script>
+<script src="../style_script/js/lightbox.min.js"></script>
+<script src="../style_script/js/front.js"></script>
+<!---->
+</body>
+</html>

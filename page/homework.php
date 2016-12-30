@@ -269,7 +269,6 @@ if(isset($_GET["logout"])){
 <script src="../style_script/js/jquery.cookie.js"> </>
     <script src="../style_script/js/lightbox.min.js"></>
         <script src="../style_script/js/front.js"></>
-
         </body>
         </html>
 
