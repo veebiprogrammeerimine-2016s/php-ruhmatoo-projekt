@@ -1,23 +1,23 @@
 <?php
 
-require("functions.php");
+    require("functions.php");
 
-//Kui ei ole kasutaja ID
+    //Kui ei ole kasutaja ID
 
-if(!isset($_SESSION["userId"])){
+    if(!isset($_SESSION["userId"])){
 
-    //Suuna sisselogimis lehele
-    header("Location: login.php");
-    exit();
-}
+        //Suuna sisselogimis lehele
+        header("Location: login.php");
+        exit();
+    }
 
-//Kui on log out aadressireal, siis login v'lja
-if(isset($_GET["logout"])){
+    //Kui on log out aadressireal, siis login v'lja
+    if(isset($_GET["logout"])){
 
-    session_destroy();
-    header("Location: index.php");
-    exit();
-}
+        session_destroy();
+        header("Location: index.php");
+        exit();
+    }
 
 
 ?>
@@ -81,7 +81,7 @@ if(isset($_GET["logout"])){
                         </ul>
                     </li>
                     <li><a href="teachers.php">Kontaktid</a></li>
-                </ul><a href="?logout=1" data-toggle="modal" data-target="#logout-modal" class="btn navbar-btn btn-ghost"><i class="fa fa-sign-out"></i>Logi välja</a>
+                </ul><a href="?logout=1" data-toggle="modal" data-target="#login-modal" class="btn navbar-btn btn-ghost"><i class="fa fa-sign-out"></i>Logi välja</a>
             </div>
         </div>
     </div>
