@@ -34,16 +34,14 @@ if(isset($_GET["logout"])){
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="../style_script/css/bootstrap.min.css">
     <!-- Font Awesome and Pixeden Icon Stroke icon fonts-->
-    <link rel="stylesheet" href="../style_script/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../style_script/fonts/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="../style_script/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style_script/css/pe-icon-7-stroke.css">
     <!-- Google fonts - Roboto-->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <!-- lightbox-->
     <link rel="stylesheet" href="../style_script/css/lightbox.min.css">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="../style_script/css/style.blue.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../style_script/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="../style_script/img/favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
@@ -65,6 +63,7 @@ if(isset($_GET["logout"])){
                     <li class="active"><a href="data.php">Kodu</a></li>
                     <li><a href="timetable.php">Tunniplaan</a></li>
                     <li><a href="homework.php">Kodutööd</a></li>
+                    <li><a href="compulsory_literature.php">Kohustuslik kirjandus</a></li>
                     <li class="dropdown"><a  href="#" data-toggle="dropdown" class="dropdown-toggle">Materjalid <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="https://www.tlu.ee/asio/kalenterit2/index.php?guest=intranet/tu&lang=est">ASIO</a></li>
@@ -119,31 +118,31 @@ if(isset($_GET["logout"])){
         <div class="container">
             <div class="row no-space">
                 <div class="col-sm-4 col-xs-6">
-                    <div class="box"><a href="https://c3.staticflickr.com/1/500/31446369210_d8575bd44c_b.jpg" data-lightbox="portfolio" data-title="Portfolio image 1"><img src="https://c3.staticflickr.com/1/500/31446369210_d8575bd44c_b.jpg" class="img-responsive"></a></div>
+                    <div class="box"><a href="https://c3.staticflickr.com/1/500/31446369210_d8575bd44c_b.jpg" data-lightbox="portfolio" data-title="Pilt 1"><img src="https://c3.staticflickr.com/1/500/31446369210_d8575bd44c_b.jpg" class="img-responsive"></a></div>
                 </div>
                 <div class="col-sm-4 col-xs-6">
-                    <div class="box"><a href="https://c1.staticflickr.com/1/774/30978348104_70b80fdcc5_b.jpg" title="" data-lightbox="portfolio" data-title="Portfolio image 7"><img src="https://c1.staticflickr.com/1/774/30978348104_70b80fdcc5_b.jpg" alt="" class="img-responsive"></a></div>
+                    <div class="box"><a href="https://c1.staticflickr.com/1/774/30978348104_70b80fdcc5_b.jpg" title="" data-lightbox="portfolio" data-title="Pilt 2"><img src="https://c1.staticflickr.com/1/774/30978348104_70b80fdcc5_b.jpg" alt="" class="img-responsive"></a></div>
                 </div>
                 <div class="col-sm-4 col-xs-6">
-                    <div class="box"><a href="https://c6.staticflickr.com/1/427/31819014405_19388a8de1_b.jpg" title="" data-lightbox="portfolio" data-title="Portfolio image 3"><img src="https://c6.staticflickr.com/1/427/31819014405_19388a8de1_b.jpg" alt="" class="img-responsive"></a></div>
+                    <div class="box"><a href="https://c6.staticflickr.com/1/427/31819014405_19388a8de1_b.jpg" title="" data-lightbox="portfolio" data-title="Pilt 3"><img src="https://c6.staticflickr.com/1/427/31819014405_19388a8de1_b.jpg" alt="" class="img-responsive"></a></div>
                 </div>
                 <div class="col-sm-4 col-xs-6">
-                    <div class="box"><a href="https://c1.staticflickr.com/6/5587/31446543016_91a0f957d7_b.jpg" title="" data-lightbox="portfolio" data-title="Portfolio image 5"><img src="https://c1.staticflickr.com/6/5587/31446543016_91a0f957d7_b.jpg" alt="" class="img-responsive"></a></div>
+                    <div class="box"><a href="https://c1.staticflickr.com/6/5587/31446543016_91a0f957d7_b.jpg" title="" data-lightbox="portfolio" data-title="Pilt 4"><img src="https://c1.staticflickr.com/6/5587/31446543016_91a0f957d7_b.jpg" alt="" class="img-responsive"></a></div>
                 </div>
                 <div class="col-sm-4 col-xs-6">
-                    <div class="box"><a href="https://c3.staticflickr.com/6/5713/31446528746_36d175bf1b_b.jpg" title="" data-lightbox="portfolio" data-title="Portfolio image 4"><img src="https://c3.staticflickr.com/6/5713/31446528746_36d175bf1b_b.jpg" alt="" class="img-responsive"></a></div>
+                    <div class="box"><a href="https://c3.staticflickr.com/6/5713/31446528746_36d175bf1b_b.jpg" title="" data-lightbox="portfolio" data-title="Pilt 5"><img src="https://c3.staticflickr.com/6/5713/31446528746_36d175bf1b_b.jpg" alt="" class="img-responsive"></a></div>
                 </div>
                 <div class="col-sm-4 col-xs-6">
-                    <div class="box"><a href="https://c5.staticflickr.com/6/5537/31337329452_1afced8589_b.jpg" title="" data-lightbox="portfolio" data-title="Portfolio image 6"><img src="https://c5.staticflickr.com/6/5537/31337329452_1afced8589_b.jpg" alt="" class="img-responsive"></a></div>
+                    <div class="box"><a href="https://c5.staticflickr.com/6/5537/31337329452_1afced8589_b.jpg" title="" data-lightbox="portfolio" data-title="Pilt 6"><img src="https://c5.staticflickr.com/6/5537/31337329452_1afced8589_b.jpg" alt="" class="img-responsive"></a></div>
                 </div>
                 <div class="col-sm-4 col-xs-6">
-                    <div class="box"><a href="https://c6.staticflickr.com/6/5637/31050456045_d64e262cc7_b.jpg" title="" data-lightbox="portfolio" data-title="Portfolio image 2"><img src="https://c6.staticflickr.com/6/5637/31050456045_d64e262cc7_b.jpg" alt="" class="img-responsive"></a></div>
+                    <div class="box"><a href="https://c6.staticflickr.com/6/5637/31050456045_d64e262cc7_b.jpg" title="" data-lightbox="portfolio" data-title="Pilt 7"><img src="https://c6.staticflickr.com/6/5637/31050456045_d64e262cc7_b.jpg" alt="" class="img-responsive"></a></div>
                 </div>
                 <div class="col-sm-4 col-xs-6">
-                    <div class="box"><a href="https://c5.staticflickr.com/6/5785/31014718356_36d5dbf77d_b.jpg" title="" data-lightbox="portfolio" data-title="Portfolio image 8"><img src="https://c5.staticflickr.com/6/5785/31014718356_36d5dbf77d_b.jpg" alt="" class="img-responsive"></a></div>
+                    <div class="box"><a href="https://c5.staticflickr.com/6/5785/31014718356_36d5dbf77d_b.jpg" title="" data-lightbox="portfolio" data-title="Pilt 8"><img src="https://c5.staticflickr.com/6/5785/31014718356_36d5dbf77d_b.jpg" alt="" class="img-responsive"></a></div>
                 </div>
                 <div class="col-sm-4 col-xs-6">
-                    <div class="box"><a href="https://c7.staticflickr.com/6/5524/30908221342_d0d9fac2a3_b.jpg" title="" data-lightbox="portfolio" data-title="Portfolio image 9"><img src="https://c7.staticflickr.com/6/5524/30908221342_d0d9fac2a3_b.jpg" alt="" class="img-responsive"></a></div>
+                    <div class="box"><a href="https://c7.staticflickr.com/6/5524/30908221342_d0d9fac2a3_b.jpg" title="" data-lightbox="portfolio" data-title="Pilt 9"><img src="https://c7.staticflickr.com/6/5524/30908221342_d0d9fac2a3_b.jpg" alt="" class="img-responsive"></a></div>
                 </div>
             </div>
         </div>
@@ -202,10 +201,10 @@ if(isset($_GET["logout"])){
     </footer>
     <!-- Javascript files-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.cookie.js"> </script>
-    <script src="js/lightbox.min.js"></script>
-    <script src="js/front.js"></script>
+    <script src="../style_script/js/bootstrap.min.js"></script>
+    <script src="../style_script/js/jquery.cookie.js"> </script>
+    <script src="../style_script/js/lightbox.min.js"></script>
+    <script src="../style_script/js/front.js"></script>
     <!---->
 </body>
 </html>

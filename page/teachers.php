@@ -32,16 +32,14 @@ if(isset($_GET["logout"])){
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="../style_script/css/bootstrap.min.css">
     <!-- Font Awesome and Pixeden Icon Stroke icon fonts-->
-    <link rel="stylesheet" href="../fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../fonts/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="../style_script/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style_script/css/pe-icon-7-stroke.css">
     <!-- Google fonts - Roboto-->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,700">
     <!-- lightbox-->
     <link rel="stylesheet" href="../style_script/css/lightbox.min.css">
     <!-- theme stylesheet-->
     <link rel="stylesheet" href="../style_script/css/style.blue.css" id="theme-stylesheet">
-    <!-- Custom stylesheet - for your changes-->
-    <link rel="stylesheet" href="../style_script/css/custom.css">
     <!-- Favicon-->
     <link rel="shortcut icon" href="../style_script/img/favicon.png">
     <!-- Tweaks for older IEs--><!--[if lt IE 9]>
@@ -63,6 +61,7 @@ if(isset($_GET["logout"])){
                     <li><a href="data.php">Kodu</a></li>
                     <li><a href="timetable.php">Tunniplaan</a></li>
                     <li><a href="homework.php">Kodutööd</a></li>
+                    <li><a href="compulsory_literature.php">Kohustuslik kirjandus</a></li>
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Materjalid <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="https://www.tlu.ee/asio/kalenterit2/index.php?guest=intranet/tu&lang=est">ASIO</a></li>
@@ -203,7 +202,7 @@ if(isset($_GET["logout"])){
 <!-- Javascript files-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></>
 <script src="../style_script/js/bootstrap.min.js"></>
-<script src="../style_scriptjs/jquery.cookie.js"> </>
+<script src="../style_script/js/jquery.cookie.js"> </>
     <script src="../style_script/js/lightbox.min.js"></>
         <script src="../style_script/js/front.js"></>
 
