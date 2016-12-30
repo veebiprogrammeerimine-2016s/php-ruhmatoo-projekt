@@ -206,6 +206,53 @@ if(isset($_GET["logout"])){
             </fieldset>
         </form>
 
+        <form class="form-horizontal">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Kohustuslik kirjandus</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="bookname">Raamatu nimi</label>
+                    <div class="col-md-4">
+                        <input id="bookname" name="bookname" type="text" placeholder="" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="bookauthor">Autor</label>
+                    <div class="col-md-4">
+                        <input id="bookauthor" name="bookauthor" type="text" placeholder="" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="bookclass">Õppeaine</label>
+                    <div class="col-md-4">
+                        <select id="bookclass" name="bookclass" class="form-control">
+                            <option value="1">Õppimine kõrgkoolis</option>
+                            <option value="2">Veebiprogrammeerimine</option>
+                            <option value="3">Bla bla</option>
+                            <option value="4">Dla dla</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit">Salvesta</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
 
 
 
