@@ -196,7 +196,7 @@ function upload(){
 
 ?>
 
- <h1 style="clear:both;">Foorum</h1>
+<!--<<h1 style="clear:both;">Foorum</h1>-->
 <?php 
 	/*$html = "<table class='table'>";
 		

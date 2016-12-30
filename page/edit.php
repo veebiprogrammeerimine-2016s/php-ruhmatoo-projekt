@@ -20,7 +20,7 @@
 	//kas kasutaja uuendab andmeid
 	if(isset($_POST["update"])){
 		
-		$Note->updateNote($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["note"]), $Helper->cleanInput($_POST["color"]));
+		$Note->updateNote($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["kirjeldus"]), $Helper->cleanInput($_POST["asukoht"]),$Helper->cleanInput($_POST["kuupäev"]),$Helper->cleanInput($_POST["url"]));
 		
 		header("Location: edit.php?id=".$_POST["id"]."&success=true");
         exit();	
