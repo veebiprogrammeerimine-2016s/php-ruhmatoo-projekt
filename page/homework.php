@@ -1,23 +1,23 @@
 <?php
 
-require("functions.php");
+    require("functions.php");
 
-//Kui ei ole kasutaja ID
+    //Kui ei ole kasutaja ID
 
-if(!isset($_SESSION["userId"])){
+    if(!isset($_SESSION["userId"])){
 
-    //Suuna sisselogimis lehele
-    header("Location: login.php");
-    exit();
-}
+        //Suuna sisselogimis lehele
+        header("Location: login.php");
+        exit();
+    }
 
-//Kui on log out aadressireal, siis login v'lja
-if(isset($_GET["logout"])){
+    //Kui on log out aadressireal, siis login v'lja
+    if(isset($_GET["logout"])){
 
-    session_destroy();
-    header("Location: login.php");
-    exit();
-}
+        session_destroy();
+        header("Location: login.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +104,7 @@ if(isset($_GET["logout"])){
             </ul>
         </div>
         <h1 class="heading">Kodutööd</h1>
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="post">
             <fieldset>
 
                 <!-- Form Name -->
@@ -205,7 +205,7 @@ if(isset($_GET["logout"])){
             </fieldset>
         </form>
 
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="post">
             <fieldset>
 
                 <!-- Form Name -->
@@ -253,6 +253,58 @@ if(isset($_GET["logout"])){
             </fieldset>
         </form>
 
+        <form class="form-horizontal" method="post">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Õpetajad</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="teacher">Nimi</label>
+                    <div class="col-md-4">
+                        <input id="teacher" name="teacher" type="text" placeholder="" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="roomnumber">Ruuminumber</label>
+                    <div class="col-md-4">
+                        <input id="roomnumber" name="roomnumber" type="text" placeholder="" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="email">Email</label>
+                    <div class="col-md-4">
+                        <input id="email" name="email" type="text" placeholder="" class="form-control input-md" required="">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="material">Kodulehe aadress</label>
+                    <div class="col-md-4">
+                        <input id="material" name="material" type="text" placeholder="" class="form-control input-md">
+
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for=""></label>
+                    <div class="col-md-4">
+                        <button id="" name="" class="btn btn-primary">Salvesta</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
 
 
     </div>
