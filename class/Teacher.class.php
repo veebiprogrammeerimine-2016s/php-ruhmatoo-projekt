@@ -5,7 +5,6 @@
         private $connection;
 
         function __construct($mysqli){
-
             $this->connection = $mysqli;
         }
 
@@ -18,14 +17,39 @@
 
             if($stmt->execute()) {
                 echo "Salvestamine õnnestus.";
-            } else {
+            }else{
                 echo "ERROR ".$stmt->error;
             }
             $stmt->close();
         }
 
 
+        function get($useremail){
 
-    }
+            $stmt = $this->connection->prepare("
+			SELECT id, name, classroom, email, material
+			FROM teachers_groupwork
+			WHERE useremail = ?
+		");
+            echo $this->connection->error;
+
+            $stmt->bind_param("s", $useremail);
+            $stmt->bind_result($id, $name, $classroom, $email, $material);
+            $stmt->execute();
+
+            $result = array();
+            while ($stmt->fetch()) {
+
+                $teachers = new StdClass();
+                $teachers->id = $id;
+                $teachers->name = $name;
+                $teachers->classroom = $classroom;
+                $teachers->email = $email;
+                $teachers->material = $material;
+                array_push($result, $teachers);
+            }
+            $stmt->close();
+            return $result;
+        }}
 
 ?>

@@ -1,9 +1,8 @@
 <?php
 
     require("functions.php");
+    require("../class/Lesson.class.php");
     require("../class/Teacher.class.php");
-    $Teacher = new Teacher($mysqli);
-
 
     //Kui ei ole kasutaja ID
     if(!isset($_SESSION["userId"])){
@@ -23,21 +22,45 @@
     }
 
     var_dump($_POST);
+?>
+
+
+
+
+
+<?php
+    // Teacher stuff.
+    $Teacher = new Teacher($mysqli);
+    $allTeachers = $Teacher->get($_SESSION["userEmail"]);
+
     if(isset($_POST["sendTeacher"])){
 
         $Teacher->save(
-                $Helper->cleanInput($_POST["teacher"]),
-                $Helper->cleanInput($_POST["roomnumber"]),
-                $Helper->cleanInput($_POST["material"]),
-                $Helper->cleanInput($_POST["email"]),
-                $Helper->cleanInput($_SESSION["userEmail"]));
+            $Helper->cleanInput($_POST["teacher"]),
+            $Helper->cleanInput($_POST["roomnumber"]),
+            $Helper->cleanInput($_POST["material"]),
+            $Helper->cleanInput($_POST["email"]),
+            $Helper->cleanInput($_SESSION["userEmail"]));
 
         header("Location: homework.php");
         exit();
-
-
-}
+    }
 ?>
+
+
+<?php
+    // Lesson stuff
+    $Lesson = new Lesson($mysqli);
+    if(isset($_POST["sendClass"])){
+        $Lesson->save(
+            $_POST["classname"],
+            $_POST["classcode"],
+            $_POST["classteacher"],
+            $_SESSION["userEmail"]
+        );
+    }
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -397,7 +420,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="classname">Nimi(*)</label>
                     <div class="col-md-4">
-                        <input id="classname" name="classname" type="text" placeholder="(Andmebaaside programmeerimine)" class="form-control input-md" >
+                        <input id="classname" name="classname" type="text" placeholder="Andmebaaside programmeerimine" class="form-control input-md" >
 
                     </div>
                 </div>
@@ -406,7 +429,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="classcode">Ainekood(*)</label>
                     <div class="col-md-4">
-                        <input id="classcode" name="classcode" placeholder="(IFI6013.DT)" type="text" class="form-control input-md">
+                        <input id="classcode" name="classcode" placeholder="IFI6013.DT" type="text" class="form-control input-md">
                     </div>
                 </div>
 
@@ -415,8 +438,13 @@
                     <label class="col-md-4 control-label" for="classteacher">Õpetaja(*)</label>
                     <div class="col-md-4">
                         <select id="classteacher" name="classteacher" class="form-control">
-                            <option value="1">Romil Robtšenkov</option>
-                            <option value="2">Tanel Toova</option>
+                        <option>-Vali õpetaja-</option>
+                            <?php
+                                foreach($allTeachers as $teacher){
+                                    $html = "";
+                                    $html .= "<option value='$teacher->name'>$teacher->name</option>";
+                                    echo $html;}
+                            ?>
                         </select>
                     </div>
                 </div>
