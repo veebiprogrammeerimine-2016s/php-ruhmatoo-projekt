@@ -1,15 +1,51 @@
-<title>Registreeri!</title>
+<?php
+require ("header.php");
+require ("../function/functions.php");
+require ("../class/class_general.php");
+require ("../class/class_login.php");
+$error = "";
+$login = new User($dbconn);
+$input = new Input();
 
-<link rel="stylesheet" type="text/css" href="../styles/newlogin.css">
+if (isset($_POST["displayname"])) {$name = $input->clean($_POST["displayname"]);}
+if (isset($_POST["email"])) {$email = $input->clean($_POST["email"]);}
+if (isset($_POST["password"])) {$password = $input->clean($_POST["password"]);}
 
+if (isset($name) && isset($email) && isset($password)) {
+  if ($login->checkIfExists($email)) {
+    $error .= "Seda e-mailiaadressi on juba kasutatud.";
+  } else {
+    if (strlen($password) >= 6) {
+      $hash = password_hash($password, PASSWORD_DEFAULT);
+        if ($login->create($email, $name, $hash)) {
+          $registerSuccess = true;
+        } else {$error .= "Midagi läks kahjuks valesti.";}
+    } else {$error .= "Parool peab olema <i>vähemalt</i> 6 märki pikk.";}
+  }
+}
+?>
+
+<head>
+
+</head>
+
+<header>
+  <title>Registreeri!</title>
+  <link rel="stylesheet" type="text/css" href="../styles/newlogin.css">
+</header>
 
 <div class="login-page">
-    <form class="form">
-      <input type="text" placeholder="Eesnimi"/>
-	  <input type="text" placeholder="Perekonnanimi"/>
-      <input type="password" placeholder="Parool"/>
-      <input type="email" placeholder="E-maili aadress"/>
-      <button>Loo kasutaja</button>
+    <form class="form" method="post">
+	    <input type="text" name="displayname" placeholder="Nimi" value="<?=$name?>"/>
+      <input type="email" name="email" placeholder="E-maili aadress" value="<?=$email?>"/>
+      <input type="password" name="password" placeholder="Parool"/>
+      <input type="submit" class="button" value="Loo kasutaja">
+      <?php if (!empty($error)) {
+        echo "<p class='message'>$error</p>";
+      }
+      if ($registerSuccess) {
+        echo "<p class='message'>Kasutaja on loodud. Võid nüüd sisse logida.</p>";
+      }?>
       <p class="message">Oled juba registreerunud? <a href="login.php">Logi sisse</a></p>
 	  <p class="message">Omad ametit mida soovid meie lehel pakkuda? <a href="">Registreeru töötajana!</a></p>
     </form>

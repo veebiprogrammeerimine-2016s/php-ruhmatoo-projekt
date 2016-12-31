@@ -1,3 +1,6 @@
+create database workman;
+use workman;
+
 create table types (
 type varchar(30) unique not null primary key
 );
@@ -18,9 +21,8 @@ insert into skills(skill) values ("Torumees"), ("Elektrik"), ("Korstnapühkija")
 
 create table users (
 id int unique not null auto_increment primary key,
-username varchar(30) not null unique,
+name varchar(255) not null,
 password varchar(255) not null,
-displayname varchar(255) not null,
 email varchar(255) not null unique,
 age int,
 type varchar(30),

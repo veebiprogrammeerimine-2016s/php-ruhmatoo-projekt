@@ -1,15 +1,11 @@
 <?php
+	session_start();
 	require("../function/functions.php");
 	require("../function/login.php");
-	if (file_exists("../../config.php"))  {
-		require("../../config.php");
-	} else {
-		require("../../../../config.php");
-	}
-	$appName = "Töömehe leidja";
+	$dbconn = new mysqli($server, $user, $pass, $db);
 ?>
 <html>
-<meta charset='utf-8'>
+<meta charset='utf-8' name="viewport" content="width=device-width, initial-scale=1.0">
 <header>
 
 <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->

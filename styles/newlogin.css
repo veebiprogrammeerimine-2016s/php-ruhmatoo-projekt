@@ -26,7 +26,9 @@
   box-sizing: border-box;
   font-size: 14px;
 }
-.form button {
+
+
+.form .button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
@@ -40,7 +42,7 @@
   transition: all 0.3 ease;
   cursor: pointer;
 }
-.form button:hover,.form button:active,.form button:focus {
+.form .button:hover,.form button:active,.form button:focus {
   background: #ac7339;
 }
 .form .message {
@@ -92,5 +94,5 @@ body {
     background-image: url(https://static.pexels.com/photos/172289/pexels-photo-172289.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 100vh;      
+    min-height: 100vh;
 }

@@ -1,9 +1,18 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
-function cleanInput ($string) {
-	$string = trim(stripslashes(htmlspecialchars($string)));
-	return $string;
+if (file_exists("../../config.php"))  {
+	require("../../config.php");
+} else {
+	require("../../../../config.php");
 }
+
+$appName = "Töömehe leidja";
+
+
+
+
 
 
 ?>
