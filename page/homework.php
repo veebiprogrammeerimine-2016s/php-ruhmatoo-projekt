@@ -1,15 +1,18 @@
 <?php
 
     require("functions.php");
+    require("../class/Teacher.class.php");
+    $Teacher = new Teacher($mysqli);
+
 
     //Kui ei ole kasutaja ID
-
     if(!isset($_SESSION["userId"])){
 
         //Suuna sisselogimis lehele
         header("Location: login.php");
         exit();
     }
+
 
     //Kui on log out aadressireal, siis login v'lja
     if(isset($_GET["logout"])){
@@ -18,6 +21,22 @@
         header("Location: login.php");
         exit();
     }
+
+    var_dump($_POST);
+    if(isset($_POST["sendTeacher"])){
+
+        $Teacher->save(
+                $Helper->cleanInput($_POST["teacher"]),
+                $Helper->cleanInput($_POST["roomnumber"]),
+                $Helper->cleanInput($_POST["material"]),
+                $Helper->cleanInput($_POST["email"]),
+                $Helper->cleanInput($_SESSION["userEmail"]));
+
+        header("Location: homework.php");
+        exit();
+
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -272,7 +291,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="singlebutton"></label>
                     <div class="col-md-4">
-                        <button class="btn btn-primary" type="submit">Salvesta</button>
+                        <button class="btn btn-primary" name="sendReading" type="submit">Salvesta</button>
                     </div>
                 </div>
 
@@ -313,7 +332,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="roomnumber">Ruuminumber(*)</label>
                     <div class="col-md-4">
-                        <input id="roomnumber" name="roomnumber" placeholder="(T302)" type="text" class="form-control input-md" >
+                        <input id="roomnumber" name="roomnumber" placeholder="T302" type="text" class="form-control input-md" >
 
                     </div>
                 </div>
@@ -322,7 +341,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="email">Email(*)</label>
                     <div class="col-md-4">
-                        <input id="email" name="email" type="text" placeholder="(keegi.õppejõud@tlu.ee)" class="form-control input-md" >
+                        <input id="email" name="email" type="text" placeholder="keegi.õppejõud@tlu.ee" class="form-control input-md" >
 
                     </div>
                 </div>
@@ -331,7 +350,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="material">Kodulehe aadress</label>
                     <div class="col-md-4">
-                        <input id="material" name="material" placeholder="(http://www.mingisait.tlu.ee)" type="text" class="form-control input-md">
+                        <input id="material" name="material" value="" placeholder="http://www.mingisait.tlu.ee" type="text" class="form-control input-md">
                     </div>
                 </div>
 
