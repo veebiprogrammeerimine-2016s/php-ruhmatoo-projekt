@@ -85,6 +85,7 @@
 
 
         <h1 class="heading">Kodutööd</h1>
+
         <form class="form-horizontal" method="post" id="homeworkform">
             <fieldset>
 
@@ -314,7 +315,6 @@
             </fieldset>
         </form>
 
-
         <script>
 
             $("#teacherform").validate({
@@ -333,8 +333,6 @@
             }});
 
         </script>
-
-
 
         <form class="form-horizontal" method="post" id="classform" name="classform">
             <fieldset>
@@ -378,6 +376,7 @@
 
                 <!-- Button -->
                 <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
                     <div class="col-md-4">
                         <button class="btn btn-primary" name="sendClass" type="submit">Salvesta</button>
                     </div>
