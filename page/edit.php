@@ -47,28 +47,7 @@
 	
 ?>
 <?php require("../header.php")?>
-
-<style>
-.inner-addon { 
-    position: relative; 
-}
-
-/* style icon */
-.inner-addon .glyphicon {
-  position: absolute;
-  padding: 3px;
-  pointer-events: none;
-  color:#cc0000;
-}
-
-/* align icon */
-.left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 0px;}
-
-/* add padding  */
-.left-addon input  { padding-left:  20px; }
-.right-addon input { padding-right: 30px; }
-</style>
+<?php require("../CSS.php")?>
 
 	<div class="edit" style="padding-left:20px;">
 		<h2><a href="topic.php?id=<?php echo $topic_id;?>" style="text-decoration:none"> < Tagasi </a></h2>

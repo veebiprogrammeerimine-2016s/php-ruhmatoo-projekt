@@ -16,6 +16,10 @@
 		exit(); 
 	}
 	
+	//print_r($_GET);
+	//die("stop");
+	
+	
 	$newReplyError = "";
 	//$reply_id = "";
 	if (isset ($_GET["id"]) ){ 

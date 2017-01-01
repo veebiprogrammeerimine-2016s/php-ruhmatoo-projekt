@@ -19,8 +19,11 @@
 
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		
-		
+	
+	</head>
+	
+<body>
+
 	<nav class="navbar">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -28,7 +31,7 @@
 				<span class="glyphicon glyphicon-user"></span>
 			  </button>
 			  <a class="navbar-brand" href="data.php">
-				<img alt="Brand" src="../logo.png" width="300" height="200">
+				<img alt="Brand" src="../smaller_logo.png" width="300" height="200">
 			  </a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
@@ -44,12 +47,10 @@
 						?>
 					</li>
 					<li class="active3">
-						<a href="?logout=1">Logi välja</a>
+						<a href="data.php?logout=1">Logi välja</a>
 					</li>
 				</ul>
 		  </div>
 	 </div>
 	</nav>
 	
-	</head>
-<body>

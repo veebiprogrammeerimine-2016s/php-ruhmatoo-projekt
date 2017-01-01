@@ -12,6 +12,8 @@
 	$newHeadlineError = "";
 	$newContentError = "";
 	
+	$category = "general";
+	
 	$newHeadline = "";	
 	
 	$sort = "created";
@@ -104,7 +106,7 @@
 	
 	$sort_name = "";
 	if(!isset($_GET["sort"])){
-		$sort_name = "lisamise kuupäeva";
+		$sort_name = "teema lisamise kuupäeva";
 	} else {
 		if($_GET["sort"] == "topic"){
 			$sort_name = "teema";
@@ -116,12 +118,13 @@
 			$sort_name = "e-posti";
 		}
 		if($_GET["sort"] == "created"){
-			$sort_name = "lisamise kuupäeva";
+			$sort_name = "teema lisamise kuupäeva";
 		}
 	}
 ?>
 
 <?php require("../header.php")?>
+<?php require("../CSS.php")?>
 	<div class="data" style="padding-left:20px;padding-right:20px"> 
 		<br>
 		<p><b>
@@ -132,6 +135,19 @@
 		<p> <b> <?=$topic_msg;?> </b> </p>
 		<p><b>Loo uus teema</b></p>
 		<form method="POST">
+			<label>Kategooria:</label>
+			<?php if($category == "general") { ?>
+			<input type="radio" name="gender" value="female" checked>Üldine
+			<?php } else { ?>
+			<input type="radio" name="gender" value="female">Üldine
+			<?php } ?>
+			
+			<?php if($category == "partner") { ?>
+			<input type="radio" name="gender" value="male" checked>Leia endale treeningpartner
+			<?php } else { ?>
+			<input type="radio" name="gender" value="male">Leia endale treeningpartner
+			<?php } ?>
+			<br><br>
 			<label>Pealkiri:</label>
 			<input type="text" name="headline" value="<?=$newHeadline;?>"> <?php echo $newHeadlineError; ?>
 			<br><br>
@@ -147,12 +163,12 @@
 		</form>
 		<br>
 		<p>
-		<b>Sorteerimine <font class="sort" color="green"> <?=$sort_name;?> </font>järgi.</b>
+		<b>Kategooriate sorteerimine <font class="sort" color="green"> <?=$sort_name;?> </font>järgi.</b>
 		</p>
 		<p>
 		<?php
-			$html = "<table class='table table-striped table-hover'>";
-				$html .= "<tr class='success'>"; 
+			$html = "<table class='table table-hover'>";
+				$html .= "<tr>"; 
 					$topicOrder = "ASC";
 					$userOrder = "ASC";
 					$emailOrder = "ASC";
@@ -190,29 +206,47 @@
 						}
 					}
 				
+				$html .= "<thead class='bg-success'>";
 				$html .= "<th>
 					<a href='?q=".$q."&sort=topic&order=".$topicOrder."' style='text-decoration:none'>
-					<font size='4'>Teema</font><br><font size='2'>A</font>".$topicArrow."</th>";
+					<font size='2'>Teema</font><br><font size='2'>A</font>".$topicArrow."</th>";
 					$html .= "<th>
 					<a href='?q=".$q."&sort=user&order=".$userOrder."' style='text-decoration:none'>
-					<font size='4'>Kasutaja</font><br><font size='2'>A</font>".$userArrow."</th>";
+					<font size='2'>Kasutaja</font><br><font size='2'>A</font>".$userArrow."</th>";
 					$html .= "<th>
 					<a href='?q=".$q."&sort=email&order=".$emailOrder."' style='text-decoration:none'>
-					<font size='4'>Kasutaja e-post</font><br><font size='2'>A</font>".$emailArrow."</th>";
+					<font size='2'>Kasutaja e-post</font><br><font size='2'>A</font>".$emailArrow."</th>";
 					$html .= "<th>
 					<a href='?q=".$q."&sort=created&order=".$dateOrder."' style='text-decoration:none'>
-					<font size='4'>Lisamise kuupäev</font><br><font size='2'>&#128336;</font>".$dateArrow."</th>";
+					<font size='2'>Lisamise kuupäev</font><br><font size='2'>&#128336;</font>".$dateArrow."</th>";
 				$html .= "</tr>";
-
-
+				$html .= "</thead>";
+				
+				$html .= "<thead class='thead-default'>";
+				$html .= "<th><font size='2'>ÜLDINE</font></th>";
+				$html .= "<th></th>";
+				$html .= "<th></th>";
+				$html .= "<th></th>";
+				$html .= "</thead>";
+			
+			
 			foreach($topics as $t){
+				$html .= "<tbody>";
 				$html .= "<tr>";
 					$html .= "<td font size='20'><a href='topic.php?id=".$t->id."' style='text-decoration:none'><font size='4'>".$t->subject."</font></a></td>";
 					$html .= "<td>".$t->user."</td>";
 					$html .= "<td>".$t->email."</td>";
 					$html .= "<td>".$t->created."</td>";
 				$html .= "</tr>";
+				$html .= "</tbody>";
 			} 
+				
+				$html .= "<thead class='thead-default'>";
+				$html .= "<th><font size='2'>LEIA ENDALE TREENINGPARTNER</font></th>";
+				$html .= "<th></th>";
+				$html .= "<th></th>";
+				$html .= "<th></th>";
+				$html .= "</thead>";
 			
 			$html .= "</table>";
 			echo $html;

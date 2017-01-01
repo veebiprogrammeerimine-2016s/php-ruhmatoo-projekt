@@ -207,7 +207,7 @@
 	  <div class="container-fluid">
 		<div class="navbar-header">
 		  <a class="navbar-brand" href="login.php">
-			<img alt="Brand" src="../logo.png" width="300" height="200">
+			<img alt="Brand" src="../smaller_logo.png" width="300" height="200">
 		  </a>
 		</div>
 		
@@ -262,7 +262,9 @@
 		</form>
 	  </div>
 	</nav>
-		
+	
+	<!--<div class="signup col-sm-5" style="background: rgba(240, 240, 240, .5);"> Proovi bootstrap row fluid-->
+	
 	<div class="signup_background">
 	<div class="heading" style="padding-left:30px;">
 		<h1 style="color:black;">Loo kasutaja</h1>	
