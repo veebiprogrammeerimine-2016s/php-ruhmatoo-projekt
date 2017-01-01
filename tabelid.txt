@@ -69,18 +69,31 @@ CREATE TABLE sm_uploads(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(50),
 	primarypic INT,
-	deleted DATE,
-	flagged DATE,
+	picdeleted DATETIME,
+	picflagged DATETIME,
+	piccreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	postid INT,
 	FOREIGN KEY(postid) REFERENCES sm_posts(id)
 );
-
 
 
 4 - kuulutuste tabel
 
 CREATE TABLE sm_posts(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	poststarted DATETIME,
+	postcompleted DATETIME,
+	status INT(1),
+	userid INT,
+	FOREIGN KEY(userid) REFERENCES proov1(id)
+);
+
+
+5 - kuulutuse info tabel
+
+CREATE TABLE sm_postinfo(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	postid INT,
 	heading VARCHAR(50),
 	brandid INT,
 	model VARCHAR(100),
@@ -88,14 +101,17 @@ CREATE TABLE sm_posts(
 	sneakercondition VARCHAR(30),
 	price DECIMAL(8, 2),
 	description VARCHAR(255),
-	userid INT,
-	FOREIGN KEY(brandid) REFERENCES sm_brands(id),
-	FOREIGN KEY(userid) REFERENCES proov1(id)
+	postdeleted DATETIME,
+	postflagged DATETIME,
+	postcreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	status INT(1),
+	FOREIGN KEY(postid) REFERENCES sm_posts(id),
+	FOREIGN KEY(brandid) REFERENCES sm_brands(id)
 );
 
 
 
-5 - tootjate/brändide tabel
+6 - tootjate/brändide tabel
 
 CREATE TABLE sm_brands(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -125,5 +141,160 @@ SELECT postid, heading, model, price, description, name
 SELECT postid, heading, model, price, description, name
 	FROM sm_posts p
 	JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND deleted IS NULL AND postid = 1) u ON p.id=u.postid;
+
+	
+	
+
+SELECT * FROM sm_posts AS posts WHERE postdeleted IS NULL;
+SELECT heading, model, price, description FROM (SELECT * FROM sm_posts WHERE postdeleted IS NULL) AS p;
+
+SELECT postid, heading, model, price, description, name
+	FROM (SELECT * FROM sm_posts WHERE postdeleted IS NULL) AS p
+	JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid;
+
+
+SELECT postid, heading, model, price, description, name
+	FROM (SELECT * FROM sm_posts WHERE postdeleted IS NULL AND userid = 21) AS p
+	JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid;
+	
+	
+SELECT postid, i.status
+	FROM (SELECT * FROM sm_postinfo ORDER BY id DESC LIMIT 1) AS i
+	JOIN (SELECT * FROM sm_posts WHERE userid=21) AS p ON i.postid=p.id;
+
+
+SELECT i.id, postid, i.status, userid
+	FROM (SELECT * FROM sm_posts WHERE userid=21) AS p
+	JOIN (SELECT * FROM sm_postinfo ORDER BY id DESC LIMIT 1) AS i ON p.id=i.postid;
+
+
+SELECT i.id, postid, i.status, userid
+	FROM (SELECT * FROM sm_posts WHERE userid=21) AS p
+	JOIN (SELECT * FROM sm_postinfo ORDER BY id DESC LIMIT 1) AS i ON p.id=i.postid;
+
+
+SELECT * FROM sm_posts WHERE userid IN (21);
+
+SELECT COUNT(*) AS postcount FROM sm_posts WHERE userid=22;
+
+
+SELECT postid, i.status, COUNT(*) AS postcheck
+	FROM (SELECT * FROM sm_postinfo ORDER BY id DESC LIMIT 1) AS i
+	JOIN (SELECT * FROM sm_posts WHERE userid = 22) AS p ON i.postid=p.id;
+
+
+
+
+
+------------------ tabelid --------------------------------
+
+ SELECT * FROM sm_posts;
++----+--------------------+---------+--------------+------+------------------+--------+----------------------------------------------------+--------+--------------+-------------+-------------+---------------------+
+| id | heading            | brandid | model        | type | sneakercondition | price  | description                                        | userid | postuploaded | postdeleted | postflagged | postcreated         |
++----+--------------------+---------+--------------+------+------------------+--------+----------------------------------------------------+--------+--------------+-------------+-------------+---------------------+
+|  1 | Pealkiri 1         |    NULL | mudel 2      | NULL | NULL             | 180.00 | Kirjeldus suva 1                                   |     21 | NULL         | NULL        | NULL        | 0000-00-00 00:00:00 |
+|  2 | Pealkiri 2         |    NULL | mudel 3      | NULL | NULL             | 182.00 | Kirjeldus 2 suva                                   |     21 | NULL         | NULL        | NULL        | 0000-00-00 00:00:00 |
+|  3 | Pealkiri 3         |    NULL | Suva mudel 2 | NULL | NULL             | 500.00 | Kirjelda ghfdjgkadjgh g dhg d fjhgd f fdhk gfdh gf |     21 | NULL         | NULL        | NULL        | 0000-00-00 00:00:00 |
+|  4 | Kuulutuse pealkiri |    NULL | Mudel lamp   | NULL | NULL             |  23.00 | HDJGS GKJSH GS kdg hdkjh k                         |     21 | NULL         | NULL        | NULL        | 0000-00-00 00:00:00 |
+|  5 | Kuulutus blabla    |    NULL | abc 123      | NULL | NULL             |  99.00 | jgkls hglfkj h gsfklj ghfgj fklsjg hsfgklj         |     21 | NULL         | NULL        | NULL        | 0000-00-00 00:00:00 |
+|  6 | Suva pealkiri      |    NULL | Uus mudel    | NULL | NULL             | 199.00 | Blabla blabla                                      |     21 | NULL         | NULL        | NULL        | 0000-00-00 00:00:00 |
++----+--------------------+---------+--------------+------+------------------+--------+----------------------------------------------------+--------+--------------+-------------+-------------+---------------------+
+6 rows in set (0.00 sec)
+
+	
+SELECT * FROM sm_uploads;
++----+-------------------+------------+------------+------------+---------------------+--------+
+| id | name              | primarypic | picdeleted | picflagged | piccreated          | postid |
++----+-------------------+------------+------------+------------+---------------------+--------+
+|  1 | 58604bfecfacc.jpg |          1 | NULL       | NULL       | 0000-00-00 00:00:00 |      1 |
+|  2 | 58604c2164302.png |          1 | NULL       | NULL       | 0000-00-00 00:00:00 |      2 |
+|  3 | 5860f9b8b5c2b.jpg |          1 | NULL       | NULL       | 0000-00-00 00:00:00 |      3 |
+|  4 | 5860fcf762e33.png |          1 | NULL       | NULL       | 0000-00-00 00:00:00 |      4 |
+|  5 | 586109294f927.jpg |          1 | NULL       | NULL       | 0000-00-00 00:00:00 |      5 |
+|  6 | 58610d5e403ae.jpg |          1 | NULL       | NULL       | 0000-00-00 00:00:00 |      6 |
++----+-------------------+------------+------------+------------+---------------------+--------+
+6 rows in set (0.00 sec)
+
+
+
+
+
+
+SELECT postid, i.status, COUNT(*) AS postcheck
+	FROM (SELECT * FROM sm_postinfo ORDER BY id DESC LIMIT 1) AS i
+	JOIN (SELECT * FROM sm_posts WHERE userid = 22) AS p ON i.postid=p.id;
+	
+	
+SELECT name, postid, COUNT(*) AS piccheck FROM sm_uploads WHERE postid = 40 ORDER BY id DESC LIMIT 1;
+
+
+
+
+SELECT COUNT(*) AS postcheck
+	FROM (SELECT * FROM sm_postinfo WHERE postid = ? ORDER BY id DESC LIMIT 1) AS i
+	JOIN (SELECT * FROM sm_posts WHERE userid = ?) AS p ON i.postid=p.id
+	
+	
+SELECT COUNT(max) AS postcheck FROM (SELECT MAX(id) AS max FROM sm_posts WHERE userid=21) AS tabel;
+
+SELECT COUNT(max) AS imagecheck FROM (SELECT MAX(id) AS max FROM sm_uploads WHERE postid=45) AS tabel;
+
+
+SELECT postcreated FROM sm_postinfo WHERE id=(SELECT MAX(id) AS newestid FROM sm_postinfo);
+
+UPDATE sm_postinfo SET postdeleted = NOW() WHERE postid = 50 ORDER BY id DESC LIMIT 1;
+
+
+
+SELECT postid, heading, model, price, description, name FROM sm_postinfo AS p
+	JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND picdeleted IS NULL)
+
+
+SELECT id, heading, model, price, description, status FROM sm_postinfo WHERE postid = ? ORDER BY id DESC LIMIT 1;
+
+SELECT id, heading, model, price, description, postdeleted FROM sm_postinfo WHERE postid = 52;
+
+UPDATE sm_postinfo SET postdeleted = NOW() WHERE postid = 48 AND id < 52;
+
+
+
+
+
+SELECT postid, heading, model, price, description FROM sm_postinfo WHERE postdeleted IS NULL;
+
+SELECT * FROM sm_posts WHERE postcompleted IS NOT NULL;
+
+
+
+SELECT i.postid, heading, model, price, description, name
+	FROM (SELECT * FROM sm_posts WHERE postcompleted IS NOT NULL) AS p
+	JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL) AS i ON p.id=i.postid
+	JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid;
+
+
+	
+SELECT i.postid, heading, model, price, description, name
+	FROM (SELECT * FROM sm_posts WHERE postcompleted IS NOT NULL) AS p
+	JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL AND postid = ?) AS i ON p.id=i.postid
+	JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid;
+
+
+SELECT i.postid, heading, model, price, description, name
+	FROM (SELECT * FROM sm_posts WHERE postcompleted IS NOT NULL AND userid = ?) AS p
+	JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL) AS i ON p.id=i.postid
+	JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

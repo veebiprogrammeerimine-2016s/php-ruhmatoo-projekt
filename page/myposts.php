@@ -59,7 +59,7 @@ require("../functions.php");
 	
 	
 	<ul class="nav nav-tabs">
-		<li role="presentation"><a href="data.php">Loo kuulutus</a></li>
+		<li role="presentation"><a href="createpost.php">Uus kuulutus</a></li>
 		<li role="presentation" class="active"><a href="#">Minu kuulutused</a></li>
 	</ul>
 
@@ -77,7 +77,7 @@ require("../functions.php");
 
 	
 <?php
-
+/*
 		$direction="ascending";
 		if(isset($_GET["direction"])){
 			if($_GET["direction"] == "ascending"){
@@ -108,12 +108,61 @@ require("../functions.php");
 
 		echo $html;
 
+*/
+?>
+
+
+
+
+
+<?php
+
+$myPosts = $Sneakers->getAllMyPosts();
+
+
+
+	$html = "<table class='table table-striped table-bordered'>";
+			
+		$html .= "<tr>";
+			$html .= "<th>Pealkiri</th>";
+			$html .= "<th>Mudel</th>";
+			$html .= "<th>Hind</th>";
+			$html .= "<th>Kirjeldus</th>";
+		$html .= "</tr>";
+		
+		foreach($myPosts as $mp) {
+			
+			$html .= "<tr>";
+				$html .= "<td>".$mp->heading."</td>";
+				$html .= "<td>".$mp->model."</td>";
+				$html .= "<td>".$mp->price."</td>";
+				$html .= "<td>".$mp->description."</td>";
+			$html .= "</tr>";
+		}
+
+	$html .= "</table>";
+
+	echo $html;
+
+
+
+
+
+
+
+
 
 ?>
 
 
-	
-	
+
+
+
+
+
+
+
+
 
 </div>
 
