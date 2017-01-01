@@ -53,10 +53,7 @@
             </div>
             <div id="navigation" class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li><a href="data.php">Kodu</a></li>
-                    <li><a href="timetable.php">Tunniplaan</a></li>
-                    <li class="active"><a href="homework.php">Kodutööd</a></li>
-                    <li><a href="compulsory_literature.php">Kohustuslik kirjandus</a></li>
+                    <?=$Helper->returnActivePage(basename($_SERVER["SCRIPT_FILENAME"], '.php'));?>
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Materjalid <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a href="https://www.tlu.ee/asio/kalenterit2/index.php?guest=intranet/tu&lang=est">ASIO</a></li>
@@ -73,7 +70,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="teachers.php">Kontaktid</a></li>
+
                 </ul><a href="?logout=1" class="btn navbar-btn btn-ghost"><i class="fa fa-sign-out"></i>Logi välja</a>
             </div>
         </div>

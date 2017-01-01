@@ -12,5 +12,4 @@
 	/*KLASSID*/
 	require("../class/Helper.class.php");
 	$Helper = new Helper();
-
 ?>
