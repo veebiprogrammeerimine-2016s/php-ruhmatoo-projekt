@@ -1,15 +1,17 @@
 <?php
 
     require("functions.php");
+    require("../class/Lesson.class.php");
+    require("../class/Teacher.class.php");
 
     //Kui ei ole kasutaja ID
-
     if(!isset($_SESSION["userId"])){
 
         //Suuna sisselogimis lehele
         header("Location: login.php");
         exit();
     }
+
 
     //Kui on log out aadressireal, siis login v'lja
     if(isset($_GET["logout"])){
@@ -18,8 +20,11 @@
         header("Location: login.php");
         exit();
     }
+
+
 ?>
 
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,6 +108,57 @@
         </div>
     </div>
 </header>
+=======
+
+
+
+
+<?php
+    // Teacher stuff.
+    $Teacher = new Teacher($mysqli);
+    $allTeachers = $Teacher->get($_SESSION["userEmail"]);
+
+    if(isset($_POST["sendTeacher"])){
+
+        $Teacher->save(
+            $Helper->cleanInput($_POST["teacher"]),
+            $Helper->cleanInput($_POST["roomnumber"]),
+            $Helper->cleanInput($_POST["material"]),
+            $Helper->cleanInput($_POST["email"]),
+            $Helper->cleanInput($_SESSION["userEmail"]));
+
+        header("Location: homework.php");
+        exit();
+    }
+?>
+
+
+
+
+
+<?php
+    // Lesson stuff
+    $Lesson = new Lesson($mysqli);
+    $allLessons = $Lesson->get($_SESSION["userEmail"]);
+
+    if(isset($_POST["sendClass"])){
+
+        $Lesson->save(
+            $Helper->cleanInput($_POST["classname"]),
+            $Helper->cleanInput($_POST["classcode"]),
+            $Helper->cleanInput($_POST["classteacher"]),
+            $Helper->cleanInput($_SESSION["userEmail"]));
+
+        header("Location: homework.php");
+        exit();
+    }
+?>
+
+
+
+
+<?php require("header.php"); ?>
+>>>>>>> dd0505fa4138d73eb1726f1231303146e9fc7ed3
 
 <section class="background-gray-lightest">
     <div class="container">
@@ -116,6 +172,7 @@
 
 
         <h1 class="heading">Kodutööd</h1>
+
         <form class="form-horizontal" method="post" id="homeworkform">
             <fieldset>
 
@@ -262,7 +319,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="singlebutton"></label>
                     <div class="col-md-4">
-                        <button class="btn btn-primary" type="submit">Salvesta</button>
+                        <button class="btn btn-primary" name="sendReading" type="submit">Salvesta</button>
                     </div>
                 </div>
 
@@ -303,7 +360,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="roomnumber">Ruuminumber(*)</label>
                     <div class="col-md-4">
-                        <input id="roomnumber" name="roomnumber" placeholder="(T302)" type="text" class="form-control input-md" >
+                        <input id="roomnumber" name="roomnumber" placeholder="T302" type="text" class="form-control input-md" >
 
                     </div>
                 </div>
@@ -312,7 +369,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="email">Email(*)</label>
                     <div class="col-md-4">
-                        <input id="email" name="email" type="text" placeholder="(keegi.õppejõud@tlu.ee)" class="form-control input-md" >
+                        <input id="email" name="email" type="text" placeholder="keegi.õppejõud@tlu.ee" class="form-control input-md" >
 
                     </div>
                 </div>
@@ -321,7 +378,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="material">Kodulehe aadress</label>
                     <div class="col-md-4">
-                        <input id="material" name="material" placeholder="(http://www.mingisait.tlu.ee)" type="text" class="form-control input-md">
+                        <input id="material" name="material" value="" placeholder="http://www.mingisait.tlu.ee" type="text" class="form-control input-md">
                     </div>
                 </div>
 
@@ -335,7 +392,6 @@
 
             </fieldset>
         </form>
-
 
         <script>
 
@@ -356,8 +412,6 @@
 
         </script>
 
-
-
         <form class="form-horizontal" method="post" id="classform" name="classform">
             <fieldset>
 
@@ -368,7 +422,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="classname">Nimi(*)</label>
                     <div class="col-md-4">
-                        <input id="classname" name="classname" type="text" placeholder="(Andmebaaside programmeerimine)" class="form-control input-md" >
+                        <input id="classname" name="classname" type="text" placeholder="Andmebaaside programmeerimine" class="form-control input-md" >
 
                     </div>
                 </div>
@@ -377,7 +431,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="classcode">Ainekood(*)</label>
                     <div class="col-md-4">
-                        <input id="classcode" name="classcode" placeholder="(IFI6013.DT)" type="text" class="form-control input-md">
+                        <input id="classcode" name="classcode" placeholder="IFI6013.DT" type="text" class="form-control input-md">
                     </div>
                 </div>
 
@@ -386,8 +440,12 @@
                     <label class="col-md-4 control-label" for="classteacher">Õpetaja(*)</label>
                     <div class="col-md-4">
                         <select id="classteacher" name="classteacher" class="form-control">
-                            <option value="1">Romil Robtšenkov</option>
-                            <option value="2">Tanel Toova</option>
+                            <?php
+                                foreach($allTeachers as $teacher){
+                                    $html = "";
+                                    $html .= "<option value='$teacher->name'>$teacher->name</option>";
+                                    echo $html;}
+                            ?>
                         </select>
                     </div>
                 </div>
@@ -396,6 +454,7 @@
 
                 <!-- Button -->
                 <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
                     <div class="col-md-4">
                         <button class="btn btn-primary" name="sendClass" type="submit">Salvesta</button>
                     </div>
@@ -427,65 +486,7 @@
 
 </section>
 
-<footer class="footer">
-    <div class="footer__block">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-12">
-                    <h4 class="heading">Mingi tekst</h4>
-                    <p>Tekst, tekst</p>
-                    <p>Tekst, tekst</p>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <h4 class="heading">Kontaktid</h4>
-                    <h5>Tallinna Ülikool</h5>
-                    <p> Narva mnt 25<br />10120 Tallinn<br />+372 6409101</p>
-                    <p> <a href="mailto:tlu@tlu.ee">tlu@tlu.ee</a></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <h4 class="heading">Tekst</h4>
-                    <ul>
-                        <li><a href="category.html">tekst</a></li>
-                        <li><a href="category.html">tekst</a></li>
-                        <li><a href="category.html">tekst</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <h4 class="heading">Liitu meiega</h4>
-                    <p class="social social--big"><a href="https://www.facebook.com/groups/420958561444474/?ref=bookmarks" data-animate-hover="pulse" class="external facebook"><i class="fa fa-facebook"></i></a><a href="https://twitter.com/tallinnaylikool" data-animate-hover="pulse" class="external twitter"><i class="fa fa-twitter"></i></a><a href="https://www.flickr.com/photos/tallinnuniversity/sets/" data-animate-hover="pulse" class="external flickr"><i class="fa fa-flickr"></i></a></p>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <h4 class="heading">Uudised</h4>
-                    <p>Liitu uudiskirjaga ja saad esimesena teada uutest postitustest ja uudistest.</p>
-                    <form class="footer__newsletter">
-                        <div class="input-group">
-                            <input type="text" placeholder="Palun sisesta siia oma e-maili aadress." class="form-control"><span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-send"></i></button></span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer__copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>&copy;2017 </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
 
-<!-- Javascript files-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></>
-<script src="../style_script/js/bootstrap.min.js"></>
-<script src="../style_script/js/jquery.cookie.js"> </>
-    <script src="../style_script/js/lightbox.min.js"></>
-        <script src="../style_script/js/front.js"></>
-        </body>
-        </html>
-
+<?php require("footer.php"); ?>
+</body>
+</html>
