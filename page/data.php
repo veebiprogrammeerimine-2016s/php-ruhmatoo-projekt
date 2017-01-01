@@ -86,7 +86,7 @@
 		empty($newHeadlineError)&&
 		empty($newContentError)
 		){
-			$Topic->createNew ($Helper->cleanInput($_POST["headline"]), $Helper->cleanInput($_POST["content"]), $_SESSION["firstName"], $_SESSION["email"], $_SESSION["userId"], $category);
+			$Topic->createNew ($Helper->cleanInput($_POST["headline"]), $Helper->cleanInput($_POST["content"]), $_SESSION["userName"], $_SESSION["userId"], $category);
 			header("Location:data.php");
 			exit();
 	} 
@@ -116,11 +116,8 @@
 		if($_GET["sort"] == "topic"){
 			$sort_name = "teema";
 		}
-		if($_GET["sort"] == "user"){
+		if($_GET["sort"] == "username"){
 			$sort_name = "kasutaja";
-		}
-		if($_GET["sort"] == "email"){
-			$sort_name = "e-posti";
 		}
 		if($_GET["sort"] == "created"){
 			$sort_name = "teema lisamise kuupäeva";
@@ -176,11 +173,9 @@
 				$html .= "<tr>"; 
 					$topicOrder = "ASC";
 					$userOrder = "ASC";
-					$emailOrder = "ASC";
 					$dateOrder = "ASC";
 					$topicArrow = "&larr;";
 					$userArrow = "&larr;";
-					$emailArrow = "&larr;";
 					$dateArrow = "&olarr;";
 					
 					if (isset($_GET["sort"]) && $_GET["sort"] == "topic") {
@@ -190,17 +185,10 @@
 						}
 					}
 					
-					if (isset($_GET["sort"]) && $_GET["sort"] == "user") {
+					if (isset($_GET["sort"]) && $_GET["sort"] == "username") {
 						if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
 							$userOrder="DESC";
 							$userArrow = "&rarr;";
-						}
-					}
-					
-					if (isset($_GET["sort"]) && $_GET["sort"] == "email") {
-						if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
-							$emailOrder="DESC"; 
-							$emailArrow = "&rarr;";
 						}
 					}
 					
@@ -216,11 +204,8 @@
 					<a href='?q=".$q."&sort=topic&order=".$topicOrder."' style='text-decoration:none'>
 					<font size='2'>Teema</font><br><font size='2'>A</font>".$topicArrow."</th>";
 					$html .= "<th>
-					<a href='?q=".$q."&sort=user&order=".$userOrder."' style='text-decoration:none'>
+					<a href='?q=".$q."&sort=username&order=".$userOrder."' style='text-decoration:none'>
 					<font size='2'>Kasutaja</font><br><font size='2'>A</font>".$userArrow."</th>";
-					$html .= "<th>
-					<a href='?q=".$q."&sort=email&order=".$emailOrder."' style='text-decoration:none'>
-					<font size='2'>Kasutaja e-post</font><br><font size='2'>A</font>".$emailArrow."</th>";
 					$html .= "<th>
 					<a href='?q=".$q."&sort=created&order=".$dateOrder."' style='text-decoration:none'>
 					<font size='2'>Lisamise kuupäev</font><br><font size='2'>&#128336;</font>".$dateArrow."</th>";
@@ -231,7 +216,6 @@
 				$html .= "<th><font size='2'>ÜLDINE</font></th>";
 				$html .= "<th></th>";
 				$html .= "<th></th>";
-				$html .= "<th></th>";
 				$html .= "</thead>";
 			
 			
@@ -239,8 +223,7 @@
 				$html .= "<tbody>";
 				$html .= "<tr>";
 					$html .= "<td font size='20'><a href='topic.php?id=".$gt->id."' style='text-decoration:none'><font size='4'>".$gt->subject."</font></a></td>";
-					$html .= "<td>".$gt->user."</td>";
-					$html .= "<td>".$gt->email."</td>";
+					$html .= "<td>".$gt->username."</td>";
 					$html .= "<td>".$gt->created."</td>";
 				$html .= "</tr>";
 				$html .= "</tbody>";
@@ -250,15 +233,13 @@
 				$html .= "<th><font size='2'>LEIA ENDALE TREENINGPARTNER</font></th>";
 				$html .= "<th></th>";
 				$html .= "<th></th>";
-				$html .= "<th></th>";
 				$html .= "</thead>";
 				
 			foreach($partnerTopics as $pt){
 				$html .= "<tbody>";
 				$html .= "<tr>";
 					$html .= "<td font size='20'><a href='topic.php?id=".$pt->id."' style='text-decoration:none'><font size='4'>".$pt->subject."</font></a></td>";
-					$html .= "<td>".$pt->user."</td>";
-					$html .= "<td>".$pt->email."</td>";
+					$html .= "<td>".$pt->username."</td>";
 					$html .= "<td>".$pt->created."</td>";
 				$html .= "</tr>";
 				$html .= "</tbody>";

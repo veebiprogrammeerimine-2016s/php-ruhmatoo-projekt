@@ -37,7 +37,7 @@
 	if (isset ($_POST["reply"]) && 
 		empty($newReplyError)
 		){
-			$Reply->createNew($Helper->cleanInput($_POST["reply"]), $Helper->cleanInput($_GET["id"]), $_SESSION["firstName"], $_SESSION["email"], $_SESSION["userId"]); 	
+			$Reply->createNew($Helper->cleanInput($_POST["reply"]), $Helper->cleanInput($_GET["id"]), $_SESSION["userName"], $_SESSION["userId"]); 	
 	} 
 	
 	if(isset($_GET["delete"]) && isset($_GET["id"])) {
@@ -87,7 +87,7 @@
 				<p style="border:1px; border-style:solid; border-color:#a6a6a6; padding: 0.5em;">
 				<?php echo $topic->content;?>
 				<br><br>
-				<font color="grey"><em>Teema algataja: <?php echo $topic->user;?>,  <?php echo $topic->email;?></em></font>
+				<font color="grey"><em>Teema algataja: <?php echo $topic->username;?></em></font>
 				<br>
 				<font color="grey"><em>Lisamise kuupäev: <?php echo $topic->created;?></em></font>
 				</p>
@@ -98,7 +98,6 @@
 						$html .= "<tr>"; 
 							$html .= "<th>Vastused</th>";
 							$html .= "<th>Kasutaja</th>";
-							$html .= "<th>Kasutaja e-post</th>";
 							$html .= "<th>Lisamise kuupäev</th>";
 							$html .= "<th></th>";
 						$html .= "</tr>";
@@ -106,8 +105,7 @@
 					foreach($replies as $r){
 						$html .= "<tr>";
 							$html .= "<td>".$r->content."</td>";
-							$html .= "<td>".$r->user."</td>";
-							$html .= "<td>".$r->email."</td>";
+							$html .= "<td>".$r->username."</td>";
 							$html .= "<td>".$r->created."</td>";
 							$html .= "<td>".$change_reply = $Reply->checkUser($_GET["id"], $_SESSION["userId"], $r->id)."</td>";
 						$html .= "</tr>";

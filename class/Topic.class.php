@@ -6,12 +6,12 @@
 		$this->connection = $mysqli;
 	}
 	
-	function createNew($subject, $content, $user, $email, $user_id, $category){
+	function createNew($subject, $content, $username, $user_id, $category){
 		
-		$stmt = $this->connection->prepare("INSERT INTO topics(subject, content, user, email, user_id, category) VALUES(?,?,?,?,?,?)");
+		$stmt = $this->connection->prepare("INSERT INTO topics(subject, content, username, user_id, category) VALUES(?,?,?,?,?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssssis", $subject, $content, $user, $email, $user_id, $category); 
+		$stmt->bind_param("sssis", $subject, $content, $username, $user_id, $category); 
 		
 		if($stmt->execute()) {
 			$_SESSION["topic_message"] = "<p style='color:green;'>TEEMA LISATUD!</p'>";
@@ -22,7 +22,7 @@
 	}
 	
 	function addToGeneralArray ($q, $sort, $order){
-		$allowedSort = ["subject", "user", "email", "created"];
+		$allowedSort = ["subject", "username", "created"];
 		
 		if(!in_array($sort, $allowedSort)) { //esimene asi, mis ta tahab, on nõel ja teine heinakuhi
 			// ei ole lubatud tulp, siis sorteerime teema järgi
@@ -43,19 +43,19 @@
 			//echo "Otsib: ".$q;
 			//NB column name inside quotes(``)!
 			$stmt = $this->connection->prepare("
-				SELECT id, subject, created, user, email
+				SELECT id, subject, created, username
 				FROM topics
 				WHERE deleted IS NULL and `category` = 'general'
-				AND (subject LIKE ? OR user LIKE ? OR email LIKE ? OR created LIKE ?)
+				AND (subject LIKE ? OR username LIKE ? OR created LIKE ?)
 				ORDER BY $sort $order
 			"); 
 			$searchWord = "%".$q."%";
 			//echo $q;
 			//echo $searchWord;
-			$stmt->bind_param("ssss", $searchWord, $searchWord, $searchWord, $searchWord);
+			$stmt->bind_param("sss", $searchWord, $searchWord, $searchWord);
 		} else {
 			$stmt =  $this->connection->prepare("
-				SELECT id, subject, created, user, email
+				SELECT id, subject, created, username
 				FROM topics
 				WHERE deleted IS NULL and `category` = 'general'
 				ORDER BY $sort $order				
@@ -64,7 +64,7 @@
 		
 		echo $this->connection->error;
 		
-		$stmt->bind_result ($id, $subject, $date, $user, $email);
+		$stmt->bind_result ($id, $subject, $date, $username);
 		$stmt-> execute();
 		
 		$result = array();
@@ -74,8 +74,7 @@
 			$topic->id = $id;
 			$topic->subject = $subject;
 			$topic->created = $date;
-			$topic->user = $user;
-			$topic->email = $email;
+			$topic->username = $username;
 			
 			array_push ($result, $topic);
 			$_SESSION["subject"] = $subject;
@@ -87,7 +86,7 @@
 	}
 	
 	function addToPartnerArray ($q, $sort, $order){
-		$allowedSort = ["subject", "user", "email", "created"];
+		$allowedSort = ["subject", "username", "created"];
 		
 		if(!in_array($sort, $allowedSort)) {
 			$sort = "subject";
@@ -102,18 +101,18 @@
 
 		if($q != "") {
 			$stmt = $this->connection->prepare("
-				SELECT id, subject, created, user, email
+				SELECT id, subject, created, username
 				FROM topics
 				WHERE deleted IS NULL and `category` = 'partner'
-				AND (subject LIKE ? OR user LIKE ? OR email LIKE ? OR created LIKE ?)
+				AND (subject LIKE ? OR username LIKE ? OR created LIKE ?)
 				ORDER BY $sort $order
 			"); 
 			$searchWord = "%".$q."%";
 
-			$stmt->bind_param("ssss", $searchWord, $searchWord, $searchWord, $searchWord);
+			$stmt->bind_param("sss", $searchWord, $searchWord, $searchWord);
 		} else {
 			$stmt =  $this->connection->prepare("
-				SELECT id, subject, created, user, email
+				SELECT id, subject, created, username
 				FROM topics
 				WHERE deleted IS NULL and `category` = 'partner'
 				ORDER BY $sort $order				
@@ -122,7 +121,7 @@
 		
 		echo $this->connection->error;
 		
-		$stmt->bind_result ($id, $subject, $date, $user, $email);
+		$stmt->bind_result ($id, $subject, $date, $username);
 		$stmt-> execute();
 		
 		$result = array();
@@ -132,8 +131,7 @@
 			$topic->id = $id;
 			$topic->subject = $subject;
 			$topic->created = $date;
-			$topic->user = $user;
-			$topic->email = $email;
+			$topic->username = $username;
 			
 			array_push ($result, $topic);
 			$_SESSION["subject"] = $subject;
@@ -145,12 +143,12 @@
 	
 	function get($topic_id){
 		
-		$stmt = $this->connection-> prepare("SELECT subject, content, created, user, email FROM topics WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection-> prepare("SELECT subject, content, created, username FROM topics WHERE id=? AND deleted IS NULL");
 		
 		echo $this->connection->error;
 
 		$stmt->bind_param("i", $topic_id);
-		$stmt->bind_result($subject, $content, $created, $user, $email);
+		$stmt->bind_result($subject, $content, $created, $username);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -162,8 +160,7 @@
 			$topic->subject = $subject;
 			$topic->content = $content;
 			$topic->created = $created;
-			$topic->user = $user;
-			$topic->email = $email;
+			$topic->username = $username;
 			
 		}else{
 			// ei saanud rida andmeid kätte

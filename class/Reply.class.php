@@ -6,12 +6,12 @@
 		$this->connection = $mysqli;
 	}
 	
-	function createNew($content, $subject_id, $user, $email, $user_id){
+	function createNew($content, $subject_id, $username, $user_id){
 		
-		$stmt = $this->connection->prepare("INSERT INTO replies(content, user, email, topic_id, user_id) VALUES(?,?,?,?,?)");
+		$stmt = $this->connection->prepare("INSERT INTO replies(content, username, topic_id, user_id) VALUES(?,?,?,?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("sssii", $content, $user, $email, $subject_id, $user_id); 
+		$stmt->bind_param("ssii", $content, $username, $subject_id, $user_id); 
 		
 		if($stmt->execute()) {
 			$_SESSION["reply_message"] = "<p style='color:green;'>VASTUS LISATUD!</p>";
@@ -24,7 +24,7 @@
 	function addToArray ($topic_id){
 		
 		$stmt = $this->connection->prepare("
-			SELECT id, content, created, user, email
+			SELECT id, content, created, username
 			FROM replies
 			WHERE topic_id=?
 			AND deleted IS NULL
@@ -33,7 +33,7 @@
 		
 		$stmt->bind_param("i", $topic_id);
 		
-		$stmt->bind_result($id, $content, $created, $user, $email);
+		$stmt->bind_result($id, $content, $created, $username);
 		$stmt-> execute();
 		
 		$result = array();
@@ -43,8 +43,7 @@
 			$reply->id = $id;
 			$reply->content = $content;
 			$reply->created = $created;
-			$reply->user = $user;
-			$reply->email = $email;
+			$reply->username = $username;
 		
 			array_push ($result, $reply);
 		}
