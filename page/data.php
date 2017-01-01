@@ -52,6 +52,10 @@
 		}
 	}
 	
+	if (isset ($_POST["category"]) ){ 
+			$category = $_POST["category"];
+	}
+	
 	$topic_msg = "";
 	if(isset($_SESSION["topic_message"])){
 		$topic_msg = $_SESSION["topic_message"];
@@ -82,7 +86,7 @@
 		empty($newHeadlineError)&&
 		empty($newContentError)
 		){
-			$Topic->createNew ($Helper->cleanInput($_POST["headline"]), $Helper->cleanInput($_POST["content"]), $_SESSION["firstName"], $_SESSION["email"], $_SESSION["userId"]);
+			$Topic->createNew ($Helper->cleanInput($_POST["headline"]), $Helper->cleanInput($_POST["content"]), $_SESSION["firstName"], $_SESSION["email"], $_SESSION["userId"], $category);
 			header("Location:data.php");
 			exit();
 	} 
@@ -102,7 +106,8 @@
 		$order = $_GET["order"];
 	}
 	
-	$topics = $Topic->addToArray($q, $sort, $order);
+	$generalTopics = $Topic->addToGeneralArray($q, $sort, $order);
+	$partnerTopics = $Topic->addToPartnerArray($q, $sort, $order);
 	
 	$sort_name = "";
 	if(!isset($_GET["sort"])){
@@ -137,15 +142,15 @@
 		<form method="POST">
 			<label>Kategooria:</label>
 			<?php if($category == "general") { ?>
-			<input type="radio" name="gender" value="female" checked>Üldine
+			<input type="radio" name="category" value="general" checked>Üldine
 			<?php } else { ?>
-			<input type="radio" name="gender" value="female">Üldine
+			<input type="radio" name="category" value="general">Üldine
 			<?php } ?>
 			
 			<?php if($category == "partner") { ?>
-			<input type="radio" name="gender" value="male" checked>Leia endale treeningpartner
+			<input type="radio" name="category" value="partner" checked>Leia endale treeningpartner
 			<?php } else { ?>
-			<input type="radio" name="gender" value="male">Leia endale treeningpartner
+			<input type="radio" name="category" value="partner">Leia endale treeningpartner
 			<?php } ?>
 			<br><br>
 			<label>Pealkiri:</label>
@@ -230,13 +235,13 @@
 				$html .= "</thead>";
 			
 			
-			foreach($topics as $t){
+			foreach($generalTopics as $gt){
 				$html .= "<tbody>";
 				$html .= "<tr>";
-					$html .= "<td font size='20'><a href='topic.php?id=".$t->id."' style='text-decoration:none'><font size='4'>".$t->subject."</font></a></td>";
-					$html .= "<td>".$t->user."</td>";
-					$html .= "<td>".$t->email."</td>";
-					$html .= "<td>".$t->created."</td>";
+					$html .= "<td font size='20'><a href='topic.php?id=".$gt->id."' style='text-decoration:none'><font size='4'>".$gt->subject."</font></a></td>";
+					$html .= "<td>".$gt->user."</td>";
+					$html .= "<td>".$gt->email."</td>";
+					$html .= "<td>".$gt->created."</td>";
 				$html .= "</tr>";
 				$html .= "</tbody>";
 			} 
@@ -247,6 +252,17 @@
 				$html .= "<th></th>";
 				$html .= "<th></th>";
 				$html .= "</thead>";
+				
+			foreach($partnerTopics as $pt){
+				$html .= "<tbody>";
+				$html .= "<tr>";
+					$html .= "<td font size='20'><a href='topic.php?id=".$pt->id."' style='text-decoration:none'><font size='4'>".$pt->subject."</font></a></td>";
+					$html .= "<td>".$pt->user."</td>";
+					$html .= "<td>".$pt->email."</td>";
+					$html .= "<td>".$pt->created."</td>";
+				$html .= "</tr>";
+				$html .= "</tbody>";
+			} 
 			
 			$html .= "</table>";
 			echo $html;

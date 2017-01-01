@@ -6,12 +6,12 @@
 		$this->connection = $mysqli;
 	}
 	
-	function createNew($subject, $content, $user, $email, $user_id){
+	function createNew($subject, $content, $user, $email, $user_id, $category){
 		
-		$stmt = $this->connection->prepare("INSERT INTO topics(subject, content, user, email, user_id) VALUES(?,?,?,?,?)");
+		$stmt = $this->connection->prepare("INSERT INTO topics(subject, content, user, email, user_id, category) VALUES(?,?,?,?,?,?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssssi", $subject, $content, $user, $email, $user_id); 
+		$stmt->bind_param("ssssis", $subject, $content, $user, $email, $user_id, $category); 
 		
 		if($stmt->execute()) {
 			$_SESSION["topic_message"] = "<p style='color:green;'>TEEMA LISATUD!</p'>";
@@ -21,7 +21,7 @@
 		
 	}
 	
-	function addToArray ($q, $sort, $order){
+	function addToGeneralArray ($q, $sort, $order){
 		$allowedSort = ["subject", "user", "email", "created"];
 		
 		if(!in_array($sort, $allowedSort)) { //esimene asi, mis ta tahab, on nõel ja teine heinakuhi
@@ -41,10 +41,11 @@
 		//kas otsib
 		if($q != "") {
 			//echo "Otsib: ".$q;
+			//NB column name inside quotes(``)!
 			$stmt = $this->connection->prepare("
 				SELECT id, subject, created, user, email
 				FROM topics
-				WHERE deleted IS NULL 
+				WHERE deleted IS NULL and `category` = 'general'
 				AND (subject LIKE ? OR user LIKE ? OR email LIKE ? OR created LIKE ?)
 				ORDER BY $sort $order
 			"); 
@@ -56,7 +57,7 @@
 			$stmt =  $this->connection->prepare("
 				SELECT id, subject, created, user, email
 				FROM topics
-				WHERE deleted IS NULL
+				WHERE deleted IS NULL and `category` = 'general'
 				ORDER BY $sort $order				
 			");
 		}
@@ -81,6 +82,63 @@
 		}
 		$stmt->close();
 		//$mysqli->close();
+		
+		return $result;
+	}
+	
+	function addToPartnerArray ($q, $sort, $order){
+		$allowedSort = ["subject", "user", "email", "created"];
+		
+		if(!in_array($sort, $allowedSort)) {
+			$sort = "subject";
+		}
+		
+		$orderBy = "ASC";
+		
+		if($order == "DESC") {
+			$orderBy = "DESC";
+		}
+		
+
+		if($q != "") {
+			$stmt = $this->connection->prepare("
+				SELECT id, subject, created, user, email
+				FROM topics
+				WHERE deleted IS NULL and `category` = 'partner'
+				AND (subject LIKE ? OR user LIKE ? OR email LIKE ? OR created LIKE ?)
+				ORDER BY $sort $order
+			"); 
+			$searchWord = "%".$q."%";
+
+			$stmt->bind_param("ssss", $searchWord, $searchWord, $searchWord, $searchWord);
+		} else {
+			$stmt =  $this->connection->prepare("
+				SELECT id, subject, created, user, email
+				FROM topics
+				WHERE deleted IS NULL and `category` = 'partner'
+				ORDER BY $sort $order				
+			");
+		}
+		
+		echo $this->connection->error;
+		
+		$stmt->bind_result ($id, $subject, $date, $user, $email);
+		$stmt-> execute();
+		
+		$result = array();
+
+		while ($stmt->fetch()){	
+			$topic = new StdClass();
+			$topic->id = $id;
+			$topic->subject = $subject;
+			$topic->created = $date;
+			$topic->user = $user;
+			$topic->email = $email;
+			
+			array_push ($result, $topic);
+			$_SESSION["subject"] = $subject;
+		}
+		$stmt->close();
 		
 		return $result;
 	}
