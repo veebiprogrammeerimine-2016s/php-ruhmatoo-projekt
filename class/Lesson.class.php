@@ -21,8 +21,35 @@ class Lesson{
             echo "ERROR ".$stmt->error;
         }
         $stmt->close();
-    }}
+    }
 
+
+    function get($useremail){
+
+        $stmt = $this->connection->prepare("
+            SELECT id, name, classcode, teacher
+            FROM classes_groupwork
+            WHERE email = ?
+        ");
+        echo $this->connection->error;
+
+        $stmt->bind_param("s", $useremail);
+        $stmt->bind_result($id, $name, $classcode, $teacher);
+        $stmt->execute();
+
+        $result = array();
+        while ($stmt->fetch()) {
+
+            $lessons = new StdClass();
+            $lessons->id = $id;
+            $lessons->name = $name;
+            $lessons->classcode = $classcode;
+            $lessons->teacher = $teacher;
+            array_push($result, $lessons);
+        }
+        $stmt->close();
+        return $result;
+    }}
 
 
 ?>
