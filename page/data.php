@@ -180,7 +180,7 @@ function addRating(el){
 	$.get( "data.php?addRate="+id, function( data ) {
 		
 	var result = JSON.parse(data);
-	  console.log(result);
+	console.log(result);
 	  if(result.success){
 		  
 		  el.className += " rated";
@@ -220,27 +220,34 @@ function addRating(el){
 
 
 <div class="container">
-	<div class="page-header">
-		<h1>Hiljutised postitused</h1>
-	</div>
-	<p class="lead"></p>
 	<div class="wrapper">
+	<div class="col-lg-6">
 		<ul id="results"><!-- results appear here --></ul>
 		<br>
 		<br>
 		<br>
 		<div class="loading-info"><img src="LoaderIcon.gif" /></div>
 		<div class="load-more"></div>
-		
 		<br>
 		<br>
 		<br>
 	</div>
-
+	</div>
 </div>
 
+
+<div class="col-lg-4 col-lg-offset-8">
+	<div class="reklaamid">
+	
+		<a href="http://www.tlu.ee"><img src="tlu.jpg" style="padding: 30px; border:1px solid;"></a>
+	</div>
+</div>
+
+
+
+<!--
 <div class="search">
-<form class="navbar-form navbar-middle" method="GET">
+	<form class="navbar-form navbar-middle" method="GET">
     <div class="input-group">
       <input type="text" name="searchPost" class="form-control" placeholder="ei leia midagi?" value="<?=$search;?>">
       <span class="input-group-btn">
@@ -249,7 +256,7 @@ function addRating(el){
     </div>
 	</form>
 </div>
-
+-->
 
 
 

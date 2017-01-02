@@ -83,13 +83,14 @@
 		if($rated){
 			$class = " rated";
 		}
-		echo '<br><div>';
+		echo '<div><br>';
 		echo '<table>';
-		echo '<tr><h2>'.$name . ' <a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="counter ">'.$count.'</span></a></h2></tr>';
+		echo '<tr><span class="caption">'.$name . ' </span>  <a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-arrow-up"> </span> <span class="counter">'.$count.'</span></a></tr>';
 		echo '<td>'."<a href='topic.php?topicid=$id&posted'><img src=".$message." ></a>".'</td>';
 		echo '</table>';
 		echo '<br><br>';
 		echo '</div>';
+		echo '<hr>';
 	}
 	
 	/*function userRatingExists($id, $mysqli){

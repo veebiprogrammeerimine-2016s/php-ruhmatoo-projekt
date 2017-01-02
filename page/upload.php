@@ -59,9 +59,9 @@
 		
 	}
 	
-	if (isset($_POST["fileToUpload"])) {
+	if (isset($_FILES["fileToUpload"])) {
 		
-		if (empty($_POST["fileToUpload"])) {
+		if (empty($$_FILES["fileToUpload"])) {
 		
 			header("Location: upload.php?empty");
 		
@@ -70,51 +70,39 @@
 	}
 	
 	if (isset($_POST["caption"])) {
-		
 		if (!empty($_POST["caption"])) {
-		
-			if (strlen($_POST["caption"])<3 &&
+			if (strlen($_POST["caption"])<3 ||
 				strlen($_POST["caption"])>30) {
-			
 					header("Location: upload.php?short");
-			
 			}
-		
-		}
-		
+		}	
 	}
 	
 	if	(isset($_GET["empty"])) {
-				 
 				 $uploadError="
 						<br><div class='alert alert-danger'>
 						<strong>
 						 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
 						Tühjasi väljasi ei tohi olla</strong>
-						</div>";
-				 
+						</div>";	 
 	}
 	
 	if	(isset($_GET["short"])) {
-				 
 				 $uploadError="
 						<br><div class='alert alert-danger'>
 						<strong>
 						 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
 						Pealkiri peab olema vähemalt 3 tähemärki ning võib olla kuni 30 tähemärki pikk</strong>
 						</div>";
-				 
 	}
 	
 	if	(isset($_GET["success"])) {
-				 
 				 $uploadError="
 						<br><div class='alert alert-success'>
 						<strong>
 						<span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>
 						Sinu postitus laeti üles! Trehva üle: (siia tuleb postituse link)</strong>
-						</div>";
-				 
+						</div>";	 
 	}
 	
 	$imgurl="";
@@ -123,11 +111,11 @@
 		isset($_POST["caption"]) &&
 		isset($_FILES["fileToUpload"]) && 
 		!empty($_FILES["fileToUpload"]["name"]) &&
-		(strlen($_POST["caption"])>3))	{
-		$userid=$_SESSION["userId"];
-		$caption = $Helper->cleanInput($_POST["caption"]);
-		$Upload->uploadPicture($userid,$caption,$imgurl);
-			
+		(strlen($_POST["caption"])>3))
+		{
+			$userid=$_SESSION["userId"];
+			$caption = $Helper->cleanInput($_POST["caption"]);
+			$Upload->uploadPicture($userid,$caption,$imgurl);
 		}
 	
 	
@@ -147,30 +135,22 @@ $(function () {
 	<div class="page-header">
 		<h1>Loo uus postitus</h1>
 	</div>
-<form method=post enctype="multipart/form-data">
-  <div class="form-group">
-    <label>Postituse pealkiri</label>
-    <input type="text" name="caption" id="caption" class="form-control" placeholder="Insert a caption here">
-  </div>
-  
-  <a data-toggle="tooltip" title="Pilt peab olema .bmp, .gif, .png, .jpg või .jpeg formaadis ning maksimaalselt 5mb.">Lisainfo</a>
+	<form method=post enctype="multipart/form-data">
+	  <div class="form-group">
+		<label>Postituse pealkiri</label>
+		<input type="text" name="caption" id="caption" class="form-control" placeholder="Sisesta pealkiri">
+	  </div>
+	  <a data-toggle="tooltip" title="Pilt peab olema .bmp, .gif, .png, .jpg või .jpeg formaadis ning maksimaalselt 5mb.">Lisainfo</a>
+	  <div class="form-group">
+	  <br>
+		<label for="exampleInputFile">Pildifail</label>
+			<input type="file" name="fileToUpload"  id="fileToUpload">
+		<p class="help-block">
+		</p>
+	  </div>
+	  <button type="submit" name="submit" class="btn btn-default">Lae üles</button>
+	</form>
 
-		
-  <div class="form-group">
-  <br>
-    <label for="exampleInputFile">Pildifail</label>
-    <input type="file" name="fileToUpload"  id="fileToUpload">
-    <p class="help-block">
-		
-	</p>
-  </div>
-  
-  
-
-  <button type="submit" name="submit" class="btn btn-default">Lae üles</button>
-</form>
-
-<?php echo $uploadError; ?>
-
+	<?php echo $uploadError; ?>
 </div>
 <?php require("../footer.php"); ?>

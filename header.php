@@ -14,7 +14,7 @@
 
 		<!-- Latest compiled and minified JavaScript tra git -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		
+
 		
 		<style>
 		html {position: relative;min-height: 100%;}
@@ -25,15 +25,17 @@
 		.wrapper{width: 100%; margin: 0 auto; font-family: Georgia, "Times New Roman", Times, serif;}
 		.wrapper > ul#results li{margin-bottom: 100px;background: #f9f9f9; padding: 100px; list-style: none;}
 		.loading-info{text-align:center;}
-		.counter {text-decoration:none;}
+
 		.rated,
 		.rated:hover,
 		.rated:focus {
 			text-decoration:none;
 			color: #6495ED;
 			cursor:default;
+			font-size: 20px;
 		}
 		.rating {
+			font-size: 20px;
 			text-decoration:none;
 			cursor:pointer;
 		}
@@ -85,6 +87,16 @@
 			text-decoration:none;
 			color:	#F08080;
 		}
+		div.reklaamid {
+			position:fixed;
+			left:85%;
+			bottom:10%
+		}
+		span.caption {
+			font-size: 30px;
+			font-family: "Arial", Verdana, Sans-serif;
+		}
+
 		</style>
 	</head>
 	<body>
@@ -92,11 +104,6 @@
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar">test</span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href='data.php'><span class="iksdee">iksd.ee  </span></h2><span class="glyphicon glyphicon-sunglasses"></a>
         </div>
           <ul class="nav navbar-nav">
