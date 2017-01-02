@@ -183,7 +183,7 @@
 		return $userData;
 	}
 	
-		function editData($edit_id){
+	function editData($edit_id){
 		$stmt = $this->connection->prepare("SELECT email, phonenumber FROM users WHERE id=? AND deleted IS NULL");
 		echo $this->connection->error;
 		$stmt->bind_param("i", $edit_id);
@@ -246,10 +246,81 @@
 		$stmt->bind_param("sss", $exercise, $sets, $repeats);
 		
 		if ($stmt->execute()) {
-			echo "Salvestamine õnnestus";
+			//echo "Salvestamine õnnestus";
 		} else {
 			echo "ERROR".$stmt->error;
 		}
+	}
+	
+	
+	function get($q, $sort, $order) {
+		
+		$allowedSort = ["exercise", "sets", "repeats", "created"];
+		
+		if(!in_array($sort, $allowedSort)) {
+			//ei ole lubatud tulp
+			$sort = "exercise";
+		}
+		
+		$orderBy = "ASC";
+		
+		if ($order == "DESC") {
+			$orderBy = "DESC";
+		}
+		
+		//kas otsib
+		if ($q != "") {
+			
+			//echo "Otsib: ".$q;
+			
+			$stmt = $this->connection->prepare("
+			SELECT exercise, sets, repeats, created
+			FROM exercises
+			WHERE deleted IS NULL
+			AND (exercise LIKE ? OR sets LIKE ? OR repeats LIKE ?)
+			ORDER BY $sort $orderBy
+			
+		");	
+		
+		$searchWord = "%".$q."%";
+		$stmt->bind_param("sss", $searchWord, $searchWord, $searchWord);
+		
+		} else {
+		
+		$stmt = $this->connection->prepare("
+			SELECT exercise, sets, repeats, created
+			FROM exercises
+			WHERE deleted IS NULL
+			ORDER BY $sort $orderBy");
+		}
+		
+		echo $this->connection->error;
+		
+		$stmt->bind_result($exercise, $sets, $repeats, $created);
+		$stmt->execute();
+		
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda seni, kuni on rida andmeid
+		// mis vastab select lausele
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$person = new StdClass();
+			
+			$person->exercise = $exercise;
+			$person->sets = $sets;
+			$person->repeats = $repeats;
+			$person->created = $created;
+			
+			array_push($result, $person);
+		}
+		
+		$stmt->close();
+				
+		return $result;
 	}
 
 }?>

@@ -41,22 +41,38 @@
 	$setsError = "";
 	$repeats = "";
 	$repeatsError = "";
+	
+	if(isset($_GET["q"])) {
+		
+		//kui otsib, võtame otsisõna aadressirealt
+		$q = $_GET["q"];
+	} else {
+		//kas otsisõna on tühi
+		$q = "";
+	}
+	
+	$sort = "id";
+	$order = "ASC";
+	
+	if (isset($_GET["sort"]) && isset($_GET["order"])) {
+		$sort = $_GET["sort"];
+		$order = $_GET["order"];
+	}
 
 	$userData = $User->addToArray();
-	//echo $userData;
-	//var_dump($userFavorites);
+	$userExercises = $User->get($q, $sort, $order);
+
 ?>
 <?php require("../header.php"); ?>
 
 <div class "data" style="padding-left:10px;">
 <div align="center"><h1>Minu treeningpäevik</h1>
 	<p>
-		<a href="data.php">Tagasi avalehele</a><br>
-		<a href="?logout=1">Logi välja</a>
+		<a href="data.php">&larr; Tagasi foorumisse</a><br>
 	</p>
 </div>
 
-<div class="container">
+<div class="user" style="padding-left:20px;padding-right:20px"> 
 	<div class="row">
 			<div class="col-sm-4 col-md-4">
 
@@ -73,7 +89,7 @@
 
 			<h2>Lisa tehtud treening</h2>
 				<form method="POST"> 
-				<label>Harjutus</label><br>
+				<label>Treeningharjutus</label><br>
 							
 						<input type="text" name="exercise" value="<?=$exercise;?>"> <?php echo $exerciseError;?> <br><br>
 					
@@ -109,7 +125,96 @@
 			</body>
 	</div>
 	</div>
-</div>
 
+
+<h3>Otsi tehtud treeninguid</h3>
+<form>
+	<input type="search" name="q" value="<?=$q;?>">
+	<input type="submit" value="Otsi">
+</form>
+<br>
+
+<?php
+
+	$html = "<table class='table table-hover'>";
+
+	//TABELI SORTEERIMINE
+	$html .= "<tr>";
+	
+		$exerciseOrder = "ASC";
+		$setsOrder="ASC"; 
+		$repeatsOrder="ASC"; 
+		$createdOrder="ASC";
+		$exerciseArrow = "&uarr;";
+		$setsArrow = "&uarr;";
+		$repeatsArrow = "&uarr;";
+		$createdArrow = "&uarr;";
+
+		
+		if (isset($_GET["sort"]) && $_GET["sort"] == "exercise") {
+			if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
+				$exerciseOrder="DESC";
+				$exerciseArrow = "&darr;";
+			}
+		}
+		
+		if (isset($_GET["sort"]) && $_GET["sort"] == "sets") {
+			if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
+				$setsOrder="DESC"; 
+				$setsArrow = "&darr;";
+			}
+		}
+		
+		if (isset($_GET["sort"]) && $_GET["sort"] == "repeats") {
+			if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
+				$repeatsOrder="DESC";
+				$repeatsArrow = "&darr;";
+			}
+		}
+		
+		if (isset($_GET["sort"]) && $_GET["sort"] == "created") {
+			if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
+				$createdOrder="DESC";
+				$createdArrow = "&darr;";
+			}
+		}
+
+	$html .= "<thead class='bg-success'>";
+		$html .= "<th>
+				<a href='?q=".$q."&sort=exercise&order=".$exerciseOrder."'>
+					Treeningharjutus".$exerciseArrow."
+				</a>
+				</th>";
+		$html .= "<th>
+				<a href='?q=".$q."&sort=sets&order=".$setsOrder."'>
+					Seeria ".$setsArrow."
+				</a>	
+				</th>";
+		$html .= "<th>
+				<a href='?q=".$q."&sort=repeats&order=".$repeatsOrder."'>
+					Kordused ".$repeatsArrow."
+				</a>
+				</th>";
+		$html .= "<th>
+				<a href='?q=".$q."&sort=created&order=".$createdOrder."'>
+					Kuupäev	".$createdArrow."
+				</a>
+				</th>";
+	$html .= "</tr>";
+	$html .= "</thead>";
+	
+	foreach($userExercises as $p) {
+		$html .= "<tr>";
+			$html .= "<td>".$p->exercise."</td>";
+			$html .= "<td>".$p->sets."</td>";
+			$html .= "<td>".$p->repeats."</td>";
+			$html .= "<td>".$p->created."</td>";
+		$html .= "</tr>";	
+	}
+
+	$html .= "</table>";
+	echo $html;
+?>
+</div>
 
 <?php require("../footer.php"); ?>
