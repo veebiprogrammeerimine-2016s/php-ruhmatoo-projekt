@@ -11,6 +11,10 @@
         header("Location: data.php");
         exit();
     }
+
+
+
+
 ?>
 
 
@@ -78,7 +82,7 @@
                             <input type="password" name="loginPassword" autocomplete="off"/>
                         </div>
 
-                        <button class="button button-block">Logi sisse</button>
+                        <button class="button button-block" type="submit" name="logIn">Logi sisse</button>
 
                     </form>
 
@@ -126,38 +130,11 @@
                       <input type="password" name="passwordAgain" autocomplete="off"/>
                     </div>
 
-                    <button type="submit" class="button button-block">Loo kasutaja</button>
+                    <button type="submit" name="createAccount" class="button button-block">Loo kasutaja</button>
 
                 </form>
-                  <!--
-                  <script type="text">
-
-                      $("#signupform").validate({
-
-                          rules: {
-                              signupFirstname: {required: true},
-                              signupLastname: {required: true},
-                              signupEmail: {required: true, email: true},
-                              signupPassword: {required: true},
-                              passwordAgain: {required: true, equalTo: "#signupPassword"}
-
-                          },
-
-                          messages:{
-                              signupFirstname: {required: "Palun sisestage eesnimi."},
-                              signupLastname: {required: "Palun sisestage oma perekonnanimi."},
-                              signupEmail: {required: "Palun sisestage oma email", email: "Palun sisestage korrektne email"},
-                              signupPassword: {required: "Palun sisestage parool."},
-                              passwordAgain: {required: "Sisestage kontroll parool", equalTo: "Paroolid ei ühti"}
-                          }});
-
-                  </script>
-                  -->
-
 
               </div>
-
-
 
             </div>
 

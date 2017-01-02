@@ -17,7 +17,7 @@
     if(!isset($_SESSION["userId"])){
 
         //Suuna sisselogimis lehele
-        header("Location: login.php");
+        header("Location: homework.php");
         exit();
     }
 
@@ -26,7 +26,7 @@
     if(isset($_GET["logout"])){
 
         session_destroy();
-        header("Location: login.php");
+        header("Location: homework.php");
         exit();
     }
 
@@ -56,7 +56,7 @@
                         $Helper->cleanInput($_SESSION["userEmail"])
 
                     );
-                    header("Location: data.php");
+                    header("Location: homework.php");
                     exit();
 
         }
@@ -79,7 +79,7 @@
                     $Helper->cleanInput($_POST["classteacher"]),
                     $Helper->cleanInput($_SESSION["userEmail"])
                 );
-                header("Location: data.php");
+                header("Location: homework.php");
                 exit();
             }
     }
@@ -104,7 +104,7 @@
                     $Helper->cleanInput($_POST["material"]),
                     $Helper->cleanInput($_SESSION["userEmail"])
                 );
-                header("Location: data.php");
+                header("Location: homework.php");
                 exit();
             }
     }
@@ -114,8 +114,11 @@
 
 <?php require("header.php"); ?>
 
-
+<script src="sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+<script>swal("You did well to come so far");</script>
 <section class="background-gray-lightest">
+
     <div class="container">
         <div class="breadcrumbs">
             <ul class="breadcrumb">
