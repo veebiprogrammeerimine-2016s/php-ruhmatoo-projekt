@@ -24,55 +24,8 @@
 
 ?>
 
-
-
-
-
-<?php
-    // Teacher stuff.
-    $Teacher = new Teacher($mysqli);
-    $allTeachers = $Teacher->get($_SESSION["userEmail"]);
-
-    if(isset($_POST["sendTeacher"])){
-
-        $Teacher->save(
-            $Helper->cleanInput($_POST["teacher"]),
-            $Helper->cleanInput($_POST["roomnumber"]),
-            $Helper->cleanInput($_POST["material"]),
-            $Helper->cleanInput($_POST["email"]),
-            $Helper->cleanInput($_SESSION["userEmail"]));
-
-        header("Location: homework.php");
-        exit();
-    }
-?>
-
-
-
-
-
-<?php
-    // Lesson stuff
-    $Lesson = new Lesson($mysqli);
-    $allLessons = $Lesson->get($_SESSION["userEmail"]);
-
-    if(isset($_POST["sendClass"])){
-
-        $Lesson->save(
-            $Helper->cleanInput($_POST["classname"]),
-            $Helper->cleanInput($_POST["classcode"]),
-            $Helper->cleanInput($_POST["classteacher"]),
-            $Helper->cleanInput($_SESSION["userEmail"]));
-
-        header("Location: homework.php");
-        exit();
-    }
-?>
-
-
-
-
 <?php require("header.php"); ?>
+
 
 <section class="background-gray-lightest">
     <div class="container">
@@ -147,7 +100,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="date">Tähtaeg(*)</label>
                     <div class="col-md-4">
-                        <input class="form-control" id="date" name="date" placeholder="DD/MM/YYY" type="text"/>
+                        <input class="form-control" name="date" placeholder="DD/MM/YYY" type="text"/>
                     </div>
                 </div>
 
@@ -160,6 +113,11 @@
                     </div>
                 </div>
 
+
+
+                <!-- Include Date Range Picker -->
+                    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
                     <script>
                         $(document).ready(function(){
@@ -181,21 +139,7 @@
             </fieldset>
         </form>
 
-        <script>
 
-            $("#homeworkform").validate({
-
-                debug: true,
-                rules: {
-                    homeworkDescription: {required: true, minlength: 5},
-                    date: {required: true, date: true}},
-
-                messages:{
-                    homeworkDescription: {required: "Palun sisesta mingi kirjeldus.", minlength: "Palun sisestage midagi sisukamat."},
-                    date: {required: "Palun sisestage tähtaeg."}}
-            });
-
-        </script>
 
         <form class="form-horizontal" method="post" id="teacherform" name="teacherform">
             <fieldset>
@@ -340,4 +284,7 @@
 
 </section>
 
+
 <?php require("footer.php"); ?>
+</body>
+</html>

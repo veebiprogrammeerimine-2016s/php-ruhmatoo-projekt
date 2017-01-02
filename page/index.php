@@ -57,13 +57,32 @@
         <div class="form">
 
             <ul class="tab-group">
-              <li class="tab active"><a href="#signup">Loo kasutaja</a></li>
-              <li class="tab"><a href="#login">Logi sisse</a></li>
+              <li class="tab active"><a href="#login">Logi sisse</a></li>
+              <li class="tab"><a href="#signup">Loo kasutaja</a></li>
             </ul>
 
 
 
             <div class="tab-content">
+                <div id="login">
+
+                    <form action="login.php" method="post">
+
+                        <div class="field-wrap">
+                            <label for="loginEmail">E-mail<span class="req">*</span></label>
+                            <input type="email" name="loginEmail" required autocomplete="off"/>
+                        </div>
+
+                        <div class="field-wrap">
+                            <label for="loginPassword">Parool<span class="req">*</span></label>
+                            <input type="password" name="loginPassword" autocomplete="off"/>
+                        </div>
+
+                        <button class="button button-block">Logi sisse</button>
+
+                    </form>
+
+                </div>
               <div id="signup">
 
 
@@ -138,25 +157,7 @@
 
               </div>
 
-              <div id="login">
 
-                <form action="login.php" method="post">
-
-                <div class="field-wrap">
-                  <label for="loginEmail">E-mail<span class="req">*</span></label>
-                  <input type="email" name="loginEmail" required autocomplete="off"/>
-                </div>
-
-                <div class="field-wrap">
-                  <label for="loginPassword">Parool<span class="req">*</span></label>
-                  <input type="password" name="loginPassword" autocomplete="off"/>
-                </div>
-
-                <button class="button button-block">Logi sisse</button>
-
-                </form>
-
-              </div>
 
             </div>
 
