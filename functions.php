@@ -90,9 +90,17 @@ function getGenreFromDb() {
 
 	return $result;
 }
-function searchFromDb($keyword){
-	$keyword = str_replace("+", '%', $keyword);
+function searchFromDb($keyword, $page){
+	$perPage = 5;
+	$offset = $page*$perPage - $perPage;
+	// 1 lk offset = 0 ja limit = 5
+	// 2 lk offset = 5 ja limit = 10
+	
+	
+	//$keyword = str_replace("+", '%', $keyword);
 	$keyword = "%".$keyword."%";
+		var_dump($keyword);
+
 	$mysqli = new mysqli($GLOBALS["serverHost"], 
 						$GLOBALS["serverUsername"],  
 						$GLOBALS["serverPassword"],  
@@ -100,11 +108,12 @@ function searchFromDb($keyword){
 	$stmt = $mysqli->prepare("SELECT title, link, release_date, poster
 							FROM movies_db
 							WHERE title LIKE ? OR synopsis LIKE ? OR actors LIKE ?
-							OR directors LIKE ? OR genre LIKE ?");
+							OR directors LIKE ? OR genre LIKE ?
+							LIMIT ? OFFSET ?");
 	
 	echo $mysqli->error;
 							
-	$stmt->bind_param("sssss", $keyword, $keyword, $keyword, $keyword, $keyword);
+	$stmt->bind_param("sssssii", $keyword, $keyword, $keyword, $keyword, $keyword, $perPage, $offset);
 	
 	$stmt->bind_result($title, $link, $release_date, $poster);
 	$stmt->execute();

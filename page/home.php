@@ -12,8 +12,9 @@ foreach($genres as $g){
 	echo $g."<br>";
 	$poster = searchByGenre($g);
 	foreach($poster as $p){
-		$movGenre = makeFriendly($g);
-		echo "<a href='results.php?s=".$movGenre."'><img src=".$p->poster."></a><br>";
+		//$movGenre = makeFriendly($g);
+		$g = ltrim($g);
+		echo "<a href='results.php?s=".rawurlencode($g)."'><img src=".$p->poster."></a><br>";
 
 	}
 	echo "</div>";

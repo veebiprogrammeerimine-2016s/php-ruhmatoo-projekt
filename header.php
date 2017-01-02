@@ -12,7 +12,9 @@
 $s = "";
 
 if(isset($_GET["s"])){
-	$s = $_GET["s"];
+	$s = rawurldecode($_GET["s"]);
+	var_dump($_GET["s"]);
+	var_dump($s);
 	
 }
 
@@ -32,4 +34,4 @@ if(isset($_GET["s"])){
 
 </head>
 
-<body style="background-image: url('448.jpg');">
+<body style="background-image: url('../448.jpg');">
