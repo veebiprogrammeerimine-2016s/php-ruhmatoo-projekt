@@ -75,17 +75,20 @@ class User {
 		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password) VALUES (?, ?)");
 		echo $this->connection->error;
 		$stmt->bind_param("ss", $email, $password);
-		
+
 		if($stmt->execute()) {
 			echo "salvestamine õnnestus";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
-		
+
 		$stmt->close();
-        header("Location: index.php");
+        $_SESSION["madeaccount"] = 1;
+		header("Location: index.php");
         exit();
-		
+
+
+
 		
 	}
 

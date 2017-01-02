@@ -11,10 +11,6 @@
         header("Location: data.php");
         exit();
     }
-
-
-
-
 ?>
 
 
@@ -82,7 +78,7 @@
                             <input type="password" name="loginPassword" autocomplete="off"/>
                         </div>
 
-                        <button class="button button-block" type="submit" name="logIn">Logi sisse</button>
+                        <button class="button button-block">Logi sisse</button>
 
                     </form>
 
@@ -98,13 +94,13 @@
 
                         <div class="field-wrap">
                             <label for="signupFirstname">Eesnimi<span class="req">*</span></label>
-                            <input type="text" name="signupFirstname" autocomplete="off"/>
+                            <input type="text" name="signupFirstname" autocomplete="off" required/>
                         </div>
 
 
                         <div class="field-wrap">
                             <label for="signupLastname">Perekonnanimi<span class="req">*</span></label>
-                            <input type="text" name="signupLastname" autocomplete="off"/>
+                            <input type="text" name="signupLastname" autocomplete="off" required/>
                         </div>
 
                     </div>
@@ -113,28 +109,24 @@
 
                     <div class="field-wrap">
                       <label for="signupEmail">E-mail<span class="req">*</span></label>
-                      <input type="text" name="signupEmail" autocomplete="off"/>
+                      <input type="email" name="signupEmail" autocomplete="off" required/>
                     </div>
 
 
 
                     <div class="field-wrap">
                       <label for="signupPassword">Parool<span class="req">*</span></label>
-                      <input type="password" name="signupPassword" autocomplete="off"/>
+                      <input type="password" name="signupPassword" autocomplete="off" required/>
                     </div>
 
 
-
-                    <div class="field-wrap">
-                      <label for="passwordAgain">Sisesta parool uuesti<span class="req">*</span></label>
-                      <input type="password" name="passwordAgain" autocomplete="off"/>
-                    </div>
-
-                    <button type="submit" name="createAccount" class="button button-block">Loo kasutaja</button>
+                    <button type="submit" class="button button-block">Loo kasutaja</button>
 
                 </form>
 
               </div>
+
+
 
             </div>
 
@@ -145,5 +137,14 @@
 </div>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="../style_script/js/index.js"></script>
+<script src="sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+<?php
+    if(isset($_SESSION["madeaccount"]) && !empty($_SESSION["madeaccount"])){
+        echo("<script>swal('Kasutaja loomine õnnestus.');</script>");
+        $_SESSION["madeaccount"] = "";
+    }
+
+?>
 </body>
 </html>
