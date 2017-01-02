@@ -71,6 +71,11 @@
 	
 	$del_topic = $Topic->checkUser($_GET["id"], $_SESSION["userId"]);
 	//$change_reply = $Reply->checkUser($_GET["id"], $_SESSION["userId"], $reply_id); 
+	
+	$imagesource = "";
+	if (!empty ($topic->subject)){
+		$imagesource = "<br><img src='".$topic->filename."' style= 'max-height: 200px' style= 'max-width: 200px'><br><br>";
+	}
 
 ?>
 
@@ -85,8 +90,7 @@
 
 				<h1><?php echo $topic->subject;?></h1>
 				<p style="border:1px; border-style:solid; border-color:#a6a6a6; padding: 0.5em;">
-				<?php echo $topic->content;?>
-				<br><br>
+				<?php echo $topic->content;?> <?php echo $imagesource; ?>
 				<font color="grey"><em>Teema algataja: <?php echo $topic->username;?></em></font>
 				<br>
 				<font color="grey"><em>Lisamise kuupäev: <?php echo $topic->created;?></em></font>

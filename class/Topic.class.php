@@ -21,6 +21,20 @@
 		
 	}
 	
+	function addTopicAndFile ($subject, $content, $username, $user_id, $category, $target_file){
+		
+		$stmt = $this->connection->prepare("INSERT INTO topics(subject, content, username, user_id, category, file) VALUES(?,?,?,?,?,?)");
+		echo $this->connection->error;
+		
+		$stmt->bind_param("sssiss", $subject, $content, $username, $user_id, $category, $target_file); 
+		
+		if($stmt->execute()) {
+			$_SESSION["topic_message"] = "<p style='color:green;'>TEEMA LISATUD!</p'>";
+		} else {
+			echo "ERROR".$stmt->error;
+		}
+	}
+	
 	function addToGeneralArray ($q, $sort, $order){
 		$allowedSort = ["subject", "username", "created"];
 		
@@ -143,12 +157,12 @@
 	
 	function get($topic_id){
 		
-		$stmt = $this->connection-> prepare("SELECT subject, content, created, username FROM topics WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection-> prepare("SELECT subject, content, created, username, file FROM topics WHERE id=? AND deleted IS NULL");
 		
 		echo $this->connection->error;
 
 		$stmt->bind_param("i", $topic_id);
-		$stmt->bind_result($subject, $content, $created, $username);
+		$stmt->bind_result($subject, $content, $created, $username, $file);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -161,6 +175,7 @@
 			$topic->content = $content;
 			$topic->created = $created;
 			$topic->username = $username;
+			$topic->filename = $file;
 			
 		}else{
 			// ei saanud rida andmeid kätte

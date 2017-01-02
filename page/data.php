@@ -79,6 +79,7 @@
 		//do nothing;
 	}*/
 	
+	$fileError = "";
 	if (isset ($_POST["headline"]) && 
 		isset ($_POST["content"]) && 
 		/*!empty ($_POST["headline"]) && 
@@ -86,9 +87,68 @@
 		empty($newHeadlineError)&&
 		empty($newContentError)
 		){
-			$Topic->createNew ($Helper->cleanInput($_POST["headline"]), $Helper->cleanInput($_POST["content"]), $_SESSION["userName"], $_SESSION["userId"], $category);
-			header("Location:data.php");
-			exit();
+			if(empty($_FILES["fileToUpload"]["name"]))
+				{
+					$Topic->createNew ($Helper->cleanInput($_POST["headline"]), $Helper->cleanInput($_POST["content"]), $_SESSION["userName"], $_SESSION["userId"], $category);
+					header("Location:data.php");
+					exit();
+				}
+			
+			if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
+				
+				$target_dir = "../uploads/";
+				$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+				$uploadOk = 1;
+				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+				
+				// Check if image file is a actual image or fake image
+				if(isset($_POST["submit"])) {
+					
+					$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+					if($check !== false) {
+						//echo "File is an image - " . $check["mime"] . ".";
+						$uploadOk = 1;
+					} else {
+						$fileError = "File is not an image.";
+						$uploadOk = 0;
+					}
+				}
+				// Check if file already exists
+				if (file_exists($target_file)) {
+					$fileError = "Kahjuks sellise nimega pilt juba eksisteerib.";
+					$uploadOk = 0;
+				}
+				// Check file size
+				if ($_FILES["fileToUpload"]["size"] > 500000) {
+					$fileError = "Sinu pilt on liiga suur!";
+					$uploadOk = 0;
+				}
+				// Allow certain file formats
+				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+					&& $imageFileType != "gif" ) {
+					$fileError = "Ainult JPG, JPEG, PNG & GIF failid on lubatud!";
+					$uploadOk = 0;
+				}
+				// Check if $uploadOk is set to 0 by an error
+				if ($uploadOk == 0) {
+					//$fileError = "Kahjuks sinu pilti ei saanud üles laadida.";
+				// if everything is ok, try to upload file
+				} else {
+					if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+						//echo "Sinu pilt ". basename( $_FILES["fileToUpload"]["name"]). " on üles laetud!";
+						
+						// save file name to DB here
+						$Topic->addTopicAndFile ($Helper->cleanInput($_POST["headline"]), $Helper->cleanInput($_POST["content"]), $_SESSION["userName"], $_SESSION["userId"], $category, $target_file);
+						header("Location:data.php");
+						exit();
+						
+					} else {
+						$fileError = "Midagi läks faili üleslaadimisel valesti.";
+					}
+				}
+			} /*else{
+				echo "Please select the file that you want to upload!";
+			}*/
 	} 
 	
 	//kas keegi otsib
@@ -123,6 +183,7 @@
 			$sort_name = "teema lisamise kuupäeva";
 		}
 	}
+	
 ?>
 
 <?php require("../header.php")?>
@@ -134,9 +195,9 @@
 		</b></p>
 		<p> <b> <?=$topic_del_msg;?> </b> </p>
 		<h1>Foorum</h1>
-		<p> <b> <?=$topic_msg;?> </b> </p>
+		<p> <b> <?=$topic_msg;?> <font color="red"><?=$fileError;?></font> </b> </p>
 		<p><b>Loo uus teema</b></p>
-		<form method="POST">
+		<form method="POST" enctype="multipart/form-data">
 			<label>Kategooria:</label>
 			<?php if($category == "general") { ?>
 			<input type="radio" name="category" value="general" checked>Üldine
@@ -156,9 +217,13 @@
 			<label>Sisu:</label>
 			<textarea cols="40" rows="5" name="content" <?=$newContent = ""; if (isset($_POST['content'])) { $newContent = $_POST['content'];}?> ><?php echo $newContent; ?></textarea> <?php echo $newContentError; ?> <!--Textareal pole eraldi value, sinna sisse kirjutada-->
 			<br><br>
-			<input type="submit" value = "Postita">
+			<label>Lisa soovi korral pilt:</label>
+			<i><input type="file" name="fileToUpload" id="fileToUpload"></i>
+			<br>
+			<input type="submit" value = "Postita teema" class="btn btn-success btn-sm">
 		</form>
 		<br><br>
+		
 		<form>
 			<input type="search" name="q" value="<?=$q;?>"> 
 			<input type="submit" value="Otsi teemat">
