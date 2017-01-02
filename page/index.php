@@ -145,6 +145,12 @@
         $_SESSION["madeaccount"] = "";
     }
 
+    if(isset($_SESSION["error"]) && !empty($_SESSION["error"])){
+        $error = $_SESSION["error"];
+        echo("<script>swal('$error')</script>");
+        $_SESSION["error"] = "";
+    }
+
 ?>
 </body>
 </html>
