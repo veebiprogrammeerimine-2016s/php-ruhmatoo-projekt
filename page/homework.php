@@ -3,6 +3,14 @@
     require("functions.php");
     require("../class/Lesson.class.php");
     require("../class/Teacher.class.php");
+    require("../class/Homework.class.php");
+
+    $Homework = new Homework($mysqli);
+    $Lesson = new Lesson($mysqli);
+    $Teacher = new Teacher($mysqli);
+
+    $allTeachers = $Teacher->get($_SESSION["userEmail"]);
+    $allLessons = $Lesson->get($_SESSION["userEmail"]);
 
     //Kui ei ole kasutaja ID
     if(!isset($_SESSION["userId"])){
@@ -20,6 +28,39 @@
         header("Location: login.php");
         exit();
     }
+
+
+    var_dump($_POST);
+
+    if(isset($_POST["sendHomework"])){
+
+        if(
+                isset($_POST["description"]) &&
+                isset($_POST["hwlesson"]) &&
+                isset($_POST["type"]) &&
+                isset($_POST["priority"]) &&
+                isset($_POST["date"]) &&
+                !empty($_POST["description"]) &&
+                !empty($_POST["hwlesson"]) &&
+                !empty($_POST["type"]) &&
+                !empty($_POST["priority"]) &&
+                !empty($_POST["date"])){
+
+                    $Homework->save(
+                        $Helper->cleanInput($_POST["type"]),
+                        $Helper->cleanInput($_POST["description"]),
+                        $Helper->cleanInput($_POST["date"]),
+                        $Helper->cleanInput($_POST["hwlesson"]),
+                        $Helper->cleanInput($_POST["priority"]),
+                        $Helper->cleanInput($_SESSION["userEmail"])
+                    );
+
+
+
+        }
+
+    }
+
 
 
 ?>
@@ -58,10 +99,12 @@
                     <label class="col-md-4 control-label" for="selectbasic">Klass(*)</label>
                     <div class="col-md-4">
                         <select name="hwlesson" class="form-control">
-                            <option value="Õppimine kõrgkoolis">Õppimine kõrgkoolis</option>
-                            <option value="Veebiprogammeerimine">Veebiprogammeerimine</option>
-                            <option value="Diskreetsed struktuurid">Diskreetsed struktuurid</option>
-                            <option value="Programmeerimise alused">Programmeerimise alused</option>
+                            <?php
+                            foreach($allLessons as $lesson){
+                                $html = "";
+                                $html .= "<option value='$lesson->name'>$lesson->name</option>";
+                                echo $html;}
+                            ?>
                         </select>
                     </div>
                 </div>
@@ -133,7 +176,20 @@
                         })
                     </script>
 
+                    <script>
 
+                        $("#homeworkform").validate({
+
+                            rules: {
+                                description: {required: true, minlength: 5},
+                                date: {required: true}},
+
+                            messages:{
+                                description: {required: "Palun sisesta mingi kirjeldus.", minlength: "Palun sisestage midagi sisukamat."},
+                                date: {required: "Palun sisestage tähtaeg."}}
+                        });
+
+                    </script>
 
 
             </fieldset>
