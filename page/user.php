@@ -144,9 +144,11 @@
 		$exerciseOrder = "ASC";
 		$setsOrder="ASC"; 
 		$repeatsOrder="ASC"; 
+		$createdOrder="ASC";
 		$exerciseArrow = "&uarr;";
 		$setsArrow = "&uarr;";
 		$repeatsArrow = "&uarr;";
+		$createdArrow = "&uarr;";
 
 		
 		if (isset($_GET["sort"]) && $_GET["sort"] == "exercise") {
@@ -169,8 +171,15 @@
 				$repeatsArrow = "&darr;";
 			}
 		}
+		
+		if (isset($_GET["sort"]) && $_GET["sort"] == "created") {
+			if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
+				$createdOrder="DESC";
+				$createdArrow = "&darr;";
+			}
+		}
 
-		$html .= "<thead class='bg-success'>";
+	$html .= "<thead class='bg-success'>";
 		$html .= "<th>
 				<a href='?q=".$q."&sort=exercise&order=".$exerciseOrder."'>
 					Treeningharjutus".$exerciseArrow."
@@ -186,6 +195,11 @@
 					Kordused ".$repeatsArrow."
 				</a>
 				</th>";
+		$html .= "<th>
+				<a href='?q=".$q."&sort=created&order=".$createdOrder."'>
+					Kuupäev	".$createdArrow."
+				</a>
+				</th>";
 	$html .= "</tr>";
 	$html .= "</thead>";
 	
@@ -194,6 +208,7 @@
 			$html .= "<td>".$p->exercise."</td>";
 			$html .= "<td>".$p->sets."</td>";
 			$html .= "<td>".$p->repeats."</td>";
+			$html .= "<td>".$p->created."</td>";
 		$html .= "</tr>";	
 	}
 

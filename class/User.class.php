@@ -255,7 +255,7 @@
 	
 	function get($q, $sort, $order) {
 		
-		$allowedSort = ["exercise", "sets", "repeats"];
+		$allowedSort = ["exercise", "sets", "repeats", "created"];
 		
 		if(!in_array($sort, $allowedSort)) {
 			//ei ole lubatud tulp
@@ -274,7 +274,7 @@
 			//echo "Otsib: ".$q;
 			
 			$stmt = $this->connection->prepare("
-			SELECT exercise, sets, repeats
+			SELECT exercise, sets, repeats, created
 			FROM exercises
 			WHERE deleted IS NULL
 			AND (exercise LIKE ? OR sets LIKE ? OR repeats LIKE ?)
@@ -288,7 +288,7 @@
 		} else {
 		
 		$stmt = $this->connection->prepare("
-			SELECT exercise, sets, repeats
+			SELECT exercise, sets, repeats, created
 			FROM exercises
 			WHERE deleted IS NULL
 			ORDER BY $sort $orderBy");
@@ -296,7 +296,7 @@
 		
 		echo $this->connection->error;
 		
-		$stmt->bind_result($exercise, $sets, $repeats);
+		$stmt->bind_result($exercise, $sets, $repeats, $created);
 		$stmt->execute();
 		
 		
@@ -313,6 +313,7 @@
 			$person->exercise = $exercise;
 			$person->sets = $sets;
 			$person->repeats = $repeats;
+			$person->created = $created;
 			
 			array_push($result, $person);
 		}
