@@ -83,11 +83,7 @@
             </ul>
         </div>
 
-
-
-        <h1 class="heading">Kodutööd</h1>
-
-        <form class="form-horizontal" method="post" id="homeworkform">
+        <form class="form-horizontal" method="post" id="homeworkform" name="homeworkform">
             <fieldset>
 
                 <!-- Form Name -->
@@ -96,9 +92,9 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="homeworkDescription">Kirjeldus(*)</label>
+                    <label class="col-md-4 control-label" for="description">Kirjeldus(*)</label>
                     <div class="col-md-4">
-                        <input name="homeworkDescription" id="homeworkDescription" type="text" placeholder="Lisa siia lühike kirjeldus" class="form-control input-md">
+                        <input name="description" id="description" type="text" placeholder="Lisa siia lühike kirjeldus" class="form-control input-md">
 
                     </div>
                 </div>
@@ -108,7 +104,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="selectbasic">Klass(*)</label>
                     <div class="col-md-4">
-                        <select name="homeworkClass" class="form-control">
+                        <select name="hwlesson" class="form-control">
                             <option value="Õppimine kõrgkoolis">Õppimine kõrgkoolis</option>
                             <option value="Veebiprogammeerimine">Veebiprogammeerimine</option>
                             <option value="Diskreetsed struktuurid">Diskreetsed struktuurid</option>
@@ -122,7 +118,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="selectbasic">Tüüp(*)</label>
                     <div class="col-md-4">
-                        <select name="homeworkType" class="form-control">
+                        <select name="type" class="form-control">
                             <option value="Kodutöö">Kodutöö</option>
                             <option value="Eksam">Eksam</option>
                             <option value="Essee">Essee</option>
@@ -138,7 +134,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="selectbasic">Prioriteet(*)</label>
                     <div class="col-md-4">
-                        <select name="homeworkPriority" class="form-control">
+                        <select name="priority" class="form-control">
                             <option value="Tähtis">Tähtis</option>
                             <option value="Mitte-tähtis">Mitte-tähtis</option>
                             <option value="Meh">Meh</option>
@@ -197,70 +193,6 @@
                 messages:{
                     homeworkDescription: {required: "Palun sisesta mingi kirjeldus.", minlength: "Palun sisestage midagi sisukamat."},
                     date: {required: "Palun sisestage tähtaeg."}}
-            });
-
-        </script>
-
-        <form class="form-horizontal" method="post" id="readingform">
-            <fieldset>
-
-                <!-- Form Name -->
-                <legend>Kohustuslik kirjandus</legend>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="bookname">Raamatu nimi(*)</label>
-                    <div class="col-md-4">
-                        <input id="bookname" name="bookname" type="text" placeholder="" class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="bookauthor">Autor(*)</label>
-                    <div class="col-md-4">
-                        <input id="bookauthor" name="bookauthor" type="text" placeholder="" class="form-control input-md">
-
-                    </div>
-                </div>
-
-                <!-- Select Basic -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="bookclass">Õppeaine(*)</label>
-                    <div class="col-md-4">
-                        <select id="bookclass" name="bookclass" class="form-control">
-                            <option value="1">Õppimine kõrgkoolis</option>
-                            <option value="2">Veebiprogrammeerimine</option>
-                            <option value="3">Bla bla</option>
-                            <option value="4">Dla dla</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Button -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="singlebutton"></label>
-                    <div class="col-md-4">
-                        <button class="btn btn-primary" name="sendReading" type="submit">Salvesta</button>
-                    </div>
-                </div>
-
-            </fieldset>
-        </form>
-
-        <script>
-
-            $("#readingform").validate({
-
-                debug: true,
-                rules: {
-                    bookname: {required: true},
-                    bookauthor: {required: true}},
-
-                messages:{
-                    bookname: {required: "Palun sisestage raamatu nimi."},
-                    bookauthor: {required: "Palun sisestage raamatu autor."}}
             });
 
         </script>
@@ -400,7 +332,6 @@
                 }});
 
         </script>
-
 
     </div>
 
