@@ -13,26 +13,39 @@ $Owner->LoginRegValidation($Owner);
 $tyreFitting = $TyreFitting->getSingleTyreFitting($_GET["id"]);
 $services = $TyreFitting->FittingServicesMinPrice($_GET["id"]);
 $times = $TyreFitting->getTyreFittingTimesAvailable($_GET["id"]);
+$orders = getOrders($_GET["id"]);
+
 $date_reserved="";
+
+$date_arr = array();
+$time_arr = array();
+
+foreach ($orders as $order)
+{
+    $reserved = $order -> booktime;
+    $reserved_date = substr($reserved ,0,10);
+    $reserved_time = substr($reserved ,11,5);
+
+    array_push($date_arr, $reserved_date);
+    array_push($time_arr, $reserved_time);
+
+}
+
 //$reserved = array($datea => []);
 if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && isset($_POST["service"]) && isset($_POST["carnumber"]) && isset($_POST["datetimepicker"]))
 {
     if( !empty($_POST["name"])&& !empty($_POST["email"]) && !empty($_POST["phone"]) && !empty($_POST["service"]) && !empty($_POST["carnumber"]) && !empty($_POST["datetimepicker"]))
     {
         $success = placeOrder($_POST["name"],$_POST["email"],$_POST["phone"],$_POST["note"],$_POST["service"],$_POST["carnumber"],$_POST["datetimepicker"],$_GET["id"]);
-        $date_reserved = substr($_POST["datetimepicker"],0,10);
-        //echo $datea;
-        $time_reserved = substr($_POST["datetimepicker"],11,5);
+
         echo "</br>";?>
         <?php
-        //	echo $timea;
-        //array_push($reserved,$datea,$timea);
+
         if ($success == true){
-
-
 
             if(sendEmail($_POST["email"], $_POST["name"], $_POST["phone"], $_POST["note"], $_POST["carnumber"], $_POST["datetimepicker"])){
                 $emailSent = true;
+                header("Refresh:0");
             }else{
                 $emailError = "Unable to send email";
             }
@@ -45,15 +58,21 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 
 //var_dump($reserved);
 ?>
-<?php require("header.php");?>
-<?php if(isset($emailSent)): ?>
+<?php require("header.php");
+?>
+
+<?php  if(isset($emailSent)):   ?>
     <script>
         $(function() {
             // kogu html on laetud
             $('#bookingMessage').modal('show');
         });
     </script>
-<?php endif; ?>
+
+<?php endif;  ?>
+
+
+
 <body style="padding-top:70px;">
 <div class="container">
     <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
@@ -156,6 +175,7 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
     $time = mktime(0, 0, 0, date("m")  , date("d"), date("Y"));
 
     $days_forecast = 14;
+    $array = [];
 
     for($i =0; $i < $days_forecast; $i++){
 
@@ -163,93 +183,124 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
         $time = mktime(0, 0, 0, date("m")  , date("d")+$i, date("Y"));
 
         $day->date = date("j.m.Y", $time);
-        /*	if($day->date == $date_reserved && isset($date_reserved)){
-            var_dump($day);
-            }*/
+        array_push($array,$day->date);
 
-        foreach($times as $t){
-
+        foreach($times as $t) {
 
             $dayNumber = date("N", $time);
 
-            if($dayNumber == 7) { $dayNumber = 0;}
+            if ($dayNumber == 7) {
+                $dayNumber = 0;
+            }
 
-            //	echo $day->date." ".$dayNumber." <br>" ;
-
-            if($t->day == $dayNumber){
+            if ($t->day == $dayNumber) {
                 $day->available = [];
-                //echo $t->open." <br>";
                 $start = strtotime($t->open);
-                //echo "</br>".$start;
                 $close = strtotime($t->close);
                 $lunch_begin = strtotime($t->lunch_begin);
                 $lunch_end = strtotime($t->lunch_end);
-                //echo "$start <br>";
-                /*$end =
-                =*/
 
-                for($j = 0; $j < 24; $j++){
+                for ($j = 0; $j < 24; $j++) {
                     //echo
-                    if(date("j.m.Y", $time) == date("j.m.Y") && intval(date("G")) + 1 >= $j){ continue; }
-
-                    if($j < 10){
-                        $time_string = "0".$j.":00";
-                    }else{
-                        $time_string = $j.":00";
+                    if (date("j.m.Y", $time) == date("j.m.Y") && intval(date("G")) + 1 >= $j) {
+                        continue;
                     }
+
+                  //  if ($j < 10) {
+                    //    $time_string = "0" . $j . ":00";
+                    //} else {
+                        $time_string = $j . ":00";
+                    //}
 
                     $our_time = strtotime($time_string);
 
-                    if( $our_time >= $start && $our_time <= $close && $our_time != $lunch_begin)
-                    {
-
-                        if($day->date == $date_reserved)
-                        {
-                            if( $our_time != strtotime($time_reserved) )
-                            {
-
-                                array_push($day->available, $time_string);
-                            }
-
-                        }
-                        else
-                        {
-                            array_push($day->available, $time_string);
-                        }
+                    if ($our_time >= $start && $our_time <= $close && $our_time != $lunch_begin) {
+                        array_push($day->available, $time_string);
                     }
-
-                    //if();)
                 }
             }
         }
 
+
         array_push($days, $day);
     }
+    foreach ($days as $d ) {
+    //     var_dump($d->date);
+         if($d->date[1] == ".")
+         {
+             $d->date = "0" . $d->date;
+         }
+      //  echo "<br>";
+      //  echo "<br>";
+        for ($o = 0; $o < count($date_arr); $o++  )
+        {
+            if($date_arr[$o] == $d->date)
+            {
+             //   echo "<br>";
+              //  print_r($d->available[0]);
+             //   echo "<br>";
 
-    //var_dump($days);
+                if(in_array($time_arr[$o],$d->available))
+                {
+                    $array = [];
+                    $array = array_diff($d->available, array($time_arr[$o]));
+                    $d->available = $array;
+                    $d->available = array_values(array_filter($d->available));
+                   // print_r($d->date);
+                }
+
+            }
+        }
+    }
+
     ?>
     <script>
 
 
         var days = <?php echo json_encode($days); ?> ;
         console.log(days);
+
+       var log = function()
+        {
+            this.setOptions({
+                timepicker:false,
+               // allowTimes: day.available
+               format:'d.m.Y'
+            });
+        };
         var logic = function( currentDateTime ){
             console.log(currentDateTime);
-            console.log(currentDateTime.getDay());
+            //console.log(currentDateTime.getDay());
+            var month = (currentDateTime.getMonth() + 1);
+            var d = currentDateTime.getDate();
 
-            var dateString = currentDateTime.getDate() + "." + (currentDateTime.getMonth()+1) + "." + currentDateTime.getFullYear();
+            if(month < 10)
+            {
+                month = "0" + month;
+            }
+            if(d < 10)
+            {
+                d = "0" + d;
+            }
+
+            var dateString = d + "." + month + "." + currentDateTime.getFullYear();
 
             console.log(dateString);
 
             for(var i = 0; i < days.length; i++){
                 var day = days[i];
 
+                console.log(days[i]);
+
+
                 if(dateString == day.date && day.available.length > 0){
 
-                    console.log(day.date);
+                    console.log(day.available);
                     this.setOptions({
                         timepicker:true,
-                        allowTimes: day.available
+                        
+                       allowTimes: day.available,
+                       // minTime:'11:00'
 
                     });
 
@@ -259,39 +310,60 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
                 }
                 else
                 {
-                    console.log("disabling " + dateString)
+                    console.log("disabling " + dateString);
                     this.setOptions({
                         timepicker:true,
                         allowTimes: []
                     });
+
                 }
 
-                document.getElementById("datetimepicker").value = "";
+           //    document.getElementById("datetimepicker").value = "";
             }
 
 
         };
 
         var disabled_dates = [];
+        var allow_dates = [];
         for(var i = 0; i < days.length; i++){
 
-            if(days[i].available.length == 0){
+            var d = days[i].date.substring(0,2);
 
+            if (d[1] == ".")
+            {
+                days[i].date = "0" + days[i].date;
+            }
+            if(days[i].available == 0){
+                
                 disabled_dates.push(days[i].date);
 
+            }
+            if(days[i].available != 0)
+            {
+                allow_dates.push(days[i].date);
             }
         }
 
         console.log(disabled_dates);
+        console.log(allow_dates);
+
 
         $("#datetimepicker").datetimepicker({
+          // inline:true,
             minDate:new Date(),
             format:'d.m.Y H:i',
+          //  datepicker:true,
             defaultSelect:false,
             timepicker:false,
+            //onSelectDate:log,
             onChangeDateTime:logic,
             disabledDates: disabled_dates,
-            formatDate:'d.m.Y'
+            formatDate:'d.m.Y',
+            allowDates: allow_dates,
+
+          //  formatDate:'d.m.Y'
+
 
 
         });

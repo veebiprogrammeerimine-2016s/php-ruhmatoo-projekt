@@ -8,6 +8,37 @@ session_start();
 $database ="if16_stanislav";
 $mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $database);
 
+
+function getOrders($id)
+{
+    $database = "if16_stanislav";
+    $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+    $stmt = $mysqli->set_charset("utf8");
+    // sqli rida
+    $stmt = $mysqli->prepare("SELECT booktime FROM p_orders WHERE tyre_fitting_id = ?");
+
+    echo $mysqli->error;
+
+    $stmt->bind_param("i", $id);
+    $stmt->bind_result($booktime);
+    $stmt->execute();
+
+    //tekitan massiivi
+    $result = array();
+
+    // tee seda seni, kuni on rida andmeid
+    // mis vastab select lausele
+    while ($stmt->fetch()) {
+        //tekitan objekti
+        $i = new StdClass();
+        $i->booktime = $booktime;
+        array_push($result, $i);
+    }
+    $stmt->close();
+    //$mysqli->connection->close();
+    return $result;
+}
+
 // INSERT ORDER
 
 function placeOrder($name, $email, $phone,
