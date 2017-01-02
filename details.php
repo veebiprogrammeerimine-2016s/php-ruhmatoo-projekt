@@ -7,8 +7,9 @@ require("classes/tyrefitting_class.php");
 
 $Owner = new Owner($mysqli);
 $TyreFitting = new TyreFitting($mysqli);
-
 $Owner->LoginRegValidation($Owner);
+$emailSent = "";
+$date_reserved="";
 
 $tyreFitting = $TyreFitting->getSingleTyreFitting($_GET["id"]);
 $services = $TyreFitting->FittingServicesMinPrice($_GET["id"]);
@@ -38,14 +39,24 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
     {
         $success = placeOrder($_POST["name"],$_POST["email"],$_POST["phone"],$_POST["note"],$_POST["service"],$_POST["carnumber"],$_POST["datetimepicker"],$_GET["id"]);
 
-        echo "</br>";?>
+        $date_reserved = substr($_POST["datetimepicker"],0,10);
+
+        if($_POST["datetimepicker"][0] == "0")
+        {
+            $date_reserved = substr($_POST["datetimepicker"],1,9);
+        }
+
+        $time_reserved = substr($_POST["datetimepicker"],11,5);
+        ?>
         <?php
 
         if ($success == true){
 
             if(sendEmail($_POST["email"], $_POST["name"], $_POST["phone"], $_POST["note"], $_POST["carnumber"], $_POST["datetimepicker"])){
+                
                 $emailSent = true;
-                header("Refresh:0");
+
+
             }else{
                 $emailError = "Unable to send email";
             }
@@ -56,12 +67,11 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
     }
 }
 
-//var_dump($reserved);
 ?>
 <?php require("header.php");
 ?>
 
-<?php  if(isset($emailSent)):   ?>
+<?php  if(!empty($emailSent)):   ?>
     <script>
         $(function() {
             // kogu html on laetud
@@ -70,8 +80,6 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
     </script>
 
 <?php endif;  ?>
-
-
 
 <body style="padding-top:70px;">
 <div class="container">
@@ -157,7 +165,7 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
                             <input type="text" name="carnumber" id="carnumber" class="form-control required" required="required"/>
                         </p>
                         <label for="datetimepicker">Vali endale aeg:<span class="req-form-field">*</span></label>
-                        <input type="text" name="datetimepicker" id="datetimepicker" class="form-control required"  style="width:100%" required="required" /><br><br>
+                        <input type="text" name="datetimepicker" id="datetimepicker" class="form-control required" required="required" /><br><br>
                         <input type="submit" id="order-btn" class="btn btn-success" name="bookthistime"  value="Broneeri" />
                     </div>
                     </form>
@@ -214,8 +222,23 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 
                     $our_time = strtotime($time_string);
 
+
                     if ($our_time >= $start && $our_time <= $close && $our_time != $lunch_begin) {
-                        array_push($day->available, $time_string);
+                        //array_push($day->available, $time_string);
+
+                        if($day->date == $date_reserved)
+                        {
+                            if( $time_string != $time_reserved )
+                            {
+                                array_push($day->available, $time_string);
+
+                            }
+
+                        }
+                        else
+                        {
+                            array_push($day->available, $time_string);
+                        }
                     }
                 }
             }
@@ -260,14 +283,6 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
         var days = <?php echo json_encode($days); ?> ;
         console.log(days);
 
-       var log = function()
-        {
-            this.setOptions({
-                timepicker:false,
-               // allowTimes: day.available
-               format:'d.m.Y'
-            });
-        };
         var logic = function( currentDateTime ){
             console.log(currentDateTime);
             //console.log(currentDateTime.getDay());
@@ -298,8 +313,8 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
                     console.log(day.available);
                     this.setOptions({
                         timepicker:true,
-                        
-                       allowTimes: day.available,
+
+                       allowTimes: day.available
                        // minTime:'11:00'
 
                     });
@@ -313,12 +328,13 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
                     console.log("disabling " + dateString);
                     this.setOptions({
                         timepicker:true,
+
                         allowTimes: []
                     });
 
                 }
 
-           //    document.getElementById("datetimepicker").value = "";
+              document.getElementById("datetimepicker").value = "";
             }
 
 
@@ -353,22 +369,13 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
           // inline:true,
             minDate:new Date(),
             format:'d.m.Y H:i',
-          //  datepicker:true,
             defaultSelect:false,
             timepicker:false,
-            //onSelectDate:log,
             onChangeDateTime:logic,
             disabledDates: disabled_dates,
             formatDate:'d.m.Y',
-            allowDates: allow_dates,
-
-          //  formatDate:'d.m.Y'
-
-
-
+            allowDates: allow_dates
         });
-
-
 
     </script>
 </body>

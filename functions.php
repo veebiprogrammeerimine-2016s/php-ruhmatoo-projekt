@@ -6,8 +6,8 @@ require("../../config.php");
 session_start();
 
 $database ="if16_stanislav";
-$mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $database);
 
+$mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $database);
 
 function getOrders($id)
 {
@@ -17,7 +17,7 @@ function getOrders($id)
     // sqli rida
     $stmt = $mysqli->prepare("SELECT booktime FROM p_orders WHERE tyre_fitting_id = ?");
 
-    echo $mysqli->error;
+     echo $mysqli->error;
 
     $stmt->bind_param("i", $id);
     $stmt->bind_result($booktime);
@@ -35,19 +35,20 @@ function getOrders($id)
         array_push($result, $i);
     }
     $stmt->close();
+
     //$mysqli->connection->close();
     return $result;
 }
 
-// INSERT ORDER
+
 
 function placeOrder($name, $email, $phone,
                     $note, $service, $carnumber,
                     $booktime, $tyreFittingId )
 {
-
     $database = "if16_stanislav";
     $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+
     $stmt = $mysqli->set_charset("utf8");
     // sqli rida
     $stmt = $mysqli->prepare("INSERT INTO p_orders (name,email,phone,note,service,carnumber,booktime,tyre_fitting_id)VALUES (?,?,?,?,?,?,?,?)");
@@ -79,6 +80,7 @@ function placeOrder($name, $email, $phone,
     $stmt->close();
 
 }
+
 function sendEmail($reciever, $name, $phone, $note, $carnumber, $booktime)
 {
 

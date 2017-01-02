@@ -9,7 +9,6 @@
 
     }
 
-    // TEISED FUNKTISOONID
 
     function signUP($username,$password)
     {
@@ -40,6 +39,7 @@
         $stmt->close();
 
     }
+
     function login ($username, $password) {
 
         $stmt = $this->connection->prepare("
