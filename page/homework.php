@@ -9,6 +9,7 @@
     $Lesson = new Lesson($mysqli);
     $Teacher = new Teacher($mysqli);
 
+
     $allTeachers = $Teacher->get($_SESSION["userEmail"]);
     $allLessons = $Lesson->get($_SESSION["userEmail"]);
 
@@ -53,14 +54,60 @@
                         $Helper->cleanInput($_POST["hwlesson"]),
                         $Helper->cleanInput($_POST["priority"]),
                         $Helper->cleanInput($_SESSION["userEmail"])
+
                     );
-
-
+                    header("Location: data.php");
+                    exit();
 
         }
-
     }
 
+
+    if(isset($_POST["sendClass"])){
+
+        if(
+            isset($_POST["classname"]) &&
+            isset($_POST["classcode"]) &&
+            isset($_POST["classteacher"]) &&
+            !empty($_POST["classname"]) &&
+            !empty($_POST["classcode"]) &&
+            !empty($_POST["classteacher"])){
+
+                $Lesson->save(
+                    $Helper->cleanInput($_POST["classname"]),
+                    $Helper->cleanInput($_POST["classcode"]),
+                    $Helper->cleanInput($_POST["classteacher"]),
+                    $Helper->cleanInput($_SESSION["userEmail"])
+                );
+                header("Location: data.php");
+                exit();
+            }
+    }
+
+
+    if(isset($_POST["sendTeacher"])){
+
+        if(
+            isset($_POST["teacher"]) &&
+            isset($_POST["roomnumber"]) &&
+            isset($_POST["email"]) &&
+            isset($_POST["material"]) &&
+            !empty($_POST["teacher"]) &&
+            !empty($_POST["roomnumber"]) &&
+            !empty($_POST["email"]) &&
+            !empty($_POST["material"])){
+
+                $Teacher->save(
+                    $Helper->cleanInput($_POST["teacher"]),
+                    $Helper->cleanInput($_POST["roomnumber"]),
+                    $Helper->cleanInput($_POST["email"]),
+                    $Helper->cleanInput($_POST["material"]),
+                    $Helper->cleanInput($_SESSION["userEmail"])
+                );
+                header("Location: data.php");
+                exit();
+            }
+    }
 
 
 ?>
