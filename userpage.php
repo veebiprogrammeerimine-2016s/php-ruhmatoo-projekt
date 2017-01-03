@@ -41,9 +41,10 @@ $carData = $Car->getUserCars();
 
 ?>
 
-<a href="homepage.php">kodulehele </a>
-
 <?php require ("header.php");?>
+<p class="text-right">
+<a class="text-right" href="homepage.php">Kodulehele <span class="glyphicon glyphicon-share-alt"> </span></a>
+</p>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -69,6 +70,7 @@ $carData = $Car->getUserCars();
 
 <br><br>
 <h2>Sinu Sõidukid</h2>
+<br>
 <?php
 
 $html = "<table class='table table-striped'>";
