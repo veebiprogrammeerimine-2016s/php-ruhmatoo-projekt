@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 require("functions.php");
 
 if(!isset($_SESSION["userEmail"])){

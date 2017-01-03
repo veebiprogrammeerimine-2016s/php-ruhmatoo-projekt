@@ -21,6 +21,7 @@
                 echo "ERROR ".$stmt->error;
             }
             $stmt->close();
+
         }
 
 

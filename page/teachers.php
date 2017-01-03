@@ -1,7 +1,8 @@
 <?php
 
-require("header.php");
 
+
+require("header.php");
 
 
 if(isset($_POST["sendTeacher"])){
@@ -13,8 +14,7 @@ if(isset($_POST["sendTeacher"])){
         isset($_POST["material"]) &&
         !empty($_POST["teacher"]) &&
         !empty($_POST["roomnumber"]) &&
-        !empty($_POST["email"]) &&
-        !empty($_POST["material"])){
+        !empty($_POST["email"])){
 
         $Teacher->save(
             $Helper->cleanInput($_POST["teacher"]),
@@ -108,56 +108,51 @@ if(isset($_POST["sendTeacher"])){
         </script>
     </div>
 </section>
-
-
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset='UTF-8'>
-
-        <title>Responsive Table</title>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link rel="stylesheet" href="../style_script/css/table.css">
-
-    </head>
-
-    <body>
-    <div id="page-wrap">
-
 <?php
-            $html ="";
-            $html = "<table allign='center' class='table table striped-table-hover'>";
-            $html .= "<thead>";
-            $html .= "<tr>";
-            $html .= "<th>Nimi</th>";
-            $html .= "<th>Klassiruum</th>";
-            $html .= "<th>Email</th>";
-            $html .= "</tr>";
-            $html .= "</thead>";
-            $html .= "<tbody>";
 
-            foreach($allTeachers as $teacher){
-
-                $html .= "<tr>";
-                $html .= "<td>$teacher->name</td>";
-                $html .= "<td>$teacher->classroom</td>";
-                $html .= "<td>$teacher->email</td>";
-                $html .=  "</tr>";
-            }
+if(!empty($allTeachers)) {
+    $html = "";
+    $html .= "<!DOCTYPE html>";
+    $html .= "<html>";
+    $html .= "<head>";
+    $html .= "<meta charset='UTF-8'>";
+    $html .= "<title>Responsive Table</title>";
+    $html .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+    $html .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
+    $html .= "</head>";
+    $html .= "<body>";
+    $html .= "<div id='page-wrap'>";
 
 
-            $html .= "</tbody>";
-            $html .= "</table>";
-            echo $html;
+    $html .= "<table allign='center' class='table table striped-table-hover'>";
+    $html .= "<thead>";
+    $html .= "<tr>";
+    $html .= "<th>Nimi</th>";
+    $html .= "<th>Klassiruum</th>";
+    $html .= "<th>Email</th>";
+    $html .= "</tr>";
+    $html .= "</thead>";
+    $html .= "<tbody>";
+
+    foreach ($allTeachers as $teacher) {
+
+        $html .= "<tr>";
+        $html .= "<td>$teacher->name</td>";
+        $html .= "<td>$teacher->classroom</td>";
+        $html .= "<td>$teacher->email</td>";
+        $html .= "</tr>";
+    }
+
+    $html .= "</tbody>";
+    $html .= "</table>";
+
+
+    $html .= "</div>";
+    $html .= "<br><br>";
+    $html .= "</body>";
+    $html .= "</html>";
+    echo $html;
+}
 ?>
-
-    </div>
-
-    <br><br>
-    </body>
-    </html>
-
 
 <?php require("footer.php");
