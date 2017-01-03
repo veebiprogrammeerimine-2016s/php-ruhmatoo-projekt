@@ -4,7 +4,7 @@ require("functions.php");
 
 //Kui ei ole kasutaja ID
 
-if(!isset($_SESSION["userId"])){
+if(!isset($_SESSION["userEmail"])){
 
     //Suuna sisselogimis lehele
     header("Location: login.php");

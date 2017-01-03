@@ -14,7 +14,7 @@
     $allLessons = $Lesson->get($_SESSION["userEmail"]);
 
     //Kui ei ole kasutaja ID
-    if(!isset($_SESSION["userId"])){
+    if(!isset($_SESSION["userEmail"])){
 
         //Suuna sisselogimis lehele
         header("Location: homework.php");
