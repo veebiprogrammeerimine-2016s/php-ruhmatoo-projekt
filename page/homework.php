@@ -1,27 +1,7 @@
-
-
-<?php require("header.php"); ?>
 <?php
 
-//Kui ei ole kasutaja ID
-if(!isset($_SESSION["userEmail"])){
+require("header.php");
 
-    //Suuna sisselogimis lehele
-    header("Location: homework.php");
-    exit();
-}
-
-
-//Kui on log out aadressireal, siis login v'lja
-if(isset($_GET["logout"])){
-
-    session_destroy();
-    header("Location: homework.php");
-    exit();
-}
-
-
-var_dump($_POST);
 
 if(isset($_POST["sendHomework"])){
 

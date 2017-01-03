@@ -1,14 +1,9 @@
 <?php
-    require("functions.php");
-    require("../class/User.class.php");
-
-    $User = new User($mysqli);
-
-    // Kui on sisse loginud, siis suunan data lehele.
-    if(isset($_SESSION["userEmail"])){
-        header("Location: data.php");
-        exit();
-    }
+require("functions.php");
+// Kui on sisse loginud, siis suunan data lehele.
+if(isset($_SESSION["userEmail"])){
+    header("Location: data.php");
+    exit();}
 ?>
 
 

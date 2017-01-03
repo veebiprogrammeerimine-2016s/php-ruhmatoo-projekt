@@ -1,22 +1,8 @@
-
-
-
-
-
 <?php
 
 require("header.php");
 
-if(!isset($_SESSION["userEmail"])){
-    header("Location: login.php");
-    exit();
-}
 
-if(isset($_GET["logout"])){
-    session_destroy();
-    header("Location: login.php");
-    exit();
-}
 
 if(isset($_POST["sendTeacher"])){
 
@@ -140,7 +126,7 @@ if(isset($_POST["sendTeacher"])){
     <body>
     <div id="page-wrap">
 
-        <?php
+<?php
             $html ="";
             $html = "<table allign='center' class='table table striped-table-hover'>";
             $html .= "<thead>";
@@ -165,7 +151,7 @@ if(isset($_POST["sendTeacher"])){
             $html .= "</tbody>";
             $html .= "</table>";
             echo $html;
-        ?>
+?>
 
     </div>
 

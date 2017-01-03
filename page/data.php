@@ -1,22 +1,7 @@
-<?php require("header.php");?>
-
 <?php
+require("header.php");
 
 
-if(!isset($_SESSION["userEmail"])){
-
-    //Suuna sisselogimis lehele
-    header("Location: index.php");
-    exit();
-}
-
-
-if(isset($_GET["logout"])){
-
-    session_destroy();
-    header("Location: index.php");
-    exit();
-}
 ?>
 
 <div class="jumbotron main-jumbotron">

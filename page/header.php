@@ -1,23 +1,33 @@
 <?php
 
-    require("functions.php");
+require("functions.php");
 
-    require("../class/Teacher.class.php");
-    require("../class/Lesson.class.php");
-    require("../class/Reading.class.php");
-    require("../class/Homework.class.php");
+if(!isset($_SESSION["userEmail"])){
+    header("Location: login.php");
+    exit();
+}
+if(isset($_GET["logout"])){
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
 
-    $Teacher = new Teacher($mysqli);
-    $allTeachers = $Teacher->get($_SESSION["userEmail"]);
+require("../class/Teacher.class.php");
+require("../class/Lesson.class.php");
+require("../class/Reading.class.php");
+require("../class/Homework.class.php");
 
-    $Lesson = new Lesson($mysqli);
-    $allLessons = $Lesson->get($_SESSION["userEmail"]);
+$Teacher = new Teacher($mysqli);
+$allTeachers = $Teacher->get($_SESSION["userEmail"]);
 
-    $Reading = new Reading($mysqli);
-    $allReading = $Reading->get($_SESSION["userEmail"]);
+$Lesson = new Lesson($mysqli);
+$allLessons = $Lesson->get($_SESSION["userEmail"]);
 
-    $Homework = new Homework($mysqli);
-    $allHomework = $Homework->get($_SESSION["userEmail"]);
+$Reading = new Reading($mysqli);
+$allReading = $Reading->get($_SESSION["userEmail"]);
+
+$Homework = new Homework($mysqli);
+$allHomework = $Homework->get($_SESSION["userEmail"]);
 
 
 ?>
