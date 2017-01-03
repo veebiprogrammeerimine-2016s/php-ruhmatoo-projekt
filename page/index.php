@@ -94,13 +94,13 @@
 
                         <div class="field-wrap">
                             <label for="signupFirstname">Eesnimi<span class="req">*</span></label>
-                            <input type="text" name="signupFirstname" autocomplete="off"/>
+                            <input type="text" name="signupFirstname" autocomplete="off" required/>
                         </div>
 
 
                         <div class="field-wrap">
                             <label for="signupLastname">Perekonnanimi<span class="req">*</span></label>
-                            <input type="text" name="signupLastname" autocomplete="off"/>
+                            <input type="text" name="signupLastname" autocomplete="off" required/>
                         </div>
 
                     </div>
@@ -109,51 +109,20 @@
 
                     <div class="field-wrap">
                       <label for="signupEmail">E-mail<span class="req">*</span></label>
-                      <input type="text" name="signupEmail" autocomplete="off"/>
+                      <input type="email" name="signupEmail" autocomplete="off" required/>
                     </div>
 
 
 
                     <div class="field-wrap">
                       <label for="signupPassword">Parool<span class="req">*</span></label>
-                      <input type="password" name="signupPassword" autocomplete="off"/>
+                      <input type="password" name="signupPassword" autocomplete="off" required/>
                     </div>
 
-
-
-                    <div class="field-wrap">
-                      <label for="passwordAgain">Sisesta parool uuesti<span class="req">*</span></label>
-                      <input type="password" name="passwordAgain" autocomplete="off"/>
-                    </div>
 
                     <button type="submit" class="button button-block">Loo kasutaja</button>
 
                 </form>
-                  <!--
-                  <script type="text">
-
-                      $("#signupform").validate({
-
-                          rules: {
-                              signupFirstname: {required: true},
-                              signupLastname: {required: true},
-                              signupEmail: {required: true, email: true},
-                              signupPassword: {required: true},
-                              passwordAgain: {required: true, equalTo: "#signupPassword"}
-
-                          },
-
-                          messages:{
-                              signupFirstname: {required: "Palun sisestage eesnimi."},
-                              signupLastname: {required: "Palun sisestage oma perekonnanimi."},
-                              signupEmail: {required: "Palun sisestage oma email", email: "Palun sisestage korrektne email"},
-                              signupPassword: {required: "Palun sisestage parool."},
-                              passwordAgain: {required: "Sisestage kontroll parool", equalTo: "Paroolid ei ühti"}
-                          }});
-
-                  </script>
-                  -->
-
 
               </div>
 
@@ -168,5 +137,20 @@
 </div>
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="../style_script/js/index.js"></script>
+<script src="sweetalert-master/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
+<?php
+    if(isset($_SESSION["madeaccount"]) && !empty($_SESSION["madeaccount"])){
+        echo("<script>swal('Kasutaja loomine õnnestus.');</script>");
+        $_SESSION["madeaccount"] = "";
+    }
+
+    if(isset($_SESSION["error"]) && !empty($_SESSION["error"])){
+        $error = $_SESSION["error"];
+        echo("<script>swal('$error')</script>");
+        $_SESSION["error"] = "";
+    }
+
+?>
 </body>
 </html>

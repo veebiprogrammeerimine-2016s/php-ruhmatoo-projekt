@@ -41,15 +41,9 @@ class User {
 			$hash = hash("sha512", $password);
 			if ($hash == $passwordFromDb) {
 
-
-				echo "Kasutaja logis sisse ".$id;
-
-
 				// Määran sessiooni muutujad, millele saan ligi
 				// Teistelt lehtedelt
-				$_SESSION["userId"] = $id;
 				$_SESSION["userEmail"] = $emailFromDb;
-				$_SESSION["message"] = "<h1>Tere tulemast!</h1>";
 
 
 				header("Location: data.php");
@@ -57,15 +51,16 @@ class User {
 			}
 			else
             {
-				$error = "vale parool";
+				$error = "Vale parool";
 			}
 		}
 		else
         {
 			// Ei leidnud kasutajat selle meiliga
-			$error = "ei ole sellist emaili";
+			$error = "Ei ole sellist emaili";
 		}
-		return $error;
+
+		$_SESSION["error"] = $error;
 	}
 
 
@@ -75,17 +70,20 @@ class User {
 		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password) VALUES (?, ?)");
 		echo $this->connection->error;
 		$stmt->bind_param("ss", $email, $password);
-		
+
 		if($stmt->execute()) {
 			echo "salvestamine õnnestus";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
-		
+
 		$stmt->close();
-        header("Location: index.php");
+        $_SESSION["madeaccount"] = 1;
+		header("Location: index.php");
         exit();
-		
+
+
+
 		
 	}
 
