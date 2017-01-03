@@ -2,10 +2,10 @@
 
     require("functions.php");
 
-    if(!isset($_SESSION["userId"])){
+    if(!isset($_SESSION["userEmail"])){
 
         //Suuna sisselogimis lehele
-        header("Location: login.php");
+        header("Location: index.php");
         exit();
     }
 
