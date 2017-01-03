@@ -63,8 +63,6 @@
 	</div>
 
 <p class="text-right">
-	<span class="text-right" style="font-size:30px;"> Tere tulemast </span> <a style="font-size:30px; class="text-right" ><?=$_SESSION["userEmail"];?></a>
-	<br>
 	<a class="text-right" href="?logout=1">Logi välja <span class="glyphicon glyphicon-log-out"> </span></a>
 	<br><br>
 	<a class="text-right" href="userpage.php">Sinu profiil <span class="glyphicon glyphicon-user"></span></a>
@@ -78,7 +76,7 @@
 	<form class="form-inline">
 		<div class="row">
 			<form>
-				<input class="form-control" type="search" name="q" value="<?=$q;?>">
+				<input class="form-control" type="search" name="q" placeholder="Otsi" value="<?=$q;?>">
 				<button type="submit" class="btn btn-primary">
 					<i class="glyphicon glyphicon-search"></i>
 				</button>

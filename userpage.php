@@ -21,22 +21,6 @@ if  (
     $Car->saveCar ($_POST["RegPlate"], $_POST["Mark"], $_POST["Model"]);
 }
 
-$carData="";
-/*if  (
-    isset($_POST["id"]) &&
-    isset($_POST["RegPlate"]) &&
-    isset($_POST["Mark"]) &&
-    isset($_POST["Model"]) &&
-    !empty($_POST["id"]) &&
-    !empty($_POST["RegPlate"]) &&
-    !empty($_POST["Mark"]) &&
-    !empty($_POST["Model"])
-)
-{
-    $carData = $Car->getUserCars($_POST["id"], $_POST["RegPlate"], $_POST["Mark"], $_POST["Model"]);
-}*/
-
-
 $carData = $Car->getUserCars();
 
 ?>
