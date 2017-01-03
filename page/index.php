@@ -1,6 +1,7 @@
 <?php
     require("functions.php");
     require("../class/User.class.php");
+
     $User = new User($mysqli);
 
     // Kui on sisse loginud, siis suunan data lehele.
@@ -12,7 +13,6 @@
 
 
 
-
 <!DOCTYPE html>
 <html >
 <head>
@@ -20,12 +20,8 @@
     <title>Sign-Up/Login Form</title>
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
     <link rel="stylesheet" href="../style_script/css/style.css">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-
     <!-- Font Awesome and Pixeden Icon Stroke icon fonts-->
     <link rel="stylesheet" href="../style_script/css/font-awesome.min.css">
     <link rel="stylesheet" href="../style_script/css/pe-icon-7-stroke.css">
@@ -37,11 +33,8 @@
     <link rel="stylesheet" href="../style_script/css/style.default.css" id="theme-stylesheet">
     <!-- Favicon-->
     <link rel="shortcut icon" href="../style_script/img/favicon.png">
-
-    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  -->
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 </head>
 
 <body>
@@ -72,7 +65,7 @@
 
                                 <div class="field-wrap">
                                     <label for="loginPassword">Parool<span class="req">*</span></label>
-                                    <input type="password" name="loginPassword" autocomplete="off"/>
+                                    <input type="password" name="loginPassword" autocomplete="off" required/>
                                 </div>
 
                                 <button class="button button-block">Logi sisse</button>
@@ -137,14 +130,16 @@
 <script src="sweetalert-master/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
 <?php
-if(isset($_SESSION["madeaccount"]) && !empty($_SESSION["madeaccount"])){
-    echo("<script>swal('Kasutaja loomine õnnestus.');</script>");
-    $_SESSION["madeaccount"] = "";
-}
-if(isset($_SESSION["error"]) && !empty($_SESSION["error"])){
-    $error = $_SESSION["error"];
-    echo("<script>swal('$error')</script>");
-    $_SESSION["error"] = "";
-}
+    if(isset($_SESSION["madeaccount"]) && !empty($_SESSION["madeaccount"])){
+        echo("<script>swal('Kasutaja loomine õnnestus.');</script>");
+        $_SESSION["madeaccount"] = "";
+    }
+
+
+    if(isset($_SESSION["error"]) && !empty($_SESSION["error"])){
+        $error = $_SESSION["error"];
+        echo("<script>swal('$error')</script>");
+        $_SESSION["error"] = "";
+    }
 ?>
 </body>

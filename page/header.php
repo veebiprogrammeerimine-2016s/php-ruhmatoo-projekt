@@ -1,3 +1,27 @@
+<?php
+
+    require("functions.php");
+
+    require("../class/Teacher.class.php");
+    require("../class/Lesson.class.php");
+    require("../class/Reading.class.php");
+    require("../class/Homework.class.php");
+
+    $Teacher = new Teacher($mysqli);
+    $allTeachers = $Teacher->get($_SESSION["userEmail"]);
+
+    $Lesson = new Lesson($mysqli);
+    $allLessons = $Lesson->get($_SESSION["userEmail"]);
+
+    $Reading = new Reading($mysqli);
+    $allReading = $Reading->get($_SESSION["userEmail"]);
+
+    $Homework = new Homework($mysqli);
+    $allHomework = $Homework->get($_SESSION["userEmail"]);
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,11 +85,14 @@
                             <li><a href="http://www.tlu.ee/et/Digitehnoloogiate-instituut/Oppetoo/Dokumendid">Juhendid</a></li>
                             <li class="dropdown-submenu"><a tabindex="-1" href="#" data-toggle="dropdown" class="dropdown-toggle" >Õpetajate lehed <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a tabindex="-1" href="http://www.cs.tlu.ee/IFI6209/">Tanel Toova</a></li>
-                                    <li><a tabindex="-1" href="https://github.com/romilrobtsenkov">Romil Rõbtšenkov</a></li>
-                                    <li><a tabindex="-1" href="http://www.cs.tlu.ee/~inga/progbaas/">Inga Petuhhov</a></li>
-                                    <li><a tabindex="-1" href="http://minitorn.tlu.ee/~jaagup/kool/java/">Jaagup Kippar</a></li>
-                                    <li><a tabindex="-1" href="http://www.tlu.ee/~kivik/">Kalle Kivi</a></li>
+                                    <?php
+                                        $html = "";
+                                        foreach($allTeachers as $teacher){
+                                            $html .= "<li><a tabindex='-1' href='$teacher->material'>$teacher->name</a></li>";
+                                        }
+                                        echo($html);
+                                    ?>
+
                                 </ul>
                             </li>
                         </ul>

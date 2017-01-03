@@ -11,8 +11,6 @@ class User {
 	}
 
 
-
-	/*TEISED FUNKTSIOONID*/
 	function login ($email, $password) {
 		
 		$error = "";
@@ -52,6 +50,7 @@ class User {
 			else
             {
 				$error = "Vale parool";
+				$_SESSION["error"] = $error;
 			}
 		}
 		else

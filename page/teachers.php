@@ -1,11 +1,11 @@
+
+
+
+
+
 <?php
 
-require("functions.php");
-require("../class/Teacher.class.php");
-$Teacher = new Teacher($mysqli);
-$allTeachers = $Teacher->get($_SESSION["userEmail"]);
-
-
+require("header.php");
 
 if(!isset($_SESSION["userEmail"])){
     header("Location: login.php");
@@ -42,22 +42,13 @@ if(isset($_POST["sendTeacher"])){
     }
 }
 
-
-
-
 ?>
-
-
-
-
-<?php require("header.php"); ?>
-
 <section class="background-gray-lightest">
     <div class="container">
         <div class="breadcrumbs">
             <ul class="breadcrumb">
                 <li><a href="data.php">Kodu</a></li>
-                <li>Kontaktid</li>
+                <li>Õpetajad</li>
             </ul>
         </div>
         <form class="form-horizontal" method="post" id="teacherform" name="teacherform">
@@ -96,7 +87,7 @@ if(isset($_POST["sendTeacher"])){
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="material">Kodulehe aadress</label>
                     <div class="col-md-4">
-                        <input id="material" name="material" value="" placeholder="http://www.mingisait.tlu.ee" type="text" class="form-control input-md">
+                        <input id="material" name="material" value="" placeholder="http(s)://www.mingisait.tlu.ee" type="text" class="form-control input-md">
                     </div>
                 </div>
 

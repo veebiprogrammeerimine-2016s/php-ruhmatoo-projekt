@@ -1,58 +1,50 @@
-<?php
 
-    require("functions.php");
-    require("../class/Lesson.class.php");
-    require("../class/Reading.class.php");
-
-    //Kui ei ole kasutaja ID
-
-    if(!isset($_SESSION["userEmail"])){
-
-        //Suuna sisselogimis lehele
-        header("Location: login.php");
-        exit();
-    }
-
-    //Kui on log out aadressireal, siis login v'lja
-    if(isset($_GET["logout"])){
-
-        session_destroy();
-        header("Location: login.php");
-        exit();
-    }
-
-
-    $Lesson = new Lesson($mysqli);
-    $allLessons = $Lesson->get($_SESSION["userEmail"]);
-    $Reading = new Reading($mysqli);
-
-    if(isset($_POST["sendReading"])){
-
-        if ( isset($_POST["bookname"]) &&
-            isset($_POST["bookauthor"]) &&
-            isset($_POST["bookclass"]) &&
-            !empty($_POST["bookname"]) &&
-            !empty($_POST["bookauthor"]) &&
-            !empty($_POST["bookclass"])) {
-
-                $Reading->save(
-                    $Helper->cleanInput($_POST["bookname"]),
-                    $Helper->cleanInput($_POST["bookauthor"]),
-                    $Helper->cleanInput($_POST["bookclass"]),
-                    $Helper->cleanInput($_SESSION["userEmail"])
-                );
-                header("Location: compulsory_literature.php");
-                exit();
-
-            }
-
-
-    }
-?>
 
 
 <?php require("header.php");?>
 
+<?php
+
+
+
+//Kui ei ole kasutaja ID
+
+if(!isset($_SESSION["userEmail"])){
+
+    //Suuna sisselogimis lehele
+    header("Location: login.php");
+    exit();
+}
+
+//Kui on log out aadressireal, siis login v'lja
+if(isset($_GET["logout"])){
+
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
+
+
+if(isset($_POST["sendReading"])){
+
+    if ( isset($_POST["bookname"]) &&
+        isset($_POST["bookauthor"]) &&
+        isset($_POST["bookclass"]) &&
+        !empty($_POST["bookname"]) &&
+        !empty($_POST["bookauthor"]) &&
+        !empty($_POST["bookclass"])) {
+
+        $Reading->save(
+            $Helper->cleanInput($_POST["bookname"]),
+            $Helper->cleanInput($_POST["bookauthor"]),
+            $Helper->cleanInput($_POST["bookclass"]),
+            $Helper->cleanInput($_SESSION["userEmail"])
+        );
+        header("Location: compulsory_literature.php");
+        exit();
+    }
+}
+?>
 <section class="background-gray-lightest">
     <div class="container">
         <div class="breadcrumbs">

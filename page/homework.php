@@ -1,96 +1,79 @@
-<?php
 
-    require("functions.php");
-    require("../class/Lesson.class.php");
-    require("../class/Teacher.class.php");
-    require("../class/Homework.class.php");
-
-    $Homework = new Homework($mysqli);
-    $Lesson = new Lesson($mysqli);
-    $Teacher = new Teacher($mysqli);
-
-
-    $allTeachers = $Teacher->get($_SESSION["userEmail"]);
-    $allLessons = $Lesson->get($_SESSION["userEmail"]);
-
-    //Kui ei ole kasutaja ID
-    if(!isset($_SESSION["userEmail"])){
-
-        //Suuna sisselogimis lehele
-        header("Location: homework.php");
-        exit();
-    }
-
-
-    //Kui on log out aadressireal, siis login v'lja
-    if(isset($_GET["logout"])){
-
-        session_destroy();
-        header("Location: homework.php");
-        exit();
-    }
-
-
-    var_dump($_POST);
-
-    if(isset($_POST["sendHomework"])){
-
-        if(
-                isset($_POST["description"]) &&
-                isset($_POST["hwlesson"]) &&
-                isset($_POST["type"]) &&
-                isset($_POST["priority"]) &&
-                isset($_POST["date"]) &&
-                !empty($_POST["description"]) &&
-                !empty($_POST["hwlesson"]) &&
-                !empty($_POST["type"]) &&
-                !empty($_POST["priority"]) &&
-                !empty($_POST["date"])){
-
-                    $Homework->save(
-                        $Helper->cleanInput($_POST["type"]),
-                        $Helper->cleanInput($_POST["description"]),
-                        $Helper->cleanInput($_POST["date"]),
-                        $Helper->cleanInput($_POST["hwlesson"]),
-                        $Helper->cleanInput($_POST["priority"]),
-                        $Helper->cleanInput($_SESSION["userEmail"])
-
-                    );
-                    header("Location: homework.php");
-                    exit();
-
-        }
-    }
-
-
-    if(isset($_POST["sendClass"])){
-
-        if(
-            isset($_POST["classname"]) &&
-            isset($_POST["classcode"]) &&
-            isset($_POST["classteacher"]) &&
-            !empty($_POST["classname"]) &&
-            !empty($_POST["classcode"]) &&
-            !empty($_POST["classteacher"])){
-
-                $Lesson->save(
-                    $Helper->cleanInput($_POST["classname"]),
-                    $Helper->cleanInput($_POST["classcode"]),
-                    $Helper->cleanInput($_POST["classteacher"]),
-                    $Helper->cleanInput($_SESSION["userEmail"])
-                );
-                header("Location: homework.php");
-                exit();
-            }
-    }
-
-
-
-
-?>
 
 <?php require("header.php"); ?>
+<?php
 
+//Kui ei ole kasutaja ID
+if(!isset($_SESSION["userEmail"])){
+
+    //Suuna sisselogimis lehele
+    header("Location: homework.php");
+    exit();
+}
+
+
+//Kui on log out aadressireal, siis login v'lja
+if(isset($_GET["logout"])){
+
+    session_destroy();
+    header("Location: homework.php");
+    exit();
+}
+
+
+var_dump($_POST);
+
+if(isset($_POST["sendHomework"])){
+
+    if(
+        isset($_POST["description"]) &&
+        isset($_POST["hwlesson"]) &&
+        isset($_POST["type"]) &&
+        isset($_POST["priority"]) &&
+        isset($_POST["date"]) &&
+        !empty($_POST["description"]) &&
+        !empty($_POST["hwlesson"]) &&
+        !empty($_POST["type"]) &&
+        !empty($_POST["priority"]) &&
+        !empty($_POST["date"])){
+
+        $Homework->save(
+            $Helper->cleanInput($_POST["type"]),
+            $Helper->cleanInput($_POST["description"]),
+            $Helper->cleanInput($_POST["date"]),
+            $Helper->cleanInput($_POST["hwlesson"]),
+            $Helper->cleanInput($_POST["priority"]),
+            $Helper->cleanInput($_SESSION["userEmail"])
+
+        );
+        header("Location: homework.php");
+        exit();
+
+    }
+}
+
+
+if(isset($_POST["sendClass"])){
+
+    if(
+        isset($_POST["classname"]) &&
+        isset($_POST["classcode"]) &&
+        isset($_POST["classteacher"]) &&
+        !empty($_POST["classname"]) &&
+        !empty($_POST["classcode"]) &&
+        !empty($_POST["classteacher"])){
+
+        $Lesson->save(
+            $Helper->cleanInput($_POST["classname"]),
+            $Helper->cleanInput($_POST["classcode"]),
+            $Helper->cleanInput($_POST["classteacher"]),
+            $Helper->cleanInput($_SESSION["userEmail"])
+        );
+        header("Location: homework.php");
+        exit();
+    }
+}
+?>
 <script src="sweetalert-master/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
 <script>swal("You did well to come so far");</script>
