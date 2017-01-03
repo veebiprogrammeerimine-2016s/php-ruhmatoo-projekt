@@ -40,12 +40,12 @@
             $result = array();
             while ($stmt->fetch()) {
 
-                $lessons = new StdClass();
-                $lessons->id = $id;
-                $lessons->name = $title;
-                $lessons->classcode = $author;
-                $lessons->teacher = $class;
-                array_push($result, $lessons);
+                $reading = new StdClass();
+                $reading->id = $id;
+                $reading->name = $title;
+                $reading->author = $author;
+                $reading->class = $class;
+                array_push($result, $reading);
             }
             $stmt->close();
             return $result;

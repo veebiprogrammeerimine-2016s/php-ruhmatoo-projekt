@@ -98,4 +98,52 @@ if(isset($_POST["sendReading"])){
     </div>
 </section>
 
+<?php
+
+if(!empty($allReading)) {
+    $html = "";
+    $html .= "<!DOCTYPE html>";
+    $html .= "<html>";
+    $html .= "<head>";
+    $html .= "<meta charset='UTF-8'>";
+    $html .= "<title>Responsive Table</title>";
+    $html .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+    $html .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
+    $html .= "</head>";
+    $html .= "<body>";
+    $html .= "<div id='page-wrap'>";
+
+
+    $html .= "<table allign='center' class='table table striped-table-hover'>";
+    $html .= "<thead>";
+    $html .= "<tr>";
+    $html .= "<th>Nimi</th>";
+    $html .= "<th>Autor</th>";
+    $html .= "<th>Õppeaine</th>";
+    $html .= "</tr>";
+    $html .= "</thead>";
+    $html .= "<tbody>";
+
+    foreach ($allReading as $reading) {
+
+        $html .= "<tr>";
+        $html .= "<td>$reading->name</td>";
+        $html .= "<td>$reading->author</td>";
+        $html .= "<td>$reading->class</td>";
+        $html .= "</tr>";
+    }
+
+    $html .= "</tbody>";
+    $html .= "</table>";
+
+
+    $html .= "</div>";
+    $html .= "<br><br>";
+    $html .= "</body>";
+    $html .= "</html>";
+    echo $html;
+}
+?>
+
+
 <?php require("footer.php");?>

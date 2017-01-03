@@ -56,7 +56,7 @@ if(isset($_POST["sendClass"])){
 ?>
 <script src="sweetalert-master/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
-<script>swal("You did well to come so far");</script>
+
 <section class="background-gray-lightest">
 
     <div class="container">
