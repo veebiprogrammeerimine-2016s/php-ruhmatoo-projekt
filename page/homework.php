@@ -215,9 +215,9 @@ if(isset($_POST["sendClass"])){
                     <div class="col-md-4">
                         <select id="classteacher" name="classteacher" class="form-control">
                             <?php
-                                foreach($allTeachers as $teacher){
+                                foreach($allTeachers as $homework){
                                     $html = "";
-                                    $html .= "<option value='$teacher->name'>$teacher->name</option>";
+                                    $html .= "<option value='$homework->name'>$homework->name</option>";
                                     echo $html;}
                             ?>
                         </select>
@@ -254,10 +254,66 @@ if(isset($_POST["sendClass"])){
 
     </div>
 
+    <?php
 
+    if(!empty($allHomework)) {
+
+        $html .= "<html>";
+        $html .= "<head>";
+        $html .= "<meta charset='UTF-8'>";
+
+        $html .= "<title>Responsive Table</title>";
+
+        $html .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+
+        $html .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
+
+        $html .= "</head>";
+
+        $html .= "<body>";
+        $html .= "<div id='page-wrap'>";
+
+
+        $html .= "<table allign='center' class='table table striped-table-hover'>";
+        $html .= "<thead>";
+        $html .= "<tr>";
+        $html .= "<th>Kirjeldus</th>";
+        $html .= "<th>Aine</th>";
+        $html .= "<th>Tähtaeg</th>";
+        $html .= "<th>Tüüp</th>";
+        $html .= "<th>Prioriteet</th>";
+        $html .= "</tr>";
+        $html .= "</thead>";
+        $html .= "<tbody>";
+
+        foreach ($allHomework as $homework) {
+
+            $html .= "<tr>";
+            $html .= "<td>$homework->description</td>";
+            $html .= "<td>$homework->class</td>";
+            $html .= "<td>$homework->date</td>";
+            $html .= "<td>$homework->type</td>";
+            $html .= "<td>$homework->priority</td>";
+            $html .= "</tr>";
+        }
+
+
+        $html .= "</tbody>";
+        $html .= "</table>";
+
+
+        $html .= "</div>";
+
+        $html .= "<br><br>";
+        $html .= "</body>";
+        $html .= "</html>";
+        echo $html;
+    }
+?>
 
 
 </section>
+
 
 
 <?php require("footer.php"); ?>
