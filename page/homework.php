@@ -168,7 +168,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="email">Email(*)</label>
                     <div class="col-md-4">
-                        <input id="email" name="email" type="text" placeholder="keegi.õppejõud@tlu.ee" class="form-control input-md" >
+                        <input id="email" name="email" type="text" placeholder="eesnimi.perekonnanimi@tlu.ee" class="form-control input-md" >
 
                     </div>
                 </div>
@@ -286,5 +286,3 @@
 
 
 <?php require("footer.php"); ?>
-</body>
-</html>

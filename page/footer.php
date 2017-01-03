@@ -1,27 +1,13 @@
-
 <footer class="footer">
     <div class="footer__block">
         <div class="container">
             <div class="row">
-                <div class="col-md-8 col-sm-12">
-                    <h4 class="heading">Mingi tekst</h4>
-                    <p>Tekst, tekst</p>
-                    <p>Tekst, tekst</p>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <h4 class="heading">Kontaktid</h4>
-                    <h5>Tallinna Ülikool</h5>
-                    <p> Narva mnt 25<br />10120 Tallinn<br />+372 6409101</p>
-                    <p> <a href="mailto:tlu@tlu.ee">tlu@tlu.ee</a></p>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-4 col-sm-6">
-                    <h4 class="heading">Tekst</h4>
+                    <h4 class="heading">Kontaktid</h4>
                     <ul>
-                        <li><a href="category.html">tekst</a></li>
-                        <li><a href="category.html">tekst</a></li>
-                        <li><a href="category.html">tekst</a></li>
+                        <h5>Tallinna Ülikool</h5>
+                        <p> Narva mnt 25<br />10120 Tallinn<br />+372 6409101</p>
+                        <p> <a href="mailto:tlu@tlu.ee">tlu@tlu.ee</a></p>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-6">
@@ -51,6 +37,3 @@
         </div>
     </div>
 </footer>
-
-    </body>
-</html>
