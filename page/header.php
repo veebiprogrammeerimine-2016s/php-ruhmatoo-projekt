@@ -99,6 +99,7 @@ $allHomework = $Homework->get($_SESSION["userEmail"], $q);
                         <ul class="dropdown-menu">
                             <li><a href="https://www.tlu.ee/asio/kalenterit2/index.php?guest=intranet/tu&lang=est">ASIO</a></li>
                             <li><a href="https://ois2.tlu.ee/tluois/uus_ois2.tud_leht">ÕIS2</a></li>
+                            <li><a href="https://elu.tlu.ee/">ELU</a></li>
                             <li><a href="http://www.tlu.ee/et/Digitehnoloogiate-instituut/Oppetoo/Dokumendid">Juhendid</a></li>
 
                                     <?php

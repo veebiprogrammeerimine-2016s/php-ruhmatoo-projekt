@@ -227,7 +227,7 @@ if(isset($_POST["sendClass"])){
 
     </script>
 
-    </div>
+
 
 </section>
 
