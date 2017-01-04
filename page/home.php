@@ -20,15 +20,6 @@ $skills = $conn->query($skillsql);
 <div class="header c-6">
 <div style="float:right; display: flex; justifiy-content: center; align-items: center; margin-left: 1em;">
 <form style= "font-size: 0.5em; margin: 0;">
-<head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<input type="text" name="search">
-<button type="submit" class="button">
-<i class="fa fa-search"></i>
-</button>
-
-
 
 <a class="button" href="login.php">Logi sisse</a>
 </div>
@@ -37,6 +28,17 @@ $skills = $conn->query($skillsql);
 <div class="row">
 
 <div class="c-3" style="border: 2px solid gray; border-top: 0; border-left: 0; margin-bottom: 0; background: white;">
+<h3 style="margin-top: 0; margin-bottom: 0;">Otsi</h3>
+<form>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<input type="text" name="search" style="width: 89%; margin-top:10px; margin-bottom: 0;">
+<button type="submit" class="button">
+<i class="fa fa-search"></i>
+</button>
+
+<br><br>
+
 <h3 style="margin-top: 0; margin-bottom: 0;">Sorteeri</h3>
 <form>
 <!--<h6>Linnaosa</h6>
@@ -68,10 +70,7 @@ $skills = $conn->query($skillsql);
 <input type="checkbox" name="pipe" value="yes"> Torumees <br>
 <input type="checkbox" name="electrician" value="yes"> Elektrik <br>
 -->
-<h6>Populaarsus</h6>
-<input type="radio" name="popularity" value="3">Vähetuntud
-<input type="radio" name="popularity" value="5">Keskmine
-<input type="radio" name="popularity" value="7">Populaarne
+
 <input type="submit" class="button" style="width: 100%; margin-top:10px; margin-bottom: 0;" value="Sorteeri">
 </form>
 </div>
