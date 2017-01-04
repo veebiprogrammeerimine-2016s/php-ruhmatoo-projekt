@@ -16,9 +16,8 @@ require("header.php");
 <section>
     <div class="container">
         <h2> Mis on UNILIFE</h2>
-        <p class="lead">Suurem tekstilõik</p>
-        <p>Väiksem tekstilõik</p>
-        <p><a class="btn btn-ghost">Loe lisa</a></p>
+        <p class="lead">UNILIFE on veebilehekülg, mille eesmärk on lihtsustada TLU üliõpilaste igapäevast õppetööd. Lehekülg võimaldab igal õpilasel sisestada õppetööks vajalikku informatsiooni kohta, mis on ka hiljem kergesti kättesaadav.</p>
+        <p>Esmalt tuleb õpilasel sisestada õppejõu andmed. Seejärel saab ka sisestada informatsiooni õppeaine kohta, õppejõud on võimalik valida varem sisestatud õppejõudude seast. Peale õppeainete sisestamist on võimalik sisestada ka Kohustuslik kirjandus õppeainete järgi. Saab ka sisestada informatsiooni kodutööde kohta. Kõiki sisestatud andmeid näidatakse tabeli kujul ning neid on võimalik ka kustutada. Lisatud õppejõudude veebilehekülgede kiiremaks leidmiseks, on neid võimalik avada materjalide all olevast rippmenüüst.</p>
     </div>
 
 
