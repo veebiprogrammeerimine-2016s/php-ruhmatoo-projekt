@@ -14,32 +14,29 @@
 	
 	$signupEmailError = "";
 	$signupEmail = "";
+	$signupPasswordError = "";
+	$signupPassword = "";
+	$loginEmailError = "";
+	$loginEmail = "";
+	$loginPasswordError = "";
+	$loginPassword = "";
 	
 	if (isset ($_POST["signupEmail"])) {
-		
 		if (empty ($_POST["signupEmail"])) {
-			
 			$signupEmailError = "Can't be empty!";
-			
 		} else {
-				
 			$signupEmail = $_POST["signupEmail"];
 		}
 		
 	}
 	
-	$signupPasswordError = "";
+
 	
 	if (isset ($_POST["signupPassword"])) {
-		
 		if (empty ($_POST["signupPassword"])) {
-			
 			$signupPasswordError = "Can't be empty!";
-			
 		} else {
-			
 			if (strlen ($_POST["signupPassword"]) < 9 ) {
-				
 				$signupPasswordError = "Password must be at least 9 characters";
 				
 			}
@@ -54,33 +51,74 @@
 		 empty($signupPasswordError)
 	   ) {
 		echo "Saving...<br>";
-		echo "Email ".$signupEmail."<br>";
-		echo "Password ".$_POST["signupPassword"]."<br>"; 
 		
 		$password = hash("sha512", $_POST["signupPassword"]);
 		
-		echo "räsi ".$password."<br>";
-		
-		$User->signup($signupEmail, $password);
+		$User->signUp($Helper->cleanInput($_POST['signupEmail']),
+		$Helper->cleanInput ($password));
 		
 	}
 	
-	$notice = "";
-	
-	if (	isset($_POST["loginEmail"]) && 
-			isset($_POST["loginPassword"]) && 
-			!empty($_POST["loginEmail"]) && 
-			!empty($_POST["loginPassword"]) 
-	) {
-		$notice = $User->login($_POST["loginEmail"], $_POST["loginPassword"]);
-		
-		if(isset($notice->success)){
-			header("Location: login.php");
-			exit();
-		}else {
-			$notice = $notice->error;
-			var_dump($notice->error);
-		}
+	$error ="";
+	if ( isset($_POST["loginEmail"]) && 
+		isset($_POST["loginPassword"]) && 
+		!empty($_POST["loginEmail"]) && 
+		!empty($_POST["loginPassword"])
+	  ) {
+		  
+		$error = $User->login($Helper->cleanInput($_POST["loginEmail"]), 
+		$Helper->cleanInput($_POST["loginPassword"]));
 		
 	}
 ?>
+
+<?php require("../header.php"); ?>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-sm-3">
+
+		<h1>Logi in</h1>
+		<p style="color:red;"><?php echo $error; ?></p>
+		<form method="POST">
+			
+			<label>Email</label><br>
+			<input name="loginEmail" type="email"> <?php echo $loginEmailError; ?>
+			
+			<br><br>
+			
+			<label>Password</label><br>
+			<input name="loginPassword" type="password"> <?php echo $loginPasswordError; ?>
+						
+			<br><br>
+			
+			<input type="submit">
+		
+		</form>
+		
+	</div>	
+		
+	<div class="col-sm-3 col-sm-offset-3">
+		
+		<h1>Create user</h1>
+		
+		<form method="POST">
+			
+			<label>Email</label><br>
+			<input name="signupEmail" type="email"> <?php echo $signupEmailError; ?>
+			
+			<br><br>
+			
+			<label>Password</label><br>
+			<input placeholder="Parool" name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
+						
+			<br><br> 
+			
+			<input type="submit" value="Save">
+		
+		</form>
+
+	</body>
+</html>
