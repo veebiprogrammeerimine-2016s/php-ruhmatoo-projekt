@@ -12,11 +12,10 @@
 		exit();
 	}
 	
-
-	$loginEmailError = "";
-	$loginEmail = "";
-	$loginPasswordError = "";
-	$loginPassword = "";
+	$signupEmailError = "";
+	$signupEmail = "";
+	$signupPasswordError = "";
+	$signupPassword = "";
 	
 	if (isset ($_POST["signupEmail"])) {
 		if (empty ($_POST["signupEmail"])) {
@@ -56,17 +55,6 @@
 		
 	}
 	
-	$error ="";
-	if ( isset($_POST["loginEmail"]) && 
-		isset($_POST["loginPassword"]) && 
-		!empty($_POST["loginEmail"]) && 
-		!empty($_POST["loginPassword"])
-	  ) {
-		  
-		$error = $User->login($Helper->cleanInput($_POST["loginEmail"]), 
-		$Helper->cleanInput($_POST["loginPassword"]));
-		
-	}
 ?>
 
 <?php require("../header.php"); ?>
@@ -76,26 +64,24 @@
     <div class="row">
 
         <div class="col-sm-3">
-
-		<h1>Logi in</h1>
-		<p style="color:red;"><?php echo $error; ?></p>
+		
+		<h1>Create user</h1>
+		
 		<form method="POST">
 			
 			<label>Email</label><br>
-			<input name="loginEmail" type="email"> <?php echo $loginEmailError; ?>
+			<input name="signupEmail" type="email"> <?php echo $signupEmailError; ?>
 			
 			<br><br>
 			
 			<label>Password</label><br>
-			<input name="loginPassword" type="password"> <?php echo $loginPasswordError; ?>
+			<input placeholder="Parool" name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
 						
-			<br><br>
+			<br><br> 
 			
-			<input type="submit">
+			<input type="submit" value="Save">
 		
 		</form>
-		
-	</div>	
-	
+
 	</body>
 </html>
