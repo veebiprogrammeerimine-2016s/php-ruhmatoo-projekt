@@ -1,7 +1,12 @@
 <?php
 require("header.php");
 
-
+if(isset($_GET["delete"])){
+    if($_GET["delete"] == "all"){
+        $Reading->deleteAll();
+        header("Location: compulsory_literature.php");
+        exit();
+    }}
 
 if(isset($_POST["sendReading"])){
 
@@ -120,6 +125,7 @@ if(!empty($allReading)) {
     $html .= "<th>Nimi</th>";
     $html .= "<th>Autor</th>";
     $html .= "<th>Õppeaine</th>";
+    $html .= "<th><a href='?delete=all'>Kustuta kõik</a></th>";
     $html .= "</tr>";
     $html .= "</thead>";
     $html .= "<tbody>";
@@ -130,6 +136,7 @@ if(!empty($allReading)) {
         $html .= "<td>$reading->name</td>";
         $html .= "<td>$reading->author</td>";
         $html .= "<td>$reading->class</td>";
+        $html .= "<td><a href='?deleted=$reading->id'>Kustuta</a></td>";
         $html .= "</tr>";
     }
 

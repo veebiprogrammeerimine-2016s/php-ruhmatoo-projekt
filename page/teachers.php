@@ -1,8 +1,22 @@
 <?php
 
-
-
 require("header.php");
+
+if(isset($_GET["delete"])){
+    if($_GET["delete"] == "alllessons"){
+        $Lesson->deleteAll();
+        header("Location: teachers.php");
+        exit();
+    }}
+
+
+if(isset($_GET["delete"])){
+    if($_GET["delete"] == "allteachers"){
+        $Teacher->deleteAll();
+        header("Location: teachers.php");
+        exit();
+    }}
+
 
 
 if(isset($_POST["sendTeacher"])){
@@ -224,9 +238,10 @@ if(!empty($allTeachers)) {
     $html .= "<table allign='center' class='table table striped-table-hover'>";
     $html .= "<thead>";
     $html .= "<tr>";
-    $html .= "<th>Nimi</th>";
+    $html .= "<th>Õpetaja</th>";
     $html .= "<th>Klassiruum</th>";
     $html .= "<th>Email</th>";
+    $html .= "<th><a href='?delete=allteachers'>Kustuta kõik</a></th>";
     $html .= "</tr>";
     $html .= "</thead>";
     $html .= "<tbody>";
@@ -237,6 +252,7 @@ if(!empty($allTeachers)) {
         $html .= "<td>$teacher->name</td>";
         $html .= "<td>$teacher->classroom</td>";
         $html .= "<td>$teacher->email</td>";
+        $html .= "<td><a href='?deleted=$teacher->id'>Kustuta</a></td>";
         $html .= "</tr>";
     }
 
@@ -272,9 +288,10 @@ if(!empty($allLessons)) {
     $html .= "<table allign='center' class='table table striped-table-hover'>";
     $html .= "<thead>";
     $html .= "<tr>";
-    $html .= "<th>Nimi</th>";
+    $html .= "<th>Õppeaine</th>";
     $html .= "<th>Ainekood</th>";
     $html .= "<th>Õpetaja</th>";
+    $html .= "<th><a href='?delete=alllessons'>Kustuta kõik</a></th>";
     $html .= "</tr>";
     $html .= "</thead>";
     $html .= "<tbody>";
@@ -285,6 +302,7 @@ if(!empty($allLessons)) {
         $html .= "<td>$lesson->name</td>";
         $html .= "<td>$lesson->classcode</td>";
         $html .= "<td>$lesson->teacher</td>";
+        $html .= "<td><a href='?deleted=$lesson->id'>Kustuta</a></td>";
         $html .= "</tr>";
     }
 

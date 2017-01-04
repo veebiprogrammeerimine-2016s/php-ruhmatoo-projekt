@@ -49,7 +49,21 @@
             }
             $stmt->close();
             return $result;
-        }}
+        }
+
+
+        function deleteAll(){
+
+            $stmt = $this->connection->prepare("DELETE FROM `classes_groupwork` WHERE 1");
+            echo $this->connection->error;
+            $stmt->execute();
+            $stmt->close();
+        }
+
+
+
+
+    }
 
 
 ?>
