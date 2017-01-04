@@ -8,6 +8,14 @@ if(isset($_GET["delete"])){
         exit();
     }}
 
+
+if(isset($_GET["deleted"])){
+
+    $Reading->deleteSingle($Helper->cleanInput($_GET["deleted"]));
+    header("Location: compulsory_literature.php");
+}
+
+
 if(isset($_POST["sendReading"])){
 
     if ( isset($_POST["bookname"]) &&

@@ -60,6 +60,18 @@
             echo $this->connection->error;
             $stmt->execute();
             $stmt->close();
-        }}
+        }
+
+        function deleteSingle($id){
+
+            $stmt = $this->connection->prepare("DELETE FROM `teachers_groupwork` WHERE id = ?");
+            $stmt->bind_param("i",$id);
+            echo $this->connection->error;
+            $stmt->execute();
+            $stmt->close();
+
+        }
+
+    }
 
 ?>

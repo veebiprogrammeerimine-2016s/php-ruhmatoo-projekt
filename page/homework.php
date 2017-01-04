@@ -9,6 +9,11 @@ if(isset($_GET["delete"])){
     }}
 
 
+if(isset($_GET["deleted"])){
+
+    $Homework->deleteSingle($Helper->cleanInput($_GET["deleted"]));
+    header("Location: homework.php");
+}
 
 
 if(isset($_POST["sendHomework"])){

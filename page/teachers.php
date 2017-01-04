@@ -17,6 +17,18 @@ if(isset($_GET["delete"])){
         exit();
     }}
 
+if(isset($_GET["deletedlesson"])){
+
+    $Lesson->deleteSingle($Helper->cleanInput($_GET["deletedlesson"]));
+    header("Location: teachers.php");
+}
+
+
+if(isset($_GET["deletedteacher"])){
+
+    $Teacher->deleteSingle($Helper->cleanInput($_GET["deletedteacher"]));
+    header("Location: teachers.php");
+}
 
 
 if(isset($_POST["sendTeacher"])){
@@ -252,7 +264,7 @@ if(!empty($allTeachers)) {
         $html .= "<td>$teacher->name</td>";
         $html .= "<td>$teacher->classroom</td>";
         $html .= "<td>$teacher->email</td>";
-        $html .= "<td><a href='?deleted=$teacher->id'>Kustuta</a></td>";
+        $html .= "<td><a href='?deletedteacher=$teacher->id'>Kustuta</a></td>";
         $html .= "</tr>";
     }
 
@@ -302,7 +314,7 @@ if(!empty($allLessons)) {
         $html .= "<td>$lesson->name</td>";
         $html .= "<td>$lesson->classcode</td>";
         $html .= "<td>$lesson->teacher</td>";
-        $html .= "<td><a href='?deleted=$lesson->id'>Kustuta</a></td>";
+        $html .= "<td><a href='?deletedlesson=$lesson->id'>Kustuta</a></td>";
         $html .= "</tr>";
     }
 
