@@ -40,6 +40,16 @@ $client->setScopes(SCOPES);
 //    'verify' => false,
 //)));
 
+// Current date in MASIO - Unix time
+// 1485856800 for IFIFB-1 Semester 2
+if (isset($_GET["time"]) && !isset($_SESSION["time"])) {
+    $time = $_GET["time"];
+} else if (!isset($_SESSION["time"])) {
+    $time = time();
+} else {
+    $time = $_SESSION["time"];
+}
+
 if (isset($_SESSION["accessToken"])) {
     $accessToken = $_SESSION["accessToken"];
     if (isset($_GET["code"])){
@@ -83,15 +93,7 @@ if (isset($_GET["ryhm"]) && !isset($_SESSION["ryhm"])) {
     $ryhm = $_SESSION["ryhm"];
 }
 
-// Current date in MASIO - Unix time
-// 1485856800 for IFIFB-1 Semester 2
-if (isset($_GET["time"]) && !isset($_SESSION["time"])) {
-    $time = $_GET["time"];
-} else if (!isset($_SESSION["time"])) {
-    $time = time();
-} else {
-    $time = $_SESSION["time"];
-}
+
 
 $url = 'http://www.tlu.ee/masio/index.php?id=ryhm&ryhm=' . $ryhm . '&time=' . $time . '#MASIO';
 $html = file_get_html($url);
@@ -120,7 +122,6 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
         $dayExplode[0] = str_replace(".", "", $dayExplode[0]);
         $dayExplode[1] = monthToDate($dayExplode[1]);
         $dayFinished = $year . "-" . $dayExplode[1] . "-" . $dayExplode[0];
-
     } else {
         $spans = $div->find("span");
         if (count($spans) > 0) {
@@ -128,8 +129,8 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
             $lessonTime = explode("-", $time);
             $timeStart = $lessonTime[0];
             $timeEnd = $lessonTime[1];
-            $timeStart = $dayFinished . "T" . $timeStart;
-            $timeEnd = $dayFinished . "T" . $timeEnd;
+            $timeStart = $dayFinished . "T" . $timeStart . ":00+02:00";
+            $timeEnd = $dayFinished . "T" . $timeEnd . ":00+02:00";
             $room = $spans[1]->innertext;
             $subject = $spans[2]->innertext;
 
@@ -145,22 +146,55 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
             $subject = implode($subject, " ");
 
             $subject = explode(")", $subject);
-            if (strpos(utf8_encode($subject[0]), "rühm") !== false) {
-                $group = filter_var($subject[0], FILTER_SANITIZE_NUMBER_INT);
-                $teacher = $subject[1];
+            if (strpos($subject[0], "moodul") !== false) {
+                $module = $subject[0];
+                array_shift($subject);
+            }
+            $subject = implode($subject, " ");
+            $subject = explode(" ", $subject);
+
+            if ($subject[2] === "ja") {
+
+                $group1 = $subject[1];
+                $group1 = rtrim($group1, ".");
+                $group2 = $subject[3];
+                // Replacement unicode characters in text. No encoding works to fix this.
+                $group2 = $group2[0];
+
+                array_shift($subject);
+                while (true) {
+                    if ($subject[0] === "") {
+                        array_shift($subject);
+                        break;
+                    } else {
+                        array_shift($subject);
+                    }
+                }
+                $teacher = implode($subject, " ");
+            } else if ($subject[0] === "valikaine") {
+                // Elective courses not added to calendar
+                continue;
+            } else if (strpos($subject[0], "rühm") !== false) {
+                $group = $subject[1];
+                $group = $group[0];
+                $teacher = $subject[3] . " " . $subject[4];
+            } else if ($subject[1] === "moodul" || $subject[2] === "moodul") {
+                $subject = implode($subject, " ");
+                $subject = explode(")", $subject);
+                $module = $subject[0];
+                array_shift($subject);
+                $subject = implode($subject, " ");
+                $subject = explode(" ", $subject);
+                $group = $subject[0];
+                $teacher = $subject[1] . " " . $subject[2];
+            } else if (strpos($subject[1], ".") !== false) {
+                $group = $subject[1];
+                $group = $group[0];
+                $teacher = $subject[3] . " " . $subject[4];
             } else {
                 $group = "ALL";
-                $teacher = $subject[0];
+                $teacher = $subject[0] . " " . $subject[1];
             }
-            $subject = array_shift($subject);
-            //echo "Rühm " . $group . " | ";
-            //echo "START: " . $timeStart . " | END: ". $timeEnd . " | ";
-            //echo $lessonCode . " | ";
-            //echo $lessonName . " | ";
-            //echo $teacher . " | ";
-            //echo $room . "<br>";
-
-            echo "<br>";
 
             $summary = $lessonCode . " " . $lessonName;
             $event = new Google_Service_Calendar_Event(array(
@@ -177,17 +211,36 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
                 ),
             ));
 
-            if ($grupp = 'ALL') {
-                $event = $service->events->insert('grupp1', $event);
-                $event = $service->events->insert('grupp2', $event);
-                $event = $service->events->insert('grupp3', $event);
-                $event = $service->events->insert('grupp4', $event);
-            } else {
-                $groupName = 'grupp' . $group;
-                $event = $service->events->insert($groupName, $event);
+            try {
+                if ($grupp = 'ALL') {
+                    $event = $service->events->insert('grupp1', $event);
+                    $event = $service->events->insert('grupp2', $event);
+                    $event = $service->events->insert('grupp3', $event);
+                    $event = $service->events->insert('grupp4', $event);
+                } else if (isset($group1) && isset($group2)) {
+                    $group1 = "grupp" . $group1;
+                    $group2 = "grupp" . $group2;
+                    $event = $service->events->insert($group1, $event);
+                    $event = $service->events->insert($group2, $event);
+                } else if (isset($group)) {
+                    $groupName = 'grupp' . $group;
+                    $event = $service->events->insert($groupName, $event);
+                }
+
+                $event->htmlLink;
+            } catch (Exception $e) {
+                if ($e->getCode() == "404") {
+                    echo "Teil puuduvad õigused kalendri muutmiseks.";
+                } else {
+                    echo $e;
+                }
+                exit();
             }
 
-            printf('Event created: %s\n', $event->htmlLink);
+            unset($teacher);
+            unset($group);
+            unset($group1);
+            unset($group2);
         }
 
     }
