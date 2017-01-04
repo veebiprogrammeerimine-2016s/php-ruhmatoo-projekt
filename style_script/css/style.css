@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background: #ffffff;
+  background: url('../img/jumbotron1.jpg') center center no-repeat;
   font-family: 'Titillium Web', sans-serif;
 }
 
