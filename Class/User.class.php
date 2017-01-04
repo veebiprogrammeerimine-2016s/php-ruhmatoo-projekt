@@ -64,7 +64,7 @@ class User {
 		$stmt = $this->connection->prepare("INSERT INTO users (user_name, user_email, user_pass) VALUES (?, ?, ?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("sss", $email, $username, $password );
+		$stmt->bind_param("sss", $username, $email, $password );
 		if ( $stmt->execute() ) {
 			echo "Registered";
 		} else {
