@@ -25,3 +25,16 @@
 	
 	
 ?>
+
+<?php require("../header.php"); ?>
+<div class="container">
+	<?=$msg;?>
+
+	<h1></h1><p> Welcome <?=$_SESSION["userEmail"];?>!</p></h1>
+	<a href="?logout=1"> Log out</a>
+
+
+	<br><br>
+	<br><br>
+</div>
+<?php require("../footer.php"); ?>

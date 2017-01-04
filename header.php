@@ -1,15 +1,94 @@
 <!DOCTYPE html>
 <html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+
 <head>
-	<title>Log in/create account</title>
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+.dropbtn {
+    background-color: #FFFFFF;
+    color: black;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+	font-family: 'Open Sans', sans-serif;
+}
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #f1f1f1;
+}
+</style>
 </head>
 <body>
+
+<div class="dropdown">
+  <button class="dropbtn">Home</button>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Pictures</button>
+  <div class="dropdown-content">
+    <a href="#">Nature</a>
+    <a href="#">Arts</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Gifs</button>
+  <div class="dropdown-content">
+    <a href="#">Nature</a>
+    <a href="#">Arts</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Videos</button>
+  <div class="dropdown-content">
+    <a href="#">Nature</a>
+    <a href="#">Arts</a>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Sounds</button>
+  <div class="dropdown-content">
+    <a href="#">Nature</a>
+    <a href="#">Arts</a>
+  </div>
+</div>
+
+</body>
+</html>

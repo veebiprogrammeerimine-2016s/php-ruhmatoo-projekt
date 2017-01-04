@@ -16,6 +16,8 @@
 	$signupEmail = "";
 	$signupPasswordError = "";
 	$signupPassword = "";
+	$signupUsernameError = "";
+	$signupUsername = "";
 	
 	if (isset ($_POST["signupEmail"])) {
 		if (empty ($_POST["signupEmail"])) {
@@ -26,7 +28,15 @@
 		
 	}
 	
-
+if (isset ($_POST["signupUsername"])) {
+		if (empty ($_POST["signupUsername"])) {
+			$signupUsernameError = "Can't be empty!";
+		} else {
+			$signupUsername = $_POST["signupUsername"];
+		}
+		
+	}
+		
 	
 	if (isset ($_POST["signupPassword"])) {
 		if (empty ($_POST["signupPassword"])) {
@@ -42,15 +52,17 @@
 	}
 	
 	if ( isset($_POST["signupEmail"]) &&
+		 isset($_POST["signupUsername"]) &&
 		 isset($_POST["signupPassword"]) &&
 		 $signupEmailError == "" && 
+		 $signupUsernameError == "" &&
 		 empty($signupPasswordError)
 	   ) {
 		echo "Saving...<br>";
 		
 		$password = hash("sha512", $_POST["signupPassword"]);
 		
-		$User->signUp($Helper->cleanInput($_POST['signupEmail']),
+		$User->signUp($Helper->cleanInput($_POST['signupEmail']),$Helper->cleanInput($_POST['signupUsername']),
 		$Helper->cleanInput ($password));
 		
 	}
@@ -71,6 +83,11 @@
 			
 			<label>Email</label><br>
 			<input name="signupEmail" type="email"> <?php echo $signupEmailError; ?>
+			
+			<br><br>
+			
+			<label>Username</label><br>
+			<input name="signupUsername" type="username"> <?php echo $signupUsernameError; ?>
 			
 			<br><br>
 			
