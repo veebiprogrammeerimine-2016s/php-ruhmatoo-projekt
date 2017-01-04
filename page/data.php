@@ -1,135 +1,145 @@
 <?php
 
-	require("../functions.php");
+require("../functions.php");
 
-	//kui ei ole kasutaja id'd
-	if(!isset($_SESSION["userId"])){
-		
-		//suunan sisselogimise lehele
+//kui ei ole kasutaja id'd suunan sisselogimise lehele
+	if(!isset($_SESSION["userId"])) {
 		header("Location: login.php");
 		exit();
-		
 	}
 
-
-
-	if(isset($_GET["logout"])){
-		
+//logout
+	if(isset($_GET["logout"])) {
 		session_destroy();
-		header("Location:login.php");
+		header("Location: login.php");
 		exit();
-		
 	}
 
-	
-	if(isset($_POST["contactemail"]) && isset($_POST["description"]) && isset($_POST["price"]) &&
-		!empty($_POST["contactemail"]) && !empty($_POST["description"]) && !empty($_POST["price"])
-		) {
-		
-		$Sneakers->savesneaker($Helper->cleanInput($_POST["contactemail"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]));
-		
-		
-	}
-	
-	if(isset($_GET["sort"]) && isset($_GET["direction"])){
-		$sort=$_GET["sort"];
-		$direction=$_GET["direction"];
-		
-	}else{
-		$sort="contactemail";
-		$direction="ascending";
-	}
-	
-	if(isset($_GET["q"])){
-		
-		$q = $Helper->cleanInput($_GET["q"]);
-		
-		$sneakerdata=$Sneakers->getallsneakers($q, $sort, $direction);
-		
-	}else{
-		
-		$q="";
-		$sneakerdata=$Sneakers->getallsneakers($q, $sort, $direction);
 
-	}
+/**** KUI KASUTAJA VAJUTAB "LOO UUS KUULUTUS" NUPPU ****/
+	if(isset($_POST["newpost"])) {
 		
-	
+		/* luuakse uus kirje andmebaasi sm_posts*/
+		$Sneakers->createNewPost();
+		
+		/* võtab viimati kasutaja poolt loodud kuulutuse id andmebaasist*/
+		$newPostData = $Sneakers->getNewPostId();
+		$newPostId = $newPostData->id;
+		
+		/* suunab kuulutuse loomise lehele koos id'ga, mis vastab kasutaja poolt viimati loodud andmebaasikirjega */
+		header("Location: createpost.php?id=".$newPostId);
+		exit();
+	}
+
+
+$newPostBtn = "";
+$modifyPostBtn = "disabled";
+
+
+/* muutujad postcounti jaoks */
+$pc = $Sneakers->ifUserHasCreatedPost();
+$upc = $pc->postcheck;
+
+
+/* ajutised echo'd kontrollimiseks */
+echo "userId: ".$_SESSION["userId"]."<br>";
+echo "User postcheck: ".$upc."<br>";
+
+
+/* kui kasutaja pole loonud ühtegi kuulutust, siis on getNewPostId funktsiooni StdClass tühi, mis lööb erroreid, selleks oli vaja postcounti kontrollida */
+/* samuti määrata ära tingimus, mis aktiveerib/desaktiveerib uue kuulutuse loomise nupu või vana kuulutuse jätkamise */
+	if($upc == 0) {
+		$newPostData = "";
+	} else {
+		$newPostData = $Sneakers->getNewPostId();
+		$newPostStatus = $newPostData->status;
+		$newPostId = $newPostData->id;
+		
+		if($newPostStatus == 0) {
+		$newPostBtn = "disabled";
+		$modifyPostBtn = "";
+		} else {
+			$newPostBtn = "";
+			$modifyPostBtn = "disabled";
+		}
+	}
+
+
+
+
+
+
+/*
+	if($newPostStatus == 0) {
+		$newPostBtn = "disabled";
+		$modifyPostBtn = "";
+	} else {
+		$newPostBtn = "";
+		$modifyPostBtn = "disabled";
+	}
+*/
+
+
+
+
+
+
+require("../header.php"); 
 ?>
 
-<?php require("../header.php"); ?>
+
+
 <div class="container">
-	<h1>
-		Welcome<a href="user.php"> <?=$_SESSION["userEmail"];?></a>!
-	</h1>
-	<p>
-		<a href="profile.php">Minu profiil</a>
-		<br><a href="?logout=1">Logi valja</a>
-
-	</p>
-
-	<h2>Sell Sneakers</h2>
-
-		<form method="POST">
-
-			<label><b>Create a post</b></label><br><br>
-		
-			<label>Description</label><br>
-			<textarea rows="2" cols="40" name="description" type="text" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43"></textarea><br><br>
+	
+	
+<!-- **** KUULUTUSTE LEHE ALAMMENÜÜ **** -->
+	
+		<ul class="nav nav-tabs">
+			<li role="presentation" class="disabled"><a href="">Uus kuulutus</a></li>
+			<li role="presentation" class="disabled"><a href="">Minu kuulutused</a></li>
+		</ul>
+	
+	
+	<div class="col-md-6 col-md-offset-3">
+		<div>
+			<h3></h3>
+		</div>
+	
+	
+		<div>
+			<form method="POST">
+				<fieldset <?php echo $newPostBtn; ?>>
+					<label class="btn btn-success btn-lg btn-block">
+						Loo uus kuulutus<input type="submit" name="newpost" value="true" style="display: none;">
+					</label>
+				</fieldset>
+			</form>
+			<div>
+				<h3></h3>
+			</div>
 			
-			<label>Price ($)</label><br>
-			<input name="price" type="integer" placeholder="ex. 490"><br><br>
+			<fieldset <?php echo $modifyPostBtn; ?>>
+				<a href="createpost.php?id=<?php echo $newPostId; ?>" class="btn btn-warning btn-lg btn-block" role="button">Jätka oma kuulutuse loomist</a>
+			</fieldset>
 			
-			<label>Contact E-Mail</label><br>
-			<input name="contactemail" type="text" value="<?=$_SESSION["userEmail"];?>">
-			
-			<br><br>
-			<input type="submit" value="Save & Post">
+			<div>
+				<h3></h3>
+			</div>
+			<a href="myposts.php" class="btn btn-default btn-lg btn-block" role="button">Vaata oma loodud kuulutusi</a>
+		</div>
+	</div>
 
-
-
-		</form>
-		
-	<h2>Market</h2>
-	<form>
-		<input type="search" name="q" value="<?=$q;?>">
-		<input type="submit" value="Search"><br><br>
-	</form>
-
-
-	<?php
-
-		$direction="ascending";
-		if(isset($_GET["direction"])){
-			if($_GET["direction"] == "ascending"){
-				$direction = "descending";
-			}
-		}
-
-		$html = "<table class='table table-striped table-bordered'>";
-		
-		$html .= "<tr>";
-			$html .= "<th><a href='?q=".$q."&sort=contactemail&direction=".$direction."'>Contact E-Mail</a></th>";
-			$html .= "<th><a href='?q=".$q."&sort=description&direction=".$direction."'>Description</a></th>";
-			$html .= "<th><a href='?q=".$q."&sort=price&direction=".$direction."'>Price ($)</a></th>";
-		$html .= "</tr>";
-		
-		foreach($sneakerdata as $c) {
-			
-			$html .= "<tr>";
-				$html .= "<td>".$c->contactemail."</td>";
-				$html .= "<td>".$c->description."</td>";
-				$html .= "<td>".$c->price."</td>";
-				//$html .= "<td><a href='edit.php?contactemail=".$c->contactemail."'>edit.php</a></td>";
-			$html .= "</tr>";
-			
-		}
-
-		$html .= "</table>";
-
-		echo $html;
-
-
-	?>
 </div>
+	
+	
+
+
+
+	
+
+
+	
+
+
 
 <?php require("../footer.php"); ?>

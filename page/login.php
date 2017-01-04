@@ -7,7 +7,7 @@
 	//kui on see siis suunan data lehele
 	if(isset($_SESSION["userId"])){
 		
-		header("Location: data.php");
+		header("Location: sneakermarket.php");
 		exit();
 		
 	}
@@ -197,6 +197,7 @@
 	
 	
 ?>
+
 
 <?php require("../header.php"); ?>
 
