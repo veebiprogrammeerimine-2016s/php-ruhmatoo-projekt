@@ -2,6 +2,13 @@
 ob_start();
 require("functions.php");
 
+$q = "";
+
+if(isset($_POST["q"])){
+    if(!empty($_POST["q"])){
+        $q = $_POST["q"];
+    }}
+
 if(!isset($_SESSION["userEmail"])){
     header("Location: login.php");
     exit();
@@ -27,7 +34,7 @@ $Reading = new Reading($mysqli);
 $allReading = $Reading->get($_SESSION["userEmail"]);
 
 $Homework = new Homework($mysqli);
-$allHomework = $Homework->get($_SESSION["userEmail"]);
+$allHomework = $Homework->get($_SESSION["userEmail"], $q);
 
 
 ?>
@@ -93,14 +100,17 @@ $allHomework = $Homework->get($_SESSION["userEmail"]);
                             <li><a href="https://www.tlu.ee/asio/kalenterit2/index.php?guest=intranet/tu&lang=est">ASIO</a></li>
                             <li><a href="https://ois2.tlu.ee/tluois/uus_ois2.tud_leht">ÕIS2</a></li>
                             <li><a href="http://www.tlu.ee/et/Digitehnoloogiate-instituut/Oppetoo/Dokumendid">Juhendid</a></li>
-                            <li class="dropdown-submenu"><a tabindex="-1" href="#" data-toggle="dropdown" class="dropdown-toggle" >Õpetajate lehed <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
+
                                     <?php
-                                        $html = "";
+                                    if(!empty($allTeachers)){
+                                    $html = "";
+                                        $html .= "<li class=\"dropdown-submenu\"><a tabindex=\"-1\" href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\" >Õpetajate lehed <b class=\"caret\"></b></a>";
+                                        $html .= "<ul class=\"dropdown-menu\">";
                                         foreach($allTeachers as $teacher){
+
                                             $html .= "<li><a tabindex='-1' href='$teacher->material'>$teacher->name</a></li>";
                                         }
-                                        echo($html);
+                                        echo($html);}
                                     ?>
 
                                 </ul>

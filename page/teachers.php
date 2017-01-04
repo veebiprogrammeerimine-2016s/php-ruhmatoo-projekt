@@ -28,6 +28,29 @@ if(isset($_POST["sendTeacher"])){
     }
 }
 
+
+if(isset($_POST["sendClass"])){
+
+    if(
+        isset($_POST["classname"]) &&
+        isset($_POST["classcode"]) &&
+        isset($_POST["classteacher"]) &&
+        !empty($_POST["classname"]) &&
+        !empty($_POST["classcode"]) &&
+        !empty($_POST["classteacher"])){
+
+        $Lesson->save(
+            $Helper->cleanInput($_POST["classname"]),
+            $Helper->cleanInput($_POST["classcode"]),
+            $Helper->cleanInput($_POST["classteacher"]),
+            $Helper->cleanInput($_SESSION["userEmail"])
+        );
+        header("Location: teachers.php");
+        exit();
+    }
+}
+
+
 ?>
 <section class="background-gray-lightest">
     <div class="container">
@@ -106,8 +129,82 @@ if(isset($_POST["sendTeacher"])){
                 }});
 
         </script>
+
+
+        <form class="form-horizontal" method="post" id="classform" name="classform">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Õppeaine</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="classname">Nimi(*)</label>
+                    <div class="col-md-4">
+                        <input id="classname" name="classname" type="text" placeholder="Andmebaaside programmeerimine" class="form-control input-md" >
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="classcode">Ainekood(*)</label>
+                    <div class="col-md-4">
+                        <input id="classcode" name="classcode" placeholder="IFI6013.DT" type="text" class="form-control input-md">
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="classteacher">Õpetaja(*)</label>
+                    <div class="col-md-4">
+                        <select id="classteacher" name="classteacher" class="form-control">
+                            <?php
+                            foreach($allTeachers as $homework){
+                                $html = "";
+                                $html .= "<option value='$homework->name'>$homework->name</option>";
+                                echo $html;}
+                            ?>
+                        </select>
+                    </div>
+                </div>
+
+
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" name="sendClass" type="submit">Salvesta</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+
     </div>
+
+
+
+    <script>
+
+        $("#classform").validate({
+
+            rules: {
+                classname: {required: true},
+                classcode: {required: true}},
+
+            messages:{
+                classname: {required: "Palun sisestage õppeaine nimi."},
+                classcode: {required: "Palun sisestage ainekood."}
+            }});
+
+    </script>
+
+    </div>
+
 </section>
+
 <?php
 
 if(!empty($allTeachers)) {
@@ -140,6 +237,54 @@ if(!empty($allTeachers)) {
         $html .= "<td>$teacher->name</td>";
         $html .= "<td>$teacher->classroom</td>";
         $html .= "<td>$teacher->email</td>";
+        $html .= "</tr>";
+    }
+
+    $html .= "</tbody>";
+    $html .= "</table>";
+
+
+    $html .= "</div>";
+    $html .= "<br><br>";
+    $html .= "</body>";
+    $html .= "</html>";
+    echo $html;
+}
+?>
+
+
+<?php
+
+if(!empty($allLessons)) {
+    $html = "";
+    $html .= "<!DOCTYPE html>";
+    $html .= "<html>";
+    $html .= "<head>";
+    $html .= "<meta charset='UTF-8'>";
+    $html .= "<title>Responsive Table</title>";
+    $html .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+    $html .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
+    $html .= "</head>";
+    $html .= "<body>";
+    $html .= "<div id='page-wrap'>";
+
+
+    $html .= "<table allign='center' class='table table striped-table-hover'>";
+    $html .= "<thead>";
+    $html .= "<tr>";
+    $html .= "<th>Nimi</th>";
+    $html .= "<th>Ainekood</th>";
+    $html .= "<th>Õpetaja</th>";
+    $html .= "</tr>";
+    $html .= "</thead>";
+    $html .= "<tbody>";
+
+    foreach ($allLessons as $lesson) {
+
+        $html .= "<tr>";
+        $html .= "<td>$lesson->name</td>";
+        $html .= "<td>$lesson->classcode</td>";
+        $html .= "<td>$lesson->teacher</td>";
         $html .= "</tr>";
     }
 

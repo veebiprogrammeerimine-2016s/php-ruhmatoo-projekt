@@ -24,34 +24,78 @@ class Homework{
     }
 
 
-    function get($useremail){
+    function get($useremail, $q){
 
-        $stmt = $this->connection->prepare("
+
+        if($q == ""){
+            $stmt = $this->connection->prepare("
+            SELECT id, type, description, date, class, priority
+            FROM homework_groupwork
+            WHERE email = ?");
+            echo $this->connection->error;
+
+            $stmt->bind_param("s", $useremail);
+            $stmt->bind_result($id, $type, $description, $date, $class, $priority);
+            $stmt->execute();
+
+            $result = array();
+            while ($stmt->fetch()) {
+
+                $homeworks = new StdClass();
+                $homeworks->id = $id;
+                $homeworks->type = $type;
+                $homeworks->description = $description;
+                $homeworks->date = $date;
+                $homeworks->class = $class;
+                $homeworks->priority = $priority;
+                array_push($result, $homeworks);
+            }
+            $stmt->close();
+            return $result;
+
+        }else{
+
+            $searchword = "%$q%";
+            $stmt = $this->connection->prepare("
             SELECT id, type, description, date, class, priority
             FROM homework_groupwork
             WHERE email = ?
-        ");
-        echo $this->connection->error;
+            AND (class LIKE ? OR description LIKE ? OR type LIKE ?)");
+            echo $this->connection->error;
 
-        $stmt->bind_param("s", $useremail);
-        $stmt->bind_result($id, $type, $description, $date, $class, $priority);
-        $stmt->execute();
+            $stmt->bind_param("ssss", $useremail, $searchword, $searchword, $searchword);
+            $stmt->bind_result($id, $type, $description, $date, $class, $priority);
+            $stmt->execute();
 
-        $result = array();
-        while ($stmt->fetch()) {
+            $result = array();
+            while ($stmt->fetch()) {
 
-            $homeworks = new StdClass();
-            $homeworks->id = $id;
-            $homeworks->type = $type;
-            $homeworks->description = $description;
-            $homeworks->date = $date;
-            $homeworks->class = $class;
-            $homeworks->priority = $priority;
-            array_push($result, $homeworks);
+                $homeworks = new StdClass();
+                $homeworks->id = $id;
+                $homeworks->type = $type;
+                $homeworks->description = $description;
+                $homeworks->date = $date;
+                $homeworks->class = $class;
+                $homeworks->priority = $priority;
+                array_push($result, $homeworks);
+            }
+            $stmt->close();
+            return $result;
         }
+
+    }
+
+
+    function deleteAll(){
+
+        $stmt = $this->connection->prepare("DELETE FROM `homework_groupwork` WHERE 1");
+        echo $this->connection->error;
+        $stmt->execute();
         $stmt->close();
-        return $result;
-    }}
+    }
+
+
+}
 
 
 ?>

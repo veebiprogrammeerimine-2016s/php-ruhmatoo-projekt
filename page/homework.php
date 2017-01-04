@@ -1,6 +1,14 @@
 <?php
-
 require("header.php");
+
+if(isset($_GET["delete"])){
+    if($_GET["delete"] == "all"){
+        $Homework->deleteAll();
+        header("Location: homework.php");
+        exit();
+    }}
+
+
 
 
 if(isset($_POST["sendHomework"])){
@@ -32,27 +40,6 @@ if(isset($_POST["sendHomework"])){
     }
 }
 
-
-if(isset($_POST["sendClass"])){
-
-    if(
-        isset($_POST["classname"]) &&
-        isset($_POST["classcode"]) &&
-        isset($_POST["classteacher"]) &&
-        !empty($_POST["classname"]) &&
-        !empty($_POST["classcode"]) &&
-        !empty($_POST["classteacher"])){
-
-        $Lesson->save(
-            $Helper->cleanInput($_POST["classname"]),
-            $Helper->cleanInput($_POST["classcode"]),
-            $Helper->cleanInput($_POST["classteacher"]),
-            $Helper->cleanInput($_SESSION["userEmail"])
-        );
-        header("Location: homework.php");
-        exit();
-    }
-}
 ?>
 <script src="sweetalert-master/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="sweetalert-master/dist/sweetalert.css">
@@ -181,133 +168,65 @@ if(isset($_POST["sendClass"])){
 
                     </script>
 
-
             </fieldset>
         </form>
 
 
-        <form class="form-horizontal" method="post" id="classform" name="classform">
-            <fieldset>
-
-                <!-- Form Name -->
-                <legend>Õppeaine</legend>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="classname">Nimi(*)</label>
-                    <div class="col-md-4">
-                        <input id="classname" name="classname" type="text" placeholder="Andmebaaside programmeerimine" class="form-control input-md" >
-
-                    </div>
-                </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="classcode">Ainekood(*)</label>
-                    <div class="col-md-4">
-                        <input id="classcode" name="classcode" placeholder="IFI6013.DT" type="text" class="form-control input-md">
-                    </div>
-                </div>
-
-                <!-- Select Basic -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="classteacher">Õpetaja(*)</label>
-                    <div class="col-md-4">
-                        <select id="classteacher" name="classteacher" class="form-control">
-                            <?php
-                                foreach($allTeachers as $homework){
-                                    $html = "";
-                                    $html .= "<option value='$homework->name'>$homework->name</option>";
-                                    echo $html;}
-                            ?>
-                        </select>
-                    </div>
-                </div>
-
-
-
-                <!-- Button -->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="singlebutton"></label>
-                    <div class="col-md-4">
-                        <button class="btn btn-primary" name="sendClass" type="submit">Salvesta</button>
-                    </div>
-                </div>
-
-            </fieldset>
-        </form>
-
-        <script>
-
-            $("#classform").validate({
-
-                rules: {
-                    classname: {required: true},
-                    classcode: {required: true}},
-
-                messages:{
-                    classname: {required: "Palun sisestage õppeaine nimi."},
-                    classcode: {required: "Palun sisestage ainekood."}
-                }});
-
-        </script>
-
-    </div>
 
     <?php
 
     if(!empty($allHomework)) {
-
-        $html .= "<html>";
-        $html .= "<head>";
-        $html .= "<meta charset='UTF-8'>";
-
-        $html .= "<title>Responsive Table</title>";
-
-        $html .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-
-        $html .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
-
-        $html .= "</head>";
-
-        $html .= "<body>";
-        $html .= "<div id='page-wrap'>";
-
-
-        $html .= "<table allign='center' class='table table striped-table-hover'>";
-        $html .= "<thead>";
-        $html .= "<tr>";
-        $html .= "<th>Kirjeldus</th>";
-        $html .= "<th>Aine</th>";
-        $html .= "<th>Tähtaeg</th>";
-        $html .= "<th>Tüüp</th>";
-        $html .= "<th>Prioriteet</th>";
-        $html .= "</tr>";
-        $html .= "</thead>";
-        $html .= "<tbody>";
+        $html2 = "";
+        $html2 .= "<html>";
+        $html2 .= "<head>";
+        $html2 .= "<meta charset='UTF-8'>";
+        $html2 .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+        $html2 .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
+        $html2 .= "</head>";
+        $html2 .= "<body>";
+        $html2 .= "<div id='page-wrap'>";
+        $html2 .= "<div class='container'>";
+	    $html2 .= "<form method='post'>";
+		$html2 .= "<input type='search' name='q' value='$q'>";
+        $html2 .= "<input type='submit' value='Otsi'>";
+        $html2 .= "</form><br>";
+        $html2 .= " </div>";
+        $html2 .= "<table allign='center' class='table table striped-table-hover'>";
+        $html2 .= "<thead>";
+        $html2 .= "<tr>";
+        $html2 .= "<th>Kirjeldus</th>";
+        $html2 .= "<th>Aine</th>";
+        $html2 .= "<th>Tähtaeg</th>";
+        $html2 .= "<th>Tüüp</th>";
+        $html2 .= "<th>Prioriteet</th>";
+        $html2 .= "<th><a href='?delete=all'>Kustuta kõik</a></th>";
+        $html2 .= "</tr>";
+        $html2 .= "</thead>";
+        $html2 .= "<tbody>";
 
         foreach ($allHomework as $homework) {
 
-            $html .= "<tr>";
-            $html .= "<td>$homework->description</td>";
-            $html .= "<td>$homework->class</td>";
-            $html .= "<td>$homework->date</td>";
-            $html .= "<td>$homework->type</td>";
-            $html .= "<td>$homework->priority</td>";
-            $html .= "</tr>";
+            $html2 .= "<tr>";
+            $html2 .= "<td>$homework->description</td>";
+            $html2 .= "<td>$homework->class</td>";
+            $html2 .= "<td>$homework->date</td>";
+            $html2 .= "<td>$homework->type</td>";
+            $html2 .= "<td>$homework->priority</td>";
+            $html2 .= "<td><a href='?deleted=$homework->id'>Kustuta</a></td>";
+            $html2 .= "</tr>";
         }
 
 
-        $html .= "</tbody>";
-        $html .= "</table>";
+        $html2 .= "</tbody>";
+        $html2 .= "</table>";
 
 
-        $html .= "</div>";
+        $html2 .= "</div>";
 
-        $html .= "<br><br>";
-        $html .= "</body>";
-        $html .= "</html>";
-        echo $html;
+        $html2 .= "<br><br>";
+        $html2 .= "</body>";
+        $html2 .= "</html>";
+        echo $html2;
     }
 ?>
 
