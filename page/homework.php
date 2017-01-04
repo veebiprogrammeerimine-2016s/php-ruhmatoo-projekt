@@ -78,7 +78,7 @@ if(isset($_POST["sendHomework"])){
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectbasic">Klass(*)</label>
+                    <label class="col-md-4 control-label" for="selectbasic">Aine(*)</label>
                     <div class="col-md-4">
                         <select name="hwlesson" class="form-control">
                             <?php

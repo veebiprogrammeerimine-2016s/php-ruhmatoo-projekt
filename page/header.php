@@ -105,7 +105,7 @@ $allHomework = $Homework->get($_SESSION["userEmail"], $q);
                                     <?php
                                     if(!empty($allTeachers)){
                                     $html = "";
-                                        $html .= "<li class=\"dropdown-submenu\"><a tabindex=\"-1\" href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\" >Õpetajate lehed <b class=\"caret\"></b></a>";
+                                        $html .= "<li class=\"dropdown-submenu\"><a tabindex=\"-1\" href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\" >Õppejõudude lehed <b class=\"caret\"></b></a>";
                                         $html .= "<ul class=\"dropdown-menu\">";
                                         foreach($allTeachers as $teacher){
 

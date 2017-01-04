@@ -83,14 +83,14 @@ if(isset($_POST["sendClass"])){
         <div class="breadcrumbs">
             <ul class="breadcrumb">
                 <li><a href="data.php">Kodu</a></li>
-                <li>Õpetajad</li>
+                <li>Õppejõud</li>
             </ul>
         </div>
         <form class="form-horizontal" method="post" id="teacherform" name="teacherform">
             <fieldset>
 
                 <!-- Form Name -->
-                <legend>Õpetajad</legend>
+                <legend>Õppejõud</legend>
 
                 <!-- Text input-->
                 <div class="form-group">
@@ -148,7 +148,7 @@ if(isset($_POST["sendClass"])){
                     material: {url: true}},
 
                 messages:{
-                    teacher: {required: "Palun sisestage õpetaja nimi."},
+                    teacher: {required: "Palun sisestage õppejõu nimi."},
                     bookauthor: {required: "Palun sisestage õppejõu ametiruum."},
                     email: {required: "Palun sisestage õppejõu email", email: "Palun sisestage korrektne email"},
                     material: {url: "Palun sisestage korrektne http link."}
@@ -182,7 +182,7 @@ if(isset($_POST["sendClass"])){
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="classteacher">Õpetaja(*)</label>
+                    <label class="col-md-4 control-label" for="classteacher">Õppejõud(*)</label>
                     <div class="col-md-4">
                         <select id="classteacher" name="classteacher" class="form-control">
                             <?php
@@ -250,7 +250,7 @@ if(!empty($allTeachers)) {
     $html .= "<table allign='center' class='table table striped-table-hover'>";
     $html .= "<thead>";
     $html .= "<tr>";
-    $html .= "<th>Õpetaja</th>";
+    $html .= "<th>Õppejõud</th>";
     $html .= "<th>Klassiruum</th>";
     $html .= "<th>Email</th>";
     $html .= "<th><a href='?delete=allteachers'>Kustuta kõik</a></th>";
@@ -302,7 +302,7 @@ if(!empty($allLessons)) {
     $html .= "<tr>";
     $html .= "<th>Õppeaine</th>";
     $html .= "<th>Ainekood</th>";
-    $html .= "<th>Õpetaja</th>";
+    $html .= "<th>Õppejõud</th>";
     $html .= "<th><a href='?delete=alllessons'>Kustuta kõik</a></th>";
     $html .= "</tr>";
     $html .= "</thead>";
