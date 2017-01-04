@@ -170,7 +170,7 @@ if(isset($_POST["sendHomework"])){
 
             </fieldset>
         </form>
-
+</section>
 
 
     <?php
@@ -226,13 +226,11 @@ if(isset($_POST["sendHomework"])){
         $html2 .= "<br><br>";
         $html2 .= "</body>";
         $html2 .= "</html>";
-        $html2 .= "</section>";
         echo $html2;
     }
+?>
 
-
-    require("footer.php");
-    ?>
+<?php require("footer.php"); ?>
 
 
 
