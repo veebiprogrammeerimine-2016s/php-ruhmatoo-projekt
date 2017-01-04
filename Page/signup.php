@@ -70,14 +70,14 @@ if (isset ($_POST["signupUsername"])) {
 ?>
 
 <?php require("../header.php"); ?>
-
+<div style="width:500px; margin:100px auto;">
 <div class="container">
 
     <div class="row">
 
         <div class="col-sm-3">
 		
-		<h1>Create user</h1>
+		<h1>Create an account</h1>
 		
 		<form method="POST">
 			
@@ -99,6 +99,6 @@ if (isset ($_POST["signupUsername"])) {
 			<input type="submit" value="Save">
 		
 		</form>
-
+	</div>
 	</body>
 </html>

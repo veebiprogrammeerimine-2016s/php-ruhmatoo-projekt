@@ -53,8 +53,8 @@
 </style>
 </head>
 <body>
-
-<div class="dropdown">
+<div style="width:500px; margin:0 auto;">
+<div class="dropdown"> 
   <button class="dropbtn">Home</button>
 </div>
 
@@ -89,6 +89,6 @@
     <a href="#">Arts</a>
   </div>
 </div>
-
+</div>
 </body>
 </html>
