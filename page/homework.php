@@ -199,7 +199,9 @@ if(isset($_POST["sendHomework"])){
         $html2 .= "<meta charset='UTF-8'>";
         $html2 .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
         $html2 .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
-
+        $html .= "</head>";
+        $html .= "<body>";
+        $html .= "<div id='page-wrap'>";
 
         $html2 .= "<table allign='center' class='table table striped-table-hover'>";
         $html2 .= "<thead>";
