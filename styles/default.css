@@ -171,6 +171,7 @@ input {
 	height: 250px;
 	padding: 20px;
 	border: 2px solid gray;
+	border-radius: 8px;
 	background: linear-gradient(white, darkgray);
 	float: left;
 	margin: 35px;
