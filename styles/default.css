@@ -170,11 +170,16 @@ input {
 	width: 250px;
 	height: 250px;
 	padding: 20px;
-	border: 1px solid gray;
-	background: white;
+	border: 2px solid gray;
+	background: linear-gradient(white, darkgray);
 	float: left;
 	margin: 35px;
-  box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.51);
+  box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.50);
+}
+
+.userbox:hover {
+		background: linear-gradient(darkgray, gray);
+		box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.75);
 }
 
 .title {

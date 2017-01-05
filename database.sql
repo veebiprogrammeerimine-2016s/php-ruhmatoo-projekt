@@ -67,3 +67,10 @@ content text,
 sender int,
 foreign key (sender) references users(id)
 );
+
+create table bios (
+  id int not null unique auto_increment primary key,
+  owner int,
+  bio text,
+  foreign key(owner) references users(id)
+);
