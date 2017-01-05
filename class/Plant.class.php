@@ -205,17 +205,9 @@ class Plant {
 		
 	function getAllUserPlants($q,$sort,$direction) {
 		
-		$allowedSortOptions = ["plantID", "name", "interval"];
-			
-		if(!in_array($sort,$allowedSortOptions)){
-			$sort="plantID";
-		}	
+		$allowedSortOptions = ["name"];
         
 		$user=$_SESSION["userEmail"];
-		
-        if($sort == "interval"){
-			$sort = "watering_days";
-		}
 
 		$orderBy="ASC";
 		if($direction=="descending"){
@@ -223,20 +215,17 @@ class Plant {
 		}	
 		
 		if($q == ""){
-			echo"ei otsi...";
 			$stmt = $this->connection->prepare("
-            SELECT plantID, name, watering_days from f_plant
-            join f_userplants ON f_userplants.plantID=f_plant.id WHERE f_userplants.private='$user' OR f_plant.private='$user'
-			AND f_plant.deleted IS NULL 
+            SELECT id, names, watering_interval from f_userplants 
+            WHERE private='$user' AND deleted IS NULL 
 			ORDER BY $sort $orderBy");
 		} else {
-			echo"Otsib...".$q;
 			$searchWord = "%".$q."%";
 			$stmt = $this->connection->prepare(
-			"SELECT plantID, name, watering_days from f_plant
-            join f_userplants ON f_userplants.plantID=f_plant.id WHERE f_userplants.private='$user' OR f_plant.private='$user'
-			AND f_plant.deleted IS NULL AND (name LIKE ? OR watering_days LIKE ?) ORDER BY $sort $orderBy");
-			$stmt->bind_param('ss', $searchWord, $searchWord);
+			"SELECT id, names, watering_interval from f_userplants
+            WHERE private='$user' AND deleted IS NULL AND (names LIKE ?) 
+            ORDER BY $sort $orderBy");
+			$stmt->bind_param('s', $searchWord);
 		}
         
 		echo $this->connection->error;
