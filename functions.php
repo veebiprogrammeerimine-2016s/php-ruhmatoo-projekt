@@ -1,6 +1,6 @@
 <?php
 require("../../../config.php");
-	
+require_once("simple_html_dom.php");	
 
 	session_start(); 
 	
@@ -91,7 +91,7 @@ function getGenreFromDb() {
 	return $result;
 }
 function searchFromDb($keyword, $page){
-	$perPage = 5;
+	$perPage = 30;
 	$offset = $page*$perPage - $perPage;
 	// 1 lk offset = 0 ja limit = 5
 	// 2 lk offset = 5 ja limit = 10
@@ -99,23 +99,24 @@ function searchFromDb($keyword, $page){
 	
 	//$keyword = str_replace("+", '%', $keyword);
 	$keyword = "%".$keyword."%";
-		var_dump($keyword);
+		//var_dump($keyword);
 
 	$mysqli = new mysqli($GLOBALS["serverHost"], 
 						$GLOBALS["serverUsername"],  
 						$GLOBALS["serverPassword"],  
 						$GLOBALS["database"]);
-	$stmt = $mysqli->prepare("SELECT title, link, release_date, poster
+	$stmt = $mysqli->prepare("SELECT id, title, link, release_date, poster
 							FROM movies_db
 							WHERE title LIKE ? OR synopsis LIKE ? OR actors LIKE ?
 							OR directors LIKE ? OR genre LIKE ?
 							LIMIT ? OFFSET ?");
 	
 	echo $mysqli->error;
-							
+			
 	$stmt->bind_param("sssssii", $keyword, $keyword, $keyword, $keyword, $keyword, $perPage, $offset);
 	
-	$stmt->bind_result($title, $link, $release_date, $poster);
+	$stmt->bind_result($id, $title, $link, $release_date, $poster);
+	$stmt->store_result();
 	$stmt->execute();
 	$result = array();
 	while($stmt->fetch()) {
@@ -123,8 +124,8 @@ function searchFromDb($keyword, $page){
 		$object->title = $title;
 		$object->mlink = $link;
 		$object->release_date = $release_date;
+		$poster = getThumbnail($id, $poster, $link, $mysqli);
 		$object->poster = $poster;
-
 		array_push($result, $object);
 		
 	}
@@ -133,33 +134,49 @@ function searchFromDb($keyword, $page){
 	
 }
 
-//function getThumbnail(){
+function getThumbnail($id, $poster, $link, $mysqli){
 	
-	//md5();
-	
-	//while()
-//}
+	$plink = "";
+	$broken = md5_file('https://resizing.flixster.com/LmuHQvW5Lsm-RKt31c-R_O47E0M=/130x0/v1.bTsxMjA5MzQ5NDtqOzE3MTQ5OzEyMDA7MjAyNjszMDAw');
+	$thumbnail = md5_file($poster);
+	if($thumbnail == $broken){
+		$html = file_get_html($link);
+		if($html->find('img.posterImage')[0]){
+			$plink = $html->find('img.posterImage')[0]->src;
+			$stmt = $mysqli->prepare("UPDATE movies_db SET poster=? WHERE id=?");
+			echo $mysqli->error;
+			$stmt->bind_param('si', $plink, $id);
+			$stmt->execute();
+			
+		}
+		
+	} else {
+		$plink = $poster;
+	}
+	return $plink;
+}
 
 function searchByGenre($genre){
-		$genre = "%".$genre."%";
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $mysqli->prepare("SELECT poster, genre
-							FROM movies_db
-							WHERE genre LIKE ? 
-							ORDER BY RAND() 
-							LIMIT 1");
-		echo $mysqli->error;
-		$stmt->bind_param("s", $genre);
-		$stmt->bind_result($poster, $movGenre);
-		$stmt->execute();
-		$result = array();
-		if($stmt->fetch()) {
-			$object = new StdClass();
-			$object->poster = $poster;
-			$object->genre = $movGenre;
-			array_push($result, $object);
-		}
-		return $result;
+	
+	$genre = "%".$genre."%";
+	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
+	$stmt = $mysqli->prepare("SELECT poster, genre
+						FROM movies_db
+						WHERE genre LIKE ? 
+						ORDER BY RAND() 
+						LIMIT 1");
+	echo $mysqli->error;
+	$stmt->bind_param("s", $genre);
+	$stmt->bind_result($poster, $movGenre);
+	$stmt->execute();
+	$result = array();
+	if($stmt->fetch()) {
+		$object = new StdClass();
+		$object->poster = $poster;
+		$object->genre = $movGenre;
+		array_push($result, $object);
+	}
+	return $result;
 		
 }
 

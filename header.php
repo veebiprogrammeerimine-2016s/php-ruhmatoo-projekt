@@ -13,8 +13,8 @@ $s = "";
 
 if(isset($_GET["s"])){
 	$s = rawurldecode($_GET["s"]);
-	var_dump($_GET["s"]);
-	var_dump($s);
+	//var_dump($_GET["s"]);
+	//var_dump($s);
 	
 }
 

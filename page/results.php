@@ -24,7 +24,7 @@ foreach($search as $sr){
 	echo "<div class=col-md-2>";
 	echo $sr->title."<br>";
 	echo $sr->release_date."<br>";
-	echo "<a href=".$sr->mlink."><img src=".$sr->poster."></a><br>";
+	echo "<a href=".$sr->mlink."><img src=".$sr->poster." height='212' width='160'></a><br>";
 	echo "</div>";
 	//if ($b % 5 == 0) {break;}
 	if ($i % 5 == 0){
@@ -35,8 +35,8 @@ foreach($search as $sr){
 	
 }
 echo "</div>";
-var_dump($s);
-var_dump(rawurlencode($s));
+//var_dump($s);
+//var_dump(rawurlencode($s));
 ?>
 <div class="row">
 	<div class="col-md-2">
