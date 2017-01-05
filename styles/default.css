@@ -25,6 +25,16 @@ body {
     background-repeat: no-repeat;
 }
 
+.userbox {
+	color: red;
+	width: 250px; 
+	height: 250px; 
+	padding: 50px; 
+	border: 1px solid gray; 
+	background: white;
+	float: left;
+	margin: 4px; 
+}
 
 .footer {
 	clear: both;
@@ -162,3 +172,4 @@ input {
 	background: var(--main-color);
 	border: 1px solid var(--main-border);
 }
+

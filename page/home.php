@@ -24,6 +24,7 @@ $skills = $conn->query($skillsql);
 <a class="button" href="login.php" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi sisse</a>
 </div>
 </div>
+</div>
 
 <div class="row">
 
@@ -74,8 +75,11 @@ $skills = $conn->query($skillsql);
 </form>
 </div>
 
-<div class="c-7">
 
+<div class="c-9">
+<div class="header">a</div>
+<div class="userbox">b</div>
+<div class="userbox">c</div>
 </div>
 
 <?php require "footer.php"; ?>
