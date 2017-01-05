@@ -1,5 +1,5 @@
 Nimi: IDEAS FOR WEBSITE PROJECT
-
+TEST TEST TEST
 Liikmed: Anna Gubskaja, Mihhail Kuzmin
 Eesmärk: 
 	Luua veebisait nende inimeste jaoks, kes otsivad endale lihtsaid ja originaalseid veebilehtede ideid ning nendele, kes soovivad enda ideid pakkuda.

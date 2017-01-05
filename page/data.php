@@ -33,13 +33,13 @@
 		unset($_SESSION["message"]);
 	}
 	
-	
+	//var_dump($_POST);
 	if ( isset($_POST["idea"]) && 
-		isset($_POST["idea"]) && 
-		!empty($_POST["description"]) && 
+		isset($_POST["description"]) && 
+		!empty($_POST["idea"]) && 
 		!empty($_POST["description"])
 	  ) {
-		  
+		  //echo "siin";
 		$Finish->save($Helper->cleanInput($_POST["idea"]), $Helper->cleanInput($_POST["description"]));
 		
 	}
@@ -69,12 +69,7 @@
 	//otsisõna fn sisse
 	$finishData = $Finish->get($q, $sort, $order);
 	
-	
-	
-	
-	//echo "<pre>";
-	//var_dump($carData);
-	//echo "</pre>";
+
 ?>
 <?php require("../header.php"); ?>
 <div class="navbar navbar-inverse navbar-static-top">
@@ -92,7 +87,6 @@
 	</div>
 </div>
 
-<!-- HTML-код модального окна -->
 <div id="myModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -145,7 +139,6 @@
 	</div>
 	<br>
 
-
 <?php 
 
 	$html = "<table class='table table-striped'>";
@@ -184,6 +177,11 @@
 						description
 					</a>
 				 </th>";
+		$html .= "<th>
+					<a href='?q=".$q."&sort=user&order=".$levelOrder."'>
+						user
+					</a>
+				 </th>";
 	$html .= "</tr>";
 	
 	//iga liikme kohta massiivis
@@ -195,7 +193,7 @@
 			$html .= "<td>".$f->id."</td>";
 			$html .= "<td>".$f->idea."</td>";
 			$html .= "<td>".$f->description."</td>";
-			$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$f->id."'><span class='glyphicon glyphicon-pencil'></span> Edit</a></td>";
+			$html .= "<td>".$f->user."</td>";
 			
 		$html .= "</tr>";
 	}

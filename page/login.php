@@ -32,7 +32,7 @@
 	$signupEmailError = "";
 	$signupPasswordError = "";
 	$signupEmail = "";
-	$signupGender = "";
+	$signupGender = "male";
 	$loginEmail = "";
 	$loginPassword = "";
 	$loginEmailError = "";
@@ -174,7 +174,6 @@
 
 ?> 
 <?php require("../header.php"); ?>
-
 <div class="container">
 	<div class="jumbotron text-center">
 		<form><font face = "Comic Sans MS"><h1>EASY IDEAS FOR WEBSITE PROJECT</h1></font></form> 

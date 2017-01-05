@@ -18,7 +18,7 @@ class Finish {
 		// kas õnnestus salvestada
 		if($stmt->execute()){
 			// õnnestus
-			echo "Deleted!";
+			//echo "Deleted!";
 		}
 		
 		$stmt->close();
@@ -28,7 +28,7 @@ class Finish {
 		
 	function get($q, $sort, $order) {
 		
-		$allowedSort = ["id", "idea", "description"];
+		$allowedSort = ["id", "idea", "description", "user"];
 		
 		if(!in_array($sort, $allowedSort)){
 			// ei ole lubatud tulp
@@ -49,7 +49,7 @@ class Finish {
 			//echo "Looking for: ".$q;
 			
 			$stmt = $this->connection->prepare("
-				SELECT id, idea, description
+				SELECT id, idea, description, user
 				FROM idea_description
 				WHERE deleted IS NULL 
 				AND (idea LIKE ? OR description LIKE ?)
@@ -61,7 +61,7 @@ class Finish {
 		} else {
 			
 			$stmt = $this->connection->prepare("
-				SELECT id, idea, description
+				SELECT id, idea, description, user
 				FROM idea_description
 				WHERE deleted IS NULL
 				ORDER BY $sort $orderBy
@@ -71,7 +71,7 @@ class Finish {
 		
 		echo $this->connection->error;
 		
-		$stmt->bind_result($id, $idea, $description);
+		$stmt->bind_result($id, $idea, $description, $user);
 		$stmt->execute();
 		
 		
@@ -88,6 +88,8 @@ class Finish {
 			$finish->id = $id;
 			$finish->idea = $idea;
 			$finish->description = $description;
+			$finish->user = $user;
+			
 			
 			// iga kord massiivi lisan juurde nr märgi
 			array_push($result, $finish);
@@ -134,14 +136,14 @@ class Finish {
 
 	function save ($idea, $description) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO idea_description (idea, description) VALUES (?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO idea_description (idea, description, user) VALUES (?, ?, ?)");
 	
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ss", $idea, $description);
+		$stmt->bind_param("sss", $idea, $description, $_SESSION["userEmail"]);
 		
 		if($stmt->execute()) {
-			echo "Success!";
+			//echo "Success!";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
@@ -159,13 +161,15 @@ class Finish {
 		// kas õnnestus salvestada
 		if($stmt->execute()){
 			// õnnestus
-			echo "Success!";
+			//echo "Success!";
 		}
 		
 		$stmt->close();
 		
 		
 	}
+	
+	
 	
 }
 ?>
