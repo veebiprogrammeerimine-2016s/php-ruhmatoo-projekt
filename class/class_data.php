@@ -11,7 +11,11 @@ class internal{
     $this->conn = $db;
   }
 
-  function getWorkers($db) {
+  function getWorkers() {
+
+  }
+
+  function searchWorkers($searchterm) {
 
   }
 

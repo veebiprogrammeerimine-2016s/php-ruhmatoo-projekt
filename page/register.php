@@ -47,6 +47,6 @@ if (isset($name) && isset($email) && isset($password)) {
         echo "<p class='message'>Kasutaja on loodud. Võid nüüd sisse logida.</p>";
       }?>
       <p class="message">Oled juba registreerunud? <a href="login.php">Logi sisse</a></p>
-	  <p class="message">Omad ametit mida soovid meie lehel pakkuda? <a href="">Registreeru töötajana!</a></p>
+	  <p class="message">Omad ametit mida soovid meie lehel pakkuda? <a href="register_workman.php">Registreeru töötajana!</a></p>
     </form>
 </div>
