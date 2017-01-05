@@ -72,10 +72,10 @@ class Plant {
     
     /* function to add database plant names to userplants*/
     function saveSecond($plant){
-         $stmt = $this->connection->prepare("update f_userplants set names=(select name FROM f_plant WHERE id=?)");
+         $stmt = $this->connection->prepare("update f_userplants set names=(select name FROM f_plant WHERE id=?) WHERE plantID=?");
        
-        echo $ths->connectin->error;
-        $stmt->bind_param("i", $plant);
+        echo $this->connection->error;
+        $stmt->bind_param("ii", $plant, $plant);
         
         if ($stmt->execute()){
             echo "salvestamine õnnestus";
