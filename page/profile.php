@@ -1,35 +1,70 @@
 <?php
 require("header.php");
-$aboutUser = "Tere! Olen Raivo, olen oma habet kasvatanud juba aasta! Muidu tegelen it-ga.";
+$aboutUser = "Olen maailma kõige ilusam ja edukam inimene.";
 ?>
 <style>
 </style>
-<title>Kasutaja && profiil</title>
+<title>Kasutaja & profiil</title>
 <div class="header"><a class="hbutton" href="home.php">< </a><?php echo $appName; ?></div>
 <body>
+<style type="text/css">
+#container {
+	width:500px; 
+	margin: 25 px;
+	}
+#two, #three, #four {
+	background-color: #fff;
+	padding: 8px;
+	color: #212e36; font-size: 15px;
+}
+#two, #three {
+	width: 250px; 
+	text-align: center;
+}
+#four {
+	text-align: center;
+}
+.head {
+	font-family: ; 
+	color: black; 
+	font-size: 20px; 
+	text-align: center;
+}
+#one .head {
+	font-size: 50px;
+}
+</style>
 <center>
-<h2 style="color:white";>Profiil</h2>
-<div class="row">
-<div class="c-12" >
-<div style="width:75%; margin-left: 0 auto; background: white; border: 2px solid gray;">
+<div id="container">
+<table id="inside" cellspacing="0" border="0">
+<tr>
+<td colspan="2" id="one">
+<div class="head" style="color:white; font-size:24px";><b>Profiil</b></div>
+<img src="http://24.media.tumblr.com/f98b35148f53e23e62fe402463b6aa93/tumblr_n6old80nsE1smtsipo1_500.gif">
+</td>
+</tr>
+<tr>
+<td id="two">
+<div class="head" ;><b>Oluline:</b></div>
+<p><b>Asukoht:</b> <?php echo "NULL";?></p>
+<p><b>Vanus:</b> <?php echo "NULL";?></p>
+<p><b>Amet:</b> <?php echo "NULL";?></p>
 
-<img src="https://static.pexels.com/photos/119705/pexels-photo-119705.jpeg" style="height: 175px; border: 0; float: right; margin-right: 10px;">
-<div style="float: left;"></div>
+</td>
+<td id="three">
+<div class="head" style="";><b>Kontakt:</b></div>
+<p><b>E-mail:</b> <?php echo "NULL";?></p>
+<p><b>Telefoni nr:</b> <?php echo "NULL";?></p>
 
-
-<h2 style="float:left;margin-right: 10px;">Minust:</h2>
-<p><?php echo $aboutUser;?></p>
-
-<h2 style="float:left;">Kontakt:</h2>
-<p><b>Nimi:</b> <?php echo "NULL";?></p>
-
-<h2 style="float:left;">Oluline:</h2>
-<p><?php echo "NULL";?></p>
-
-<div style="clear: both;"></div>
-</div>
-
-</div>
+</td>
+</tr>
+<tr>
+<td colspan="2" id="four">
+<div class="head" style="";><b>Minust:</b></div>
+<p><i><?php echo $aboutUser;?></i></p>
+</td>
+</tr>
+</table>
 </div>
 </center>
 </body>
