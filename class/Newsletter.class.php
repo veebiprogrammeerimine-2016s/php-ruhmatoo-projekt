@@ -1,6 +1,6 @@
 <?php
 
-class Newsletter{
+class Email{
 
     private $connection;
 

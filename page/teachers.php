@@ -253,6 +253,7 @@ if(!empty($allTeachers)) {
     $html .= "<th>Õppejõud</th>";
     $html .= "<th>Klassiruum</th>";
     $html .= "<th>Email</th>";
+    $html .= "<th>Kodulehe aadress</th>";
     $html .= "<th><a href='?delete=allteachers'>Kustuta kõik</a></th>";
     $html .= "</tr>";
     $html .= "</thead>";
@@ -264,6 +265,7 @@ if(!empty($allTeachers)) {
         $html .= "<td>$teacher->name</td>";
         $html .= "<td>$teacher->classroom</td>";
         $html .= "<td>$teacher->email</td>";
+        $html .= "<td><a href='$teacher->material'></a>$teacher->material</td>";
         $html .= "<td><a href='?deletedteacher=$teacher->id'>Kustuta</a></td>";
         $html .= "</tr>";
     }

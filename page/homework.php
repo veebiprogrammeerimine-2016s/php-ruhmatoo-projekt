@@ -196,7 +196,7 @@ if(isset($_POST["sendHomework"])){
         $html2 .= "<input class=\"btn btn-primary\" type='submit' value='Otsi'>";
         $html2 .= "</form><br>";
         $html2 .= "</div>";
-        $html2 .= "<table allign='center' class='table table striped-table-hover homework_table'>";
+        $html2 .= "<table allign='center' class='table table striped-table-hover'>";
         $html2 .= "<thead>";
         $html2 .= "<tr>";
         $html2 .= "<th>Kirjeldus</th>";

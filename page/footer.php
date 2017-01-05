@@ -19,8 +19,8 @@
                     <p>Liitu uudiskirjaga ja saad esimesena teada uutest postitustest ja uudistest.</p>
                     <form class="footer__newsletter">
                         <div class="input-group">
-                            <input type="text" placeholder="Palun sisesta siia oma e-maili aadress." class="form-control"><span class="input-group-btn">
-                    <button type="button" class="btn btn-default"><i class="fa fa-send"></i></button></span>
+                            <input type="text" name="email" id="email" placeholder="Palun sisesta siia oma e-maili aadress." class="form-control"><span class="input-group-btn">
+                        <button type="submit" name="sendEmail" class="btn btn-default"><i class="fa fa-send"></i></button></span>
                         </div>
                     </form>
                 </div>
@@ -37,3 +37,18 @@
         </div>
     </div>
 </footer>
+<?php
+
+if(isset($_POST["sendEmail"])){
+
+    if ( isset($_POST["email"]) &&
+        !empty($_POST["email"])) {
+
+        $Email->save(
+            $Helper->cleanInput($_POST["email"])
+        );
+        header("Location: footer.php");
+        exit();
+    }
+}
+?>
