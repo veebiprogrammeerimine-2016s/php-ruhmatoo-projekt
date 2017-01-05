@@ -104,29 +104,7 @@
 	<input id="number_idea" name="idea" type="text" value="<?php echo $f->idea;?>" ><br><br>
   	<label for="description" >Description</label><br>
 	<input id="description" name="description" type="text" value="<?=$f->description;?>"><br><br>
-  	<div class="row">
-				<div class="col-md-4">
-					<input type="text" class="form-control" name="idea" id="idea" value="<?php echo $f->idea;?>" >
-				</div>
-		</div>
-		<label for="description" class="col-md-0 control-label"><h3>Idea description:</h3></label>
-		<div class="row">
-			<div class="form-group">
-				<div class="col-md-4">
-					<textarea class="form-control" rows="5" id="description" name= "description" value="<?=$f->description;?>"></textarea>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-				<div class="col-sm-2">
-					<button type="submit" name="update" class = "btn btn-success btn-sm">Save</button>
-				</div>
-		</div>
-		<div class="row">
-				<div class="col-sm-2">
-					<a href="?id=<?=$_GET["id"];?>&delete=true">Delete</a>
-				</div>
-		</div>
+  	
 <input type="submit" name="update" value="Save">
  <a href="?id=<?=$_GET["id"];?>&delete=true">Delete</a>
  </form>
