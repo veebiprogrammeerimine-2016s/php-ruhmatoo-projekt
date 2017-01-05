@@ -17,6 +17,7 @@ Antud projekti eesmärgiks on võimaldada inimestel kiirelt ja lihtsalt tellida 
 ## Andmebaasi skeem ja tabelite loomise SQL laused
 ![Preview](databasescheme.png)
 
+```
 create database workman;
 use workman;
 
@@ -93,6 +94,7 @@ create table bios (
   bio text,
   foreign key(owner) references users(id)
 );
+```
 
 * Kokkuvõte: mida õppisid juurde? mis ebaõnnestus? mis oli keeruline?
 	* Kristel:
