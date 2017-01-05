@@ -2,7 +2,7 @@
 
 *insert pic here*
 
-Rühma liikmed: Brigitta Kannel, Karolin Kriiska, Richard Kajaste
+Rühma liikmed: Brigitta Kannel, Richard Kajaste
 
 ## Eesmärk
 
@@ -18,7 +18,9 @@ Rühma liikmed: Brigitta Kannel, Karolin Kriiska, Richard Kajaste
 
 ## Funktionaalsuse loetelu
 
-	TBA
+	* Zanrite kuvamine avalehel
+	* Filmide kuvamine zanrite kaupa
+	* Otsing andmebaasist
 
 ## Andmebaas
 
@@ -26,4 +28,6 @@ Rühma liikmed: Brigitta Kannel, Karolin Kriiska, Richard Kajaste
 
 ## Kokkuvõte
 
-	TBA
+	Algul oli plaan teha eraldi kategooriad erinevate asjade jaoks (filmid, sarjad, mängud), kuid oma tegemistega 
+	jõudsime teha lehe filmide otsingu jaoks. Projekt oli meie jaoks oodatust suurem ja keerulisem, kuid õppisime selle käigus
+	ka palju. Mitmekülgsust ei oleks edasi raske arendada, oleks vaja leida hea koht, kust andmeid saada.
