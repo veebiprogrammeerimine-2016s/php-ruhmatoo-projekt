@@ -20,10 +20,10 @@ $skills = $internal->getSkillIDs();
 if (!isset($_SESSION["id"]))
 {echo '<a class="button" href="login.php" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi sisse</a>';
 } else {
-
+	echo '<a class="button" href="logout.php" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi välja</a>';
 	//echo '<a class="button" href="" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi välja</a>';
-	echo '<a class="button" href="" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi välja</a>';
-	echo '<a class="button" href="logout.php" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Profiil</a>';
+	echo '<a class="button" href="" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Profiil</a>';
+
 }?>
 </div>
 </div>

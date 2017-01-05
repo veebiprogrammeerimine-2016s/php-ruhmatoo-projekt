@@ -4,6 +4,8 @@ require ("../function/functions.php");
 require ("../class/class_general.php");
 require ("../class/class_login.php");
 $error = "";
+$displayname="";
+$email="";
 $login = new User($dbconn);
 $input = new Input();
 
