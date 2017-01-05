@@ -1,6 +1,6 @@
 # NoTime2Spare
 
-*insert pic here*
+![Alt text](bg.jpg?raw=true "Home")
 
 Rühma liikmed: Brigitta Kannel, Richard Kajaste
 
@@ -24,7 +24,7 @@ Rühma liikmed: Brigitta Kannel, Richard Kajaste
 
 ## Andmebaas
 
-	*insert pic here*
+	![Alt text](img.jpg?raw=true "Andmebaas")
 
 ## Kokkuvõte
 
