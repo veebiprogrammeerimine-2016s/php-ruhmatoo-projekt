@@ -78,7 +78,7 @@ if(isset($_POST["sendHomework"])){
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="selectbasic">Klass(*)</label>
+                    <label class="col-md-4 control-label" for="selectbasic">Aine(*)</label>
                     <div class="col-md-4">
                         <select name="hwlesson" class="form-control">
                             <?php
@@ -113,9 +113,9 @@ if(isset($_POST["sendHomework"])){
                     <label class="col-md-4 control-label" for="selectbasic">Prioriteet(*)</label>
                     <div class="col-md-4">
                         <select name="priority" class="form-control">
-                            <option value="Tähtis">Tähtis</option>
+                            <option value="Väga-tähtis">Väga-tähtis</option>
+                            <option value="Üsna-tähtis">Üsna-tähtis</option>
                             <option value="Mitte-tähtis">Mitte-tähtis</option>
-                            <option value="Meh">Meh</option>
                         </select>
                     </div>
                 </div>
@@ -190,12 +190,12 @@ if(isset($_POST["sendHomework"])){
         $html2 .= "</head>";
         $html2 .= "<body>";
         $html2 .= "<div id='page-wrap'>";
-        $html2 .= "<div class='container'>";
+        $html2 .= "<div class='col-md-2 control-label'>";
 	    $html2 .= "<form method='post'>";
-		$html2 .= "<input type='search' name='q' value='$q'>";
-        $html2 .= "<input type='submit' value='Otsi'>";
+		$html2 .= "<input  type='search' class=\"form-control\" name='q' value='$q'>";
+        $html2 .= "<input class=\"btn btn-primary\" type='submit' value='Otsi'>";
         $html2 .= "</form><br>";
-        $html2 .= " </div>";
+        $html2 .= "</div>";
         $html2 .= "<table allign='center' class='table table striped-table-hover'>";
         $html2 .= "<thead>";
         $html2 .= "<tr>";
@@ -240,7 +240,7 @@ if(isset($_POST["sendHomework"])){
         echo("<br>");
     }
 ?>
-
+<br><br><br>
 <?php require("footer.php"); ?>
 
 
