@@ -107,7 +107,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 	<br><br>
 	
 	<form action="" method="post" enctype="multipart/form-data">
-		<h3>Also let's add a profile image:</h3>
+		<h3>Also, let's add a profile image:</h3>
 		<input type="file" name="fileToUpload">
 		<br><br>
 		<button type="submit" name="submit">Upload</button>
