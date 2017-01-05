@@ -3,7 +3,7 @@ require("header.php");
 
 if(isset($_GET["delete"])){
     if($_GET["delete"] == "all"){
-        $Homework->deleteAll();
+        $Homework->deleteAll($_SESSION["userEmail"]);
         header("Location: homework.php");
         exit();
     }}
@@ -181,9 +181,9 @@ if(isset($_POST["sendHomework"])){
 <div id='page-wrap'>
     <div class="col-lg-6">
         <div class="input-group">
-            <input type="text" name="q" value="<?=$q?>" class="form-control" placeholder="Search for...">
+            <input type="text" name="q" value="<?=$Helper->cleanInput($q)?>" class="form-control">
             <span class="input-group-btn">
-        <button class="btn btn-primary" type="submit">Go!</button>
+        <button class="btn btn-primary" type="submit">OTSI</button>
       </span>
         </div>
     </div>

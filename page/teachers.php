@@ -4,7 +4,7 @@ require("header.php");
 
 if(isset($_GET["delete"])){
     if($_GET["delete"] == "alllessons"){
-        $Lesson->deleteAll();
+        $Lesson->deleteAll($_SESSION["userEmail"]);
         header("Location: teachers.php");
         exit();
     }}
@@ -12,7 +12,7 @@ if(isset($_GET["delete"])){
 
 if(isset($_GET["delete"])){
     if($_GET["delete"] == "allteachers"){
-        $Teacher->deleteAll();
+        $Teacher->deleteAll($_SESSION["userEmail"]);
         header("Location: teachers.php");
         exit();
     }}

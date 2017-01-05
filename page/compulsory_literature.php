@@ -3,7 +3,7 @@ require("header.php");
 
 if(isset($_GET["delete"])){
     if($_GET["delete"] == "all"){
-        $Reading->deleteAll();
+        $Reading->deleteAll($_SESSION["userEmail"]);
         header("Location: compulsory_literature.php");
         exit();
     }}
