@@ -17,8 +17,8 @@ class User {
       $sql = $this->conn->prepare("SELECT count(id) as amount from users where email=?");
       $sql->bind_param("s", $email);
       $sql->execute();
-      $result = $sql->fetch();
-      $row = $result->fetch_assoc();
+      //$result = $sql->();
+      $row = $sql->fetch();
       if ($row["amount"] > 0) {return true;} else {return false;}
     }
 
