@@ -10,7 +10,7 @@ $aboutUser = "Olen maailma kõige ilusam ja edukam inimene.";
 ?>
 <style>
 </style>
-<title>Kasutaja & profiil</title>
+<title>Kasutaja <?php echo $internal->getName($_GET["id"]); ?> profiil</title>
 <div class="header"><a class="hbutton" href="home.php">< </a><?php echo $appName; ?></div>
 <body>
 <style type="text/css">
@@ -52,7 +52,10 @@ $aboutUser = "Olen maailma kõige ilusam ja edukam inimene.";
 <tr>
 <td id="two">
 <div class="head" ;><b>Oluline:</b></div>
-<p><b>Asukoht:</b> <?php echo $internal->getUserDistrict($_GET["id"]);?></p>
+<p><b>Asukoht:</b> <?php
+$district = $internal->getUserDistrict($_GET["id"]);
+if (!empty($district)) {echo $internal->getDistrictName($district);}
+?></p>
 <p><b>Vanus:</b> <?php echo $internal->getAge($_GET["id"]);?></p>
 <p><b>Amet:</b> <?php
 	$skills = array();

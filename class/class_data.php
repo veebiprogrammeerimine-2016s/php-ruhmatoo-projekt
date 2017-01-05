@@ -86,7 +86,7 @@ class internal {
     $sql = "select district from users where id=".$id;
     $result = $this->conn->query($sql);
     $row = $result->fetch_assoc();
-    if (empty($row["district"])) {return "Asukoht puudub";} else
+    if (empty($row["district"])) {return "";} else
     {return $row["district"];}
   }
 
