@@ -12,21 +12,17 @@
 	
 	//kui ei ole kasutaja id'd
 	if (!isset($_SESSION["userId"])){
-		
 		//suunan sisselogimise lehele
 		header("Location: login.php");
 		exit();
-		
 	}
 		
 
 
     if (isset($_GET["deleted"])){
-		
 		$Plant->delete($_GET["id"]);
 			header("Location: data.php");
 			exit();
-		
 	}
 	
 	
@@ -56,7 +52,6 @@
 		)) {
 			
 			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]),$_SESSION["userEmail"]);
-            $Plant->saveSecond($Helper->cleanInput($_POST["user_plant"]),$_SESSION["userEmail"]);
 			header("Location: data.php");
 		    exit();
 		}
@@ -80,46 +75,36 @@
 		$plantData = $Plant->getAllUserPlants($q,$sort,$direction);
 		
 	}	
+    
+    /* Sisesta andmebaasist save */
+    if (isset($_POST["plant"]) &&
+ 	  (isset($_POST["watering"]) &&
+       !empty($_POST["plant"]) &&
+       !empty($_POST["watering"])
+      )) {
+        
+        $Plant->saveUserPlants($Helper->cleanInput($_POST["plant"]), $Helper->cleanInput($_POST["watering"]));
+        $Plant->saveSecond($Helper->cleanInput($_POST["plant"]), $Helper->cleanInput($_POST["watering"]));
+        exit();
+    }
 		
 	
 	$options = $Plant->getOptions();
-	
-	
-		
-		//echo"<pre>";
-		//var_dump($plantData);
-		//echo"</pre>";
 		
 	
-
 	if( isset($_POST["user_plant"] )){
-
-	
-
 		if( empty($_POST["user_plant"])) {
-
 			$plantError = "Sisesta taime nimetus!  ";
-			
 		}else{
-			
-			
 			$plant=$_POST["user_plant"];
-
-
-
-			}
+        }
 	}
 	
 	if( isset($_POST["waterings"])) {
-		
-		if( empty($_POST["waterings"]))
-        {
+		if( empty($_POST["waterings"])) {
 			$wateringIntervalError = "  Sisesta kastmisintervall!  ";
-			
 			} else { 
-			
 			$wateringInterval = $_POST["waterings"];
-		
 		}		
 	}
 	
@@ -262,28 +247,6 @@
 	
 	</div><br><br>
 
-    <?php
-    if (isset($_POST["user_plant"]) &&
-		(isset($_POST["waterings"]) &&
-		!empty($_POST["user_plant"]) &&
-		!empty($_POST["waterings"])
-		)) {
-			
-			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]),$_SESSION["userEmail"]);
-            $Plant->saveSecond($Helper->cleanInput($_POST["user_plant"]),$_SESSION["userEmail"]);
-			echo $_SESSION["userEmail"];
-			header("Location: data.php");
-		    exit();
-		}
-
-
-if(isset($_POST['color']))
-{
-echo "The Color you have selected ".$_POST['color'];
-}
-
-
-?>
  
 
 <?php require("../header.php"); ?>
@@ -308,7 +271,7 @@ echo "The Color you have selected ".$_POST['color'];
 							$html .= "<tr>";
 								$html .= '<td>
                                 <form action="" method="post">
-                                <input type="checkbox" name="color" onclick="javascript: submit()" value="red"</form>
+                                <input type="checkbox" name="color" onclick="javascript: submit()" value="'.$p->id.'"</form>
                                 </td>';
 								$html .= "<td>".$p->id."</td>";
 								$html .= "<td>".$p->name."</td>";
@@ -331,10 +294,6 @@ echo "The Color you have selected ".$_POST['color'];
            
 						
 </div>	
-	
-
-
-
 
 <?php require("../footer.php");?>
 
