@@ -13,6 +13,7 @@ Antud projekti eesmärgiks on võimaldada inimestel kiirelt ja lihtsalt tellida 
 	* Sugu: Pole oluline, kuid suurema tõenäosusega kasutaksid rakendust naised
 * Eripära(võrreldes teiste samalaadsete rakendustega - kirjelda vähemalt 2-3 sarnast rakendust mida eeskujuks võtta):
 * Funktsionaalsuse loetelu prioriteedi järjekorras:
+
 ## Andmebaasi skeem ja tabelite loomise SQL laused
 ![Preview](databasescheme.png)
 
