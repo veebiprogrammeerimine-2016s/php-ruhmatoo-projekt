@@ -17,7 +17,7 @@ if (isset($name) && isset($email) && isset($password)) {
   } else {
     if (strlen($password) >= 6) {
       $hash = password_hash($password, PASSWORD_DEFAULT);
-        if ($login->create($email, $name, $hash)) {
+        if ($login->create($email, $name, $hash, "user")) {
           $registerSuccess = true;
         } else {$error .= "Midagi läks kahjuks valesti.";}
     } else {$error .= "Parool peab olema <i>vähemalt</i> 6 märki pikk.";}

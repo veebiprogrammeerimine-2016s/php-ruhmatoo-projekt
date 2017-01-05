@@ -22,13 +22,20 @@ class User {
       if ($row["amount"] > 0) {return true;} else {return false;}
     }
 
-    function create($email, $displayname, $hash) {
-      $type = "user";
-      $sql = $this->conn->prepare("insert into users (name, email, password, type) values (?, ?, ?, ?)");
-      $sql->bind_param("ssss", $displayname, $email, $hash, $type);
+    function create($email, $displayname, $hash, $type, $district, $age) {
+      if ($type = "worker")
+      {$sql = $this->conn->prepare("insert into users (name, email, password, type, district, age) values (?, ?, ?, ?, ?, ?)");
+      $sql->bind_param("sssssi", $displayname, $email, $hash, $type, $district, $age);
       if ($sql->execute()) {
         return true;
-      } else {return false;}
+      } else {return false;}}
+      if ($type = "user") {
+        $sql = $this->conn->prepare("insert into users (name, email, password, type) values (?, ?, ?, ?)");
+        $sql->bind_param("ssss", $displayname, $email, $hash, $type);
+        if ($sql->execute()) {
+          return true;
+        } else {return false;}
+      }
     }
 
     function getHash($email) {

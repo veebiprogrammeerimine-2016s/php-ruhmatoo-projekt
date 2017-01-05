@@ -10,6 +10,24 @@ $input = new Input();
 $data = new internal($dbconn);
 $districts = array();
 $districts = $data->getDistrictIDs();
+
+if (isset($_POST["displayname"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["district"]) && isset($_POST["age"])) {
+$email = $_POST["email"];
+$name = $_POST["displayname"];
+$password = $_POST["password"];
+$district = $_POST["district"];
+$age = $_POST["age"];
+  if ($login->checkIfExists($email)) {
+    $error .= "Seda e-mailiaadressi on juba kasutatud.";
+  } else {
+    if (strlen($password) >= 6) {
+      $hash = password_hash($password, PASSWORD_DEFAULT);
+        if ($login->create($email, $name, $hash, "worker", $district ,$age)) {
+          $registerSuccess = true;
+        } else {$error .= "Midagi läks kahjuks valesti.";}
+    } else {$error .= "Parool peab olema <i>vähemalt</i> 6 märki pikk.";}
+  }
+}
 ?>
 
 <header>
@@ -42,5 +60,4 @@ $districts = $data->getDistrictIDs();
       <p class="message">Oled juba registreerunud? <a href="login.php">Logi sisse</a></p>
 	  <p class="message"><a href="home.php">Kodu</a></p>
     </form>
-    <h1>what the fuck</h1>
 </div>
