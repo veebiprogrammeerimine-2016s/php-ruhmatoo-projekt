@@ -115,7 +115,7 @@
 			<button type="submit" class = "btn btn-success btn-sm ">Complete</button>
 			<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
 		  </div>
-		 </form>
+		</form>
     </div>
   </div>
 </div>
