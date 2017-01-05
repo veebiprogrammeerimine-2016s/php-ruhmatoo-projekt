@@ -13,6 +13,20 @@ class internal {
     $this->conn->query("SET CHARACTER SET 'utf8'");
   }
 
+  function searchWorkers($searchterm) {
+    $sql = "select id from users where type='worker' and name like '%".$searchterm."%'";
+    $result = $this->conn->query($sql);
+    if ($result->num_rows > 0) {
+      $workers = array();
+      while ($row = $result->fetch_assoc()) {
+        $workers[] = $row["id"];
+      }
+      return $workers;
+    } else {
+      return false;
+    }
+  }
+
   function getWorkers() {
     $sql = "select id from users where type='worker'";
     $result = $this->conn->query($sql);
@@ -38,9 +52,7 @@ class internal {
       return $row["name"];
   }
 
-  function searchWorkers($searchterm) {
 
-  }
 
   function getDistrictIDs() {
     $sql = "select id, name from districts order by name";

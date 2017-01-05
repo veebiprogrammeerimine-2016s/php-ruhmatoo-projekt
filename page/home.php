@@ -2,14 +2,23 @@
 <?php
 require("header.php");
 require("../class/class_data.php");
+require("../class/class_general.php");
+$input = new Input();
 $internal = new internal($dbconn);
-
+$search = "";
 $districts = array();
 $districts = $internal->getDistrictIDs();
 $skills = array();
 $skills = $internal->getSkillIDs();
-$workers = array();
-$workers = $internal->getWorkers();
+
+if (isset($_GET["search"]) && !empty($_GET["search"])) {
+	$search = $input->clean($_GET["search"]);
+	$workers = array();
+	$workers = $internal->searchWorkers($search);
+} else {
+	$workers = array();
+	$workers = $internal->getWorkers();
+}
 ?>
 
 <title>Töömehe leidja</title>
@@ -34,10 +43,10 @@ if (!isset($_SESSION["id"]))
 
 <div class="c-3" style="border: 2px solid gray; border-top: 0; border-left: 0; margin-bottom: 0; background: white;">
 <h3 style="margin-top: 0; margin-bottom: 0;">Otsi</h3>
-<form>
+<form method="get">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<input type="text" name="search" style="width: 85%; margin-top:10px; margin-bottom: 0; float:left;">
+<input type="text" name="search" style="width: 85%; margin-top:10px; margin-bottom: 0; float:left;" value="<?=$search?>">
 <button type="submit" class="button" style="float:right; margin-top:10px;">
 <i class="fa fa-search"></i>
 </button>
