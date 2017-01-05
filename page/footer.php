@@ -11,7 +11,7 @@
 </div>
 <div class="c-4">
 <h5 style="margin-top: 0em;">Kontakt</h5>
-<p style="margin-top: 0em; margin-bottom: 0em;"><b>Elle:</b> ellelisa@tlu.ee <br><b>Kristel:</b> krisr12@tlu.ee<br><b>Mihkel:</b> @SGPMPSGA </p>
+<p style="margin-top: 0em; margin-bottom: 0em;"><b>Elle:</b> ellelisa@tlu.ee <br><b>Kristel:</b> krisr12@tlu.ee<br><b>Mihkel:</b> mpoder@tlu.ee </p>
 </div>
 </div>
 </footer>

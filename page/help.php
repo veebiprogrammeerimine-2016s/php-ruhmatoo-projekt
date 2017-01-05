@@ -14,10 +14,10 @@
 <div class="c-6">
 <head>
 <h2 style="color: burlywood;">Levinumad küsimused</h2>
-<h3 style="color: white;">Kuidas ma saan kasutaja luua?</h3>
-<p style="color: white;"> Meie veebilehel on võimalik luua kasutajaid kahe erineva profiilina: töömehekasutaja ja tavakasutaja. Selleks leiad kodulehel üleval paremal nupu Logi sisse. </p>
-<h2 style="color: burlywood;">Kas saan oma konto info andmebaasist eemaldada?</h2>
-<p style="color: white;">Konto sulgemise ajal saab lubada konto info jäädava kustutamise - sel juhul tuleb see valik konto eemaldamisel lubada.</p>
+<h3 style="color: gainsboro;">Kuidas ma saan kasutajat luua?</h3>
+<p style="color: white;"> Meie veebilehel on võimalik luua kasutajaid kahe erineva profiilina: töömehekasutaja ja tavakasutaja. Selleks leiate kodulehel üleval paremal nupu Logi sisse. Seejärel avaneb tavakasutaja sisselogimis-leht kus on võimalik leida linki registreerimislehele. Registreerimisleht on eelkõige tavakasutajale, kuid kui soovite registreeruda töömehena, leiate selleks lingi registreerimislehelt. Registreerudes palume täita kõik etteantud väljad korrektselt.</p>
+<h3 style="color: gainsboro;">Unustasin parooli. Mis teha?</h2>
+<p style="color: white;">Kui unustasid oma kasutaja parooli, palun kontakteeru veebilehe haldajatega emaili teel. Nende kontaktid leiad veebilehe jalusest.</p>
 </head>
 </div>
 <div class="c-6">
