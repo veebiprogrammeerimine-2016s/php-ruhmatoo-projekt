@@ -1,0 +1,22 @@
+nav
+{
+background-image: url("http://www.freebiesgallery.com/wp-content/uploads/2013/09/white-background-1.jpg");
+ background-size: cover;  
+ opacity: 0.9;
+ width: 250px;
+ padding:5px 15px;/*left, right, bottom, top*/
+ margin: 20px;
+ box-sizing: border-box; /*content box*/
+ top: 150px;
+ right:0px;/*selleks et mĆ¤Ć¤rata, tuleb Ć¶elda kuidas arvestada*/
+ position:fixed/*relative,absolute,ficed*/
+}
+
+body {
+    background-color: lightblue;
+}
+
+h1 {
+    color: navy;
+    margin-left: 20px;
+}
