@@ -14,11 +14,11 @@ class User {
     }
 
     function checkIfExists($email) {
-      $sql = $this->conn->prepare("SELECT count(id) as amount from users where email=?");
-      $sql->bind_param("s", $email);
-      $sql->execute();
-      //$result = $sql->();
-      $row = $sql->fetch();
+      $sql = "SELECT count(id) as amount from users where email='".$email."'";
+      $result = $this->conn->query($sql);
+
+      $row = $result->fetch_assoc();
+      echo $row["amount"];
       if ($row["amount"] > 0) {return true;} else {return false;}
     }
 
