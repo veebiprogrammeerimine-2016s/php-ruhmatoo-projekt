@@ -77,7 +77,7 @@ $skills = $conn->query($skillsql);
 
 
 <div class="c-9">
-<div class="header">a</div>
+<div class="userbox">a</div>
 <div class="userbox">b</div>
 <div class="userbox">c</div>
 </div>
