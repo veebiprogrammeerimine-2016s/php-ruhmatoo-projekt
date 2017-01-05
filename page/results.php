@@ -10,6 +10,9 @@ if(isset($_GET["page"])){
 	$page = $_GET["page"];
 }
 
+if(isset($_GET["s"])){
+	$s = $_GET["s"];
+}
 if(isset($_GET["l"])){
 	
 	$b = $_GET["l"];

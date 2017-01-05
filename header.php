@@ -25,12 +25,18 @@ if(isset($_GET["s"])){
 		<h1>NoTime2Spare</h1>
 	</div>
 	<div class="col-md-6" style="padding-top: 20px">
-		<form>
+		<form method='GET' action='results.php'>
 			<input type="search" name="s" value="<?=$s;?>" placeholder="Enter keywords...">
-			<button class="btn btn-md btn-info" type="submit">Search</button>
+			<button class="btn btn-md btn-info" type="submit" onclick="location.href='results.php';">Search</button>
 		</form>		
 	</div>
 </div>
+<script>
+function relocate_home()
+{
+     location.href = "www.yoursite.com";
+} 
+</script>
 
 </head>
 

@@ -116,7 +116,6 @@ function searchFromDb($keyword, $page){
 	$stmt->bind_param("sssssii", $keyword, $keyword, $keyword, $keyword, $keyword, $perPage, $offset);
 	
 	$stmt->bind_result($id, $title, $link, $release_date, $poster);
-	$stmt->store_result();
 	$stmt->execute();
 	$result = array();
 	while($stmt->fetch()) {
@@ -143,10 +142,10 @@ function getThumbnail($id, $poster, $link, $mysqli){
 		$html = file_get_html($link);
 		if($html->find('img.posterImage')[0]){
 			$plink = $html->find('img.posterImage')[0]->src;
-			$stmt = $mysqli->prepare("UPDATE movies_db SET poster=? WHERE id=?");
-			echo $mysqli->error;
-			$stmt->bind_param('si', $plink, $id);
-			$stmt->execute();
+			//$stmt = $mysqli->prepare("UPDATE movies_db SET poster=? WHERE id=?");
+			//echo $mysqli->error;
+			//$stmt->bind_param('si', $plink, $id);
+			//$stmt->execute();
 			
 		}
 		
