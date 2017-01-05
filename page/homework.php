@@ -209,7 +209,7 @@ if(isset($_POST["sendHomework"])){
         $html2 .= "<th>Tähtaeg</th>";
         $html2 .= "<th>Tüüp</th>";
         $html2 .= "<th>Prioriteet</th>";
-        $html2 .= "<th><a href='?delete=all'>Kustuta kõik</a></th>";
+        $html2 .= "<th><a href='?delete=all'>KUSTUTA KÕIK</a></th>";
         $html2 .= "</tr>";
         $html2 .= "</thead>";
         $html2 .= "<tbody>";
