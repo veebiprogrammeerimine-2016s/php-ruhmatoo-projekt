@@ -27,6 +27,13 @@ class internal {
     }
   }
 
+  function getName($id) {
+      $sql = "select name from users where id=".$id;
+      $result = $this->conn->query($sql);
+      $row = $result->fetch_assoc();
+      return $row["name"];
+  }
+
   function searchWorkers($searchterm) {
 
   }
@@ -39,6 +46,23 @@ class internal {
       $districts[] = $row["id"];
     }
     return $districts;
+  }
+
+  function getSkillIDs() {
+    $sql = "select id, skill from skills order by skill";
+    $result = $this->conn->query($sql);
+    $skills = array();
+    while ($row = $result->fetch_assoc()) {
+      $skills[] = $row["id"];
+    }
+    return $skills;
+  }
+
+  function getSkillName($id) {
+    $sql = "select skill from skills where id=".$id;
+    $result = $this->conn->query($sql);
+    $row = $result->fetch_assoc();
+    return $row["skill"];
   }
 
   function getDistrictName($id) {

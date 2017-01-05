@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <?php
 require("header.php");
+require("../class/class_data.php");
+$internal = new internal($dbconn);
 
-$conn = new mysqli($server, $user, $pass, $db);
-$conn->query("SET NAMES 'utf8'");
-$conn->query("SET CHARACTER SET 'utf8'");
+$districts = array();
+$districts = $internal->getDistrictIDs();
+$skills = array();
+$skills = $internal->getSkillIDs();
 
-$sql = "SELECT id, name FROM districts ORDER BY name";
-$districts = $conn->query($sql);
-if ($conn->connect_error) {
-	die("Ühendus nurjus: " . $conn->connect_error);
-}
-$skillsql = "SELECT id, skill FROM skills ORDER BY skill";
-$skills = $conn->query($skillsql);
 ?>
 
 <title>Töömehe leidja</title>
@@ -52,24 +48,21 @@ if (!isset($_SESSION["id"]))
 <p>
 <h6>Linnaosa</h6>
 <select style="width: 100%;" name="district">
-  <?php
-	if ($districts->num_rows > 0) {
-		while($row = $districts->fetch_assoc()) {
-			echo "<option value='".$row["id"]."'>".$row["name"]."</option>";
-	}
-	}
-	$conn->close()
-  ?>
+
+	<?php foreach($districts as $a) {
+			$dname = $internal->getDistrictName($a);
+			echo "<option value='".$a."'>".$dname."</option>";
+		} ?>
+
 </select>
 </p>
 <h6>Oskused</h6>
 <?php
-	if ($skills->num_rows > 0) {
-		while($row = $skills->fetch_assoc()) {
-			echo "<input type='checkbox' name='skill[]' value='".$row["id"]."'>".$row["skill"]."<br>";
-			//echo "<input type='checkbox' name='".$row["id"]."' value='y'>".$row["skill"]."<br>";
-		}
-	}
+foreach ($skills as $a) {
+	$sname = $internal->getSkillName($a);
+	echo "<input type='checkbox' name='skill[]' value='".$a."'>".$sname."<br>";
+
+}
 ?>
 <!--
 <input type="checkbox" name="builder" value="yes"> Ehitaja <br>
