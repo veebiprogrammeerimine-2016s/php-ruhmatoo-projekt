@@ -239,7 +239,6 @@ if(!empty($allTeachers)) {
     $html .= "<html>";
     $html .= "<head>";
     $html .= "<meta charset='UTF-8'>";
-    $html .= "<title>Responsive Table</title>";
     $html .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
     $html .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
     $html .= "</head>";
@@ -265,7 +264,7 @@ if(!empty($allTeachers)) {
         $html .= "<td>$teacher->name</td>";
         $html .= "<td>$teacher->classroom</td>";
         $html .= "<td>$teacher->email</td>";
-        $html .= "<td><a href='$teacher->material'></a>$teacher->material</td>";
+        $html .= "<td><a href='$teacher->material'>Veebileht</a></td>";
         $html .= "<td><a href='?deletedteacher=$teacher->id'>Kustuta</a></td>";
         $html .= "</tr>";
     }
@@ -291,7 +290,6 @@ if(!empty($allLessons)) {
     $html .= "<html>";
     $html .= "<head>";
     $html .= "<meta charset='UTF-8'>";
-    $html .= "<title>Responsive Table</title>";
     $html .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
     $html .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
     $html .= "</head>";
