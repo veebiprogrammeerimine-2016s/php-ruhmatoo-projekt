@@ -33,9 +33,10 @@ if(isset($_SESSION["message"])) {
 
 ?>
 
+
 <?php
 if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
-    $target_dir = "profilepics/";
+    $target_dir = "../profilepics/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -74,18 +75,18 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
             
-            // save file name to DB 
-            $database = $database = "if16_ege";
-			$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-            $stmt = mysqli_query($mysqli,"UPDATE username SET image = '".$_FILES['file']['name']."' WHERE username = '".$_SESSION['userName']."'");
+            // save file name to DB here
+            addPicURL(basename( $_FILES["fileToUpload"]["name"]));
+			
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
     }
-	}else{
-		
-	}
+}else{
+    
+}
 ?>
+
 
 <!DOCTYPE html>
 <h1>TV Show Calendar</h1>
@@ -93,10 +94,10 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 <body>
 <p>
 	<h2>Welcome <?=$_SESSION["userName"];?>!</h2>
-	<br><br>
-	
-	<h3>To continue, please add at least one series to your calender!</h3>
-	<form method="POST">
+	<br>
+	<img style="height: 200px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>">
+
+	<h3>For starters, let's add one series to your calender!</h3>
 	
 
 	<select name="user_tv_db">
@@ -104,11 +105,12 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 	</select>
 	
 	<br><br>
-	<form action="upload.php" method="post" enctype="multipart/form-data">
-		<h3>Also add a profile image:</h3>
-		<input type="file" name="fileToUpload" id="fileToUpload" >
+	
+	<form action="" method="post" enctype="multipart/form-data">
+		<h3>Also let's add a profile image:</h3>
+		<input type="file" name="fileToUpload">
 		<br><br>
-		<input type="submit" value="Upload Image" name="submit">
+		<button type="submit" name="submit">Upload</button>
 	</form>
 
 </body>
