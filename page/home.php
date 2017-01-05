@@ -8,7 +8,8 @@ $districts = array();
 $districts = $internal->getDistrictIDs();
 $skills = array();
 $skills = $internal->getSkillIDs();
-
+$workers = array();
+$workers = $internal->getWorkers();
 ?>
 
 <title>Töömehe leidja</title>
@@ -77,9 +78,15 @@ foreach ($skills as $a) {
 
 
 <div class="c-9">
-<div class="userbox"></div>
-<div class="userbox"></div>
-<div class="userbox"></div>
+	<?php
+		foreach($workers as $a) {
+			$workername = $internal->getName($a);
+			echo "<div class='userbox'>";
+				echo "<a href='profile.php?id=$a' class='title'>$workername</a>";
+				echo "<p>Oskab:<br></p>";
+			echo "</div>";
+		}
+	?>
 </div>
 
 <?php require "footer.php"; ?>

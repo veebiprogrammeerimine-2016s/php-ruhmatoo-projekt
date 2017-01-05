@@ -25,10 +25,13 @@ body {
     background-repeat: no-repeat;
 }
 
-
+.footer::before {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
 .footer {
 	clear: both;
-	position: absolute;
+	position: fixed;
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -164,11 +167,17 @@ input {
 }
 
 .userbox {
-	width: 250px; 
-	height: 250px; 
-	padding: 20px; 
-	border: 1px solid gray; 
+	width: 250px;
+	height: 250px;
+	padding: 20px;
+	border: 1px solid gray;
 	background: white;
 	float: left;
-	margin: 35px; 
+	margin: 35px;
+}
+
+.title {
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
 }
