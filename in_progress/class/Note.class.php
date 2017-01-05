@@ -135,10 +135,10 @@ class Note {
 	}
 
 
-	function updateNote($firstname, $lastname, $notebook, $serialnumber, $priority, $comment){
+	function updateNote($id, $firstname, $lastname, $notebook, $serialnumber, $priority, $comment){
 				
-		$stmt = $this->connection->prepare("UPDATE notebookRepair SET firstname=?, lastname=?, notebook=?, serialnumber=?, comment=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("ssssss",$firstname, $lastname, $notebook, $serialnumber, $priority, $comment);
+		$stmt = $this->connection->prepare("UPDATE notebookRepair SET firstname=?, lastname=?, notebook=?, serialnumber=?, priority=?, comment=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("ssssssi", $firstname, $lastname, $notebook, $serialnumber, $priority, $comment, $id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){

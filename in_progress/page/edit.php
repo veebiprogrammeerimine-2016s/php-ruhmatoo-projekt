@@ -20,8 +20,8 @@
 	//kas kasutaja uuendab andmeid
 	if(isset($_POST["update"])){
 		
-		$Note->updateNote($Helper->cleanInput($_POST["id"]));
-						  
+		$Note->updateNote($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["firstname"]), $Helper->cleanInput($_POST["lastname"]), $Helper->cleanInput($_POST["notebook"]),$Helper->cleanInput($_POST["serialnumber"]),
+		$Helper->cleanInput($_POST["priority"]), $Helper->cleanInput($_POST["comment"]));
 		
 		header("Location: edit.php?id=".$_POST["id"]."&success=true");
         exit();	
@@ -43,14 +43,14 @@
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
   	<label for="note" >Notes</label><br>
-	<textarea  id="note" name="note"><?php echo $c->firstname;?></textarea><br>
-	<textarea  id="note" name="note"><?php echo $c->lastname;?></textarea><br>
-	<textarea  id="note" name="note"><?php echo $c->notebook;?></textarea><br>
-	<textarea  id="note" name="note"><?php echo $c->serialnumber;?></textarea><br>
-	<textarea  id="note" name="note"><?php echo $c->priority;?></textarea><br>
-	<textarea  id="note" name="note"><?php echo $c->comment;?></textarea><br>
+	<textarea  id="firstname" name="firstname"><?php echo $c->firstname;?></textarea><br>
+	<textarea  id="lastname" name="lastname"><?php echo $c->lastname;?></textarea><br>
+	<textarea  id="notebook" name="notebook"><?php echo $c->notebook;?></textarea><br>
+	<textarea  id="serialnumber" name="serialnumber"><?php echo $c->serialnumber;?></textarea><br>
+	<textarea  id="priority" name="priority"><?php echo $c->priority;?></textarea><br>
+	<textarea  id="comment" name="comment"><?php echo $c->comment;?></textarea><br>
   	<!--<label for="color" >värv</label><br>
-	<input id="color" name="color" type="color" value="<?=$c->color;?>"><br><br>
+	<input id="color" name="color" type="color" value="<?//=$c->color;?>"><br><br>
   	-->
 	<input type="submit" name="update" value="Save">
   </form>
