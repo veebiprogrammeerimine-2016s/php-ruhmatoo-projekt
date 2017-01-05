@@ -1,5 +1,5 @@
 <?php 
-class Note {
+class nature2 {
 	
     private $connection;
 	
@@ -30,7 +30,7 @@ class Note {
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"],$GLOBALS["serverUsername"],$GLOBALS["serverPassword"],$GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("INSERT INTO colorNotes (kirjeldus, asukoht, kuupaev, url)  VALUES (?,?,?,?)");
+		$stmt = $mysqli->prepare("INSERT INTO colorNotes (description, location, date, url)  VALUES (?,?,?,?)");
 		
 		$stmt->bind_param("ssss", $description, $location, $date,$url);
 		
@@ -45,118 +45,74 @@ class Note {
 
 
 	
-	function getAllNature() {
-	
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		
-		$stmt = $mysqli->prepare("SELECT id, kirjeldus, asukoht, kuupaev, url FROM colorNotes");
-		$stmt->bind_result($id, $description, $location, $date, $url);
-		$stmt->execute();
-		
-		$results = array();
-		
-		//tsükli sisu tehakse nii mitu korda, mitu rida SQL lausega tuleb
-		while($stmt->fetch()) {
+		function getAllNature ($q, $sort, $order){
 			
-			$nature = new StdClass();
-			$nature->id = $id;
-			$nature->description = $description;
-			$nature->location = $location;
-			$nature->day = $date;
-			$nature->url = $url;
-	
+			$allowedSort = ["id", "description", "location", "date", "url"];
 			
-			//echo $color."<br>";
-			array_push($results, $nature);
+			if(!in_array($sort, $allowedSort)){
+            $sort = "id";
+        }
+        $orderBy = "ASC";
+        if($order == "DESC") {
+            $orderBy = "DESC";
+        }
+        echo "Sorteerin: ".$sort." ".$orderBy." ";
 			
+			if ($q != "") {
+			
+			echo "otsin: ".$q;
+			
+				$stmt = $this->connection->prepare("SELECT id, description, location, date, url FROM colorNotes WHERE deleted IS NULL AND ( description LIKE ? OR location LIKE ? OR date LIKE ? OR url like ? ) ORDER BY $sort $orderBy");
+				$searchWord = "%".$q."%";
+				$stmt->bind_param("ssss", $searchWord, $searchWord, $searchWord, $searchWord);
+				
+			} else {
+				
+				$stmt = $this->connection->prepare("SELECT id, description, location, date, url FROM colorNotes WHERE deleted IS NULL ORDER BY $sort $orderBy");
+					}
+			$stmt->bind_result($id, $description, $location, $date, $url);
+			$stmt->execute();
+			
+			$results = array();
+			// Tsükli sisu tehake nii mitu korda, mitu rida SQL lausega tuleb
+			while($stmt->fetch()) {
+				//echo $color."<br>";
+				$nature2= new StdClass();
+				$nature2->id = $id;
+				$nature2->description = $description;
+				$nature2->location = $location;
+				$nature2->date = $date;
+				$nature2->url = $url;
+				
+				array_push($results, $nature2);
+			}
+			
+			return $results;
 		}
 		
-		return $results;
-		
-	}
-	
-	
-	
-	
-	function getAllNotes($q, $sort, $order) {
-		$allowedSort=["id","note","color"];
-		if(!in_array($sort, $allowedSort)){
-			$sort="id";
-		}
-		$orderBy="ASC";
-		if($order=="DESC"){
-			$orderBy="DESC";
-		}
-		echo "sorteerin ".$sort." ".$orderBy." ";
-		if($q!=""){
-			echo "Otsin:".$q;
-			
-			$stmt = $this->connection->prepare("
-				SELECT id, note, color
-				FROM colorNotes2
-				WHERE deleted IS NULL
-				AND( note LIKE ? OR color LIKE ?)
-				ORDER BY $sort $orderBY
-			");
-		
-		$searchWord="%".$q."%";
-		$stmt->bind_param("ss",$searchWord,$searchWord);
-		
-		}else{
-		$stmt = $this->connection->prepare("
-			SELECT id, note, color
-			FROM colorNotes2
-			WHERE deleted IS NULL
-			
-		");
-		
-		
-		}
-		$stmt->bind_result($id, $note, $color);
-		$stmt->execute();
-		
-		$result = array();
-		
-		// tsükkel töötab seni, kuni saab uue rea AB'i
-		// nii mitu korda palju SELECT lausega tuli
-		while ($stmt->fetch()) {
-			//echo $note."<br>";
-			
-			$object = new StdClass();
-			$object->id = $id;
-			$object->note = $note;
-			$object->noteColor = $color;
-			
-			
-			array_push($result, $object);
-			
-		}
-		
-		return $result;
-		
-	}
+
 	
 	function getSingleNoteData($edit_id){
     		
-		$stmt = $this->connection->prepare("SELECT id, kirjeldus, asukoht, kuupaev, url FROM colorNotes WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT description, location, date, url FROM colorNotes WHERE id=? AND deleted IS NULL");
 		echo $this->connection->error;
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($id, $description, $location, $date,$url);
+		$stmt->bind_result($description, $location, $date,$url);
 		$stmt->execute();
 		
 		//tekitan objekti
-		$nature = new Stdclass();
+		$c = new Stdclass();
 		
 		//saime ühe rea andmeid
 		if($stmt->fetch()) {
 			//echo $note."<br>";
 			
 			//$nature = new StdClass();
-			$nature->id = $id;
-			$nature->description = $description;
-			$nature->location = $location;
-			$nature->day = $date;
-			$nature->url = $url;
+		
+			$c->description = $description;
+			$c->location = $location;
+			$c->date = $date;
+			$c->url = $url;
 			
 		}else{
 			// ei saanud rida andmeid kätte
@@ -167,23 +123,24 @@ class Note {
 		}
 		
 		$stmt->close();		
-		return $nature;
+		return $c;
 		
 	}
 
-
-	function updateNote($id, $description, $location, $day, $url){
-				
-		$stmt = $this->connection->prepare("UPDATE colorNotes SET kirjeldus=?, asukoht=? kuupaev=? url=? WHERE =? AND deleted IS NULL");
-		$stmt->bind_param("ssss",$description, $location, $date,$url);
+	function updateNote($description,$location, $date, $url){
+    	
 		
-		// kas õnnestus salvestada
+		$stmt = $this->connection->prepare("UPDATE colorNotes SET description=?, location=?, date=?, url=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("ssss",$description,$location, $date, $url);
+		
+		
 		if($stmt->execute()){
-			// õnnestus
+			
 			echo "salvestus õnnestus!";
 		}
 		
 		$stmt->close();
+		
 		
 	}
 	

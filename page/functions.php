@@ -14,7 +14,7 @@ require("../../../config.php");
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"],$GLOBALS["serverUsername"],$GLOBALS["serverPassword"],$GLOBALS["database"]);
 		
-		$stmt = $mysqli->prepare("INSERT INTO colorNotes (kirjeldus, asukoht, kuupaev, url)  VALUES (?,?,?,?)");
+		$stmt = $mysqli->prepare("INSERT INTO colorNotes (description, location, date, url)  VALUES (?,?,?,?)");
 		
 		$stmt->bind_param("ssss", $description, $location, $date,$url);
 		
@@ -58,4 +58,12 @@ require("../../../config.php");
 		return $results;
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	?>

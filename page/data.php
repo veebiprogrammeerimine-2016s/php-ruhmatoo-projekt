@@ -6,9 +6,8 @@
 	$Helper = new Helper();
 		require("functions.php");
 	require("../class/Note.class.php");
-	$Note = new Note($mysqli);
-	$Nature = new Note($mysqli);
 	
+	$nature2 = new nature2($mysqli);
 	//ei ole sisseloginud, suunan login lehele
 	if(!isset ($_SESSION["userId"])) {
 		header("Location: login.php");
@@ -72,8 +71,8 @@
 	}
 	
 	
-	$notes = $Note->getAllNotes($q, $sort, $order);
-	$nature2= getAllNature();
+//$notes = $Note->getAllNotes($q, $sort, $order);
+	$nature2 = $nature2->getAllNature($q, $sort, $order);
 	
 	//echo "<pre>";
 	//var_dump($notes);
@@ -90,7 +89,7 @@ function upload(){
 		if(isset($_POST["submit"])) {
 			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
 			if($check !== false) {
-				echo "File is an image - " . $check["mime"] . ".";
+				//echo "File is an image - " . $check["mime"] . ".";
 				$uploadOk = 1;
 			} else {
 				echo "File is not an image.";
@@ -124,7 +123,7 @@ function upload(){
 			
 			
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-				echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+				//echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
 				
 				// save file name to DB here
 				$a = new StdClass();
@@ -286,7 +285,7 @@ function upload(){
 				
 				
 				<br><br>
-				<?=$n->day;?>
+				<?=$n->date;?>
 				<br><br>
 				<?=$n->location;?>
 				<a href='edit.php?id=<?=$n->id;?>'><span class='glyphicon-pencil>'<span> edit.php</a>

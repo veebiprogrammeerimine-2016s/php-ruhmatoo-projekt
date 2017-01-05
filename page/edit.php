@@ -6,12 +6,12 @@
 	$Helper = new Helper();
 
 	require("../class/Note.class.php");
-	$Note = new Note($mysqli);
+	$nature2 = new nature2($mysqli);
 	
 	/// kas aadressireal on delete
 	if(isset($_GET["delete"])){
 		// saadan kaasa aadressirealt id
-		$Note->deleteNote($_GET["id"]);
+		$nature2->deleteNote($_GET["id"]);
 		header("Location: data.php");
 		exit();
 		
@@ -20,7 +20,7 @@
 	//kas kasutaja uuendab andmeid
 	if(isset($_POST["update"])){
 		
-		$Note->updateNote($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["kirjeldus"]), $Helper->cleanInput($_POST["asukoht"]),$Helper->cleanInput($_POST["kuupäev"]),$Helper->cleanInput($_POST["url"]));
+		$nature2->updateNote($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["location"]), $Helper->cleanInput($_POST["date"]), $Helper->cleanInput($_POST["url"]));
 		
 		header("Location: edit.php?id=".$_POST["id"]."&success=true");
         exit();	
@@ -89,7 +89,7 @@
 	
 }
 	//saadan kaasa id
-	$c = $Note->getSingleNoteData($_GET["id"]);
+	$c = $nature2->getSingleNoteData($_GET["id"]);
 	//var_dump($c);
 
 	
@@ -104,17 +104,16 @@
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
   	<label for="kirjeldus" >Märkus</label><br>
 	<textarea  id="kirjeldus" name="kirjeldus"><?php echo $c->description;?></textarea><br>
-  	<label for="asukoht" >asukoht</label><br>
-	<input  id="asukoht" name="asukoht"><?php echo $c->location;?></input><br>
-  	<label for="kuupaev" >kuupäev</label><br>
-	<input  id="kuupaev" name="kuupaev"><?php echo $c->day;?></input><br>
+  	<label for="asukoht" >Asukoht</label><br>
+	<input id="asukoht" name="asukoht" type="asukoht" value="<?=$c->location;?>"><br><br>
+    <label for="date" >Kuupäev</label><br>
+	<input id="date" name="date" type="date" value="<?=$c->date;?>"><br><br>
   	<label for="url" >url</label>
 	<br>
 	<img width='300' src="<?=$c->url;?>">
 	 Muuda pilti:
     <input type="file" name="fileToUpload" id="Pilt">
 <br><br>
-	<input class="btn btn-success btn-sm hidden-xs" type="submit" name="submit" value="Postita">
 
 	<textarea  id="url" name="url"><?php echo $c->url;?></textarea><br>
   	
