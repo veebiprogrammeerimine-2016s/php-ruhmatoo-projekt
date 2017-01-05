@@ -1,6 +1,5 @@
 <?php
-require("../../../config.php");
-require_once("simple_html_dom.php");	
+require("../../../config.php");	
 
 	session_start(); 
 	
@@ -91,16 +90,11 @@ function getGenreFromDb() {
 	return $result;
 }
 function searchFromDb($keyword, $page){
-	$perPage = 30;
+	$perPage = 15;
 	$offset = $page*$perPage - $perPage;
 	// 1 lk offset = 0 ja limit = 5
 	// 2 lk offset = 5 ja limit = 10
-	
-	
-	//$keyword = str_replace("+", '%', $keyword);
 	$keyword = "%".$keyword."%";
-		//var_dump($keyword);
-
 	$mysqli = new mysqli($GLOBALS["serverHost"], 
 						$GLOBALS["serverUsername"],  
 						$GLOBALS["serverPassword"],  
@@ -123,30 +117,35 @@ function searchFromDb($keyword, $page){
 		$object->title = $title;
 		$object->mlink = $link;
 		$object->release_date = $release_date;
-		$poster = getThumbnail($id, $poster, $link, $mysqli);
+		$poster = getThumbnail($id, $poster, $link);
 		$object->poster = $poster;
 		array_push($result, $object);
 		
 	}
-	
+	$mysqli->close();
 	return $result;
 	
 }
 
-function getThumbnail($id, $poster, $link, $mysqli){
+function getThumbnail($id, $poster, $link){
 	
 	$plink = "";
 	$broken = md5_file('https://resizing.flixster.com/LmuHQvW5Lsm-RKt31c-R_O47E0M=/130x0/v1.bTsxMjA5MzQ5NDtqOzE3MTQ5OzEyMDA7MjAyNjszMDAw');
 	$thumbnail = md5_file($poster);
 	if($thumbnail == $broken){
+		require_once("simple_html_dom.php");
 		$html = file_get_html($link);
 		if($html->find('img.posterImage')[0]){
 			$plink = $html->find('img.posterImage')[0]->src;
-			//$stmt = $mysqli->prepare("UPDATE movies_db SET poster=? WHERE id=?");
-			//echo $mysqli->error;
-			//$stmt->bind_param('si', $plink, $id);
-			//$stmt->execute();
-			
+			$mysqli = new mysqli($GLOBALS["serverHost"], 
+					$GLOBALS["serverUsername"],  
+					$GLOBALS["serverPassword"],  
+					$GLOBALS["database"]);
+			$stmt = $mysqli->prepare("UPDATE movies_db SET poster=? WHERE id=?");
+			echo $mysqli->error;
+			$stmt->bind_param('si', $plink, $id);
+			$stmt->execute();
+			$mysqli->close();
 		}
 		
 	} else {
@@ -159,18 +158,19 @@ function searchByGenre($genre){
 	
 	$genre = "%".$genre."%";
 	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-	$stmt = $mysqli->prepare("SELECT poster, genre
+	$stmt = $mysqli->prepare("SELECT id, poster, genre, link
 						FROM movies_db
 						WHERE genre LIKE ? 
 						ORDER BY RAND() 
 						LIMIT 1");
 	echo $mysqli->error;
 	$stmt->bind_param("s", $genre);
-	$stmt->bind_result($poster, $movGenre);
+	$stmt->bind_result($id, $poster, $movGenre, $link);
 	$stmt->execute();
 	$result = array();
 	if($stmt->fetch()) {
 		$object = new StdClass();
+		$poster = getThumbnail($id, $poster, $link);
 		$object->poster = $poster;
 		$object->genre = $movGenre;
 		array_push($result, $object);
@@ -183,12 +183,8 @@ function cleanInput($input) {
 	
 	return htmlspecialchars(stripslashes(trim(($input))));
 }
-function makeFriendly($string){
-    $string = strtolower(trim($string));
-    $string = str_replace("'", '', $string);
-    $string = preg_replace('#[^a-z\-]+#', '+', $string);
-    $string = preg_replace('#_{2,}#', '+', $string);
-    $string = preg_replace('#_-_#', '+', $string);
-    return preg_replace('#(^_+|_+$)#D', '+', $string);
+
+if(isset($_POST['story-id'])){
+	$storyId = $_POST['story-id'];
 }
 ?>

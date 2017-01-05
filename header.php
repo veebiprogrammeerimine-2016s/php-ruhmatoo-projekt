@@ -18,26 +18,21 @@ if(isset($_GET["s"])){
 	
 }
 
-//require('styles.css'); ?>
+require('styles.css'); ?>
 
 <div class="row">
-	<div class="col-md-5">
+	<div class="col-md-3">
 		<h1>NoTime2Spare</h1>
 	</div>
-	<div class="col-md-6" style="padding-top: 20px">
+	<div class="col-md-6" style="padding-top: 10px">
 		<form method='GET' action='results.php'>
 			<input type="search" name="s" value="<?=$s;?>" placeholder="Enter keywords...">
-			<button class="btn btn-md btn-info" type="submit" onclick="location.href='results.php';">Search</button>
+			<button class="hidden" type="submit" onclick="location.href='results.php';">Search</button>
 		</form>		
 	</div>
 </div>
-<script>
-function relocate_home()
-{
-     location.href = "www.yoursite.com";
-} 
-</script>
-
+<div class="row">
+</div>
 </head>
 
 <body style="background-image: url('../448.jpg');">

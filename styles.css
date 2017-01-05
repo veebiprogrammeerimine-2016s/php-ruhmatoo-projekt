@@ -1,7 +1,8 @@
 <style>
 
-input[type=text] {
+input[type=search] {
     width: 300px;
+	text-align: center;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 4px;
@@ -19,9 +20,22 @@ input[type=text] {
 	
 }
 
-input[type=text]:focus {
+input[type=search]:focus {
     width: 600px;
 	margin-left: -300px;
+}
+
+h2, h3, h4 {
+	color: white;
+	text-shadow: -2px -2px grey;
+	font-weight: bold;
+}
+
+h1{
+	color: black;
+	text-shadow: -2px -1px pink;
+	font-weight: bold;
+	padding-left: 40px;
 }
 
 </style>
