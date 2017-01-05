@@ -17,7 +17,7 @@ class User {
       $sql = $this->conn->prepare("SELECT count(id) as amount from users where email=?");
       $sql->bind_param("s", $email);
       $sql->execute();
-      $result = $sql->get_result();
+      $result = $sql->fetch();
       $row = $result->fetch_assoc();
       if ($row["amount"] > 0) {return true;} else {return false;}
     }
@@ -57,6 +57,15 @@ class User {
       $_SESSION["name"] = $row["name"];
       $_SESSION["email"] = $row["email"];
       return true;    }
+
+      function logout() {
+        session_unset();
+        session_destroy();
+
+      }
+
 }
+
+
 
 ?>

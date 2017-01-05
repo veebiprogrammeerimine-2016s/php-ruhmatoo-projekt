@@ -20,8 +20,14 @@ $skills = $conn->query($skillsql);
 <div class="header c-6"><?php echo $appName;?></div>
 <div class="header c-6">
 <div>
-
-<a class="button" href="login.php" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi sisse</a>
+<?php
+if (!isset($_SESSION["id"]))
+{echo '<a class="button" href="login.php" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi sisse</a>';
+} else {
+	echo '<a class="button" href="logout.php" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi välja</a>';
+	echo '<a class="button" href="" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi välja</a>';
+	echo '<a class="button" href="" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi välja</a>';
+}?>
 </div>
 </div>
 </div>
