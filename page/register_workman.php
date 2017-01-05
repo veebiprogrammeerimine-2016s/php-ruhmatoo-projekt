@@ -13,12 +13,15 @@ $input = new Input();
 $data = new internal($dbconn);
 $districts = array();
 $districts = $data->getDistrictIDs();
+$skills = array();
+$skills = $data->getSkillIDs();
 
 if (isset($_POST["displayname"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["district"]) && isset($_POST["age"])) {
 $email = $_POST["email"];
 $name = $_POST["displayname"];
 $password = $_POST["password"];
 $district = $_POST["district"];
+$skill = $_POST["skill"];
 $age = $_POST["age"];
   if ($login->checkIfExists($email)) {
     $error .= "Seda e-mailiaadressi on juba kasutatud.";
@@ -26,7 +29,12 @@ $age = $_POST["age"];
     if (strlen($password) >= 6) {
       $hash = password_hash($password, PASSWORD_DEFAULT);
         if ($login->create($email, $name, $hash, "worker", $district ,$age)) {
-          $registerSuccess = true;
+          if (!empty($skill)) {
+            $userid = $login->getId($email);
+            if ($login->addSkill($userid, $skill)) {
+                        $registerSuccess = true;
+            } else {$error .= "Ei saanud sisestada oskust andmebaasi.";}
+        } else {$error .= "Oskus oli tühi.";}
         } else {$error .= "Midagi läks kahjuks valesti.";}
     } else {$error .= "Parool peab olema <i>vähemalt</i> 6 märki pikk.";}
   }
@@ -49,6 +57,15 @@ $age = $_POST["age"];
             $dname = $data->getDistrictName($a);
       			echo "<option value='".$a."'>".$dname."</option>";
           } ?>
+      </select>
+      <select style="width: 100%; color: black;" name="skill">
+        <?php
+        unset($a);
+        foreach($skills as $a) {
+            $skillname = $data->getSkillName($a);
+            echo "<option value='".$a."'>".$skillname."</option>";
+          }
+        ?>
       </select>
       <br>
 

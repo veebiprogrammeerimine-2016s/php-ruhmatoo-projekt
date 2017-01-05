@@ -38,6 +38,26 @@ class User {
       }
     }
 
+    function getId ($email) {
+      $sql = "select id from users where email='".$email."'";
+      $result = $this->conn->query($sql);
+      $row = $result->fetch_assoc();
+      return $row["id"];
+    }
+
+    function addSkill($user, $skil) {
+      $sql = "select count(id) as count from worker_skills where userid=".$user." and skillid=".$skill;
+      $result = $this->conn->query($sql);
+      $row = $result->fetch_assoc();
+      if ($row["count"] < 0) {
+        $sql = $this->conn->prepare("insert into worker_skills (userid, skillid) values (?, ?)");
+        $sql->bind_param("ii", $user, $skill);
+        if ($sql->execute()) {
+          return true;
+        } else {return false;}
+      } else {return false;}
+    }
+
     function getHash($email) {
       $sql = "select password from users where email='".$email."'";
       $result = $this->conn->query($sql);
