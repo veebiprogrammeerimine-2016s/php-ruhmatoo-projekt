@@ -6,6 +6,7 @@ require ("../class/class_login.php");
 $error = "";
 $login = new User($dbconn);
 $input = new Input();
+$email = "";
 if (isset($_POST["email"])) {
 	$email = $input->clean($_POST["email"]);
 }

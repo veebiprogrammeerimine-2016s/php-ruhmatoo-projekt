@@ -36,9 +36,10 @@ if (isset($name) && isset($email) && isset($password)) {
 
 <div class="login-page">
     <form class="form" method="post">
-	    <input type="text" name="displayname" placeholder="Nimi" value="<?=$name?>"/>
+	    <input type="text" name="displayname" placeholder="Ees-ja Perekonnanimi" value="<?=$name?>"/>
       <input type="email" name="email" placeholder="E-maili aadress" value="<?=$email?>"/>
       <input type="password" name="password" placeholder="Parool"/>
+	  <input type="number" name="age"  placeholder="Vanus"/>
       <input type="submit" class="button" value="Loo kasutaja">
       <?php if (!empty($error)) {
         echo "<p class='message'>$error</p>";
