@@ -39,19 +39,15 @@ class User {
     }
 
     function getHash($email) {
-      $sql = $this->conn->prepare("select password from users where email=?");
-      $sql->bind_param("s", $email);
-      $sql->execute();
-      $result = $sql->get_result();
+      $sql = "select password from users where email='".$email."'";
+      $result = $this->conn->query($sql);
       $row = $result->fetch_assoc();
       return $row["password"];
     }
 
     function logIn($email) {
-      $sql = $this->conn->prepare("select id, name, email from users where email=?");
-      $sql->bind_param("s", $email);
-      $sql->execute();
-      $result = $sql->get_result();
+      $sql = "select id, name, email from users where email='".$email."'";
+      $result = $this->conn->query($sql);
       $row = $result->fetch_assoc();
       $_SESSION["id"] = $row["id"];
       $_SESSION["name"] = $row["name"];
