@@ -99,11 +99,6 @@
 <div class="container">
 <h2>Edit</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
-  	<label for="number_idea" >Idea</label><br>
-	<input id="number_idea" name="idea" type="text" value="<?php echo $f->idea;?>" ><br><br>
-  	<label for="description" >Description</label><br>
-	<input id="description" name="description" type="text" value="<?=$f->description;?>"><br><br>
   	<div class="row">
 				<div class="col-md-4">
 					<input type="text" class="form-control" name="idea" id="idea" value="<?php echo $f->idea;?>" >

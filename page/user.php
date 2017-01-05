@@ -124,10 +124,9 @@
 	<img src="../img/idea.png" class="pull-right" width="200" height="250">
 </div>
 <?php 
-
+	
 	$html = "<table class='table table-striped'>";
 	
-
 	
 	$html .= "<tr>";
 	
