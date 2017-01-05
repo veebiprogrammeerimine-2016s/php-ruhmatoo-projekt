@@ -103,7 +103,7 @@ foreach ($skills as $a) {
 			echo "</div>";
 			echo "</a>";
 		}} else {
-			echo "<h1>Töömehi ei ole. :/</h1>";
+			echo "<h1 class='bigerror'>Töömehi ei ole. :/</h1>";
 		}
 	?>
 </div>

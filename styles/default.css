@@ -193,3 +193,12 @@ input {
 	text-decoration: none;
 	color: black;
 }
+
+.bigerror {
+	color: white;
+	text-align: center;
+	margin-top: 50px;
+	font-size: 4em;
+	font-weight: lighter;
+	text-shadow: 0px 5px 15px rgba(0,0,0,1);
+}
