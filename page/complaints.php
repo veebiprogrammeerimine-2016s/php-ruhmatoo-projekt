@@ -2,7 +2,7 @@
 require("header.php");
 require("../class/class_feedback.php");
 require("../class/class_general.php");
-$fback = new feedback($dbconn);
+$fback = new complaint($dbconn);
 $input = new input();
 
 $sendFeedback = 0;

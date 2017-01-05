@@ -21,7 +21,7 @@ $skills = $conn->query($skillsql);
 <div class="header c-6">
 <div>
 
-<a class="button" href="login.php" style="display:flex;justify-content:flex-end;align-items:center;">Logi sisse</a>
+<a class="button" href="login.php" style="display:flex;align-items:center;">Logi sisse</a>
 </div>
 </div>
 
