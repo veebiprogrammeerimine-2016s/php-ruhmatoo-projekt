@@ -167,7 +167,6 @@
 			$html .= "<td>".$f->idea."</td>";
 			$html .= "<td>".$f->description."</td>";
 			$html .= "<td>".$f->user."</td>";
-			$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$f->id."'><span class='glyphicon glyphicon-pencil'></span> Edit</a></td>";
 			
 		$html .= "</tr>";
 	}

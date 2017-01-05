@@ -136,11 +136,11 @@ class Finish {
 
 	function save ($idea, $description) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO idea_description (idea, description) VALUES (?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO idea_description (idea, description, user) VALUES (?, ?, ?)");
 	
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ss", $idea, $description);
+		$stmt->bind_param("sss", $idea, $description, $_SESSION["userEmail"]);
 		
 		if($stmt->execute()) {
 			//echo "Success!";
