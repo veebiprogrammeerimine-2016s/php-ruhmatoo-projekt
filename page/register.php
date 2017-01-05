@@ -45,10 +45,10 @@ if (isset($name) && isset($email) && isset($password)) {
 	  <input type="number" name="age"  placeholder="Vanus"/>
       <input type="submit" class="button" value="Loo kasutaja">
       <?php if (!empty($error)) {
-        echo "<p class='message'>$error</p>";
+        echo "<p class='message' style='color:red;'>$error</p>";
       }
       if ($registerSuccess) {
-        echo "<p class='message'>Kasutaja on loodud. Võid nüüd sisse logida.</p>";
+        echo "<p class='message' style='color:green;'>Kasutaja on loodud. Võid nüüd sisse logida.</p>";
       }?>
       <p class="message">Oled juba registreerunud? <a href="login.php">Logi sisse</a></p>
 	  <p class="message">Omad ametit mida soovid meie lehel pakkuda? <a href="register_workman.php">Registreeru töötajana!</a></p>

@@ -55,12 +55,13 @@ $age = $_POST["age"];
 
       <input type="submit" class="button" value="Loo kasutaja">
       <?php if (!empty($error)) {
-        echo "<p class='message'>$error</p>";
+        echo "<p class='message' style='color:red;'>$error</p>";
       }
       if ($registerSuccess) {
-        echo "<p class='message'>Kasutaja on loodud. Võid nüüd sisse logida.</p>";
+        echo "<p class='message' style='color:green;'>Kasutaja on loodud. Võid nüüd sisse logida.</p>";
       }?>
       <p class="message">Oled juba registreerunud? <a href="login.php">Logi sisse</a></p>
+      <p class="message">Soovid registreeruda tavakasutajana? <a href="register.php">Registreeru siin!</a></p>
 	  <p class="message"><a href="home.php">Kodu</a></p>
     </form>
 </div>

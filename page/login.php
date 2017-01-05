@@ -33,9 +33,9 @@ if (isset($email) && isset($password)) {
       <input type="email" name="email" placeholder="E-mail" value="<?=$email;?>" required/>
       <input type="password" name="password" placeholder="Parool" required/>
       <input type="submit" class="button" value="Logi sisse">
-			<?php if (!empty($error)) {echo "<p class='message'>$error</p>";}?>
+			<?php if (!empty($error)) {echo "<p class='message' style='color:red;'>$error</p>";}?>
       <p class="message">Pole kasutaja? <a href="register.php">Registreeri!</a></p>
-	  <p class="message">Unustasid parooli?<a href="">Abi</a></p>
+	  <p class="message">Unustasid parooli?<a href="help.php">Abi</a></p>
 	  <p class="message"><a href="home.php">Kodu</a></p>
 
     </form>
