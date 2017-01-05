@@ -8,3 +8,9 @@
     height: 320px;
 }
 
+.navbar {
+  background-color:teal;
+  background-image: none;
+  background-repeat: no-repeat;
+ }
+
