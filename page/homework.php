@@ -177,6 +177,18 @@ if(isset($_POST["sendHomework"])){
         </form>
 </section>
 
+<form method='post'>
+<div id='page-wrap'>
+    <div class="col-lg-6">
+        <div class="input-group">
+            <input type="text" name="q" value="<?=$q?>" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Go!</button>
+      </span>
+        </div>
+    </div>
+</div>
+</form><br>
 
     <?php
 
@@ -187,15 +199,8 @@ if(isset($_POST["sendHomework"])){
         $html2 .= "<meta charset='UTF-8'>";
         $html2 .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
         $html2 .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
-        $html2 .= "</head>";
-        $html2 .= "<body>";
-        $html2 .= "<div id='page-wrap'>";
-        $html2 .= "<div class='col-md-2 control-label'>";
-	    $html2 .= "<form method='post'>";
-		$html2 .= "<input  type='search' class=\"form-control\" name='q' value='$q'>";
-        $html2 .= "<input class=\"btn btn-primary\" type='submit' value='Otsi'>";
-        $html2 .= "</form><br>";
-        $html2 .= "</div>";
+
+
         $html2 .= "<table allign='center' class='table table striped-table-hover'>";
         $html2 .= "<thead>";
         $html2 .= "<tr>";
