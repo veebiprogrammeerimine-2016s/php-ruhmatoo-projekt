@@ -47,9 +47,11 @@ if (!isset($_SESSION["id"]))
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <input type="text" name="search" style="width: 85%; margin-top:10px; margin-bottom: 0; float:left;" value="<?=$search?>">
+
 <button type="submit" class="button" style="float:right; margin-top:10px;">
 <i class="fa fa-search"></i>
 </button>
+<?php if (!empty($search)) {echo "<a href='home.php'>Tühista otsing</a>";}?>
 </form>
 <br><br>
 <h3 style="margin-top: 0; margin-bottom: 0;">Sorteeri</h3>
