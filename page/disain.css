@@ -16,6 +16,45 @@ padding: 0px;
 
 	
 }
+#ahvenapilt{
+	width: 500px;
+	size:relative;
+}
+#särjepilt{
+	width: 500px;
+	size:relative;
+}
+#haugipilt{
+	width: 500px;
+	size:relative;
+}
+#haug
+{
+	 background-image: url("http://static.tumblr.com/d780559eca4cec5f96dd5c34acbfc878/lj4xqkj/FEbo0efp6/tumblr_static_5p0te867s0g80kg40gscwgkko.jpg");
+	margin: 20px; 
+	padding: 20px;
+	width: 800x;
+	/*max-height: 900px;*/
+	/* overflow: auto piiran liiga suurt sisu, visible, hidden, overflow-x, overflow-y*/
+}
+#särg
+{
+	 background-image: url("http://static.tumblr.com/d780559eca4cec5f96dd5c34acbfc878/lj4xqkj/FEbo0efp6/tumblr_static_5p0te867s0g80kg40gscwgkko.jpg");
+	margin: 20px; 
+	padding: 20px;
+	width: 800x;
+	/*max-height: 900px;*/
+	/* overflow: auto piiran liiga suurt sisu, visible, hidden, overflow-x, overflow-y*/
+}
+#ahven
+{
+	 background-image: url("http://static.tumblr.com/d780559eca4cec5f96dd5c34acbfc878/lj4xqkj/FEbo0efp6/tumblr_static_5p0te867s0g80kg40gscwgkko.jpg");
+	margin: 20px; 
+	padding: 20px;
+	width: 800x;
+	/*max-height: 900px;*/
+	/* overflow: auto piiran liiga suurt sisu, visible, hidden, overflow-x, overflow-y*/
+}
 #kasutaja{
 	position: relative;
 	left:900px;
