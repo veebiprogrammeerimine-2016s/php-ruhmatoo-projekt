@@ -88,5 +88,12 @@ class internal {
     return $row["name"];
   }
 
+  function hasImage($id) {
+    if (file_exists("../src/".$id.".png")) {
+      return true;
+    } else { return false; }
+
+  }
+
 }
 ?>

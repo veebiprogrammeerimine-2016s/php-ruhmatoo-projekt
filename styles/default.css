@@ -171,17 +171,22 @@ input {
 	height: 250px;
 	padding: 20px;
 	border: 2px solid gray;
-	border-radius: 8px;
-	background: linear-gradient(white, darkgray);
+	border-radius: 4px;
 	float: left;
 	margin: 35px;
   box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.50);
+	background: linear-gradient(rgba(0,0,0,0.5) rgba(0,0,0,0));
 }
 
 .userbox:hover {
-		background: linear-gradient(darkgray, gray);
 		box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.75);
 }
+
+.defaultuser {
+	background: linear-gradient( rgba(0,0,0,0), rgba(0,0,0,0.6)), url("../src/generic_user.png") no-repeat;
+	background-size: contain;
+}
+
 
 .title {
 	font-weight: bold;

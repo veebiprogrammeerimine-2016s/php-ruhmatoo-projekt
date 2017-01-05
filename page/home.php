@@ -23,7 +23,7 @@ if (isset($_GET["search"]) && !empty($_GET["search"])) {
 
 <title>Töömehe leidja</title>
 <div class="row">
-<div class="header c-6"><?php echo $appName;?></div>
+<div class="header c-6"><?=$appName?></div>
 <div class="header c-6">
 <div>
 <?php
@@ -90,12 +90,20 @@ foreach ($skills as $a) {
 
 <div class="c-9">
 	<?php
-		foreach($workers as $a) {
+	if (sizeof($workers) > 0 and !empty($workers[0]))
+{		foreach($workers as $a) {
 			$workername = $internal->getName($a);
-			echo "<div class='userbox'>";
+			echo "<a href='profile.php?id=$a'>";
+			if ($internal->hasImage($a)) {
+				echo "<div class='userbox'>";
+			} else
+			{echo "<div class='userbox defaultuser'>";}
 				echo "<a href='profile.php?id=$a' class='title'>$workername</a>";
 				echo "<p style='border-bottom: 2px solid darkgray;'>Oskused<br></p>";
 			echo "</div>";
+			echo "</a>";
+		}} else {
+			echo "<h1>Töömehi ei ole. :/</h1>";
 		}
 	?>
 </div>
