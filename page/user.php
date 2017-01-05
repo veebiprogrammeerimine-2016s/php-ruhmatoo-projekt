@@ -24,6 +24,13 @@
 		exit();
 	}
 	
+	$trainingdate = "";
+	if(!isset($_GET["date"]) && !isset($_GET["month"]) && !isset($_GET["year"])){
+		$trainingdate = "";
+	} else {
+		$trainingdate = $_GET["date"].'.  '.$_GET["month"].' '.$_GET["year"];
+	}
+	
 	//ei ole tühjad väljad, mida salvestada
 	if  (isset($_POST["exercise"]) &&
 		isset($_POST["sets"]) &&
@@ -32,7 +39,7 @@
 		!empty($_POST["sets"]) &&
 		!empty($_POST["repeats"])
 		) {
-			$User->saveExercise($Helper->cleanInput($_POST["exercise"]), $Helper->cleanInput($_POST["sets"]), $Helper->cleanInput($_POST["repeats"]));
+			$User->saveExercise($trainingdate, $Helper->cleanInput($_POST["exercise"]), $Helper->cleanInput($_POST["sets"]), $Helper->cleanInput($_POST["repeats"]));
 		}
 	
 	$exercise = "";
@@ -61,6 +68,15 @@
 
 	$userData = $User->addToArray();
 	$userExercises = $User->get($q, $sort, $order);
+	
+	$est_gender = "";
+	if ($userData->gender == "female") {
+		$est_gender = "naine";
+	}
+	
+	if ($userData->gender == "male"){
+		$est_gender = "mees";
+	}
 
 ?>
 <?php require("../header.php"); ?>
@@ -81,13 +97,14 @@
 				<p>Eesnimi: <?php echo $userData->firstname;?></p>
 				<p>Perekonnanimi: <?php echo $userData->lastname;?></p>
 				<p>Kasutaja e-post: <?php echo $userData->email;?></p>
-				<p>Sugu: <?php echo $userData->gender;?></p>
+				<p>Sugu: <?php echo $est_gender?></p>
 				<p>Telefoninumber: <?php echo $userData->phonenumber;?></p>
 
 				<p><a class="btn btn-default btn-sm" href="editUser.php"><span class='glyphicon glyphicon-pencil'></span> Muuda andmeid</a></p>
 				<br>
 
 			<h2>Lisa tehtud treening</h2>
+				<p><b>Vali kalendrist kuupäev: </b><?php echo $trainingdate; ?> </p>
 				<form method="POST"> 
 				<label>Treeningharjutus</label><br>
 							
@@ -119,7 +136,7 @@
 
 			$calendar->setStartOfWeek('Monday');
 
-			$calendar->addDailyHtml( 'Sample Event', 'today', 'tomorrow' );
+			$calendar->addDailyHtml( 'Täna', 'today');
 			$calendar->show(true);
 			?>
 			</body>
@@ -172,7 +189,7 @@
 			}
 		}
 		
-		if (isset($_GET["sort"]) && $_GET["sort"] == "created") {
+		if (isset($_GET["sort"]) && $_GET["sort"] == "training_time") {
 			if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
 				$createdOrder="DESC";
 				$createdArrow = "&darr;";
@@ -196,7 +213,7 @@
 				</a>
 				</th>";
 		$html .= "<th>
-				<a href='?q=".$q."&sort=created&order=".$createdOrder."'>
+				<a href='?q=".$q."&sort=training_time&order=".$createdOrder."'>
 					Kuupäev	".$createdArrow."
 				</a>
 				</th>";
@@ -208,7 +225,7 @@
 			$html .= "<td>".$p->exercise."</td>";
 			$html .= "<td>".$p->sets."</td>";
 			$html .= "<td>".$p->repeats."</td>";
-			$html .= "<td>".$p->created."</td>";
+			$html .= "<td>".$p->training_time."</td>";
 		$html .= "</tr>";	
 	}
 

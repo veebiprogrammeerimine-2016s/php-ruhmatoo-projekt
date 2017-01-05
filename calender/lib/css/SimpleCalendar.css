@@ -17,7 +17,7 @@ table.SimpleCalendar {
     table.SimpleCalendar tbody td time {
       font-size: .7em;
       display: block;
-      background: white;
+      background: black;
       padding: 2px;
       text-align: right;
       font-weight: bold; }

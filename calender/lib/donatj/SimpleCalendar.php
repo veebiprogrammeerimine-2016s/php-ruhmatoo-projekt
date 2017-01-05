@@ -112,8 +112,27 @@ class SimpleCalendar {
 		$this->array_rotate($wdays, $this->offset);
 		$wday    = date('N', mktime(0, 0, 1, $this->now['mon'], 1, $this->now['year'])) - $this->offset;
 		$no_days = cal_days_in_month(CAL_GREGORIAN, $this->now['mon'], $this->now['year']);
+		
+		$est_months= array(
+			1    => "Jaanuar",
+			2  => "Veebruar",
+			3  => "Märts",
+			4 => "Aprill",
+			5 => "Mai",
+			6 => "Juuni",
+			7 => "Juuli",
+			8 => "August",
+			9 => "September",
+			10 => "Oktoober",
+			11 => "November",
+			12 => "Detsember",
+		);
 
-		$out = '<table cellpadding="0" cellspacing="0" class="SimpleCalendar"><thead><tr>';
+		$getmonth = $est_months[$this->now['mon']];
+		$getyear = $this->now['year'];
+		$out = '<b><font size="4">'.$getmonth.' '.$getyear.'</font></b>';
+		$out .= '<br>';
+		$out .= '<table cellpadding="0" cellspacing="0" class="SimpleCalendar"><thead><tr>';
 
 		for( $i = 0; $i < 7; $i++ ) {
 			$out .= '<th>' . $wdays[$i] . '</th>';
@@ -135,7 +154,7 @@ class SimpleCalendar {
 
 			$datetime = mktime(0, 0, 1, $this->now['mon'], $i, $this->now['year']);
 
-			$out .= '<time datetime="' . date('Y-m-d', $datetime) . '">' . $i . '</time>';
+			$out .= '<time datetime="' . date('Y-m-d', $datetime) . '"> <a href="user.php?date='.$i.'&month='.$getmonth.'&year='.$getyear.'" style="text-decoration:none"><font size="4">' . $i . '</font></a></time>';
 
 			$dHtml_arr = false;
 			if( isset($this->daily_html[$this->now['year']][$this->now['mon']][$i]) ) {
