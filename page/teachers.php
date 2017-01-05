@@ -240,20 +240,23 @@ if(!empty($allTeachers)) {
     $html .= "<head>";
     $html .= "<meta charset='UTF-8'>";
     $html .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-    $html .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
+            $html .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
+    $html .= "<link rel='stylesheet' href='../style_script/css/tablesaw.css'>";
+            $html .= "<script src='../style_script/js/tablesaw.jquery.js'></script>";
+            $html .= "<script src='../style_script/js/tablesaw-init.js'></script>";
     $html .= "</head>";
     $html .= "<body>";
     $html .= "<div id='page-wrap'>";
 
 
-    $html .= "<table allign='center' class='table table striped-table-hover'>";
+    $html .= "<table allign='center' class='tablesaw tablesaw-stack striped-table-hover' data-tablesaw-mode='stack'>";
     $html .= "<thead>";
     $html .= "<tr>";
-    $html .= "<th>Õppejõud</th>";
-    $html .= "<th>Klassiruum</th>";
-    $html .= "<th>Email</th>";
-    $html .= "<th>Kodulehe aadress</th>";
-    $html .= "<th><a href='?delete=allteachers'>Kustuta kõik</a></th>";
+    $html .= "<th>Õppejõud </th>";
+    $html .= "<th>Klassiruum </th>";
+    $html .= "<th>Email </th>";
+    $html .= "<th>Kodulehe aadress </th>";
+    $html .= "<th><a href='?delete=allteachers'>Kustuta kõik </a></th>";
     $html .= "</tr>";
     $html .= "</thead>";
     $html .= "<tbody>";
@@ -297,13 +300,13 @@ if(!empty($allLessons)) {
     $html .= "<div id='page-wrap'>";
 
 
-    $html .= "<table allign='center' class='table table striped-table-hover'>";
+    $html .= "<table allign='center' class='tablesaw tablesaw-stack striped-table-hover' data-tablesaw-mode='stack'>";
     $html .= "<thead>";
     $html .= "<tr>";
-    $html .= "<th>Õppeaine</th>";
-    $html .= "<th>Ainekood</th>";
-    $html .= "<th>Õppejõud</th>";
-    $html .= "<th><a href='?delete=alllessons'>Kustuta kõik</a></th>";
+    $html .= "<th>Õppeaine </th>";
+    $html .= "<th>Ainekood </th>";
+    $html .= "<th>Õppejõud </th>";
+    $html .= "<th><a href='?delete=alllessons'>Kustuta kõik </a></th>";
     $html .= "</tr>";
     $html .= "</thead>";
     $html .= "<tbody>";

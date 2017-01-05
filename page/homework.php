@@ -179,11 +179,11 @@ if(isset($_POST["sendHomework"])){
 
 <form method='post'>
 <div id='page-wrap'>
-    <div class="col-lg-6">
+    <div class="col-lg-2">
         <div class="input-group">
-            <input type="text" name="q" value="<?=$q?>" class="form-control" placeholder="Search for...">
+            <input type="text" name="q" value="<?=$q?>" class="form-control" placeholder="">
             <span class="input-group-btn">
-        <button class="btn btn-primary" type="submit">Go!</button>
+        <button class="btn btn-primary" type="submit">OTSI</button>
       </span>
         </div>
     </div>
@@ -198,14 +198,17 @@ if(isset($_POST["sendHomework"])){
         $html2 .= "<head>";
         $html2 .= "<meta charset='UTF-8'>";
         $html2 .= "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-        $html2 .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
+                $html2 .= "<link rel='stylesheet' href='../style_script/css/table.css'>";
+        $html2 .= "<link rel='stylesheet' href='../style_script/css/tablesaw.css'>";
+                $html2 .= "<script src='../style_script/js/tablesaw.jquery.js'></script>";
+                $html2 .= "<script src='../style_script/js/tablesaw-init.js'></script>";
         $html2 .= "</head>";
         $html2 .= "<body>";
         $html2 .= "<div id='page-wrap'>";
 
 
 
-        $html2 .= "<table allign='center' class='table table striped-table-hover'>";
+        $html2 .= "<table allign='center'  class='tablesaw tablesaw-stack' data-tablesaw-mode='stack'>";
         $html2 .= "<thead>";
         $html2 .= "<tr>";
         $html2 .= "<th>Kirjeldus</th>";
@@ -213,7 +216,7 @@ if(isset($_POST["sendHomework"])){
         $html2 .= "<th>Tähtaeg</th>";
         $html2 .= "<th>Tüüp</th>";
         $html2 .= "<th>Prioriteet</th>";
-        $html2 .= "<th><a href='?delete=all'>KUSTUTA KÕIK</a></th>";
+        $html2 .= "<th><a href='?delete=all'>Kustuta kõik</a></th>";
         $html2 .= "</tr>";
         $html2 .= "</thead>";
         $html2 .= "<tbody>";
