@@ -179,16 +179,16 @@ if(isset($_POST["sendHomework"])){
 
 <form method='post'>
 <div id='page-wrap'>
-    <div class="col-lg-6">
+    <div class="col-lg-2">
         <div class="input-group">
-            <input type="text" name="q" value="<?=$q?>" class="form-control" placeholder="Search for...">
+            <input type="text" name="q" value="<?=$q?>" class="form-control" placeholder="">
             <span class="input-group-btn">
-        <button class="btn btn-primary" type="submit">Go!</button>
+        <button class="btn btn-primary" type="submit">OTSI</button>
       </span>
         </div>
     </div>
 </div>
-</form><br>
+</form><br><br><br>
 
     <?php
 
