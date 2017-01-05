@@ -77,9 +77,9 @@ $skills = $conn->query($skillsql);
 
 
 <div class="c-9">
-<div class="userbox">a</div>
-<div class="userbox">b</div>
-<div class="userbox">c</div>
+<div class="userbox"></div>
+<div class="userbox"></div>
+<div class="userbox"></div>
 </div>
 
 <?php require "footer.php"; ?>

@@ -12,10 +12,12 @@
 
 <div class="row">
 <div class="c-6">
-<h2>Kes saavad saidil leiduvat infot kätte?</h2>
-<p>Saidil leiduvat infot ei saa kätte mitte keegi peale saidi enda veebirakenduste. <br>Kasutajate poolt sisestatav info kuulub kasutajatele, kuid seda hoitakse meie serverites.</p>
-<h2>Kas saan oma konto info andmebaasist eemaldada?</h2>
-<p>Konto sulgemise ajal saab lubada konto info jäädava kustutamise - sel juhul tuleb see valik konto eemaldamisel lubada.</p>
+<head>
+<h2 style="color: burlywood;">Kes saavad saidil leiduvat infot kätte?</h2>
+<p style="color: white;">Saidil leiduvat infot ei saa kätte mitte keegi peale saidi enda veebirakenduste. <br>Kasutajate poolt sisestatav info kuulub kasutajatele, kuid seda hoitakse meie serverites.</p>
+<h2 style="color: burlywood;">Kas saan oma konto info andmebaasist eemaldada?</h2>
+<p style="color: white;">Konto sulgemise ajal saab lubada konto info jäädava kustutamise - sel juhul tuleb see valik konto eemaldamisel lubada.</p>
+</head>
 </div>
 <div class="c-6">
 </div>
