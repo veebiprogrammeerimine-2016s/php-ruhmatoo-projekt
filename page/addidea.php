@@ -49,16 +49,15 @@
 <div class="navbar navbar-inverse navbar-static-top">
 	<div class="container">
 		<div class="navbar-header">
-			 <a class="navbar-brand" href="data.php"><i class="fa fa-home" aria-hidden="true"></i> Avaleht</a> 
+			 <a class="navbar-brand" href="data.php"><i class="fa fa-home" aria-hidden="true"></i>Homepage</a> 
 		</div>
 			<ul class="nav navbar-nav">
-				<li><a href="addidea.php"><span class="glyphicon glyphicon-plus"></span> Lisa Idee</a></li>
+				<li><a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span>Add idea</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="user.php"><i class="fa fa-user-circle" aria-hidden="true"></i><?=$_SESSION["userEmail"];?></a></li>
-				<li><a href="?logout=1"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li><a href="?logout=1"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 			</ul>
-		</div>
 	</div>
 </div>
 
@@ -87,6 +86,7 @@
 		
 		</div>
 	</form>
+
 	
 
 </div>

@@ -1,7 +1,6 @@
 Nimi: IDEAS FOR WEBSITE PROJECT
 
 Liikmed: Anna Gubskaja, Mihhail Kuzmin
-hoho
 Eesmärk: 
 	Luua veebisait nende inimeste jaoks, kes otsivad endale lihtsaid ja originaalseid veebilehtede ideid ning nendele, kes soovivad enda ideid pakkuda.
 	Selline veebisait oleks kasulik tulevatele tudengitele kes otsivad ideid projektide loomiseks, kuna me ise raiskasime palju aega selleks, et

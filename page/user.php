@@ -2,8 +2,8 @@
 	
 	require("../functions.php");
 	
-	require("../class/Level.class.php");
-	$Level = new Level($mysqli);
+	require("../class/Finish.class.php");
+	$Finish = new Finish($mysqli);
 	
 	require("../class/Helper.class.php");
 	$Helper = new Helper();
@@ -34,104 +34,128 @@
 	}
 	
 	
-	if ( isset($_POST["level"]) && 
-		!empty($_POST["level"])
+	if ( isset($_POST["idea"]) && 
+		isset($_POST["idea"]) && 
+		!empty($_POST["description"]) && 
+		!empty($_POST["description"])
 	  ) {
 		  
-		$Level->save($Helper->cleanInput($_POST["level"]));
+		$Finish->save($Helper->cleanInput($_POST["idea"]), $Helper->cleanInput($_POST["description"]));
 		
 	}
+	 
+	//saan kõik auto andmed
 	
-	if ( isset($_POST["userLevel"]) && 
-		!empty($_POST["userLevel"])
-	  ) {
-		  
-		$Level->saveUser($Helper->cleanInput($_POST["userLevel"]));
+	//kas otsib
+	if(isset($_GET["q"])){
 		
+		// kui otsib, võtame otsisõna aadressirealt
+		$q = $_GET["q"];
+		
+	}else{
+		
+		// otsisõna tühi
+		$q = "";
 	}
 	
-    $levels = $Level->get();
-    $userLevels = $Level->getUser();
+	$sort = "id";
+	$order = "ASC";
+	
+	if(isset($_GET["sort"]) && isset($_GET["order"])) {
+		$sort = $_GET["sort"];
+		$order = $_GET["order"];
+	}
+	
+	//otsisõna fn sisse
+	$finishData = $Finish->get($q, $sort, $order);
 	
 ?>
 <?php require("../header.php"); ?>
 <div class="navbar navbar-inverse navbar-static-top">
 	<div class="container">
 		<div class="navbar-header">
-			 <a class="navbar-brand" href="data.php"><i class="fa fa-home" aria-hidden="true"></i> Avaleht</a> 
+			 <a class="navbar-brand" href="data.php"><i class="fa fa-home" aria-hidden="true"></i>Homepage</a> 
 		</div>
 			<ul class="nav navbar-nav">
-				<li><a href="addidea.php"><span class="glyphicon glyphicon-plus"></span> Lisa Idee</a></li>
+				<li><a href="#myModal" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span>Add idea</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="user.php"><i class="fa fa-user-circle" aria-hidden="true"></i><?=$_SESSION["userEmail"];?></a></li>
-				<li><a href="?logout=1"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				<li><a href="?logout=1"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 			</ul>
-		</div>
 	</div>
 </div>
+
 <div class="container">
-<h1><a href="data.php"> < Back</a><p>User account</h1>
-<?=$msg;?>
-<p>
-	Welcome <?=$_SESSION["userEmail"];?>!
-	<a href="?logout=1">Logout</a>
-</p>
-
-
-<h2>Insert web programming skill level </h2>
-<?php
-    
-    $listHtml = "<ul>";
-	
-	foreach($userLevels as $i){
-		
-		
-		$listHtml .= "<li>".$i->level."</li>";
-
-	}
-    
-    $listHtml .= "</ul>";
-
-	
-	echo $listHtml;
-    
-?>
-<form method="POST">
-	
-	<label>Skill level</label><br>
-	<input name="level" type="text">
-	
-	<input type="submit" value="Save">
-	
-</form>
-
-
-
-<h2>Your skill level</h2>
-<form method="POST">
-	
-	<label>Skill level</label><br>
-	<select name="userLevel" type="text">
-        <?php
-            
-            $listHtml = "";
-        	
-        	foreach($levels as $i){
-        		
-        		
-        		$listHtml .= "<option value='".$i->id."'>".$i->level."</option>";
-        
-        	}
-        	
-        	echo $listHtml;
-            
-        ?>
-    </select>
-    	
-	
-	<input type="submit" value="Add">
-	
-</form>
+<div class="row">
+	<img src="../img/idea.png" class="pull-right" width="200" height="250">
 </div>
+<?php 
+
+	$html = "<table class='table table-striped'>";
+	
+
+	
+	$html .= "<tr>";
+	
+		$idOrder = "ASC";
+		$arrow = "&darr;";
+		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
+			$idOrder = "DESC";
+			$arrow = "&uarr;";
+		}
+	
+		$html .= "<th>
+					<a href='?q=".$q."&sort=id&order=".$idOrder."'>
+						id ".$arrow."
+					</a>
+				 </th>";
+				 
+				 
+		$levelOrder = "ASC";
+		$arrow = "&darr;";
+		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
+			$levelOrder = "DESC";
+			$arrow = "&uarr;";
+		}
+		$html .= "<th>
+					<a href='?q=".$q."&sort=idea&order=".$levelOrder."'>
+						idea
+					</a>
+				 </th>";
+		$html .= "<th>
+					<a href='?q=".$q."&sort=description'>
+						description
+					</a>
+				 </th>";
+	$html .= "</tr>";
+	
+	//iga liikme kohta massiivis
+	foreach($finishData as $f){
+		
+		//echo $c->plate."<br>";
+		
+		$html .= "<tr>";
+			$html .= "<td>".$f->id."</td>";
+			$html .= "<td>".$f->idea."</td>";
+			$html .= "<td>".$f->description."</td>";
+			$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$f->id."'><span class='glyphicon glyphicon-pencil'></span> Edit</a></td>";
+			
+		$html .= "</tr>";
+	}
+	
+	$html .= "</table>";
+	
+	echo $html;
+	
+	
+	$listHtml = "<br><br>";
+	
+	foreach($finishData as $f){
+		
+		
+		$listHtml .= "<h1>".$f->idea."</h1>";
+		$listHtml .= "<p>idea = ".$f->description."</p>";
+	}
+?>
 <?php require("../footer.php"); ?>

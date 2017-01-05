@@ -191,12 +191,10 @@
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-envelope-open-o" aria-hidden="true"></i></span>
 						<input class="form-control" id="loginEmail" name="loginEmail" type = "email" placeholder="Email" required value="<?=$loginEmail?>">
-						<div class="help-block with-errors"></div>
 					</div>
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 						<input class="form-control" id="loginPassword" name="loginPassword" type = "password" placeholder="Password" required value="<?=$loginPassword?>">
-						<div class="help-block with-errors"></div>
 					</div>
 					<br>
 					<div class="row">
@@ -217,7 +215,10 @@
 					</div>
 					<div class="input-group">
 						<span class="input-group-addon"><i class="fa fa-envelope-open-o" aria-hidden="true"></i></span>
-						<input class="form-control" id="signupEmail" name="signupEmail" type = "email" placeholder="Email" value ="<?php echo $signupEmail; ?>"><?php echo $signupEmailError; ?>
+						<input class="form-control" id="signupEmail" name="signupEmail" type = "email" placeholder="Email">
+					</div>
+					<div class="row">
+						<div><?php echo $signupEmailError; ?> </div>
 					</div>
 					<div class="input-group">
 						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
