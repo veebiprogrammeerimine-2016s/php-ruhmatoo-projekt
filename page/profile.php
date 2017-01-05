@@ -1,27 +1,39 @@
 <?php
 require("header.php");
-$aboutUser = "Tere! Olen lihtsalt suvaline tegelane. Elan vanas majas ja minu juhtmed ja torud lähevad pidevalt katki ja umbe, seega jõlgun siin saidil tihti.";
+$aboutUser = "Tere! Olen Raivo, olen oma habet kasvatanud juba aasta! Muidu tegelen it-ga.";
 ?>
 <style>
 </style>
 <title>Kasutaja && profiil</title>
 <div class="header"><a class="hbutton" href="home.php">< </a><?php echo $appName; ?></div>
 <body>
+<center>
+<h2 style="color:white";>Profiil</h2>
 <div class="row">
-<div class="c-3">
-<h2>Profiil</h2>
-<img src="" style="width: 90%; border: 1px solid green;">
+<div class="c-12" >
+<div style="width:75%; margin-left: 0 auto; background: white; border: 2px solid gray;">
 
-<p><b>Nimi:</b> <?php echo "NULL";?></p>
-</div>
+<img src="https://static.pexels.com/photos/119705/pexels-photo-119705.jpeg" style="height: 175px; border: 0; float: right; margin-right: 10px;">
+<div style="float: left;"></div>
 
-<div class="c-7">
-<h2>Kasutajast</h2>
-<h3>Natuke endast</h3>
+
+<h2 style="float:left;margin-right: 10px;">Minust:</h2>
 <p><?php echo $aboutUser;?></p>
+
+<h2 style="float:left;">Kontakt:</h2>
+<p><b>Nimi:</b> <?php echo "NULL";?></p>
+
+<h2 style="float:left;">Oluline:</h2>
+<p><?php echo "NULL";?></p>
+
+<div style="clear: both;"></div>
+</div>
+
 </div>
 </div>
+</center>
 </body>
+
 
 <div class="row footer" style="margin-top: 2em; background: gray;">
 <div class="c-4">
