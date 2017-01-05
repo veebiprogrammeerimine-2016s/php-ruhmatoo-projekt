@@ -3,10 +3,13 @@ require ("header.php");
 require ("../function/functions.php");
 require ("../class/class_general.php");
 require ("../class/class_login.php");
+require ("../class/class_data.php");
 $error = "";
 $login = new User($dbconn);
-$input = new Input()
-
+$input = new Input();
+$data = new internal($dbconn);
+$districts = array();
+$districts = $data->getDistrictIDs();
 ?>
 
 <header>
@@ -19,8 +22,16 @@ $input = new Input()
 	    <input type="text" name="displayname" placeholder="Nimi" value="<?=$name?>"/>
       <input type="email" name="email" placeholder="E-maili aadress" value="<?=$email?>"/>
       <input type="password" name="password" placeholder="Parool"/>
-	  <input type="number" name="age"  placeholder="Vanus"/>
-	
+	    <input type="number" name="age"  placeholder="Vanus"/>
+      <select style="width: 100%; color: black;" name="district">
+        <?php foreach($districts as $a) {
+            $dname = $data->getDistrictName($a);
+      			echo "<option value='".$a."'>".$dname."</option>";
+          } ?>
+      </select>
+      <br>
+
+
       <input type="submit" class="button" value="Loo kasutaja">
       <?php if (!empty($error)) {
         echo "<p class='message'>$error</p>";
@@ -31,4 +42,5 @@ $input = new Input()
       <p class="message">Oled juba registreerunud? <a href="login.php">Logi sisse</a></p>
 	  <p class="message"><a href="home.php">Kodu</a></p>
     </form>
+    <h1>what the fuck</h1>
 </div>

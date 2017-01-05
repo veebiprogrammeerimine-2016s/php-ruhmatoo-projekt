@@ -3,12 +3,14 @@
 Tegeleb rakenduse andmete haldamise ning otsinguga.
 */
 
-class internal{
+class internal {
 
   private $conn;
 
   function __construct($db) {
     $this->conn = $db;
+    $this->conn->query("SET NAMES 'utf8'");
+    $this->conn->query("SET CHARACTER SET 'utf8'");
   }
 
   function getWorkers() {
@@ -17,9 +19,9 @@ class internal{
     if ($result->num_rows > 0) {
       $workers = array();
       while ($row = $result->fetch_assoc()) {
-        $workers[] = $row["id"]
+        $workers[] = $row["id"];
       }
-      return $workers
+      return $workers;
     } else {
       return false;
     }
@@ -29,13 +31,21 @@ class internal{
 
   }
 
-  function getDistricts() {
-    $sql = "select id, name from districts";
+  function getDistrictIDs() {
+    $sql = "select id, name from districts order by name";
     $result = $this->conn->query($sql);
     $districts = array();
     while ($row = $result->fetch_assoc()) {
-      $districts[$row["id"]] = $row["name"];
-    } else {return false;}
+      $districts[] = $row["id"];
+    }
+    return $districts;
+  }
+
+  function getDistrictName($id) {
+    $sql = "select name from districts where id=".$id."";
+    $result = $this->conn->query($sql);
+    $row = $result->fetch_assoc();
+    return $row["name"];
   }
 
 }
