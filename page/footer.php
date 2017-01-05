@@ -11,7 +11,7 @@
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <h4 class="heading">Liitu meiega</h4>
+                    <h4 class="heading">TLÜ sotsiaalmeedia</h4>
                     <p class="social social--big"><a href="https://www.facebook.com/groups/420958561444474/?ref=bookmarks" data-animate-hover="pulse" class="external facebook"><i class="fa fa-facebook"></i></a><a href="https://twitter.com/tallinnaylikool" data-animate-hover="pulse" class="external twitter"><i class="fa fa-twitter"></i></a><a href="https://www.flickr.com/photos/tallinnuniversity/sets/" data-animate-hover="pulse" class="external flickr"><i class="fa fa-flickr"></i></a></p>
                 </div>
                 <div class="col-md-4 col-sm-12">

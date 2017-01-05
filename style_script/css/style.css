@@ -9,6 +9,10 @@ html {
 body {
   background: url('../img/jumbotron1.jpg') center center no-repeat;
   font-family: 'Titillium Web', sans-serif;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 a {
