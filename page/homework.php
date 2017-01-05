@@ -232,6 +232,12 @@ if(isset($_POST["sendHomework"])){
         $html2 .= "</body>";
         $html2 .= "</html>";
         echo $html2;
+
+    }else{
+        echo("<br>");
+        echo("<br>");
+        echo("<br>");
+        echo("<br>");
     }
 ?>
 
