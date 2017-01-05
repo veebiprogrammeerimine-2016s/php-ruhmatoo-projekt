@@ -42,16 +42,53 @@ class internal {
   }
 
   function getWorkerSkills($id) {
-      $sql = "";
+      $sql = "select skillid from worker_skills where userid=".$id;
+      $result = $this->conn->query($sql);
+      $skills = array();
+      while ($row = $result->fetch_assoc()) {
+        $skills[] = $row["id"];
+      }
+      return $skills;
   }
 
   function getName($id) {
       $sql = "select name from users where id=".$id;
       $result = $this->conn->query($sql);
       $row = $result->fetch_assoc();
-      return $row["name"];
+      if (empty($row["name"])) {return "Nimi puudub";} else
+      {return $row["name"];}
   }
 
+  function getNumber($id) {
+      $sql = "select phone from contacts where user=".$id;
+      $result = $this->conn->query($sql);
+      $row = $result->fetch_assoc();
+      if (empty($row["phone"])) {return "Number puudub";} else
+      {return $row["phone"];}
+  }
+
+  function getEmail($id) {
+    $sql = "select email from users where id=".$id;
+    $result = $this->conn->query($sql);
+    $row = $result->fetch_assoc();
+    return $row["email"];
+  }
+
+  function getAge($id) {
+    $sql = "select age from users where id=".$id;
+    $result = $this->conn->query($sql);
+    $row = $result->fetch_assoc();
+    if (empty($row["age"])) {return "Vanus puudub";} else
+    {return $row["age"];}
+  }
+
+  function getUserDistrict($id) {
+    $sql = "select district from users where id=".$id;
+    $result = $this->conn->query($sql);
+    $row = $result->fetch_assoc();
+    if (empty($row["district"])) {return "Asukoht puudub";} else
+    {return $row["district"];}
+  }
 
 
   function getDistrictIDs() {

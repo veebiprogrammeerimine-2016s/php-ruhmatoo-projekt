@@ -1,5 +1,11 @@
 <?php
 require("header.php");
+require("../class/class_data.php");
+$internal = new internal($dbconn);
+$secretMode = true;
+if (isset($_SESSION["id"])) {
+	$secretMode = false;
+}
 $aboutUser = "Olen maailma kõige ilusam ja edukam inimene.";
 ?>
 <style>
@@ -9,7 +15,7 @@ $aboutUser = "Olen maailma kõige ilusam ja edukam inimene.";
 <body>
 <style type="text/css">
 #container {
-	width:500px; 
+	width:500px;
 	margin: 25 px;
 	}
 #two, #three, #four {
@@ -18,16 +24,16 @@ $aboutUser = "Olen maailma kõige ilusam ja edukam inimene.";
 	color: #212e36; font-size: 15px;
 }
 #two, #three {
-	width: 250px; 
+	width: 250px;
 	text-align: center;
 }
 #four {
 	text-align: center;
 }
 .head {
-	font-family: ; 
-	color: black; 
-	font-size: 20px; 
+	font-family: ;
+	color: black;
+	font-size: 20px;
 	text-align: center;
 }
 #one .head {
@@ -46,15 +52,24 @@ $aboutUser = "Olen maailma kõige ilusam ja edukam inimene.";
 <tr>
 <td id="two">
 <div class="head" ;><b>Oluline:</b></div>
-<p><b>Asukoht:</b> <?php echo "NULL";?></p>
-<p><b>Vanus:</b> <?php echo "NULL";?></p>
-<p><b>Amet:</b> <?php echo "NULL";?></p>
+<p><b>Asukoht:</b> <?php echo $internal->getUserDistrict($_GET["id"]);?></p>
+<p><b>Vanus:</b> <?php echo $internal->getAge($_GET["id"]);?></p>
+<p><b>Amet:</b> <?php
+	$skills = array();
+	$skills = $internal->getWorkerSkills($_GET["id"]);
+	if (!empty($skills)) {
+		foreach ($skills as $a) {
+			$skillname = $internal->getSkillName($a);
+			echo $a.", ";
+		}
+	} else { echo "Ametid puuduvad";}
+?></p>
 
 </td>
 <td id="three">
 <div class="head" style="";><b>Kontakt:</b></div>
-<p><b>E-mail:</b> <?php echo "NULL";?></p>
-<p><b>Telefoni nr:</b> <?php echo "NULL";?></p>
+<p><b>E-mail:</b> <?php if ($secretMode == false) {echo $internal->getEmail($_GET["id"]);}?></p>
+<p><b>Telefoni nr:</b> <?php if ($secretMode == false) {echo $internal->getNumber($_GET["id"]);}?></p>
 
 </td>
 </tr>
@@ -69,20 +84,5 @@ $aboutUser = "Olen maailma kõige ilusam ja edukam inimene.";
 </center>
 </body>
 
-
-<div class="row footer" style="margin-top: 2em; background: gray;">
-<div class="c-4">
-<h5 style="margin-top: 0em; margin-bottom: 1em;"><?php echo $appName;?></h5>
-<p>Abi | Privaatsus</p>
-</div>
-<div class="c-4">
-<h5 style="margin-top: 0em;">Tagasiside</h5>
-<p>Tagasiside saate saata <a href="feedback.php">siin.</a></p>
-</div>
-<div class="c-4">
-<h5 style="margin-top: 0em;">Kontakt</h5>
-<p>Elle: <br>Kristel: <br>Mihkel:</p>
-</div>
-</div>
 
 <?php require("footer.php"); ?>
