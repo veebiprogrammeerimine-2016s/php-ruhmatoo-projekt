@@ -82,7 +82,13 @@ $allHomework = $Homework->get($_SESSION["userEmail"], $q);
 
 </head>
 
-<body>
+<?php if(basename($_SERVER["SCRIPT_FILENAME"], '.php') != "timetable"){
+    echo("<body onload = \"document.body.style.visibility='visible';\" style=\"visibility:hidden;\">");
+}else{
+    echo("<body>");
+}
+?>
+
 <!-- navbar-->
 <header class="header">
     <div role="navigation" class="navbar navbar-default">
