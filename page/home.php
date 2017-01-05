@@ -31,8 +31,7 @@ if (!isset($_SESSION["id"]))
 {echo '<a class="button" href="login.php" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi sisse</a>';
 } else {
 	echo '<a class="button" href="logout.php" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi välja</a>';
-	//echo '<a class="button" href="" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Logi välja</a>';
-	echo '<a class="button" href="" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Profiil</a>';
+	echo '<a class="button" href="profile.php?id='.$_SESSION["id"].'" style="display:flex; align-items:center; width: 150px; float:right; justify-content: center;">Profiil</a>';
 
 }?>
 </div>
@@ -45,13 +44,14 @@ if (!isset($_SESSION["id"]))
 <h3 style="margin-top: 0; margin-bottom: 0;">Otsi</h3>
 <form method="get">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<div style="display:flex;align-items:center">
 <input type="text" name="search" style="width: 85%; margin-top:10px; margin-bottom: 0; float:left;" value="<?=$search?>">
-
-<button type="submit" class="button" style="float:right; margin-top:10px;">
+<button type="submit" class="button" style="float:right; margin-top:10px; margin-left: 5px;">
 <i class="fa fa-search"></i>
 </button>
+</div>
 <?php if (!empty($search)) {echo "<a href='home.php'>Tühista otsing</a>";}?>
+<div style="margin-top: 5px;"></div>
 </form>
 <br><br>
 <h3 style="margin-top: 0; margin-bottom: 0;">Sorteeri</h3>
@@ -70,13 +70,15 @@ if (!isset($_SESSION["id"]))
 </select>
 </p>
 <h6>Oskused</h6>
+<select style="width: 100%;" name="skill">
 <?php
 foreach ($skills as $a) {
 	$sname = $internal->getSkillName($a);
-	echo "<input type='checkbox' name='skill[]' value='".$a."'>".$sname."<br>";
+	echo "<option value='".$a."'>".$sname."</option>";
 
 }
 ?>
+</select>
 <!--
 <input type="checkbox" name="builder" value="yes"> Ehitaja <br>
 <input type="checkbox" name="pipe" value="yes"> Torumees <br>
