@@ -3,11 +3,9 @@
 	require("../functions.php");
 	
 	
-	
-	if (isset($_GET["deleted"])){
+if (isset($_GET["deleted"])){
 		
-		$Plant->deleteOne($_GET["id"]);
-        $Plant->deleteTwo($_GET["id"]);
+		$Plant->delete($_GET["id"]);
 			header("Location: data.php");
 			exit();
 		
@@ -22,8 +20,8 @@
         exit();	
 		
 	}
-	
 	//saadan kaasa id
+$p = $Plant->getSingleData($_GET["id"]);
 	
 	//Kui pole id-d aadressireal, siis suunan
 	if (!isset($_GET["id"])){
@@ -31,9 +29,13 @@
 		exit();
 	}
 	
-	$p = $Plant->getSingleData($_GET["id"]);
-	var_dump($p);
+/*	$p = $Plant->getSingleData($_GET["id"]);
+	var_dump($p); */
 	
+if(isset($_GET["success"])){
+		echo "salvestamine õnnestus";
+	}
+
 	
 
 

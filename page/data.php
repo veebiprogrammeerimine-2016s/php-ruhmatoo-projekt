@@ -23,8 +23,7 @@
 
     if (isset($_GET["deleted"])){
 		
-		$Plant->deleteOne($_GET["id"]);
-        $Plant->deleteTwo($_GET["id"]);
+		$Plant->delete($_GET["id"]);
 			header("Location: data.php");
 			exit();
 		
@@ -48,6 +47,7 @@
 		//kustutan ära, et pärast ei näitaks
 		unset($_SESSION["message"]);
 	}
+
 	
 	if (isset($_POST["user_plant"]) &&
 		(isset($_POST["waterings"]) &&
@@ -57,7 +57,6 @@
 			
 			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]),$_SESSION["userEmail"]);
             $Plant->saveSecond($Helper->cleanInput($_POST["user_plant"]),$_SESSION["userEmail"]);
-			echo $_SESSION["userEmail"];
 			header("Location: data.php");
 		    exit();
 		}
@@ -124,16 +123,6 @@
 		}		
 	}
 	
-		if (isset($_POST["plant"]) &&
-		(isset($_POST["watering"]) &&
-		!empty($_POST["plant"]) &&
-		!empty($_POST["watering"])
-		)) {
-			$Plant->saveUserPlants($Helper->cleanInput($_POST["plant"]), $Helper->cleanInput($_POST["watering"]));
-			header("Location: data.php");
-		    exit();
-		}
-	
 	
 	$pageName="data"
 ?>
@@ -143,13 +132,13 @@
 
 
 <div class="container"><br><br><br>
- <h3>Tere tulemast     <?=$_SESSION["firstName"];?>  <?=$_SESSION["lastName"];?>!</h3>
+ <h3>Tere tulemast     <?=$_SESSION["firstName"];?>   <?=$_SESSION["lastName"];?>!</h3>
 <div id="plantsForm" class="col-lg-6 col-sm-offset-6" style="background-color:rgba(0, 0, 0, 0.5)";>
 
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#MyPlänts" aria-controls="MyPlänts" role="tab" data-toggle="tab">Minu Pländid</a></li>
-			<li role="presentation"><a href="#Muutmine" aria-controls="Muutmine" role="tab" data-toggle="tab">Muutmine</a></li>
-			<li role="presentation"><a href="#Soovitustest" aria-controls="Soovitustest" role="tab" data-toggle="tab">Plänts lehelt</a></li>
+			<li role="presentation"><a href="#Muutmine" aria-controls="Muutmine" role="tab" data-toggle="tab">Lisa taim</a></li>
+			<li role="presentation"><a href="#Soovitustest" aria-controls="Soovitustest" role="tab" data-toggle="tab">Vali meie taimedest</a></li>
 		  </ul>
 	
 		<div class="tab-content"> <!----TABI ALGUS  --->
@@ -185,7 +174,11 @@
 								$html .= "<td>".$p->id."</td>";
 								$html .= "<td>".$p->name."</td>";
 								$html .= "<td>".$p->intervals."</td>";
-								$html .= "<td style='width:50px'><a href='edit.php?id=".$p->id."'>Muuda</a><br><a href='?id=".$p->id."&deleted=true'>Kustuta</a></td>";
+								$html .= "<td> 
+                                <a href='edit.php?id=".$p->id."'>Edit</a>
+                                <br>
+                                <a href='?id=".$p->id."&deleted=true'>Kustuta</a>
+                                </td>";
 							$html .= "</tr>";
 							
 							$i += 1;
@@ -222,13 +215,6 @@
 								<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number"> 
 
 								<input class="btn btn-default" type="submit" value="Salvesta">
-									<div id="plantSearch" class="search">
-											<h3>Taime otsing</h3>
-										<form>
-												<input type="search" name="q" value="<?=$q;?>">
-												<input class="btn btn-default" type="submit" value="Otsi">
-										</form>
-									</div>
 							</form>
 					</div>
 							
@@ -274,7 +260,77 @@
 		
 	</div>
 	
-	</div></div><br><br>
+	</div><br><br>
+
+    <?php
+    if (isset($_POST["user_plant"]) &&
+		(isset($_POST["waterings"]) &&
+		!empty($_POST["user_plant"]) &&
+		!empty($_POST["waterings"])
+		)) {
+			
+			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]),$_SESSION["userEmail"]);
+            $Plant->saveSecond($Helper->cleanInput($_POST["user_plant"]),$_SESSION["userEmail"]);
+			echo $_SESSION["userEmail"];
+			header("Location: data.php");
+		    exit();
+		}
+
+
+if(isset($_POST['color']))
+{
+echo "The Color you have selected ".$_POST['color'];
+}
+
+
+?>
+ 
+
+<?php require("../header.php"); ?>
+
+
+<div class="container col-lg-6" style="background-color:rgba(0, 0, 0, 0.5);">
+			 <?php
+						
+						if(isset($_POST['color']))
+{
+echo "The Color you have selected ".$_POST['color'];
+} 
+    
+						$html = "<table style='color: white; table;'>";
+						
+						//iga liikme kohta massiivis
+						foreach($plantData as $p) {
+							//iga taim on $p
+							//echo $p->taim."<br>";
+						
+                            
+							$html .= "<tr>";
+								$html .= '<td>
+                                <form action="" method="post">
+                                <input type="checkbox" name="color" onclick="javascript: submit()" value="red"</form>
+                                </td>';
+								$html .= "<td>".$p->id."</td>";
+								$html .= "<td>".$p->name."</td>";
+								$html .= "<td>".$p->intervals."</td>";
+                                
+								
+							$html .= "</tr>";
+                            
+						}
+						
+						$html .= "</table>";
+						
+						echo $html;
+						
+						$listHtml="<br><br>";
+						
+						
+						
+						echo $listHtml;?>
+           
+						
+</div>	
 	
 
 

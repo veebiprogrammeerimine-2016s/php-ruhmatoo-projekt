@@ -85,23 +85,18 @@ class Plant {
         }
     }    
 		
-		
-		
-		
-        
-	
 	function saveUserPlants($plant, $watering) {
 		
 		
 		$stmt = $this->connection->prepare(
-		"INSERT INTO f_userplants (plantID, userID,watering_interval,private) VALUES (?,?,?,?)");
+		"INSERT INTO f_userplants (plantID, userID, watering_interval, private) VALUES (?,?,?,?)");
 		
 		echo $this->connection->error;
 		
 		
 		
 		//asendan küsimärgi
-		$stmt->bind_param("iiis", $plant,$_SESSION["userId"],$watering,$_SESSION["userEmail"]);
+		$stmt->bind_param("iiis", $plant, $_SESSION["userId"], $watering, $_SESSION["userEmail"]);
 		
 		if ( $stmt->execute() )  {
 			
@@ -281,7 +276,7 @@ class Plant {
 		
 		$stmt = $this->connection->prepare("SELECT name, watering_days FROM f_plant WHERE id=? AND deleted IS NULL AND private=?");
 
-		$stmt->bind_param("is", $edit_id,$user);
+		$stmt->bind_param("is", $edit_id, $user);
 		$stmt->bind_result($plant, $wateringInterval);
 		$stmt->execute();
 		
@@ -296,7 +291,7 @@ class Plant {
 			
 			
 		}else{
-			// ei saanud rida andmeid kätte
+			echo("ei saanud rida andmeid kätte");
 			// sellist id'd ei ole olemas
 			// see rida võib olla kustutatud
 			header("Location: data.php");
@@ -306,37 +301,24 @@ class Plant {
 		return $plantFromDb;
 		
 	}
-	function deleteOne($id){
+	function delete($id){
 		$user=$_SESSION["userEmail"];
-		$stmt = $this->connection->prepare("UPDATE f_userplants SET deleted='yes' WHERE id=? AND deleted IS NULL AND private='$user'");
-		$stmt->bind_param("s",$id);
+		$stmt = $this->connection->prepare("UPDATE f_userplants SET deleted=1 WHERE id=? AND deleted IS NULL AND private='$user'");
+		$stmt->bind_param("i",$id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
 			// õnnestus
 			echo "kustutamine õnnestus!";
 		}
+        $stmt->close();
     }
-    function deleteTwo($id){
-		$user=$_SESSION["userEmail"];
-		$stmt = $this->connection->prepare("UPDATE f_plant SET deleted='yes' WHERE id=? AND deleted IS NULL AND private='$user'");
-		$stmt->bind_param("s",$id);
-		
-		// kas õnnestus salvestada
-		if($stmt->execute()){
-			// õnnestus
-			echo "kustutamine õnnestus!";
-		}    
-		
-		
-		
-	}
 
 
 	function update($id, $plant, $wateringInterval){
 		$user=$_SESSION["userEmail"];
-		$stmt = $this->connection->prepare("UPDATE f_plant SET name=?, watering_days=? WHERE id=? AND private='$user'");
-		$stmt->bind_param("ssi",$plant, $wateringInterval, $id);
+		$stmt = $this->connection->prepare("UPDATE f_userplant SET name=?, watering_days=? WHERE userID=? AND private='$user'");
+		$stmt->bind_param("ssi", $plant, $wateringInterval, $_SESSION["userId"]);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
