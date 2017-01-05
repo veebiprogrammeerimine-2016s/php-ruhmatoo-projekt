@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 require("header.php");
 
@@ -18,10 +19,9 @@ $skills = $conn->query($skillsql);
 <div class="row">
 <div class="header c-6"><?php echo $appName;?></div>
 <div class="header c-6">
-<div style="float:right; display: flex; justifiy-content: center; align-items: center; margin-left: 1em;">
-<form style= "font-size: 0.5em; margin: 0;">
+<div>
 
-<a class="button" href="login.php">Logi sisse</a>
+<a class="button" href="login.php" style="display:flex;justify-content:flex-end;align-items:center;">Logi sisse</a>
 </div>
 </div>
 
@@ -32,13 +32,12 @@ $skills = $conn->query($skillsql);
 <form>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<input type="text" name="search" style="width: 89%; margin-top:10px; margin-bottom: 0;">
-<button type="submit" class="button">
+<input type="text" name="search" style="width: 85%; margin-top:10px; margin-bottom: 0; float:left;">
+<button type="submit" class="button" style="float:right; margin-top:10px;">
 <i class="fa fa-search"></i>
 </button>
-
+</form>
 <br><br>
-
 <h3 style="margin-top: 0; margin-bottom: 0;">Sorteeri</h3>
 <form>
 <!--<h6>Linnaosa</h6>
@@ -46,7 +45,7 @@ $skills = $conn->query($skillsql);
 <p>
 <h6>Linnaosa</h6>
 <select style="width: 100%;" name="district">
-  <?php 
+  <?php
 	if ($districts->num_rows > 0) {
 		while($row = $districts->fetch_assoc()) {
 			echo "<option value='".$row["id"]."'>".$row["name"]."</option>";
@@ -60,9 +59,9 @@ $skills = $conn->query($skillsql);
 <?php
 	if ($skills->num_rows > 0) {
 		while($row = $skills->fetch_assoc()) {
-			echo "<input type='checkbox' name='skill[]' value='".$row["id"]."'>".$row["skill"]."<br>";	
-			//echo "<input type='checkbox' name='".$row["id"]."' value='y'>".$row["skill"]."<br>";	
-		}	
+			echo "<input type='checkbox' name='skill[]' value='".$row["id"]."'>".$row["skill"]."<br>";
+			//echo "<input type='checkbox' name='".$row["id"]."' value='y'>".$row["skill"]."<br>";
+		}
 	}
 ?>
 <!--

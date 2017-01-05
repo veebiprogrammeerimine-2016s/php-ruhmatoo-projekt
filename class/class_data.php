@@ -11,6 +11,9 @@ class internal{
     $this->conn = $db;
   }
 
+  function getWorkers($db) {
+
+  }
 
 }
 ?>
