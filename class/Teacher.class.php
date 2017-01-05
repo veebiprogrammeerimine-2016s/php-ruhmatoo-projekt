@@ -54,9 +54,10 @@
         }
 
 
-        function deleteAll(){
+        function deleteAll($email){
 
-            $stmt = $this->connection->prepare("DELETE FROM `teachers_groupwork` WHERE 1");
+            $stmt = $this->connection->prepare("DELETE FROM `teachers_groupwork` WHERE useremail = ?");
+            $stmt->bind_param("s",$email);
             echo $this->connection->error;
             $stmt->execute();
             $stmt->close();
