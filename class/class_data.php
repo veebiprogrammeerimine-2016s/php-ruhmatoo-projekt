@@ -27,6 +27,10 @@ class internal {
     }
   }
 
+  function getWorkerSkills($id) {
+      $sql = "";
+  }
+
   function getName($id) {
       $sql = "select name from users where id=".$id;
       $result = $this->conn->query($sql);

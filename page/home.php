@@ -83,7 +83,7 @@ foreach ($skills as $a) {
 			$workername = $internal->getName($a);
 			echo "<div class='userbox'>";
 				echo "<a href='profile.php?id=$a' class='title'>$workername</a>";
-				echo "<p>Oskab:<br></p>";
+				echo "<p style='border-bottom: 2px solid darkgray;'>Oskused<br></p>";
 			echo "</div>";
 		}
 	?>
