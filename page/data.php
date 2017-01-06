@@ -108,6 +108,10 @@
 			$wateringInterval = $_POST["waterings"];
 		}		
 	}
+
+    if(isset($_POST['done'])){
+        $Plant->updateDate($_POST['done']);
+    }
 	
 	
 	$pageName="data"
@@ -250,21 +254,14 @@
     
     
     
-    <div id="todo" class="col-lg-6" style="background-color:rgba(0, 0, 0, 0.5)";>
+    <div id="todo" class="col-lg-6 form-group-sm" style="background-color:rgba(0, 0, 0, 0.5)";>
 
 	
-		<div class="tab-content"> <!----TABI ALGUS  --->
-		
-		
-			<div role="tabpanel" class="tab-pane active" id="MyPlänts"><!--- TABI ESIMESE PANEELI SISU ALGUS --->
+		<div class="tab-content">
 			
 					<?php
-                
-                    if(isset($_POST['done'])){
-                    $Plant->updateDate($_POST['done']);
-                    }
-
-                    $plantData = $Plant->getListData();
+            
+                        $plantData = $Plant->getListData();
                 
 						$html = "<table class='table table-hover table-condensed' style='background-color:white'>";
                 
@@ -300,17 +297,10 @@
 						
 						echo $html;
 				?>
-							
-			</div><!---TABI ESIMESE PANEELI SISU LÕPP-->
 		
-	</div>
-        	</div>
-    
-    
-    
-    
-    
-	</div><br><br>
+	       </div>
+        </div>
+    </div><br><br>
 
 
 

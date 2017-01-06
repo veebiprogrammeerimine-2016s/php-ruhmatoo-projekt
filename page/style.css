@@ -17,7 +17,10 @@ text-decoration: none;
 
 
 
-nav{height:0px;}  
+nav{
+    height:0px;
+    font-family: 'Lucida Grande', Verdana, sans-serif;
+}  
 
   
 h3{color:white;
@@ -185,6 +188,7 @@ blockquote:before, blockquote:after, q:before, q:after {
     padding: 0;
     margin: 20px;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 table {
@@ -195,7 +199,6 @@ table {
 
 body {
     color: #404040;
-    font-family: 'Lucida Grande', Verdana, sans-serif;
     font-size: 13px;
     font-weight: normal;
     line-height: 20px;
