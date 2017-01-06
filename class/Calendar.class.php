@@ -1,6 +1,7 @@
 <?php
 
 class Calendar {  
+	
      
    
     public function __construct(){     
@@ -28,29 +29,45 @@ class Calendar {
     * print out the calendar
     */
     public function show() {
-        $year  == null;
+
          
-        $month == null;
-         
-        if(null==$year&&isset($_GET['year'])){
- 
-            $year = $_GET['year'];
-         
-        }else if(null==$year){
- 
-            $year = date("Y",time());  
-         
-        }          
-         
-        if(null==$month&&isset($_GET['month'])){
- 
-            $month = $_GET['month'];
-         
-        }else if(null==$month){
- 
-            $month = date("m",time());
-         
-        }                  
+       if (isset($_GET['year'])) {
+
+		$year = $_GET['year'];
+
+		} else {
+
+		$year = date("Y", time());
+
+		}
+
+		if (isset($_GET['month'])) {
+
+		$month = $_GET['month'];
+
+		} else {
+
+		$month = date("m", time());
+
+		}if (isset($_GET['year'])) {
+
+		$year = $_GET['year'];
+
+		} else {
+
+		$year = date("Y", time());
+
+		}
+
+if (isset($_GET['month'])) {
+
+$month = $_GET['month'];
+
+} else {
+
+$month = date("m", time());
+
+}                 
          
         $this->currentYear=$year;
          
