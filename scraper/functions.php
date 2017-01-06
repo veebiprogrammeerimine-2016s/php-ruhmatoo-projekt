@@ -50,3 +50,27 @@ function expandHomeDirectory($path) {
     }
     return str_replace('~', realpath($homeDirectory), $path);
 }
+
+function createEvent($summary, $room, $teacher, $timeStart, $timeEnd){
+    if(!isset($timeStart)){
+        echo "Puudub alguse aeg!";
+        exit();
+    }
+    if(!isset($timeEnd)){
+        echo "Puudub lõppaeg!";
+        exit();
+    }
+    return array(
+        'summary' => $summary,
+        'location' => "Tallinn University",
+        'description' => 'Ruum: ' . $room . '. Õppejõud: ' . $teacher,
+        'start' => array(
+            'dateTime' => $timeStart,
+            'timeZone' => 'Europe/Tallinn',
+        ),
+        'end' => array(
+            'dateTime' => $timeEnd,
+            'timeZone' => 'Europe/Tallinn',
+        ),
+    );
+}

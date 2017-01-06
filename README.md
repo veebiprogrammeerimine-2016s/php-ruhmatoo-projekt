@@ -27,6 +27,7 @@
         REDIRECT_URI = ####.com/scraper/scraper.php
         DEVELOPER_KEY = API Key from Google API Manager
         CLIENT_SECRET = Secret key from Google API Manager
+        $groupAddress: Specific calendar IDs. In Google Calendar: Calendar settings -> Calendar Address -> Calendar ID
 
 ### --MySQL
     1. Create database:
