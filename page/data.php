@@ -259,7 +259,12 @@
 			<div role="tabpanel" class="tab-pane active" id="MyPlänts"><!--- TABI ESIMESE PANEELI SISU ALGUS --->
 			
 					<?php
-                $plantData = $Plant->getListData();
+                
+                    if(isset($_POST['done'])){
+                    $Plant->updateDate($_POST['done']);
+                    }
+
+                    $plantData = $Plant->getListData();
                 
 						$html = "<table class='table table-hover table-condensed' style='background-color:white'>";
                 
@@ -282,7 +287,10 @@
 								$html .= "<td>".$p->id."</td>";
 								$html .= "<td>".$p->names."</td>";
                                 $html .= "<td>".$p->next_date."</td>";
-								$html .= "<td></td>";
+								$html .= "<td>
+                                <form action=\"\" method=\"post\">
+                                <input type=\"checkbox\" name=\"done\" onclick=\"javascript: submit()\" value=\"".$p->id."\">
+                                </td>";
 							$html .= "</tr>";
 							
 							$i += 1;

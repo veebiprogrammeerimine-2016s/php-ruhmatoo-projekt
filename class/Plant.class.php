@@ -265,6 +265,19 @@ class Plant {
 		
 	}
     
+    function updateDate($id){
+		$user=$_SESSION["userEmail"];
+		$stmt = $this->connection->prepare("UPDATE f_userplants SET lastwatered=? 
+        WHERE id=? AND private='$user'");
+ 		$stmt->bind_param("si", $next, $id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			// õnnestus
+			echo "salvestus õnnestus!";
+		}	
+	}
+    
     
     
 	function delete($id){
