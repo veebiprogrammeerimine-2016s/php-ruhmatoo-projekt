@@ -80,6 +80,7 @@
 
 ?>
 <?php require("../header.php"); ?>
+<?php require("../CSS.php")?>
 
 <div class "data" style="padding-left:10px;">
 <div align="center"><h1>Minu treeningpäevik</h1>
@@ -126,7 +127,7 @@
 
 	<div class="col-sm-3 col-md-6">
 			<br>
-			<head><link rel="stylesheet" href="../calender/lib/css/SimpleCalendar.css" /></head>
+			<head></head>
 			<body>
 			<?php
 			error_reporting(E_ALL ^ E_WARNING);

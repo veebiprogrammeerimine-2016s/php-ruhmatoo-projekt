@@ -291,13 +291,11 @@
 		$stmt = $this->connection->prepare("
 			SELECT exercise, sets, repeats, training_time
 			FROM exercises
-			WHERE deleted IS NULL AND user_id = ?
+			WHERE deleted IS NULL AND user_id = '".$_SESSION["userId"]."'
 			ORDER BY $sort $orderBy");
 		}
 		
-		echo $this->connection->error; // Toimib, kuid miks viskab errori?
-		
-		$stmt->bind_param("i", $_SESSION["userId"]);
+		echo $this->connection->error;
 		
 		$stmt->bind_result($exercise, $sets, $repeats, $training_time);
 		$stmt->execute();

@@ -68,5 +68,48 @@
 	/* add padding  */
 	.left-addon input  { padding-left:  20px; }
 	.right-addon input { padding-right: 30px; }
+	
+  /*kalender*/
+  table.SimpleCalendar {
+    font-family: Arial;
+	border-collapse: collapse; }
+  
+  table.SimpleCalendar th {
+    background: #489030;
+    color: white;
+    font-size: 11px;
+    padding: 3px;
+    border: 1px solid #bbb;
+    border-top: none; }
+	
+  table.SimpleCalendar tbody td {
+    vertical-align: top;
+    width: 90px;
+    height: 90px;
+    border: 1px solid #bbb;
+    background: #e6e6e6; }
+	
+   table.SimpleCalendar tbody td time {
+     font-size: .7em;
+     display: block;
+     background: white;
+     padding: 2px;
+     text-align: right;
+     font-weight: bold; 
+	  
+   /*table.SimpleCalendar tbody td.SCsuffix, table.SimpleCalendar tbody td.SCprefix {
+     background: white; }
+	  
+   table.SimpleCalendar tbody td div.event {
+      color: #355;
+      font-size: .65em;
+      padding: 5px;
+      line-height: 1em;
+      border-bottom: 1px solid #bbb;
+      background: #858585;
+      color: white; }
+	  
+  table.SimpleCalendar tbody td.today {
+    background: #d2d2d2; }*/
 		
 </style>

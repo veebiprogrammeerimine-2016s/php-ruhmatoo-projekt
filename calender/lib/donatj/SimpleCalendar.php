@@ -145,12 +145,12 @@ class SimpleCalendar {
 		if( $wday == 7 ) {
 			$wday = 0;
 		} else {
-			$out .= str_repeat('<td class="SCprefix">&nbsp;</td>', $wday);
+			$out .= str_repeat('<td class="SCprefix" style= "background: white;">&nbsp;</td>', $wday);
 		}
 
 		$count = $wday + 1;
 		for( $i = 1; $i <= $no_days; $i++ ) {
-			$out .= '<td' . ($i == $this->now['mday'] && $this->now['mon'] == date('n') && $this->now['year'] == date('Y') ? ' class="today"' : '') . '>';
+			$out .= '<td' . ($i == $this->now['mday'] && $this->now['mon'] == date('n') && $this->now['year'] == date('Y') ? ' class="today" style="background: #d2d2d2;"' : '') . '>';
 
 			$datetime = mktime(0, 0, 1, $this->now['mon'], $i, $this->now['year']);
 
@@ -163,7 +163,7 @@ class SimpleCalendar {
 
 			if( is_array($dHtml_arr) ) {
 				foreach( $dHtml_arr as $dHtml ) {
-					$out .= '<div class="event">' . $dHtml . '</div>';
+					$out .= '<div class="event" style = "color: #355; font-size: .65em; padding: 5px; line-height: 1em;  border-bottom: 1px solid #bbb; background: #858585;  color: white" >' . $dHtml . '</div>';
 				}
 			}
 
@@ -175,7 +175,7 @@ class SimpleCalendar {
 			}
 			$count++;
 		}
-		$out .= ($count != 1 ? str_repeat('<td class="SCsuffix">&nbsp;</td>', 8 - $count) : '') . "</tr>\n</tbody></table>\n";
+		$out .= ($count != 1 ? str_repeat('<td class="SCsuffix" style= "background: white;">&nbsp;</td>', 8 - $count) : '') . "</tr>\n</tbody></table>\n";
 		if( $echo ) {
 			echo $out;
 		}
