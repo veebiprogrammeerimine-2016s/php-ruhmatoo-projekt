@@ -46,7 +46,7 @@ $aboutUser = "Olen maailma kõige ilusam ja edukam inimene.";
 <tr>
 <td colspan="2" id="one">
 <div class="head" style="color:white; font-size:24px";><b>Profiil</b></div>
-<img src="http://24.media.tumblr.com/f98b35148f53e23e62fe402463b6aa93/tumblr_n6old80nsE1smtsipo1_500.gif">
+<center><img src="http://24.media.tumblr.com/f98b35148f53e23e62fe402463b6aa93/tumblr_n6old80nsE1smtsipo1_500.gif"></center>
 </td>
 </tr>
 <tr>
