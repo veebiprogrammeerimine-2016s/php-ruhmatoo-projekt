@@ -97,6 +97,12 @@ create table bios (
   bio text,
   foreign key(owner) references users(id)
 );
+
+create table contacts (
+  user int,
+  phone varchar(30),
+  foreign key (user) references users(id)
+);
 ```
 
 * Kokkuvõte: mida õppisid juurde? mis ebaõnnestus? mis oli keeruline?
