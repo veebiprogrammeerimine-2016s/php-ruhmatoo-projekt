@@ -53,5 +53,7 @@ if(isset ($_GET["logout"])) {
 </body>
 </html>
 <br><br>
+<input type="button" value="Back to calendar" onclick="location='calendar.php'" />
+<br><br>
 <a href="?logout=1"> Log out</a>
 </p>

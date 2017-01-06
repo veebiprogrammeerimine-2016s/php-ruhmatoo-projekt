@@ -30,11 +30,6 @@ if(isset($_SESSION["message"])) {
 
 }
 
-//suunamine kalendri lehele
-if(isset($_POST['submit'])){
-	header("Location: calendar.php");
-	exit();
-}
 
 
 ?>
