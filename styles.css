@@ -1,0 +1,41 @@
+<style>
+
+input[type=search] {
+    width: 300px;
+	text-align: center;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+	background-image: url('searchicon.png');
+    background-color: white;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+	position: absolute;
+	left: 50%;
+	margin-left: -150px;
+	
+}
+
+input[type=search]:focus {
+    width: 600px;
+	margin-left: -300px;
+}
+
+h2, h3, h4 {
+	color: white;
+	text-shadow: -2px -2px grey;
+	font-weight: bold;
+}
+
+h1{
+	color: black;
+	text-shadow: -2px -1px pink;
+	font-weight: bold;
+	padding-left: 40px;
+}
+
+</style>
