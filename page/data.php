@@ -38,7 +38,7 @@
 	
 	if (isset ($_POST["headline"]) ){ 
 		if (empty ($_POST["headline"]) ){ 
-			$newHeadlineError = "See väli on kohustuslik!";
+			$newHeadlineError = "<font style='color:red;'>See väli on kohustuslik!</font>";
 		} else {
 			$newHeadline = $_POST["headline"];
 		}
@@ -46,7 +46,7 @@
 	
 	if (isset ($_POST["content"]) ){ 
 		if (empty ($_POST["content"]) ){ 
-			$newContentError = "See väli on kohustuslik!";
+			$newContentError = "<font style='color:red;'>See väli on kohustuslik!</font>";
 		} else {
 			$newContent = $_POST["content"];
 		}
@@ -109,7 +109,7 @@
 						//echo "File is an image - " . $check["mime"] . ".";
 						$uploadOk = 1;
 					} else {
-						$fileError = "File is not an image.";
+						$fileError = "Tegemist pole pildiga.";
 						$uploadOk = 0;
 					}
 				}
@@ -188,132 +188,150 @@
 
 <?php require("../header.php")?>
 <?php require("../CSS.php")?>
-	<div class="data" style="padding-left:20px;padding-right:20px"> 
-		<br>
-		<p><b>
+<div class="data" style="padding-left:20px;padding-right:20px">
+		<p align="center"><b>
 			Tere tulemast <?=$_SESSION["firstName"];?> <?=$_SESSION["lastName"];?>! <a href="user.php">Mine treeningpäevikusse &rarr;</a>
 		</b></p>
-		<p> <b> <?=$topic_del_msg;?> </b> </p>
-		<h1>Foorum</h1>
-		<p> <b> <?=$topic_msg;?> <font color="red"><?=$fileError;?></font> </b> </p>
-		<p><b>Loo uus teema</b></p>
-		<form method="POST" enctype="multipart/form-data">
-			<label>Kategooria:</label>
-			<?php if($category == "general") { ?>
-			<input type="radio" name="category" value="general" checked>Üldine
-			<?php } else { ?>
-			<input type="radio" name="category" value="general">Üldine
-			<?php } ?>
-			
-			<?php if($category == "partner") { ?>
-			<input type="radio" name="category" value="partner" checked>Leia endale treeningpartner
-			<?php } else { ?>
-			<input type="radio" name="category" value="partner">Leia endale treeningpartner
-			<?php } ?>
-			<br><br>
-			<label>Pealkiri:</label>
-			<input type="text" name="headline" value="<?=$newHeadline;?>"> <?php echo $newHeadlineError; ?>
-			<br><br>
-			<label>Sisu:</label>
-			<textarea cols="40" rows="5" name="content" <?=$newContent = ""; if (isset($_POST['content'])) { $newContent = $_POST['content'];}?> ><?php echo $newContent; ?></textarea> <?php echo $newContentError; ?> <!--Textareal pole eraldi value, sinna sisse kirjutada-->
-			<br><br>
-			<label>Lisa soovi korral pilt:</label>
-			<i><input type="file" name="fileToUpload" id="fileToUpload"></i>
-			<br>
-			<input type="submit" value = "Postita teema" class="btn btn-success btn-sm">
-		</form>
+		<h1 align="center">Foorum</h1>	
 		<br><br>
 		
-		<form>
-			<input type="search" name="q" value="<?=$q;?>"> 
-			<input type="submit" value="Otsi teemat">
-		</form>
-		<br>
-		<p>
-		<b>Kategooriate sorteerimine <font class="sort" color="green"> <?=$sort_name;?> </font>järgi.</b>
-		</p>
-		<p>
-		<?php
-			$html = "<table class='table table-hover'>";
-				$html .= "<tr>"; 
-					$topicOrder = "ASC";
-					$userOrder = "ASC";
-					$dateOrder = "ASC";
-					$topicArrow = "&larr;";
-					$userArrow = "&larr;";
-					$dateArrow = "&olarr;";
-					
-					if (isset($_GET["sort"]) && $_GET["sort"] == "topic") {
-						if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
-							$topicOrder="DESC"; 
-							$topicArrow = "&rarr;";
-						}
-					}
-					
-					if (isset($_GET["sort"]) && $_GET["sort"] == "username") {
-						if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
-							$userOrder="DESC";
-							$userArrow = "&rarr;";
-						}
-					}
-					
-					if (isset($_GET["sort"]) && $_GET["sort"] == "created") {
-						if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
-							$dateOrder="DESC";
-							$dateArrow = "&orarr;";					
-						}
-					}
+		<div class="row">
+			<div class="col-sm-3 col-md-3">
+	
+				<p> <b> <?=$topic_del_msg;?> </b> </p>
+				<p> <b> <?=$topic_msg;?> <font color="red"><?=$fileError;?></font> </b> </p>
+				<h2>Loo uus teema</h2>
+				<form method="POST" enctype="multipart/form-data">
+					<label>Kategooria:</label>
+					<?php if($category == "general") { ?>
+					<input type="radio" name="category" value="general" checked>Üldine
+					<?php } else { ?>
+					<input type="radio" name="category" value="general">Üldine
+					<?php } ?>
+					<br>
+					<?php if($category == "partner") { ?>
+					<input type="radio" name="category" value="partner" checked>Leia endale treeningpartner
+					<?php } else { ?>
+					<input type="radio" name="category" value="partner">Leia endale treeningpartner
+					<?php } ?>
+					<br><br>
+					<label>Pealkiri:</label>
+					<input type="text" class="form-control" name="headline" value="<?=$newHeadline;?>"> <?php echo $newHeadlineError; ?>
+					<br><br>
+					<label>Sisu:</label>
+					<textarea class="form-control" cols="40" rows="5" name="content" <?=$newContent = ""; if (isset($_POST['content'])) { $newContent = $_POST['content'];}?> ><?php echo $newContent; ?></textarea> <?php echo $newContentError; ?> <!--Textareal pole eraldi value, sinna sisse kirjutada-->
+					<br><br>
+					<label>Lisa soovi korral pilt:</label>
+					<i><input type="file" name="fileToUpload" id="fileToUpload"></i>
+					<br>
+					<input type="submit" value = "Postita teema" class="btn btn-success btn-sm">
+				</form>
+				<br><br>
 				
-				$html .= "<thead class='bg-success'>";
-				$html .= "<th>
-					<a href='?q=".$q."&sort=topic&order=".$topicOrder."' style='text-decoration:none'>
-					<font size='2'>Teema</font><br><font size='2'>A</font>".$topicArrow."</th>";
+		</div>
+		
+		<div class="col-sm-9 col-md-9">
+		
+			<form>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-9">
+						<input type="search" class="form-control input-sm" name="q" value="<?=$q;?>"> 
+					</div> 
+					<div class="col-sm-3">
+					<input type="submit" class="form-control btn-sm" value="Otsi teemat">
+					</div> 
+				</div>
+			</div>
+			</form>
+		
+			<p>
+			<b>Kategooriate sorteerimine <font class="sort" color="green"> <?=$sort_name;?> </font>järgi.</b>
+			</p>
+			<p>
+			<?php
+				$html = "<table class='table table-hover'>";
+					$html .= "<tr>"; 
+						$topicOrder = "ASC";
+						$userOrder = "ASC";
+						$dateOrder = "ASC";
+						$topicArrow = "&larr;";
+						$userArrow = "&larr;";
+						$dateArrow = "&olarr;";
+						
+						if (isset($_GET["sort"]) && $_GET["sort"] == "topic") {
+							if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
+								$topicOrder="DESC"; 
+								$topicArrow = "&rarr;";
+							}
+						}
+						
+						if (isset($_GET["sort"]) && $_GET["sort"] == "username") {
+							if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
+								$userOrder="DESC";
+								$userArrow = "&rarr;";
+							}
+						}
+						
+						if (isset($_GET["sort"]) && $_GET["sort"] == "created") {
+							if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
+								$dateOrder="DESC";
+								$dateArrow = "&orarr;";					
+							}
+						}
+					
+					$html .= "<thead class='bg-success'>";
 					$html .= "<th>
-					<a href='?q=".$q."&sort=username&order=".$userOrder."' style='text-decoration:none'>
-					<font size='2'>Kasutaja</font><br><font size='2'>A</font>".$userArrow."</th>";
-					$html .= "<th>
-					<a href='?q=".$q."&sort=created&order=".$dateOrder."' style='text-decoration:none'>
-					<font size='2'>Lisamise kuupäev</font><br><font size='2'>&#128336;</font>".$dateArrow."</th>";
-				$html .= "</tr>";
-				$html .= "</thead>";
+						<a href='?q=".$q."&sort=topic&order=".$topicOrder."' style='text-decoration:none'>
+						<font size='2'>Teema</font><br><font size='2'>A</font>".$topicArrow."</th>";
+						$html .= "<th>
+						<a href='?q=".$q."&sort=username&order=".$userOrder."' style='text-decoration:none'>
+						<font size='2'>Kasutaja</font><br><font size='2'>A</font>".$userArrow."</th>";
+						$html .= "<th>
+						<a href='?q=".$q."&sort=created&order=".$dateOrder."' style='text-decoration:none'>
+						<font size='2'>Lisamise kuupäev</font><br><font size='2'>&#128336;</font>".$dateArrow."</th>";
+					$html .= "</tr>";
+					$html .= "</thead>";
+					
+					$html .= "<thead class='thead-default'>";
+					$html .= "<th><font size='2'>ÜLDINE</font></th>";
+					$html .= "<th></th>";
+					$html .= "<th></th>";
+					$html .= "</thead>";
 				
-				$html .= "<thead class='thead-default'>";
-				$html .= "<th><font size='2'>ÜLDINE</font></th>";
-				$html .= "<th></th>";
-				$html .= "<th></th>";
-				$html .= "</thead>";
-			
-			
-			foreach($generalTopics as $gt){
-				$html .= "<tbody>";
-				$html .= "<tr>";
-					$html .= "<td font size='20'><a href='topic.php?id=".$gt->id."' style='text-decoration:none'><font size='4'>".$gt->subject."</font></a></td>";
-					$html .= "<td>".$gt->username."</td>";
-					$html .= "<td>".$gt->created."</td>";
-				$html .= "</tr>";
-				$html .= "</tbody>";
-			} 
 				
-				$html .= "<thead class='thead-default'>";
-				$html .= "<th><font size='2'>LEIA ENDALE TREENINGPARTNER</font></th>";
-				$html .= "<th></th>";
-				$html .= "<th></th>";
-				$html .= "</thead>";
+				foreach($generalTopics as $gt){
+					$html .= "<tbody>";
+					$html .= "<tr>";
+						$html .= "<td font size='20'><a href='topic.php?id=".$gt->id."' style='text-decoration:none'><font size='4'>".$gt->subject."</font></a></td>";
+						$html .= "<td>".$gt->username."</td>";
+						$html .= "<td>".$gt->created."</td>";
+					$html .= "</tr>";
+					$html .= "</tbody>";
+				} 
+					
+					$html .= "<thead class='thead-default'>";
+					$html .= "<th><font size='2'>LEIA ENDALE TREENINGPARTNER</font></th>";
+					$html .= "<th></th>";
+					$html .= "<th></th>";
+					$html .= "</thead>";
+					
+				foreach($partnerTopics as $pt){
+					$html .= "<tbody>";
+					$html .= "<tr>";
+						$html .= "<td font size='20'><a href='topic.php?id=".$pt->id."' style='text-decoration:none'><font size='4'>".$pt->subject."</font></a></td>";
+						$html .= "<td>".$pt->username."</td>";
+						$html .= "<td>".$pt->created."</td>";
+					$html .= "</tr>";
+					$html .= "</tbody>";
+				} 
 				
-			foreach($partnerTopics as $pt){
-				$html .= "<tbody>";
-				$html .= "<tr>";
-					$html .= "<td font size='20'><a href='topic.php?id=".$pt->id."' style='text-decoration:none'><font size='4'>".$pt->subject."</font></a></td>";
-					$html .= "<td>".$pt->username."</td>";
-					$html .= "<td>".$pt->created."</td>";
-				$html .= "</tr>";
-				$html .= "</tbody>";
-			} 
-			
-			$html .= "</table>";
-			echo $html;
-			
-		?>
-		<br>
+				$html .= "</table>";
+				echo $html;
+				
+			?>
+			<br>
+		</div>
 	</div>
+</div>
 <?php require("../footer.php")?>

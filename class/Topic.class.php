@@ -220,6 +220,8 @@
 		if($stmt->execute()){
 			$_SESSION["topic_message"] = "<p style='color:red;'>TEEMA KUSTUTATUD!</p>";
  		}
+		
+		
  		
  		$stmt->close();
 	}

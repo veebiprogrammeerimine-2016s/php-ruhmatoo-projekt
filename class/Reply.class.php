@@ -21,10 +21,25 @@
 		
 	}
 	
+	function createNewWithFile($content, $subject_id, $username, $user_id, $target_file){
+		
+		$stmt = $this->connection->prepare("INSERT INTO replies(content, username, topic_id, user_id, file) VALUES(?,?,?,?,?)");
+		echo $this->connection->error;
+		
+		$stmt->bind_param("ssiis", $content, $username, $subject_id, $user_id, $target_file); 
+		
+		if($stmt->execute()) {
+			$_SESSION["reply_message"] = "<p style='color:green;'>VASTUS LISATUD!</p>";
+		} else {
+			echo "ERROR".$stmt->error;
+		}
+		
+	}
+	
 	function addToArray ($topic_id){
 		
 		$stmt = $this->connection->prepare("
-			SELECT id, content, created, username
+			SELECT id, content, created, username, file
 			FROM replies
 			WHERE topic_id=?
 			AND deleted IS NULL
@@ -33,7 +48,7 @@
 		
 		$stmt->bind_param("i", $topic_id);
 		
-		$stmt->bind_result($id, $content, $created, $username);
+		$stmt->bind_result($id, $content, $created, $username, $file);
 		$stmt-> execute();
 		
 		$result = array();
@@ -44,6 +59,7 @@
 			$reply->content = $content;
 			$reply->created = $created;
 			$reply->username = $username;
+			$reply->filename = $file;
 		
 			array_push ($result, $reply);
 		}
@@ -96,18 +112,21 @@
 	
 	
 	function find($topic_id, $reply_id, $user_id ){
-		$stmt = $this->connection-> prepare("SELECT content FROM replies WHERE topic_id=? and id=? and user_id=?");
+		$stmt = $this->connection-> prepare("SELECT content, file FROM replies WHERE topic_id=? and id=? and user_id=?");
 		
 		echo $this->connection->error;
 		
 		$stmt->bind_param("iii", $topic_id, $reply_id, $user_id);
-		$stmt->bind_result($content);
+		$stmt->bind_result($content, $file);
 		$stmt->execute();
 
-		$reply = ""; 
+		//$reply = "";
+		$reply = new StdClass();		
 		
 		if($stmt->fetch()){
-			$reply= $content;
+			//$reply= $content;
+			$reply->content = $content;
+			$reply->filename= $file;
 		}
 		
 		$stmt->close();
@@ -142,6 +161,31 @@
 		}
 		
 		$stmt->close();
+	}
+	
+	function updateWithFile($reply, $reply_id, $target_file){
+		$stmt = $this->connection->prepare("UPDATE replies SET content=?, file=? WHERE id=?");
+		
+		$stmt->bind_param("ssi",$reply, $target_file, $reply_id);
+		
+		if($stmt->execute()){
+			$_SESSION["reply_change_message"] = "<p style='color:green;'>VASTUS MUUDETUD!</p>";
+		}
+		
+		$stmt->close();
+	}
+	
+	function delPic($nofile, $topic_id, $reply_id){
+		$stmt = $this->connection->prepare("UPDATE replies SET file=? WHERE id=? AND topic_id=? AND user_id=? AND deleted IS NULL");
+		
+		$stmt->bind_param("siii",$nofile, $reply_id, $topic_id, $_SESSION["userId"] );
+		
+ 		if($stmt->execute()){
+			$_SESSION["reply_change_message"] = "<p style='color:red;'>Pilt kustutatud!</p>";
+ 		}
+ 		
+ 		$stmt->close();
+		
 	}
 	
 	function del($topic_id, $reply_id){

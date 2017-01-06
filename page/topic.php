@@ -28,16 +28,71 @@
 	
 	if (isset ($_POST["reply"]) ){ 
 		if (empty ($_POST["reply"]) ){ 
-			$newReplyError = "Palun täida väli!";
+			$newReplyError = "<font style='color:red;'>Palun täida väli!</font>";
 		} else {
 			$newReply = $_POST["reply"];
 		}
 	}
 	
+	$fileError = "";
 	if (isset ($_POST["reply"]) && 
 		empty($newReplyError)
 		){
-			$Reply->createNew($Helper->cleanInput($_POST["reply"]), $Helper->cleanInput($_GET["id"]), $_SESSION["userName"], $_SESSION["userId"]); 	
+			if(empty($_FILES["fileToUpload"]["name"]))
+				{
+					$Reply->createNew($Helper->cleanInput($_POST["reply"]), $Helper->cleanInput($_GET["id"]), $_SESSION["userName"], $_SESSION["userId"]); 	
+				}
+			if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
+				
+				$target_dir = "../uploads/";
+				$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+				$uploadOk = 1;
+				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+				
+				// Check if image file is a actual image or fake image
+				if(isset($_POST["submit"])) {
+					
+					$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+					if($check !== false) {
+						//echo "File is an image - " . $check["mime"] . ".";
+						$uploadOk = 1;
+					} else {
+						$fileError = "Tegemist pole pildiga.";
+						$uploadOk = 0;
+					}
+				}
+				// Check if file already exists
+				if (file_exists($target_file)) {
+					$fileError = "Kahjuks sellise nimega pilt juba eksisteerib.";
+					$uploadOk = 0;
+				}
+				// Check file size
+				if ($_FILES["fileToUpload"]["size"] > 500000) {
+					$fileError = "Sinu pilt on liiga suur!";
+					$uploadOk = 0;
+				}
+				// Allow certain file formats
+				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+					&& $imageFileType != "gif" ) {
+					$fileError = "Ainult JPG, JPEG, PNG & GIF failid on lubatud!";
+					$uploadOk = 0;
+				}
+				// Check if $uploadOk is set to 0 by an error
+				if ($uploadOk == 0) {
+					//$fileError = "Kahjuks sinu pilti ei saanud üles laadida.";
+				// if everything is ok, try to upload file
+				} else {
+					if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+						//echo "Sinu pilt ". basename( $_FILES["fileToUpload"]["name"]). " on üles laetud!";
+						
+						// save file name to DB here
+						$Reply->createNewWithFile($Helper->cleanInput($_POST["reply"]), $Helper->cleanInput($_GET["id"]), $_SESSION["userName"], $_SESSION["userId"], $target_file);
+						
+					} else {
+						$fileError = "Midagi läks faili üleslaadimisel valesti.";
+					}
+				}
+			} 
 	} 
 	
 	if(isset($_GET["delete"]) && isset($_GET["id"])) {
@@ -72,9 +127,9 @@
 	$del_topic = $Topic->checkUser($_GET["id"], $_SESSION["userId"]);
 	//$change_reply = $Reply->checkUser($_GET["id"], $_SESSION["userId"], $reply_id); 
 	
-	$imagesource = "";
+	$topicimagesource = "";
 	if (!empty ($topic->subject)){
-		$imagesource = "<br><img src='".$topic->filename."' style= 'max-height: 200px' style= 'max-width: 200px'><br><br>";
+		$topicimagesource = "<br><img src='".$topic->filename."' style= 'max-height: 200px' style= 'max-width: 200px'><br><br>";
 	}
 
 ?>
@@ -90,7 +145,7 @@
 
 				<h1><?php echo $topic->subject;?></h1>
 				<p style="border:1px; border-style:solid; border-color:#a6a6a6; padding: 0.5em;">
-				<?php echo $topic->content;?> <?php echo $imagesource; ?>
+				<?php echo $topic->content;?> <?php echo $topicimagesource; ?>
 				<font color="grey"><em>Teema algataja: <?php echo $topic->username;?></em></font>
 				<br>
 				<font color="grey"><em>Lisamise kuupäev: <?php echo $topic->created;?></em></font>
@@ -98,19 +153,21 @@
 				<?php echo $del_topic; ?>
 				<br><br><br>
 				<?php
-					$html = "<table class='table table-striped'>";
+					$html = "<table class='table'>";
 						$html .= "<tr>"; 
-							$html .= "<th>Vastused</th>";
-							$html .= "<th>Kasutaja</th>";
-							$html .= "<th>Lisamise kuupäev</th>";
-							$html .= "<th></th>";
+							$html .= "<th class='thead-default'>Vastajad</th>";
+							$html .= "<th class='thead-default'></th>";
+							$html .= "<th class='thead-default'></th>";
+							$html .= "<th class='thead-default'></th>";
+							$html .= "<th class='thead-default'></th>";
 						$html .= "</tr>";
 
 					foreach($replies as $r){
 						$html .= "<tr>";
 							$html .= "<td>".$r->content."</td>";
-							$html .= "<td>".$r->username."</td>";
-							$html .= "<td>".$r->created."</td>";
+							$html .= "<td><br><img src='".$r->filename."' style= 'max-height: 200px' style= 'max-width: 200px'><br><br></td>";
+							$html .= "<td> <font color='grey' size='2'><em>".$r->username." </em></font></td>";
+							$html .= "<td> <font color='grey' size='2'><em> Vastus lisatud: ".$r->created."</em></font></td>";
 							$html .= "<td>".$change_reply = $Reply->checkUser($_GET["id"], $_SESSION["userId"], $r->id)."</td>";
 						$html .= "</tr>";
 					} 
@@ -119,12 +176,16 @@
 					echo $html;
 				?>
 			</div>
-			<div style="padding-top:60px;"> 
+			<div style="padding-left:20px; padding-top:60px;"> 
 				<h2>Vasta teemale</h2>
-				<form method="POST">
-					<textarea cols="40" rows="5" name="reply" <?=$newReply = ""; if (isset($_POST['reply'])) { $newContent = $_POST['reply'];}?> ><?php echo $newReply; ?></textarea> <?php echo $newReplyError; ?>
+				<form method="POST" enctype="multipart/form-data">
+					<textarea cols="40" rows="5" name="reply" <?=$newReply = ""; if (isset($_POST['reply'])) { $newContent = $_POST['reply'];}?> ><?php echo $newReply; ?></textarea> <?php echo $newReplyError; ?> 
 					<br><br>
-					<input type="submit" value = "Postita oma vastus">
+					<label>Lisa soovi korral pilt:</label>
+					<i><input type="file" name="fileToUpload" id="fileToUpload"></i>
+					<p><font color="red"><?=$fileError;?></font></p>
+					<br>
+					<input type="submit" value = "Postita oma vastus" class="btn btn-success btn-sm">
 				</form>
 				</p>
 			</div>
