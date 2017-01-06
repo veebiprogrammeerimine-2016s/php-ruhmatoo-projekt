@@ -8,6 +8,8 @@
 	
 	require("../class/User.class.php");
 	$User = new User($mysqli);
+	require("../class/Post.class.php");
+	$Post = new Post($mysqli);
 	
 	//kui ei ole sisseloginud, suunan login lehele
 	if (!isset($_SESSION["userId"])) {
@@ -24,7 +26,7 @@
 		exit();
 		
 	}
-	echo $_SESSION["userId"];
+	
 	if ($_SESSION["userId"] != 1 xor
 		$_SESSION["userId"] != 64 xor
 		$_SESSION["userId"] != 68) {
@@ -46,7 +48,16 @@
 		
 	}
 	
-
+	if (isset($_POST["deletePostId"])){
+		$Post->deletePost($_POST["deletePostId"]);
+	}
+	$Teavitus="";
+	if (isset($_GET["success"])){
+		$Teavitus="kustutatud";
+	}
+	if (isset($_GET["failed"])){
+		$Teavitus="ebaõnnestus";
+	}
 
 	
 	//pre echob koodina
@@ -64,6 +75,16 @@
 	
 	Siin saab postitusi kustutada ja muud jama teha
 	
+	<form method="POST">
+		  <div class="form-group">
+			<label>postituse id</label>
+			<input type="text" class="form-control input-sm" name="deletePostId" placeholder="sisesta postituse id"  /required>
+			<p class="help-block"></p>
+		  </div>
+		  <button type="submit" class="btn btn-default">kustuta</button>
+		</form>
+		
+		<h1><?php echo $Teavitus;?></h1>
 	</p>
 	
 	
