@@ -184,10 +184,10 @@
 	}
 	
 	function editData($edit_id){
-		$stmt = $this->connection->prepare("SELECT email, phonenumber FROM users WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT firstname, lastname, email, password, gender, phonenumber FROM users WHERE id=? AND deleted IS NULL");
 		echo $this->connection->error;
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($email, $phonenumber);
+		$stmt->bind_result($firstname, $lastname, $email, $password, $gender, $phonenumber);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -196,7 +196,11 @@
 		//saime ühe rea andmeid
 		if($stmt->fetch()){
 			// saan siin alles kasutada bind_result muutujaid
+			$person->firstname = $firstname;
+			$person->lastname = $lastname;
 			$person->email = $email;
+			$person->password = $password;
+			$person->gender = $gender;
 			$person->phonenumber = $phonenumber;
 			
 		}else{
@@ -211,23 +215,11 @@
 		return $person;
 	}
 	
-	function deleteData($id){
-		$stmt = $this->connection->prepare("UPDATE users SET deleted=NOW() WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("i",$id);
-		
-		// kas õnnestus salvestada
-		if($stmt->execute()){
-			// õnnestus
-			echo "kustutamine õnnestus!";
-		}
-		
-		$stmt->close();	
-	}
 	
-	function update($id, $email, $phonenumber){
+	function update($id, $firstname, $lastname, $email, $password, $gender, $phonenumber){
     	
-		$stmt = $this->connection->prepare("UPDATE users SET email=?, phonenumber=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("ssi",$email, $phonenumber, $id);
+		$stmt = $this->connection->prepare("UPDATE users SET firstname=?, lastname=?, email=?, password=?, gender=?, phonenumber=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("ssssssi", $firstname, $lastname, $email, $password, $gender, $phonenumber, $id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
@@ -238,12 +230,12 @@
 		$stmt->close();
 	}
 
-	function saveExercise($trainingdate, $exercise, $sets, $repeats) {
+	function saveExercise($trainingdate, $exercise, $sets, $repeats, $notes) {
 	
-		$stmt = $this->connection->prepare("INSERT INTO exercises (exercise, sets, repeats, user_id, training_time) VALUES (?, ?, ?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO exercises (exercise, sets, repeats, notes, user_id, training_time) VALUES (?, ?, ?, ?, ?, ?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("sssis", $exercise, $sets, $repeats, $_SESSION["userId"], $trainingdate);
+		$stmt->bind_param("ssssis", $exercise, $sets, $repeats, $notes, $_SESSION["userId"], $trainingdate);
 		
 		if ($stmt->execute()) {
 			//echo "Salvestamine õnnestus";
@@ -255,7 +247,7 @@
 	
 	function get($q, $sort, $order) {
 		
-		$allowedSort = ["exercise", "sets", "repeats", "training_time"];
+		$allowedSort = ["exercise", "sets", "repeats", "notes", "training_time"];
 		
 		if(!in_array($sort, $allowedSort)) {
 			//ei ole lubatud tulp
@@ -274,22 +266,22 @@
 			//echo "Otsib: ".$q;
 			
 			$stmt = $this->connection->prepare("
-			SELECT exercise, sets, repeats, training_time
+			SELECT exercise, sets, repeats, notes, training_time
 			FROM exercises
 			WHERE deleted IS NULL
-			AND (exercise LIKE ? OR sets LIKE ? OR repeats LIKE ? OR training_time LIKE ?)
+			AND (exercise LIKE ? OR sets LIKE ? OR repeats LIKE ? OR notes LIKE ? OR training_time LIKE ?)
 			AND user_id = ?
 			ORDER BY $sort $orderBy
 			
 		");	
 		
 		$searchWord = "%".$q."%";
-		$stmt->bind_param("ssssi", $searchWord, $searchWord, $searchWord, $searchWord, $_SESSION["userId"]);
+		$stmt->bind_param("sssssi", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $_SESSION["userId"]);
 		
 		} else {
 		
 		$stmt = $this->connection->prepare("
-			SELECT exercise, sets, repeats, training_time
+			SELECT exercise, sets, repeats, notes, training_time
 			FROM exercises
 			WHERE deleted IS NULL AND user_id = '".$_SESSION["userId"]."'
 			ORDER BY $sort $orderBy");
@@ -297,7 +289,7 @@
 		
 		echo $this->connection->error;
 		
-		$stmt->bind_result($exercise, $sets, $repeats, $training_time);
+		$stmt->bind_result($exercise, $sets, $repeats, $notes, $training_time);
 		$stmt->execute();
 		
 		
@@ -314,6 +306,7 @@
 			$person->exercise = $exercise;
 			$person->sets = $sets;
 			$person->repeats = $repeats;
+			$person->notes = $notes;
 			$person->training_time = $training_time;
 			
 			array_push($result, $person);
