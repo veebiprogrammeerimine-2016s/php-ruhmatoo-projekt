@@ -43,14 +43,18 @@ foreach($search as $sr){
 if($b == 0){
 	echo "<div class=col-md-3></div>";
 	echo "<div class=col-md-5><br><br><br>";	
-	echo "<h2> No results found. <br>Try a different keyword. </h2>";
+	if ($page > 1){
+		echo "<h2>No more results to display.</h2>";
+	} else {
+		echo "<h2> No results found. <br>Try a different keyword. </h2>";
+	}
 	echo "</div>";
 }
 echo "</div>";
 //var_dump($s);
 //var_dump(rawurlencode($s));
 $previous = ($page > 1) ? ($page - 1) : $page;
-$next = (($b >= 0) && ($b <= 4)) ? $page : ($page + 1);
+$next = (($b >= 0) && ($b <= 14)) ? $page : ($page + 1);
 ?>
 <div class="row">
 	<div class="col-md-2">
