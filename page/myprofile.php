@@ -41,7 +41,7 @@ if(isset ($_GET["logout"])) {
 		<button type="submit" name="submit">Upload</button>
 	</form>
 <h3>Username: <?=$_SESSION["userName"];?></h3>
-<h3>Age: <?=$_SESSION["userAge"]?></h3>
+<h3>Age: <?=$_POST["userAge"]?></h3>
 <h3>E-mail: <?=$_SESSION["userEmail"]?></h3>
 <h3>Change password: </h3>
 <input name="signupPassword" type="password" >
