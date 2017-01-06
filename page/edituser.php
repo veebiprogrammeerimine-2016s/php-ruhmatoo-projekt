@@ -1,5 +1,19 @@
 <?php
 require("header.php");
+require("../class/class_data.php");
+require("../class/class_general.php");
+require("../class/class_login.php");
+$data = new Internal($dbconn);
+$login = new User($dbconn);
+$districts = array();
+$districts = $internal->getDistrictIDs();
+$skills = array();
+$skills = $internal->getSkillIDs();
+if (!isset($_SESSION["id"])) {
+	header("Location: home.php");
+	exit();
+}
+$name = $_SESSION["name"];
 
 ?>
 <div class="header"><a class="hbutton" href="home.php">< </a><?php echo $appName; ?></div>
@@ -38,12 +52,12 @@ require("header.php");
 </tr>
 <tr>
 <td id="two">
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+<form method="post" >
 <p>Nimi:</p>
-<p><input type="text" size="15" name="" value="">
+<p><input type="text" size="15" name="name" value="<?=$name?>">
 <br>
 <p>Asukoht:</p>
-<p><input type="text" size="15" name="" value="">
+<p><select name="district" style="width: 100%;"></select>
 <br>
 <p>Vanus:</p>
 <p><input type="number" size="15" name="" value="">

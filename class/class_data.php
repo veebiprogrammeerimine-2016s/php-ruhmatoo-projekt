@@ -46,7 +46,7 @@ class internal {
       $result = $this->conn->query($sql);
       $skills = array();
       while ($row = $result->fetch_assoc()) {
-        $skills[] = $row["id"];
+        $skills[] = $row["skillid"];
       }
       return $skills;
   }

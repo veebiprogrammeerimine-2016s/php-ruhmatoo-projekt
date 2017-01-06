@@ -21,7 +21,7 @@ $email = $input->clean($_POST["email"]);
 $name = $input->clean($_POST["displayname"]);
 $password = $input->clean($_POST["password"]);
 $district = $input->clean($_POST["district"]);
-$skill = $input->clean($_POST["skill"]);
+$skill = $_POST["skill"];
 $age = $input->clean($_POST["age"]);
 $bio = $input->clean($_POST["bio"]);
   if ($login->checkIfExists($email)) {
@@ -31,7 +31,6 @@ $bio = $input->clean($_POST["bio"]);
       $hash = password_hash($password, PASSWORD_DEFAULT);
         if ($login->create($email, $name, $hash, "worker", $district, $age)) {
             $userid = $login->getId($email);
-            echo $userid;
             if (!empty($bio)) {
               if ($login->addBio($userid, $bio)) {
 

@@ -63,7 +63,7 @@ if (!empty($district)) {echo $internal->getDistrictName($district);}
 	if (!empty($skills)) {
 		foreach ($skills as $a) {
 			$skillname = $internal->getSkillName($a);
-			echo $a.", ";
+			echo $skillname.", ";
 		}
 	} else { echo "Ametid puuduvad";}
 ?></p>
@@ -79,7 +79,10 @@ if (!empty($district)) {echo $internal->getDistrictName($district);}
 <tr>
 <td colspan="2" id="four">
 <div class="head" style="";><b>Minust:</b></div>
-<p><i><?php echo $aboutUser;?></i></p>
+<p><i><?php echo $internal->getBio($_GET["id"]);?></i></p>
+<?php if ($_SESSION["id"] == $_GET["id"]) {
+	echo "<a href='edituser.php'>Muuda oma profiili</a>";
+} ?>
 </td>
 </tr>
 </table>
