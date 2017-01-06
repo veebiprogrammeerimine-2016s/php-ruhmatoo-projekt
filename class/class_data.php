@@ -82,6 +82,14 @@ class internal {
     {return $row["age"];}
   }
 
+  function getBio($id) {
+    $sql = "select bio from bios where owner=".$id;
+    $result = $this->conn->query($sql);
+    $row = $result->fetch_assoc();
+    if (empty($row["bio"])) {return "Biograafia puudub";} else
+    {return $row["bio"];}
+  }
+
   function getUserDistrict($id) {
     $sql = "select district from users where id=".$id;
     $result = $this->conn->query($sql);

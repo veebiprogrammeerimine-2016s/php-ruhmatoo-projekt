@@ -45,7 +45,9 @@ class User {
       return $row["id"];
     }
 
-    function addSkill($user, $skil) {
+    function addSkill($user, $skill) {
+      echo $user."__";
+      echo $skill;
       $sql = "select count(id) as count from worker_skills where userid=".$user." and skillid=".$skill;
       $result = $this->conn->query($sql);
       $row = $result->fetch_assoc();
@@ -63,6 +65,14 @@ class User {
       $result = $this->conn->query($sql);
       $row = $result->fetch_assoc();
       return $row["password"];
+    }
+
+    function addBio($user, $bio) {
+      $sql = $this->conn->prepare("insert into bios (owner, bio) values (?, ?)");
+      $sql->bind_param("is", $user, $bio);
+      if ($sql->execute()) {
+        return true;
+      } else {return false;}
     }
 
     function logIn($email) {

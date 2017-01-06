@@ -7,21 +7,21 @@ require("header.php");
 <body>
 <style type="text/css">
 #container {
-	width:700px; 
+	width: 1200px;
 	margin: 35 px;
 	}
 #two {
 	background-color: #fff;
 	padding: 8px;
 	color: #212e36; font-size: 15px;
-	width: 250px; 
+	width: 250px;
 	text-align: center;
 	margin: 25 px;
 }
 .head {
-	font-family: ; 
-	color: black; 
-	font-size: 20px; 
+	font-family: ;
+	color: black;
+	font-size: 20px;
 	text-align: center;
 }
 #one .head {
@@ -43,10 +43,10 @@ require("header.php");
 <p><input type="text" size="15" name="" value="">
 <br>
 <p>Asukoht:</p>
-<p><input type="text" size="20" name="" value="">
+<p><input type="text" size="15" name="" value="">
 <br>
 <p>Vanus:</p>
-<p><input type="number" size="5" name="" value="">
+<p><input type="number" size="15" name="" value="">
 <br>
 <p>Amet:</p>
 <p><input type="text" size="15" name="" value="">
@@ -65,7 +65,7 @@ require("header.php");
 </div>
 </center>
 </body>
- 
+
 
 <div class="row footer" style="margin-top: 2em; background: gray;">
 <div class="c-4">

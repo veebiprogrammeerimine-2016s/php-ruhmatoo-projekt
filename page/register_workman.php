@@ -17,20 +17,28 @@ $skills = array();
 $skills = $data->getSkillIDs();
 
 if (isset($_POST["displayname"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["district"]) && isset($_POST["age"])) {
-$email = $_POST["email"];
-$name = $_POST["displayname"];
-$password = $_POST["password"];
-$district = $_POST["district"];
-$skill = $_POST["skill"];
-$age = $_POST["age"];
+$email = $input->clean($_POST["email"]);
+$name = $input->clean($_POST["displayname"]);
+$password = $input->clean($_POST["password"]);
+$district = $input->clean($_POST["district"]);
+$skill = $input->clean($_POST["skill"]);
+$age = $input->clean($_POST["age"]);
+$bio = $input->clean($_POST["bio"]);
   if ($login->checkIfExists($email)) {
     $error .= "Seda e-mailiaadressi on juba kasutatud.";
   } else {
     if (strlen($password) >= 6) {
       $hash = password_hash($password, PASSWORD_DEFAULT);
-        if ($login->create($email, $name, $hash, "worker", $district ,$age)) {
-          if (!empty($skill)) {
+        if ($login->create($email, $name, $hash, "worker", $district, $age)) {
             $userid = $login->getId($email);
+            echo $userid;
+            if (!empty($bio)) {
+              if ($login->addBio($userid, $bio)) {
+
+              } else {$error .= "Ei saanud biograafiat salvestada.";}
+            }
+          if (!empty($skill)) {
+
             if ($login->addSkill($userid, $skill)) {
                         $registerSuccess = true;
             } else {$error .= "Ei saanud sisestada oskust andmebaasi.";}
@@ -67,6 +75,8 @@ $age = $_POST["age"];
           }
         ?>
       </select>
+      <br>
+      <textarea name="bio" placeholder="Natukene endast..." style="width: 100%; font-family: Roboto;"></textarea>
       <br>
 
 
