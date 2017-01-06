@@ -27,6 +27,21 @@ $signupEmail = "";
 $signupAge = "";
 
 
+if(isset($_POST['submit']))
+{
+$signupUsername=mysql_real_escape_string($_POST['signupUsername']);
+$signupPassword=mysql_real_escape_string($_POST['signupPassword']);
+$signupEmail=mysql_real_escape_string($_POST['signupEmail']);
+$signupAge=mysql_real_escape_string($_POST['signupAge']);
+$rand=rand(100000,100000000);
+$query2=mysql_query("insert into user values('','$signupUsername','$signupPassword','$signupEmail','$signupAge','$rand','0')");
+if($query2)
+{
+student_confirmation($id,$signupUsername,$signupPassword,$signupEmail,$signupAge);
+}
+}
+
+
 if(isset($_POST["signupUsername"])){
 
     if(empty($_POST["signupUsername"])){
@@ -111,7 +126,6 @@ if ( isset ( $_POST["signupAge"] ) &&
 
     }
 
-
 ?>
 
 <!DOCTYPE html>
@@ -165,6 +179,7 @@ if ( isset ( $_POST["signupAge"] ) &&
     <br><br>
 
     <input type="submit" value="Create account">
+
 
 </form>
 
