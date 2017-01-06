@@ -73,7 +73,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
     // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+            echo "Your profile picture has been uploaded.";
             
             // save file name to DB here
             addPicURL(basename( $_FILES["fileToUpload"]["name"]));
