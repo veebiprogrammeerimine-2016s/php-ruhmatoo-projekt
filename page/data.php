@@ -152,7 +152,7 @@
 						$html = "<table class='table table-hover table-condensed' style='background-color:white'>";
 						$html .= "<tr>";
 							$html .= "<th style='width:300px'><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
-							$html .= "<th style='width:50px'>kasta</th>";
+							$html .= "<th style='width:50px; text-align: center;'>kasta</th>";
                             $html .= "<th style='width:70px'></th>";
 						$html .= "</tr>";
 						
@@ -165,7 +165,7 @@
 							
 							$html .= "<tr>";
 								$html .= "<td>".$p->name."</td>";
-								$html .= "<td>".$p->intervals."</td>";
+								$html .= "<td style='text-align: center;'>".$p->intervals."</td>";
 								$html .= "<td> 
                                 <a href='edit.php?id=".$p->id."'>
                                 <i class='glyphicon glyphicon-edit'></i>
@@ -254,7 +254,7 @@
     
     
     
-    <div id="todo" class="col-lg-6 form-group-sm" style="background-color:rgba(0, 0, 0, 0.5)";>
+    <div id="todo" class="col-lg-6" style="background-color:rgba(0, 0, 0, 0.5)";>
 
 	
 		<div class="tab-content">
@@ -267,10 +267,9 @@
                 
                 
 						$html .= "<tr>";
-                            $html .= "<th style='width:50px'>id</th>";
-							$html .= "<th style='width:200px'>plant</th>";
+							$html .= "<th style='width:100px'>plant</th>";
 							$html .= "<th style='width:70px'>kasta</th>";
-                            $html .= "<th style='width:50px'></th>";
+                            $html .= "<th style='width:20px; text-align: center;'>done?</th>";
 						$html .= "</tr>";
 						
 						$i = 1;
@@ -281,10 +280,9 @@
 						
 							
 							$html .= "<tr>";
-								$html .= "<td>".$p->id."</td>";
 								$html .= "<td>".$p->names."</td>";
                                 $html .= "<td>".$p->next_date."</td>";
-								$html .= "<td>
+								$html .= "<td style='text-align: center;'>
                                 <form action=\"\" method=\"post\">
                                 <input type=\"checkbox\" name=\"done\" onclick=\"javascript: submit()\" value=\"".$p->id."\">
                                 </td>";
@@ -299,7 +297,7 @@
 				?>
 		
 	       </div>
-        </div>
+    </div>
     </div><br><br>
 
 

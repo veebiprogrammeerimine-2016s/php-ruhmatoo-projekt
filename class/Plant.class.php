@@ -275,6 +275,7 @@ class Plant {
 		if($stmt->execute()){
 			// õnnestus
 			echo "salvestus õnnestus!";
+            header("Location: data.php");
 		}	
 	}
     

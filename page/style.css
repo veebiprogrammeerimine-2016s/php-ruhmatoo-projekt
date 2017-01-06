@@ -84,6 +84,7 @@ h4{color:white;}
 	padding: 15px;
 	border-radius:10px;
     display: inline-block;
+    font-size: 15px;
 }
 	
 /*care.php*/	
@@ -191,6 +192,17 @@ blockquote:before, blockquote:after, q:before, q:after {
     font-size: 16px;
 }
 
+#todo input[type="checkbox"] {
+}
+
+#todo td {
+    padding: 8px 15px;
+}
+
+#todo th {
+    padding: 8px 15px;
+}
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -199,7 +211,6 @@ table {
 
 body {
     color: #404040;
-    font-size: 13px;
     font-weight: normal;
     line-height: 20px;
 }
