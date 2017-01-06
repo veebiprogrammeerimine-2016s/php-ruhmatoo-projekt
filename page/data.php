@@ -38,12 +38,12 @@
 			$stmt->bind_param("ii", $_SESSION["userId"], $_GET["addRate"]);
 			$stmt->execute();
 			
-			if($stmt->fetch()){
+			if($stmt->fetch()) {
 				//sai ühe rea
 				echo '{"success": false, "message":"juba olemas"}';
 				exit();
-			}else{
-				
+			} else {
+	
 				$stmt->close();
 				
 				$stmt = $mysqli->prepare("
@@ -57,9 +57,9 @@
 				$stmt->close();
 				$stmt = $mysqli->prepare("
 			
-				INSERT INTO submissions(rating) 
-				VALUES (rating+1)");
+				UPDATE submissions set rating=(rating+1) where id=(?)");
 				echo $mysqli->error;
+				$stmt->bind_param("i", $_GET["addRate"]);
 				$stmt->execute();
 			
 				echo '{"success": true, "message":"Aitäh hinnangu eest"}';
@@ -139,7 +139,7 @@ $(function() {
 			 //set loading flag off once the content is loaded
 			if(data.trim().length == 0){
 				//notify user if nothing to load
-				$('.loading-info').html("No more records!");
+				$('.loading-info').html("jõudsid lõppu :(");
 				return;
 			}
 			
@@ -180,7 +180,7 @@ function addRating(el){
 	$.get( "data.php?addRate="+id, function( data ) {
 		
 	var result = JSON.parse(data);
-	  console.log(result);
+	console.log(result);
 	  if(result.success){
 		  
 		  el.className += " rated";
@@ -189,6 +189,17 @@ function addRating(el){
 		  count = parseInt(count) + 1;
 		  el.querySelector(".counter").innerHTML = count;
 		  
+		  console.log(el.querySelector(".counterstring"));
+		  var count1 = el.querySelector(".counterstring").innerHTML;
+		  
+		  if(count>1) {
+			  var count1 = " punkti";
+			  el.querySelector(".counterstring").innerHTML = count1;
+		  } else {
+			  var count1 = " punkt";
+			  el.querySelector(".counterstring").innerHTML = count1;
+		  }
+			
 		  /*
 		  var p = document.createElement("p");
 		  p.innerHTML = result.message;
@@ -200,9 +211,12 @@ function addRating(el){
 		  */
 	  }else{
 		  //ei õnnestunud
+
+		  /*
+		  
 		  el.className += " rated";
 		  console.log(el.querySelector(".counter"));
-		  /*
+		  
 		  var p = document.createElement("p");
 		  p.innerHTML = result.message;
 		  el.appendChild(p);
@@ -219,27 +233,43 @@ function addRating(el){
 
 
 <div class="container">
-	<div class="page-header">
-		<h1>Latest posts</h1>
-	</div>
-	<p class="lead"></p>
 	<div class="wrapper">
+	<div class="col-lg-6">
 		<ul id="results"><!-- results appear here --></ul>
 		<br>
 		<br>
 		<br>
 		<div class="loading-info"><img src="LoaderIcon.gif" /></div>
-		<div class="load-more">Lae veel</div>
-		
+		<div class="load-more"></div>
 		<br>
 		<br>
 		<br>
 	</div>
+	</div>
+</div>
 
+
+<div class="col-lg-4 col-lg-offset-8">
+	<div class="reklaamid">
+	
+		<a href="http://www.tlu.ee"><img src="tlu.jpg" style="padding: 30px; border:1px solid;"></a>
+	</div>
 </div>
 
 
 
+<!--
+<div class="search">
+	<form class="navbar-form navbar-middle" method="GET">
+    <div class="input-group">
+      <input type="text" name="searchPost" class="form-control" placeholder="ei leia midagi?" value="<?=$search;?>">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">otsi</button>
+      </span>
+    </div>
+	</form>
+</div>
+-->
 
 
 

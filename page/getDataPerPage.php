@@ -41,7 +41,9 @@
 
 	if ($search!=""){
 		
-		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username 
+		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username,
+		(SELECT count(*) FROM ratings WHERE user_id=? AND pic_id=submissions.id), 
+		(SELECT count(*) FROM ratings WHERE pic_id=submissions.id)
 		FROM submissions 
 		join user_sample on submissions.author=user_sample.id
 		WHERE caption LIKE ? OR username LIKE ? AND deleted is NULL
@@ -49,13 +51,14 @@
 		
 		$search ="%".$search."%";
 		
-		$results->bind_param("ssii", $search ,$search ,$position, $item_per_page);
+		$results->bind_param("issii", $_SESSION["userId"],$search ,$search ,$position, $item_per_page);
 		
 	}else{
 		
 		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username, 
 		(SELECT count(*) FROM ratings WHERE user_id=? AND pic_id=submissions.id), 
-		(SELECT count(*) FROM ratings WHERE pic_id=submissions.id)
+		(SELECT count(*) FROM ratings WHERE pic_id=submissions.id),
+		(SELECT count(*) FROM comments WHERE topicid=submissions.id)
 		FROM submissions
 		join user_sample on submissions.author=user_sample.id
 		WHERE deleted is NULL
@@ -71,29 +74,56 @@
 	//bind parameters for markers, where (s = string, i = integer, d = double,  b = blob)
 	//for more info https://www.sanwebe.com/2013/03/basic-php-mysqli-usage
 	$results->execute(); //Execute prepared Query
-	$results->bind_result($id, $name, $message, $author, $rated, $count); //bind variables to prepared statement
+	$results->bind_result($id, $name, $message, $author, $rated, $count, $coms); //bind variables to prepared statement
 	
 	//output results from database
 	while($results->fetch()){ //fetch values
-		echo '<div>';
-		echo '<table>';
-		echo '<tr><h2>'.$name.'</h2></tr>';
-		echo '<td>'."<a href='topic.php?topicid=$id&posted' class='thumbnail'><img src=".$message." ></a>".'</td>';
-		echo '<tr><td>'."Posted by: "."<a href='user.php?username=$author';?>$author</a>".'</td>';
-		
+	
 		$class = "";
 		//echo $rated;
 		if($rated){
 			$class = " rated";
 		}
-		
-		echo '<td align="right">'.'<a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-fire">Ignite(rate)</span><span class="counter">'.$count.'</span></a>'.'</td></tr>';
-
+		if($coms == 1) {
+			$coms1="kommentaar";
+		} else {
+			$coms1="kommentaari";
+		}
+		if($count ==1) {
+			$count1="punkt";
+		} else {
+			$count1="punkti";
+		}
+		echo '<div style="padding-bottom:5px;"><br>';
+		echo '<table>';
+		echo '<tr><span class="caption">'.$name.'</tr>'; 
+		echo '<td>'."<a href='topic.php?topicid=$id&posted'><img src=".$message." ></a>".'</td>';
 		echo '</table>';
-		echo '<br><br>';
 		echo '</div>';
+		echo '</span> <a class="rating'.$class.'" data-id="'.$id.'" onclick="addRating(this)"><span class="glyphicon glyphicon-arrow-up"> </span> <span class="counter" style="color:gray;">'
+		.$count.
+		' </span><span class="counterstring" style="color:gray;"> '.$count1 .'</span>    </a>  <span style="color:gray;"> &middot; </span> '  .  '  <a class="under" href="topic.php?topicid='.$id.'&posted">    <span style="color:gray;">    '  . $coms.' '.$coms1.'</span></a>';
+		echo '<br><br>';
+		echo '<hr>';
 	}
-
+	
+	/*function userRatingExists($id, $mysqli){
+		
+		$stmt = $mysqli->prepare("SELECT user_id, pic_id FROM ratings WHERE user_id=? AND pic_id=?");
+			echo $mysqli->error;
+			$stmt->bind_param("ii", $_SESSION["userId"], $id);
+			$stmt->execute();
+			
+			if($stmt->fetch()){
+				//sai ühe rea
+				return true;
+			}else{
+				
+				return false;
+			}
+	}*/
+	
+	
 ?>
 
 

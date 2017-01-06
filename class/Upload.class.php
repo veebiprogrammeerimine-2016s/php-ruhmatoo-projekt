@@ -30,7 +30,7 @@ class Upload {
 
 			try {
 				$img = new abeautifulsite\SimpleImage($destination_url);
-				$img->best_fit(400, 400)->save($destination_url);
+				$img->best_fit(600, 600)->save($destination_url);
 			} catch(Exception $e) {
 				echo 'Error: ' . $e->getMessage();
 			}
@@ -49,6 +49,7 @@ class Upload {
 		//$_FILES["fileToUpload"]["name"]=uniqid();
 		$target_dir = "uploads/";
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		$target_file_corrected = "/~gregness/php-ruhmatoo-projekt/page/uploads/" . basename($_FILES["fileToUpload"]["name"]);
 		
 		
 		
@@ -77,12 +78,9 @@ class Upload {
 			}
 		}
 		// Check if file already exists
-		/*if (file_exists($target_file)) {
-			$uploadOk = 0;
-			header("Location: upload.php?exists");
-		}*/
+
 		// Check file size
-		if ($_FILES["fileToUpload"]["size"] > 500000) {
+		if ($_FILES["fileToUpload"]["size"] > 5000000) {
 			$uploadOk = 0;
 			header("Location: upload.php?large");
 		}
@@ -112,7 +110,7 @@ class Upload {
 				// d- double
 				//
 				
-				$stmt->bind_param("sss",$userid, $caption, $target_file);
+				$stmt->bind_param("sss",$userid, $caption, $target_file_corrected);
 				
 				
 				if ($stmt->execute()) {

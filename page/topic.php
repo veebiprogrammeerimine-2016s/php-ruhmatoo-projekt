@@ -1,6 +1,6 @@
 <?php 
-	//ühendan sessiooniga
-	//kuradi git ma ütlen!
+	//Ã¼hendan sessiooniga
+	//kuradi git ma Ã¼tlen!
 	require("../functions.php");
 
 	require("../class/Helper.class.php");
@@ -50,7 +50,7 @@
 	
 	if ($postedTrue=="true") {
 		
-		$postError= "Your post was submitted!";
+		$postError= "Your comment was submitted!";
 	}
 	elseif ($postedTrue=="false") {
 			
@@ -74,6 +74,25 @@
 		$results2=$Comment->getComments($topic);
 		
 	}
+	$userId=$_SESSION["userId"];
+	if (isset($_POST["reportC"])){
+		
+		$reportedCID=$_POST["commentId"];
+		$Comment->reportComment($reportedCID,$userId,$topic);
+		
+	}
+	
+	if (isset($_GET["dup"])) {
+		
+		$postError="Oled juba teatanud selle kommentaari kohta!";
+		
+	}
+	
+	if (isset($_GET["suc"])) {
+		
+		$postError="TÃ¤name teavituse eest!";
+		
+	}
 	
 	
 	//pre echob koodina
@@ -87,7 +106,7 @@
 <?php require("../header.php"); ?>
 <div class="container">
 	<div class="page-header">
-		<h1>Thread #<?php echo $topic; ?></h1>
+		<h1>Teema #<?php echo $topic; ?></h1>
 	</div>
 
 
@@ -102,10 +121,10 @@
 			
 			
 		
-			$html .= "<div><table>";
+			$html .= '<div style="padding-bottom:15px;" ><table>';
 				$html .= "<tr><h2>".$r->name."</h2></tr>";
 				$html .= "<td><img src=".$r->message."></td></table>";
-				$html .= "<a href='user.php?username=".$r->author."'>Postitatud kasutaja ".$r->author." poolt</a><br><br><br><br>";
+				//$html .= " <a href='user.php?username=".$r->author."'>". $r->author.'</a>';
 
 			$html .= "</div>";
 		
@@ -116,9 +135,13 @@
 	</div></div>
 	</p>
 	
-	
-	
-	
+		<form class="form-inline" role="form" method="post">
+		<input class="form-control input" type="text" name="comment" placeholder="Kirjuta kommentaar" />
+			<div class="form-group">
+				<button class="btn btn-default">Postita</button>
+			</div>
+	</form>
+	<br><br>
 	
 	
 	<?php
@@ -128,26 +151,34 @@
 			
 		
 
-				$html2 .= "	<div class='well well-sm'><b>".$r2->userid."</b><br><br>";
-				$html2 .= $r2->comment;
-				$html2 .= "<br><br><small class='text-muted'>Postitatud ".$r2->aeg."</small></div>";
+				$html2 .= "<div class='well well-sm'><b>".$r2->userid."</b><span class='hidden'>".$r2->commentid."</span><small style='float:right;'class='text-muted'>".$r2->aeg."</small><br><br>";
+				$html2 .= $r2->comment."<br>";
+				$html2 .= "<small style='float:right;'class='text-muted'>"."<a class='report' href='#myModal' data-toggle='modal'><span class='glyphicon glyphicon-ban-circle'></a>"."</small><br></div>";
 		
 		}
 	
 	echo $html2;
 	?>
 	
-
-	
-	
-	
-	
-	<form class="form-inline" role="form" method="post">
-		<input class="form-control input" type="text" name="comment" placeholder="Kirjuta kommentaar" />
-			<div class="form-group">
-				<button class="btn btn-default">Postita</button>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+	    <div class="modal-content">
+			<div class="modal-header" style="padding:50px 50px;">
+				<h2>Kas tegemist on ebasobiliku kommentaariga?</h2><br>
+				<form method="post">
+				<div class="row">
+					<button type="submit" name="reportC" class="btn btn-block btn-default">Jah</button>
+					<button type="button" class="btn btn-block btn-primary" data-dismiss="modal">Ei</button>
+					<input type="hidden" name="commentId" value="<?php  echo $r2->commentid; ?>">
+				</form>
+				</div>
 			</div>
-	</form>
+		</div>
+	</div>
+</div> 
+	
+	
+
 	<br><br>
 	
 	<h3><?php echo $postError;?></h3>
