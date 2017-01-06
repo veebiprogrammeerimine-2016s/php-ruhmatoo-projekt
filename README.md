@@ -1,7 +1,6 @@
 # WORKMEN / FIXIFY
 
-*suurelt projekti veebirakenduse pilt*
-
+![Preview](screenshot.png)
 Kristel Roosimaa, Mihkel Põder, Elle Elisa Ivantšikova
 
 ## Eesmärk
