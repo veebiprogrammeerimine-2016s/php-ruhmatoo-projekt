@@ -19,6 +19,9 @@
 </head>
 <body>
 		
+	
+	
+	<?php if(isset($_SESSION["userEmail"])){ ?>
 	<div class="container">
 	
 		<div class="row">
@@ -35,7 +38,11 @@
 				</nav>
 			</div>
 		</div>
-	</div>
-	
+	</div>	
+	<?php } else { ?>
+		echo "lololol";
+	<?php } ?>
 
 	
+
+</body>
