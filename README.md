@@ -97,6 +97,7 @@ create table bios (
 ```
 
 * Kokkuvõte: mida õppisid juurde? mis ebaõnnestus? mis oli keeruline?
-	* Kristel:
+	* Kristel: Õppisin olema kannatlik, paremini süvenema detailidesse, väga palju lehe kujundamisest ja  seda kui palju aega ja vaeva üks lehekülg võib nõuda.
+	Isiklikuks ebaõnnestumiseks pean php tegemises vähest osavõttu. Projekti osas sõnumite süsteem ja mõned väikesed detailid, nagu profiilipildi muutmine jms. Keeruline oligi ebaõnnestunud asjad :) 
 	* Mihkel: Õppisin rühmatöös olevaid keerukusi ja detaile. Soov oli luua ka sõnumite süsteem, et kasutajad saaksid omavahel sõnumeid vahetada, kuid sellega otseselt tegeleda ei osanud. Keeruline oli kirjutada koodi kõige uuema PHP versiooni jaoks, ning siis leida, et see ei tööta kooliserveris.
 	* Elle:
