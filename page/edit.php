@@ -43,11 +43,11 @@ if(isset($_GET["success"])){
 
 <h2>Muuda kirjet</h2>
   <form class="edit-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
-	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
+	<input type="hidden" name="id" value="<?=$_GET["id"];?>" required> 
   	<label for="plant_name" >Taime nimi</label><br>
-	<input id="plant_name" name="plant" type="text" value="<?php echo $p->names;?>" ><br><br>
+	<input id="plant_name" name="plant" type="text" value="<?php echo $p->names;?>" required><br><br>
   	<label for="watering_interval" >Kastmisintervall</label><br>
-	<input id="watering_interval" name="interval" type="text" value="<?php echo $p->watering_interval;?>"><br><br>
+	<input id="watering_interval" name="interval" type="text" value="<?php echo $p->watering_interval;?>" required><br><br>
   	<input type="submit" name="update" value="Salvesta">
 	<br><br>
 	

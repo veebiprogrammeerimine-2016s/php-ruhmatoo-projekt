@@ -89,7 +89,7 @@
         
         $Plant->saveUserPlants($Helper->cleanInput($_POST["plant"]), $Helper->cleanInput($_POST["watering"]));
         $Plant->saveSecond($Helper->cleanInput($_POST["plant"]), $Helper->cleanInput($_POST["watering"]));
-        header("Location: data.php");
+        header("Location: data.php#MyPlänts");
         exit();
     }
 		
@@ -100,6 +100,7 @@
 	if( isset($_POST["user_plant"] )){
 		if( empty($_POST["user_plant"])) {
 			$plantError = "Sisesta taime nimetus!  ";
+            header("Location: data.php#Muutmine");
 		}else{
 			$plant=$_POST["user_plant"];
         }
@@ -108,6 +109,7 @@
 	if( isset($_POST["waterings"])) {
 		if( empty($_POST["waterings"])) {
 			$wateringIntervalError = "  Sisesta kastmisintervall!  ";
+            header("Location: data.php#Muutmine");
 			} else { 
 			$wateringInterval = $_POST["waterings"];
 		}		
@@ -128,7 +130,19 @@
 <div class="container"><br><br><br>
  <h3>Tere tulemast     <?=$_SESSION["firstName"];?>   <?=$_SESSION["lastName"];?>!</h3>
 
-    
+    <script> /* script for tab panel url */
+        $(function(){
+          var hash = window.location.hash;
+          hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+          $('.nav-tabs a').click(function (e) {
+            $(this).tab('show');
+            var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+            window.location.hash = this.hash;
+            $('html,body').scrollTop(scrollmem);
+          });
+        });
+    </script>
     
 <div id="plantsForm" class="col-lg-6 col-sm-offset-6" style="background-color:rgba(0, 0, 0, 0.5)";>
 
@@ -204,10 +218,10 @@
 
 								  
 										<h5>Sisesta taime nimetus</h5>
-								<input  class="form-control" name="user_plant" placeholder="taime nimetus"  type="text" value="<?=$plant;?>" > 
+								<input  class="form-control" name="user_plant" placeholder="taime nimetus"  type="text" value="<?=$plant;?>" required> 
 
 										<h5>Sisesta taime kastmisintervall</h5>
-								<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number"> 
+								<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number" required> 
 
 								<input id="sub" class="btn btn-default" type="submit" value="Salvesta">
 							</form>
@@ -234,14 +248,14 @@
 						}
 					</script>
 						<form class="form-group form-group-sm" id="plantsFromPlantsForm" method=post >
-				 					<select name="plant" id="options">
+				 					<select name="plant" id="options" required>
 									<option value="" disabled selected>Vali meie andmebaasist sobiv taim</option>
 									<?php foreach($options as $option): ?>
 									  <option data-water="<?=$option->intervals?>" value="<?=$option->id?>"><?=$option->plants?></option>
 									 <?php endforeach; ?>
 									</select>
 									<h5>Sisesta taime kastmisintervall</h5>
-								<input disabled id="watering" class="form-control" name="watering" placeholder="mitme päeva tagant"  type ="number"> 
+								<input disabled id="watering" class="form-control" name="watering" placeholder="mitme päeva tagant"  type ="number" required> 
 
 								<input id="sub" class="btn btn-default" type="submit" value="Salvesta">
 						</form>
