@@ -68,8 +68,7 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
 }
 
 ?>
-<?php require("header.php");
-?>
+<?php require("header.php");?>
 
 <?php  if(!empty($emailSent)):   ?>
     <script>
@@ -80,7 +79,8 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
     </script>
 
 <?php endif;  ?>
-
+<script>
+</script>
 <body style="padding-top:70px;">
 <div class="container">
     <nav class="navbar navbar-fixed-top navbar-dark bg-primary">
@@ -165,10 +165,11 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
                             <input type="text" name="carnumber" id="carnumber" class="form-control required" required="required"/>
                         </p>
                         <label for="datetimepicker">Vali endale aeg:<span class="req-form-field">*</span></label>
-                        <input type="text" name="datetimepicker" id="datetimepicker" class="form-control required" required="required" /><br><br>
+                        <input type="text"  name="datetimepicker" id="datetimepicker" class="form-control required" required="required" /><br><br>
                         <input type="submit" id="order-btn" class="btn btn-success" name="bookthistime"  value="Broneeri" />
                     </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -313,13 +314,13 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
                     console.log(day.available);
                     this.setOptions({
                         timepicker:true,
-
-                       allowTimes: day.available
+                        format:'d.m.Y H:i',
+                        allowTimes: day.available
                        // minTime:'11:00'
 
                     });
 
-                    document.getElementById("datetimepicker").value = dateString + " " + currentDateTime.getHours() + ":00";
+                //    document.getElementById("datetimepicker").value = dateString + " " + currentDateTime.getHours() + ":00";
 
                     break;
                 }
@@ -328,13 +329,12 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
                     console.log("disabling " + dateString);
                     this.setOptions({
                         timepicker:true,
-
                         allowTimes: []
                     });
 
                 }
 
-              document.getElementById("datetimepicker").value = "";
+         //     document.getElementById("datetimepicker").value = "";
             }
 
 
@@ -364,11 +364,9 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
         console.log(disabled_dates);
         console.log(allow_dates);
 
-
         $("#datetimepicker").datetimepicker({
-          // inline:true,
             minDate:new Date(),
-            format:'d.m.Y H:i',
+            format:'d.m.Y',
             defaultSelect:false,
             timepicker:false,
             onChangeDateTime:logic,
@@ -376,6 +374,9 @@ if(isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["phone"]) && 
             formatDate:'d.m.Y',
             allowDates: allow_dates
         });
+
+
+
 
     </script>
 </body>
