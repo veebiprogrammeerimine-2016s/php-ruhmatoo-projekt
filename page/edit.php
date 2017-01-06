@@ -29,19 +29,14 @@ $p = $Plant->getSingleData($_GET["id"]);
 		exit();
 	}
 	
-/*	$p = $Plant->getSingleData($_GET["id"]);
-	var_dump($p); */
-	
 if(isset($_GET["success"])){
 		echo "salvestamine õnnestus";
 	}
-
-	
-
-
 	
 ?>
+
 <?php require("../header.php");?>
+
 <br><br>
 <a href="data.php"> Tagasi </a>
 
@@ -49,9 +44,9 @@ if(isset($_GET["success"])){
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
   	<label for="plant_name" >Taime nimi</label><br>
-	<input id="plant_name" name="plant" type="text" value="<?php echo $p->name;?>" ><br><br>
+	<input id="plant_name" name="plant" type="text" value="<?php echo $p->names;?>" ><br><br>
   	<label for="watering_interval" >Kastmisintervall</label><br>
-	<input id="watering_interval" name="interval" type="text" value="<?php echo $p->watering_days;?>"><br><br>
+	<input id="watering_interval" name="interval" type="text" value="<?php echo $p->watering_interval;?>"><br><br>
   	
 	<input type="submit" name="update" value="Salvesta">
 	<br><br>
