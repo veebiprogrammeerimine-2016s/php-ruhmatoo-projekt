@@ -37,43 +37,40 @@ Nende rakenduste puhul on probleemiks aga liigne liialdus disaini kui ka funktsi
 
 ### Ülesehitus
 
-1. **Siia tuleb andmebaasiskeem**
+1. **Andmebaasiskeem**
 
-Andmebaasiskeem.
-
-![tabelid](https://cloud.githubusercontent.com/assets/22025387/21693918/6c706a30-d38b-11e6-806d-bbc6441c6844.png)
+[Tabelid](https://cloud.githubusercontent.com/assets/22025387/21693918/6c706a30-d38b-11e6-806d-bbc6441c6844.png)
 
 
 
-2. **Siia tuleb pilt veebilehest**
+2. **Veebileht**
 
-Sisselogimis vorm.
    
-![log-in](https://cloud.githubusercontent.com/assets/22025387/21693731/bb4ec6ca-d38a-11e6-995d-4658b9100489.png)
+[Log-in](https://cloud.githubusercontent.com/assets/22025387/21693731/bb4ec6ca-d38a-11e6-995d-4658b9100489.png)
 
-Kasutaja tegemise vorm.
 
-![sign-up](https://cloud.githubusercontent.com/assets/22025387/21693668/74a606c0-d38a-11e6-9f15-a8448a6aa1bb.png)
 
-Kodu.
+[Sign-up](https://cloud.githubusercontent.com/assets/22025387/21693668/74a606c0-d38a-11e6-9f15-a8448a6aa1bb.png)
 
-![kodu](https://cloud.githubusercontent.com/assets/22025387/21693752/cf32bb10-d38a-11e6-95b2-c77b4cce0170.png)
 
-Tunniplaan.
 
-![tunniplaan](https://cloud.githubusercontent.com/assets/22025387/21693818/13202ef2-d38b-11e6-9638-bcd4a370b319.png)
+[Kodu](https://cloud.githubusercontent.com/assets/22025387/21693752/cf32bb10-d38a-11e6-95b2-c77b4cce0170.png)
 
-Kohustuslik kirjandus.
 
-![kohustuslik kirjandus](https://cloud.githubusercontent.com/assets/22025387/21693843/31e8e0cc-d38b-11e6-8c02-0675ef1f128c.png)
 
-Õppejõud.
+[Tunniplaan](https://cloud.githubusercontent.com/assets/22025387/21693818/13202ef2-d38b-11e6-9638-bcd4a370b319.png)
 
-![oppejoud](https://cloud.githubusercontent.com/assets/22025387/21693872/44f579dc-d38b-11e6-9a6a-c4db37b0e2d8.png)
 
-Rippmenüü.
 
-![dropdown-menu](https://cloud.githubusercontent.com/assets/22025387/21693892/53d615c4-d38b-11e6-83dd-8a24ddade5f1.png)
+[Kohustuslik kirjandus](https://cloud.githubusercontent.com/assets/22025387/21693843/31e8e0cc-d38b-11e6-8c02-0675ef1f128c.png)
+
+
+
+[Õppejoud](https://cloud.githubusercontent.com/assets/22025387/21693872/44f579dc-d38b-11e6-9a6a-c4db37b0e2d8.png)
+
+
+
+[Dropdown-menu](https://cloud.githubusercontent.com/assets/22025387/21693892/53d615c4-d38b-11e6-83dd-8a24ddade5f1.png)
 
 
 
@@ -93,9 +90,13 @@ Rippmenüü.
 ### Kokkuvõte
 
 1. **Marko Kollo**
-    * Mida õppisin juurde?
-    * Mis ebaõnnestus?
-    * Mis oli keeruline?
+    * Mida õppisin juurde? Õppisin juurde, kui tähtis on korralliku töövoo omamine ning disaini ja funktsionaalsuse
+    eelnev planeerimine. Samuti õppisin juurde erinevate probleemide lahendamise metoodikat
+    ning millised 'detailivead' võivad veebilehte tekkida ja kuidas neid lahendada. Kogemusi sai ka debuggimisel, 
+    tõusis arusaam selle üle, kui tähtis on ikka korralik errorite väljanäitamine ning kui kasulik tööriist on Google
+    Chrome konsool. 
+    * Mis oli keeruline? Keeruline oli redirect errorite lahendamine, errorite korralik väljanäitamine, Javascripti lisamine
+     ning selle korralikult rakendamine. Segadust tekitas ka Githubi rakendamine.
 
 2. **Kärol-Milaine Jürgenson**
     * Mida õppisin juurde? Õppisin väga palju juurde veebilehe kujunduslikust osast. Õppisin kuidas muuta erinevate asjade välimust kui ka paiknevust vastavalt enda soovidele. Õppisin kuidas lisada erinevaid logosid ning kuidas luua otseteid teistele lehekülgedele.
