@@ -10,8 +10,12 @@ Antud projekti eesmärgiks on võimaldada inimestel kiirelt ja lihtsalt tellida 
 * Sihtrühm:
 	* Vanus: 20-75+
 	* Sugu: Pole oluline, kuid suurema tõenäosusega kasutaksid rakendust naised
-* Eripära(võrreldes teiste samalaadsete rakendustega - kirjelda vähemalt 2-3 sarnast rakendust mida eeskujuks võtta):
+* Eripära(võrreldes teiste samalaadsete rakendustega - kirjelda vähemalt 2-3 sarnast rakendust mida eeskujuks võtta): Taxify rakendus oli meil esialgu inspiratsiooni aluseks, mis pakub inimestele teenust leida takso enda läheduses, võrrelda erinevate taksode hindu ja kaugust ning valida enda jaoks sobilik takso. Meie veebilehe mõte on sarnane, et aidata inimestel leida oskuslike inimesi, kes saaksid aidata erinevate parandustega. On olemas erinevaid veebilehti ja gruppe Facebookis, kus inimesed üksikult pakuvad erinevaid teenuseid, näiteks nagu koristaja.ee või Facebookis Telli Töömees. Eripärana tooks välja, et sellist veebilehte, ei ole me veel leidnud, kus oleks paljud erinevate oskustega inimesed ühes kohas kättesaadaval. 
 * Funktsionaalsuse loetelu prioriteedi järjekorras:
+	* Sisse logimine ja registreerumine
+	* Kasutajate otsimine ja filtreerimine
+	* Profiili loomine ja muutmine
+	* Kasutajate kontaktide leidmine
 
 ## Andmebaasi skeem ja tabelite loomise SQL laused
 ![Preview](databasescheme.png)
