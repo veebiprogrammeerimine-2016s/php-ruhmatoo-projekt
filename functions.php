@@ -21,15 +21,3 @@ require("../../../config.php");
 	// see fail, peab olema kõigil lehtedel kus 
 	// tahan kasutada SESSION muutujat
 	session_start();
-	
-	//***************
-	//**** SIGNUP ***
-	//***************
-
-
-
-	
-		
-	
-
-

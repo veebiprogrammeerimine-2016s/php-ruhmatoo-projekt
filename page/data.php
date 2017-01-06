@@ -12,17 +12,22 @@
 	
 	//kui ei ole kasutaja id'd
 	if (!isset($_SESSION["userId"])){
-		
 		//suunan sisselogimise lehele
 		header("Location: login.php");
 		exit();
-		
 	}
 		
 
 
 
-	
+
+
+    if (isset($_GET["deleted"])){
+		$Plant->delete($_GET["id"]);
+			header("Location: data.php");
+			exit();
+	}
+
 	
 	
 	//kui on ?logout aadressireal siis login välja
@@ -42,6 +47,7 @@
 		//kustutan ära, et pärast ei näitaks
 		unset($_SESSION["message"]);
 	}
+
 	
 	if (isset($_POST["user_plant"]) &&
 		(isset($_POST["waterings"]) &&
@@ -50,8 +56,6 @@
 		)) {
 			
 			$Plant->save($Helper->cleanInput($_POST["user_plant"]), $Helper->cleanInput($_POST["waterings"]),$_SESSION["userEmail"]);
-            $Plant->saveSecond($Helper->cleanInput($_POST["user_plant"]),$_SESSION["userEmail"]);
-			echo $_SESSION["userEmail"];
 			header("Location: data.php");
 		    exit();
 		}
@@ -75,58 +79,39 @@
 		$plantData = $Plant->getAllUserPlants($q,$sort,$direction);
 		
 	}	
+    
+    /* Sisesta andmebaasist save */
+    if (isset($_POST["plant"]) &&
+ 	  (isset($_POST["watering"]) &&
+       !empty($_POST["plant"]) &&
+       !empty($_POST["watering"])
+      )) {
+        
+        $Plant->saveUserPlants($Helper->cleanInput($_POST["plant"]), $Helper->cleanInput($_POST["watering"]));
+        $Plant->saveSecond($Helper->cleanInput($_POST["plant"]), $Helper->cleanInput($_POST["watering"]));
+        header("Location: data.php");
+        exit();
+    }
 		
 	
 	$options = $Plant->getOptions();
-	
-	
-		
-		//echo"<pre>";
-		//var_dump($plantData);
-		//echo"</pre>";
 		
 	
-
 	if( isset($_POST["user_plant"] )){
-
-	
-
 		if( empty($_POST["user_plant"])) {
-
 			$plantError = "Sisesta taime nimetus!  ";
-			
 		}else{
-			
-			
 			$plant=$_POST["user_plant"];
-
-
-
-			}
+        }
 	}
 	
 	if( isset($_POST["waterings"])) {
-		
-		if( empty($_POST["waterings"]))
-        {
+		if( empty($_POST["waterings"])) {
 			$wateringIntervalError = "  Sisesta kastmisintervall!  ";
-			
 			} else { 
-			
 			$wateringInterval = $_POST["waterings"];
-		
 		}		
 	}
-	
-		if (isset($_POST["plant"]) &&
-		(isset($_POST["watering"]) &&
-		!empty($_POST["plant"]) &&
-		!empty($_POST["watering"])
-		)) {
-			$Plant->saveUserPlants($Helper->cleanInput($_POST["plant"]), $Helper->cleanInput($_POST["watering"]));
-			header("Location: data.php");
-		    exit();
-		}
 	
 	
 	$pageName="data"
@@ -137,13 +122,13 @@
 
 
 <div class="container"><br><br><br>
- <h3>Tere tulemast     <?=$_SESSION["firstName"];?>  <?=$_SESSION["lastName"];?>!</h3>
+ <h3>Tere tulemast     <?=$_SESSION["firstName"];?>   <?=$_SESSION["lastName"];?>!</h3>
 <div id="plantsForm" class="col-lg-6 col-sm-offset-6" style="background-color:rgba(0, 0, 0, 0.5)";>
 
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#MyPlänts" aria-controls="MyPlänts" role="tab" data-toggle="tab">Minu Pländid</a></li>
-			<li role="presentation"><a href="#Muutmine" aria-controls="Muutmine" role="tab" data-toggle="tab">Muutmine</a></li>
-			<li role="presentation"><a href="#Soovitustest" aria-controls="Soovitustest" role="tab" data-toggle="tab">Plänts lehelt</a></li>
+			<li role="presentation"><a href="#Muutmine" aria-controls="Muutmine" role="tab" data-toggle="tab">Lisa taim</a></li>
+			<li role="presentation"><a href="#Soovitustest" aria-controls="Soovitustest" role="tab" data-toggle="tab">Vali andmebaasist</a></li>
 		  </ul>
 	
 		<div class="tab-content"> <!----TABI ALGUS  --->
@@ -161,11 +146,11 @@
 							
 						}
 						
-						$html = "<table class='table table-striped table-hover table-condensed table-bordered  ' style='background-color:white'>";
+						$html = "<table class='table table-hover table-condensed' style='background-color:white'>";
 						$html .= "<tr>";
-							$html .= "<th style='width:30px'><a href='?q=".$q."&sort=plantID&direction=".$direction."'>id</a></th>";
 							$html .= "<th style='width:300px'><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
-							$html .= "<th style='width:50px'><a href='?q=".$q."&sort=interval&direction=".$direction."'>kasta</a></th>";
+							$html .= "<th style='width:50px'>kasta</th>";
+                            $html .= "<th style='width:70px'></th>";
 						$html .= "</tr>";
 						
 						$i = 1;
@@ -176,10 +161,19 @@
 						
 							
 							$html .= "<tr>";
-								$html .= "<td>".$p->id."</td>";
 								$html .= "<td>".$p->name."</td>";
 								$html .= "<td>".$p->intervals."</td>";
-								$html .= "<td style='width:50px'><button><a href='edit.php?id=".$p->id."'>Muuda</a></button><br><button class='submit' type='submit' value='.$p->id.' name='op'>Kustuta</button></td>";
+
+								$html .= "<td> 
+                                <a href='edit.php?id=".$p->id."'>
+                                <i class='glyphicon glyphicon-edit'></i>
+                                </a>
+                                <a href='?id=".$p->id."&deleted=true'
+                                onclick='confirm(\"Are you sure you want to delete ".$p->name."?\");'>
+                                <i class='glyphicon glyphicon-remove'></i>
+                                </a>
+                                </td>";
+
 							$html .= "</tr>";
 							
 							$i += 1;
@@ -188,12 +182,6 @@
 						$html .= "</table>";
 						
 						echo $html;
-						
-						$listHtml="<br><br>";
-						
-						
-						
-						echo $listHtml;
 				?>
 							
 			</div><!---TABI ESIMESE PANEELI SISU LÕPP-->
@@ -209,20 +197,13 @@
 								<?php echo $wateringIntervalError;  ?>
 
 								  
-										<h3>Sisesta taime nimetus</h3>
+										<h5>Sisesta taime nimetus</h5>
 								<input  class="form-control" name="user_plant" placeholder="taime nimetus"  type="text" value="<?=$plant;?>" > 
 
-										<h3>Sisesta taime kastmisintervall</h3>
+										<h5>Sisesta taime kastmisintervall</h5>
 								<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number"> 
 
-								<input class="btn btn-default" type="submit" value="Salvesta">
-									<div id="plantSearch" class="search">
-											<h3>Taime otsing</h3>
-										<form>
-												<input type="search" name="q" value="<?=$q;?>">
-												<input class="btn btn-default" type="submit" value="Otsi">
-										</form>
-									</div>
+								<input id="sub" class="btn btn-default" type="submit" value="Salvesta">
 							</form>
 					</div>
 							
@@ -235,7 +216,7 @@
 			
 			<div role="tabpanel" class="tab-pane" id="Soovitustest"> <!---Kolmanda tab-i algus--->
 				<div id="plantFromPlantsDiv">
-					<h3>Andmebaasist taime lisamine</h3>
+					<h3>Andmebaasist taime lisamine</h3> <br>
 					<script>
 						window.onload = function(){
 							var optionsList = document.getElementById("options");
@@ -248,15 +229,15 @@
 					</script>
 						<form class="form-group form-group-sm" id="plantsFromPlantsForm" method=post >
 				 					<select name="plant" id="options">
-									<option value="" disabled selected>Select your option</option>
+									<option value="" disabled selected>Vali meie andmebaasist sobiv taim</option>
 									<?php foreach($options as $option): ?>
 									  <option data-water="<?=$option->intervals?>" value="<?=$option->id?>"><?=$option->plants?></option>
 									 <?php endforeach; ?>
 									</select>
-									<h3>Sisesta taime kastmisintervall</h3>
+									<h5>Sisesta taime kastmisintervall</h5>
 								<input disabled id="watering" class="form-control" name="watering" placeholder="mitme päeva tagant"  type ="number"> 
 
-								<input class="btn btn-default" type="submit" value="Salvesta">
+								<input id="sub" class="btn btn-default" type="submit" value="Salvesta">
 						</form>
 					
 				</div>
@@ -268,9 +249,7 @@
 		
 	</div>
 	
-	</div></div><br><br>
-	
-
+	</div><br><br>
 
 
 
