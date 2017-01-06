@@ -6,15 +6,46 @@ require("../class/class_login.php");
 $data = new Internal($dbconn);
 $login = new User($dbconn);
 $districts = array();
-$districts = $internal->getDistrictIDs();
-$skills = array();
-$skills = $internal->getSkillIDs();
+$districts = $data->getDistrictIDs();
+$allskills = array();
+$allskills = $data->getSkillIDs();
+$namechanged = false;
+$agechanged = false;
+$districtchanged = false;
+$biochanged = false;
+
 if (!isset($_SESSION["id"])) {
 	header("Location: home.php");
 	exit();
 }
 $name = $_SESSION["name"];
-
+$age = $data->getAge($_SESSION["id"]);
+$bio = $data->getBio($_SESSION["id"]);
+if (isset($_POST["skill"])) {
+	if (!$login->skillExists($_SESSION["id"], $_POST["skill"])) {
+		$login->addSkill($_SESSION["id"], $_POST["skill"]);
+	}
+}
+if (isset($_POST["name"])) {
+	if ($login->changeName($_SESSION["id"], $_POST["name"])) {
+		$namechanged = true;
+	}
+}
+if (isset($_POST["age"])) {
+	if ($login->changeAge($_SESSION["id"], $_POST["age"])) {
+		$agechanged = true;
+	}
+}
+if (isset($_POST["district"])) {
+	if ($login->changeDistrict($_SESSION["id"], $_POST["district"])) {
+		$districtchanged = true;
+	}
+}
+if (isset($_POST["bio"])) {
+	if ($login->changeBio($_SESSION["id"], $_POST["bio"])) {
+		$biochanged = true;
+	}
+}
 ?>
 <div class="header"><a class="hbutton" href="home.php">< </a><?php echo $appName; ?></div>
 
@@ -54,24 +85,48 @@ $name = $_SESSION["name"];
 <td id="two">
 <form method="post" >
 <p>Nimi:</p>
-<p><input type="text" size="15" name="name" value="<?=$name?>">
+<p><input type="text" size="15" name="name" value="<?=$name?>"></p>
 <br>
 <p>Asukoht:</p>
-<p><select name="district" style="width: 100%;"></select>
+<p><select name="district" style="width: 100%;">
+	<?php foreach($districts as $a) {
+			$dname = $data->getDistrictName($a);
+			echo "<option value='".$a."'>".$dname."</option>";
+		} ?>
+</select></p>
 <br>
 <p>Vanus:</p>
-<p><input type="number" size="15" name="" value="">
+<p><input type="number" size="15" name="age" value="<?=$age ?>">
 <br>
 <p>Amet:</p>
-<p><input type="text" size="15" name="" value="">
+<p>Juba valitud ametid:
+	<?php
+	$skills = array();
+	$skills = $data->getWorkerSkills($_SESSION["id"]);
+	if (!empty($skills)) {
+		foreach ($skills as $a) {
+			$skillname = $data->getSkillName($a);
+			echo $skillname.", ";
+		}
+	} else { echo "Ametid puuduvad";} ?></p>
+<p><select name="skill" style="width: 100%;">
+<?php
+	unset($a);
+	foreach($allskills as $a) {
+			$skillname = $data->getSkillName($a);
+			echo "<option value='".$a."'>".$skillname."</option>";
+		}
+?>
+</select></p>
 <br>
 <p>Minust:</p>
-<p><input type="text" size="15" name="" value="">
-<br>
-<p>Uus parool (kui ei soovi muuta võid ka tühjaks jätta):</p>
-<p><input type="password" size="10" name="" value="">
+<p><input type="text" size="15" name="bio" value="<?=$bio ?>"></p>
 <br><br>
-<p><input type="submit" name="submitbtn" value="Muuda kasutajat">
+<p><input type="submit" name="submitbtn" value="Muuda kasutajat"></p>
+	<?php if ($namechanged) {echo "Nimi on muudetud.";}
+	if ($agechanged) {echo "Vanus on muudetud.";}
+	if ($districtchanged) {echo "Asukoht on muudetud.";}
+	if ($biochanged) {echo "Bio on muudetud.";}?>
 </form>
 </td>
 </tr>
