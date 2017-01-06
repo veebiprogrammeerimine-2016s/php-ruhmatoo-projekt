@@ -189,6 +189,16 @@ function addRating(el){
 		  count = parseInt(count) + 1;
 		  el.querySelector(".counter").innerHTML = count;
 		  
+		  console.log(el.querySelector(".counterstring"));
+		  var count1 = el.querySelector(".counterstring").innerHTML;
+		  
+		  if(count>1) {
+			  var count1 = " punkti";
+			  el.querySelector(".counterstring").innerHTML = count1;
+		  } else {
+			  var count1 = " punkt";
+			  el.querySelector(".counterstring").innerHTML = count1;
+		  }
 			
 		  /*
 		  var p = document.createElement("p");
@@ -201,9 +211,12 @@ function addRating(el){
 		  */
 	  }else{
 		  //ei õnnestunud
+
+		  /*
+		  
 		  el.className += " rated";
 		  console.log(el.querySelector(".counter"));
-		  /*
+		  
 		  var p = document.createElement("p");
 		  p.innerHTML = result.message;
 		  el.appendChild(p);

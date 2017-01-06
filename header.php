@@ -32,10 +32,8 @@
 			text-decoration:none;
 			color: #6495ED;
 			cursor:default;
-			font-size: 20px;
 		}
 		.rating {
-			font-size: 20px;
 			text-decoration:none;
 			cursor:pointer;
 		}
@@ -95,6 +93,9 @@
 		span.caption {
 			font-size: 30px;
 			font-family: "Arial", Verdana, Sans-serif;
+		}
+		a.under:hover {
+			text-decoration: underline;
 		}
 
 		</style>

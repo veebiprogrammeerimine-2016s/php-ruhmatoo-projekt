@@ -121,10 +121,10 @@
 			
 			
 		
-			$html .= "<div><table>";
+			$html .= '<div style="padding-bottom:15px;" ><table>';
 				$html .= "<tr><h2>".$r->name."</h2></tr>";
 				$html .= "<td><img src=".$r->message."></td></table>";
-				$html .= "Posted by <a href='user.php?username=".$r->author."'>". $r->author.'</a>';
+				//$html .= " <a href='user.php?username=".$r->author."'>". $r->author.'</a>';
 
 			$html .= "</div>";
 		
@@ -135,8 +135,13 @@
 	</div></div>
 	</p>
 	
-	
-	
+		<form class="form-inline" role="form" method="post">
+		<input class="form-control input" type="text" name="comment" placeholder="Kirjuta kommentaar" />
+			<div class="form-group">
+				<button class="btn btn-default">Postita</button>
+			</div>
+	</form>
+	<br><br>
 	
 	
 	<?php
@@ -146,7 +151,7 @@
 			
 		
 
-				$html2 .= "Kommentaarid<div class='well well-sm'><b>".$r2->userid."</b><span class='hidden'>".$r2->commentid."</span><small style='float:right;'class='text-muted'>".$r2->aeg."</small><br><br>";
+				$html2 .= "<div class='well well-sm'><b>".$r2->userid."</b><span class='hidden'>".$r2->commentid."</span><small style='float:right;'class='text-muted'>".$r2->aeg."</small><br><br>";
 				$html2 .= $r2->comment."<br>";
 				$html2 .= "<small style='float:right;'class='text-muted'>"."<a class='report' href='#myModal' data-toggle='modal'><span class='glyphicon glyphicon-ban-circle'></a>"."</small><br></div>";
 		
@@ -173,12 +178,7 @@
 </div> 
 	
 	
-	<form class="form-inline" role="form" method="post">
-		<input class="form-control input" type="text" name="comment" placeholder="Kirjuta kommentaar" />
-			<div class="form-group">
-				<button class="btn btn-default">Postita</button>
-			</div>
-	</form>
+
 	<br><br>
 	
 	<h3><?php echo $postError;?></h3>
