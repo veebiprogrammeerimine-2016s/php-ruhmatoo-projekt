@@ -1,19 +1,12 @@
 ################# SERIAALID ################################
 Raily Toomingas, Stenly Poks
 
+Eesmärk: anda seriaalihuvilistele ülevaade hetkel eetris olevatest serialidest. Samuti on võimalik seriaale hinnata ja kommenteerida ja vaadata teiste hinnanguid
+Sihtrühm 20-40 inimesed, saab kommenteerida saateid, eeskujuks olid kava.ee, tv3.ee/kava, kava.delfi.ee
+Saab luua kasutaja ja sisselogida
+Saab kommentaare lisada
 
-
-
-### Nõuded
-
-1. **README.md sisaldab:**
-    * suurelt projekti veebirakenduse pilt;
-    * eesmärki (3-4 lauset, mis probleemi üritate lahendada);
-    * kirjeldus (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta);
-    * funktsionaalsuse loetelu prioriteedi järjekorras, nt
-        * v0.1 Saab teha kasutaja ja sisselogida
-        * v0.2 Saab lisada huviala
-        * ...
+õppisime tabeleid tegema ja neid üksteise alla paigutama
     * andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
     * **kokkuvõte:** mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
 
