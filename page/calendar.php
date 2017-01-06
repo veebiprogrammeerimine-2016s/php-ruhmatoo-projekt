@@ -1,4 +1,9 @@
+<?php
 
+//suunamine oma profiilile
+
+
+?>
 
 <html>
 <head>   
@@ -11,6 +16,9 @@ include '../class/Calendar.class.php';
 $calendar = new Calendar();
  
 echo $calendar->show();
+
+
 ?>
 </body>
+<input type="button" value="My profile" onclick="location='myprofile'" />
 </html>  
