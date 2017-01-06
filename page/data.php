@@ -66,6 +66,86 @@
 	//echo"<pre>";
 	//var_dump($people[1]);
 	//echo"</pre>";
+	
+	
+	//kontrollin kas tühi
+		if ( isset($_POST["username"]) && 
+		 isset($_POST["comment"]) &&
+		 isset($_POST["rating"]) &&
+		 !empty($_POST["username"]) &&
+		 !empty($_POST["comment"]) &&
+		 !empty($_POST["rating"])
+	) { 
+	
+	
+		$username = cleanInput($_POST["username"]);
+		
+		saveEvent(cleanInput($_POST["username"]), ($_POST["comment"]), ($_POST["rating"]));
+		header("Location: login.php");
+		exit();
+	}
+	/*$people=getAllPeople();
+	echo"<pre>";
+	var_dump($people[1]);
+	echo"</pre>";*/
+	
+
+	$usernameError= "*";
+	if (isset ($_POST["username"])) {
+		if (empty ($_POST["username"])) {
+			$usernameError = "* Väli on kohustuslik!";
+		} else {
+			$username = $_POST["username"];
+		}
+	}
+	
+	$commentError= "*";
+	if (isset ($_POST["comment"])) {
+		if (empty ($_POST["comment"])) {
+			$commentError = "* Väli on kohustuslik!";
+		} else {
+			$comment = $_POST["comment"];
+		}
+	}
+	
+	$ratingError= "*";
+	if (isset ($_POST["rating"])) {
+		if (empty ($_POST["ratingError"])) {
+			$ratingError = "* Väli on kohustuslik!";
+		} else {
+			$rating = $_POST["rating"];
+		}
+	}
+	
+	if(isset ($_POST["rating"])) {
+		if(empty ($_POST["rating"])){
+			$ratingError = "*";
+		} else{
+		$rating = $_POST["rating"];
+		}
+	}
+	
+
+	if(isset ($_POST["comment"])) {
+		if(empty ($_POST["comment"])){
+			$commentError = "*";
+		} else{
+		$comment = $_POST["comment"];
+		}
+	}
+	
+	
+
+	
+	if(isset ($_POST["username"])) {
+		if(empty ($_POST["username"])){
+			$usernameError = "*";
+		} else{
+		$username = $_POST["username"];
+		}
+	}
+	
+	
 
 ?>
 
@@ -136,7 +216,19 @@
 			</div>
 
 			<div class="row">
-
+<h2>Salvesta sündmus</h2>
+<form method="POST" >
+	<label>Nimi</label><br>
+	<input name="username" type="text"><?php echo $usernameError;?>
+	<br><br>
+	<label>Kommentaar</label><br>
+	<input name="comment" type="text"><?php echo $commentError;?>
+	<br><br>
+	<label>Hinne</label><br>
+	<input name="rating" type="text"><?php echo $ratingError;?>
+	<br><br>
+	<input type="submit" value="Salvesta">
+</form>
 <h2>Viimati hinnatud</h2>
 <?php
 
@@ -152,7 +244,7 @@ $html="<table class='table table-bordered table-condensed'>";
 			}
 			$html .= "<th>
 						<a href='?q=".$q."&sort=username&order=".$orderUsername."'>
-							Kasutajanimi
+							Nimi
 						</a>
 					 </th>";
 
