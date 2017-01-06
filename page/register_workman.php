@@ -31,10 +31,10 @@ $bio = $input->clean($_POST["bio"]);
       $hash = password_hash($password, PASSWORD_DEFAULT);
         if ($login->create($email, $name, $hash, "worker", $district, $age)) {
             $userid = $login->getId($email);
-            $login->addBio($userid, $bio));
-            if ($login->addSkill($userid, $skill)) {
-                        $registerSuccess = true;
-            } else {$error .= "Ei saanud sisestada oskust andmebaasi.";}
+            $login->addBio($userid, $bio);
+            $login->addSkill($userid, $skill);
+              $registerSuccess = true;
+
         } else {$error .= "Midagi läks kahjuks valesti.";}
     } else {$error .= "Parool peab olema <i>vähemalt</i> 6 märki pikk.";}
   }

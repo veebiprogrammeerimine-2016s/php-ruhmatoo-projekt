@@ -27,6 +27,39 @@ class internal {
     }
   }
 
+  function filterWorkers($district) {
+    $sql = "select id from users where type='worker' and district=".$district;
+    $result = $this->conn->query($sql);
+    if ($result->num_rows > 0) {
+      $workers = array();
+      while ($row = $result->fetch_assoc()) {
+        $workers[] = $row["id"];
+      }
+      return $workers;
+    } else {
+      return false;
+    }
+  }
+
+  function filterBySkill($array, $skill) {
+    $list = array();
+    foreach($array as $a) {
+      if ($this->workerHasSkill($a, $skill)) {
+        $list[] = $a;
+      }
+    }
+    return $list;
+  }
+
+  function workerHasSkill ($id, $skill) {
+    $sql = "select id from worker_skills where skillid=".$skill." and userid=".$id;
+    $result = $this->conn->query($sql);
+    $row = $result->fetch_assoc();
+    if ($row["id"] > 0) {
+      return true;
+    }
+  }
+
   function getWorkers() {
     $sql = "select id from users where type='worker'";
     $result = $this->conn->query($sql);

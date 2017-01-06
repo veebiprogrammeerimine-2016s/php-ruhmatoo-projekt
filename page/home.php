@@ -19,6 +19,12 @@ if (isset($_GET["search"]) && !empty($_GET["search"])) {
 	$workers = array();
 	$workers = $internal->getWorkers();
 }
+
+if (isset($_GET["district"]) && isset($_GET["skill"])) {
+	$workers = array();
+	$workers = $internal->filterWorkers($_GET["district"]);
+	$workers = $internal->filterBySkill($workers, $_GET["skill"]);
+}
 ?>
 
 <title>Töömehe leidja</title>
@@ -92,8 +98,9 @@ foreach ($skills as $a) {
 
 <div class="c-9">
 	<?php
-	if (sizeof($workers) > 0 and !empty($workers[0]))
-{		foreach($workers as $a) {
+	if (sizeof($workers) > 0 and !empty($workers[0])){
+		foreach($workers as $a) {
+			unset($b);
 			$workername = $internal->getName($a);
 			echo "<a href='profile.php?id=$a'>";
 			if ($internal->hasImage($a)) {
@@ -102,6 +109,17 @@ foreach ($skills as $a) {
 			{echo "<div class='userbox defaultuser'>";}
 				echo "<a href='profile.php?id=$a' class='title'>$workername</a>";
 				echo "<p style='border-bottom: 2px solid darkgray;'>Oskused<br></p>";
+				$userskills = array();
+				$userskills = $internal->getWorkerSkills($a);
+				if (!empty($userskills)) {
+					foreach ($userskills as $b) {
+						$skillname = $internal->getSkillName($b);
+						echo $skillname."<br>";
+					}
+				} else { echo "Ametid puuduvad";}
+			echo "<p style='border-bottom: 2px solid darkgray;'>Asukoht<br></p>";
+			$userd = $internal->getUserDistrict($a);
+			echo $internal->getDistrictName($userd)."<br>";
 			echo "</div>";
 			echo "</a>";
 		}} else {
