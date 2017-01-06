@@ -124,7 +124,7 @@
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation" class="active"><a href="#MyPlänts" aria-controls="MyPlänts" role="tab" data-toggle="tab">Minu Pländid</a></li>
 			<li role="presentation"><a href="#Muutmine" aria-controls="Muutmine" role="tab" data-toggle="tab">Lisa taim</a></li>
-			<li role="presentation"><a href="#Soovitustest" aria-controls="Soovitustest" role="tab" data-toggle="tab">Vali meie taimedest</a></li>
+			<li role="presentation"><a href="#Soovitustest" aria-controls="Soovitustest" role="tab" data-toggle="tab">Vali andmebaasist</a></li>
 		  </ul>
 	
 		<div class="tab-content"> <!----TABI ALGUS  --->
@@ -142,11 +142,11 @@
 							
 						}
 						
-						$html = "<table class='table table-striped table-hover table-condensed table-bordered  ' style='background-color:white'>";
+						$html = "<table class='table table-hover table-condensed' style='background-color:white'>";
 						$html .= "<tr>";
-							$html .= "<th style='width:30px'><a href='?q=".$q."&sort=plantID&direction=".$direction."'>id</a></th>";
 							$html .= "<th style='width:300px'><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
-							$html .= "<th style='width:50px'><a href='?q=".$q."&sort=interval&direction=".$direction."'>kasta</a></th>";
+							$html .= "<th style='width:50px'>kasta</th>";
+                            $html .= "<th style='width:70px'></th>";
 						$html .= "</tr>";
 						
 						$i = 1;
@@ -157,13 +157,16 @@
 						
 							
 							$html .= "<tr>";
-								$html .= "<td>".$p->id."</td>";
 								$html .= "<td>".$p->name."</td>";
 								$html .= "<td>".$p->intervals."</td>";
 								$html .= "<td> 
-                                <a href='edit.php?id=".$p->id."'>Edit</a>
-                                <br>
-                                <a href='?id=".$p->id."&deleted=true'>Kustuta</a>
+                                <a href='edit.php?id=".$p->id."'>
+                                <i class='glyphicon glyphicon-edit'></i>
+                                </a>
+                                <a href='?id=".$p->id."&deleted=true'
+                                onclick='confirm(\"Are you sure you want to delete ".$p->name."?\");'>
+                                <i class='glyphicon glyphicon-remove'></i>
+                                </a>
                                 </td>";
 							$html .= "</tr>";
 							
@@ -173,12 +176,6 @@
 						$html .= "</table>";
 						
 						echo $html;
-						
-						$listHtml="<br><br>";
-						
-						
-						
-						echo $listHtml;
 				?>
 							
 			</div><!---TABI ESIMESE PANEELI SISU LÕPP-->
@@ -194,13 +191,13 @@
 								<?php echo $wateringIntervalError;  ?>
 
 								  
-										<h3>Sisesta taime nimetus</h3>
+										<h5>Sisesta taime nimetus</h5>
 								<input  class="form-control" name="user_plant" placeholder="taime nimetus"  type="text" value="<?=$plant;?>" > 
 
-										<h3>Sisesta taime kastmisintervall</h3>
+										<h5>Sisesta taime kastmisintervall</h5>
 								<input  class="form-control" name="waterings" placeholder="mitme päeva tagant"  type ="number"> 
 
-								<input class="btn btn-default" type="submit" value="Salvesta">
+								<input id="sub" class="btn btn-default" type="submit" value="Salvesta">
 							</form>
 					</div>
 							
@@ -213,7 +210,7 @@
 			
 			<div role="tabpanel" class="tab-pane" id="Soovitustest"> <!---Kolmanda tab-i algus--->
 				<div id="plantFromPlantsDiv">
-					<h3>Andmebaasist taime lisamine</h3>
+					<h3>Andmebaasist taime lisamine</h3> <br>
 					<script>
 						window.onload = function(){
 							var optionsList = document.getElementById("options");
@@ -226,15 +223,15 @@
 					</script>
 						<form class="form-group form-group-sm" id="plantsFromPlantsForm" method=post >
 				 					<select name="plant" id="options">
-									<option value="" disabled selected>Select your option</option>
+									<option value="" disabled selected>Vali meie andmebaasist sobiv taim</option>
 									<?php foreach($options as $option): ?>
 									  <option data-water="<?=$option->intervals?>" value="<?=$option->id?>"><?=$option->plants?></option>
 									 <?php endforeach; ?>
 									</select>
-									<h3>Sisesta taime kastmisintervall</h3>
+									<h5>Sisesta taime kastmisintervall</h5>
 								<input disabled id="watering" class="form-control" name="watering" placeholder="mitme päeva tagant"  type ="number"> 
 
-								<input class="btn btn-default" type="submit" value="Salvesta">
+								<input id="sub" class="btn btn-default" type="submit" value="Salvesta">
 						</form>
 					
 				</div>
@@ -248,53 +245,7 @@
 	
 	</div><br><br>
 
- 
 
-<?php require("../header.php"); ?>
-
-
-<div class="container col-lg-6" style="background-color:rgba(0, 0, 0, 0.5);">
-			 <?php
-						
-						if(isset($_POST['color']))
-{
-echo "The Color you have selected ".$_POST['color'];
-} 
-    
-						$html = "<table style='color: white; table;'>";
-						
-						//iga liikme kohta massiivis
-						foreach($plantData as $p) {
-							//iga taim on $p
-							//echo $p->taim."<br>";
-						
-                            
-							$html .= "<tr>";
-								$html .= '<td>
-                                <form action="" method="post">
-                                <input type="checkbox" name="color" onclick="javascript: submit()" value="'.$p->id.'"</form>
-                                </td>';
-								$html .= "<td>".$p->id."</td>";
-								$html .= "<td>".$p->name."</td>";
-								$html .= "<td>".$p->intervals."</td>";
-                                
-								
-							$html .= "</tr>";
-                            
-						}
-						
-						$html .= "</table>";
-						
-						echo $html;
-						
-						$listHtml="<br><br>";
-						
-						
-						
-						echo $listHtml;?>
-           
-						
-</div>	
 
 <?php require("../footer.php");?>
 

@@ -150,9 +150,14 @@ class Plant {
     /* function for My Plänts table*/
 	function getAllUserPlants($q,$sort,$direction) {
 		
-		$allowedSortOptions = ["name"];
-        
+		$allowedSortOptions = ["plantID", "names", "interval"];
+        if(!in_array($sort,$allowedSortOptions)){
+			$sort="plantID";
+		}
 		$user=$_SESSION["userEmail"];
+        if($sort == "interval"){
+			$sort = "watering_days";
+		}
 
 		$orderBy="ASC";
 		if($direction=="descending"){
