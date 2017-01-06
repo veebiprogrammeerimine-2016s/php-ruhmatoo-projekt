@@ -11,7 +11,7 @@ require("../functions.php");
 //logout
 	if(isset($_GET["logout"])) {
 		session_destroy();
-		header("Location: login.php");
+		header("Location: sneakermarket.php");
 		exit();
 	}
 

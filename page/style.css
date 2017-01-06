@@ -7,3 +7,9 @@
     width: 250px;
     height: 320px;
 }
+
+.navbar {
+  background-color:Crimson;
+  background-image: none;
+  background-repeat: no-repeat;
+ }

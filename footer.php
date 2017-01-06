@@ -7,7 +7,7 @@
 	
 		<div class="col-sm-12 col-sm-offset-0">
 	
-			<nav class="navbar navbar-inverse"> 
+			<nav class="navbar"> 
 				
 				<p class="navbar-text navbar-left">Sneakermarket | Contact email: mail@mail.ee | Tel. nr 53537462 | Digitehnoloogiate instituut | Tallinna Ulikool</p>
 			
