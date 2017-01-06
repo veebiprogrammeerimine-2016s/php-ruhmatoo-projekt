@@ -30,6 +30,12 @@ if(isset($_SESSION["message"])) {
 
 }
 
+//suunamine kalendri lehele
+if(isset($_POST['submit'])){
+	header("Location: calendar.php");
+	exit();
+}
+
 
 ?>
 
@@ -116,8 +122,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 </body>
 </html>
 	<br><br>
-	
-	<input type="submit" value="Ready!">
+	<input type="button" value="Ready!" onclick="location='calendar.php'" />
 	</form>
 	<br><br>
 	<a href="?logout=1"> Log out</a>
