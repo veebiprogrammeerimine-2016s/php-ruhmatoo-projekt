@@ -232,6 +232,7 @@ class Plant {
 		return $plantFromDb;
 		
 	}
+
     
 /* for to-do-list */
 	function getListData(){
@@ -285,6 +286,7 @@ class Plant {
 		$user=$_SESSION["userEmail"];
 		$stmt = $this->connection->prepare("UPDATE f_userplants SET deleted=1 WHERE id=? AND deleted IS NULL AND private='$user'");
 		$stmt->bind_param("i",$id);
+
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
@@ -295,10 +297,12 @@ class Plant {
     }
 
 
+
 	function update($id, $plant, $wateringInterval){
 		$user=$_SESSION["userEmail"];
 		$stmt = $this->connection->prepare("UPDATE f_userplants SET names=?, watering_interval=? WHERE id=? AND private='$user'");
  		$stmt->bind_param("sii",$plant, $wateringInterval, $id);
+
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
@@ -309,3 +313,4 @@ class Plant {
 	
 }
 
+?>

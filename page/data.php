@@ -19,11 +19,15 @@
 		
 
 
+
+
+
     if (isset($_GET["deleted"])){
 		$Plant->delete($_GET["id"]);
 			header("Location: data.php");
 			exit();
 	}
+
 	
 	
 	//kui on ?logout aadressireal siis login välja
@@ -175,6 +179,7 @@
                                 <i class='glyphicon glyphicon-remove'></i>
                                 </a>
                                 </td>";
+
 							$html .= "</tr>";
 							
 							$i += 1;
