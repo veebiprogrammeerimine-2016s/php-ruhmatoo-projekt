@@ -21,14 +21,8 @@
 		
 
 
-    if (isset($_GET["deleted"])){
-		
-		$Plant->deleteOne($_GET["id"]);
-        $Plant->deleteTwo($_GET["id"]);
-			header("Location: data.php");
-			exit();
-		
-	}
+
+	
 	
 	
 	//kui on ?logout aadressireal siis login välja
@@ -185,7 +179,7 @@
 								$html .= "<td>".$p->id."</td>";
 								$html .= "<td>".$p->name."</td>";
 								$html .= "<td>".$p->intervals."</td>";
-								$html .= "<td style='width:50px'><a href='edit.php?id=".$p->id."'>Muuda</a><br><a href='?id=".$p->id."&deleted=true'>Kustuta</a></td>";
+								$html .= "<td style='width:50px'><button><a href='edit.php?id=".$p->id."'>Muuda</a></button><br><button class='submit' type='submit' value='.$p->id.' name='op'>Kustuta</button></td>";
 							$html .= "</tr>";
 							
 							$i += 1;

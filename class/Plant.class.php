@@ -307,8 +307,8 @@ class Plant {
 		
 	}
 	function deleteOne($id){
-		$user=$_SESSION["userEmail"];
-		$stmt = $this->connection->prepare("UPDATE f_userplants SET deleted='yes' WHERE id=? AND deleted IS NULL AND private='$user'");
+		
+		$stmt = $this->connection->prepare("UPDATE f_userplants SET deleted='yes' WHERE id=? AND deleted IS NULL");
 		$stmt->bind_param("s",$id);
 		
 		// kas õnnestus salvestada
@@ -318,8 +318,8 @@ class Plant {
 		}
     }
     function deleteTwo($id){
-		$user=$_SESSION["userEmail"];
-		$stmt = $this->connection->prepare("UPDATE f_plant SET deleted='yes' WHERE id=? AND deleted IS NULL AND private='$user'");
+		
+		$stmt = $this->connection->prepare("UPDATE f_plant SET deleted='yes' WHERE id=? AND deleted IS NULL");
 		$stmt->bind_param("s",$id);
 		
 		// kas õnnestus salvestada
@@ -334,8 +334,8 @@ class Plant {
 
 
 	function update($id, $plant, $wateringInterval){
-		$user=$_SESSION["userEmail"];
-		$stmt = $this->connection->prepare("UPDATE f_plant SET name=?, watering_days=? WHERE id=? AND private='$user'");
+		
+		$stmt = $this->connection->prepare("UPDATE f_plant SET name=?, watering_days=? WHERE id=?");
 		$stmt->bind_param("ssi",$plant, $wateringInterval, $id);
 		
 		// kas õnnestus salvestada
@@ -350,3 +350,4 @@ class Plant {
 	
 }
 
+?>
