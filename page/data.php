@@ -187,7 +187,6 @@ $html="<table class='table table-bordered table-condensed'>";
 	//iga liikmekohta masssiiivis
 	foreach($people as $p){
 		$html .="<tr>";
-			$html .="<td>".$p->id."</td>";
 			$html .="<td>".$p->username."</td>";
 			$html .="<td>".$p->comment."</td>";
 			$html .="<td>".$p->rating."</td>";
@@ -255,7 +254,6 @@ $html="<table class='table table-bordered table-condensed'>";
 	//iga liikmekohta masssiiivis
 	foreach($people as $p){
 		$html .="<tr>";
-			$html .="<td>".$p->id."</td>";
 			$html .="<td>".$p->tvshow_name."</td>";
 			$html .="<td>".$p->time."</td>";
 			$html .="<td>".$p->channel."</td>";
