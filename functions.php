@@ -266,7 +266,7 @@ function signUP($username,$password)
 
 
 				
-		$html = "<h1>Tere, palun kontrollige oma andmeid</h1>";
+		$html = "<h1>Arve</h1>";
 		$html .= "<br><br><br><br><br><br>";
 		
 		
