@@ -233,6 +233,39 @@ class Plant {
 		
 	}
     
+/* for to-do-list */
+	function getListData(){
+        $user=$_SESSION["userEmail"];
+		
+		$stmt = $this->connection->prepare(
+        "SELECT id, names, DATE_ADD(lastwatered,INTERVAL watering_interval DAY) as next_date FROM f_userplants where DATEDIFF(DATE_ADD(lastwatered,INTERVAL watering_interval DAY), NOW())<7
+        and userID=? AND deleted IS NULL AND private=?");
+
+		$stmt->bind_param("is", $_SESSION["userId"], $user);
+		$stmt->bind_result($id, $plant, $next);
+		$stmt->execute();
+		
+		//tekitan massiivi
+		$result=array();
+		
+		//Tee seda seni, kuni on rida andmeid. ($stmt->fech)
+		//Mis vastab select lausele.
+		//iga uue rea andme kohta see lause seal sees
+		while($stmt->fetch()){
+			//tekitan objekti
+			$plantClass = new StdClass();
+			
+		    $plantClass->id=$id;
+			$plantClass->names=$plant;
+			$plantClass->next_date=$next;
+			
+			array_push($result, $plantClass);
+		}
+		return $result;
+		
+	}
+    
+    
     
 	function delete($id){
 		$user=$_SESSION["userEmail"];

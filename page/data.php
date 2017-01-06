@@ -119,6 +119,9 @@
 
 <div class="container"><br><br><br>
  <h3>Tere tulemast     <?=$_SESSION["firstName"];?>   <?=$_SESSION["lastName"];?>!</h3>
+
+    
+    
 <div id="plantsForm" class="col-lg-6 col-sm-offset-6" style="background-color:rgba(0, 0, 0, 0.5)";>
 
 		<ul class="nav nav-tabs" role="tablist">
@@ -243,6 +246,62 @@
 		
 	</div>
 	
+    
+    
+    
+    
+    <div id="todo" class="col-lg-6" style="background-color:rgba(0, 0, 0, 0.5)";>
+
+	
+		<div class="tab-content"> <!----TABI ALGUS  --->
+		
+		
+			<div role="tabpanel" class="tab-pane active" id="MyPlänts"><!--- TABI ESIMESE PANEELI SISU ALGUS --->
+			
+					<?php
+                $plantData = $Plant->getListData();
+                
+						$html = "<table class='table table-hover table-condensed' style='background-color:white'>";
+                
+                
+						$html .= "<tr>";
+                            $html .= "<th style='width:50px'>id</th>";
+							$html .= "<th style='width:200px'>plant</th>";
+							$html .= "<th style='width:70px'>kasta</th>";
+                            $html .= "<th style='width:50px'></th>";
+						$html .= "</tr>";
+						
+						$i = 1;
+						//iga liikme kohta massiivis
+						foreach($plantData as $p) {
+							//iga taim on $p
+							//echo $p->taim."<br>";
+						
+							
+							$html .= "<tr>";
+								$html .= "<td>".$p->id."</td>";
+								$html .= "<td>".$p->names."</td>";
+                                $html .= "<td>".$p->next_date."</td>";
+								$html .= "<td></td>";
+							$html .= "</tr>";
+							
+							$i += 1;
+						}
+						
+						$html .= "</table>";
+						
+						echo $html;
+				?>
+							
+			</div><!---TABI ESIMESE PANEELI SISU LÕPP-->
+		
+	</div>
+        	</div>
+    
+    
+    
+    
+    
 	</div><br><br>
 
 
