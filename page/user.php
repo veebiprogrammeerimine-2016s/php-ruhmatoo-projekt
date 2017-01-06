@@ -35,11 +35,13 @@
 	if  (isset($_POST["exercise"]) &&
 		isset($_POST["sets"]) &&
 		isset($_POST["repeats"]) &&
+		isset($_POST["notes"]) &&
 		!empty($_POST["exercise"]) &&
 		!empty($_POST["sets"]) &&
-		!empty($_POST["repeats"])
+		!empty($_POST["repeats"]) &&
+		!empty($_POST["notes"])
 		) {
-			$User->saveExercise($trainingdate, $Helper->cleanInput($_POST["exercise"]), $Helper->cleanInput($_POST["sets"]), $Helper->cleanInput($_POST["repeats"]));
+			$User->saveExercise($trainingdate, $Helper->cleanInput($_POST["exercise"]), $Helper->cleanInput($_POST["sets"]), $Helper->cleanInput($_POST["repeats"]), $Helper->cleanInput($_POST["notes"]));
 		}
 	
 	$exercise = "";
@@ -48,6 +50,8 @@
 	$setsError = "";
 	$repeats = "";
 	$repeatsError = "";
+	$notes = "";
+	$notesError = "";
 	
 	if(isset($_GET["q"])) {
 		
@@ -119,7 +123,11 @@
 						
 						<input type="text" name="repeats" value="<?=$repeats;?>"> <?php echo $repeatsError;?> <br><br>
 					
-					<input type="submit" value="Salvesta">	
+				<label>Märkmed</label><br>
+				
+				<textarea cols="40" rows="5" name="notes" value="<?=$notes;?>"></textarea> <?php echo $notesError; ?><br><br>
+				
+				<input type="submit" value="Salvesta">	
 				</form>
 				<br>
 			</div>
@@ -218,6 +226,7 @@
 					Kuupäev	".$createdArrow."
 				</a>
 				</th>";
+		$html .= "<th>Märkmed</th>";
 	$html .= "</tr>";
 	$html .= "</thead>";
 	
@@ -227,6 +236,7 @@
 			$html .= "<td>".$p->sets."</td>";
 			$html .= "<td>".$p->repeats."</td>";
 			$html .= "<td>".$p->training_time."</td>";
+			$html .= "<td>".$p->notes."</td>";
 		$html .= "</tr>";	
 	}
 
