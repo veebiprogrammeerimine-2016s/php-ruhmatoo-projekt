@@ -9,13 +9,13 @@ require_once("functions.php");
 require_once(__DIR__ . "/vendor/autoload.php");
 mb_internal_encoding("iso-8859-1");
 
-if(isset($_GET["logout"])){
+if (isset($_GET["logout"])) {
     session_destroy();
     echo("<br><a href='scraper.php'>Log in again</a><br>");
     exit();
 } else {
     echo("<a href='scraper.php?logout=1'>LOG OUT</a><br>");
-    echo ("<br><a href='scraper.php?time=" . time() . "'>Täna</a> <br>");
+    echo("<br><a href='scraper.php?time=" . time() . "'>Täna</a> <br>");
 }
 
 define('APPLICATION_NAME', 'Izipäevik');
@@ -68,12 +68,12 @@ if (isset($_GET["time"])) {
 
 if (isset($_SESSION["accessToken"])) {
     $accessToken = $_SESSION["accessToken"];
-    if (isset($_GET["code"])){
+    if (isset($_GET["code"])) {
         //Remove google auth code from GET
         header("Location: scraper.php");
     }
 } else {
-    if (!isset($_GET["code"])){
+    if (!isset($_GET["code"])) {
         // Request authorization from the user.
         $authUrl = $client->createAuthUrl();
         header("Location:" . $authUrl);
@@ -82,17 +82,17 @@ if (isset($_SESSION["accessToken"])) {
     }
 }
 
-if (isset($authCode) && !isset($_SESSION["accessToken"])){
+if (isset($authCode) && !isset($_SESSION["accessToken"])) {
     // Exchange authorization code for an access token.
     $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
     $_SESSION["accessToken"] = $accessToken;
 }
 
-if(isset($accessToken) && !empty($accessToken)){
+if (isset($accessToken) && !empty($accessToken)) {
     // Refresh the token if it's expired.
-    try{
+    try {
         $client->setAccessToken($accessToken);
-    } catch (Exception $e){
+    } catch (Exception $e) {
         header("Location: scraper.php");
         exit();
     }
@@ -101,7 +101,6 @@ if(isset($accessToken) && !empty($accessToken)){
     }
 }
 
-$service = new Google_Service_Calendar($client);
 
 // Specialization
 if (isset($_GET["ryhm"]) && !isset($_SESSION["ryhm"])) {
@@ -123,7 +122,7 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
         $dayExplode = explode(' ', $div);
         array_shift($dayExplode);
         $dayExplode[0] = str_replace(".", "", $dayExplode[0]);
-        $dayExplode[1] = monthToDate($dayExplode[1]);
+        $dayExplode[1] = monthToDate(utf8_encode($dayExplode[1]));
         $dayFinished = $year . "-" . $dayExplode[1] . "-" . $dayExplode[0];
     } else {
         $spans = $div->find("span");
@@ -139,12 +138,12 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
 
             //lesson code
             $subject = explode(" ", $subject);
-            $lessonCode = $subject[0];
+            $lessonCode = utf8_encode($subject[0]);
             array_shift($subject);
             $subject = implode($subject, " ");
 
             $subject = explode("(", $subject);
-            $lessonName = $subject[0];
+            $lessonName = utf8_encode($subject[0]);
             array_shift($subject);
             $subject = implode($subject, " ");
 
@@ -179,51 +178,66 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
             } else if (strpos($subject[0], "rühm") !== false) {
                 $group = $subject[1];
                 $group = $group[0];
-                $teacher = $subject[3] . " " . $subject[4];
+                $teacher = utf8_encode($subject[3]) . " " . utf8_encode($subject[4]);
             } else if ($subject[1] === "moodul" || $subject[2] === "moodul") {
                 $subject = implode($subject, " ");
                 $subject = explode(")", $subject);
-                $module = $subject[0];
+                $module = utf8_encode($subject[0]);
                 array_shift($subject);
                 $subject = implode($subject, " ");
                 $subject = explode(" ", $subject);
                 $group = $subject[0];
-                $teacher = $subject[1] . " " . $subject[2];
+                $teacher = utf8_encode($subject[1]) . " " . utf8_encode($subject[2]);
             } else if (strpos($subject[1], ".") !== false) {
                 $group = $subject[1];
                 $group = $group[0];
-                $teacher = $subject[3] . " " . $subject[4];
+                $teacher = utf8_encode($subject[3]) . " " . utf8_encode($subject[4]);
             } else {
                 $group = "ALL";
-                $teacher = $subject[0] . " " . $subject[1];
+                $teacher = utf8_encode($subject[0]) . " " . utf8_encode($subject[1]);
             }
 
             $summary = $lessonCode . " " . $lessonName;
 
+            $service = new Google_Service_Calendar($client);
+            $event = new Google_Service_Calendar_Event(array(
+                'summary' => $summary,
+                'location' => "Tallinn University",
+                'description' => 'Ruum: ' . $room . '. Õppejõud: ' . $teacher,
+                'start' => array(
+                    'dateTime' => $timeStart,
+                    'timeZone' => 'Europe/Tallinn',
+                ),
+                'end' => array(
+                    'dateTime' => $timeEnd,
+                    'timeZone' => 'Europe/Tallinn',
+                ),
+            ));
+
             try {
-                $event = new Google_Service_Calendar_Event(createEvent($summary, $room, $teacher, $timeStart, $timeEnd));
                 if (isset($group1) && isset($group2)) {
                     //echo $group1 . "+ | " . $timeStart . " | " . $timeEnd . " | " . $summary . " | " . $room . " | " . $teacher . "<br>";
-                    $eventOne = $service->events->insert($groupAddresses["grupp" . $group1], $event);
+                    $eventInsert = $service->events->insert($groupAddresses["grupp" . $group1], $event);
 
                     //echo $group2 . "+; | " . $timeStart . " | " . $timeEnd . " | " . $summary . " | " . $room . " | " . $teacher . "<br>";
-                    $eventTwo = $service->events->insert($groupAddresses["grupp" . $group2], $event);
+                    $eventInsert = $service->events->insert($groupAddresses["grupp" . $group2], $event);
 
-                    unset($eventOne);
-                    unset($eventTwo);
-                } else if (isset($group)) {
+                    unset($eventInsert);
+                }
+
+                if (isset($group)) {
                     //echo $group . " | " . $timeStart . " | " . $timeEnd . " | " . $summary . " | " . $room . " | " . $teacher . "<br>";
                     if ($group == 'ALL') {
                         $counter = 1;
                         while (true) {
-                            $eventAll = $service->events->insert($groupAddresses["grupp" . $counter], $event);
+                            $eventInsert = $service->events->insert($groupAddresses["grupp" . $counter], $event);
+                            unset($eventInsert);
                             if ($counter == 4) break;
                             $counter = $counter + 1;
-                            unset($eventAll);
                         }
                     } else {
                         $eventSingle = $service->events->insert($groupAddresses["grupp" . $group], $event);
-                        unset($eventSingle);
+                        unset($eventInsert);
                     }
 
                 }
