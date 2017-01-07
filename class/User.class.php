@@ -216,10 +216,10 @@
 	}
 	
 	
-	function update($id, $firstname, $lastname, $email, $password, $gender, $phonenumber){
+	function update($id, $firstname, $lastname, $email, $gender, $phonenumber){
     	
-		$stmt = $this->connection->prepare("UPDATE users SET firstname=?, lastname=?, email=?, password=?, gender=?, phonenumber=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("ssssssi", $firstname, $lastname, $email, $password, $gender, $phonenumber, $id);
+		$stmt = $this->connection->prepare("UPDATE users SET firstname=?, lastname=?, email=?, gender=?, phonenumber=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("sssssi", $firstname, $lastname, $email, $gender, $phonenumber, $id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
@@ -315,6 +315,53 @@
 		$stmt->close();
 				
 		return $result;
+	}
+	
+	function checkPassword ($password) {
+		
+		$error = "";
+		
+		$stmt = $this->connection->prepare("
+			SELECT password
+			FROM users
+			WHERE id = ?
+		");
+		echo $this->connection->error;
+		
+		$stmt->bind_param("i", $_SESSION["userId"]);
+		
+		$stmt->bind_result($passwordFromDb); 
+		$stmt->execute();
+		
+		if($stmt->fetch()) {
+
+			$hash = hash("sha512", $password);
+			if($hash == $passwordFromDb){
+				$error = "Parool on õige";
+				
+			} else {
+				$error = "Parool on vale!";
+			}
+		} 
+		
+		return $error;
+	}
+	
+	function addNewPassword ($password){
+		
+		$stmt = $this->connection->prepare("UPDATE users SET password = ? WHERE id=? AND deleted IS NULL ");
+		
+		$stmt->bind_param("si", $password, $_SESSION["userId"]);
+		echo $this->connection->error;
+		
+		$msg = "";
+		if($stmt->execute()) {
+			$msg = "<font style='color:green;'><b>PAROOL MUUDETUD!</b></font>";
+		} else {
+			//echo "ERROR".$stmt->error;
+		}
+		
+		return $msg;
 	}
 
 }?>

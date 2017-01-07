@@ -11,7 +11,7 @@
 	//kas kasutaja uuendab andmeid
 	if(isset($_POST["update"])){
 		
-		$User->update($Helper->cleanInput($_SESSION["userId"]), $Helper->cleanInput($_POST["firstname"]), $Helper->cleanInput($_POST["lastname"]), $Helper->cleanInput($_POST["email"]), $Helper->cleanInput($_POST["password"]), $Helper->cleanInput($_POST["gender"]), $Helper->cleanInput($_POST["phonenumber"]));
+		$User->update($Helper->cleanInput($_SESSION["userId"]), $Helper->cleanInput($_POST["firstname"]), $Helper->cleanInput($_POST["lastname"]), $Helper->cleanInput($_POST["email"]), $Helper->cleanInput($_POST["gender"]), $Helper->cleanInput($_POST["phonenumber"]));
 		
 		header("Location: user.php?id=".$_SESSION["userId"]."&success=true");
         exit();	
@@ -25,21 +25,20 @@
 		//echo "Salvestamine õnnestus";
 	}
 	
-	$est_gender = "";
+	$gender = "female";
 	if ($p->gender == "female") {
-		$est_gender = "naine";
+		$gender = "female";
 	}
 	
 	if ($p->gender == "male"){
-		$est_gender = "mees";
+		$gender = "male";
 	}
 
 	
 ?>
 <?php require("../header.php"); ?>
 <div class="editUser" style="padding-left:20px;padding-right:20px"> 
-<br>
-<a href="user.php"> &larr; Tagasi minu treeningpäevikusse</a>
+<h2><a href="user.php"> < Tagasi </a></h2>
 
 <h2>Muuda andmeid</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
@@ -54,21 +53,19 @@
   	<label for="email" >E-posti aadress</label><br>
 	<input id="email" name="email" type="text" value="<?php echo $p->email;?>" ><br><br>
 	
-	<label for="password" >Parool</label><br>
-	<input id="password" name="password" type="password" ><br><br>
-	
 	<label for="gender">Sugu</label><br>
-			<?php if($est_gender == "female") { ?>
+			<?php if($gender == "female") { ?>
 			<input type="radio" name="gender" value="female" checked> Naine
 			<?php } else { ?>
-			<input type="radio" name="gender" value="female"> Naine
+			<input type="radio" name="gender" value="female">Naine
 			<?php } ?>
 			<br>
-			<?php if($est_gender == "male") { ?>
+			<?php if($gender == "male") { ?>
 			<input type="radio" name="gender" value="male" checked> Mees
 			<?php } else { ?>
-			<input type="radio" name="gender" value="male"> Mees
-			<?php } ?><br><br>
+			<input type="radio" name="gender" value="male">Mees
+			<?php } ?>
+			<br><br>
 			
   	<label for="phonenumber" >Telefoninumber</label><br>
 	<input id="phonenumber" name="phonenumber" type="text" value="<?=$p->phonenumber;?>"><br><br>

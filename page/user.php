@@ -106,6 +106,7 @@
 				<p>Telefoninumber: <?php echo $userData->phonenumber;?></p>
 
 				<p><a class="btn btn-default btn-sm" href="editUser.php"><span class='glyphicon glyphicon-pencil'></span> Muuda andmeid</a></p>
+				<p><a href="editPassword.php">Muuda parooli</a></p>
 				<br>
 
 			<h2>Lisa tehtud treening</h2>
