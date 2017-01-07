@@ -54,10 +54,10 @@
 			$_SESSION["userEmail"] = $emailFromDb;
 			header("Location: homepage.php");
 		} else {
-			$error = "parool vale";
+			$error = "Wrong password";
 			}	
 		} else {
-			$error = "Sellise emailiga ".$email." kasutajat ei ole olemas";
+			$error = "Email address ".$email." you entered couldn't be found";
 		}
 		
 		return $error;

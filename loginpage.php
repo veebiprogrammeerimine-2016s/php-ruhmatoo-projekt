@@ -2,7 +2,7 @@
 
 	require("../../config.php");
 	require("functions.php");
-	require("header.php");
+	require("style/style.php");
 	
 	//SESSION
 	if (isset($_SESSION["userId"]))
@@ -21,7 +21,7 @@
 	//E-POST REGISTREERIMINE
 	if (isset ($_POST["signupEmail"])) {
 		if (empty($_POST["signupEmail"])) {
-		$signupEmailError = "* Väli on kohustuslik!";
+		$signupEmailError = "This field is required!";
 		} else {
 		$signupEmail = $_POST ["signupEmail"];
 		}
@@ -30,20 +30,20 @@
 	//PAROOL
 	if(isset ($_POST["signupPassword"])) {
 		if (empty ($_POST["signupPassword"])) {
-		$signupPasswordError = "* Väli on kohustuslik!";
+		$signupPasswordError = "This field is required!";
 		} else {
 		if (strlen ($_POST["signupPassword"]) <6)
-		$signupPasswordError = "* Parool peab olema vähemalt 6 tähemärkki pikk";
+		$signupPasswordError = "Password too short: Min lenght is 6!";
 		}
 	}
 	
 	//Kasutajanimi
 	if (isset ($_POST["signupUsername"])) {
 		if (empty ($_POST["signupUsername"])) {
-		$signupUsernameError = "* Väli on kohustuslik";
+		$signupUsernameError = "This field is required!";
 		} else {
-		if (strlen ($_POST["signupUsername"]) >20) {
-		$signupUsernameError = "* Kasutajanimi ei tohi olla pikkem kui 20 tähemärkki";
+		if (strlen ($_POST["signupUsername"]) >30) {
+		$signupUsernameError = "Username too long: Max lenght is 30!";
 		} else {
 		$signupUsername = $_POST ["signupUsername"];
 			}
@@ -70,7 +70,7 @@
 	//EMAIL LOOGIMINE
 	if (isset ($_POST["loginEmail"])) {
 		if (empty ($_POST["loginEmail"])) {
-		$loginEmailError = "* Väli on kohustuslik!";
+		$loginEmailError = "This field is required!";
 		} else {
 		$loginEmail = $_POST ["loginEmail"];
 		}
@@ -79,7 +79,7 @@
 	//PAROOLI LOOGIMINE
 	if (isset ($_POST["loginPassword"])) {
 		if (empty ($_POST["loginPassword"])) {
-		$loginPasswordError = "* Väli on kohustuslik!";
+		$loginPasswordError = "This field is required!";
 		} else {
 		$loginPassword = $_POST ["loginPassword"];
 		}
@@ -101,92 +101,149 @@
 
 <!DOCTYPE html>
 <html>
-		
+
 <head>
 <title>Sisselogimise leht</title>
 </head>
+
+	<style>	
+	div[class=login] {
+		border: 2px solid rgba(255, 255, 255, 0.2) ;
+		border-radius: 15px 50px;
+		padding: 20px;
+		background: rgba(255, 255, 255, 0.3);
+		width: 35%;
+		margin: 15%;
+	}
+
+	body {
+		background: url(image/background.png);
+	}
 	
+	input[class=text],select {
+		width: 60%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		box-sizing: border-box;
+	}
+	.submit {
+		width: 50%;
+		height: 50px;
+		background-color: #AA7CFF;
+		border: 1px solid #ADADAD;
+		color: white;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		margin: 4px 2px;
+		-webkit-transition-duration: 0.4s; /* Safari */
+		transition-duration: 0.4s;
+		cursor: pointer;
+		border-radius: 12px;
+	}			
+
+	.submit1 {
+		background-color: white; 
+		color: black; 
+	}
+
+	.submit1:hover {
+		background-color: #E6E6E6;
+		color: black;
+	}
+	
+	p {font-family: Georgia, 'Times New Roman', Times, serif;}
+	
+	p[class=border]{border-bottom: 1px solid black;}
+	
+	</style>
 
 </html>
+<body>
 
-	<center>
+<center>
+	
 	<!--KASUTAJA SISENEB-->
-	<img src="https://pp.vk.me/c836721/v836721149/140c3/uzbMJ-ysjsM.jpg" width="100px">
-	<p style="color:red;"><?=$error;?></p> <!--näitab parool/email errorit-->
+
+	<!--näitab parool/email errorit-->
+	<div class="login">
 	<form method="POST">
-		
+		<p class="border">LOG IN<p>
+		<?=$error;?>
 		<!--EMAILI LOOGIMINE-->
-		<p>
-		<label for="loginEmail">E-post</label><br>
-		<input name="loginEmail" type="loginEmail" value=<?=$loginEmail;?>>
+		<input name="loginEmail" type="loginEmail" class="text" placeholder="Email" value=<?=$loginEmail;?>>
 		<br><?php echo $loginEmailError;?></br>
 		
 		<!--PAROOLI LOOGIMINE-->
-		<label for="loginPassword">Parool</label><br>
-		<input name="loginPassword" type="password">
+		<input name="loginPassword" type="password" class="text" placeholder="Password">
 		<br><?php echo $loginPasswordError;?></br>
-		</p>
 		
-		<input type="submit" value="Logi sisse"></br>
-	</form>
+		<!--LOGIN BUTTON-->
+		<input type="submit" value="Sign In" class="submit submit1">
+		</form>
+		
+		<!--UUS KASUTAJA BUTTON-->
+		<p class="border">OR</p>
+		<form method="POST">
+		<input type="button" value="Create New Account" class="submit submit1" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
+		</form>
+	</div>
 
-	<!--KASUTAJA REGISTREERIB-->
-	<img src="https://pp.vk.me/c836721/v836721149/140ca/yIj8IGDH6BM.jpg" width="200px">
-	<form method="POST">
-	<label></label>
-	
-		<!--EMAIL REGISTREERIMINE-->
-		<p>
-		<label for="signupEmail">E-post</label><br>
-		<input name="signupEmail" type = "signupEmail" placeholder="E-post" value=<?=$signupEmail;?>>
-		<br><?php echo $signupEmailError;?></br>
+<!--POPUP WINDOW-->
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+ 
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		<h4 class="modal-title">Create new account</h4>
+		</div>
+        
+			<div class="modal-body">
+			<form method="POST">
+			<label></label>
 		
-		<!--PAROOL REGISTREERIMINE-->
-		<br><label for="signupPassword">Parool</label></br>
-		<input name="signupPassword" type = "password" placeholder="Parool">
-		<br><?php echo $signupPasswordError;?></br>
-		
-		<!--KASUTAJANIMI REGISTREERIMINE-->
-		<br><label for="signupUsername">Sinu kasutaja nimi</label></br>
-		<input name="signupUsername" type = "signupUsername" placeholder="Kasutajanimi" value=<?=$signupUsername;?>>
-		<br><?php echo $signupUsernameError;?></br>
+			<!--EMAIL REGISTREERIMINE-->
+			<label for="signupEmail">Email</label><br>
+			<input name="signupEmail" type="signupEmail" placeholder="Email" class="text" value=<?=$signupEmail;?>>
+			<br><?php echo $signupEmailError;?></br>
+			
+			<!--PAROOL REGISTREERIMINE-->
+			<br><label for="signupPassword">Password</label></br>
+			<input name="signupPassword" type = "password" placeholder="Password" class="text">
+			<br><?php echo $signupPasswordError;?></br>
+			
+			<!--KASUTAJANIMI REGISTREERIMINE-->
+			<br><label for="signupUsername">Nickname</label></br>
+			<input name="signupUsername" type = "signupUsername" placeholder="Nickname" class="text" value=<?=$signupUsername;?>>
+			<br><?php echo $signupUsernameError;?></br>
 
-		<!--SUGU REGISTREERIMINE-->
-		<br><label for="signupGender">Sugu:</label></br>
-		<select name = "signupGender"  id="signupGender" required>
-		<option value="">Näita</option>
-		<option value="Mees">Mees</option>
-		<option value="Naine">Naine</option>
-		<option value="Muu">Muu</option>
-		</select></p>
-	
-		<br><input type="submit" value="Loo kasutaja"></br>
-	</center>
-</form>
+			<!--SUGU REGISTREERIMINE-->
+			<br><label for="signupGender">Gemder</label></br>
+			<select name = "signupGender"  id="signupGender" required>
+			<option value="">Show</option>
+			<option value="Male">Male</option>
+			<option value="Female">Female</option>
+			<option value="Other">Other</option>
+			<option value="Alien">Alien</option>
+			</select>
+
+			</div>
+        <div class="modal-footer">
+		<input type="submit" class="btn btn-default" value="Loo kasutaja">
+		</form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</center>
 </body>
 </html>
-<?php echo date("d.m.Y");?>
-<style type="text/css">
-	p {font-family: courier;font-size:110%;}
-	#clock {color:black;}
-	</style>
-	
-	<script type="text/javascript">
-	function updateClock (){
-	  var currentTime = new Date ( );
-	  var currentHours = currentTime.getHours ();
-	  var currentMinutes = currentTime.getMinutes ();
-	  var currentSeconds = currentTime.getSeconds();
-	  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-	  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-	  var timeOfDay = ''; 
-
-	  var currentTimeString = currentHours + ":" + currentMinutes + ':' + currentSeconds+ " " + timeOfDay;
-
-	  document.getElementById("clock").innerHTML = currentTimeString;
-	}
-	</script>
-	
-	<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
-	<span id="clock">&nbsp;</span>
-	</body>
