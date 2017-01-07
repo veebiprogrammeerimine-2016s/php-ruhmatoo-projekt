@@ -12,8 +12,6 @@ class User
     /* Login */
     function login($email, $password)
     {
-       // $error = "";
-
         $stmt = $this->connection->prepare("SELECT id, email, password, created 
 		FROM admins
 		WHERE email = ?");
@@ -28,13 +26,11 @@ class User
             if ($hash == $passwordFromDb) {
                 $_SESSION["userId"] = $id;
                 $_SESSION["userEmail"] = $emailFromDb;
-                header("Location: homework.php");
-                exit();
+
+                $error = "Õnnestus!";
             } else {
                 $error = "Vale parool!";
             }
-
-
         } else {
             $error = "Ei leidu sellist kasutajat!";
         }
