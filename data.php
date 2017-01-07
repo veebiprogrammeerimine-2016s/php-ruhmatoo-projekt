@@ -74,9 +74,10 @@
 
 			saveUserData ($date, $Feeling, $NumberofSteps);
 
-		header("Location: data2.php");
+		header("Location: data.php");
 		exit();
 		}
+
 ?>
 
 <h1>Tänane päev</h1>
