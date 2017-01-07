@@ -15,6 +15,7 @@
 ## Technologies used
     * Google API
 	* Bootstrap
+	* PHP Simple HTML DOM Parser
 
 ## Summary
     **WORK IN PROGRES**
@@ -24,7 +25,7 @@
     In scraper folder, run "php composer.phar require google/apiclient:^2.0 " in command line
     In scraper.php:
         CLIENT_ID = Izipaevik Client ID from Google API Manager
-        REDIRECT_URI = ####.com/scraper/scraper.php
+        REDIRECT_URI = ####.com/scraper/scraper.php (The domain the scraper is on)
         DEVELOPER_KEY = API Key from Google API Manager
         CLIENT_SECRET = Secret key from Google API Manager
         $groupAddress: Specific calendar IDs. In Google Calendar: Calendar settings -> Calendar Address -> Calendar ID

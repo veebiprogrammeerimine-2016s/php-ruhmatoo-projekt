@@ -42,11 +42,3 @@ function monthToDate($month)
         return "12";
     }
 }
-
-function expandHomeDirectory($path) {
-    $homeDirectory = getenv('HOME');
-    if (empty($homeDirectory)) {
-        $homeDirectory = getenv('HOMEDRIVE') . getenv('HOMEPATH');
-    }
-    return str_replace('~', realpath($homeDirectory), $path);
-}

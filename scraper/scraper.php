@@ -7,15 +7,14 @@ ini_set('display_errors', 1);
 include "simple_html_dom.php";
 require_once("functions.php");
 require_once(__DIR__ . "/vendor/autoload.php");
-mb_internal_encoding("iso-8859-1");
+mb_internal_encoding("utf-8");
 
 if (isset($_GET["logout"])) {
     session_destroy();
     echo("<br><a href='scraper.php'>Log in again</a><br>");
     exit();
 } else {
-    echo("<a href='scraper.php?logout=1'>LOG OUT</a><br>");
-    echo("<br><a href='scraper.php?time=" . time() . "'>Täna</a> <br>");
+    echo("<a href='scraper.php?logout=1'>Logi välja</a><br>");
 }
 
 define('APPLICATION_NAME', 'Izipäevik');
@@ -47,12 +46,16 @@ $client->setScopes(SCOPES);
 //    'verify' => false,
 //)));
 
-//$file = fopen("completed_days.txt", "a+");
-////or exit("Unable to open file!");
-//if (exec("grep " .escapeshellarg($time).' ./completed_days.txt')){
-//    fclose($file);
-//    exit("See kuupäev on juba kalendris!");
-//}
+$file = fopen("completed_days.txt", "a+") or exit("Unable to open file!");
+
+if (isset($_GET["reset"])) {
+    unset($time);
+    unset($_GET["time"]);
+    unset($_SESSION["time"]);
+}
+$nextWeek = time() + 604800;
+echo("<br><a href='scraper.php?time=" . time() . "'>Praegune nädal</a> <br>");
+echo("<br><a href='scraper.php?time=" . $nextWeek . "'>Järgmine nädal</a> <br>");
 
 // Current date in MASIO - Unix time
 // 1485856800 for IFIFB-1 Semester 2
@@ -62,8 +65,25 @@ if (isset($_GET["time"])) {
 } else if (isset($_SESSION["time"])) {
     $time = $_SESSION["time"];
 } else {
-    $time = time();
-    $_SESSION["time"] = $time;
+    echo "
+    <br>
+    <form method='get'>
+        <input type='number'name='time' placeholder='Sisestage UNIX aeg'>
+        <input type='submit' value='Sisesta'>
+    </form>
+    <br>
+    ";
+    exit();
+}
+
+echo("<br><a href='scraper.php?reset=1'>Uus aeg</a><br>");
+
+// 604800 = seconds in a week
+// very simple and very stupid
+while (($line = fgets($file)) !== false) {
+    if ($line < $time + 604799 && $line > $time - 604799) {
+        exit("See nädal on kalendrisse juba lisatud!");
+    }
 }
 
 if (isset($_SESSION["accessToken"])) {
@@ -93,7 +113,7 @@ if (isset($accessToken) && !empty($accessToken)) {
     try {
         $client->setAccessToken($accessToken);
     } catch (Exception $e) {
-        header("Location: scraper.php");
+        header("Location: scraper.php?logout=1");
         exit();
     }
     if ($client->isAccessTokenExpired()) {
@@ -148,7 +168,7 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
             $subject = implode($subject, " ");
 
             $subject = explode(")", $subject);
-            if (strpos($subject[0], "moodul") !== false) {
+            if (stripos($subject[0], "moodul") !== false) {
                 $module = $subject[0];
                 array_shift($subject);
             }
@@ -172,10 +192,11 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
                     }
                 }
                 $teacher = implode($subject, " ");
-            } else if ($subject[0] === "valikaine") {
+            } else if ($subject[0] === "valikaine" || (stripos($lessonName, "EKSAM") !== false)) {
                 // Elective courses not added to calendar
+                // Exams not added to calendar
                 continue;
-            } else if (strpos($subject[0], "rühm") !== false) {
+            } else if (stripos($subject[0], "rühm") !== false) {
                 $group = $subject[1];
                 $group = $group[0];
                 $teacher = utf8_encode($subject[3]) . " " . utf8_encode($subject[4]);
@@ -188,7 +209,7 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
                 $subject = explode(" ", $subject);
                 $group = $subject[0];
                 $teacher = utf8_encode($subject[1]) . " " . utf8_encode($subject[2]);
-            } else if (strpos($subject[1], ".") !== false) {
+            } else if (stripos($subject[1], ".") !== false) {
                 $group = $subject[1];
                 $group = $group[0];
                 $teacher = utf8_encode($subject[3]) . " " . utf8_encode($subject[4]);
@@ -259,11 +280,11 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
             unset($event);
             unset($timeStart);
             unset($timeEnd);
-            //fwrite($file, $time . "\n");
         }
 
     }
 
 }
 
-//fclose($file);
+fwrite($file, $time . "\n");
+fclose($file);
