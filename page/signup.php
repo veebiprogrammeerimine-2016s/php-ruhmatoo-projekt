@@ -26,6 +26,7 @@
 	$signupGenderError = "";
 	$signupAge = "";
 	$signupAgeError= "";
+	
 	$signupCountry = "";
 	$signupCity = "";
 	$signupShoesize = "";
@@ -196,24 +197,24 @@
 						<form method="POST">
 							<text style="color:red;">Tärniga väljad on kohustuslikud</text>
 							<br><br>
-							<b><label>*Eesnimi</label></b><br>
-							<input class="form-control" name="signupFirstname" placeholder="Santa" type="text" value="<?=$signupFirstname;?>"> <text style="color:red;"><?php echo $signupFirstnameError; ?></text>
+							<b><label>*Eesnimi:</label></b> <text style="color:red;"><?php echo $signupFirstnameError; ?></text>
+							<input class="form-control" name="signupFirstname" placeholder="Santa" type="text" value="<?=$signupFirstname;?>"> 
 							<br>
 							
-							<b><label>*Perekonnanimi:</label></b><br>
-							<input class="form-control" name="signupLastname" placeholder="Claus" type="text" value="<?=$signupLastname;?>"> <text style="color:red;"><?php echo $signupLastnameError; ?></text>
+							<b><label>*Perekonnanimi:</label></b> <text style="color:red;"><?php echo $signupLastnameError; ?></text>
+							<input class="form-control" name="signupLastname" placeholder="Claus" type="text" value="<?=$signupLastname;?>"> 
 							<br>
 						
-							<b><label>*E-mail:</label></b><br>
-							<input class="form-control" name="signupemail" placeholder="example@mail.com" type="text" value="<?=$signupemail;?>"> <text style="color:red;"><?php echo $signupEmailError; ?></text>
+							<b><label>*E-mail:</label></b> <text style="color:red;"><?php echo $signupEmailError; ?></text>
+							<input class="form-control" name="signupemail" placeholder="example@mail.com" type="text" value="<?=$signupemail;?>"> 
 							<br>
 						
-							<b><label>*Parool:</label></b><br>
-							<input class="form-control" name="signuppassword" placeholder="********" type="password"> <text style="color:red;"><?php echo $signupPasswordError; ?></text>
+							<b><label>*Parool:</label></b> <text style="color:red;"><?php echo $signupPasswordError; ?></text>
+							<input class="form-control" name="signuppassword" placeholder="********" type="password"> 
 							<br>
 							
-							<b><label>*Sisesta parool uuesti:</label></b><br>
-							<input class="form-control" name="reenterpassword" placeholder="********" type="password"> <text style="color:red;"><?php echo $reenterpasswordError; ?></text>
+							<b><label>*Sisesta parool uuesti:</label></b> <text style="color:red;"><?php echo $reenterpasswordError; ?></text>
+							<input class="form-control" name="reenterpassword" placeholder="********" type="password"> 
 							<br>
 					</div>
 						
