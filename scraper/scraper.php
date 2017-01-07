@@ -68,7 +68,7 @@ if (isset($_GET["time"])) {
     echo "
     <br>
     <form method='get'>
-        <input type='number'name='time' placeholder='Sisestage UNIX aeg'>
+        <input type='number' name='time' placeholder='Sisestage UNIX aeg'>
         <input type='submit' value='Sisesta'>
     </form>
     <br>
@@ -285,6 +285,5 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
     }
 
 }
-
 fwrite($file, $time . "\n");
 fclose($file);
