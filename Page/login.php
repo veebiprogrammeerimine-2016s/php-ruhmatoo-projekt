@@ -99,3 +99,4 @@
 	</div>
 	</body>
 </html>
+<?php require("../footer.php"); ?>

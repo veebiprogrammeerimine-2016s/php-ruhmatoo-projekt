@@ -53,10 +53,26 @@
 </style>
 </head>
 <body>
-<div style="width:500px; margin:0 auto;">
-<div class="dropdown"> 
-  <button class="dropbtn">Home</button>
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4"></div>
+  <div align="right">
+  <div class="col-sm-4">
+		<a href="signup.php" class="dropbtn">Sign up</a>
+	</div>
 </div>
+</div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-4">
+	<img src="../Trifuse.png">
+</div>
+<div align="center">
+<div class="col-sm-4">
+	<div class="dropdown"> 
+	  <button href="home.php" class="dropbtn">Home</button>
+	</div>
 
 <div class="dropdown">
   <button class="dropbtn">Pictures</button>
@@ -88,6 +104,12 @@
     <a href="sounds_nature.php">Nature</a>
     <a href="sounds_arts.php">Arts</a>
   </div>
+ </div>
+
+<div class="col-sm-4"></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </body>

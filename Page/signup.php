@@ -70,17 +70,21 @@ if (isset ($_POST["signupUsername"])) {
 ?>
 
 <?php require("../header.php"); ?>
-<div style="width:500px; margin:100px auto;">
-<div class="container">
+<div class="container-fluid">
 
     <div class="row">
 
-        <div class="col-sm-3">
-		
+		<br><br><br><br>
+		<div align="center">
 		<h1>Create an account</h1>
+		
+	
 		
 		<form method="POST">
 			
+			<div class="row">
+			<div class="col-sm-4"></div>
+			 <div class="col-sm-4">
 			<label>Email</label><br>
 			<input name="signupEmail" type="email"> <?php echo $signupEmailError; ?>
 			
@@ -97,8 +101,14 @@ if (isset ($_POST["signupUsername"])) {
 			<br><br> 
 			
 			<input type="submit" value="Save">
+			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</div>
+		<div class="col-sm-4"></div>
 		
 		</form>
+		</div>
+	</div>	
 	</div>
 	</body>
 </html>
+<?php require("../footer.php"); ?>

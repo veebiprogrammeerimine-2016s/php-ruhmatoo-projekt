@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html>
-<body>
 
-<img src="https://postimg.org/image/avf0tytr1/" alt="logo">
-
+<div class="container-fluid">
+<div class="row">
+<div align="center">
+	<img src="../Trifuse.png">
+  </div>
+</div>
+</div>
+</div>
 </body>
 </html>
