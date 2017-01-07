@@ -61,7 +61,7 @@
 	
 	<div class="row">
 	
-		<div class="col-sm-2 col-sm-offset-4">
+		<div class="col-sm-6 col-sm-offset-3">
 	
 			<h1>Logi sisse</h1>
 			<form method="POST">
@@ -79,7 +79,7 @@
 				<br>
 					
 				<input class="btn btn-success btn-block visible-xs-block" type="submit" value="Logi Sisse">
-				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Logi Sisse">
+				<input class="btn btn-success btn-block btn-sm hidden-xs" type="submit" value="Logi Sisse">
 			</form>
 			
 		</div>

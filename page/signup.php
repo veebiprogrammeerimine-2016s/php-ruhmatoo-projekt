@@ -11,16 +11,17 @@
 		exit();
 		
 	}
-
-	$signinEmailError= "";
-	$signinPasswordError= "";
-	$signinemail= "";
 	
+	$signupemail = "";
 	$signupEmailError= "";
 	$signupPasswordError= "";
 	$reenterpasswordError= "";
 	
-	$signupemail = "";
+	$signupFirstname = "";
+	$signupFirstnameError = "";
+	$signupLastname = "";
+	$signupLastnameError = "";
+	
 	$signupGender = "";
 	$signupGenderError = "";
 	$signupAge = "";
@@ -30,6 +31,26 @@
 	$signupShoesize = "";
 	
 	if(isset($_POST["signupemail"])){
+		
+		if(empty($_POST["signupFirstname"])) {
+			
+			$signupFirstnameError= "See vali on kohustuslik";
+			
+		} else {
+			
+			$signupFirstname = $_POST["signupFirstname"];
+			
+		}
+		
+		if(empty($_POST["signupLastname"])) {
+			
+			$signupLastnameError= "See vali on kohustuslik";
+			
+		} else {
+			
+			$signupLastname = $_POST["signupLastname"];
+			
+		}
 		
 		if(empty($_POST["signupemail"])){
 			
@@ -121,16 +142,6 @@
 		}
 	}
 	
-	//if(isset($_POST["signupGender"])){
-		
-		//if(!empty($_POST["signupGender"])){
-			
-			//$signupGender = $_POST["signupGender"];
-			
-		//}
-		
-	//}
-	
 	
 	if(isset($_POST["signupemail"]) &&
 		isset($_POST["signuppassword"]) &&
@@ -171,71 +182,85 @@
 	
 	<div class="row">
 	
-		<div class="col-sm-2 col-sm-offset-4">
-
-			<h1>Loo Kasutaja</h1>
-			Tärniga väljad on kohustuslikud
-			<form method="POST">
+		<div class="col-sm-12 col-sm-offset-0">
 			
-				<br>
-				<b><label>*E-mail:</label></b><br>
-				<input name="signupemail" placeholder="example@mail.com" type="text" value="<?=$signupemail;?>"> <text style="color:red;"><?php echo $signupEmailError; ?></text>
-				<br><br>
-			
-				<b><label>*Parool:</label></b><br>
-				<input name="signuppassword" placeholder="********" type="password"> <text style="color:red;"><?php echo $signupPasswordError; ?></text>
-				<br><br>
+			<div class="panel panel-default ">
 				
-				<b><label>*Sisesta parool uuesti:</label></b><br>
-				<input name="reenterpassword" placeholder="********" type="password"> <text style="color:red;"><?php echo $reenterpasswordError; ?></text>
-				<br><br>
+				<div class="panel-heading">
+					<h3 class="panel-title">Täida vastavad väljad</h3>
+				</div>
 				
-				<b><label>*Sugu:</label></b> <text style="color:red;"><?php echo $signupGenderError; ?></text><br><br>
-				<?php if($signupGender == "male") { ?>
-					<input name="signupGender" type="radio" value="male" checked> Male<br>
-				<?php }else { ?>
-					<input name="signupGender" type="radio" value="male"> Male<br>
-				<?php } ?>
-				
-				<?php if($signupGender == "female") { ?>
-					<input name="signupGender" type="radio" value="female" checked> Female<br>
-				<?php }else { ?>
-					<input name="signupGender" type="radio" value="female"> Female<br>
-				<?php } ?>
-				
-				<?php if($signupGender == "other") { ?>
-					<input name="signupGender" type="radio" value="other" checked> Other<br>
-				<?php }else { ?>
-					<input name="signupGender" type="radio" value="other"> Other<br>
-				<?php } ?>
-				
-				<br>
-				
-				<b><label>*Vanus:</label></b> <text style="color:red;"><?php echo $signupAgeError; ?></text><br>
-				<input name="signupAge" type="integer">
-				<br><br>
-				
-				<b><label>Riik:</label></b><br>
-				<input name="signupCountry" type="text">
-				<br><br>
-				
-				<b><label>Linn:</label></b><br>
-				<input name="signupCity" type="text">
-				<br><br>
-				
-				<b><label>Jalanumber (EUR):</label></b><br>
-				<input name="signupShoesize" type="float">
-				<br><br>
-				
-				<input name="spam" type="checkbox"> Soovin saada teateid oma meilile
-				<br><br>
-				
-				<input type="submit" value="Loo Kasutaja">
-				
-				
-				<br><br><br><br>
-				
-			</form>
+				<div class="panel-body">
+					
+					<div class="form-group col-sm-6">
+						<form method="POST">
+							<text style="color:red;">Tärniga väljad on kohustuslikud</text>
+							<br><br>
+							<b><label>*Eesnimi</label></b><br>
+							<input class="form-control" name="signupFirstname" placeholder="Santa" type="text" value="<?=$signupFirstname;?>"> <text style="color:red;"><?php echo $signupFirstnameError; ?></text>
+							<br>
+							
+							<b><label>*Perekonnanimi:</label></b><br>
+							<input class="form-control" name="signupLastname" placeholder="Claus" type="text" value="<?=$signupLastname;?>"> <text style="color:red;"><?php echo $signupLastnameError; ?></text>
+							<br>
+						
+							<b><label>*E-mail:</label></b><br>
+							<input class="form-control" name="signupemail" placeholder="example@mail.com" type="text" value="<?=$signupemail;?>"> <text style="color:red;"><?php echo $signupEmailError; ?></text>
+							<br>
+						
+							<b><label>*Parool:</label></b><br>
+							<input class="form-control" name="signuppassword" placeholder="********" type="password"> <text style="color:red;"><?php echo $signupPasswordError; ?></text>
+							<br>
+							
+							<b><label>*Sisesta parool uuesti:</label></b><br>
+							<input class="form-control" name="reenterpassword" placeholder="********" type="password"> <text style="color:red;"><?php echo $reenterpasswordError; ?></text>
+							<br>
+					</div>
+						
+					<div class="form-group col-sm-6">
+							<b><label>*Sugu:</label></b> <text style="color:red;"><?php echo $signupGenderError; ?></text><br>
+							<?php if($signupGender == "male") { ?>
+								<input name="signupGender" type="radio" value="male" checked> Male<br>
+							<?php }else { ?>
+								<input name="signupGender" type="radio" value="male"> Male<br>
+							<?php } ?>
+							
+							<?php if($signupGender == "female") { ?>
+								<input name="signupGender" type="radio" value="female" checked> Female<br>
+							<?php }else { ?>
+								<input name="signupGender" type="radio" value="female"> Female<br>
+							<?php } ?>
+							
+							<?php if($signupGender == "other") { ?>
+								<input name="signupGender" type="radio" value="other" checked> Other<br>
+							<?php }else { ?>
+								<input name="signupGender" type="radio" value="other"> Other<br>
+							<?php } ?>
+							<br>
+							
+							<b><label>*Vanus:</label></b> <text style="color:red;"><?php echo $signupAgeError; ?></text><br>
+							<input class="form-control" name="signupAge" type="integer" value="<?=$signupAge;?>">
+							<br>
+							
+							<b><label>Riik:</label></b><br>
+							<input class="form-control" name="signupCountry" type="text">
+							<br>
+							
+							<b><label>Linn:</label></b><br>
+							<input class="form-control" name="signupCity" type="text">
+							<br>
+							
+							<b><label>Jalanumber (EUR):</label></b><br>
+							<input class="form-control" name="signupShoesize" type="float">
+							<br>
+					</div>
+							<input class="btn btn-success btn-block visible-xs-block" type="submit" value="Loo Kasutaja">
+							<input class="btn btn-success btn-block btn-sm hidden-xs" type="submit" value="Loo Kasutaja">
+							<br>
+							
+						</form>
+				</div>
+			</div>	
 		</div>
 	</div>
 </div>

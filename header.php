@@ -27,7 +27,7 @@
 	
 				<div class="col-sm-12 col-sm-offset-0">
 	
-					<nav class="navbar"> 
+					<nav class="navbar navbar-inverse"> 
 				
 						<h2 class="navbar-text navbar-left">Tere,<a href="user.php"> <?=$_SESSION["userEmail"];?></a>!</h2>
 						<p class="navbar-text navbar-left"> 
@@ -44,12 +44,28 @@
 	
 				<div class="col-sm-12 col-sm-offset-0">
 	
-					<nav class="navbar"> 
+					<nav class="navbar navbar-inverse"> 
 				
-						<h2 class="navbar-text navbar-left">SneakerMarket</h2>
-						<p class="navbar-text navbar-left"> 
-							<a href="sneakermarket.php">Esileht</a> | <a href="signup.php">Loo Kasutaja</a> | <a href="login.php">Logi sisse</a>
-						</p>
+						<h3 class="navbar-text navbar-left">SneakerMarket</h3>
+						<h4 class="navbar-text"> 
+							| <a href="sneakermarket.php">Esileht</a> | <a href="signup.php">Loo Kasutaja</a> | <a href="login.php">Logi sisse</a> | 
+						</h4>
+						
+						<form class="form-inline col-sm-6 navbar-right" method="POST">
+							
+							<div class="form-group">
+								<input class="form-control" name="loginemail" placeholder="Kasutaja" type="text">
+							</div>
+							
+							<div class="form-group">
+								<input class="form-control" name="loginpassword" placeholder="Parool" type="password">
+							</div>
+								
+							<input class="btn btn-primary btn-block visible-xs-block" type="submit" value="Logi Sisse">
+							<input class="btn btn-primary btn-sm hidden-xs" type="submit" value="Logi Sisse">
+							
+							<?php //require("");?>
+						</form>
 					</nav>
 				</div>
 			</div>
