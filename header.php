@@ -61,32 +61,32 @@
 <div class="dropdown">
   <button class="dropbtn">Pictures</button>
   <div class="dropdown-content">
-    <a href="#">Nature</a>
-    <a href="#">Arts</a>
+    <a href="pictures_nature.php">Nature</a>
+    <a href="pictures_arts.php">Arts</a>
   </div>
 </div>
 
 <div class="dropdown">
   <button class="dropbtn">Gifs</button>
   <div class="dropdown-content">
-    <a href="#">Nature</a>
-    <a href="#">Arts</a>
+    <a href="gifs_nature.php">Nature</a>
+    <a href="gifs_arts.php">Arts</a>
   </div>
 </div>
 
 <div class="dropdown">
   <button class="dropbtn">Videos</button>
   <div class="dropdown-content">
-    <a href="#">Nature</a>
-    <a href="#">Arts</a>
+    <a href="videos_nature.php">Nature</a>
+    <a href="videos_arts.php">Arts</a>
   </div>
 </div>
 
 <div class="dropdown">
   <button class="dropbtn">Sounds</button>
   <div class="dropdown-content">
-    <a href="#">Nature</a>
-    <a href="#">Arts</a>
+    <a href="sounds_nature.php">Nature</a>
+    <a href="sounds_arts.php">Arts</a>
   </div>
 </div>
 </div>
