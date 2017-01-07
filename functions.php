@@ -37,18 +37,24 @@ function addPicURL($picname) {
 	
 }
 
+
+
+
 function getProfileURL() {
 
 	$database = "if16_ege";
 	$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 	
 		$username = $_SESSION['userName'];
-	
+		
 		$query = "SELECT url FROM user_tv_pics WHERE username = '$username'";
 		$myData = $mysqli->query($query);
 
 			$myDataRow = $myData->fetch_assoc();
 			$url = $myDataRow['url'];
+			
+			if (empty($url)) $url = "profilepics/defaultPic.jpg";
+
 
 		$myData->close();
 		
