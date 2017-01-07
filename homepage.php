@@ -1,7 +1,6 @@
 <?php
 	
 	require("functions.php");
-	require("header.php");
 	
 	if (!isset ($_SESSION["userId"])) {
 		header("Location: loginpage.php");
@@ -29,46 +28,40 @@
 	$people = allinfo();
 ?>
 
-<h2>Tere tulemast <?=$_SESSION["userEmail"];?> ! </h2>
-
-<center>
-<?php 
-$html = "<table>";
+<html>
+<style>
 	
-	$html .= "<tr>";
-		$html .= "<th>Eriala</th>";
-		$html .= "<th>Pealkiri</th>";
-		$html .= "<th>Kommentaar</th>";
-		$html .= "<th>Postitud</th>";
-		$html .= "<th>Kasutaja</th>";	
-	$html .= "</tr>";
-
+	.cat_col {
+		color:A11F2F; 
+		font-weight: 
+		600;
+	}
 	
-	foreach ($people as $p) {
-	$html .= "<tr>";
-		$html .= "<td>".$p->id."</td>";
-		$html .= "<td><a href='homepage.php?id='>".$p->category."</a></td>";
-		$html .= "<td>".$p->headline."</td>";
-		$html .= "<td>".$p->created."</td>";
-		$html .= "<td>".$p->email."</td>";	
-	$html .= "</tr>";
+	clock {
+		color:black;
+	}
+	
+	table, td, th {
+		border: 1px solid black;
 	}
 
-$html .= "</table>";
-echo $html
-?>
+	table {
+		border-collapse: collapse;
+		width: 100%;
+	}
 
-<html>
-<style type="text/css">
-	.cat_col {color:A11F2F; font-weight: 600;}
-	p {font-family: courier;font-size:110%;}
-	h2 {font-family: courier;}
-	clock {color:black;}
+	th {
+		height: 50px;
+	}
+	
+	body {
+		background: url(image/background.png);
+	}
+
 </style>
+<body>
 
-
-	<body>
-	<h2>Tee uus postitus</h2>
+	<h2>Tee uus postitus</h2
 	<form method="POST">
 	<!--KATEGOORIA-->
 	<p><label for="category">Vali eriala:</label><br>
@@ -150,30 +143,29 @@ echo $html
 </form>
 </body>		
 </html>
-</center>
-
-<?php echo date("d.m.Y");?>
-<style type="text/css">
-	p {font-family: courier;font-size:110%;}
-	#clock {color:black;}
-	</style>
+<?php 
+$html = "<table>";
 	
-	<script type="text/javascript">
-	function updateClock (){
-	  var currentTime = new Date ( );
-	  var currentHours = currentTime.getHours ();
-	  var currentMinutes = currentTime.getMinutes ();
-	  var currentSeconds = currentTime.getSeconds();
-	  currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
-	  currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
-	  var timeOfDay = ''; 
+	$html .= "<tr>";
+		$html .= "<th>Category</th>";
+		$html .= "<th>Pealkiri</th>";
+		$html .= "<th>Kommentaar</th>";
+		$html .= "<th>Postitud</th>";
+		$html .= "<th>Kasutaja</th>";	
+	$html .= "</tr>";
 
-	  var currentTimeString = currentHours + ":" + currentMinutes + ':' + currentSeconds+ " " + timeOfDay;
-
-	  document.getElementById("clock").innerHTML = currentTimeString;
+	
+	foreach ($people as $p) {
+	$html .= "<tr>";
+		$html .= "<td>".$p->category."</a></td>";
+		$html .= "<td>".$p->headline."</td>";
+		$html .= "<td>".$p->comment."</td>";
+		$html .= "<td>".$p->created."</td>";
+		$html .= "<td>".$p->email."</td>";
+		$html .= "<td><a href='comment.php?id=".$p->id."'>Reply</a></td>";
+	$html .= "</tr>";
 	}
-	</script>
-	
-	<body onLoad="updateClock(); setInterval('updateClock()', 1000 )">
-	<span id="clock">&nbsp;</span>
-	</body>
+
+$html .= "</table>";
+echo $html
+?>

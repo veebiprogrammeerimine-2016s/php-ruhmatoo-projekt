@@ -168,8 +168,6 @@
 <center>
 	
 	<!--KASUTAJA SISENEB-->
-
-	<!--näitab parool/email errorit-->
 	<div class="login">
 	<form method="POST">
 		<p class="border">LOG IN<p>
@@ -244,6 +242,8 @@
     </div>
   </div>
 </div>
+
 </center>
+
 </body>
 </html>

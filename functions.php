@@ -18,7 +18,7 @@
 		$stmt->bind_param("ssss",$email, $password, $nickname, $gender);
 		
 		if ( $stmt->execute() ) {
-			echo "õnnestus";
+			echo "Registration completed!";
 		} else {
 			echo "ERROR ".$stmt->error;
 		}	
@@ -75,7 +75,7 @@
 		echo $mysqli->error;
 		$stmt->bind_param("ssss",$category, $headline , $comment, $_SESSION["userEmail"]);
 		if ( $stmt->execute() ) {
-			echo "õnnestus";
+			echo "Success!";
 		} else {
 			echo "ERROR ".$stmt->error;
 		}	
@@ -112,5 +112,46 @@
 			array_push($results, $human);	
 		}
 		return $results;
+	}
+	
+	function getsingleId($show_id){
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], 
+		$GLOBALS["serverUsername"], 
+		$GLOBALS["serverPassword"], 
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("
+		SELECT category, pealkiri, comment, created, email
+		FROM grupp_category 
+		WHERE id = ?");
+		
+		$stmt->bind_param("i", $show_id);
+		$stmt->bind_result($category, $headline , $comment, $created, $email);
+		$stmt->execute();
+		
+		//tekitan objekti
+		$finish = new Stdclass();
+		
+		//saime Ã¼he rea andmeid
+		if($stmt->fetch()){
+			// saan siin alles kasutada bind_result muutujaid
+			$finish->category = $category;
+			$finish->headline = $headline;
+			$finish->comment = $comment;
+			$finish->created = $created;
+			$finish->email = $email;
+		
+		}else{
+			// ei saanud rida andmeid kÃ¤tte
+			// sellist id'd ei ole olemas
+			// see rida vÃµib olla kustutatud
+			header("Location: homepage.php");
+			exit();
+		}
+		
+		$stmt->close();
+		
+		return $finish;
 	}
 ?>
