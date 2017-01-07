@@ -281,20 +281,20 @@
 							}
 						}
 					
-					$html .= "<thead class='bg-success'>";
+					$html .= "<thead class='forum_sort'>";
 					$html .= "<th>
 						<a href='?q=".$q."&sort=topic&order=".$topicOrder."' style='text-decoration:none'>
-						<font size='2'>Teema</font><br><font size='2'>A</font>".$topicArrow."</th>";
+						<font size='2' color='white'><u>Teema</u></font><br><font size='2' color='white'>A</font><font color='white'>".$topicArrow."</font></th>";
 						$html .= "<th>
 						<a href='?q=".$q."&sort=username&order=".$userOrder."' style='text-decoration:none'>
-						<font size='2'>Kasutaja</font><br><font size='2'>A</font>".$userArrow."</th>";
+						<font size='2' color='white'><u>Kasutaja</u></font><br><font size='2' color='white'>A</font><font color='white'>".$userArrow."</font></th>";
 						$html .= "<th>
 						<a href='?q=".$q."&sort=created&order=".$dateOrder."' style='text-decoration:none'>
-						<font size='2'>Lisamise kuupäev</font><br><font size='2'>&#128336;</font>".$dateArrow."</th>";
+						<font size='2' color='white'><u>Lisamise kuupäev</u></font><br><font size='2'color='white'>&#128336;</font><font color='white'>".$dateArrow."</font></th>";
 					$html .= "</tr>";
 					$html .= "</thead>";
 					
-					$html .= "<thead class='thead-default'>";
+					$html .= "<thead class='thead_default_forum'>";
 					$html .= "<th><font size='2'>ÜLDINE</font></th>";
 					$html .= "<th></th>";
 					$html .= "<th></th>";
@@ -302,7 +302,7 @@
 				
 				
 				foreach($generalTopics as $gt){
-					$html .= "<tbody>";
+					$html .= "<tbody class='forum_body'>";
 					$html .= "<tr>";
 						$html .= "<td font size='20'><a href='topic.php?id=".$gt->id."' style='text-decoration:none'><font size='4'>".$gt->subject."</font></a></td>";
 						$html .= "<td>".$gt->username."</td>";
@@ -311,14 +311,14 @@
 					$html .= "</tbody>";
 				} 
 					
-					$html .= "<thead class='thead-default'>";
+					$html .= "<thead class='thead_default_forum'>";
 					$html .= "<th><font size='2'>LEIA ENDALE TREENINGPARTNER</font></th>";
 					$html .= "<th></th>";
 					$html .= "<th></th>";
 					$html .= "</thead>";
 					
 				foreach($partnerTopics as $pt){
-					$html .= "<tbody>";
+					$html .= "<tbody class='forum_body'>";
 					$html .= "<tr>";
 						$html .= "<td font size='20'><a href='topic.php?id=".$pt->id."' style='text-decoration:none'><font size='4'>".$pt->subject."</font></a></td>";
 						$html .= "<td>".$pt->username."</td>";

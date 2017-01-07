@@ -22,7 +22,7 @@
 	
 	</head>
 	
-<body>
+<body  class="main_background">
 
 	<nav class="navbar">
 		<div class="container-fluid">
@@ -38,16 +38,16 @@
 				<ul class="nav navbar-nav pull-right">
 					 <li class="active1 navbar-text hidden-xs">
 						<?php 
-							echo "Oled sisse loginud kasutajaga " ;
+							echo "<font color='white'><b>Oled sisse loginud kasutajaga</b></font>" ;
 						?>
 					</li>
 					<li class="active2">
 						<?php 
-						echo "<a href='user.php'><i><b>".$username."</b></i> </a>";
+						echo "<a href='user.php'><font color='#444f45'><b>".$username."</b></font></a>";
 						?>
 					</li>
 					<li class="active3">
-						<a href="data.php?logout=1">Logi välja</a>
+						<a href="data.php?logout=1"><font color='#444f45'><b>Logi välja</b></font></a>
 					</li>
 				</ul>
 		  </div>
