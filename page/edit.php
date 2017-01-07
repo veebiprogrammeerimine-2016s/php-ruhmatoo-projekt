@@ -32,13 +32,13 @@ $p = $Plant->getSingleData($_GET["id"]);
 if(isset($_GET["success"])){
 		echo "salvestamine õnnestus";
 	}
-	
+$pageName="edit";	
 ?>
 
 <?php require("../header.php");?>
 
-<div class="container">
-<div id="editForm" class="col-lg-6 col-sm">
+<div class="container" >
+<div id="editForm" class="col-lg-6 col-sm-offset-10">
 <a href="data.php"><i class='glyphicon glyphicon-chevron-left'></i>Tagasi</a>
 
 <h2>Muuda kirjet</h2>
@@ -57,6 +57,6 @@ if(isset($_GET["success"])){
   <br>
   <br>
   <a href="?id=<?=$_GET["id"];?>&deleted=true"><i class='glyphicon glyphicon-remove'></i>Kustuta</a>
-</div>
+    </div>
     </div>
   <?php require("../footer.php");?>

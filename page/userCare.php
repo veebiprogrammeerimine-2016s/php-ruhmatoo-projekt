@@ -132,7 +132,7 @@ if( isset($_POST["signupEmail"] )){
 								
                                 $html .= '<td><img src="'.$p->url. '" style= "width:128px" ></td>';
 								$html .= "<td>".$p->id."</td>";
-								$html .= "<td>".$p->name."<a href='edit.php?id=".$p->id."'>muuda</a></td>";
+								$html .= "<td>".$p->name."</td>";
 								$html .= "<td>".$p->intervals."</td>";
                                 $html .= "<td>".$p->tip."</td>";
 								

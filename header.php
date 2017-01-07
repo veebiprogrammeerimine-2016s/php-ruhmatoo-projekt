@@ -33,14 +33,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-           <a class="navbar-brand" href=<?php if(isset($pageName) && $pageName == "login"){ echo "login.php";}?><?php if(isset($pageName) && $pageName == "care"){ echo "login.php";}?><?php if(isset($pageName) && $pageName == "data"){ echo "data.php";}?><?php if(isset($pageName) && $pageName == "userCare"){ echo "data.php";}?> >
+           <a class="navbar-brand" href=<?php if(isset($pageName) && $pageName == "login"){ echo "login.php";}?><?php if(isset($pageName) && $pageName == "care"){ echo "login.php";}?><?php if(isset($pageName) && $pageName == "data"){ echo "data.php";}?><?php if(isset($pageName) && $pageName == "userCare"){ echo "data.php";}?><?php if(isset($pageName) && $pageName == "edit"){ echo "data.php";}?> >
 			FacePlänt
 		  </a>
         </div>
 		
         <div id="navbar"  class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li <?php if(isset($pageName) && $pageName == "care"){ echo "class='active'"; } ?> ><a href="<?php if(isset($pageName) && $pageName == "login"){ echo 'care.php'; } ?> <?php if(isset($pageName) && $pageName == "data"){ echo 'userCare.php'; } ?>">Taimehooldus<span class="sr-only"></span></a></li>
+				<li <?php if(isset($pageName) && $pageName == "care"){ echo "class='active'"; } ?> ><a href="<?php if(isset($pageName) && $pageName == "login"){ echo 'care.php'; } ?> <?php if(isset($pageName) && $pageName == "data"){ echo 'userCare.php'; } ?> <?php if(isset($pageName) && $pageName == "edit"){ echo 'userCare.php'; } ?>">Taimehooldus<span class="sr-only"></span></a></li>
 				
 			</ul>
             
