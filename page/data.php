@@ -96,6 +96,7 @@
 			
 			if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 				
+				
 				$target_dir = "../uploads/";
 				$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 				$uploadOk = 1;
