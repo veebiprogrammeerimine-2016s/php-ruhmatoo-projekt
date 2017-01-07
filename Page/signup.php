@@ -101,7 +101,7 @@ if (isset ($_POST["signupUsername"])) {
 			<br><br> 
 			
 			<input type="submit" value="Save">
-			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+			<br><br>
 		</div>
 		<div class="col-sm-4"></div>
 		

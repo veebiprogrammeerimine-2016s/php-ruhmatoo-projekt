@@ -70,13 +70,12 @@
 ?>
 
 <?php require("../header.php"); ?>
-<div style="width:500px; margin:100px auto;">
-<div class="container">
 
-    <div class="row">
-
-        <div class="col-sm-3">
-		
+<div class="container-fluid">
+    <div align="center">
+	<div class="row">
+        <div class="col-sm-4"></div>
+		<div class="col-sm-4">
 		<h1>Logi in</h1>
 		<p style="color:red;"><?php echo $error; ?></p>
 		<form method="POST">
@@ -91,11 +90,14 @@
 						
 			<br><br>
 			
-			<input type="submit">
+			<input type="submit" value="Login">
 		
 		</form>
-		
+	<div class="col-sm-4"></div>
 	</div>	
+	</div>
+	</div>	
+	</div>
 	</div>
 	</body>
 </html>

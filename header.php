@@ -12,6 +12,17 @@
 
 <head>
 <style>
+
+.divLast 
+{
+   top: 0px;
+   margin:0px;  
+   padding: 0px 2px 2px 3px;    
+   border-width: 2px;
+   border-bottom: 1px black solid;
+   width: 100%;
+}
+
 .dropbtn {
     background-color: #FFFFFF;
     color: black;
@@ -62,13 +73,17 @@
 		<a href="signup.php" class="dropbtn">Sign up</a>
 	</div>
 </div>
-</div>
+
+<div class='divLast'>
 <div class="container-fluid">
-<div class="row">
-<div class="col-sm-4">
-	<img src="../Trifuse.png">
 </div>
-<div align="center">
+<div class="row">
+<div align="right">
+<div class="col-sm-4">
+	<img src="../Trifuselogo.png">
+</div>
+</div>
+<div align="left">
 <div class="col-sm-4">
 	<div class="dropdown"> 
 	  <button href="home.php" class="dropbtn">Home</button>
@@ -107,6 +122,7 @@
  </div>
 
 <div class="col-sm-4"></div>
+</div>
 </div>
 </div>
 </div>
