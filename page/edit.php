@@ -30,6 +30,7 @@
 			$Reply->update($Helper->cleanInput($_POST["new_reply"]), $_GET["reply"]);
 			$Reply->updateTime($_GET["reply"]);
 			$reply = $_POST["new_reply"];
+			$reply = $Reply->find($_GET["topic"], $_GET["reply"], $_SESSION["userId"]);
 		} 
 		
 		if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
@@ -79,6 +80,7 @@
 						$Reply->updateWithFile($Helper->cleanInput($_POST["new_reply"]), $_GET["reply"], $target_file);
 						$Reply->updateTime($_GET["reply"]);
 						$reply = $_POST["new_reply"];
+						$reply = $Reply->find($_GET["topic"], $_GET["reply"], $_SESSION["userId"]);
 						
 					} else {
 						$fileError = "Midagi läks faili üleslaadimisel valesti.";
@@ -117,14 +119,15 @@
 <?php require("../header.php")?>
 <?php require("../CSS.php")?>
 
-	<div class="edit" style="padding-left:20px;">
+<div class="edit" style="padding-left:20px;">
+	<div class="col-sm-4 col-md-4"> 
 		<h2><a href="topic.php?id=<?php echo $topic_id;?>" style="text-decoration:none"> < Tagasi </a></h2>
 		<p><b><?=$reply_change_msg;?></b></p>
 		<h1>Muuda või kustuta oma vastus</h1>
 		<form method="post" enctype="multipart/form-data" >
 			<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
 			<label for="sisu" >Sinu vastus</label><br>
-			<textarea id="new_reply" cols="40" rows="5" name="new_reply"><?php echo $reply->content;?></textarea><br><br>
+			<textarea class="form-control" id="new_reply" cols="40" rows="5" name="new_reply"><?php echo $reply->content;?></textarea><br><br>
 			
 			<label>Lisa soovi korral uus pilt:</label>
 			<i><input type="file" name="fileToUpload" id="fileToUpload"></i>
@@ -132,13 +135,14 @@
 			<!--<a href='edit.php?topic=<?php echo $deltopic; ?>&reply=<?php echo $delreply; ?>&deletepic=true'><font color='#cc0000' size='2'> Või kustuta praegune pilt</font></a>-->
 			<br><br><br>
 			
-			<input type="submit" type="button" class="btn btn-default btn-sm" name="update" value="Salvesta muudatus">
+			<input type="submit" type="button" class="btn btn-success btn-sm" name="update" value="Salvesta muudatus">
 			<br><br>
 			<div class="inner-addon left-addon">
 				<span class='glyphicon glyphicon-trash'></span>
 				<input type="submit" type="button" class="btn btn-default btn-xs" style="color:#cc0000;" name="delete" value="Kustuta vastus">
 			</div>
 		  </form>
-	 </div>
+	</div>
+</div>
 
 <?php require("../footer.php")?>

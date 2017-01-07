@@ -64,29 +64,30 @@
 
 <?php require("../header.php"); ?>
 <div class="editPassword" style="padding-left:20px;"> 
+	<div class="col-sm-3 col-md-3">
 
-	<h2><a href="user.php"> < Tagasi </a></h2>
-	
-	<?php echo $msg; ?>
-	<h2>Muuda Parooli</h2>
+		<h2><a href="user.php"> < Tagasi </a></h2>
+		
+		<?php echo $msg; ?>
+		<h2>Muuda Parooli</h2>
 
-	<form method="POST"> 
-	<label>Sisesta vana parool</label><br>
-	<input name="oldPassword" type="password"> <?php echo $oldPasswordError; ?>
-	<br><br>
-	
-	<label>Sisesta uus parool</label><br>
-	<input name="newPassword" type="password"> <?php echo $newPasswordError; ?>
-	<br><br>
-	
-	<label>Sisesta uus parool uuesti</label><br>
-	<input name="newPassword2" type="password"><?php echo $newPasswordError2; ?>
-	<br><br>
-	
-	<input type="submit" value = "Muuda parool">
-	
-	</form>
-
+		<form method="POST"> 
+		<label>Sisesta vana parool</label><br>
+		<input class="form-control" name="oldPassword" type="password"> <?php echo $oldPasswordError; ?>
+		<br><br>
+		
+		<label>Sisesta uus parool</label><br>
+		<input class="form-control" name="newPassword" type="password"> <?php echo $newPasswordError; ?>
+		<br><br>
+		
+		<label>Sisesta uus parool uuesti</label><br>
+		<input class="form-control" name="newPassword2" type="password"><?php echo $newPasswordError2; ?>
+		<br><br>
+		
+		<input class="btn btn-success" type="submit" value = "Muuda parool">
+		
+		</form>
+	</div>
 </div>
  
 <?php require("../footer.php"); ?>

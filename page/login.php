@@ -203,7 +203,7 @@
 		
 	<body class="background" background="../esilehele.jpg">
 
-	<nav class="navbar">
+	<nav class="navbar_login">
 	  <div class="container-fluid">
 		<div class="navbar-header">
 		  <a class="navbar-brand" href="login.php">
@@ -213,7 +213,7 @@
 		
 		<div class=" navbar-form navbar-left visible-xs">
 			<p style='color:red;'><?php echo $loginEmailError; ?> <?php echo $loginPasswordError; ?><?=$notice;?></p>
-			<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Logi sisse</button>
+			<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">Logi sisse</button>
 
 			<div id="myModal" class="modal fade" role="dialog">
 			  <div class="modal-dialog">
@@ -254,7 +254,7 @@
 							
 					<input name='loginPassword' type='password' class="form-control input-sm" placeholder='Parool'>
 							
-					<input type='submit' value = 'Logi sisse'> <br>
+					<input type='submit' class="btn btn-sm" value = 'Logi sisse'> <br>
 					
 					<p style='color:red;'><?php echo $loginEmailError; ?> <?php echo $loginPasswordError; ?><?=$notice;?></p>
 				</li>

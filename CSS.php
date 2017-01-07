@@ -2,7 +2,12 @@
 
 /* header */
 	.navbar {
-		background: rgba(240, 240, 240, .5);
+		background: rgb(147, 184, 116);
+
+	}
+	
+	.navbar_login {
+		background: rgba(147, 169, 128, 0.6);
 
 	}
 		
@@ -18,7 +23,7 @@
 		position: relative;
 		left: 2%;
 		top: 0%;
-		background: rgba(240, 240, 240, .5);
+		background: rgba(216, 223, 211, 0.5);
 		height: 453px;
 		width: 500px;
 		border-radius: 25px;
@@ -26,7 +31,7 @@
 			
 	.background {
 		background-repeat: no-repeat;
-		background-color: black;
+		background-color: #0a110a;
 		background-width: 100%
 		background-size: contain; 
 		background-size: 100%;
@@ -43,10 +48,30 @@
 		left: 5%;
 		top: 30%;
 	}
+	
+	.main_background {
+		background-color: #e0eee0;
+	}
 
 /* foorum */
-	.thead-default{
-		background-color: #E8E8E8;
+	.thead_default_forum{
+		background-color: #b6d999;
+	}
+	
+	.forum_sort{
+		background-color: #444f45;
+	}
+	
+	.forum_body{
+		background-color: white;
+	}
+	
+	.forum_replies{
+		background-color: white;
+	}
+	
+	.replies_head{
+		background-color: #b6d999;
 	}
 	
 	.inner-addon { 
@@ -68,6 +93,15 @@
 	/* add padding  */
 	.left-addon input  { padding-left:  20px; }
 	.right-addon input { padding-right: 30px; }
+	
+/*harjutused*/
+	.exercises_head{
+		background-color: #444f45;
+	}
+
+	.exercises_body{
+		background-color: white;
+	}
 	
   /*kalender*/
   table.SimpleCalendar {
