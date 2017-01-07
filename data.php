@@ -78,6 +78,9 @@
 		exit();
 		}
 
+
+	$users=getUserData();
+
 ?>
 
 <h1>Tänane päev</h1>
@@ -105,7 +108,45 @@
 		<input name="NumberofSteps" type="Numberofsteps" value="<?=$NumberofSteps;?>"> <?php echo $NumberofStepsError; ?>
 <br><br>
 		<input type="submit" value="Salvesta andmed">
-<p>
+		<br>
+		<br>
+
+
+<p></p>
+</form>
+<a href="data2.php" class="btn">Mis on minu KMI?</a>
+<h2>Minu enesetunne ja liikumisaktiivsus</h2>
+<?php
+
+	$html = "<table>";
+
+	$html .= "<tr>";
+		$html .= "<th>Kuupäev</th>";
+		$html .= "<th>Enesetunne</th>";
+		$html .= "<th>Sammude arv</th>";
+	$html .= "</tr>";
+
+	//iga liikme kohta massiivis
+	foreach($users as $u){
+
+		$html .= "<tr>";
+			$html .= "<td>".$u->Date."</td>";
+			$html .= "<td>".$u->Feeling."</td>";
+			$html .= "<td>".$u->NumberofSteps."</td>";
+		$html .= "</tr>";
+	}
+
+	$html .= "</table>";
+
+	echo $html;
+
+
+	$listHtml = "<br><br>";
+
+
+
+?>
+
 	<a href="?logout=1">Logi välja</a>
 </p>
 </form>
