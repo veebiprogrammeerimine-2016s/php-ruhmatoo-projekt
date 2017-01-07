@@ -201,39 +201,36 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
             $summary = $lessonCode . " " . $lessonName;
 
             try {
+                $event = new Google_Service_Calendar_Event(createEvent($summary, $room, $teacher, $timeStart, $timeEnd));
                 if (isset($group1) && isset($group2)) {
+                    //echo $group1 . "+ | " . $timeStart . " | " . $timeEnd . " | " . $summary . " | " . $room . " | " . $teacher . "<br>";
+                    $eventOne = $service->events->insert($groupAddresses["grupp" . $group1], $event);
 
-                    $event = new Google_Service_Calendar_Event(createEvent($summary, $room, $teacher, $timeStart, $timeEnd));
-                    $event = $service->events->insert($groupAddresses["grupp" . $group1], $event);
-                    //$event->htmlLink;
-                    echo $group1 ." created.";
-                    $event = new Google_Service_Calendar_Event(createEvent($summary, $room, $teacher, $timeStart, $timeEnd));
-                    $event = $service->events->insert($groupAddresses["grupp" . $group2], $event);
-                    echo $group2 ." created. <br>";
+                    //echo $group2 . "+; | " . $timeStart . " | " . $timeEnd . " | " . $summary . " | " . $room . " | " . $teacher . "<br>";
+                    $eventTwo = $service->events->insert($groupAddresses["grupp" . $group2], $event);
 
+                    unset($eventOne);
+                    unset($eventTwo);
                 } else if (isset($group)) {
+                    //echo $group . " | " . $timeStart . " | " . $timeEnd . " | " . $summary . " | " . $room . " | " . $teacher . "<br>";
                     if ($group == 'ALL') {
                         $counter = 1;
                         while (true) {
-                            $event = new Google_Service_Calendar_Event(createEvent($summary, $room, $teacher, $timeStart, $timeEnd));
-                            $event = $service->events->insert($groupAddresses["grupp" . $counter], $event);
-                            echo $counter . " created <br>";
+                            $eventAll = $service->events->insert($groupAddresses["grupp" . $counter], $event);
                             if ($counter == 4) break;
                             $counter = $counter + 1;
+                            unset($eventAll);
                         }
                     } else {
-
-                        $groupName = $group;
-                        $event = new Google_Service_Calendar_Event(createEvent($summary, $room, $teacher, $timeStart, $timeEnd));
-                        $event = $service->events->insert($groupAddresses["grupp" . $group], $event);
-                        echo $group . " created<br>";
+                        $eventSingle = $service->events->insert($groupAddresses["grupp" . $group], $event);
+                        unset($eventSingle);
                     }
 
                 }
 
             } catch (Exception $e) {
                 if ($e->getCode() == "404") {
-                    echo "Teil puuduvad õigused kalendri muutmiseks.";
+                    echo "Teil puuduvad õigused kalendri muutmiseks või kasutajal puuduvad vajalikud kalendrid . <br>";
                 } else {
                     echo "<br>ERROR " . $e->getCode() . ":" . "<br>";
                     echo $e->getMessage() . "<br>";

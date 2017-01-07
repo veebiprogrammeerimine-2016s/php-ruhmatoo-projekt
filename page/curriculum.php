@@ -12,81 +12,96 @@ if (isset($_GET["logout"])) {
 ?>
 <?php require "../parts/header.php"; ?>
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                </button>
-                <a class="navbar-brand" href="../index.php">Izipäevik</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="homework.php">Kodused tööd</a></li>
-                    <li class="active"><a href="#">Tunniplaan</a></li>
-                </ul>
-                <!-- Navbar right side -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="admin.php">Admin</a></li>
-                    <?php if (isset($_SESSION["userId"])) {
-                        echo('
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                    </button>
+                    <a class="navbar-brand" href="../index.php">Izipäevik</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="homework.php">Kodused tööd</a></li>
+                        <li class="active"><a href="#">Tunniplaan</a></li>
+                    </ul>
+                    <!-- Navbar right side -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="admin.php">Admin</a></li>
+                        <?php if (isset($_SESSION["userId"])) {
+                            echo('
                            <li><a href = "?logout=1" > Logout</a ></li >
                            ');
-                    }
-                    ?>
-                </ul>
-            </div><!--/.nav-collapse -->
+                        }
+                        ?>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </nav>
+
+        <!-- Dropdown for Table -->
+
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
+                Vali rühm
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="curriculum.php?ryhm=1">1-rühm</a></li>
+                <li><a href="curriculum.php?ryhm=2">2-rühm</a></li>
+                <li><a href="curriculum.php?ryhm=3">3-rühm</a></li>
+                <li><a href="curriculum.php?ryhm=4">4-rühm</a></li>
+            </ul>
         </div>
-    </nav>
+        <br>
 
-    <!-- Dropdown for Table -->
+        <?php
+        if (isset($_GET["ryhm"])) {
+            if ($_GET["ryhm"] == 1) {
+                echo "
+                <div class=\"container-fluid\">
+                    <div class=\"embed-responsive embed-responsive-16by9\">
+                        <iframe src=\"https://calendar.google.com/calendar/embed?src=uedj1kpngtked4occukic6h89s%40group.calendar.google.com&ctz=Europe/Tallinn\" 
+                        style=\"border: 0\" width=\"800\" height=\"600\" frameborder=\"0\" scrolling=\"no\"></iframe>              
+                    </div>
+                </div>
+            ";
+            } else if ($_GET["ryhm"] == 2) {
+                echo "
+                <div class=\"container-fluid\">
+                    <div class=\"embed-responsive embed-responsive-16by9\">
+                        <iframe src=\"https://calendar.google.com/calendar/embed?src=907ppl76mvkb7l1dclbq0pqljc%40group.calendar.google.com&ctz=Europe/Tallinn\"
+                        style=\"border: 0\" width=\"800\" height=\"600\" frameborder=\"0\" scrolling=\"no\"></iframe>              
+                    </div>
+                </div>
+            ";
+            } else if ($_GET["ryhm"] == 3) {
+                echo "
+                <div class=\"container-fluid\">
+                    <div class=\"embed-responsive embed-responsive-16by9\">
+                        <iframe src=\"https://calendar.google.com/calendar/embed?src=8ib6r0h4in7m1a24cqobqp109o%40group.calendar.google.com&ctz=Europe/Tallinn\" 
+                        style=\"border: 0\" width=\"800\" height=\"600\" frameborder=\"0\" scrolling=\"no\"></iframe>             
+                    </div>
+                </div>
+             ";
+            } else if ($_GET["ryhm"] == 4) {
+                echo "
+                <div class=\"container-fluid\">
+                    <div class=\"embed-responsive embed-responsive-16by9\">
+                        <iframe src=\"https://calendar.google.com/calendar/embed?src=nhbecorj0k810lsi65p0ktdck0%40group.calendar.google.com&ctz=Europe/Tallinn\" 
+            style=\"border: 0\" width=\"800\" height=\"600\" frameborder=\"0\" scrolling=\"no\"></iframe>             
+                    </div>
+                </div>
+            ";
+            }
+        }
+        ?>
 
-    <div class="dropdown">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="true">
-            Vali rühm
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="#">1-rühm</a></li>
-            <li><a href="#">2-rühm</a></li>
-            <li><a href="#">3-rühm</a></li>
-            <li><a href="#">4-rühm</a></li>
-        </ul>
+
     </div>
-    <br>
-
-    <!-- Table for subjects -->
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-        </tr>
-        <tr>
-            <td>Mary</td>
-            <td>Moe</td>
-            <td>mary@example.com</td>
-        </tr>
-        <tr>
-            <td>July</td>
-            <td>Dooley</td>
-            <td>july@example.com</td>
-        </tr>
-        </tbody>
-    </table>
-
-</div>
 
 <?php require "../parts/footer.php"; ?>
