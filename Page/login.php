@@ -119,8 +119,8 @@
 		!empty($_POST["loginEmail"]) && 
 		!empty($_POST["loginPassword"])
 	  ) {
-		  
-		$error = $user->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));
+		 
+		$error = $user->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));		 
 		
 	}
 
@@ -143,13 +143,15 @@
             <h3>Logi sisse</h3>
         </div>
          <div class="modal-body">
-           <form method="post">
-             <p><input type="text" class="span3" name="loginEmail" id="email" placeholder="Email"></p>
-             <p><input type="password" class="span3" name="loginPassword" placeholder="Parool"></p>
-             <p><button type="submit" class="btn btn-primary">Logi sisse</button>
-               <a href="#">Unustasid parooli?</a>
-             </p>
-           </form>
+			<div id="errors"></div>
+			   <form method="post">
+				 <p style="color:red;"><?=$error;?></p>
+				 <p><input type="text" class="span3" name="loginEmail" id="email" placeholder="Email"></p>
+				 <p><input type="password" class="span3" name="loginPassword" placeholder="Parool"></p>
+				 <p><button type="submit" class="btn btn-primary">Logi sisse</button>
+				   <a href="#">Unustasid parooli?</a>
+				 </p>
+			   </form>
          </div>
          <div class="modal-footer">
            Pole veel kasutaja?
