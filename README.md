@@ -1,8 +1,14 @@
 ﻿# PHP rühmatöö projekt
 
 <img src="https://cloud.githubusercontent.com/assets/22025409/21752453/db5e6170-d5e0-11e6-91bc-85b5ebd43709.png" width="90%"></img> 
+
+
+
+
 <img src="https://cloud.githubusercontent.com/assets/22025409/21752463/0ef264be-d5e1-11e6-81e6-6df57a1b6a3d.png" width="90%"></img> 
- Stas Majevski, Pjotr Iljukov, Juri Gussarov;
+ 
+ 
+ Stas Majevski, Pjotr Iljukov, Juri Gussarov
 	
 
 # Esmark
@@ -22,12 +28,13 @@ Me proovisime teha oma rakendus lihtsam ja rohkem kasutaja sobralikum. Lisasime 
 voimalused ja teenused.
 
 * Funktsionaalsus: 
-		Omanikule:  Sisse logimine
+		
+		*Omanikule:  Sisse logimine
 					Oma puntki lisamine
 					Oma broneeringute vaatamine
 					Hinnade lisamine\muutmine 
 		
-		Kasutaja:	Punkti ulevade
+		*Kasutaja:	Punkti ulevade
 					Hinna vaade
 					Aja broneerimine
 
