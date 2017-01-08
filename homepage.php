@@ -1,3 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+	height: 100%;
+    background-color: #dddddd;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+	color: #000;
+    padding: 8px;
+}
+
+li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+	
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="#home">Home</a></li>
+  <li><a href="#LEHEKÜLG 1">LEHEKÜLG 1</a></li>
+  <li><a href="#LEHEKÜLG 2">LEHEKÜLG 2</a></li>
+  <li><a href="#LEHEKÜLG 3">LEHEKÜLG 3</a></li>
+</ul>
+
+<br><br>
+
+
 <?php
 	
 	require("functions.php");
@@ -28,6 +74,8 @@
 	
 	$people = allinfo();
 ?>
+
+
 
 <html>
 <style>
