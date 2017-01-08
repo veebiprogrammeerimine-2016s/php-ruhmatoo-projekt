@@ -169,3 +169,5 @@ $html = "<table>";
 $html .= "</table>";
 echo $html
 ?>
+
+<?php include 'footer.php';?>
