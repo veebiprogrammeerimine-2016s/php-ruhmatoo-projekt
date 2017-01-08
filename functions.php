@@ -91,11 +91,11 @@
 		$GLOBALS["database"]);
 		
 		$stmt = $mysqli->prepare("
-		SELECT id, category, pealkiri, comment, created, email
+		SELECT id, category, pealkiri, created, email
 		FROM grupp_category 
 		");
 		
-		$stmt->bind_result($id, $category, $headline , $comment, $created, $email);
+		$stmt->bind_result($id, $category, $headline, $created, $email);
 		$stmt->execute();
 		
 		$results = array();
@@ -105,7 +105,6 @@
 			$human->id = $id;
 			$human->category = $category;
 			$human->headline = $headline;
-			$human->comment = $comment;
 			$human->created = $created;
 			$human->email = $email;
 			
@@ -149,7 +148,9 @@
 		
 		return $finish;
 		
-//KASUTAJA ANDMETE NÄITAMINE
+	}
+		
+	//KASUTAJA ANDMETE NÄITAMINE
 	function profile(){
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], 
@@ -162,6 +163,7 @@
 		FROM grupp_user
 		WHERE email = ?
 		");
+
 		$stmt->bind_param("s", $_SESSION["userEmail"]);
 		$stmt->bind_result($email, $nickname,$gender);
 		$stmt->execute();
@@ -233,7 +235,6 @@
 		}
 		
 		return $results;
-	}
-		
-	}
+	}	
+
 ?>

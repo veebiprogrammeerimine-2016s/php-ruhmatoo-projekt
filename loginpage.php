@@ -158,7 +158,7 @@
 		color: black;
 	}
 	
-	p {font-family: Georgia, 'Times New Roman', Times, serif;}
+	p {font-family:  Futura, "Trebuchet MS", Arial, sans-serif;}
 	
 	p[class=border]{border-bottom: 1px solid black;}
 	

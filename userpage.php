@@ -5,6 +5,7 @@
 	$posts = profile_posts();
 	$comments = profile_comments();
 ?>
+
 <?php 
 $html = "<table>";
 	
