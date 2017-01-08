@@ -148,5 +148,92 @@
 		$stmt->close();
 		
 		return $finish;
+		
+//KASUTAJA ANDMETE NÄITAMINE
+	function profile(){
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], 
+		$GLOBALS["serverUsername"], 
+		$GLOBALS["serverPassword"], 
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("
+		SELECT email,username,gender
+		FROM grupp_user
+		WHERE email = ?
+		");
+		$stmt->bind_param("s", $_SESSION["userEmail"]);
+		$stmt->bind_result($email, $nickname,$gender);
+		$stmt->execute();
+		$results = array();
+		
+		while ($stmt->fetch()) {
+			$human = new StdClass();
+			$human->email = $email;
+			$human->nickname = $nickname;
+			$human->gender = $gender;
+			array_push($results, $human);	
+		}
+		
+		return $results;
+	}
+	
+	//NÄITAB KASUTAJA POSTITUSED
+	function profile_posts(){
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], 
+		$GLOBALS["serverUsername"], 
+		$GLOBALS["serverPassword"], 
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("
+		SELECT category, pealkiri, comment, created
+		FROM grupp_category
+		WHERE email = ?
+		");
+		$stmt->bind_param("s", $_SESSION["userEmail"]);
+		$stmt->bind_result($category, $pealkiri, $comment, $created);
+		$stmt->execute();
+		$results = array();
+		
+		while ($stmt->fetch()) {
+			$human = new StdClass();
+			$human->category = $category;
+			$human->pealkiri = $pealkiri;
+			$human->comment = $comment;
+			$human->created = $created;
+			array_push($results, $human);	
+		}
+		
+		return $results;
+	}
+	
+	//NÄITAB KASUTAJA KOMMENTAARID
+	function profile_comments(){
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], 
+		$GLOBALS["serverUsername"], 
+		$GLOBALS["serverPassword"], 
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("
+		SELECT feedback
+		FROM grupp_comment
+		WHERE email_id = ?
+		");
+		$stmt->bind_param("s", $_SESSION["userEmail"]);
+		$stmt->bind_result($feedback);
+		$stmt->execute();
+		$results = array();
+		
+		while ($stmt->fetch()) {
+			$human = new StdClass();
+			$human->feedback = $feedback;
+			array_push($results, $human);	
+		}
+		
+		return $results;
+	}
+		
 	}
 ?>
