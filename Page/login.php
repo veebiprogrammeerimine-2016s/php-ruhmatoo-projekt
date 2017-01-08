@@ -2,19 +2,17 @@
 	//require("../bootstrap.js");
 	require("../functions.php");
 	require("../Class/user.class.php");
-	$user = new User($mysqli);
+	$user = new user($mysqli);
 		
 	// kui on juba sisse loginud siis suunan esilehele
 	if (isset($_SESSION["userId"])){
 		
 		//suunan sisselogimise lehele
-		header("Location: login.php");
+		header("Location: frontpage.php");
 		exit();
 		
 	}
 		
-
-	//echo hash("sha512", "b");
 
 	// MUUTUJAD
 	$signupEmailError = "";
@@ -93,26 +91,26 @@
 		 $signupEmailError == "" && 
 		 empty($signupPasswordError)
 		) {
-					echo "Salvestan... <br>";
-		
-		echo "email: ".$signupEmail."<br>";
-		echo "password: ".$_POST["signupPassword"]."<br>";
-		
-		$password = hash("sha512", $_POST["signupPassword"]);
-		
-		echo "password hashed: ".$password."<br>";	
+			
+				echo "Salvestan... <br>";
+				echo "email: ".$signupEmail."<br>";
+				echo "password: ".$_POST["signupPassword"]."<br>";
 				
-		//echo $serverUsername;
-		
-		// KASUTAN FUNKTSIOONI
-		$signupEmail = $Helper->cleanInput($signupEmail);
-		
-		$user->signUp($signupEmail, $Helper->cleanInput($password), 
-		$Helper->cleanInput($signupName), $Helper->cleanInput($signupRoll),
-		$Helper->cleanInput($signupAge), $Helper->cleanInput($signupCounty));
-		
+				
+				
+				echo "password hashed: ".$password."<br>";	
+						
+				//echo $serverUsername;
+				
+				// KASUTAN FUNKTSIOONI
+				$signupEmail = $Helper->cleanInput($signupEmail);
+				
+				$password = hash("sha512", $_POST["signupPassword"]);		
+				$user->signUp($signupEmail, $Helper->cleanInput($password), $Helper->cleanInput($signupName), $Helper->cleanInput($signupRoll), $Helper->cleanInput($signupAge), $Helper->cleanInput($signupCounty));
+				
 	
-	}
+			}
+		
 	
 	
 	$error ="";
@@ -125,7 +123,7 @@
 		$error = $user->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));
 		
 	}
-	
+
 
 ?>
 <?php require("../header.php"); ?>
@@ -172,7 +170,7 @@
 
 
                     <fieldset>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="name">Nimi</label>
                             <input class="form-control" name="signupName" type="text" value="<?=$signupName;?>"> 
                         </div>
@@ -184,14 +182,13 @@
 
                         <div class="form-group col-md-6">
                             <label for="password">Parool</label>
-                            <input type="password" class="form-control" name="signupPassword" id="password"> <?php echo $signupPasswordError; ?>
+                            <input type="password" class="form-control" name="signupPassword" id="password" > <?php echo $signupPasswordError; ?>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="confirm_password">Kinnita parool</label>
-                            <input type="password" class="form-control" name="signupPassword" id="confirm_password"> <?php echo $signupPasswordError; ?>
+                            <label for="Age">Vanus</label>
+                            <input type="text" class="form-control" name="signupAge" id="vanus" value="<?=$signupAge;?>"> <?php echo $signupAgeError; ?>
                         </div>
-
 
 					<div class="form-group col-md-6">
 						<label for="county">Maakond, kus elate</label>
@@ -214,16 +211,11 @@
 						</select>
 					</div>
 
-
-                        <div class="form-group col-md-6">
-                            <label for="Age">Vanus</label>
-                            <input type="text" class="form-control" name="signupAge" id="vanus" value="<?=$signupAge;?>"> <?php echo $signupAgeError; ?>
-                        </div>
 						
 
 						<div class="form-group col-md-6">
 							<label for="roll">Teie roll keskkonnas</label>
-							<select class="form-control col-md-12" value="<?=$signupRoll;?>"> <?php echo $signupRollError; ?>
+							<select class="form-control col-md-12" name="roll" id="roll" value="<?=$signupRoll;?>"> <?php echo $signupRollError; ?>
 							  <option>Müüa</option>
 							  <option>Ostja</option>
 							</select>
@@ -248,19 +240,17 @@
 				</div>
 
 
-                    <div class="form-group">
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary" value="Registreeri">
-                               Registreeri <a href="login.php"</a>
-                            </button>
-                        </div>
-                    </div>
+				<div class="form-group">
+					<div class="col-md-6">
+						<button type="submit" class="btn btn-primary" name="submit" id="submit"> Registreeri <a href="forntpage.php"</a>
+						</button>
+					</div>
+				</div>
 
 
 			</form>
 		</div>
 	</div>
 
-	</div>
 </div>
 <?php require("../footer.php"); ?>

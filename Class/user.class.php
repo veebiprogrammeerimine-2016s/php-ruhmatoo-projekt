@@ -22,7 +22,7 @@ class User {
 		}
 		
 		$stmt->close();
-		$this->connection->close();
+		//$this->connection->close();
 		
 	}
 	function login ($email, $password) {
