@@ -1,5 +1,2 @@
 1. BOOKING
-2. Kasutajaklassid (user, admin, shelter)
-3. Kontaktid lehelt ei saa välja logida
 4. "Otsi kuulutust" lehelt näeb varjupaikasid id-na
-5. Avalehte peaks viisakamaks muutma, et seal oleks midagi rohkemat, kui "Tere tulemast"

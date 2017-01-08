@@ -1,5 +1,26 @@
-<?php require("../header.php"); ?>
-	
+<?php require("../header.php"); 
+
+	require("../functions.php");
+   
+   //kas on sisseloginud, kui ei ole siis
+   //suunata login lehele
+   if (!isset ($_SESSION["userId"])) {
+	   
+	   //header("Location: login.php");
+	   
+	}
+   
+   //kas ?loguout on aadressireal
+   if (isset($_GET["logout"])) {
+	   
+	   session_destroy();
+	   
+	   header("Location: login.php");
+	   exit();
+	   
+   }  
+   $informationError="";
+?>	
 <div class="container">
 	<body style='background-color:Silver'>
 	<head>
@@ -17,7 +38,7 @@ th, td {
 <table style="width:100%">
   <tr>
   <th>
-	    <h1>Toodejuhataja</h1>
+	    <h1>Tööline</h1>
 		<label>Henri V.</label>
 	    <br>
 		<label>Telefon 12345678</label>
@@ -29,7 +50,7 @@ th, td {
 			
 	<tr>
 	<th>
-	<h1>Koristaja</h1>
+	<h1>Tööline</h1>
 		<label>Tanel M.</label>
 	    <br>
 		<label>Telefon 1122334455</label>
@@ -41,7 +62,7 @@ th, td {
 		
 	<tr>
 	<th>
-	<h1>Moraalne tugi</h1>
+	<h1>Tööline</h1>
 		<label>Cleven L.</label>
 	    <br>
 		<label>Telefon 98765432</label>
