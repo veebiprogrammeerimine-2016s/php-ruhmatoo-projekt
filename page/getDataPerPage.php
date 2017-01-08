@@ -58,7 +58,7 @@
 		$results = $mysqli->prepare("SELECT submissions.id, caption, imgurl, username, 
 		(SELECT count(*) FROM ratings WHERE user_id=? AND pic_id=submissions.id), 
 		(SELECT count(*) FROM ratings WHERE pic_id=submissions.id),
-		(SELECT count(*) FROM comments WHERE topicid=submissions.id)
+		(SELECT count(*) FROM comments WHERE reported!=5 AND topicid=submissions.id)
 		FROM submissions
 		join user_sample on submissions.author=user_sample.id
 		WHERE deleted is NULL
