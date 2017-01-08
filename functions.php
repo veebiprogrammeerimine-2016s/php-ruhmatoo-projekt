@@ -114,6 +114,7 @@
 		return $results;
 	}
 	
+	//NÄITAB ÜHE POSTITUSE KOGU INFOT
 	function getsingleId($show_id){
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], 
@@ -129,13 +130,10 @@
 		$stmt->bind_param("i", $show_id);
 		$stmt->bind_result($category, $headline , $comment, $created, $email);
 		$stmt->execute();
-		
-		//tekitan objekti
+
 		$finish = new Stdclass();
 		
-		//saime ühe rea andmeid
 		if($stmt->fetch()){
-			// saan siin alles kasutada bind_result muutujaid
 			$finish->category = $category;
 			$finish->headline = $headline;
 			$finish->comment = $comment;
@@ -143,9 +141,6 @@
 			$finish->email = $email;
 		
 		}else{
-			// ei saanud rida andmeid kätte
-			// sellist id'd ei ole olemas
-			// see rida võib olla kustutatud
 			header("Location: homepage.php");
 			exit();
 		}

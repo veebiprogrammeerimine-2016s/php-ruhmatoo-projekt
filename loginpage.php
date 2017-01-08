@@ -244,9 +244,7 @@
     </div>
   </div>
 </div>
-
-</center>
-
 <?php include 'footer.php';?>
+</center>
 </body>
 </html>

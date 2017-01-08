@@ -1,6 +1,7 @@
 <?php
 
 	require("functions.php");
+	require("style/style.php");
 	
 	$p = getsingleId($_GET["id"]);
 	
@@ -88,7 +89,7 @@ $html .= "</table>";
 echo $html
 ?>
 
-<center>
+
 <html>
 	<body>
 	
@@ -104,18 +105,15 @@ echo $html
 	
 	</body>
 </html>
-</center>
 
 <?php 
 $html1 = "<table>";
-
 	foreach ($people as $p) {
 	$html1 .= "<tr>";
 		$html1 .= "<td>".$p->email."</td>";
 		$html1 .= "<td>".$p->feedback."</a></td>";
 	$html1 .= "</tr>";
 	}
-
 $html1 .= "</table>";
 echo $html1
 ?>
