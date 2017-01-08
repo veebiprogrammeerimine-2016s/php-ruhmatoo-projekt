@@ -67,6 +67,7 @@
 		$Helper->cleanInput($_POST["loginPassword"]));
 		
 	}
+	
 ?>
 
 <?php require("../header.php"); ?>
