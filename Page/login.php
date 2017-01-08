@@ -25,6 +25,7 @@
 	$signupRoll = "";
 	$signupRollError = "";
 	$signupName = "";
+	$signupNameError = "";
 	
 	//Email
 	if( isset( $_POST["signupEmail"] ) ){		
@@ -142,9 +143,9 @@
             <h3>Logi sisse</h3>
         </div>
          <div class="modal-body">
-           <form method="post" action='' name="login_form">
-             <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
-             <p><input type="password" class="span3" name="passwd" placeholder="Parool"></p>
+           <form method="post">
+             <p><input type="text" class="span3" name="loginEmail" id="email" placeholder="Email"></p>
+             <p><input type="password" class="span3" name="loginPassword" placeholder="Parool"></p>
              <p><button type="submit" class="btn btn-primary">Logi sisse</button>
                <a href="#">Unustasid parooli?</a>
              </p>
@@ -173,7 +174,7 @@
                         <div class="form-group col-md-12">
 
                             <label for="name">Nimi</label>
-                            <input class="form-control" name="signupName" type="text" value="<?=$signupName;?>"> 
+                            <input class="form-control" name="signupName" type="text" value="<?=$signupName;?>"> <?=$signupNameError;?>
                         </div>
 
                         <div class="form-group col-md-12">
@@ -183,17 +184,17 @@
 
                         <div class="form-group col-md-6">
                             <label for="password">Parool</label>
-                            <input type="password" class="form-control" name="signupPassword" id="password" > <?php echo $signupPasswordError; ?>
+                            <input type="password" class="form-control" name="signupPassword" id="password" > <?=$signupPasswordError;?>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="Age">Vanus</label>
-                            <input type="text" class="form-control" name="signupAge" id="vanus" value="<?=$signupAge;?>"> <?php echo $signupAgeError; ?>
+                            <input type="text" class="form-control" name="signupAge" id="vanus" value="<?=$signupAge;?>"> <?=$signupAgeError;?>
                         </div>
 
 					<div class="form-group col-md-6">
 						<label for="county">Maakond, kus elate</label>
-						<select class="form-control" name="signupCounty" id="county" value="<?=$signupCounty;?>"> <?php echo $signupContyError; ?>
+						<select class="form-control" name="signupCounty" id="county" value="<?=$signupCounty;?>"> <?=$signupCountyError;?>
 							<option>Harjumaa</option>
 							<option>Ida-Virumaa</option>
 							<option>Tartumaa</option>
@@ -216,7 +217,7 @@
 
 						<div class="form-group col-md-6">
 							<label for="roll">Teie roll keskkonnas</label>
-							<select class="form-control col-md-12" name="signupRoll" id="roll"><?php echo $signupRollError; ?>
+							<select class="form-control col-md-12" name="signupRoll" id="roll"> <?=$signupRollError;?>
 							  <option>Müüa</option>
 							  <option>Ostja</option>
 							</select>
