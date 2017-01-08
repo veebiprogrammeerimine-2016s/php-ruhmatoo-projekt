@@ -46,14 +46,14 @@ class User
 
         //sqli rida
         $stmt = $mysqli->prepare("
-		SELECT id, username, email, password, created 
+		SELECT id, username, email, password, created, age
 		FROM user_tv WHERE username = ?");
 
         echo $mysqli->error;
 
         $stmt->bind_param("s", $username);
 
-        $stmt->bind_result($id, $usernameFromDb, $emailFromDb, $passwordFromDb, $created);
+        $stmt->bind_result($id, $usernameFromDb, $emailFromDb, $passwordFromDb, $created, $age);
         $stmt->execute();
 
 
@@ -66,7 +66,7 @@ class User
                 $_SESSION["userId"] = $id;
                 $_SESSION["userName"] = $usernameFromDb;
                 $_SESSION["userEmail"] = $emailFromDb;
-
+				$_SESSION["userAge"] = $age;
                 $_SESSION["message"] = "<h1>Welcome!</h1>";
 
                 header("Location: data.php");

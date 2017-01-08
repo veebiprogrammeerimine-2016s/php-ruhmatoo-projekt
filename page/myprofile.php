@@ -35,13 +35,13 @@ if(isset ($_GET["logout"])) {
 <p>
 <img style="height: 200px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>">
 
-<form action="" method="post" enctype="multipart/form-data">
-		<h3>Change your profile picture:</h3>
-		<input type="file" name="fileToUpload">
-		<button type="submit" name="submit">Upload</button>
-	</form>
+<form method="post" enctype="multipart/form-data">
+	<h3>Change your profile picture:</h3>
+	<input type="file" name="fileToUpload">
+	<button type="submit" name="submit">Upload</button>
+</form>
 <h3>Username: <?=$_SESSION["userName"];?></h3>
-<h3>Age: <?=$_POST["userAge"]?></h3>
+<h3>Age: <?=$_SESSION["userAge"]?></h3>
 <h3>E-mail: <?=$_SESSION["userEmail"]?></h3>
 <h3>Change password: </h3>
 <input name="signupPassword" type="password" >

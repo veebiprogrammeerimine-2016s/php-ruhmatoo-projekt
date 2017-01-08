@@ -109,7 +109,7 @@ $month = date("m", time());
     * create the li element for ul
     */
     private function _showDay($cellNumber){
-         
+		
         if($this->currentDay==0){
              
             $firstDayOfTheWeek = date('N',strtotime($this->currentYear.'-'.$this->currentMonth.'-01'));
@@ -126,7 +126,7 @@ $month = date("m", time());
             $this->currentDate = date('Y-m-d',strtotime($this->currentYear.'-'.$this->currentMonth.'-'.($this->currentDay)));
              
             $cellContent = $this->currentDay;
-             
+			
             $this->currentDay++;   
              
         }else{
@@ -138,7 +138,7 @@ $month = date("m", time());
              
          
         return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
-                ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';
+                ($cellContent==null?'mask':'').'"><a href="day.php?d='.$cellContent.'&m='.$this->currentMonth.'&y='.$this->currentYear.'">'.$cellContent.'</a></li>';
     }
      
     /**

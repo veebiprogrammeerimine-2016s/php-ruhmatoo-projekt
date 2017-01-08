@@ -34,7 +34,7 @@ function addPicURL($picname) {
 		$myData = $mysqli->query($query);
 		
 	$mysqli->close();
-	
+
 }
 
 function getProfileURL() {
