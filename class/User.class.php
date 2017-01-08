@@ -89,7 +89,7 @@ class User {
 		
 		$stmt = $this->connection->prepare("
 		select submissions.id, caption, imgurl from submissions join user_sample on submissions.author=user_sample.id
-		where username = ? ");
+		where username = ? limit 10 ");
 		echo $this->connection->error;
 		
 		$stmt->bind_param("s", $author);

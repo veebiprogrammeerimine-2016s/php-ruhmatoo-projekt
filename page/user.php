@@ -2,12 +2,16 @@
 	//ühendan sessiooniga
 	//kuradi git ma ütlen!
 	require("../functions.php");
+	
 
 	require("../class/Helper.class.php");
 	$Helper = new Helper($mysqli);
 	
 	require("../class/User.class.php");
 	$User = new User($mysqli);
+	
+	require("../class/Rating.class.php");
+	$Rating = new Rating($mysqli);
 	
 	//kui ei ole sisseloginud, suunan login lehele
 	if (!isset($_SESSION["userId"])) {
@@ -35,9 +39,8 @@
 		$search= $_GET["searchPost"];
 		
 	}
+
 	
-
-
 	
 	//pre echob koodina
 	//echo "<pre>";
@@ -48,30 +51,54 @@
 <?php require("../header.php"); ?>
 <div class="container">
 	<div class="page-header">
-		<h1>Kasutaja leht</h1>
+		<h1>Kasutaja kasutajanimi viimati <a href="user.php?username=<?php echo $_GET["username"]; ?>&postitas">postitas</a>/<a href="user.php?username=<?php echo $_GET["username"]; ?>&laikis">laikis</a></h1>
 	</div>
 	<p class="lead">
 	
 	<?php 
-	$html = "<div class='c'><div class='col-sm-4 col-md-3'><table class='table table-striped table-condensed'>";
 	
-	foreach ($andmed as $a) {
-			
-			
-			
+	
+	
+    $html="";
+	
+	
+	
+	
+	if (isset($_GET["postitas"])){
 		
-
-			$html .= "<tr>";
-				$html .= "<td>".$a->caption."</td>";
-				$html .= '<td><a href=topic.php?topicid='.$a->id.'&posted><img src="'.$a->imgurl.'" alt="some_text" style="width:100px;height:100px;"></a> </td>';
-			$html .= "</tr>";
+		foreach ($andmed as $a) {
+			
+			$html .= "<div style='padding-bottom:5px';><br><table>";
+				$html .= '<tr><span class="caption">'.$a->caption.'</tr>';
+				$html .= '<td><a href="topic.php?topicid='.$a->id.'&posted"><img src='.$a->imgurl.' ></a></td>';
+			$html .= "</table></div><br><br><hr>";
+			
+						
 		
 		}
 		
+	}
 		
-		
-	$html .= "</table></div></div>";
 	
+	$userid = $_GET["username"];
+	$rated_pictures = $Rating->ratedPictures($userid);	
+	
+	if (isset($_GET["laikis"])){
+		
+		foreach	($rated_pictures as $asd) {
+
+			$html .= "<div style='padding-bottom:5px';><br><table>";
+				$html .= '<tr><span class="caption">'.$asd->caption.'</tr>';
+				$html .= '<td><a href="topic.php?topicid='.$asd->pic_id.'&posted"><img src='.$asd->imgurl.' ></a></td>';
+			$html .= "</table></div><br><br><hr>";
+
+		}
+		
+	}
+	
+	
+
+
 	echo $html;
 	?> 
 	
@@ -93,4 +120,4 @@
 
 
 
-<?php require("../footer.php"); ?>
+<?php require("../footer.php")?>
