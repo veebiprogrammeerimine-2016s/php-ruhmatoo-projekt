@@ -92,13 +92,13 @@
 		 empty($signupPasswordError)
 		) {
 			
-				echo "Salvestan... <br>";
-				echo "email: ".$signupEmail."<br>";
-				echo "password: ".$_POST["signupPassword"]."<br>";
+				//echo "Salvestan... <br>";
+				//echo "email: ".$signupEmail."<br>";
+				//echo "password: ".$_POST["signupPassword"]."<br>";
 				
 				
 				
-				echo "password hashed: ".$password."<br>";	
+				//echo "password hashed: ".$password."<br>";	
 						
 				//echo $serverUsername;
 				
@@ -107,21 +107,6 @@
 				
 				$password = hash("sha512", $_POST["signupPassword"]);		
 				$user->signUp($signupEmail, $Helper->cleanInput($password), $Helper->cleanInput($signupName), $Helper->cleanInput($signupRoll), $Helper->cleanInput($signupAge), $Helper->cleanInput($signupCounty));
-				
-<<<<<<< HEAD
-		//echo $serverUsername;
-		
-		// KASUTAN FUNKTSIOONI
-		signUp($signupEmail, cleanInput($password), $signupAge, $signupCounty, $signupRoll, $signupName);
-		
-		$signupEmail = $Helper->cleanInput($signupEmail);
-		
-		$user->signUp($signupEmail, $Helper->cleanInput($password), 
-		$Helper->cleanInput($signupName), $Helper->cleanInput($signupRoll),
-		$Helper->cleanInput($signupAge), $Helper->cleanInput($signupCounty));
-		
-=======
->>>>>>> b2d54e03c8e53e68fccb4866e8957674dcb67d70
 	
 			}
 		
@@ -183,13 +168,10 @@
 				<legend class="text-center">Registreeri</legend>
 
 
-<<<<<<< HEAD
+
                 <fieldset>
-                        <div class="form-group col-md-6">
-=======
-                    <fieldset>
                         <div class="form-group col-md-12">
->>>>>>> b2d54e03c8e53e68fccb4866e8957674dcb67d70
+
                             <label for="name">Nimi</label>
                             <input class="form-control" name="signupName" type="text" value="<?=$signupName;?>"> 
                         </div>
@@ -234,7 +216,7 @@
 
 						<div class="form-group col-md-6">
 							<label for="roll">Teie roll keskkonnas</label>
-							<select class="form-control col-md-12" name="roll" id="roll" value="<?=$signupRoll;?>"> <?php echo $signupRollError; ?>
+							<select class="form-control col-md-12" name="signupRoll" id="roll"><?php echo $signupRollError; ?>
 							  <option>Müüa</option>
 							  <option>Ostja</option>
 							</select>
@@ -270,9 +252,5 @@
 			</form>
 		</div>
 	</div>
-<<<<<<< HEAD
-=======
-
->>>>>>> b2d54e03c8e53e68fccb4866e8957674dcb67d70
 </div>
 <?php require("../footer.php"); ?>
