@@ -38,6 +38,7 @@ class Booking {
 		if($stmt->execute()){
 			// õnnestus
 			echo "Rentimine 6nnestus!";
+			header("Location: animals.php");
 		}
 		
 		$stmt->close();

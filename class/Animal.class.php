@@ -165,13 +165,15 @@ class Animal {
 	
 	function update($id, $type, $name, $age){
     	
-		$stmt = $this->connection->prepare("UPDATE g_animals SET type=?, name=?, age=?, shelter=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("ssis",$type, $name, $age, $shelter);
+		$stmt = $this->connection->prepare("UPDATE g_animals SET type=?, name=?, age=? WHERE id=?");
+		$stmt->bind_param("issi",$id, $type, $name, $age);
+		
 		
 		// kas õnnestus salvestada
-		if($stmt->execute()){
-			// õnnestus
-			echo "Salvestus onnestus!";
+		if($stmt->execute()) {
+			echo "Salvestamine onnestus";
+		} else {
+		 	echo "ERROR ".$stmt->error;
 		}
 		
 		$stmt->close();
