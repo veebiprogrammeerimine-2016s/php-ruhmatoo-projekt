@@ -4,6 +4,33 @@
 	
 	$p = getsingleId($_GET["id"]);
 	
+	//REGISTREERIMISE ANDMED
+	function send_comment($feedback){
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], 
+		$GLOBALS["serverUsername"], 
+		$GLOBALS["serverPassword"], 
+		$GLOBALS["database"]);
+		
+		$feedback = $_POST["feedback"];
+		
+		$stmt = $mysqli ->prepare("INSERT INTO grupp_comment ( feedback, email_id, comment_id) VALUE(?, ?, ?)");
+		echo $mysqli->error;
+		$stmt->bind_param("ssi", $feedback, $_SESSION["userEmail"],$_GET["id"]);
+	
+		if($stmt->execute() ) {
+			
+			echo "Õnnestus!","<br>";			
+		}
+	}
+	
+	if (isset ($_POST["feedback"]) &&
+		!empty ($_POST["feedback"])
+		)
+	
+	{
+	send_comment($_POST["feedback"],$_SESSION["userEmail"],$_GET["id"]);
+	}
 
 ?>
 
@@ -29,3 +56,20 @@ $html = "<table>";
 $html .= "</table>";
 echo $html
 ?>
+<center>
+<html>
+	<body>
+	
+	<form method="POST">
+	
+	<!--FEEDBACK-->
+	<label for="feedback">Your feedback:</label><br>
+	<input name="feedback" type="text1" placeholder="Leave your feedback">
+	
+	<br><input type="submit" value="Send your comment"></br>
+	
+	</form>
+	
+	</body>
+</html>
+</center>

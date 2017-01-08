@@ -1,7 +1,7 @@
 <?php
 	
 	require("functions.php");
-	
+
 	if (!isset ($_SESSION["userId"])) {
 		header("Location: loginpage.php");
 		exit();	
@@ -106,3 +106,7 @@ $html = "<table>";
 $html .= "</table>";
 echo $html
 ?>
+
+<?php include 'footer.php';?>
+	</body>
+</html>	
