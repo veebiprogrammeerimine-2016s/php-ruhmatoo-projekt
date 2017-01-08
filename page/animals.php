@@ -32,6 +32,7 @@
 	
 	//otsisõna fn sisse
 	$animal = $Animal->get($q, $sort, $order);
+	$booked = $Booking->getBooked();
 	//kleklekle
 
 ?>
@@ -39,7 +40,7 @@
 <body style='background-color:Silver'>
     <head>
 	<?php require("../header.php"); ?>
-<h1>Loomad</h1>
+<h1>Rentimiseks valmis loomad</h1>
 
 <form>
 
@@ -120,7 +121,28 @@
 		
 	$html .= "</table>";
 	echo $html;
+?>
+<html>	
+	<h3>Välja renditud loomad</h3>
+</html>
+<?php
+	$html = "<table class='table table-striped'>";
+	$html="<table>";
+		$html .="<tr>";
+			$html .="<th>Liik</th>";
+			$html .="<th>Nimi</th>";
+			$html .="<th>Vanus</th>";
+		$html .="</tr>";
 
+		foreach($booked as $b) {
+				$html .="<tr>";
+					$html .="<td>".$b->type."</td>";
+					$html .="<td>".$b->name."</td>";
+					$html .="<td>".$b->age."</td>";
+				$html .="</tr>";
+		}	
+	$html .="</table>";
+	echo $html;
 ?>
 <br><br>
 <?php require("../footer.php"); ?>

@@ -108,6 +108,8 @@ class Animal {
 		return $result;
 	}
 	
+
+	
 	function getSingle($edit_id){
 
 		$stmt = $this->connection->prepare("SELECT type, name, age, shelter FROM `g_animals` WHERE id=? AND deleted IS NULL");

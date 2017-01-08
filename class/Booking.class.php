@@ -45,6 +45,40 @@ class Booking {
 		
 		
 	}
-	
+	function getBooked () {
+		
+		
+		$database = "if16_Tanelmaas_1";
+		$this-> connection= new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $this-> connection->prepare("SELECT type, name, age, shelter FROM g_animals WHERE booked IS NOT NULL");
+		echo $this-> connection->error;
+		
+		$stmt->bind_result($type, $name, $age, $shelter);
+		$stmt->execute();
+		
+		
+		//tekitan massiivi
+		$result = array();
+		
+		// tee seda seni, kuni on rida andmeid
+		// mis vastab select lausele
+		while ($stmt->fetch()) {
+			
+			//tekitan objekti
+			$b = new StdClass();
+			
+			$b->type = $type;
+			$b->name = $name;
+			$b->age = $age;
+			$b->shelter = $shelter;
+		
+			array_push($result, $b);
+		}
+		
+		$stmt->close();
+		
+		return $result;
+	}
 }
 ?>
