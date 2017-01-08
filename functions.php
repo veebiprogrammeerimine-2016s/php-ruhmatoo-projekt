@@ -1,28 +1,14 @@
 <?php
 
-	require("/home/johalaas/config.php");
-	
-	
-	
-	
-	//Ühendus
-	$database = "if16_johan";
+	require("/home/ingomagi/config.php");
+	$database = "if16_veinipood";
 	$mysqli = new mysqli($serverHost, $serverUsername, $serverPassword, $database);
-
+	session_start();
+	
 	require("../Class/Helper.class.php");
 	$Helper = new Helper();
 	
-	
-	// functions.php
-	//var_dump($GLOBALS);
-	
-	// see fail, peab olema kõigil lehtedel kus 
-	// tahan kasutada SESSION muutujat
-	session_start();
 		
-	
-	
-	
 	
 	
 ?>

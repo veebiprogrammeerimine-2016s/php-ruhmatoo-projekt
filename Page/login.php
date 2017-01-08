@@ -1,18 +1,18 @@
 <?php 
 	//require("../bootstrap.js");
 	require("../functions.php");
-	//require("../Class/User.class.php");
-	//$User = new User($mysqli);
+	require("../Class/user.class.php");
+	$user = new User($mysqli);
 		
-	// kui on juba sisse loginud siis suunan data lehele
+	// kui on juba sisse loginud siis suunan esilehele
 	if (isset($_SESSION["userId"])){
 		
 		//suunan sisselogimise lehele
-		header("Location: data.php");
+		header("Location: login.php");
 		exit();
 		
 	}
-	
+		
 
 	//echo hash("sha512", "b");
 
@@ -93,13 +93,22 @@
 		 $signupEmailError == "" && 
 		 empty($signupPasswordError)
 		) {
+					echo "Salvestan... <br>";
+		
+		echo "email: ".$signupEmail."<br>";
+		echo "password: ".$_POST["signupPassword"]."<br>";
+		
+		$password = hash("sha512", $_POST["signupPassword"]);
+		
+		echo "password hashed: ".$password."<br>";	
 				
 		//echo $serverUsername;
 		
 		// KASUTAN FUNKTSIOONI
 		$signupEmail = $Helper->cleanInput($signupEmail);
 		
-		$User->signUp($signupEmail, $Helper->cleanInput($password), $Helper->cleanInput($signupName), $Helper->cleanInput($signupRoll),
+		$user->signUp($signupEmail, $Helper->cleanInput($password), 
+		$Helper->cleanInput($signupName), $Helper->cleanInput($signupRoll),
 		$Helper->cleanInput($signupAge), $Helper->cleanInput($signupCounty));
 		
 	
@@ -120,6 +129,7 @@
 
 ?>
 <?php require("../header.php"); ?>
+
 <div class="container">
   <!-- Trigger the modal with a button -->
   <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Logi sisse</button> -->
@@ -207,7 +217,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="Age">Vanus</label>
-                            <input type="text" class="form-control" name="" id="first_name">
+                            <input type="text" class="form-control" name="" id="vanus">
                         </div>
 						
 
@@ -240,7 +250,7 @@
 
                     <div class="form-group">
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" value="Registreeri">
                                Registreeri <a href="login.php"</a>
                             </button>
                         </div>

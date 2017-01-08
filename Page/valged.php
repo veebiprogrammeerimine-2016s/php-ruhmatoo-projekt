@@ -1,8 +1,6 @@
 <?php require("../header.php");	
 ?>
 <!DOCTYPE html>
-
-    </div><br><br><br><br>
 	<div class="container marketing">
 	 <hr class="featurette-divider">
 
