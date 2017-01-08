@@ -83,7 +83,7 @@
 <?php require ("header.php"); ?>
 <div class="col-sm-4 col-md-4">
 <br><br>
-<h1>Tänane päev</h1>
+<h1><font color=#00b33c>Tänane päev</h1></font>
 <div class="container">
 		<div class="row">
 		<div class="col-sm-5 col-md-5">
@@ -123,8 +123,9 @@
 
 <?php require ("header.php"); ?>
 <a class="btn btn-default" href="?logout=1" role="button">Logi välja</a>
+<a class="btn btn-success btn-sm btn-block visible-xs-block" href="?logout=1" role="button">Logi välja</a>
 <div class="col-sm-5 col-md-5">
-	<h2>Minu enesetunne ja liikumisaktiivsus</h2>
+	<h2><font color="#ff9933">Minu enesetunne ja liikumisaktiivsus</h2></font>
 	<br><br>
  
 <?php	
