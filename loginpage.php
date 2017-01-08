@@ -17,6 +17,8 @@
 	$loginEmail = $loginPassword = "";
 	$loginEmailError = $loginPasswordError = $error = "";
 	
+	
+	
 	//REGISTREERIMINE
 	//E-POST REGISTREERIMINE
 	if (isset ($_POST["signupEmail"])) {
@@ -224,7 +226,7 @@
 			<br><?php echo $signupUsernameError;?></br>
 
 			<!--SUGU REGISTREERIMINE-->
-			<br><label for="signupGender">Gemder</label></br>
+			<br><label for="signupGender">Gender</label></br>
 			<select name = "signupGender"  id="signupGender" required>
 			<option value="">Show</option>
 			<option value="Male">Male</option>
