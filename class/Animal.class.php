@@ -53,7 +53,7 @@ class Animal {
 			$stmt = $this->connection->prepare("
 				SELECT id, type, name, age, shelter
 				FROM g_animals
-				WHERE deleted IS NULL
+				WHERE deleted IS NULL AND booked IS NULL
 				
 			
 				AND (type LIKE ? OR name LIKE ? OR age LIKE ? OR shelter LIKE ?)
@@ -68,7 +68,7 @@ class Animal {
 			$stmt = $this->connection->prepare("
 				SELECT id, type, name, age, shelter
 				FROM g_animals
-				WHERE deleted IS NULL
+				WHERE deleted IS NULL AND booked IS NULL
 				
 				ORDER BY $sort $orderBy
 			");
