@@ -71,6 +71,7 @@
   <div align="right">
   <div class="col-sm-4">
 		<a href="signup.php" class="dropbtn">Sign up</a>
+		<a href="login.php" class="dropbtn">Login</a>
 	</div>
 </div>
 
@@ -128,5 +129,6 @@
 </div>
 </div>
 </div>
+<br><br><br><br>
 </body>
 </html>

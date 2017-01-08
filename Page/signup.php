@@ -74,7 +74,7 @@ if (isset ($_POST["signupUsername"])) {
 
     <div class="row">
 
-		<br><br><br><br>
+		
 		<div align="center">
 		<h1>Create an account</h1>
 		
