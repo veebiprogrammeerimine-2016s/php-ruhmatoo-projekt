@@ -25,6 +25,7 @@
 	{
 	comment($_POST["category"],$_POST["headline"], $_POST["comment"], $_SESSION["userEmail"]);
 	}
+	
 	$people = allinfo();
 ?>
 
@@ -48,7 +49,6 @@
 
 <body>
 
-	<h2>Tee uus postitus</h2
 	<form method="POST">
 	<!--KATEGOORIA-->
 	<label for="category">Vali eriala:</label></br>
@@ -72,14 +72,15 @@
 	<br>
 	<textarea rows="4" cols="50" placeholder="Kirjuta milline probleem sul tekkis.." name="comment"></textarea>
 	
-	<br><br>
 	<input type="submit" value="postita">
 	</form>
 	
 	<br><br>
 	<a href="?logout=1">Logi välja</a>
-</body>		
+</body>
+	
 </html>
+
 <?php 
 $html = "<table>";
 	
@@ -107,6 +108,7 @@ $html .= "</table>";
 echo $html
 ?>
 
-<?php include 'footer.php';?>
+<footer>
+</footer>
 	</body>
 </html>	
