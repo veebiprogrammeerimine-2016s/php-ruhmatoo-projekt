@@ -127,6 +127,7 @@
 <br><br>
 
 		<a class="btn btn-success" type="submit" role="button">Salvesta andmed</a>
+		
 		<br>
 		<br>
 		
@@ -140,6 +141,7 @@
 <div class="col-sm-5 col-md-5">
 
 	<h2><font color="#ff9933">Minu enesetunne ja liikumisaktiivsus</h2></font>
+	
 	<br><br>
  
 <?php	
@@ -174,7 +176,7 @@
 	<!--<a class="btn btn-default" href="?logout=1" role="button">Logi välja</a>-->
 </p>
 </form>
-<br><br>
+
 <a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
 </div>
 <?php require ("footer.php"); ?>
