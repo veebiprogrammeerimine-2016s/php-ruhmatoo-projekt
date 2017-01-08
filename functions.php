@@ -9,11 +9,11 @@ function signUp ($Email, $Password, $Date, $Gender) {
 		$database = "if16_mariiviita";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
-		$stmt = $mysqli->prepare("INSERT INTO user_sample (Email, Password, Date, Gender) VALUES (?, ?, ?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO USERSAMPLE (Email, Password, Date, Gender) VALUES (?, ?, ?, ?)");
 	
 		echo $mysqli->error;
 		
-		$stmt->bind_param("sssi", $Email, $Password, $Date, $Gender);
+		$stmt->bind_param("ssss", $Email, $Password, $Date, $Gender);
 		
 		if($stmt->execute()) {
 			echo "Salvestamine õnnestus";
@@ -36,7 +36,7 @@ function signUp ($Email, $Password, $Date, $Gender) {
 
 		$stmt = $mysqli->prepare("
 		SELECT id, Email, Password, Date, Gender 
-		FROM userSample
+		FROM USERSAMPLE
 		WHERE email = ?");
 	
 		echo $mysqli->error;

@@ -107,25 +107,33 @@
 </head>
 <body>
 
- <h1>MinuTunne</h1><p> Veebirakenduse MinuTunne eesmärgiks on oma enesetundest, kaalust ja üleüldisest heaolust lugu pidavale inimesele võimaldada monitoorida enda enesetunde muutusi, liikumisaktiivsust ning vastavalt soovile jälgida kehamassiindeksi (KMI) ja kaalu muutusi. Inimene leiab veebirakendusest tuge oma enesetunde monitoorimisel ning selle seostamisel võimalike kaalumuudatustega. Samuti on rakendus hea abimees kaalumuudatuse motiveerimiseks.
-	Kasutajal on võimalik tutvuda enda varasemate enesetunde hinnangutega, liikumisaktiivsusega ning neid vastavalt vajadusele analüüsida. </p>
+ <em><h1>MinuTunne</h1></em><p> <em>Veebirakenduse MinuTunne eesmärgiks on oma enesetundest, kaalust ja üleüldisest heaolust lugu pidavale inimesele võimaldada monitoorida enda enesetunde muutusi, liikumisaktiivsust ning vastavalt soovile jälgida kehamassiindeksi (KMI) ja kaalu muutusi. Inimene leiab veebirakendusest tuge oma enesetunde monitoorimisel ning selle seostamisel võimalike kaalumuudatustega. Samuti on rakendus hea abimees kaalumuudatuse motiveerimiseks.
+	Kasutajal on võimalik tutvuda enda varasemate enesetunde hinnangutega, liikumisaktiivsusega ning neid vastavalt vajadusele analüüsida. </p></em>
+
+	<div class = "form-horizontal" >
+	<div class="form-group">
+	<div class ="col-sm-3 col-sm-offset-3">
 
 	<h2>Logi sisse</h2>
 	<form method="POST">
 		<p style="color:red;"><?=$error;?></p>
+
 		<label>E-post</label>
 		<br>
+		<div class = "form-group">
+		<input  class = "form-control" name="loginEmail" type="text">
 
-		<input name="loginEmail" type="text">
 		<br><br>
 		<label>Parool</label>
 		<br>
 		<input type="Password" name="loginPassword">
 		<br><br>
 
-		<input type="submit" value="Logi sisse">
+		<input class = "btn btn-success btn-sm" type="submit" value="Logi sisse">
 	</form>
 
+	<div class ="col-sm-4 col-md-3 col-sm-offset-4">
+	</div>
 
 	<h2>Registreeru kasutajaks</h2>
 	<form method="POST">
@@ -148,7 +156,6 @@
 		<br><br>
 
 
-
 		<label>Sugu</label>
 		<br>
 		<?php if($signupGender == "male") { ?>
@@ -169,8 +176,6 @@
 		<?php } ?>
 
 		<input type="submit" value="Registreerun">
-
-
 	</form>
 
 </body>

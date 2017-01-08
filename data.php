@@ -80,16 +80,21 @@
 		
 	$users=getUserData();	
 ?>
-
-<h1>Tänane päev</h1>
-
+<?php require ("header.php"); ?>
+<div class="col-sm-4 col-md-4">
+<br><br>
+<h1><font color=#00b33c>Tänane päev</h1></font>
+<div class="container">
+		<div class="row">
+		<div class="col-sm-5 col-md-5">
 <form method="POST">
 <br><br>
 		<label><h3>Kuupäev</h3></label>
+		
 		<input name="date" type="date" value="<?=$date;?>"> <?php echo $dateError; ?>
-
+		
 		<br><br>
-		 <label><h3>Enesetunne</h3></label>
+		<label><h3>Enesetunne</h3></label>
 
 
 			  <input list="Feeling" name="Feeling">
@@ -101,10 +106,12 @@
 				<option value="Väga halb">
 			  </datalist>
 
-
+		<br><br>
 		<label><h3>Sammude arv</h3></label>
 		<input name="NumberofSteps" type="Numberofsteps" value="<?=$NumberofSteps;?>"> <?php echo $NumberofStepsError; ?>
 <br><br>
+<br><br>
+
 		<input type="submit" value="Salvesta andmed">
 		<br>
 		<br>
@@ -112,11 +119,17 @@
 		
 <p></p>		
 </form>	
-<a href="data2.php" class="btn">Mis on minu KMI?</a>
-<h2>Minu enesetunne ja liikumisaktiivsus</h2>
-<?php 
-	
-	$html = "<table>";
+</div>
+
+<?php require ("header.php"); ?>
+<a class="btn btn-default" href="?logout=1" role="button">Logi välja</a>
+<a class="btn btn-success btn-sm btn-block visible-xs-block" href="?logout=1" role="button">Logi välja</a>
+<div class="col-sm-5 col-md-5">
+	<h2><font color="#ff9933">Minu enesetunne ja liikumisaktiivsus</h2></font>
+	<br><br>
+ 
+<?php	
+	$html="<table class='table'>";
 	
 	$html .= "<tr>";
 		$html .= "<th>Kuupäev</th>";
@@ -141,10 +154,15 @@
 	
 	$listHtml = "<br><br>";
 	
-	
-	
 ?>
 	
-	<a href="?logout=1">Logi välja</a>
+	<!--<a href="?logout=1">Logi välja</a>-->
+	<!--<a class="btn btn-default" href="?logout=1" role="button">Logi välja</a>-->
 </p>
 </form>
+<br><br>
+<a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
+</div>
+<?php require ("footer.php"); ?>
+
+
