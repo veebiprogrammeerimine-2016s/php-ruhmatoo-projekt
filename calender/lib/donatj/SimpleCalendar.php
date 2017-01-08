@@ -13,16 +13,35 @@ namespace donatj;
 	
 class SimpleCalendar {
 	
+	protected static $EST_MONTHS = [
+		1  => "Jaanuar",
+		2  => "Veebruar",
+		3  => "Märts",
+		4  => "Aprill",
+		5  => "Mai",
+		6  => "Juuni",
+		7  => "Juuli",
+		8  => "August",
+		9  => "September",
+		10 => "Oktoober",
+		11 => "November",
+		12 => "Detsember",
+	];
+	
+	
 	/**
 	 * Array of Week Day Names
 	 *
 	 * @var array
 	 */
-	public $wday_names = false;
+	public $wday_names = ['Pühapäev' , 'Esmaspäev', 'Teisipäev', 'Kolmapäev', 'Neljapäev', 'Reede', 'Laupäev'];
 
 	private $now = false;
 	private $daily_html = array();
 	private $offset = 0;
+	
+	protected $month = 1;
+	protected $year = 1970;
 
 	/**
 	 * Constructor - Calls the setDate function
@@ -30,8 +49,11 @@ class SimpleCalendar {
 	 * @see setDate
 	 * @param null|string $date_string
 	 */
-	function __construct( $date_string = null ) {
-		$this->setDate($date_string);
+	function __construct( $year = null, $month = null ) {		
+		$this->month = empty($month) ? date('m') : $month;
+		$this->year = empty($year) ? date('Y') : $year;
+		$this->setDate($this->year .'-'. $this->month .'-01');
+		$this->setStartOfWeek(1);
 	}
 
 	/**
@@ -113,24 +135,30 @@ class SimpleCalendar {
 		$wday    = date('N', mktime(0, 0, 1, $this->now['mon'], 1, $this->now['year'])) - $this->offset;
 		$no_days = cal_days_in_month(CAL_GREGORIAN, $this->now['mon'], $this->now['year']);
 		
-		$est_months= array(
-			1    => "Jaanuar",
-			2  => "Veebruar",
-			3  => "Märts",
-			4 => "Aprill",
-			5 => "Mai",
-			6 => "Juuni",
-			7 => "Juuli",
-			8 => "August",
-			9 => "September",
-			10 => "Oktoober",
-			11 => "November",
-			12 => "Detsember",
-		);
 
-		$getmonth = $est_months[$this->now['mon']];
+		$getmonth = static::$EST_MONTHS[$this->now['mon']];
 		$getyear = $this->now['year'];
-		$out = '<b><font size="4">'.$getmonth.' '.$getyear.'</font></b>';
+		
+		$next = [];
+		$nm = $this->get_next_month($this->month, $this->year);
+		
+
+		foreach ($nm as $unit => $value) {
+			$next[] = $unit.'='.$value;
+		}
+		$next = 'user.php?'. implode('&amp;', $next);
+		/*var_dump($next);
+		var_dump($nm, $this->month);*/
+		
+		$prev = [];
+		$pm = $this->get_prev_month($this->month, $this->year);
+		foreach ($pm as $unit => $value) {
+			$prev[] = $unit.'='.$value;
+		}
+		$prev = 'user.php?'. implode('&amp;', $prev);
+		
+		
+		$out = '<b><a href="'.$prev.'">previous</a><font size="4">'.$getmonth.' '.$getyear.'</font><a href="'. $next .'">next</a></b>';
 		$out .= '<br>';
 		$out .= '<table cellpadding="0" cellspacing="0" class="SimpleCalendar"><thead><tr>';
 
@@ -193,5 +221,60 @@ class SimpleCalendar {
 			array_push($data, array_shift($data));
 		}
 	}
+	
+	protected function get_next_month($month, $year) {
+		
+		// the date doesn't exist
+		if (false === checkdate(1, $month, $year)) {
+			return;
+			// TODO handle wrong date, e.g. let explode the side or something
+		}
+		
+		$next_month = $month + 1;
+		$next_year = $year;
+		
+		if ($next_month > 12) {
+			$next_month = 1;
+			$next_year++;
+		}
+		
+		return [
+			'm' => $next_month,
+			'y' => $next_year,
+		];
+	}
+	
+	
+	protected function get_prev_month($month, $year) {
+		
+		// the date doesn't exist
+		if (false === checkdate(1, $month, $year)) {
+			return;
+			// TODO handle wrong date, e.g. let explode the side or something
+		}
+		
+		$prev_month = $month - 1;
+		$prev_year = $year;
+		
+		if ($prev_month < 1) {
+			$prev_month = 12;
+			$prev_year--;
+		}
+		
+		return [
+			'm' => $prev_month,
+			'y' => $prev_year,
+		];
+	}
 }
-?>
+
+
+/*const MONDAY = 1;
+$_GET = [
+	'y' => 2017,
+	'm' => 1,
+];
+$calendar = new SimpleCalendar($_GET['y'], $_GET['m'])
+//$calendar = new SimpleCalendar($_GET['y']. '-'.$_GET['m'].'-01');
+$calendar->setStartOfWeek(MONDAY);
+$calendar->show();*/

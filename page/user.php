@@ -142,7 +142,7 @@
 					error_reporting(E_ALL ^ E_WARNING);
 					require_once('../calender/lib/donatj/SimpleCalendar.php');
 
-					$calendar = new donatj\SimpleCalendar();
+					$calendar = new donatj\SimpleCalendar($_GET['y'], $_GET['m']);
 
 					$calendar->setStartOfWeek('Monday');
 
