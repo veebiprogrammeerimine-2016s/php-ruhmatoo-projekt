@@ -18,10 +18,9 @@
 	
 	var_dump($_POST);
 	
-	
 
 ?>
-<script src="Lisaväljad.js" language="Javascript" type="text/javascript"></script>
+
 
 
 <!DOCTYPE html>
@@ -30,11 +29,12 @@
 		<meta charset="utf-8">
 		<title>WasteChase</title>
 		<link type="text/css" rel="stylesheet" href="stylesheet.css" />
+		<link rel="stylesheet" href="jquery/jquery-ui.min.css">
 	</head>
 	
 	<body>
 		<header>
-			<h1>WasteChase</h1>
+			<h1>WasteChase kodune prooviversioon</h1>
 			<p> Chasing your Spending</p>
 		</header>
 		
@@ -54,56 +54,48 @@
 		
 			<div class="insert box" >
 			
-				<p>Siin lehel toimub sissekannete lisamine</p>
+				<p>Ostu sisestamiseks täitke järgnevad väljad</p>
 				
 				<form method="POST" >
 	
 					<label>Pood</label><br>
 					<input name="storeName" type="text" >
 					<br><br>
-						<div id="inputs">
-							<div class="single-item">
-							<div id="dynamicInput">
-								Toode 1<br><input type="text" name="myInputs[]">
-							</div>
-
-							<div id="dynamicInput2">
-								Hind 1<br><input type="text" name="myInputs[]">
-							</div>
-							
-							<div id="dynamicInput3">
-								Kategooria 1<br><input type="text" name="myInputs[]">
-							</div>
-							<br>
-							<a href="#" onclick="remove(this.parentElement);">Kustuta</a>
-							</div>
-						</div>
-					<input type="button" value="Lisa toode" onClick="addInput('inputs');">
-					<br>
-					<?php
-					/*
-					<label>Kategooria</label><br>
-					<input name="category" type="text" >
-					<br><br>
 					
-					<label>Toode</label><br>
-					<input name="productName" type="text" >
-					<br><br>
-					
-					<label>Hind</label><br>
-					<input name="productPrice" type="number" step="0.01" min="0">
-					<br><br>
-					*/
-					?>
-					<label>Ostukuupäev</label><br> <!--üks võimalik variant kalendri tegemiseks: http://stackoverflow.com/questions/24975667/html-input-type-date-open-calendar-by-default-->
-					<input name="shoppingDate" type="number" >
+					<label>Ostukuupäev</label><br>
+					<input name="shoppingDate" type="text" id="date" >
 					<br><br>
 					
 					<label>Tsekinumber</label><br>
-					<input name="receiptNumber" type="number" >
+					<input name="receiptNumber" type="text" >
 					<br><br>
 					
-					<input type="submit" value="Sisesta">
+					<div class="fields">
+					
+						<div class="singleField">
+					
+							<div class="singleInput">
+								<label>Kategooria</label><br>
+								<input name="category[]" type="text" >
+							</div>
+							
+							<div class="singleInput">
+								<label>Toode</label><br>
+								<input name="productName[]" type="text" >
+							</div>
+							
+							<div class="singleInput">
+								<label>Hind</label><br>
+								<input name="productPrice[]" type="number" step="0.01" min="0" >
+							</div>
+						
+						</div>
+						
+					</div>
+					
+					<input type="button" value="Lisa väli" id="add" >
+					
+					<input type="submit" value="Sisesta" >
 					
 
 				</form>
@@ -113,5 +105,11 @@
 		
 		</div><!--.wrapper-->
 		<footer>Footer</footer>
+		
+		<script src="jquery/jquery-3.1.1.js"></script>
+		<script src="jquery/external/jquery/jquery.js"></script>
+		<script src="jquery/jquery-ui.min.js"></script>
+		<script src="jquery/custom.js"></script>
+		
 	</body>
 </html>
