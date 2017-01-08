@@ -1,6 +1,7 @@
 ﻿<?php
 class User {
 	private $connection;
+	public $name;
 	function __construct($mysqli){
 		
 		$this->connection=$mysqli; //this on user

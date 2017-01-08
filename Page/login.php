@@ -105,6 +105,8 @@
 		//echo $serverUsername;
 		
 		// KASUTAN FUNKTSIOONI
+		signUp($signupEmail, cleanInput($password), $signupAge, $signupCounty, $signupRoll, $signupName);
+		
 		$signupEmail = $Helper->cleanInput($signupEmail);
 		
 		$user->signUp($signupEmail, $Helper->cleanInput($password), 
@@ -171,7 +173,7 @@
 				<legend class="text-center">Registreeri</legend>
 
 
-                    <fieldset>
+                <fieldset>
                         <div class="form-group col-md-6">
                             <label for="name">Nimi</label>
                             <input class="form-control" name="signupName" type="text" value="<?=$signupName;?>"> 
@@ -259,8 +261,6 @@
 
 			</form>
 		</div>
-	</div>
-
 	</div>
 </div>
 <?php require("../footer.php"); ?>
