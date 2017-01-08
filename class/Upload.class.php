@@ -47,7 +47,7 @@ class Upload {
 		$ext = substr($_FILES["fileToUpload"]["name"], strrpos($_FILES["fileToUpload"]["name"], "."));
 		$_FILES["fileToUpload"]["name"] = uniqid() . $ext;
 		//$_FILES["fileToUpload"]["name"]=uniqid();
-		$target_dir = "uploads/";
+		$target_dir = "/home/gregness/public_html/php-ruhmatoo-projekt/page/uploads/";
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 		$target_file_corrected = "/~gregness/php-ruhmatoo-projekt/page/uploads/" . basename($_FILES["fileToUpload"]["name"]);
 		

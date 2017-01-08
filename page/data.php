@@ -1,4 +1,6 @@
 <?php 
+
+	//GREG EI OSKA GITI KASUTADA
 	//ühendan sessiooniga
 	//kuradi git ma ütlen!
 	require("../functions.php");
