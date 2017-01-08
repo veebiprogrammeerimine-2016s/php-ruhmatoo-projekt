@@ -84,9 +84,10 @@ if (isset($_POST["loginEmail"]) &&
    ) {
 	$error = login( $_POST["loginEmail"], $_POST["loginPassword"]);
 }
+require ("header.php");
 ?>
 
-<?php require ("header2.php"); ?>
+
 <html>
 	<head>
 		<title>
