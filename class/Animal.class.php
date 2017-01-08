@@ -53,7 +53,9 @@ class Animal {
 			$stmt = $this->connection->prepare("
 				SELECT id, type, name, age, shelter
 				FROM g_animals
-				WHERE deleted IS NULL 
+				WHERE deleted IS NULL
+				
+			
 				AND (type LIKE ? OR name LIKE ? OR age LIKE ? OR shelter LIKE ?)
 				ORDER BY $sort $orderBy
 			");
@@ -67,6 +69,7 @@ class Animal {
 				SELECT id, type, name, age, shelter
 				FROM g_animals
 				WHERE deleted IS NULL
+				
 				ORDER BY $sort $orderBy
 			");
 			
@@ -107,7 +110,7 @@ class Animal {
 	
 	function getSingle($edit_id){
 
-		$stmt = $this->connection->prepare("SELECT type, name, age, shelter FROM `g_animals` WHERE id=? AND deleted IS NULL AND booked IS NULL");
+		$stmt = $this->connection->prepare("SELECT type, name, age, shelter FROM `g_animals` WHERE id=? AND deleted IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
 		$stmt->bind_result($type, $name, $age, $shelter);

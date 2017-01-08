@@ -16,7 +16,7 @@ class Booking {
 	
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ii", $animal_id, $animal_return);
+		$stmt->bind_param("is", $animal_id, $animal_return);
 		
 		if($stmt->execute()) {
 			echo "Salvestamine onnestus ";
