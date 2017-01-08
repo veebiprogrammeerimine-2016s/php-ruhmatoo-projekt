@@ -49,7 +49,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
     echo "Please select the file that you want to upload!";
 }
 ?>
-
+<?php require("../header.php"); ?>
 <!DOCTYPE html>
 <html>
 <body>
@@ -62,3 +62,4 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 
 </body>
 </html>
+<?php require("../footer.php"); ?>
