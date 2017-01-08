@@ -12,28 +12,14 @@ require("../functions.php");
 		header("Location: login.php");
 		exit();
 	}
-
-
-	if(isset($_GET["sort"]) && isset($_GET["direction"])){
-		$sort=$_GET["sort"];
-		$direction=$_GET["direction"];
-		
-	}else{
-		$sort="contactemail";
-		$direction="ascending";
-	}
 	
-	if(isset($_GET["q"])){
-		
-		$q = $Helper->cleanInput($_GET["q"]);
-		
-		//$sneakerdata=$Sneakers->getallsneakers($q, $sort, $direction);
-		
-	}else{
-		
-		$q="";
-		//$sneakerdata=$Sneakers->getallsneakers($q, $sort, $direction);
-
+	
+	if(isset($_GET["sort"]) && isset($_GET["direction"])) {
+		$sort = $_GET["sort"];
+		$direction = $_GET["direction"];
+	} else {
+		$sort = "heading";
+		$direction = "ascending";
 	}
 
 
@@ -43,13 +29,10 @@ require("../functions.php");
 
 
 
-
-
+require("../header.php");
 ?>
 
 
-
-<?php require("../header.php"); ?>
 
 
 
@@ -61,6 +44,7 @@ require("../functions.php");
 	<ul class="nav nav-tabs">
 		<li role="presentation"><a href="createpost.php">Uus kuulutus</a></li>
 		<li role="presentation" class="active"><a href="#">Minu kuulutused</a></li>
+		<li role="presentation" class="disabled"><a href="#">Kuulutuse muutmine</a></li>
 	</ul>
 
 
@@ -121,7 +105,7 @@ require("../functions.php");
 
 <?php
 
-$myPosts = $Sneakers->getAllMyPosts();
+$myPosts = $Sneakers->getAllMyPosts($sort, $direction);
 
 $direction = "ascending";
 
@@ -136,10 +120,10 @@ $direction = "ascending";
 			
 		$html .= "<thead>";
 			$html .= "<tr>";
-				$html .= "<th><a href='?q=".$q."&sort=heading&direction=".$direction."'>Pealkiri</a></th>";
-				$html .= "<th><a href='?q=".$q."&sort=model&direction=".$direction."'>Mudel</a></th>";
-				$html .= "<th><a href='?q=".$q."&sort=price&direction=".$direction."'>Hind</a></th>";
-				$html .= "<th><a href='?q=".$q."&sort=description&direction=".$direction."'>Kirjeldus</a></th>";
+				$html .= "<th><a href='?sort=heading&direction=".$direction."'>Pealkiri</a></th>";
+				$html .= "<th><a href='?sort=model&direction=".$direction."'>Mudel</a></th>";
+				$html .= "<th><a href='?sort=price&direction=".$direction."'>Hind</a></th>";
+				$html .= "<th><a href='?sort=description&direction=".$direction."'>Kirjeldus</a></th>";
 				$html .= "<th style='width:50px'>Muuda</th>";
 			$html .= "</tr>";
 		$html .= "</thead>";

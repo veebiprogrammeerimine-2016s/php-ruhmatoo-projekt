@@ -579,6 +579,7 @@ require("../header.php");
 	<ul class="nav nav-tabs">
 		<li role="presentation" class="active"><a href="#">Uus kuulutus</a></li>
 		<li role="presentation"><a href="myposts.php">Minu kuulutused</a></li>
+		<li role="presentation" class="disabled"><a href="#">Kuulutuse muutmine</a></li>
 	</ul>
 	
 	<div>

@@ -451,13 +451,26 @@ class Sneakers {
 	
 	
 
-	function getAllMyPosts() {
+	function getAllMyPosts($sort, $direction) {
+		
+		$allowedSortOptions = ["heading", "model", "price", "description"];
+		
+		if(!in_array($sort, $allowedSortOptions)) {
+			$sort = "campsite";
+		}
+		
+		$orderBy = "ASC";
+		if($direction == "descending") {
+			$orderBy = "DESC";
+		}		
 		
 		$stmt = $this->connection->prepare("SELECT i.postid, heading, model, price, description, name
 												FROM (SELECT * FROM sm_posts WHERE postcompleted IS NOT NULL AND userid = ?) AS p
 												JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL) AS i ON p.id=i.postid
-												JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid");
+												JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid
+												ORDER BY $sort $orderBy");
 		echo $this->connection->error;
+		
 		$stmt->bind_param("i", $_SESSION["userId"]);
 		$stmt->bind_result($postid, $heading, $model, $price, $description, $imgname);
 		$stmt->execute();
