@@ -175,10 +175,12 @@
 		$stmt->close();
 	}
 	
-	function delPic($nofile, $topic_id, $reply_id){
+	function delPic($topic_id, $reply_id, $nofile){
 		$stmt = $this->connection->prepare("UPDATE replies SET file=? WHERE id=? AND topic_id=? AND user_id=? AND deleted IS NULL");
 		
 		$stmt->bind_param("siii",$nofile, $reply_id, $topic_id, $_SESSION["userId"] );
+		
+		echo $this->connection->error;
 		
  		if($stmt->execute()){
 			$_SESSION["reply_change_message"] = "<p style='color:red;'>Pilt kustutatud!</p>";

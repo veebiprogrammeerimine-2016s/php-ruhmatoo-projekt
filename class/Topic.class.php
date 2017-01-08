@@ -213,6 +213,28 @@
 		return $del_topic;
 	}
 	
+	function checkUserForMsg ($topic_id) {
+		
+		$stmt = $this->connection-> prepare("SELECT content FROM topics WHERE id=? and user_id=?");
+		
+		echo $this->connection->error;
+		
+		$stmt->bind_param("ii", $topic_id, $_SESSION["userId"]);
+		$stmt->bind_result($content);
+		$stmt->execute();
+		
+		$topicDelMsg = "no";
+		if($stmt->fetch()){
+			
+			$topicDelMsg = "yes";
+			
+		}
+		
+		$stmt->close();
+		return $topicDelMsg;
+		
+	}
+	
 	function del($topic_id, $user_id){
 		$stmt = $this->connection->prepare("UPDATE topics SET deleted=NOW() WHERE id=? AND user_id=? AND deleted IS NULL");
  		$stmt->bind_param("ii",$topic_id, $user_id);
