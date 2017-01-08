@@ -1,2 +1,3 @@
 <?php require("../header.php"); ?>
-<?php require("../footer.php"); ?>ff
+<?php require("../Upload/upload.php"); ?>
+<?php require("../footer.php"); ?>
