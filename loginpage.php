@@ -17,6 +17,8 @@
 	$loginEmail = $loginPassword = "";
 	$loginEmailError = $loginPasswordError = $error = "";
 	
+	
+	
 	//REGISTREERIMINE
 	//E-POST REGISTREERIMINE
 	if (isset ($_POST["signupEmail"])) {
