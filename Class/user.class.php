@@ -9,7 +9,7 @@ class User {
 	}
 
 	function signUp ($email, $password, $name, $roll, $age, $county) {
-		
+		$this->connection->set_charset("utf8");
 		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password, name, roll, vanus, elukoht) VALUES (?, ?, ?, ?, ?, ?)");
 	
 		echo $this->connection->error;
