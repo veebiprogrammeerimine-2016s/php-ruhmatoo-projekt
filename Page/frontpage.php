@@ -1,7 +1,8 @@
-<?php 
+<?php
+	require("../functions.php");
 if (!isset($_SESSION["userId"])){
 	require("../header.php");	
-} else require ("../header2.php")
+} else require ("../header2.php");
 ?>
 
 <!DOCTYPE html>

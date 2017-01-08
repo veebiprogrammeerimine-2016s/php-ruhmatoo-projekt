@@ -82,8 +82,8 @@
 					</div>
 					 <div class="modal-body">
 					   <form method="post" action='login.php' name="login_form">
-						 <p><input type="text" class="span3" name="eid" id="email" placeholder="Email"></p>
-						 <p><input type="password" class="span3" name="passwd" placeholder="Parool"></p>
+						 <p><input type="text" class="span3" name="loginEmail" id="email" placeholder="Email"></p>
+						 <p><input type="password" class="span3" name="loginPassword" placeholder="Parool"></p>
 						 <p><button type="submit" class="btn btn-primary">Logi sisse</button>
 						   <a href="#">Unustasid parooli?</a>
 						 </p>

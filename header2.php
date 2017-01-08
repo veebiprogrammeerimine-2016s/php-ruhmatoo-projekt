@@ -1,7 +1,7 @@
 <?php {
 	if (isset($_GET["logout"])) {	
 		session_destroy();
-		header("Location: login.php");
+		header("Location: frontpage.php");
 		exit();
 	}
 }
@@ -67,7 +67,7 @@
 				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="?logout=1" data-toggle="modal" data-target="#myModal">Logi välja</a></li>
+				<li><a href="?logout=1">Logi välja</a></li>
 			</ul>
             </div>
           </div>

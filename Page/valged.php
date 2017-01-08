@@ -1,4 +1,8 @@
-<?php require("../header.php");	
+<?php 	require("../functions.php");	
+		if (!isset($_SESSION["userId"])){
+			require("../header.php");	
+		} else require ("../header2.php");
+
 ?>
 <!DOCTYPE html>
 	<div class="container marketing">
