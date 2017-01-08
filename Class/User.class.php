@@ -1,19 +1,24 @@
-﻿<?php
+<?php
 class User {
+	
 	private $connection;
+	public $name;
+	
 	function __construct($mysqli){
 		
-		$this->connection=$mysqli; //this on user
-			
-	}
-
-	function signUp ($email, $password, $name, $roll, $age, $county) {
+		//this viitab klassile (this == User)
+		$this->connection = $mysqli;
 		
-		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password, name, roll, vanus, elukoht) VALUES (?, ?, ?, ?, ?, ?)");
+	}
+	
+	//Teised funktsioonid
+	function signUp ($email, $password) {
+		
+		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password) VALUES (?, ?)");
 	
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssssss", $email, $password, $name, $roll, $age, $county);
+		$stmt->bind_param("ss", $email, $password);
 		
 		if($stmt->execute()) {
 			echo "salvestamine õnnestus";
@@ -25,6 +30,8 @@ class User {
 		$this->connection->close();
 		
 	}
+	
+	
 	function login ($email, $password) {
 		
 		$error = "";
@@ -61,7 +68,7 @@ class User {
 				
 				$_SESSION["message"] = "<h1>Tere tulemast!</h1>";
 				
-				header("Location: frontpage.php");
+				header("Location: data.php");
 				exit();
 				
 			}else {
@@ -78,7 +85,6 @@ class User {
 		return $error;
 		
 	}
-	
 	
 	
 }

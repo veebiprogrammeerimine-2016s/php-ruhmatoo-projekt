@@ -122,7 +122,7 @@
 		!empty($_POST["loginPassword"])
 	  ) {
 		  
-		$error = $User->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));
+		$error = $user->login($Helper->cleanInput($_POST["loginEmail"]), $Helper->cleanInput($_POST["loginPassword"]));
 		
 	}
 	
@@ -166,36 +166,36 @@
 	<div class="row">
 
 		<div class="col-md-8 col-md-offset-2">
-			<form role="form" method="POST" action="#">
+			<form method="POST">
 
 				<legend class="text-center">Registreeri</legend>
 
 
                     <fieldset>
                         <div class="form-group col-md-6">
-                            <label for="first_name">Nimi</label>
-                            <input type="text" class="form-control" name="" id="first_name">
+                            <label for="name">Nimi</label>
+                            <input class="form-control" name="signupName" type="text" value="<?=$signupName;?>"> 
                         </div>
 
                         <div class="form-group col-md-12">
                             <label for="">Email</label>
-                            <input type="email" class="form-control" name="" id="">
+                            <input type="email" class="form-control" name="signupEmail" id="" value="<?=$signupEmail;?>"> <?=$signupEmailError;?>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="password">Parool</label>
-                            <input type="password" class="form-control" name="" id="password">
+                            <input type="password" class="form-control" name="signupPassword" id="password"> <?php echo $signupPasswordError; ?>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="confirm_password">Kinnita parool</label>
-                            <input type="password" class="form-control" name="" id="confirm_password">
+                            <input type="password" class="form-control" name="signupPassword" id="confirm_password"> <?php echo $signupPasswordError; ?>
                         </div>
 
 
 					<div class="form-group col-md-6">
 						<label for="county">Maakond, kus elate</label>
-						<select class="form-control" name="" id="county">
+						<select class="form-control" name="signupCounty" id="county" value="<?=$signupCounty;?>"> <?php echo $signupContyError; ?>
 							<option>Harjumaa</option>
 							<option>Ida-Virumaa</option>
 							<option>Tartumaa</option>
@@ -217,13 +217,13 @@
 
                         <div class="form-group col-md-6">
                             <label for="Age">Vanus</label>
-                            <input type="text" class="form-control" name="" id="vanus">
+                            <input type="text" class="form-control" name="signupAge" id="vanus" value="<?=$signupAge;?>"> <?php echo $signupAgeError; ?>
                         </div>
 						
 
 						<div class="form-group col-md-6">
 							<label for="roll">Teie roll keskkonnas</label>
-							<select class="form-control col-md-12">
+							<select class="form-control col-md-12" value="<?=$signupRoll;?>"> <?php echo $signupRollError; ?>
 							  <option>Müüa</option>
 							  <option>Ostja</option>
 							</select>
