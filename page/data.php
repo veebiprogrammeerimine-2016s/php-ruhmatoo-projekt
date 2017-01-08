@@ -44,6 +44,16 @@ Tere tulemast koduloomade laenutuse lehele <a href="user.php"><?=$_SESSION["user
 <br>
 Siin saate endale valida endale rõõmsa sõbra teatud ajaks!
 
+Siin on loomadest pildid, keda valida saate:
+
+<h2>Kuldne retriiver</h2>
+<img src="retriiver.jpg" alt="Kuldne" style="width:304px;height:228px;">
+
+
+
+
+
+
 </p>
 </html>		
 

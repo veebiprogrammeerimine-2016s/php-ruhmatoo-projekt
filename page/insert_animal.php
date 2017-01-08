@@ -62,6 +62,7 @@
 				<option value="rabbit">Janes</option>
 				<option value="other">Muu</option>
 				</select>
+				</div>
 	            <br><br>
 	
 	            <label>Looma nimi</label><br>
@@ -80,8 +81,12 @@
 
 				<br><br>
                 </form>
+			
+				
 		</body>		
 </html>		
+
+
 
 <br><br>
 <?php require("../footer.php"); ?>
