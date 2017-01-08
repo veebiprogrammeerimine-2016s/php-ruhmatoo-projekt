@@ -107,7 +107,7 @@ class Animal {
 	
 	function getSingle($edit_id){
 
-		$stmt = $this->connection->prepare("SELECT type, name, age, shelter FROM `g_animals` WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT type, name, age, shelter FROM `g_animals` WHERE id=? AND deleted IS NULL AND booked IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
 		$stmt->bind_result($type, $name, $age, $shelter);
@@ -129,7 +129,8 @@ class Animal {
 			// ei saanud rida andmeid kätte
 			// sellist id'd ei ole olemas
 			// see rida võib olla kustutatud
-			header("Location: animals.php");
+			
+			//header("Location: animals.php");
 			exit();
 		}
 		

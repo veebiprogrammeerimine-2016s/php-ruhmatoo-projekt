@@ -1,90 +1,59 @@
-<html>
-<body style='background-color:Silver'>
-    <head>
-	<?php require("../header.php"); ?>
-<h1>Broneeri</h1>
-
-<form>
-
-	<input type="search" name="q" value="<?=$q;?>">
-	<input type="submit" value="Otsi">
-	
-</form>
-<?php 
+<?php
+   require("../functions.php");
+   
+   //kas on sisseloginud, kui ei ole siis
+   //suunata login lehele
+   if (!isset ($_SESSION["userId"])) {
+	   
+	   //header("Location: login.php");
+	   
+	}
+   
+   //kas ?loguout on aadressireal
+   if (isset($_GET["logout"])) {
+	   
+	   session_destroy();
+	   
+	   header("Location: login.php");
+	   exit();
+	   
+   }  
  
+   
+   if ( isset($_POST["return"]) &&
+	    !empty($_POST["return"])) {
 	
-	$html = "<table class='table table-striped'>";
+		 
+		$Booking->save($_GET["id"], $_POST["return"]);
+		$Booking->book($_GET["id"]);
+		}
 	
-	$html .= "<tr>";
-	
-		$idOrder = "ASC";
-		$arrow ="&darr;";
-		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
-			$idOrder = "DESC";
-			$arrow ="&uarr;";
-			
-		}	
-	
-		$html .= "<th>
-					<a href='?q=".$q."&sort=id&order=".$idOrder."'>
-						Id ".$arrow."
-					</a>
-				 </th>";
-				 
-		$typeOrder = "ASC";
-		$arrow ="&darr;";
-		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
-			$typeOrder = "DESC";
-			$arrow ="&uarr;";
-		}
-		
-		$html .= "<th>
-					<a href='?q=".$q."&sort=type&order=".$typeOrder."'>
-						Liik ".$arrow."
-					</a>
-				 </th>";
-				 
-		$nameOrder = "ASC";
-		$arrow ="&darr;";
-		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
-			$nameOrder = "DESC";
-			$arrow ="&uarr;";
-		}
-		
-		$html .= "<th>
-					<a href='?q=".$q."&sort=name&order=".$nameOrder."'>
-						Nimi ".$arrow."
-					</a>
-				 </th>";
-				 
-		$ageOrder = "ASC";
-		$arrow ="&darr;";
-		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
-			$ageOrder = "DESC";
-			$arrow ="&uarr;";
-		}
-		
-		$html .= "<th>
-					<a href='?q=".$q."&sort=age&order=".$ageOrder."'>
-						Vanus ".$arrow."
-					</a>
-				 </th>";
-				 
-// katse kas github t88tab
-		foreach($animal as $c){
-			$html .= "<tr>";
-				$html .= "<td>".$c->id."</td>";
-				$html .= "<td>".$c->type."</td>";
-				$html .= "<td>".$c->name."</td>";
-				$html .= "<td>".$c->age."</td>";
-				$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span>Muuda</a></td>";
-				$html .= "<td><a class='btn btn-default btn-sm' href='booking.php?id=".$c->id."'><span class='glyphicon glyphicon'></span>Broneeri</a></td>";
-			$html .= "</tr>";	
-		}
-		
-	$html .= "</table>";
-	echo $html;
-
+		$animal = $Animal->getSingle($_GET["id"]);
+		$name = $animal->name;
+		$type = $animal->type;
 ?>
+
+<html>
+	<body style='background-color:Silver'>
+		<head>
+			<?php require("../header.php"); ?>
+			<h1>Broneeri</h1>
+		</head>
+			 <body>
+				<h3>Rentimine</h3>
+				
+				<p>Oled sa kindel et soovid rentida looma nimega <?php echo $name; ?> liigist <?php echo $type; ?>?
+				</p>
+				
+				 <form method="POST">
+					<label>Tagastustähtaeg</label><br>
+					<input name="return" type="date" >
+					<br><br>
+		
+					<input type="submit" value="Rendi">
+					<br><br>
+				</form>	
+			</body>
+</html>
 <br><br>
 <?php require("../footer.php"); ?>
