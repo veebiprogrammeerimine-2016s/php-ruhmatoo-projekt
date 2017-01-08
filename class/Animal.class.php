@@ -166,7 +166,7 @@ class Animal {
 	function update($id, $type, $name, $age){
     	
 		$stmt = $this->connection->prepare("UPDATE g_animals SET type=?, name=?, age=? WHERE id=?");
-		$stmt->bind_param("issi",$id, $type, $name, $age);
+		$stmt->bind_param("ssii",$type, $name, $age, $id);
 		
 		
 		// kas õnnestus salvestada

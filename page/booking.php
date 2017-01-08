@@ -1,11 +1,12 @@
 <?php
    require("../functions.php");
    
+   
    //kas on sisseloginud, kui ei ole siis
    //suunata login lehele
    if (!isset ($_SESSION["userId"])) {
 	   
-	   //header("Location: login.php");
+	   header("Location: login.php");
 	   
 	}
    

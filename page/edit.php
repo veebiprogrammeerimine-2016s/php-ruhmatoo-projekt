@@ -10,8 +10,9 @@
 		
 		$Animal->update($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["type"]), $Helper->cleanInput($_POST["name"]), $Helper->cleanInput($_POST["age"]));
 		
-		//header("Location: animals.php?id=".$_POST["id"]."&success=true");
-        //exit();	
+		
+		header("Location: animals.php?id=".$_POST["id"]."&success=true");
+        exit();	
 		
 	}
 	
