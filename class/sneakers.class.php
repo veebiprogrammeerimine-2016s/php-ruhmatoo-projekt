@@ -383,45 +383,7 @@ class Sneakers {
 	
 /****** FUNKTSIOON ESILEHEL KUVATAVATE KUULUTUSTE ANDMETE JAOKS ******
 	sneakermarket.php
-
-	kontrollida:
-	1 - kas tulevad kõikide kasutajate kuulutused, kus:
-		1.1 - primarypic (ehk pilt, mida kuvatakse kuulutuse esilehel) on 1
-		1.2. - deleted on NULL
-	2 - mis saab, kui kasutaja kustutab pildi (deleted ei ole NULL)? - mida kuvatakse?
-	3 - kas kasutaja saab muuta primarypici?
 */
-
-/*
-	function getAllPosts() {
-		
-		$stmt = $this->connection->prepare("SELECT p.postid, heading, model, price, description, name FROM sm_postinfo p
-											JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND picdeleted IS NULL) u ON p.id=u.postid");
-		echo $this->connection->error;
-		$stmt->bind_result($postid, $heading, $model, $price, $description, $imgname);
-		$stmt->execute();
-		
-		$result = array();
-		
-		while($stmt->fetch()) {
-			
-			$sneakerPost = new StdClass();
-			
-			$sneakerPost->postid = $postid;
-			$sneakerPost->heading = $heading;
-			$sneakerPost->model = $model;
-			$sneakerPost->price = $price;
-			$sneakerPost->description = $description;
-			$sneakerPost->name = $imgname;
-			
-			array_push($result, $sneakerPost);
-		}
-		$stmt->close();
-		return $result;
-	}
-*/
-
-
 	function getAllPosts() {
 		
 		$stmt = $this->connection->prepare("SELECT i.postid, heading, model, price, description, name
@@ -458,37 +420,6 @@ class Sneakers {
 /****** ANDMED KINDLA KUULUTUSE JAOKS ******
 	post.php
 */
-
-/*
-	function getSinglePostData($singlepostid) {
-		
-		$stmt = $this->connection->prepare("SELECT postid, heading, model, price, description, name FROM sm_postinfo p
-											JOIN (SELECT * FROM sm_uploads WHERE primarypic=1 AND picdeleted IS NULL AND postid = ?) u ON p.id=u.postid");
-		echo $this->connection->error;
-		$stmt->bind_param("i", $singlepostid);
-		$stmt->bind_result($postid, $heading, $model, $price, $description, $imgname);
-		$stmt->execute();
-		
-		$singlePostData = new StdClass();
-		
-		if($stmt->fetch()) {
-			
-			$singlePostData->postid = $postid;
-			$singlePostData->heading = $heading;
-			$singlePostData->model = $model;
-			$singlePostData->price = $price;
-			$singlePostData->description = $description;
-			$singlePostData->name = $imgname;
-			
-		} else {
-			echo "andmete kättesaamisel ilmnes tõrge";
-		}
-		$stmt->close();
-		return $singlePostData;
-	}
-*/
-	
-	
 	function getSinglePostData($currentid) {
 		
 		$stmt = $this->connection->prepare("SELECT i.postid, heading, model, price, description, name
@@ -519,39 +450,6 @@ class Sneakers {
 	}
 	
 	
-	
-	
-
-/*
-	function getAllMyPosts() {
-		
-		$stmt = $this->connection->prepare("SELECT postid, heading, model, price, description, name
-												FROM (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL AND userid = ?) AS p
-												JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid");
-		echo $this->connection->error;
-		$stmt->bind_param("i", $_SESSION["userId"]);
-		$stmt->bind_result($postid, $heading, $model, $price, $description, $imgname);
-		$stmt->execute();
-		
-		$result = array();
-		
-		while($stmt->fetch()) {
-			
-			$mySneakerPost = new StdClass();
-			
-			$mySneakerPost->postid = $postid;
-			$mySneakerPost->heading = $heading;
-			$mySneakerPost->model = $model;
-			$mySneakerPost->price = $price;
-			$mySneakerPost->description = $description;
-			$mySneakerPost->name = $imgname;
-			
-			array_push($result, $mySneakerPost);
-		}
-		$stmt->close();
-		return $result;
-	}
-*/
 
 	function getAllMyPosts() {
 		

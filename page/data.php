@@ -42,8 +42,8 @@ $upc = $pc->postcheck;
 
 
 /* ajutised echo'd kontrollimiseks */
-echo "userId: ".$_SESSION["userId"]."<br>";
-echo "User postcheck: ".$upc."<br>";
+//echo "userId: ".$_SESSION["userId"]."<br>";
+//echo "User postcheck: ".$upc."<br>";
 
 
 /* kui kasutaja pole loonud ühtegi kuulutust, siis on getNewPostId funktsiooni StdClass tühi, mis lööb erroreid, selleks oli vaja postcounti kontrollida */
@@ -95,8 +95,8 @@ require("../header.php");
 <!-- **** KUULUTUSTE LEHE ALAMMENÜÜ **** -->
 	
 		<ul class="nav nav-tabs">
-			<li role="presentation" class="disabled"><a href="">Uus kuulutus</a></li>
-			<li role="presentation" class="disabled"><a href="">Minu kuulutused</a></li>
+			<li role="presentation" class="active"><a href="">Uus kuulutus</a></li>
+			<li role="presentation"><a href="myposts.php">Minu kuulutused</a></li>
 		</ul>
 	
 	

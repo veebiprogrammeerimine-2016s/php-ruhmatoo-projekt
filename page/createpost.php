@@ -361,7 +361,7 @@ $updateStatus = "";
 		$imageData = $Sneakers->getImageData($currentId);
 		$imageName = $imageData->name;
 		
-		echo "Image name: ".$imageName."<br>";
+		//echo "Image name: ".$imageName."<br>";
 	}
 
 

@@ -27,12 +27,12 @@ require("../functions.php");
 		
 		$q = $Helper->cleanInput($_GET["q"]);
 		
-		$sneakerdata=$Sneakers->getallsneakers($q, $sort, $direction);
+		//$sneakerdata=$Sneakers->getallsneakers($q, $sort, $direction);
 		
 	}else{
 		
 		$q="";
-		$sneakerdata=$Sneakers->getallsneakers($q, $sort, $direction);
+		//$sneakerdata=$Sneakers->getallsneakers($q, $sort, $direction);
 
 	}
 
@@ -112,23 +112,37 @@ require("../functions.php");
 ?>
 
 
+	<div>
+		<h3></h3>
+	</div>
 
-
+	<div class="panel panel-default">
+		
 
 <?php
 
 $myPosts = $Sneakers->getAllMyPosts();
 
+$direction = "ascending";
+
+	if(isset($_GET["direction"])) {
+		if($_GET["direction"] == "ascending") {
+			$direction = "descending";
+		}
+	}
 
 
-	$html = "<table class='table table-striped table-bordered'>";
+	$html = "<table class='table table-hover table-bordered'>";
 			
-		$html .= "<tr>";
-			$html .= "<th>Pealkiri</th>";
-			$html .= "<th>Mudel</th>";
-			$html .= "<th>Hind</th>";
-			$html .= "<th>Kirjeldus</th>";
-		$html .= "</tr>";
+		$html .= "<thead>";
+			$html .= "<tr>";
+				$html .= "<th><a href='?q=".$q."&sort=heading&direction=".$direction."'>Pealkiri</a></th>";
+				$html .= "<th><a href='?q=".$q."&sort=model&direction=".$direction."'>Mudel</a></th>";
+				$html .= "<th><a href='?q=".$q."&sort=price&direction=".$direction."'>Hind</a></th>";
+				$html .= "<th><a href='?q=".$q."&sort=description&direction=".$direction."'>Kirjeldus</a></th>";
+				$html .= "<th style='width:50px'>Muuda</th>";
+			$html .= "</tr>";
+		$html .= "</thead>";
 		
 		foreach($myPosts as $mp) {
 			
@@ -137,6 +151,7 @@ $myPosts = $Sneakers->getAllMyPosts();
 				$html .= "<td>".$mp->model."</td>";
 				$html .= "<td>".$mp->price."</td>";
 				$html .= "<td>".$mp->description."</td>";
+				$html .= "<td><a href='editpost.php?id=".$mp->postid."'><span class='glyphicon glyphicon-pencil'></span></td>";
 			$html .= "</tr>";
 		}
 
@@ -154,6 +169,7 @@ $myPosts = $Sneakers->getAllMyPosts();
 
 ?>
 
+	</div>
 
 
 
