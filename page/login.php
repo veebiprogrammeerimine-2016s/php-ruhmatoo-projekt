@@ -51,14 +51,14 @@
 	
 	if (isset ($_POST["userName"]) ){
 		if (empty ($_POST["userName"]) ){
-			$userNameError = "<br><font color='red'>See väli on kohustuslik!</font>";		
+			$userNameError = "<font color='red'>See väli on kohustuslik!</font>";		
 		} else {
 			if (!preg_match("/^[a-zA-Z0-9]*$/",$_POST["userName"])) { 
-				$userNameError = "<br><font color='red'>Kasutajanimes võib kasutada <br> vaid tähti ja numbreid!</font>"; 
+				$userNameError = "<font color='red'>Kasutajanimes võib kasutada <br> vaid tähti ja numbreid!</font>"; 
 			} else {
 				$userNameExists= $User->checkName($Helper->cleanInput($_POST["userName"]));
 				if ($userNameExists == true ) {
-					$userNameError = "<br><font color='red'>Selline kasutajanimi on juba kasutusel!</font>";
+					$userNameError = "<font color='red'>Selline kasutajanimi on juba kasutusel!</font>";
 				} else {
 					$userName = $_POST["userName"];
 				}
@@ -68,11 +68,11 @@
 	
 	if (isset ($_POST["firstName"]) ){
 		if (empty ($_POST["firstName"]) ){
-			$firstNameError = "<br><font color='red'>See väli on kohustuslik!</font>";		
+			$firstNameError = "<font color='red'>See väli on kohustuslik!</font>";		
 		} else {
 			//The preg_match() function searches a string for pattern, returning true if the pattern exists, and false otherwise.
 			if (!preg_match("/^[a-zA-Z õäöüšž-]*$/",$_POST["firstName"])) { 
-				$firstNameError = "<br><font color='red'>Pole nimi!</font>"; 
+				$firstNameError = "<font color='red'>Pole nimi!</font>"; 
 			} else {
 				$firstName = $_POST["firstName"];
 			}
@@ -81,10 +81,10 @@
 	
 	if (isset ($_POST["lastName"]) ){
 		if (empty ($_POST["lastName"]) ){
-			$lastNameError = "<br><font color='red'>See väli on kohustuslik!</font>";		
+			$lastNameError = "<font color='red'>See väli on kohustuslik!</font>";		
 		} else {
 			if (!preg_match("/^[a-zA-Z õäöüšž-]*$/",$_POST["lastName"])) { 
-				$lastNameError = "<br><font color='red'>Pole nimi!</font>"; 
+				$lastNameError = "<font color='red'>Pole nimi!</font>"; 
 			} else {
 				$lastName = $_POST["lastName"]; 
 			}
@@ -95,11 +95,11 @@
 	if (isset ($_POST["signupEmail"]) ){ //kas keegi nuppu vajutas, kas signupEmail tekkis
 		if (empty ($_POST["signupEmail"]) ){ //oli email, kuid see oli tühi
 			//echo "email oli tühi";
-			$signupEmailError = "<br><font color='red'>See väli on kohustuslik!</font>";		
+			$signupEmailError = "<font color='red'>See väli on kohustuslik!</font>";		
 		} else {
 			$userEmailExists= $User->checkEmail($Helper->cleanInput($_POST["signupEmail"]));
 			if ($userEmailExists == true ) {
-				$signupEmailError = "<br><font color='red'>Selline email on juba kasutusel!</font>";
+				$signupEmailError = "<font color='red'>Selline email on juba kasutusel!</font>";
 			} else {
 				//email on õige, salvestan väärtuse muutujasse
 				$signupEmail = $_POST["signupEmail"];
@@ -187,6 +187,7 @@
 <!DOCTYPE html>
 <html>
 	<head class="header">
+		<link rel="icon" href="../T_logo.png">
 		<title>TREENI.EE</title>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -201,13 +202,13 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 		
-	<body class="background" background="../esilehele.jpg">
+<body class="background" background="../esilehele.jpg">
 
 	<nav class="navbar_login">
 	  <div class="container-fluid">
 		<div class="navbar-header">
 		  <a class="navbar-brand" href="login.php">
-			<img alt="Brand" src="../smaller_logo.png" width="300" height="200">
+			<img alt="Brand" src="../smaller_logo.png" width="300" >
 		  </a>
 		</div>
 		
@@ -254,7 +255,7 @@
 							
 					<input name='loginPassword' type='password' class="form-control input-sm" placeholder='Parool'>
 							
-					<input type='submit' class="btn btn-sm" value = 'Logi sisse'> <br>
+					<input type='submit' class="btn btn-sm btn-success" value = 'Logi sisse'> <br>
 					
 					<p style='color:red;'><?php echo $loginEmailError; ?> <?php echo $loginPasswordError; ?><?=$notice;?></p>
 				</li>
@@ -263,82 +264,71 @@
 	  </div>
 	</nav>
 	
-	<!--<div class="signup col-sm-5" style="background: rgba(240, 240, 240, .5);"> Proovi bootstrap row fluid-->
-	
-	<div class="signup_background">
-	<div class="heading" style="padding-left:30px;">
-		<h1 style="color:black;">Loo kasutaja</h1>	
-	</div>
-	<div class="login" style="padding-left:20px;">
-		<!--<div class="row">-->
-		<!--<div class="col-sm-5"> -->
-		<div class="first_forms">
-		<!--<br>-->
-		<p style="color:green;"> <b> <?=$msg;?> </b> </p>
-		
-		
-		<form method="POST">
-			<label>Kasutajanimi <span style="color:red">*</span></label>
-			<br>
-			<input name="userName" type="text" value= "<?=$userName;?>"> <?php echo $userNameError; ?>
-			
-			<br><br>
-			<label>Eesnimi <span style="color:red">*</span></label>
-			<br>
-			<input name="firstName" type="text" value= "<?=$firstName;?>"> <?php echo $firstNameError; ?>
-			<br><br>
-			
-			<label>Perekonnanimi <span style="color:red">*</span></label>
-			<br>
-			<input name="lastName" type="text" value= "<?=$lastName;?>"> <?php echo $lastNameError; ?>
-			<br><br>
-		
-			<label>E-Post <span style="color:red">*</span></label>
-			<br>
-			<input name="signupEmail" type="email" value= "<?=$signupEmail;?>" > <?php echo $signupEmailError; ?> <!--jätab signupEmaili meelde väljale-->
-			<br><br>
-			
+	<div class="signup col-sm-8 col-md-5" style="padding-left:20px;">
+		<div class="row" style="padding-right:20px;">
+			<div class="heading" style="padding-left:30px;">
+			  <h1 style="color:black;">Loo kasutaja</h1> 	
 			</div>
-			<!--<div style="padding-top:20px;">-->
-			<div class="last_forms">
+			<p style="color:green;"> <b> <?=$msg;?> </b> </p>
 			
-			<br>
-			<label>Parool <span style="color:red">*</span></label>
-			<br>
-			<input name="signupPassword" type="password"> <br> <?php echo $signupPasswordError; ?>
+			<form method="POST">
+				<div class="col-sm-5 col-md-6" style="padding-left:30px;">
+					<label>Kasutajanimi<span style="color:red">*</span></label>
+					<br>
+					<input class="form-control" name="userName" type="text" value= "<?=$userName;?>"> <?php echo $userNameError; ?>
+					
+					<br>
+					<label>Eesnimi<span style="color:red">*</span></label>
+					<br>
+					<input class="form-control" name="firstName" type="text" value= "<?=$firstName;?>"> <?php echo $firstNameError; ?>
+					<br>
+					
+					<label>Perekonnanimi <span style="color:red">*</span></label>
+					<br>
+					<input class="form-control" name="lastName" type="text" value= "<?=$lastName;?>"> <?php echo $lastNameError; ?>
+					<br>
+					
+					<label>Sugu:</label> <!--Jätan vabatahtlikuks väljaks-->
+					<?php if($gender == "female") { ?>
+					<input type="radio" name="gender" value="female" checked>Naine
+					<?php } else { ?>
+					<input type="radio" name="gender" value="female">Naine
+					<?php } ?>
+					
+					<?php if($gender == "male") { ?>
+					<input type="radio" name="gender" value="male" checked>Mees
+					<?php } else { ?>
+					<input type="radio" name="gender" value="male">Mees
+					<?php } ?>
+					<br><br>
+				</div>
+				
+				<div class="col-sm-5 col-md-6" style="padding-left:30px;">
+					<label>E-Post <span style="color:red">*</span></label>
+					<br>
+					<input class="form-control" name="signupEmail" type="email" value= "<?=$signupEmail;?>" > <?php echo $signupEmailError; ?> <!--jätab signupEmaili meelde väljale-->
+					<br>
+					
+					<label>Parool <span style="color:red">*</span></label>
+					<br>
+					<input class="form-control" name="signupPassword" type="password">  <?php echo $signupPasswordError; ?>
+					<br>
+					
+					<label>Telefoni number</label> <!--Jätan vabatahtlikuks väljaks-->
+					<br>
+					<input class="form-control" name="phoneNumber" type="text" value= "<?=$phoneNumber;?>"> <?php echo $phoneNumberError; ?>
+					<br>
+					<span style="color:red; font-size: 12pt;"> * </span><span style=" color:red; font-size: 10pt">Kohustuslik väli  &#8194 </span>
+					<input type="submit" class = "btn btn-success btn-sm" value = "Loo kasutaja">
+				</div>
+			</form>
+		  </div>
 			<br><br>
-			
-			
-			<label>Sugu:</label> <!--Jätan vabatahtlikuks väljaks-->
-			<?php if($gender == "female") { ?>
-			<input type="radio" name="gender" value="female" checked>Naine
-			<?php } else { ?>
-			<input type="radio" name="gender" value="female">Naine
-			<?php } ?>
-			
-			<?php if($gender == "male") { ?>
-			<input type="radio" name="gender" value="male" checked>Mees
-			<?php } else { ?>
-			<input type="radio" name="gender" value="male">Mees
-			<?php } ?>
-			<br><br>
-			
-			<label>Telefoni number</label> <!--Jätan vabatahtlikuks väljaks-->
-			<br>
-			<input name="phoneNumber" type="text" value= "<?=$phoneNumber;?>"> <br> <?php echo $phoneNumberError; ?>
-			<br><br>
-			
-			<input type="submit" value = "Loo kasutaja">
-			
-			<br><br><br><br>
-			<p><i><span style="color:red; font-size: 20pt"> &#8194  &#8194  &#8194  &#8194  &#8194  &#8194   * </span><span style=" color:red; font-size: 12pt">Kohustuslik väli</span></i></p>
-			
-		</form>
-		<br><br>
-		</div>
-		<!--</div>-->
-		</div>
-		<p class="bottom" style="color:white;">Mis on TREENI.EE? &#8194  &#8194 Kontakt</p>
 	</div>
-	</body>
+	<div class="col-sm-9 col-md-9" style="padding-left:5%; padding-top:5%;">
+		<h3 class="bottom" style="color:white;"><i>Mis on TREENI.EE?</i></h3>
+		<p style="color: white;"><i>TREENI.EE abil on võimalik lihtsalt ja mugavalt pidada treeningpäevikut, kasutada foorumit, kust leida vastuseid spordiga seonduvatele küsimustele ning lisaks on võimalus leida endale ka treeningpartner.</i><p>
+	</div>
+	
+</body>
 </html>

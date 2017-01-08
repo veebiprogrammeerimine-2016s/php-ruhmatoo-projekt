@@ -19,7 +19,15 @@
 	}
 	
 /* log in */
-	.signup_background{
+
+	.signup{
+		background-color: rgba(216, 223, 211, 0.5);
+		border-radius: 25px;
+		margin: 15px;
+	}
+	
+	
+	/*.signup_background{
 		position: relative;
 		left: 2%;
 		top: 0%;
@@ -27,17 +35,17 @@
 		height: 453px;
 		width: 500px;
 		border-radius: 25px;
-	}
+	}*/
 			
 	.background {
 		background-repeat: no-repeat;
 		background-color: #0a110a;
-		background-width: 100%
+		background-width: 100%;
 		background-size: contain; 
 		background-size: 100%;
 	}
 			
-	.last_forms {
+	/*.last_forms {
 		position: absolute;
 		left: 230px;
 		top: 50px;
@@ -47,7 +55,7 @@
 		position: relative;
 		left: 5%;
 		top: 30%;
-	}
+	}*/
 	
 	.main_background {
 		background-color: #e0eee0;
