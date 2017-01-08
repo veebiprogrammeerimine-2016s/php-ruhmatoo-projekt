@@ -93,7 +93,7 @@
 <br><br>
 <form class="form-horizontal">
 		<div class="form-group">
-			<label for="inputDate" class="col-sm-2 control-label">Kuupäev</label>
+			<label for="inputDate" class="col-sm-4 control-label">Kuupäev</label>
 			<div class="col-sm-10">
 				<input type="Date" class="form-control" id="inputDate" label="Kuupäev">
 			</div>
@@ -102,7 +102,7 @@
 		
 		<br><br>
 		 <div class="form-group">
-			<label for="inputFeeling" class="col-sm-2 control-label">Enesetunne</label>
+			<label for="inputFeeling" class="col-sm-4 control-label">Enesetunne</label>
 			<div class="col-sm-10">
 				<input list="Feeling" class="form-control" id="inputFeeling" label="Enesetunne">
 			  <datalist id="Feeling">
@@ -117,7 +117,7 @@
 
 		<br><br>
 		<div class="form-group">
-			<label for="inputNumberofSteps" class="col-sm-2 control-label">Sammude arv</label>
+			<label for="inputNumberofSteps" class="col-sm-4 control-label">Sammude arv</label>
 			<div class="col-sm-10">
 				<input type="NumberofSteps" class="form-control" id="inputNumberofSteps">
 			</div>
