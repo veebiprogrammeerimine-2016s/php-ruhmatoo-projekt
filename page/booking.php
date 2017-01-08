@@ -37,7 +37,11 @@
 	<body style='background-color:Silver'>
 		<head>
 			<?php require("../header.php"); ?>
+			<br>
+			<a href="registration.php">Tagasi kuulutusele</a>
+			
 			<h1>Broneeri</h1>
+			
 		</head>
 			 <body>
 				<h3>Rentimine</h3>
