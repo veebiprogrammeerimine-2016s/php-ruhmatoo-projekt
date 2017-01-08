@@ -1,4 +1,3 @@
-
 <?php
 
 
@@ -161,6 +160,7 @@
 				<input class="form-control" name="telephone_nr" type="tel"> <?php echo $telephone_nr_error; ?>
 			</div>
 
+			<br>
 			
 			<table class="table-bordered">
 			<?php 
@@ -237,10 +237,6 @@
 				}
 				$html .= "</tr>";
 				
-				
-				
-				
-				
 
 			}
 			//var_dump($html);
@@ -252,15 +248,7 @@
 			
 			<input type="submit" value="Broneeri" class="btn btn-primary">
 			
-			
-			
-			<input type=button onClick="parent.open('http://greeny.cs.tlu.ee/~kerta/veebiprogrammeerimine/php-ruhmatoo-projekt/php-ruhmatoo-projekt/tagasiside.html')" value='Tagasiside' >
-		
-						
-						
-	
-			
-
+			<input type=button onClick="parent.open('tagasiside.html')" value='Tagasiside' >	
 		
 			<br><br>			
 		</form>
