@@ -101,7 +101,7 @@
 						<br><div class='alert alert-success'>
 						<strong>
 						<span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>
-						Sinu postitus laeti üles! Trehva üle: (siia tuleb postituse link)</strong>
+						Sinu postitus laeti üles! <a href='data.php'>Trehva üle</a> </strong>
 						</div>";	 
 	}
 	
