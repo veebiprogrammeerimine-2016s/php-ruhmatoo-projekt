@@ -224,7 +224,7 @@
 		// kas õnnestus salvestada
 		if($stmt->execute()){
 			// õnnestus
-			echo "salvestus õnnestus!";
+			$_SESSION["user_message"] = "<p style='color:green;'>ANDMED MUUDETUD!</p>";
 		}
 		
 		$stmt->close();

@@ -8,6 +8,12 @@
 	require("../class/Helper.class.php");
 	$Helper = new Helper();
 	
+	if (!isset ($_SESSION["userId"])) {
+		
+		header("Location: login.php");
+		exit();
+	}
+	
 	$error = "";
 	$oldPasswordError = "";
 	$newPasswordError = "";

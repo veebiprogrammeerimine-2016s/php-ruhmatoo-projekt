@@ -24,6 +24,13 @@
 		exit();
 	}
 	
+	$user_msg= "";
+	if(isset($_SESSION["user_message"])){
+		$user_msg = $_SESSION["user_message"];
+	
+		unset($_SESSION["user_message"]);
+	}
+	
 	$trainingdate = "";
 	if(!isset($_GET["date"]) && !isset($_GET["month"]) && !isset($_GET["year"])){
 		$trainingdate = "";
@@ -33,25 +40,49 @@
 	
 	//ei ole tühjad väljad, mida salvestada
 	if  (isset($_POST["exercise"]) &&
-		isset($_POST["sets"]) &&
-		isset($_POST["repeats"]) &&
-		isset($_POST["notes"]) &&
-		!empty($_POST["exercise"]) &&
-		!empty($_POST["sets"]) &&
-		!empty($_POST["repeats"]) &&
-		!empty($_POST["notes"])
+		!empty($_POST["exercise"])&&
+		($trainingdate != "")
 		) {
 			$User->saveExercise($trainingdate, $Helper->cleanInput($_POST["exercise"]), $Helper->cleanInput($_POST["sets"]), $Helper->cleanInput($_POST["repeats"]), $Helper->cleanInput($_POST["notes"]));
 		}
 	
 	$exercise = "";
 	$exerciseError = "";
+	$trainingDateError = "";
 	$sets = "";
-	$setsError = "";
 	$repeats = "";
-	$repeatsError = "";
-	$notes = "";
-	$notesError = "";
+	
+	if (isset ($_POST["loginEmail"]) ){
+		if (empty ($_POST["loginEmail"]) ){
+			$loginEmailError = "Palun sisesta e-post! &#8194 &#8194 &#8194 &#8194";		
+		} else {
+			$loginEmail = $_POST["loginEmail"];
+		}
+	}
+	
+	if (isset ($_POST["exercise"]) ){ 
+		if (empty ($_POST["exercise"]) ){ 
+			$exerciseError = "<p style='color: red;'>Palun täida see väli!</p>";		
+		} else {
+			$exercise= $_POST["exercise"];
+		}
+		
+		if ($trainingdate == ""){
+			$trainingDateError = "<p style='color: red;'>Palun vali kuupäev!</p>";
+		}
+	}
+	
+	if (isset ($_POST["sets"]) ){ 
+		if (!empty ($_POST["sets"]) ){ 
+			$sets= $_POST["sets"];	
+		} 
+	}
+	
+	if (isset ($_POST["repeats"]) ){ 
+		if (!empty ($_POST["repeats"]) ){ 
+			$repeats= $_POST["repeats"];	
+		} 
+	}
 	
 	if(isset($_GET["q"])) {
 		
@@ -96,7 +127,7 @@
 	<div class="user" style="padding-left:20px;padding-right:20px"> 
 		<div class="row">
 			<div class="col-sm-3 col-md-3">
-
+				<?=$user_msg;?>
 				<h2>Minu andmed</h2>
 					
 					<p>Eesnimi: <?php echo $userData->firstname;?></p>
@@ -110,23 +141,23 @@
 					<br>
 
 				<h2>Lisa tehtud treening</h2>
-					<p><b>Vali kalendrist kuupäev: </b><?php echo $trainingdate; ?> </p>
+					<p><b>Vali kalendrist kuupäev: </b><?php echo $trainingdate; ?> <?php echo $trainingDateError; ?> </p>
 					<form method="POST"> 
 					<label>Treeningharjutus</label><br>
 								
-							<input class="form-control" type="text" name="exercise" value="<?=$exercise;?>"> <?php echo $exerciseError;?> <br><br>
+							<input class="form-control" type="text" name="exercise" value="<?=$exercise;?>"> <?php echo $exerciseError;?> <br>
 						
 					<label>Seeria</label><br>
 							
-							<input class="form-control" type="text" name="sets" value="<?=$sets;?>"> <?php echo $setsError;?> <br><br>
+							<input class="form-control" type="text" name="sets" value="<?=$sets;?>">  <br>
 							
 					<label>Kordus</label><br>
 							
-							<input class="form-control" type="text" name="repeats" value="<?=$repeats;?>"> <?php echo $repeatsError;?> <br><br>
+							<input class="form-control" type="text" name="repeats" value="<?=$repeats;?>"> <br>
 						
 					<label>Märkmed</label><br>
 					
-					<textarea class="form-control" cols="40" rows="5" name="notes" value="<?=$notes;?>"></textarea> <?php echo $notesError; ?><br><br>
+					<textarea class="form-control" cols="40" rows="5" name="notes" <?=$newNotes= ""; if (isset($_POST['notes'])) { $newNotes = $_POST['notes'];}?>><?php echo $newNotes; ?></textarea> <br>
 					
 					<input type="submit"  class="btn btn-success" value="Salvesta">	
 					</form>
