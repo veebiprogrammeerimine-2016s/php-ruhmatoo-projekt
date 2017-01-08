@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 	<head class="header">
+		<link rel="icon" href="../T_logo.png">
 		<title>TREENI.EE</title>
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

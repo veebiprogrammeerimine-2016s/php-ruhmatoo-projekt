@@ -95,13 +95,16 @@
 			} 
 	} 
 	
+	$topicDelMsg = $Topic->checkUserForMsg($_GET["id"]);
 	if(isset($_GET["delete"]) && isset($_GET["id"])) {
+		
+		if($topicDelMsg == "yes") {
+			//TEEMA KUSTUTATUD sõnum tuleb nüüd aint õigetele kasutajatele
+			$Topic->del($_GET["id"], $_SESSION["userId"]);
+			header("Location: data.php");
+			exit();
+		}
  		
-		//lisan userId juurde, et igaüks, kes lingile õige urli sisestab ei saaks kustutada
-		//TEEMA KUSTUTATUD jääb, aga vähemalt vale kasutaja kirjeid ei mõjuta!
- 		$Topic->del($_GET["id"], $_SESSION["userId"]);
- 		header("Location: data.php");
- 		exit();
  	}
 	
 	$reply_msg= "";

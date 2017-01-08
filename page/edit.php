@@ -92,9 +92,9 @@
 	
 	$deltopic = $_GET["topic"];
 	$delreply = $_GET["reply"];
-	$nofile = "no.jpg";
+	$nofile = "";
 
-	if(isset($_GET["deletepic"]) && isset($_GET["topic"]) && isset($_GET["reply"])) {
+	if(isset($_GET["topic"]) && isset($_GET["reply"]) && isset($_GET["deletepic"]) ) {
 		
  		$Reply->delPic($_GET["topic"], $_GET["reply"], $nofile);
 		
@@ -132,7 +132,7 @@
 			<label>Lisa soovi korral uus pilt:</label>
 			<i><input type="file" name="fileToUpload" id="fileToUpload"></i>
 			<p><font color="red"><?=$fileError;?></font></p>
-			<!--<a href='edit.php?topic=<?php echo $deltopic; ?>&reply=<?php echo $delreply; ?>&deletepic=true'><font color='#cc0000' size='2'> Või kustuta praegune pilt</font></a>-->
+			<a href='edit.php?topic=<?php echo $deltopic; ?>&reply=<?php echo $delreply; ?>&deletepic=true'><font color='#cc0000' size='2'> Või kustuta praegune pilt</font></a>
 			<br><br><br>
 			
 			<input type="submit" type="button" class="btn btn-success btn-sm" name="update" value="Salvesta muudatus">
