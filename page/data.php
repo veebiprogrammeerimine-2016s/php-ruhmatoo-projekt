@@ -32,6 +32,7 @@ if(isset($_SESSION["message"])) {
 
 
 
+
 ?>
 
 
@@ -45,7 +46,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
     if(isset($_POST["submit"])) {
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
+            //echo "File is an image - " . $check["mime"] . ".";
             $uploadOk = 1;
         } else {
             echo "File is not an image.";
@@ -54,7 +55,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
     }
     // Check if file already exists
     if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
+        echo "File already exists. ";
         $uploadOk = 0;
     }
     // Check file size
@@ -74,7 +75,11 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
     // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
+            //echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+
             echo "Your profile picture has been uploaded.";
+
             
             // save file name to DB here
             addPicURL(basename( $_FILES["fileToUpload"]["name"]));
@@ -83,8 +88,9 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
             echo "Sorry, there was an error uploading your file.";
         }
     }
-}else{
-    
+}else{ 
+	
+  
 }
 ?>
 
@@ -99,7 +105,6 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
 	<img style="height: 200px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>">
 
 	<h3>For starters, let's add one series to your calender!</h3>
-	
 	<form action="calendar.php" method="post" enctype="multipart/form-data">
 		<select name="user_tv_db">
 			<?php getSeriesData() ?>

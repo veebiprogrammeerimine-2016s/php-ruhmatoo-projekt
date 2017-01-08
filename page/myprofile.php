@@ -23,8 +23,6 @@ if(isset ($_GET["logout"])) {
 	exit();
 }
 
-
-
 	
 ?>
 
@@ -43,16 +41,28 @@ if(isset ($_GET["logout"])) {
 <h3>Username: <?=$_SESSION["userName"];?></h3>
 <h3>Age: <?=$_SESSION["userAge"]?></h3>
 <h3>E-mail: <?=$_SESSION["userEmail"]?></h3>
-<h3>Change password: </h3>
-<input name="signupPassword" type="password" >
-<input type="submit" value="Save">
+
+<?php
+
+//<input name="signupPassword" type="password" >
+//<input type="submit" value="Save">
+?>
+
+</html>   
+ 
+<?php 
+$_SESSION['error'] = "";
+$_SESSION['form_data'] = "";
+?>
+
+
 
 
 
 
 </body>
 </html>
-<br><br>
+<br>
 <input type="button" value="Back to calendar" onclick="location='calendar.php'" />
 <br><br>
 <a href="?logout=1"> Log out</a>
