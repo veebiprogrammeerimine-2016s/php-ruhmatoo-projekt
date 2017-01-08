@@ -67,7 +67,7 @@
 	<p><label for="category">Vali eriala:</label><br>
 	<select name="category" id="category" size="4" required>
 	<option value="BMKKI" disabled="" class="cat_col">Balti filmi, meedia, kunstide ja kommunikatsiooni instituut</option>
-	<option value="Ajakirjadnus">Ajakirjandus</option>
+	<option value="Ajakirjandus">Ajakirjandus</option>
 	<option value="Kunst,Muusika,Multimeedia">Kunst,Muusika,Multimeedia</option>
 	<option value="Koreograafia">Koreograafia</option>
 	<option value="Audiovisuaalne meedia">Audiovisuaalne meedia</option>
@@ -171,3 +171,5 @@ echo $html
 ?>
 
 <?php include 'footer.php';?>
+	</body>
+</html>	
