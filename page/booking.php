@@ -38,7 +38,7 @@
 		<head>
 			<?php require("../header.php"); ?>
 			<br>
-			<a href="registration.php">Tagasi kuulutusele</a>
+			<a href="animals.php">Tagasi kuulutusele</a>
 			
 			<h1>Broneeri</h1>
 			

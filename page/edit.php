@@ -20,7 +20,7 @@
 		
 		$Animal->delete($_GET["id"]);
 		
-		//header("Location: animals.php");
+		header("Location: animals.php");
 		exit();
 	}
 	
@@ -28,7 +28,7 @@
 	
 	// kui ei ole id'd aadressireal siis suunan
 	if(!isset($_GET["id"])){
-		//header("Location: animals.php");
+		header("Location: animals.php");
 		exit();
 	}
 	
