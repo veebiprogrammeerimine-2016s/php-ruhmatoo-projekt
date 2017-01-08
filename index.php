@@ -1,37 +1,15 @@
 <?php
-require("../../config.php");
+//require("../../config.php");
 require("functions.php");
+require("classes/owner_class.php");
+require("classes/tyrefitting_class.php");
 
-if (isset($_SESSION["userId"])) {
-    //suunan sisselogimise lehele
-    header("Location: data.php");
+$Owner = new Owner($mysqli);
+$TyreFitting = new TyreFitting($mysqli);
 
+$Owner->LoginRegValidation($Owner);
 
-    exit();
-}
-if (isset($_POST["regPassword"]) && isset($_POST["regUsername"])) {
-    if (!empty($_POST["regPassword"]) && !empty($_POST["regUsername"])) {
-
-        signUP($_POST["regUsername"], $_POST["regPassword"]);
-
-        ?>
-        <script>alert("Kasutaja on tehtud!");</script>
-        <?php
-
-    }
-
-}
-
-if (isset($_POST["username"]) && isset($_POST["password"])) {
-
-    login($_POST["username"], $_POST["password"]);
-    if (!isset($_SESSION["userId"])) {
-        ?>
-        <script> alert("Vale parool või kasutaja nimi"); </script> <?php
-    }
-
-}
-$tyreFittings = getAllTyreFittings();
+$tyreFittings = $TyreFitting->getAllTyreFittings();
 
 
 ?>
