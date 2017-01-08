@@ -10,6 +10,7 @@
 ?>
 
 <?php require("../header.php"); ?>
+<?php require("../Upload/upload.php"); ?>
 
 <div class="container-fluid">
 <div class="row">
