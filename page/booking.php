@@ -55,7 +55,7 @@
 					<input name="return" type="date" >
 					<br><br>
 		
-					<input type="submit" value="Rendi">
+					<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Rendi">
 					<br><br>
 				</form>	
 			</body>
