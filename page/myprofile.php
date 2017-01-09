@@ -36,10 +36,10 @@
 $error = "";
 
 	if(isset($_POST["fileToUpload"]) &&
-		!empty($_POST["fileToUpload"]))
-
-		updatePicUrl(basename( $_FILES["fileToUpload"]["name"]));
-	
+		!empty($_POST["fileToUpload"])) {
+		echo "blah";
+		updatePicUrl(basename($_FILES["fileToUpload"]["name"]), $_SESSION['userName']);
+	}
 ?>
 
 <?php require("../header.php"); ?>
