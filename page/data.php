@@ -2,8 +2,6 @@
 
 require("../functions.php");
 
-
-
 //kui ei ole kasutaja id'd
 if (!isset($_SESSION["userId"])) {
 
@@ -29,9 +27,6 @@ if(isset($_SESSION["message"])) {
 	unset($_SESSION["message"]);
 
 }
-
-
-
 
 ?>
 
@@ -88,41 +83,33 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
             echo "Sorry, there was an error uploading your file.";
         }
     }
-}else{ 
-	
-  
 }
 ?>
 
+<?php require("../header.php"); ?>
 
-<!DOCTYPE html>
 <h1>TV Show Calendar</h1>
-<html>
-<body>
 <p>
 	<h2>Welcome <?=$_SESSION["userName"];?>!</h2>
 	<br>
 	<img style="height: 200px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>">
 
 	<h3>For starters, let's add one series to your calender!</h3>
-	<select name="user_tv_db">
-		<?php getSeriesData() ?>
-	</select>
-	
-	<br><br>
-	
-	<form action="" method="post" enctype="multipart/form-data">
+	<form action="calendar.php" method="post" enctype="multipart/form-data">
+		<select name="user_tv_db">
+			<?php getSeriesData() ?>
+		</select>
+		<br><br>
 		<h3>Also, let's add a profile image:</h3>
 		<input type="file" name="fileToUpload">
 		<br><br>
-		<button type="submit" name="submit">Upload</button>
+		<input type="submit" value="Ready!" onclick="location='calendar.php'" />
 	</form>
 
-</body>
-</html>
 	<br><br>
-	<input type="button" value="Ready!" onclick="location='calendar.php'" />
-	</form>
+
 	<br><br>
 	<a href="?logout=1"> Log out</a>
 </p>
+
+<?php require("../footer.php"); ?>
