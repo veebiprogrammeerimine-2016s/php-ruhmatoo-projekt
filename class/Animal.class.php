@@ -112,10 +112,10 @@ class Animal {
 	
 	function getSingle($edit_id){
 
-		$stmt = $this->connection->prepare("SELECT type, name, age, shelter FROM `g_animals` WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT id, type, name, age, url, shelter FROM `g_animals` WHERE id=? AND deleted IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($type, $name, $age, $shelter);
+		$stmt->bind_result($id, $type, $name, $age, $url, $shelter);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -124,9 +124,11 @@ class Animal {
 		//saime ühe rea andmeid
 		if($stmt->fetch()){
 			// saan siin alles kasutada bind_result muutujaid
+			$Animal->id = $id;
 			$Animal->type = $type;
 			$Animal->name = $name;
 			$Animal->age = $age;
+			$Animal->url = $url;
 			$Animal->shelter = $shelter;
 			
 			
