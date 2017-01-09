@@ -1,31 +1,35 @@
 # IziPäevik - http://kool.iziveeb.ee
+![Izipäevik](izipaevik.jpg)
 ## Description
-    Simple site for school homework & curicculum
+    Web application for adding the homework and the curriculum of Tallinn University IFIFB-1 group to Google Calendar.
+    The homework is added by selected students.
+    The curriculum is taken from Tallinn University ASIO.
 
 ## Developers
 	Hinrek Saar - developer, hinrek@gmail.com
 	Alar Aasa - developer, alar@alaraasa.ee
 
-## Functionality
-
 ##To-do:
-    * Add events to calendar from form (Google API) 
-    * Add curriculum data drom scraper directly to Google calendar (Google API) 
+    * Make scraper less "dumb"
 
 ## Technologies used
     * Google API
 	* Bootstrap
 	* PHP Simple HTML DOM Parser
 
-## Summary
-    **WORK IN PROGRES**
+## Functionality
+    * Adding homework to a Google Calendar
+    * Getting curriculum data from ASIO
+    * Inserting curriculum data to Google Calendar
+
+## 
 
 ## Setup       
-### --Scraper
+### --Scraper & addhomework.php
     In scraper folder, run "php composer.phar require google/apiclient" in command line
-    In scraper.php:
-        CLIENT_ID = Izipaevik Client ID from Google API Manager
-        REDIRECT_URI = ####.com/scraper/scraper.php (The domain the scraper is on)
+    In scraper.php & addhomework.php:
+        CLIENT_ID =  Client ID from Google API Manager
+        REDIRECT_URI = The address where Google will redirect to after a successful log in
         DEVELOPER_KEY = API Key from Google API Manager
         CLIENT_SECRET = Secret key from Google API Manager
         $groupAddress: Specific calendar IDs. In Google Calendar: Calendar settings -> Calendar Address -> Calendar ID
@@ -52,3 +56,10 @@
         $serverPassword = "sql password";
     
     ?>
+    
+## What did we learn?
+    * Authentication with Google
+    * Using APIs
+    * Creating and uploading Google Calendar events
+    * Importance of encoding
+    
