@@ -41,18 +41,26 @@
 	<?php require("../header.php"); ?>
 <h2>Varjupaigad</h2>
 
-<form>
-
-	<input type="search" name="s" value="<?=$s;?>">
-	<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Otsi">
-	
-</form>
 <?php 
 	
 	$html = "<table class='table table-striped'>";
 	
 	$html .= "<tr>";
 	
+		$idOrder = "ASC";
+		$arrow ="&darr;";
+		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
+			$idOrder = "DESC";
+			$arrow ="&uarr;";
+			
+		}	
+	
+		$html .= "<th>
+					<a href='?s=".$s."&sort=id&order=".$idOrder."'>
+						Id ".$arrow."
+					</a>
+				 </th>";
+				 
 		$nameOrder = "ASC";
 		$arrow ="&darr;";
 		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
@@ -95,6 +103,7 @@
 
 		foreach($shelter as $s){
 			$html .= "<tr>";
+				$html .= "<td>".$s->id."</td>";
 				$html .= "<td>".$s->name."</td>";
 				$html .= "<td>".$s->county."</td>";
 				$html .= "<td>".$s->city."</td>";

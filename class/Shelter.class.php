@@ -51,10 +51,10 @@ function get($s, $sort, $order) {
 			echo "Otsib: ".$s;
 			
 			$stmt = $this->connection->prepare("
-				SELECT id, name, county, city
+				SELECT name, county, city
 				FROM g_animalshelters
 				AND (name LIKE ? OR county LIKE ? OR city LIKE ?)
-				ORDER BY $sort $orderBy
+				
 			");
 			$searchWord = "%".$s."%";
 			$stmt->bind_param("sss", $searchWord, $searchWord, $searchWord);
