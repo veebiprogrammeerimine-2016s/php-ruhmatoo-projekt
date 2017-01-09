@@ -1,23 +1,14 @@
 <?php
-class User
-{
+class User{
 
     private $connection;
-
     function __construct($mysqli)
     {
-
-        //this viitab klassile (this == User)
         $this->connection = $mysqli;
-
-
     }
 
-    /*TEISED FUNKTSIOONI*/
-    function signUp($username, $email, $password, $age)
-    {
-
-
+    /*TEISED FUNKTSIOONID*/
+    function signUp($username, $email, $password, $age){
         $stmt = $this->connection->prepare("INSERT INTO user_tv (username, email, password, age) VALUES (?, ?, ?, ?)");
 
         echo $this->connection->error;
@@ -35,8 +26,7 @@ class User
 
     }
 
-    function login($username, $password)
-    {
+    function login($username, $password){
 
         $error = "";
 

@@ -1,9 +1,8 @@
 <?php
 
-class Calendar {  
-	
-     
-   
+class Calendar {
+
+    /********OTHER FUNCTIONS*********/
     public function __construct(){     
         $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
     }

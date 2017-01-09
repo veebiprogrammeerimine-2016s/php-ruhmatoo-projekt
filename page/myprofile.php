@@ -1,32 +1,48 @@
 <?php 
     //session_start();
 	require("../functions.php");
+	require("../class/User.class.php");
 
     // $current_user = $_SESSION['user_username'];
     // $user_username = mysqli_real_escape_string($database,$_REQUEST['user_username']);
     // $profile_username=$rws['user_username'];
 
+	/*MUUTUJAD*/
+	$fileToUpload = "";
+
 	//kui ei ole kasutaja id'd
-if (!isset($_SESSION["userId"])) {
+	if (!isset($_SESSION["userId"])) {
 
-	//suunan sisselogimise lehele
-	header("Location: login.php");
-	exit();
+		//suunan sisselogimise lehele
+		header("Location: login.php");
+		exit();
 
-}
+	}
 
-//kui on ?logout aadressi real siis login välja
-if(isset ($_GET["logout"])) {
+	//kui on ?logout aadressi real siis login välja
+	if(isset ($_GET["logout"])) {
 
-	session_destroy();
-	header("Location:login.php");
-	exit();
-}
+		session_destroy();
+		header("Location:login.php");
+		exit();
+	}
 
+	if(isset ($_POST["fileToUpload"]) &&
+		!empty ($_POST["fileToUpload"])) {
+		$fileToUpload = $Helper->cleanInput($_POST["fileToUpload"]);
+		}
+
+$error = "";
+
+	if(isset($_POST["fileToUpload"]) &&
+		!empty($_POST["fileToUpload"]))
+
+		updatePicUrl(basename( $_FILES["fileToUpload"]["name"]));
 	
 ?>
 
-<!DOCTYPE html>
+<?php require("../header.php"); ?>
+
 <h1>Your profile</h1>
 <html>
 <body>
@@ -55,15 +71,10 @@ $_SESSION['error'] = "";
 $_SESSION['form_data'] = "";
 ?>
 
-
-
-
-
-
-</body>
-</html>
 <br>
 <input type="button" value="Back to calendar" onclick="location='calendar.php'" />
 <br><br>
 <a href="?logout=1"> Log out</a>
 </p>
+
+<?php require("../footer.php"); ?>

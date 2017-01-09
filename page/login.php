@@ -128,6 +128,8 @@ if ( isset ( $_POST["signupAge"] ) &&
 
 ?>
 
+<?php require("../header.php"); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,3 +188,4 @@ if ( isset ( $_POST["signupAge"] ) &&
 
 </body>
 </html>
+<?php require("../footer.php"); ?>

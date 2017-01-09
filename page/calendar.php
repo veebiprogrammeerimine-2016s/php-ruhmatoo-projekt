@@ -1,5 +1,4 @@
-
-
+<?php require("../header.php"); ?>
 
 <html>
 <head>   
@@ -17,9 +16,8 @@ include '../class/Calendar.class.php';
 $calendar = new Calendar();
  
 echo $calendar->show();
-
-
 ?>
 </body>
+</html>
 
-</html>  
+<?php require("../footer.php"); ?>
