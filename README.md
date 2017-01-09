@@ -4,7 +4,7 @@ Esileht
 ![Preview](Esileht.jpg)
 
 ##Liikmed
-* Mariann Kraav, Karoliina Kullamaa, Elise Pals
+* Mariann Kraav, Elise Pals, Karoliina Kullamaa
 
 ##Eesmärk
 Veebirakenduse eesmärk on muuta inimesed füüsiliselt aktiivsemaks võimaldades neil treeningpäevikusse oma andmeid tehtud treeningute kohta salvestada, foorumis kaastreenijatega suhelda, teineteist motiveerida ning soovi korral leida treeningpartner. 
@@ -27,8 +27,54 @@ Meie rakenduse eripäraks on kasutaja enda treeningpäeviku osa kalendrina, kuhu
 * v0.9 Tehtud treeningute andmed kuvatakse tabelina, kust on võimalik treeninguid otsida ja neid sorteerida
 * v0.10 Treeningute andmeid saab kustutada
 
-* Andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
+##Andmebaasi skeem loetava pildina + tabelite loomise SQL laused
 ![Preview](Andmebaasi_skeem.jpg)
+
+CREATE TABLE users(
+	id INT(11), NOT NULL, AUTO INCREMENT, PRIMARY KEY
+	username VARCHAR(300), NOT NULL
+	firstname VARCHAR(300), NOT NULL
+	lastname VARCHAR(300), NOT NULL
+	email VARCHAR(255), NOT NULL
+	password VARCHAR(128), NOT NULL
+	gender VARCHAR(20), NOT NULL
+	phonenumber VARCHAR(300), NOT NULL
+	created TIMESTAMP, NOT NULL, DEFAULT CURRENT TIMESTAMP
+);
+
+CREATE TABLE topics(
+	id INT(11), NOT NULL, AUTO INCREMENT, PRIMARY KEY
+	user_id INT(11), NOT NULL
+	username VARCHAR(300), NOT NULL
+	subject VARCHAR(300), NOT NULL
+	content TEXT, NOT NULL
+	category VARCHAR(300), NOT NULL
+	file VARCHAR(500), NOT NULL
+	created TIMESTAMP, NOT NULL, DEFAULT CURRENT TIMESTAMP
+	deleted DATE, NULL
+);
+
+CREATE TABLE replies(
+	id INT(11), NOT NULL, AUTO INCREMENT, PRIMARY KEY
+	user_id INT(11), NOT NULL
+	username VARCHAR(300), NOT NULL
+	topic_id INT(11), NOT NULL
+	content TEXT, NOT NULL
+	file VARCHAR(500), NOT NULL
+	created TIMESTAMP, NOT NULL, DEFAULT CURRENT TIMESTAMP
+	deleted DATE, NULL
+);
+
+CREATE TABLE replies(
+	id INT(11), NOT NULL, AUTO INCREMENT, PRIMARY KEY
+	user_id INT(11), NOT NULL
+	exercise VARCHAR(255), NOT NULL
+	sets VARCHAR(255), NOT NULL
+	repeats VARCHAR(255), NOT NULL
+	notes TEXT, NOT NULL
+	training_time VARCHAR(255), NOT NULL
+	deleted DATE, NULL
+);
 
 ##Kokkuvõte:
 * **Mariann:** 
@@ -42,6 +88,6 @@ Meie rakenduse eripäraks on kasutaja enda treeningpäeviku osa kalendrina, kuhu
 	* **Mis oli keeruline?**
 	
 * **Karoliina:**
-	* **Mida õppisid juurde?** Õppisin juurde, kuidas töötab foorum ning funktsioonide liikumine selle siseselt; kuidas muuta parooli ning kuidas sisuda omavahel kalender ja kasutaja sisestatud andmed; veebirakenduse disaini.
+	* **Mida õppisid juurde?** Õppisin juurde, kuidas töötab foorum ning funktsioonide liikumine selle siseselt; kuidas muuta parooli ning kuidas siduda omavahel kalender ja kasutaja sisestatud andmed; veebirakenduse disaini.
 	* **Mis ebaõnnestus?** Aja planeerimine
 	* **Mis oli keeruline?** Errorite lahendamine ja treeningpäevikusse kalendri lisamine, kuhu kasutaja saaks ka andmeid sisestada.
