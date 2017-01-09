@@ -1,11 +1,11 @@
 <?php 
 	// et saada ligi sessioonile
-	require("functions.php");
+	require("../functions.php");
 	
-    require("Helper.class.php");
+    require("../class/Helper.class.php");
 	$Helper = new Helper();
 	
-	require("Note.class.php");
+	require("../class/Note.class.php");
 	$Note = new Note($mysqli);
 	
 	//ei ole sisseloginud, suunan login lehele
@@ -143,14 +143,6 @@
 </body>
 </html>	
       </ul><br>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Keyword..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
     </div>
     <div class="col-sm-9">
 </ul>
@@ -164,7 +156,7 @@ ul.tab {
     padding: 0;
     overflow: hidden;
     border: 1px solid #B10000;
-    background-color: #f1f1f1;
+	background-color:#FF0000;
 }
 
 /* Float the list items side by side */
@@ -172,6 +164,7 @@ ul.tab li {float: left;}
 
 /* Style the links inside the list items */
 ul.tab li a {
+	background-color:#FF0000;
     display: inline-block;
     color: white;
     text-align: center;
@@ -238,19 +231,19 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img class="img-responsive center-block" src="images/rx480_1.jpg" alt="480">
+      <img class="img-responsive center-block" src="../images/rx480_1.jpg" alt="480">
     </div>
 
     <div class="item">
-      <img class="img-responsive center-block" src="images/rx480_2.jpg" alt="480">
+      <img class="img-responsive center-block" src="../images/rx480_2.jpg" alt="480">
     </div>
 
     <div class="item">
-      <img class="img-responsive center-block" src="images/rx480_3.jpg" alt="480">
+      <img class="img-responsive center-block" src="../images/rx480_3.jpg" alt="480">
     </div>
 
     <div class="item">
-      <img class="img-responsive center-block" src="images/rx480_4.jpg" alt="480">
+      <img class="img-responsive center-block" src="../images/rx480_4.jpg" alt="480">
     </div>
   </div>
 

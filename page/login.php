@@ -1,10 +1,10 @@
 <?php 
-	require("functions.php");
+	require("../functions.php");
 	
-    require("Helper.class.php");
+    require("../class/Helper.class.php");
 	$Helper = new Helper();
 	
-	require("User.class.php");
+	require("../class/User.class.php");
 	$User = new User($mysqli);
 	
 	// kui kasutaja on sisseloginud, siis suuna data lehele
@@ -173,9 +173,17 @@
         <li><a style="color:red;"href="#section2">About Me</a></li>
 	<div>
 	</div>
-		
+<script>
+.panel-default {
+    border-color: #FF934F;
+  }
+.panel-default > .panel-heading {
+     color:#fff;
+     background-color:#FF934F;
+     border-color:#ff934f;
+}
+</script>
 <div class="panel-group" id="accordion">
-
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -274,8 +282,8 @@ ul.tab {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    border: 1px solid #B10000;
+	background-color: #FF0000;
 }
 
 /* Float the list items side by side */
@@ -283,8 +291,9 @@ ul.tab li {float: left;}
 
 /* Style the links inside the list items */
 ul.tab li a {
+	background-color:#FF0000;
     display: inline-block;
-    color: black;
+    color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -294,21 +303,20 @@ ul.tab li a {
 
 /* Change background color of links on hover */
 ul.tab li a:hover {
-    background-color: #ddd;
+    background-color: #A20000;
 }
 
 /* Create an active/current tablink class */
 ul.tab li a:focus, .active {
-    background-color: #ccc;
+    background-color: #880000;
 }
 
 /* Style the tab content */
 .tabcontent {
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid #B10000;
     border-top: none;
-}
 </style>
 <body>
 <ul class="tab">
@@ -337,7 +345,7 @@ When compared to the R9 390 though the RX 480 does have one major disadvantage; 
 <br>
 Propping up the RX 480 is the core clock speed which has been set at 1120 MHz and can boost as high as 1266 MHz. That’s a 27% boost over the R9 390’s operating frequency and should help account for having 10% fewer cores.
 </p>
-	  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+	  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:720px; width:1280px; margin:0 auto;">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -349,19 +357,19 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="images/rx480_1.jpg" alt="480">
+      <img src="../images/rx480_1.jpg" alt="480">
     </div>
 
     <div class="item">
-      <img src="images/rx480_2.jpg" alt="480">
+      <img src="../images/rx480_2.jpg" alt="480">
     </div>
 
     <div class="item">
-      <img src="images/rx480_3.jpg" alt="480">
+      <img src="../images/rx480_3.jpg" alt="480">
     </div>
 
     <div class="item">
-      <img src="images/rx480_4.jpg" alt="480">
+      <img src="../images/rx480_4.jpg" alt="480">
     </div>
   </div>
 
@@ -408,18 +416,23 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
 </div>
 
 <div id="YOUTUBE" class="tabcontent">
-        <hr>
+      <hr>
       <h2>Shazza Mate's YouTube</h2>
-	  <br><br>
+	  <br>
+	  <div>
+	  <br>
 	  <font size="4">FX-6300 review!</font>
+	  <br>
 	  <iframe width="560" height="315" src="https://www.youtube.com/embed/4AddwU7EVOg"
 	  frameborder="0" allowfullscreen></iframe>
+	  </div>
 	  <br><br>
 	  
-	          <hr>
+	  <hr>
       <h2>Shazza Mate's Favorites</h2>
 	  <br><br>
 	  <font size="3">Stop Supporting NVIDIAs Anti Consumer Practices!!! Why Supporting AMD is Supporting PC Gaming!</font>
+	  <br>
 	  <iframe width="560" height="315" src="https://www.youtube.com/embed/ANz0CBa0wyg"
 	  frameborder="0" allowfullscreen></iframe>
 	  
