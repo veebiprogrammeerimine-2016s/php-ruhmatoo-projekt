@@ -3,6 +3,8 @@
 //Teine data leht, KMI ja pilt
 require("functions.php");
 
+//data2
+
 //kas kasutaja on sisse loginud, kui pole, suuna login.php
 
 	if (!isset($_SESSION["userId"])) {
