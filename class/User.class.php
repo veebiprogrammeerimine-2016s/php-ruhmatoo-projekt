@@ -35,7 +35,7 @@ class User{
         $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
         //sqli rida
-        $stmt = $mysqli->prepare("
+        $stmt = $this->connection->prepare("
 		SELECT id, username, email, password, created, age
 		FROM user_tv WHERE username = ?");
 
