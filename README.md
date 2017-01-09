@@ -106,7 +106,8 @@ Mida oppisid jurde? Mis ebaonnestus? Mis oli raske?
 	Oppisin oma aja planeerida. PDF vormistaine ebaonnestus? loodan parast saan rohkem sellest teada ja parandan.
 	Keeruline oli gruppis hakkama saama sest oli koige norgem osa.
 
-	*Stas:
+	*Stas: Õppisin kuidas kasutada Bootstrap, jquery / js.
+		Kõige raskem minu jaoks oli gruppis töötada.
 	
 	*Pjotr:
 
