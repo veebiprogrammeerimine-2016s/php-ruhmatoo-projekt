@@ -28,24 +28,24 @@
 	}
 	
 	
-	if ( isset($_POST["interest"]) && 
-		!empty($_POST["interest"])
+	if ( isset($_POST["contact"]) && 
+		!empty($_POST["contact"])
 	  ) {
 		  
-		saveInterest(cleanInput($_POST["interest"]));
+		savecontact(cleanInput($_POST["contact"]));
 		
 	}
 	
-	if ( isset($_POST["userInterest"]) && 
-		!empty($_POST["userInterest"])
+	if ( isset($_POST["usercontact"]) && 
+		!empty($_POST["usercontact"])
 	  ) {
 		  
-		saveUserInterest(cleanInput($_POST["userInterest"]));
+		saveUsercontact(cleanInput($_POST["usercontact"]));
 		
 	}
 	
-    $interests = getAllInterests();
-    $userInterests = getAllUserInterests();
+    $contacts = getAllcontacts();
+    $usercontacts = getAllUsercontacts();
 	
 ?>
 <head>
@@ -60,7 +60,7 @@
 <form method="POST">
 	
 <h2>Got new contacts? How about adding them?</h2>
-	<input name="interest" type="text">
+	<input name="contact" type="text">
 	
 	<input type="submit" value="Save">
 	
@@ -68,16 +68,15 @@
 
 <form method="POST">
 	
-	<label>Skills</label><br>
-	<select name="userInterest" type="text">
+	<select name="usercontact" type="text">
         <?php
             
             $listHtml = "";
         	
-        	foreach($interests as $i){
+        	foreach($contacts as $i){
         		
         		
-        		$listHtml .= "<option value='".$i->id."'>".$i->interest."</option>";
+        		$listHtml .= "<option value='".$i->id."'>".$i->contact."</option>";
         
         	}
         	
@@ -86,7 +85,7 @@
         ?>
     </select>
     	
-	
+
 	<input type="submit" value="Add">
 
 <h2>Your contacts!</h2>
@@ -94,10 +93,10 @@
     
     $listHtml = "<ul>";
 	
-	foreach($userInterests as $i){
+	foreach($usercontacts as $i){
 		
 		
-		$listHtml .= "<li>".$i->interest."</li>";
+		$listHtml .= "<li>".$i->contact."</li>";
 	}
     
     $listHtml .= "</ul>";

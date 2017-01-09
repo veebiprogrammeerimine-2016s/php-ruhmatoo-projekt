@@ -157,6 +157,7 @@
 </head>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Login or Sign-Up</title>
 </head>

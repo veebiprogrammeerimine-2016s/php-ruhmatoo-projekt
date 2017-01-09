@@ -117,11 +117,11 @@
 		$stmt = $mysqli->prepare("
 			SELECT id, task, date
 			FROM task_and_date
-			WHERE id=?
 		
 		");
 		echo $mysqli->error;
-		$stmt->bind_param("i", $_SESSION["userId"]);
+		
+		$stmt->bind_result($id, $task, $date);
 		$stmt->execute();
 		
 		
@@ -160,15 +160,15 @@
 		
 	}
 	
-		function saveInterest ($interest) {
+		function savecontact ($contact) {
 		
 		$database = "if16_andryzag";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-		$stmt = $mysqli->prepare("INSERT INTO interests (interest) VALUES (?)");
+		$stmt = $mysqli->prepare("INSERT INTO contacts (contact) VALUES (?)");
 	
 		echo $mysqli->error;
 		
-		$stmt->bind_param("s", $interest);
+		$stmt->bind_param("s", $contact);
 		
 		if($stmt->execute()) {
 			echo "Successfully saved!";
@@ -181,18 +181,18 @@
 		
 	}
 	
-	function getAllInterests() {
+	function getAllcontacts() {
 		
 		$database = "if16_andryzag";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
 		$stmt = $mysqli->prepare("
-			SELECT id, interest
-			FROM interests
+			SELECT id, contact
+			FROM contacts
 		");
 		echo $mysqli->error;
 		
-		$stmt->bind_result($id, $interest);
+		$stmt->bind_result($id, $contact);
 		$stmt->execute();
 		
 		
@@ -207,7 +207,7 @@
 			$i = new StdClass();
 			
 			$i->id = $id;
-			$i->interest = $interest;
+			$i->contact = $contact;
 		
 			array_push($result, $i);
 		}
@@ -218,21 +218,21 @@
 		return $result;
 	}
 	
-	function getAllUserInterests() {
+	function getAllUsercontacts() {
 		
 		$database = "if16_andryzag";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
 		$stmt = $mysqli->prepare("
-			SELECT interest FROM interests
-			JOIN user_interests 
-			ON interests.id=user_interests.interest_id
-			WHERE user_interests.user_id = ?
+			SELECT contact FROM contacts
+			JOIN user_contacts 
+			ON contacts.id=user_contacts.contact_id
+			WHERE user_contacts.user_id = ?
 		");
 		echo $mysqli->error;
 		$stmt->bind_param("i", $_SESSION["userId"]);
 		
-		$stmt->bind_result($interest);
+		$stmt->bind_result($contact);
 		$stmt->execute();
 		
 		
@@ -246,7 +246,7 @@
 			//tekitan objekti
 			$i = new StdClass();
 			
-			$i->interest = $interest;
+			$i->contact = $contact;
 		
 			array_push($result, $i);
 		}
@@ -257,15 +257,15 @@
 		return $result;
 	}
 	
-	function saveUserInterest ($interest) {
+	function saveUsercontact ($contact) {
 		
 		$database = "if16_andryzag";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		$stmt = $mysqli->prepare("
-			INSERT INTO user_interests
-			(user_id, interest_id) VALUES (?, ?)
+			SELECT id FROM user_contacts 
+			WHERE user_id=? AND contact_id=?
 		");
-		$stmt->bind_param("ii", $_SESSION["userId"], $interest);
+		$stmt->bind_param("ii", $_SESSION["userId"], $contact);
 		$stmt->bind_result($id);
 		
 		$stmt->execute();
@@ -283,13 +283,13 @@
 		// kui ei olnud siis sisestan
 		
 		$stmt = $mysqli->prepare("
-			INSERT INTO user_interests
-			(user_id, interest_id) VALUES (?, ?)
+			INSERT INTO user_contacts
+			(user_id, contact_id) VALUES (?, ?)
 		");
 		
 		echo $mysqli->error;
 		
-		$stmt->bind_param("ii", $_SESSION["userId"], $interest);
+		$stmt->bind_param("ii", $_SESSION["userId"], $contact);
 		
 		if ($stmt->execute()) {
 			echo "Successfully saved!";

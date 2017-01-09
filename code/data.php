@@ -59,6 +59,7 @@
 <link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="triangle.css">
 </head>
+<link rel="stylesheet" href="pikaday.css">
 
 <h1><a href="about.php"> About</a> Home</a> <a href="user.php"> Contacts</a> <?=$_SESSION["userEmail"];?>!</a>
 	<a href="?logout=1">Logout</a></h1>
