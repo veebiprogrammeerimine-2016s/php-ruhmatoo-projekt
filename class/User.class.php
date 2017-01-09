@@ -1,23 +1,14 @@
 <?php
-class User
-{
+class User{
 
     private $connection;
-
     function __construct($mysqli)
     {
-
-        //this viitab klassile (this == User)
         $this->connection = $mysqli;
-
-
     }
 
-    /*TEISED FUNKTSIOONI*/
-    function signUp($username, $email, $password, $age)
-    {
-
-
+    /*TEISED FUNKTSIOONID*/
+    function signUp($username, $email, $password, $age){
         $stmt = $this->connection->prepare("INSERT INTO user_tv (username, email, password, age) VALUES (?, ?, ?, ?)");
 
         echo $this->connection->error;
@@ -35,8 +26,7 @@ class User
 
     }
 
-    function login($username, $password)
-    {
+    function login($username, $password){
 
         $error = "";
 
@@ -46,14 +36,14 @@ class User
 
         //sqli rida
         $stmt = $mysqli->prepare("
-		SELECT id, username, email, password, created 
+		SELECT id, username, email, password, created, age
 		FROM user_tv WHERE username = ?");
 
         echo $mysqli->error;
 
         $stmt->bind_param("s", $username);
 
-        $stmt->bind_result($id, $usernameFromDb, $emailFromDb, $passwordFromDb, $created);
+        $stmt->bind_result($id, $usernameFromDb, $emailFromDb, $passwordFromDb, $created, $age);
         $stmt->execute();
 
 
@@ -66,7 +56,7 @@ class User
                 $_SESSION["userId"] = $id;
                 $_SESSION["userName"] = $usernameFromDb;
                 $_SESSION["userEmail"] = $emailFromDb;
-
+				$_SESSION["userAge"] = $age;
                 $_SESSION["message"] = "<h1>Welcome!</h1>";
 
                 header("Location: data.php");
