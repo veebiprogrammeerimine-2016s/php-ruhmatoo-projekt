@@ -54,33 +54,12 @@
 <link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="triangle.css">
 </head>
-<h1><a href="data.php"> < Back</a> User Page</h1>
-<?=$msg;?>
-<p>
-	Welcome <?=$_SESSION["userEmail"];?>!
-	<a href="?logout=1">Logi välja</a>
-</p>
+<h1><a href="about.php"> About</a><a href="data.php"> Home</a> Contacts</a> <?=$_SESSION["userEmail"];?>!</a>
+	<a href="?logout=1">Logout</a></h1>
 
-
-<h2>Your skills!</h2>
-<?php
-    
-    $listHtml = "<ul>";
-	
-	foreach($userInterests as $i){
-		
-		
-		$listHtml .= "<li>".$i->interest."</li>";
-	}
-    
-    $listHtml .= "</ul>";
-	
-	echo $listHtml;
-    
-?>
 <form method="POST">
 	
-	<label>Got new skills? How about adding them?</label><br>
+<h2>Got new contacts? How about adding them?</h2>
 	<input name="interest" type="text">
 	
 	<input type="submit" value="Save">
@@ -109,5 +88,21 @@
     	
 	
 	<input type="submit" value="Add">
+
+<h2>Your contacts!</h2>
+<?php
+    
+    $listHtml = "<ul>";
 	
-</form>
+	foreach($userInterests as $i){
+		
+		
+		$listHtml .= "<li>".$i->interest."</li>";
+	}
+    
+    $listHtml .= "</ul>";
+	
+	echo $listHtml;
+	
+    
+?>

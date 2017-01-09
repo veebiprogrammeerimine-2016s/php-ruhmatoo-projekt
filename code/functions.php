@@ -1,16 +1,9 @@
 <?php
 
 	require("../../../config.php");
-	// functions.php
-	//var_dump($GLOBALS);
-	
-	// see fail, peab olema kõigil lehtedel kus 
-	// tahan kasutada SESSION muutujat
+
 	session_start();
-	
-	//***************
-	//**** SIGNUP ***
-	//***************
+
 	
 	function signUp ($email, $password) {
 		
@@ -98,7 +91,7 @@
 		$database = "if16_andryzag";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
-		$stmt = $mysqli->prepare("INSERT INTO jokker_posts (username, post) VALUES (?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO task_and_date (task, date) VALUES (?, ?)");
 	
 		echo $mysqli->error;
 		
@@ -122,12 +115,13 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
 		$stmt = $mysqli->prepare("
-			SELECT id, username, post
-			FROM jokker_posts
+			SELECT id, task, date
+			FROM task_and_date
+			WHERE id=?
+		
 		");
 		echo $mysqli->error;
-		
-		$stmt->bind_result($id, $username, $post);
+		$stmt->bind_param("i", $_SESSION["userId"]);
 		$stmt->execute();
 		
 		
@@ -142,8 +136,8 @@
 			$taskdate = new StdClass();
 			
 			$taskdate->id = $id;
-			$taskdate->task = $username;
-			$taskdate->date = $post;
+			$taskdate->task = $task;
+			$taskdate->date = $date;
 			
 			//echo $plate."<br>";
 			// iga kord massiivi lisan juurde ülesande
@@ -268,8 +262,8 @@
 		$database = "if16_andryzag";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		$stmt = $mysqli->prepare("
-			SELECT id FROM user_interests 
-			WHERE user_id=? AND interest_id=?
+			INSERT INTO user_interests
+			(user_id, interest_id) VALUES (?, ?)
 		");
 		$stmt->bind_param("ii", $_SESSION["userId"], $interest);
 		$stmt->bind_result($id);

@@ -1,32 +1,11 @@
-<!DOCTYPE html>
-<html>
+
 <head>
-	<title>Login or Sign-Up</title>
+<link rel="stylesheet" href="pikaday.css">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="triangle.css">
 </head>
-<body>
-<h1><a href="data.php"> Home</a> <a href="about.php"> About</a></h1>
+<h1> About</a><a href="data.php"> Home</a>
 
-	<h3>Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text TextText Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text TextText Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text TextText Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text 
-	Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text Text</h3>
-
-</body>
-</html>
+<h2> Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here!  Text Goes Here! </h2>
+<?php

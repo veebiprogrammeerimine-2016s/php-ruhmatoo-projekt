@@ -60,18 +60,28 @@
 <link rel="stylesheet" href="triangle.css">
 </head>
 
-<h1><a href="data.php"> Home</a> <a href="about.php"> About</a> <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
+<h1><a href="about.php"> About</a> Home</a> <a href="user.php"> Contacts</a> <?=$_SESSION["userEmail"];?>!</a>
 	<a href="?logout=1">Logout</a></h1>
 
+<?=$msg;?>
 
-<h2>What would you like to say?</h2>
+<h2>What do you need to get done?</h2>
 <form method="POST">
+	
+	<label>Task</label><br>
 	<input name="task" type="text"> 
-	<input type="submit" value="Post">
+	<br><br>
+	
+	<label>Deadline</label><br>
+	<input name="date" type="text" id="datepicker">
+	<br><br>
+	
+	<input type="submit" value="Save">
+	
 	
 </form>
 
-<h2>Posts</h2>
+<h2>Tasks</h2>
 <?php 
 	
 	$html = "<table>";
@@ -110,7 +120,14 @@
 <br>
 <br>
 <br>
+<script src="moment.js"></script>
 <script src="pikaday.js"></script>
 <script>
-    var picker = new Pikaday({ field: document.getElementById('datepicker') });
+    var picker = new Pikaday({
+        field: document.getElementById('datepicker'),
+        format: 'YYYY-MM-D',
+        onSelect: function() {
+            console.log(this.getMoment().format('Do MMMM YYYY'));
+        }
+    });
 </script>
