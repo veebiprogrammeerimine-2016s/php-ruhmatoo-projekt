@@ -36,14 +36,14 @@ class User{
 
         //sqli rida
         $stmt = $this->connection->prepare("
-		SELECT id, username, email, password, created, age
+		SELECT id, username, email, password, created, age, newUser
 		FROM user_tv WHERE username = ?");
 
         echo $mysqli->error;
 
         $stmt->bind_param("s", $username);
 
-        $stmt->bind_result($id, $usernameFromDb, $emailFromDb, $passwordFromDb, $created, $age);
+        $stmt->bind_result($id, $usernameFromDb, $emailFromDb, $passwordFromDb, $created, $age, $newUser);
         $stmt->execute();
 
 
@@ -57,6 +57,7 @@ class User{
                 $_SESSION["userName"] = $usernameFromDb;
                 $_SESSION["userEmail"] = $emailFromDb;
 				$_SESSION["userAge"] = $age;
+                $_SESSION['newUser'] = $newUser;
                 $_SESSION["message"] = "<h1>Welcome!</h1>";
 
                 header("Location: data.php");
@@ -76,26 +77,25 @@ class User{
 
     }
 
+    function updateLogin($userId) {
+
+        $database = "if16_ege";
+        $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+
+        $stmt = $mysqli->prepare("UPDATE user_tv
+                              SET newUser=0 WHERE id=?");
+
+        $stmt->bind_param("i", $userId);
+
+        if ($stmt->execute()) {
+            //õnnestus
+            //echo
+        }
+
+        $mysqli->close();
+
+    }
+
 }
 
-function student_confirmation($id,$username,$password,$email,$age)
-{
-$subject = "Email Verification mail";
-$headers = "From: email@domain.com \r\n";
-$headers .= "Reply-To: email@domain.com \r\n";
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-$message = '<html><body>';
-$message.='<div style="width:550px; background-color:#CC6600; padding:15px; font-weight:bold;">';
-$message.='Email Verification mail';
-$message.='</div>';
-$message.='<div style="font-family: Arial;">Confiramtion mail have been sent to your email id<br/>';
-$message.='click on the below link in your verification mail id to verify your account ';
-$message.="<a href='http://yourdomain.com/user-confirmation.php?id=$id&email=$email&confirmation_code=$rand'>click</a>";
-$message.='</div>';
-$message.='</body></html>';
-
-mail($email,$subject,$message,$headers);
-}
 ?>

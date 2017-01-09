@@ -28,13 +28,6 @@
 		exit();
 	}
 
-	if(isset ($_POST["fileToUpload"]) &&
-		!empty ($_POST["fileToUpload"])) {
-		$fileToUpload = $Helper->cleanInput($_POST["fileToUpload"]);
-		}
-
-$error = "";
-
 	if(isset($_POST["fileToUpload"]) &&
 		!empty($_POST["fileToUpload"])) {
 		echo "blah";

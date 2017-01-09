@@ -30,8 +30,6 @@ function updatePicUrl($username, $picname) {
    $database = "if16_ege";
    $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
-        $_SESSION['userName'];
-
         $query = $mysqli->prepare("UPDATE user_tv_pics
                               SET url=? WHERE username=?");
 
