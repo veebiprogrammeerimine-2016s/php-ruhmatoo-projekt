@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+	<meta charset="utf-8">
+	
 	<!--<title>Logi sisse või loo kasutaja</title>-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
