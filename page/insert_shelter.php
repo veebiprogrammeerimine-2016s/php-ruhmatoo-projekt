@@ -68,7 +68,7 @@
 	            <br><br>
 	
 	
-	            <input type="submit" value="Salvesta">
+	            <input class="btn btn-success btn-sm hidden-xs" type="submit" value="Salvesta">
 				<br><br>
                 </form>
 		</body>		

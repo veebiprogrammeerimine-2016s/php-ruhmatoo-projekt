@@ -49,6 +49,7 @@
 
 <h2>Muuda kirjet</h2>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" >
+
 	<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
   	<label for="type" >Liik</label><br>
 	<input id="type" name="type" type="text" value="<?php echo $c->type;?>" ><br><br>
@@ -57,7 +58,7 @@
 	<label for="age" >Vanus</label><br>
 	<input id="age" name="age" type="text" value="<?=$c->age;?>"><br><br>
 	
-	<input type="submit" name="update" value="Uuenda">
+	<input class="btn btn-success btn-sm hidden-xs" type="submit" name="update" value="Uuenda">
   </form>
   
   
