@@ -12,6 +12,10 @@ Karin Rikkinen
 ## Andmebaasi skeem ja tabelite loomise SQL laused
 ![Preview](image/skeem.jpg)
 
+| Külastaja valikud | Kasutaja valikud |
+|----|----|
+|![Alt text](image/visitor.png)| ![Alt text](image/user.png)|
+
 ```
 CREATE TABLE project_users (
     -> user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
