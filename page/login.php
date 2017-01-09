@@ -130,6 +130,8 @@ if ( isset ( $_POST["signupAge"] ) &&
 
 <?php require("../header.php"); ?>
 
+
+
 <title>Login/signup page</title>
 
 <h1>Log in</h1>
