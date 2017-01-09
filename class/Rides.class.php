@@ -44,7 +44,7 @@ class Rides {
       WHERE cp_rides.id = ? OR (cp_rides.user_id LIKE ? OR cp_rides.start_location LIKE ?
       OR cp_rides.start_time LIKE ? OR cp_rides.arrival_location LIKE ? OR
       cp_rides.arrival_time LIKE ? OR cp_rides.free_seats LIKE ? OR cp_rides.price LIKE ?
-      OR cp_rides.added LIKE ? OR cp_users.email LIKE ?)
+      OR cp_rides.added LIKE ? OR cp_users.email LIKE ?) AND deleted IS NULL
       ORDER BY $sort $orderBy
       ");
 
@@ -60,6 +60,7 @@ class Rides {
     cp_rides.free_seats, cp_rides.price, cp_rides.added, cp_users.email
     FROM cp_rides
     JOIN cp_users ON cp_rides.user_id=cp_users.id
+    WHERE deleted is NULL
     ORDER BY $sort $orderBy
     ");
   }
@@ -328,6 +329,18 @@ class Rides {
     $stmt->close();
 
   }
+
+  function autoArchiveRides() {
+
+    $stmt = $this->connection->prepare("UPDATE cp_rides SET deleted=NOW() WHERE start_time < NOW() AND deleted IS NULL");
+    echo $this->connection->error;
+    $stmt->execute();
+
+    $stmt->close();
+
+
+  }
+
 
 }
 ?>

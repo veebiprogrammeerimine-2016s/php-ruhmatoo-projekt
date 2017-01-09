@@ -22,6 +22,7 @@ if (isset($_GET["logout"])) {
 
 }
 
+$Rides->autoArchiveRides();
 //Check if forms are filled
 $start_location = "";
 $start_time = "";
