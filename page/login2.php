@@ -286,7 +286,7 @@
 
 </body>
 
-<<<<<<< HEAD
+
  
  <style>
 
@@ -417,7 +417,7 @@
  </nav>
  
  </footer>
-=======
+
 <footer class="footer">
 
 <style>
