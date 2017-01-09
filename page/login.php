@@ -130,57 +130,59 @@ if ( isset ( $_POST["signupAge"] ) &&
 
 <?php require("../header.php"); ?>
 
-
+<div class= "container">
+            <div class= "row">
+                <div class="col-sm-4 col-sm-offset-4">
 
 <title>Login/signup page</title>
 
-<h1>Log in</h1>
-
-<form method="POST">
-
-    <p style="color:red;"><?=$error;?></p>
-
-    <label>Username:</label><br>
-    <input name="loginUsername" type="text" value="<?=$loginUsername;?>">
-    <?php echo $loginUsernameError; ?>
-    <br><br>
-
-    <input name="loginPassword" type="password" placeholder="Password">
-    <br><br>
-    <input type="submit" value="Log in">
-
-</form>
-
-<h1>Create account</h1>
-
-<form method="POST">
-
-    <label>Username:</label><br>
-    <input name="signupUsername" type="text" value="<?=$signupUsername;?>">
-    <?php echo $signupUsernameError; ?>
-
-    <br><br>
-
-    <label>Email:</label><br>
-    <input name="signupEmail" type="email" value="<?=$signupEmail;?>">
-    <?php echo $signupEmailError; ?>
-
-    <br><br>
-
-    <input name="signupPassword" type="password" placeholder="Password">
-    <?php echo $signupPasswordError; ?>
-
-    <br><br>
-
-    <label>Age:</label><br>
-    <input name="signupAge" type="number" value="<?=$signupAge;?>">
-
-    <br><br>
-
-    <input type="submit" value="Create account">
-
-
-</form>
-
-<br>
+        <h1>Log in</h1>
+        
+        <form method="POST">
+        
+            <p style="color:red;"><?=$error;?></p>
+        
+            <label>Username:</label><br>
+            <input name="loginUsername" type="text" value="<?=$loginUsername;?>">
+            <?php echo $loginUsernameError; ?>
+            <br><br>
+        
+            <input name="loginPassword" type="password" placeholder="Password">
+            <br><br>
+            <input class = "btn btn-sm btn-success" type="submit" value="Log in">
+        
+        </form>
+        
+        
+        <h1>Create account</h1>
+        
+        <form method="POST">
+        
+            <label>Username:</label><br>
+            <input name="signupUsername" type="text" value="<?=$signupUsername;?>">
+            <?php echo $signupUsernameError; ?>
+        
+            <br><br>
+        
+            <label>Email:</label><br>
+            <input name="signupEmail" type="email" value="<?=$signupEmail;?>">
+            <?php echo $signupEmailError; ?>
+        
+            <br><br>
+        
+            <input name="signupPassword" type="password" placeholder="Password">
+            <?php echo $signupPasswordError; ?>
+        
+            <br><br>
+        
+            <label>Age:</label><br>
+            <input name="signupAge" type="number" value="<?=$signupAge;?>">
+        
+            <br><br>
+        
+            <input class = "btn btn-info btn-sm" type="submit" value="Create account">
+        </form>
+</div>
+        </div>  
+                </div>        
 <?php require("../footer.php"); ?>
