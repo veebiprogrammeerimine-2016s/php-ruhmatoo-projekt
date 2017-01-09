@@ -25,26 +25,26 @@ function addPicURL($picname) {
 
 }
 
-//function updatePicUrl($username, $picname) {
+function updatePicUrl($username, $picname) {
 
-   // $database = "if16_ege";
-   // $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-   // $username = $_SESSION['userName'];
-    //$myData = $mysqli->query($query);
+   $database = "if16_ege";
+   $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
-  //  $query = "UPDATE user_tv_pics
-     //         SET url=$picname WHERE username=$_SESSION['userId']";
+        $username = $_SESSION['userName'];
 
-   // $query->bind_param("ss", $username, $picname);
+        $query = $mysqli->prepare("UPDATE user_tv_pics
+                              SET url=?, WHERE username=?");
 
-    //if ($query->execute()) {
-        // õnnestus
-       // echo "Your profile picture has been updated!";
-  //  }
+        $query->bind_param("ss", $username, $picname);
 
- //   $mysqli->close();
+        if ($query->execute()) {
+             //õnnestus
+            echo "Your profile picture has been updated!";
+        }
 
-//}
+    $mysqli->close();
+
+}
 
 
 function getProfileURL() {
