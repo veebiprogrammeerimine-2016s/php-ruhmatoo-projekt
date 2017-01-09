@@ -1,5 +1,5 @@
-create database shazza;
-  use shazza;
+create database if16_derkun_shazza;
+use if16_derkun_shazza;
 
 create table usertypes (
     type varchar(6) not null primary key
