@@ -273,7 +273,7 @@ $Rides = new Rides($mysqli);
           $html .= "<td>
 
 
-  							<a class='btn' href='edit.php?id=".$r->ride_id."'>
+  							<a class='btn' href='editRide.php?id=".$r->ride_id."'>
   							Cancel
   							<span class='glyphicon glyphicon-trash'></span>
   							</a>

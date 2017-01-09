@@ -131,7 +131,7 @@ class Rides {
       FROM cp_rides
       LEFT JOIN cp_rideusers ON cp_rides.id=cp_rideusers.ride_id
       LEFT JOIN cp_users ON cp_users.id=cp_rideusers.user_id
-      WHERE cp_rides.user_id = ?
+      WHERE cp_rides.user_id = ? AND cp_rides.deleted IS NULL
         AND (cp_rides.id LIKE ? OR cp_rides.start_location LIKE ? OR cp_rides.start_time LIKE ?
         OR cp_rides.arrival_location LIKE ? OR cp_rides.arrival_time LIKE ?
         OR cp_rides.free_seats LIKE ? OR cp_users.name LIKE ? OR cp_users.email LIKE ?)
@@ -152,7 +152,7 @@ class Rides {
     FROM cp_rides
     LEFT JOIN cp_rideusers ON cp_rides.id=cp_rideusers.ride_id
     LEFT JOIN cp_users ON cp_users.id=cp_rideusers.user_id
-    WHERE cp_rides.user_id = ?
+    WHERE cp_rides.user_id = ? AND cp_rides.deleted IS NULL
     ORDER BY $sort $orderBy
     ");
 
@@ -213,7 +213,7 @@ class Rides {
     FROM cp_rides
     JOIN cp_users ON cp_users.id=cp_rides.user_id
     JOIN cp_rideusers ON cp_rideusers.ride_id=cp_rides.id
-    WHERE cp_rideusers.user_id = ?
+    WHERE cp_rideusers.user_id = ? AND cp_rideusers.deleted IS NULL AND cp_rides.deleted IS NULL
       AND (cp_rideusers.ride_id LIKE ? OR cp_rides.start_location LIKE ? OR cp_rides.start_time LIKE ?
       OR cp_rides.arrival_location LIKE ? OR cp_rides.arrival_time LIKE ?
       OR cp_rides.free_seats LIKE ? OR cp_users.name LIKE ? OR cp_users.email LIKE ?)
@@ -233,7 +233,7 @@ class Rides {
     FROM cp_rides
     JOIN cp_users ON cp_users.id=cp_rides.user_id
     JOIN cp_rideusers ON cp_rideusers.ride_id=cp_rides.id
-    WHERE cp_rideusers.user_id = ?
+    WHERE cp_rideusers.user_id = ? AND cp_rideusers.deleted IS NULL AND cp_rides.deleted IS NULL
     ORDER BY $sort $orderBy
     ");
 
@@ -282,7 +282,7 @@ class Rides {
     $arrival_time, $free_seats, $price);
 
 		if($stmt->execute()) {
-			echo "Salvestamine õnnestus";
+			echo "Success";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
@@ -301,7 +301,7 @@ class Rides {
     $stmt->execute();
 
     if($stmt->fetch()){
-      echo "Oled juba registreerinud";
+      echo "Already registered";
       return;
     }
 
@@ -310,7 +310,7 @@ class Rides {
     $stmt->bind_param("ii", $_SESSION["userId"], $id );
 
     if(!$stmt->execute()){
-      echo "ei onnestunud";
+      echo "Unsuccessful";
       return;
     }
 
@@ -323,7 +323,7 @@ class Rides {
     // kas õnnestus salvestada
     if($stmt->execute()){
       // õnnestus
-      echo "salvestus õnnestus!";
+      echo "Success!";
     }
 
     $stmt->close();
@@ -343,7 +343,14 @@ class Rides {
   function deleteRide($ride_id){
 
 
-      $stmt = $this->connection->prepare("UPDATE cp_rides SET deleted=NOW() WHERE id=? AND deleted IS NULL");
+      $stmt = $this->connection->prepare("UPDATE cp_rides SET deleted=NOW() WHERE id=? AND user_id = ? AND deleted IS NULL");
+      $stmt->bind_param("ii",$ride_id, $_SESSION["userId"]);
+
+      $stmt->execute();
+
+      $stmt->close();
+
+      $stmt = $this->connection->prepare("UPDATE cp_rideusers SET deleted=NOW() WHERE ride_id=? AND deleted IS NULL");
       $stmt->bind_param("i",$ride_id);
 
       $stmt->execute();
@@ -351,5 +358,24 @@ class Rides {
       $stmt->close();
 
     }
+
+  function cancelRegistration($ride_id){
+
+    $stmt = $this->connection->prepare("UPDATE cp_rideusers SET deleted=NOW() WHERE ride_id=? AND user_id=? AND deleted IS NULL");
+    $stmt->bind_param("ii",$ride_id, $_SESSION["userId"]);
+
+    $stmt->execute();
+
+    $stmt->close();
+
+    $stmt = $this->connection->prepare("UPDATE cp_rides SET free_seats=free_seats+1
+    WHERE id=?");
+    $stmt->bind_param("i", $ride_id);
+
+    $stmt->execute();
+
+    $stmt->close();
+
+  }
 }
 ?>
