@@ -2,7 +2,10 @@
    require("../functions.php");
    
    if (!isset ($_SESSION["userId"])) {
+	   //session_destroy();
 	   
+	   //header("Location: login.php");
+	   //exit();
 	}
    
    if (isset($_GET["logout"])) {
@@ -12,7 +15,16 @@
 	   header("Location: login.php");
 	   exit();
 	   
-   }  
+   }
+	if (isset($_GET["returned"])) {
+	   
+	   $Booking->returned($_GET["returned"]);
+	   session_destroy();
+	   
+	   header("Location: animals.php");
+	   exit();
+	   
+   }   
    
    	if(isset($_GET["q"])){
 		
@@ -237,6 +249,7 @@
 				$html .= "<td><a href='animaldata.php?id=".$b->id."'>".$b->name."</a></td>";
 				$html .= "<td>".$b->age."</td>";
 				$html .= "<td>".$b->shelter."</td>";
+				$html .= "<td><a class='btn btn-default btn-sm' href='animals.php?returned=".$b->id."'><span class='glyphicon glyphicon'></span>Tagastatud</a></td>";
 			$html .= "</tr>";	
 		}
 		

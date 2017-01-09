@@ -45,6 +45,24 @@ class Booking {
 		
 		
 	}
+	
+	function returned($id){
+
+		$stmt = $this->connection->prepare("UPDATE g_animals SET booked=NULL WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("i",$id);
+		
+		// kas õnnestus salvestada
+		if($stmt->execute()){
+			// õnnestus
+			echo "Tagastamine 6nnestus!";
+			header("Location: animals.php");
+		}
+		
+		$stmt->close();
+		
+		
+	}
+	
 	function getBooked ($b, $sort, $order) {
 		
 $allowedSort = ["id", "type", "name", "age", "shelter"];
