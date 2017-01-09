@@ -1,4 +1,5 @@
 <?php
+require ("header.php");
 //MinuTunne  PHP projekt
 require ("functions.php");
 //Kui kasutaja on sisse loginud, peab suunama DATA.PHP lehele
@@ -86,7 +87,6 @@ if (isset($_POST["loginEmail"]) &&
 }
 
 ?>
-<?php require ("header.php"); ?>
 
 		<title>
 			MinuTunne - jälgi meeleolu- ja tervisemuutusi
@@ -126,7 +126,7 @@ if (isset($_POST["loginEmail"]) &&
 						<br>
 						<input type="Password" class="form-control" name="loginPassword">
 						<br>
-						<input class = "btn btn-success btn-sm"  style="height:80;width:100" type="submit" value="Logi sisse">
+						<input class = "btn btn-success btn-sm"  type="submit" value="Logi sisse">
 				</div>
 		</div>
 	</div>
@@ -203,7 +203,7 @@ if (isset($_POST["loginEmail"]) &&
 							<br>
 							<?php } ?>
 
-			<br>	<input class = "btn btn-success btn-sm" type="submit" style="height:80;width:100" value="Registreerun">
+			<br>	<input class = "btn btn-success btn-sm" type="submit"  value="Registreerun">
 		</div>
 	</div>
 	</form>

@@ -55,6 +55,7 @@ exit();
 echo '<img src="weight.jpg"/>';
 
 ?>
+<?php require ("header.php"); ?>
 <h1> Pikkus ja kehakaal </h1>
 <h3> Sisesta kehakaal ja pikkus KMI arvutamiseks </h3>
 <form method="POST">
