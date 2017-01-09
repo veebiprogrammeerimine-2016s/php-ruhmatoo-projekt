@@ -79,4 +79,6 @@ CREATE TABLE project_messages(
 
 ## Kokkuvõte
 Õppisin juurde väga palju. Kuna varem polnud ei php-koodi ega ka sql-käskluseid kirjutanud, samuti polnud kasutanud Bootsrapi, Github'i ega andmebaase, siis uusi oskuseid sain kõvasti. 
-Pean enda jaoks kogu projekti õnnestumiseks. Ebaõnnestumistest tooks välja stiili, antud projektis pidasin tähtsamaks nn köögipoolt, CSS jäi teisejärguliseks, eks seda on ka tulemusest näha. Projekti käigus õppisin, et lisaks koodi kirjutamisele, tuleb harjutada ka koodi lugemist, viimast pean enda nõrgemaks küljeks. 
+Pean enda jaoks kogu projekti õnnestumiseks, sest funktsionaalsuse osas sain valmis ligilähedaselt sellise rakenduse, mis oligi plaanis saavutada. Kogu projekti juures oli üheks raskemaks osaks saavutada seda, et moodustuks toimiv tervik, suur osa tööst seisnes variantide ja lahenduste paberile visandamises. 
+Ebaõnnestumistest tooks välja kujunduse, antud projektis pidasin tähtsamaks nn backend poolt, CSS jäi teisejärguliseks, eks seda on ka tulemusest näha. 
+Projekti käigus õppisin, et lisaks koodi kirjutamisele, tuleb harjutada ka koodi lugemist, viimast pean enda nõrgemaks küljeks. 
