@@ -41,28 +41,8 @@
 	<?php require("../header.php"); ?>
 	<br>
 Tere tulemast koduloomade laenutuse lehele <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
-
 <br>
 Siin saate endale valida endale rõõmsa sõbra teatud ajaks!
-<br>
-Palun suhtuge loomadesse hästi ja sõbralikult. Kui rendite meilt looma, siis peate alluma meie poolt kehtestatud reeglitele!
-<br>
-Siin on loomadest pildid, keda valida saate:
-
-
-<h2>Kuldne retriiver</h2>
-<img src="retriiver.jpg" alt="Kuldne" style="width:304px;height:228px;">
-
-<h2>Husky</h2>
-<img src="husky.jpg" alt="Husky" style="width:304px;height:228px;">
-
-<h2>Papagoi</h2>
-<img src="parrot.jpg" alt="Papagoi" style="width:304px;height:228px;">
-
-
-
-
-
 
 </p>
 </html>		

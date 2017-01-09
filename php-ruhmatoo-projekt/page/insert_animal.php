@@ -68,7 +68,6 @@
 				<option value="Janes">Janes</option>
 				<option value="Muu">Muu</option>
 				</select>
-				</div>
 	            <br><br>
 	
 	            <label>Looma nimi</label><br>
@@ -102,12 +101,8 @@
 	            <input type="submit" value="Salvesta">
 				<br><br>
                 </form>
-			
-				
 		</body>		
 </html>		
-
-
 
 <br><br>
 <?php require("../footer.php"); ?>

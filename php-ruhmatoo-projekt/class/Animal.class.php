@@ -53,9 +53,7 @@ class Animal {
 			$stmt = $this->connection->prepare("
 				SELECT id, type, name, age, shelter
 				FROM g_animals
-				WHERE deleted IS NULL AND booked IS NULL
-				
-			
+				WHERE deleted IS NULL 
 				AND (type LIKE ? OR name LIKE ? OR age LIKE ? OR shelter LIKE ?)
 				ORDER BY $sort $orderBy
 			");
@@ -68,8 +66,7 @@ class Animal {
 			$stmt = $this->connection->prepare("
 				SELECT id, type, name, age, shelter
 				FROM g_animals
-				WHERE deleted IS NULL AND booked IS NULL
-				
+				WHERE deleted IS NULL
 				ORDER BY $sort $orderBy
 			");
 			
@@ -108,8 +105,6 @@ class Animal {
 		return $result;
 	}
 	
-
-	
 	function getSingle($edit_id){
 
 		$stmt = $this->connection->prepare("SELECT type, name, age, shelter FROM `g_animals` WHERE id=? AND deleted IS NULL");
@@ -134,8 +129,7 @@ class Animal {
 			// ei saanud rida andmeid kätte
 			// sellist id'd ei ole olemas
 			// see rida võib olla kustutatud
-			
-			//header("Location: animals.php");
+			header("Location: animals.php");
 			exit();
 		}
 		
@@ -167,15 +161,13 @@ class Animal {
 	
 	function update($id, $type, $name, $age){
     	
-		$stmt = $this->connection->prepare("UPDATE g_animals SET type=?, name=?, age=? WHERE id=?");
-		$stmt->bind_param("ssii",$type, $name, $age, $id);
-		
+		$stmt = $this->connection->prepare("UPDATE g_animals SET type=?, name=?, age=?, shelter=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("ssis",$type, $name, $age, $shelter);
 		
 		// kas õnnestus salvestada
-		if($stmt->execute()) {
-			echo "Salvestamine onnestus";
-		} else {
-		 	echo "ERROR ".$stmt->error;
+		if($stmt->execute()){
+			// õnnestus
+			echo "Salvestus onnestus!";
 		}
 		
 		$stmt->close();

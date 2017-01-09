@@ -1,54 +1,17 @@
-<?php
-   require("../functions.php");
-   
-   if (!isset ($_SESSION["userId"])) {
-	   
-	}
-   
-   if (isset($_GET["logout"])) {
-	   
-	   session_destroy();
-	   
-	   header("Location: login.php");
-	   exit();
-	   
-   }  
-   
-   	if(isset($_GET["q"])){
-		
-		$q = $_GET["q"];
-		
-	}else{
-		
-		$q = "";
-	}
-	$sort = "id";
-	$order = "ASC";
-	
-	if(isset($_GET["sort"]) && isset($_GET["order"])) {
-		$sort = $_GET["sort"];
-		$order = $_GET["order"];
-	}
-	
-	//otsisõna fn sisse
-	$animal = $Animal->get($q, $sort, $order);
-	$booked = $Booking->getBooked();
-	//kleklekle
-
-?>
 <html>
 <body style='background-color:Silver'>
     <head>
 	<?php require("../header.php"); ?>
-<h1>Rentimiseks valmis loomad</h1>
+<h1>Broneeri</h1>
 
 <form>
 
 	<input type="search" name="q" value="<?=$q;?>">
-	<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Otsi">
+	<input type="submit" value="Otsi">
 	
 </form>
 <?php 
+ 
 	
 	$html = "<table class='table table-striped'>";
 	
@@ -121,28 +84,7 @@
 		
 	$html .= "</table>";
 	echo $html;
-?>
-<html>	
-	<h3>Välja renditud loomad</h3>
-</html>
-<?php
-	$html = "<table class='table table-striped'>";
-	$html="<table>";
-		$html .="<tr>";
-			$html .="<th>Liik</th>";
-			$html .="<th>Nimi</th>";
-			$html .="<th>Vanus</th>";
-		$html .="</tr>";
 
-		foreach($booked as $b) {
-				$html .="<tr>";
-					$html .="<td>".$b->type."</td>";
-					$html .="<td>".$b->name."</td>";
-					$html .="<td>".$b->age."</td>";
-				$html .="</tr>";
-		}	
-	$html .="</table>";
-	echo $html;
 ?>
 <br><br>
 <?php require("../footer.php"); ?>

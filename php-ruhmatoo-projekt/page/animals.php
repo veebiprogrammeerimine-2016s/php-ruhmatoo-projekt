@@ -14,13 +14,13 @@
 	   
    }  
    
-   	if(isset($_GET["s"])){
+   	if(isset($_GET["q"])){
 		
-		$s = $_GET["s"];
+		$q = $_GET["q"];
 		
 	}else{
 		
-		$s = "";
+		$q = "";
 	}
 	$sort = "id";
 	$order = "ASC";
@@ -31,7 +31,7 @@
 	}
 	
 	//otsisõna fn sisse
-	$shelter = $Shelter->get($s, $sort, $order);
+	$animal = $Animal->get($q, $sort, $order);
 	//kleklekle
 
 ?>
@@ -39,11 +39,11 @@
 <body style='background-color:Silver'>
     <head>
 	<?php require("../header.php"); ?>
-<h2>Varjupaigad</h2>
+<h1>Loomad</h1>
 
 <form>
 
-	<input type="search" name="s" value="<?=$s;?>">
+	<input type="search" name="q" value="<?=$q;?>">
 	<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Otsi">
 	
 </form>
@@ -62,8 +62,21 @@
 		}	
 	
 		$html .= "<th>
-					<a href='?s=".$s."&sort=id&order=".$idOrder."'>
+					<a href='?q=".$q."&sort=id&order=".$idOrder."'>
 						Id ".$arrow."
+					</a>
+				 </th>";
+				 
+		$typeOrder = "ASC";
+		$arrow ="&darr;";
+		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
+			$typeOrder = "DESC";
+			$arrow ="&uarr;";
+		}
+		
+		$html .= "<th>
+					<a href='?q=".$q."&sort=type&order=".$typeOrder."'>
+						Liik ".$arrow."
 					</a>
 				 </th>";
 				 
@@ -75,44 +88,33 @@
 		}
 		
 		$html .= "<th>
-					<a href='?s=".$s."&sort=name&order=".$nameOrder."'>
+					<a href='?q=".$q."&sort=name&order=".$nameOrder."'>
 						Nimi ".$arrow."
 					</a>
 				 </th>";
 				 
-		$countyOrder = "ASC";
+		$ageOrder = "ASC";
 		$arrow ="&darr;";
 		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
-			$countyOrder = "DESC";
+			$ageOrder = "DESC";
 			$arrow ="&uarr;";
 		}
 		
 		$html .= "<th>
-					<a href='?q=".$s."&sort=county&order=".$countyOrder."'>
-						Maakond ".$arrow."
+					<a href='?q=".$q."&sort=age&order=".$ageOrder."'>
+						Vanus ".$arrow."
 					</a>
 				 </th>";
 				 
-		$cityOrder = "ASC";
-		$arrow ="&darr;";
-		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
-			$cityOrder = "DESC";
-			$arrow ="&uarr;";
-		}
-		
-		$html .= "<th>
-					<a href='?s=".$s."&sort=city&order=".$cityOrder."'>
-						Linn ".$arrow."
-					</a>
-				 </th>";
-				 
-
-		foreach($shelter as $s){
+// katse kas github t88tab
+		foreach($animal as $c){
 			$html .= "<tr>";
-				$html .= "<td>".$s->id."</td>";
-				$html .= "<td>".$s->name."</td>";
-				$html .= "<td>".$s->county."</td>";
-				$html .= "<td>".$s->city."</td>";
+				$html .= "<td>".$c->id."</td>";
+				$html .= "<td>".$c->type."</td>";
+				$html .= "<td>".$c->name."</td>";
+				$html .= "<td>".$c->age."</td>";
+				$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span>Muuda</a></td>";
+				$html .= "<td><a class='btn btn-default btn-sm' href='booking.php?id=".$c->id."'><span class='glyphicon glyphicon'></span>Broneeri</a></td>";
 			$html .= "</tr>";	
 		}
 		

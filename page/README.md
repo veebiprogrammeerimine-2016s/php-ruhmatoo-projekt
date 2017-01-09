@@ -1,36 +1,65 @@
-NIMI: KODULOOMADE RENT ??
+NIMI: KODULOOMADE RENT 
 
-EESMÄRK: Koduloomade väljarentimine inimestele, kes ei taha pikaajalist kohustust nende ees. Rendime varjupaigaloomi, et neil päeva paremaks teha ja samuti ka inimesele, kes tahab looma endale natukeseks ajaks. Loomi saab rentida ka laste sünnipeävapidudele.
+PROJEKTI VEEBIRAKENDUSE PILT: 
+
+RÜHMA LIIKMETE NIMED: Tanel Maasalu, Cleven Lehispuu, Henri Vajak
+
+EESMÄRK: Koduloomade väljarentimine inimestele, kes ei taha pikaajalist kohustust nende ees. Rendime varjupaigaloomi, et neil päeva paremaks teha ja samuti ka inimesele, kes tahab looma endale natukeseks ajaks. Loomi saab rentida ka laste sünnipäevapidudele.
+
+KIRJELDUS: Veebileht, mis on mõeldud koduloomade rentimiseks. 
+
+ERIPÄRA: Ei võeta paariks tunniks nagu koeri jalutatakse, vaid saab võtta päevadeks endale seltsi toreda looma ja hoolt kanda tema eest.
+
+SARNASED RAKENDUSED: www.borrowmydoggy.com, www.barknborrow.com.
+
+FUNKTSIONAALSUSE LOETELU PRIORITEEDI JÄRJEKORRAS:
+1. Saab teha kasjutaja ja sisse logida.
+2. Saab lisada kuulutuse.
+3. Saab lisada varjupaiga.
+4. Varjupaikade tabel.
+5. Saab Otsida kuulutust.
+6. Saab broneerida.
+7. Saab väljalogida.
+8. Kontakt
+9. Välimus
 
 SIHTRÜHM: Kõik inimesed, aga rentida saavad ainult täiskasvanud.
 
-Vanus: 18-??
+VANUS: 18-??
 
-Sugu: M võo N
+SUGU: M või N
 
-Sotsiaalne majanduslik staatus: põhiharidus - kõrgharidus
+SOTSIAALNE MAJANDUSLIK STAATUS: põhiharidus - kõrgharidus
 
-Muu: Stabiilne sissetulek
+MUU: Stabiilne sissetulek
+
+ANDMEBAASI SKEEM LOETAVA PILDINA:
 
 LEHED:
 Sisselogimine
-email, eesnimi, perekonnanimi, parool
+email, parool.
 
 Registreerimine
-email, parool, eesnimi, perekonnanimi
-
-Loomade vaatamine
-
-
-Loomade broneerimine
-
-Loomade registreerimine
-
-Andmete muutmine ehk edit
-
-Kasutaja info ehk user
+email, parool.
 
 Avaleht
+Teretab kasutajat. Veidi lisainfot.
 
-Autorid: Henri Vajak, Tanel Maas, Cleven Lehispuu
+Otsi kuulutust
+Tabel loomast. Id, liik, nimi ja vanus. Edit ja broneeri nupp.
+
+Sisesta kuulutus
+Andmed sisetamiseks. Liik, nimi, vanus, varjupaik. Salvesta nupp.
+
+Sisesta varjupaik
+Andmed sisetamiseks. Varjupaik, maakond, linn. Salvesta nupp.
+
+Kontakt.
+Ilu jaoks lihtsalt kontaktandmed.
+
+Logivälja.
+Logib välja igalt lehelt.
+
+KOKKUVÕTE: 
+
 

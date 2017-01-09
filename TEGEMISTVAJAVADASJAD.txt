@@ -1,0 +1,2 @@
+1. BOOKING
+4. "Otsi kuulutust" lehelt näeb varjupaikasid id-na

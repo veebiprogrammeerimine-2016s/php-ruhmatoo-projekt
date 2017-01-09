@@ -22,9 +22,6 @@
 	require("../class/Helper.class.php");
 	$Helper = new Helper();
 	
-	require("../class/Booking.class.php");
-	$Booking = new Booking($mysqli);
-	
 	// see fail, peab olema kõigil lehtedel kus 
 	// tahan kasutada SESSION muutujat
 	session_start();
