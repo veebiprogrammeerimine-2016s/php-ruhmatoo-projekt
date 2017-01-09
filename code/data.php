@@ -59,18 +59,13 @@
 <link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="triangle.css">
 </head>
-<h1>Home</h1>
-<?=$msg;?>
-<p>
-	Add some skills <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
-	<a href="?logout=1">Logout</a>
-</p>
+
+<h1><a href="data.php"> Home</a> <a href="Search.php"> Search</a> <a href="about.php"> About</a> <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
+	<a href="?logout=1">Logout</a></h1>
 
 
 <h2>What would you like to say?</h2>
 <form method="POST">
-	
-	<label>Jokker</label><br>
 	<input name="task" type="text"> 
 	<input type="submit" value="Post">
 	

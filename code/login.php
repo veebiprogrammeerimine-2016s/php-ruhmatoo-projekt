@@ -161,6 +161,7 @@
 	<title>Login or Sign-Up</title>
 </head>
 <body>
+<h1><a href="data.php"> Home</a> <a href="Search.php"> Search</a> <a href="about.php"> About</a></h1>
 
 	<h1>Login</h1>
 	<form method="POST">

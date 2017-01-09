@@ -98,7 +98,7 @@
 		$database = "if16_andryzag";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
-		$stmt = $mysqli->prepare("INSERT INTO task_and_date (task, date) VALUES (?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO jokker_posts (username, post) VALUES (?, ?)");
 	
 		echo $mysqli->error;
 		
@@ -122,12 +122,12 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
 		$stmt = $mysqli->prepare("
-			SELECT id, task, date
-			FROM task_and_date
+			SELECT id, username, post
+			FROM jokker_posts
 		");
 		echo $mysqli->error;
 		
-		$stmt->bind_result($id, $task, $date);
+		$stmt->bind_result($id, $username, $post);
 		$stmt->execute();
 		
 		
@@ -142,8 +142,8 @@
 			$taskdate = new StdClass();
 			
 			$taskdate->id = $id;
-			$taskdate->task = $task;
-			$taskdate->date = $date;
+			$taskdate->task = $username;
+			$taskdate->date = $post;
 			
 			//echo $plate."<br>";
 			// iga kord massiivi lisan juurde ülesande
