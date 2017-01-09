@@ -2,7 +2,7 @@
 * [Veebileht](http://greeny.cs.tlu.ee/~marikraav/php-ruhmatoo-projekt/page/login.php)
 
 ##Liikmed
-* Mariann Kraav, Karoliina Kullamaa, Elise Pals
+* Mariann Kraav, Elise Pals, Karoliina Kullamaa
 
 ##Eesmärk
 Veebirakenduse eesmärk on muuta inimesed füüsiliselt aktiivsemaks võimaldades neil treeningpäevikusse oma andmeid tehtud treeningute kohta salvestada, foorumis kaastreenijatega suhelda, teineteist motiveerida ning soovi korral leida treeningpartner. 
