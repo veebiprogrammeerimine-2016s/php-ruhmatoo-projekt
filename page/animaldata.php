@@ -31,10 +31,10 @@
 
 <body style='background-color:Silver'>
 <h2>See <?php echo $type; ?> nimega <?php echo $name; ?> on absoluutselt imeline isend! </h2>
-<img src="<?php echo $url; ?>" alt="<?php echo $name; ?>";>
+<img width="30%" src="<?php echo $url; ?>" alt="<?php echo $name; ?>";>
 <br><br>
 <h3>Tema praegune kodu on <?php echo $shelter; ?></h3>
-<h3>Kui sa soovid seda looma nimega <?php echo $name; ?> rentida, siis vajuta nupule "Broneeri" </h3>
+<h3>Kui sa soovid seda looma nimega <?php echo $name; ?> rentida, siis vajuta nupule "Broneeri" </h3><br>
 <a class='btn btn-default btn-sm' href='booking.php?id=<?php echo $id; ?>'><span class='glyphicon glyphicon'></span>Broneeri</a>
 
 <?php require("../footer.php"); ?>
