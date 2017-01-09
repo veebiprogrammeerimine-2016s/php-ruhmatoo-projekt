@@ -188,7 +188,7 @@ class Rides {
 
   function getPassenger($r, $sort, $order) {
 
-    $allowedSort = ["ride_id", "start_location", "start_time",
+    $allowedSort = ["rde_id", "start_location", "start_time",
     "arrival_location", "arrival_time", "free_seats", "price",
     "name", "email"];
 
@@ -238,10 +238,11 @@ class Rides {
 
     echo $this->connection->error;
 		$stmt->bind_param("i", $_SESSION["userId"]);
+    }
     $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
     $arrival_time, $free_seats, $driver_name, $driver_email);
     $stmt->execute();
-    }
+
     //tekitan objekti
     $results = array();
     //tsykli sisu tehakse nii mitu korda, mitu rida

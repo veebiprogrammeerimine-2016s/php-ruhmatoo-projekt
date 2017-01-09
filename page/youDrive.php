@@ -25,7 +25,6 @@ $Rides = new Rides($mysqli);
 		unset($_SESSION["message"]);
 	}
 
-
   if ( isset($_POST["getUser"]) &&
 		!empty($_POST["getUser"])
 	  ) {
@@ -43,7 +42,7 @@ $Rides = new Rides($mysqli);
 		$r = "";
 	}
 
-	$sort = "id";
+	$sort = "ride_id";
 	$order = "ASC";
 
 	if (isset($_GET["sort"]) && isset($_GET["order"])) {
@@ -65,7 +64,7 @@ $Rides = new Rides($mysqli);
 	<div class="col-sm-4 col-md-3">
 
 
-<h2> YouDrive</h2>
+<h2>Driver page</h2>
 
 <h4><a href="user.php"> Back</a></h4>
 <?=$msg;?>

@@ -29,19 +29,23 @@ $Rides = new Rides($mysqli);
 
 <?php require("../header.php"); ?>
 
-<h2> Your page</h2>
-<p>
+<div class="container">
+
+
+	<div class="col-sm-4 col-md-3">
+
+<h2> TLU CarPooling</h2>
+<h5>
 	<a href="?logout=1">Log out</a>
-</p>
+</h5>
+
+<h5><a href="data.php"> Back</a></h5>
 
 <br>
+<h4><a href="youDrive.php">Driver page</a></h4>
 
-<h4><a href="data.php"> Back</a></h4>
+<h4><a href="youPassenger.php">Passenger page</a></h4>
 
-
-<h4><a href="youDrive.php">YouDrive</a></h4>
-
-<h4><a href="youPassenger.php">YouPassenger</a></h4>
-
-
+	</div>
+</div>
 <?php require("../footer.php"); ?>

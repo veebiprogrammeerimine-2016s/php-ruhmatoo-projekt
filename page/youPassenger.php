@@ -65,7 +65,7 @@ $Rides = new Rides($mysqli);
 	<div class="col-sm-4 col-md-3">
 
 
-<h2> YouPassenger</h2>
+<h2> Passenger page</h2>
 
 <h4><a href="user.php"> Back</a></h4>
 <?=$msg;?>
@@ -95,7 +95,7 @@ $Rides = new Rides($mysqli);
 	  		$arr="&darr;";
 	  		if (isset($_GET["order"]) &&
 		  		$_GET["order"] == "ASC" &&
-		  		$_GET["sort"] == "ride_id") {
+		  		$_GET["sort"] == "id") {
 
 	  			$orderId = "DESC";
 	  			$arr="&uarr;";
@@ -103,7 +103,7 @@ $Rides = new Rides($mysqli);
 
 
   			$html .= "<th>
-				<a href='?q=".$r."&sort=ride_id&order=".$orderId."'>
+				<a href='?q=".$r."&sort=id&order=".$orderId."'>
 
 				Ride ID ".$arr."
 
