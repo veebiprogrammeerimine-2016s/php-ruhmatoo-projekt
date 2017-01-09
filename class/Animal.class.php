@@ -148,13 +148,13 @@ class Animal {
 		
 	}
 
-	function save ($type, $name, $age, $shelter) {
+	function save ($type, $name, $age, $url, $shelter) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO g_animals (type, name, age, shelter) VALUES (?, ?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO g_animals (type, name, age, url, shelter) VALUES (?, ?, ?, ?, ?)");
 	
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssis", $type, $name, $age, $shelter);
+		$stmt->bind_param("ssiss", $type, $name, $age, $url, $shelter);
 		
 		if($stmt->execute()) {
 			echo "Salvestamine onnestus";

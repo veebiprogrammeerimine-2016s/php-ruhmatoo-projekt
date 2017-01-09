@@ -23,24 +23,28 @@
    if ( isset($_POST["type"]) &&
 	     isset($_POST["name"]) &&
 		 isset($_POST["age"])&&
+		 isset($_POST["url"])&&
 		 isset($_POST["shelter"]) 	 &&
 		 !empty($_POST["type"]) &&
 		 !empty($_POST["name"]) &&
 		 !empty($_POST["age"])&&
+		 !empty($_POST["url"])&&
 		 !empty($_POST["shelter"])		 ) {
 			
 		  
 		$type = cleanInput($_POST["type"]);
         $name = cleanInput($_POST["name"]);
         $age = cleanInput($_POST["age"]);
+        $url = cleanInput($_POST["url"]);
 		$shelter = cleanInput($_POST["shelter"]);
 		
-		$Animal->save($_POST["type"], $_POST["name"], $_POST["age"], $_POST["shelter"]);
+		$Animal->save($_POST["type"], $_POST["name"], $_POST["age"], $_POST["url"], $_POST["shelter"]);
 	}
 	
 	 if (empty($_POST["type"]) &&
 		empty($_POST["name"]) &&
 		empty($_POST["age"])&&
+		empty($_POST["url"])&&
 		empty($_POST["shelter"]))
 {
 			 $informationError = "Täita tuleb kõik väljad!";
@@ -62,11 +66,11 @@
             <form method="POST">
 				<label>Liik</label><br>
 	            <select name="type" id="type" name="type">
-				<option value="Koer">Koer</option>
-				<option value="Kass">Kass</option>
-				<option value="Papagoi">Papagoi</option>
-				<option value="Janes">Janes</option>
-				<option value="Muu">Muu</option>
+				<option value="koer">Koer</option>
+				<option value="kass">Kass</option>
+				<option value="papagoi">Papagoi</option>
+				<option value="janes">Janes</option>
+				<option value="muu">Muu</option>
 				</select>
 				</div>
 	            <br><br>
@@ -77,6 +81,10 @@
 	
 	            <label>Vanus</label><br>
 	            <input name="age" type="int" >
+	            <br><br>
+				
+				<label>Pildi url</label><br>
+	            <input name="url" type="text" >
 	            <br><br>
 				
 				<label>Varjupaik</label><br>
