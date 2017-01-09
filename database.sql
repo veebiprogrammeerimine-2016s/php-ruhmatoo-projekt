@@ -24,6 +24,8 @@ create table categories (
   category varchar(255) not null
 );
 
+insert into categories (category) values ("Games"), ("Hardware"), ("Software"), ("Youtube");
+
 create table tags (
   id int not null unique auto_increment primary key,
   tagname varchar(60)
