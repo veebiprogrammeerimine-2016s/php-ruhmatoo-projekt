@@ -108,16 +108,16 @@ $allowedSort = ["type", "name", "age", "shelter"];
 		while ($stmt->fetch()) {
 			
 			//tekitan objekti
-			$Animal = new StdClass();
+			$Booked = new StdClass();
 			
-			$Animal->type = $type;
-			$Animal->name = $name;
-			$Animal->age = $age;
-			$Animal->shelter = $shelter;
+			$Booked->type = $type;
+			$Booked->name = $name;
+			$Booked->age = $age;
+			$Booked->shelter = $shelter;
 			
 
 			// iga kord massiivi lisan juurde nr märgi
-			array_push($result, $Animal);
+			array_push($result, $Booked);
 		}
 		
 		$stmt->close();
