@@ -184,7 +184,7 @@
 	}
 	
 	function editData($edit_id){
-		$stmt = $this->connection->prepare("SELECT firstname, lastname, email, password, gender, phonenumber FROM users WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT firstname, lastname, email, password, gender, phonenumber FROM users WHERE id=? ");
 		echo $this->connection->error;
 		$stmt->bind_param("i", $edit_id);
 		$stmt->bind_result($firstname, $lastname, $email, $password, $gender, $phonenumber);
@@ -218,7 +218,7 @@
 	
 	function update($id, $firstname, $lastname, $email, $gender, $phonenumber){
     	
-		$stmt = $this->connection->prepare("UPDATE users SET firstname=?, lastname=?, email=?, gender=?, phonenumber=? WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("UPDATE users SET firstname=?, lastname=?, email=?, gender=?, phonenumber=? WHERE id=?");
 		$stmt->bind_param("sssssi", $firstname, $lastname, $email, $gender, $phonenumber, $id);
 		
 		// kas õnnestus salvestada
@@ -239,8 +239,9 @@
 		
 		if ($stmt->execute()) {
 			//echo "Salvestamine õnnestus";
+			$_SESSION["Exercise_message"] = "<p style='color:green;'>HARJUTUS LISATUD!</p>";
 		} else {
-			echo "ERROR".$stmt->error;
+			//echo "ERROR".$stmt->error;
 		}
 	}
 	
@@ -266,7 +267,7 @@
 			//echo "Otsib: ".$q;
 			
 			$stmt = $this->connection->prepare("
-			SELECT exercise, sets, repeats, notes, training_time
+			SELECT id, exercise, sets, repeats, notes, training_time
 			FROM exercises
 			WHERE deleted IS NULL
 			AND (exercise LIKE ? OR sets LIKE ? OR repeats LIKE ? OR notes LIKE ? OR training_time LIKE ?)
@@ -281,7 +282,7 @@
 		} else {
 		
 		$stmt = $this->connection->prepare("
-			SELECT exercise, sets, repeats, notes, training_time
+			SELECT id, exercise, sets, repeats, notes, training_time
 			FROM exercises
 			WHERE deleted IS NULL AND user_id = '".$_SESSION["userId"]."'
 			ORDER BY $sort $orderBy");
@@ -289,7 +290,7 @@
 		
 		echo $this->connection->error;
 		
-		$stmt->bind_result($exercise, $sets, $repeats, $notes, $training_time);
+		$stmt->bind_result($id, $exercise, $sets, $repeats, $notes, $training_time);
 		$stmt->execute();
 		
 		
@@ -303,6 +304,7 @@
 			//tekitan objekti
 			$person = new StdClass();
 			
+			$person->id = $id;
 			$person->exercise = $exercise;
 			$person->sets = $sets;
 			$person->repeats = $repeats;
@@ -362,6 +364,18 @@
 		}
 		
 		return $msg;
+	}
+	
+	function delExercise ($exerciseId){
+		
+		$stmt = $this->connection->prepare("UPDATE exercises SET deleted=NOW() WHERE id=? AND user_id = ? AND deleted IS NULL ");
+		
+		$stmt->bind_param("ii", $exerciseId, $_SESSION["userId"]);
+		
+		if($stmt->execute()) {
+			$_SESSION["Del_exercise_message"] = "<p style='color:red;'>HARJUTUS KUSTUTATUD!</p>";
+		} 
+		
 	}
 
 }?>

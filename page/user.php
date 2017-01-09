@@ -112,6 +112,28 @@
 	if ($userData->gender == "male"){
 		$est_gender = "mees";
 	}
+	
+	$exerciseMsg = "";
+	if(isset($_SESSION["Exercise_message"])){
+		$exerciseMsg = $_SESSION["Exercise_message"];
+	
+		unset($_SESSION["Exercise_message"]);
+	}
+	
+	if(isset($_GET["exerciseId"]) && isset($_GET["delete"]) ) {
+		
+		$User->delExercise($_GET["exerciseId"]);
+		header("Location: user.php");
+		exit();
+ 	}
+	
+	$exerciseDelMsg = "";
+	if(isset($_SESSION["Del_exercise_message"])){
+		$exerciseDelMsg = $_SESSION["Del_exercise_message"];
+	
+		unset($_SESSION["Del_exercise_message"]);
+	}
+	
 
 ?>
 <?php require("../header.php"); ?>
@@ -140,6 +162,7 @@
 					<p><a href="editPassword.php">Muuda parooli</a></p>
 					<br>
 
+				<?=$exerciseMsg;?>
 				<h2>Lisa tehtud treening</h2>
 					<p><b>Vali kalendrist kuupäev: </b><?php echo $trainingdate; ?> <?php echo $trainingDateError; ?> </p>
 					<form method="POST"> 
@@ -184,7 +207,7 @@
 			</div>
 		</div>
 
-
+	<?=$exerciseDelMsg;?>
 	<h3>Otsi tehtud treeninguid</h3>
 	<form>
 	<div class="form-group">
@@ -267,6 +290,7 @@
 					</a>
 					</th>";
 			$html .= "<th><font color='white'>Märkmed</font></th>";
+			$html .= "<th></th>";
 		$html .= "</tr>";
 		$html .= "</thead>";
 		
@@ -277,6 +301,7 @@
 				$html .= "<td>".$p->repeats."</td>";
 				$html .= "<td>".$p->training_time."</td>";
 				$html .= "<td>".$p->notes."</td>";
+				$html .= "<td><a class='btn btn-danger btn-sm' href='user.php?exerciseId=".$p->id."&delete=true'><span class='glyphicon glyphicon-trash'></span></a></td>";
 			$html .= "</tr>";	
 		}
 
