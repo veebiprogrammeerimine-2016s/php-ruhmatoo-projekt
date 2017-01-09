@@ -1,28 +1,39 @@
-# TREENI.EE
-**Rühmaliikmed: Mariann Kraav, Karoliina Kullamaa, Elise Pals** 
+#TREENI.EE
+* [Veebileht](http://greeny.cs.tlu.ee/~marikraav/php-ruhmatoo-projekt/page/login.php)
 
-    * suurelt projekti veebirakenduse pilt;
+##Liikmed
+* Mariann Kraav, Karoliina Kullamaa, Elise Pals
 
-**Eesmärk** (3-4 lauset, mis probleemi üritate lahendada) - Veebirakenduse eesmärk on muuta inimesed füüsiliselt aktiivsemaks võimaldades neil treeningpäevikusse oma andmeid salvestada, kaastreenijatega suhelda ja teineteist motiveerida ning soovi korral leida treeningpartner.
-**Kirjeldus** (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta) - Antud veebirakenduse eeskujuks on võetud forums.fitness.ee, kus kasutajad saavad lisada erinevaid spordialaseid teemasid. Meie rakenduse eripäraks on kasutaja enda treeningpäeviku osa, kuhu ta saab sisestada andmeid tehtud treeningute kohta.
+##Eesmärk
+Veebirakenduse eesmärk on muuta inimesed füüsiliselt aktiivsemaks võimaldades neil treeningpäevikusse oma andmeid tehtud treeningute kohta salvestada, foorumis kaastreenijatega suhelda, teineteist motiveerida ning soovi korral leida treeningpartner. 
 
-**Funktsionaalsuse loetelu prioriteedi järjekorras:**
-        * v0.1 Saab teha kasutaja ja sisselogida
-        * v0.2 Saab foorumis näha sisestatud teemasid
-        * v0.3 Saab foorumisse ise sisestada teema
-		* v0.4 Saab enda sisestatud teemat muuta/kustutada
-		* v0.5 Saab enda konto alla sisestada oma treeningandmeid
+##Eeskuju, sihtrühm, eripära
+Antud veebirakenduse eeskujuks on võetud forums.fitness.ee, kus kasutajad saavad lisada erinevaid spordialaseid teemasid. Rakenduse sihtrühmaks on kõikidest vanusegruppidest inimesed, kes soovivad enda füüsilist vormi parandada. Meie rakenduse eripäraks on kasutaja enda treeningpäeviku osa kalendrina, kuhu saab sisestada andmeid tehtud treeningute kohta.
+
+##Funktsionaalsus
+* **Funktsionaalsuse loetelu prioriteedi järjekorras:**
+    *v0.1 Avalehel saab teha luua uue kasutaja ja sisselogida
+    *v0.2 Foorumis on näha teiste kasutajate poolt sisestatud teemasid
+    *v0.3 Kasutaja saab foorumisse ise sisestada teema või teemale vastuse (koos pildiga)
+	*v0.4 Kasutaja saab enda sisestatud teemat muuta/kustutada
+	*v0.5 Treeningpäevikus on võimalus näha kasutajaandmeid ning neid muuta
+	*v0.6 Treeningpäevikusse saab sisestada kalendri abil andmeid tehtud treeningute kohta
+	*v0.7 Tehtud treeningute andmed kuvatakse tabelina
 		
-    * Andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
-    * **kokkuvõte:** mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
+* Andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
 
-
-
-**Veebirakenduse nõuded:**
-    * rakendus on terviklik (täidab mingit funktsiooni ja sellega saab midagi teha);
-    * terve arenduse ajal on kasutatud _git_'i ja _commit_'ide sõnumid annavad edasi tehtud muudatuste sisu; 
-    * kasutusel on vähemalt 6 tabelit;
-    * kood on jaotatud klassidesse;
-    * koodis kasutatud muutujad/tabelid on inglise keeles;
-    * rakendus on piisava funktsionaalsusega ja turvaline;
-    * kõik tiimi liikmed on panustanud rakenduse arendusprotsessi.
+##Kokkuvõte:
+* **Mariann:** 
+	* **Mida õppisid juurde?**
+	* **Mis ebaõnnestus?**
+	* **Mis oli keeruline?**
+	
+* **Elise:**
+	* **Mida õppisid juurde?**
+	* **Mis ebaõnnestus?**
+	* **Mis oli keeruline?**
+	
+* **Karoliina:**
+	* **Mida õppisid juurde?** Õppisin juurde, kuidas töötab foorum ning funktsioonide liikumine selle siseselt; kuidas muuta parooli ning kuidas sisuda omavahel kalender ja kasutaja seistatud andmed; veebirakenduse disaini.
+	* **Mis ebaõnnestus?** Aja planeerimine
+	* **Mis oli keeruline?** Errorite lahendamine ja treeningpäevikusse kalendri lisamine, kuhu kasutaja saaks ka andmeid sisestada.
