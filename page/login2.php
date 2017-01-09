@@ -142,7 +142,8 @@
 
 <header>
 
-<body background="../images/city-wallpaper-18.jpg" />
+<body background="../images/pilt.jpg" />
+
 
 	<nav class="navbar navbar-inverse navbar-static-top">
 	  <div class="container">
@@ -179,7 +180,8 @@
 	</header>
 
 	<body><center>
-		<!--<div class="jumbotron">-->
+	
+		
 			<div class="container">
 				<br><br><br><br>
 				<img src="../images/audify.png"/>
@@ -198,7 +200,7 @@
 				
 				<br><br>
 				
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-1">Register</button>
+				<button type="button" class="button button1" data-toggle="modal" data-target="#modal-1">Register</button>
 				<div class="modal fade" id="modal-1">
 					<div class="modal-dialog modal-md">
 						<div class="modal-content">
@@ -238,7 +240,7 @@
 					</div>
 				</div>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-2">Sign in</button>
+				<button type="button" class="button button2" data-toggle="modal" data-target="#modal-2">Sign in</button>
 				<div class="modal fade" id="modal-2">
 					<div class="modal-dialog modal-sm">
 						<div class="modal-content">
@@ -274,11 +276,141 @@
 				-->
 				</center>
 			</div> 
-		<!--</div>-->
+		
 	</center>
 	
 
 	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
-</html>
+
+ 
+ <style>
+
+  
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 20px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.8s;
+    cursor: pointer;
+}
+
+.button1 {
+    background-color: #4CAF50; 
+    color: black; 
+    border: 2px solid #4CAF50;
+	border-radius: 6px;
+}
+
+.button1:hover {
+    background-color: #6ad187;
+    color: white;
+}
+
+.button2 {
+    background-color: #3565ad; 
+    color: black; 
+    border: 2px solid #3565ad;
+	border-radius: 6px;
+}
+
+.button2:hover {
+    background-color: #6a93d1;
+    color: white;
+}
+
+
+ 
+ </style>
+<footer>
+ 
+ <style>
+ .social:hover {
+      -webkit-transform: scale(0.7);
+      -moz-transform: scale(0.7);
+      -o-transform: scale(0.7);
+  }
+  .social {
+      -webkit-transform: scale(0.7);
+      /* Browser Variations: */
+      
+      -moz-transform: scale(0.7);
+      -o-transform: scale(0.7);
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      -o-transition-duration: 0.3s;
+  }
+ 
+ /*
+     Multicoloured Hover Variations
+ */
+  
+  #social-fb:hover {
+      color: #3B5998;
+  }
+  #social-tw:hover {
+      color: #4099FF;
+  }
+  #social-gp:hover {
+      color: #d34836;
+  }
+  #social-em:hover {
+      color: #f39c12;
+  }
+  
+ 
+ 
+ </style>
+ 
+ <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+ 
+ <br />
+ 
+ <nav class="navbar-xs navbar-inverse navbar-fixed-bottom">
+       <div class="container">
+         <div class="navbar-header">
+           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+ 		  
+         </div>
+ 		
+ 		
+         <div id="navbar" class="collapse navbar-collapse">
+           <ul class="nav navbar-nav">
+ 			<p class="navbar-text">© 2017 Audify Ltd.</p>
+             <li><a href="#about">About</a></li>
+ 			
+ 	
+ 				<!-- // -->
+ 				<div class="navbar-header">
+ 					
+ 						<div class="text-center">
+ 							<br />
+ 								<a href="https://www.facebook.com/audify"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+ 								<a href="https://twitter.com/audify"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+ 								<a href="https://plus.google.com/+Audify"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
+ 								<a href="mailto:info@audify.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+ 						</div>
+ 				</div>
+ 				
+ 				<br />
+             
+           </ul>
+         </div><!--/.nav-collapse -->
+       </div>
+ </nav>
+ 
+ </footer>

@@ -115,14 +115,17 @@
 			{  
 				require('../script/wavesurf.php');
 				foreach($audioData as $c){
+					
 					$html = "<table class='table table-hover table-bordered '>";
 					$html .= "<tr>";
-						$html .= "<td>".$c->caption."</td>"; 
-						$html .= "<td align=right>".$c->email."</td>"; 				
+					$html .= "<td>".$c->caption."</td>"; 
+					$html .= "<td align=right>".$c->email."</td>"; 				
 					$html .= "</tr>";
+					$html .= "</table>";
+					echo $html;	
 				}
-				$html .= "</table>";
-				echo $html;	
+
+				
 				
 			}  
 		?>
@@ -133,6 +136,90 @@
 		<!--</div> -->
 
 </body>
+<footer>
+ 
+ <style>
+ .social:hover {
+      -webkit-transform: scale(0.7);
+      -moz-transform: scale(0.7);
+      -o-transform: scale(0.7);
+  }
+  .social {
+      -webkit-transform: scale(0.7);
+      /* Browser Variations: */
+      
+      -moz-transform: scale(0.7);
+      -o-transform: scale(0.7);
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      -o-transition-duration: 0.3s;
+  }
+ 
+ /*
+     Multicoloured Hover Variations
+ */
+  
+  #social-fb:hover {
+      color: #3B5998;
+  }
+  #social-tw:hover {
+      color: #4099FF;
+  }
+  #social-gp:hover {
+      color: #d34836;
+  }
+  #social-em:hover {
+      color: #f39c12;
+  }
+  
+ 
+ 
+ </style>
+ 
+ <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+ 
+ <br />
+ 
+ <nav class="navbar-xs navbar-inverse navbar-fixed-bottom">
+       <div class="container">
+         <div class="navbar-header">
+           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+ 		  
+         </div>
+ 		
+ 		
+         <div id="navbar" class="collapse navbar-collapse">
+           <ul class="nav navbar-nav">
+ 			<p class="navbar-text">© 2017 Audify Ltd.</p>
+             <li><a href="#about">About</a></li>
+ 			
+ 	
+ 				<!-- // -->
+ 				<div class="navbar-header">
+ 					
+ 						<div class="text-center">
+ 							<br />
+ 								<a href="https://www.facebook.com/audify"><i id="social-fb" class="fa fa-facebook-square fa-3x social"></i></a>
+ 								<a href="https://twitter.com/audify"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
+ 								<a href="https://plus.google.com/+Audify"><i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i></a>
+ 								<a href="mailto:info@audify.com"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
+ 						</div>
+ 				</div>
+ 				
+ 				<br />
+             
+           </ul>
+         </div><!--/.nav-collapse -->
+       </div>
+ </nav>
+ 
+ </footer>
 
 
 

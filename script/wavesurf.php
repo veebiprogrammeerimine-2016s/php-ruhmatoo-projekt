@@ -4,7 +4,7 @@
 <div id="waveform"></div>
 
 <p align="center">
-  <button class="btn btn-primary" onclick="wavesurfer.playPause()">
+  <button class="btn btn-success" onclick="wavesurfer.playPause()">
     <i class="glyphicon glyphicon-play"></i>
     Play
   </button>
