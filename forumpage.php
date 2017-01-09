@@ -36,8 +36,8 @@
 <body>
 	<ul>
 		<li><a class="active1" href="homepage.php">HOME</a></li>
-		<li><a class="active" href="#news">FORUM</a></li>
-		<li><a class="active1" href="#contact">MY ACCOUNT</a></li>
+		<li><a class="active" href="forumpage.php">FORUM</a></li>
+		<li><a class="active1" href="userpage.php">MY ACCOUNT</a></li>
 		<li><a class="active1" href="?logout=1">LOG OUT</a></li>
 	</ul>
 
@@ -48,18 +48,18 @@
 <table class="table1">
 	
 	<td>
-		<form method="POST">
-		<input type="button" value="CREATE NEW POST " class="submit submit2">
+		<form action="post">
+		<input type="button" onclick="location.href='userpages/createnewpost.php';" value="CREATE NEW POST " class="submit submit2">
 		</form>
 	</td>
 	<td>
 		<form method="POST">
-		<input type="button" value="VIEW MY POSTS" class="submit submit2">
+		<input type="button" value="VIEW MY POSTS" class="submit submit2" onclick="location.href='userpages/viewmypost.php';">
 		</form>
 	</td>
 	<td>
 		<form method="POST">
-		<input type="button" value="VIEW MY COMMENTS" class="submit submit2">
+		<input type="button" value="VIEW MY COMMENTS" class="submit submit2" onclick="location.href='userpages/viewmycomments.php';">
 		</form>
 	</td>
 
