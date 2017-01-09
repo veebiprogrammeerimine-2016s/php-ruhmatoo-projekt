@@ -35,10 +35,10 @@ function monthToDate($month)
     if ($month == "oktoober" || $month == "Oktoober") {
         return "10";
     }
-    if ($month == "november") {
+    if ($month == "november" || $month == "November") {
         return "11";
     }
-    if ($month == "detsember") {
+    if ($month == "detsember" || $month == "Detsember") {
         return "12";
     }
 }

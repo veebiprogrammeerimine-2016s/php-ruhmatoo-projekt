@@ -141,7 +141,7 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
         $dayExplode = explode(' ', $div);
         array_shift($dayExplode);
         $dayExplode[0] = str_replace(".", "", $dayExplode[0]);
-        $dayExplode[1] = monthToDate(utf8_encode($dayExplode[1]));
+        $dayExplode[1] = monthToDate($dayExplode[1]);
         $dayFinished = $year . "-" . $dayExplode[1] . "-" . $dayExplode[0];
     } else {
         $spans = $div->find("span");
