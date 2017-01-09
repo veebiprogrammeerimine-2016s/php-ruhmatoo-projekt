@@ -22,7 +22,55 @@ Meie rakenduse eripäraks on kasutaja enda treeningpäeviku osa kalendrina, kuhu
 * v0.6 Treeningpäevikusse saab sisestada kalendri abil andmeid tehtud treeningute kohta
 * v0.7 Tehtud treeningute andmed kuvatakse tabelina
 
-* Andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
+##Andmebaasi skeem loetava pildina + tabelite loomise SQL laused
+
+```
+CREATE TABLE users(
+	id INT(11), NOT NULL, AUTO INCREMENT, PRIMARY KEY
+	username VARCHAR(300), NOT NULL
+	firstname VARCHAR(300), NOT NULL
+	lastname VARCHAR(300), NOT NULL
+	email VARCHAR(255), NOT NULL
+	password VARCHAR(128), NOT NULL
+	gender VARCHAR(20), NOT NULL
+	phonenumber VARCHAR(300), NOT NULL
+	created TIMESTAMP, NOT NULL, DEFAULT CURRENT TIMESTAMP
+);
+
+CREATE TABLE topics(
+	id INT(11), NOT NULL, AUTO INCREMENT, PRIMARY KEY
+	user_id INT(11), NOT NULL
+	username VARCHAR(300), NOT NULL
+	subject VARCHAR(300), NOT NULL
+	content TEXT, NOT NULL
+	category VARCHAR(300), NOT NULL
+	file VARCHAR(500), NOT NULL
+	created TIMESTAMP, NOT NULL, DEFAULT CURRENT TIMESTAMP
+	deleted DATE, NULL
+);
+
+CREATE TABLE replies(
+	id INT(11), NOT NULL, AUTO INCREMENT, PRIMARY KEY
+	user_id INT(11), NOT NULL
+	username VARCHAR(300), NOT NULL
+	topic_id INT(11), NOT NULL
+	content TEXT, NOT NULL
+	file VARCHAR(500), NOT NULL
+	created TIMESTAMP, NOT NULL, DEFAULT CURRENT TIMESTAMP
+	deleted DATE, NULL
+);
+
+CREATE TABLE replies(
+	id INT(11), NOT NULL, AUTO INCREMENT, PRIMARY KEY
+	user_id INT(11), NOT NULL
+	exercise VARCHAR(255), NOT NULL
+	sets VARCHAR(255), NOT NULL
+	repeats VARCHAR(255), NOT NULL
+	notes TEXT, NOT NULL
+	training_time VARCHAR(255), NOT NULL
+	deleted DATE, NULL
+);
+```
 
 ##Kokkuvõte:
 * **Mariann:** 
@@ -36,6 +84,6 @@ Meie rakenduse eripäraks on kasutaja enda treeningpäeviku osa kalendrina, kuhu
 	* **Mis oli keeruline?**
 	
 * **Karoliina:**
-	* **Mida õppisid juurde?** Õppisin juurde, kuidas töötab foorum ning funktsioonide liikumine selle siseselt; kuidas muuta parooli ning kuidas sisuda omavahel kalender ja kasutaja sisestatud andmed; veebirakenduse disaini.
+	* **Mida õppisid juurde?** Õppisin juurde, kuidas töötab foorum ning funktsioonide liikumine selle siseselt; kuidas muuta parooli ning kuidas siduda omavahel kalender ja kasutaja sisestatud andmed; veebirakenduse disaini.
 	* **Mis ebaõnnestus?** Aja planeerimine
 	* **Mis oli keeruline?** Errorite lahendamine ja treeningpäevikusse kalendri lisamine, kuhu kasutaja saaks ka andmeid sisestada.
