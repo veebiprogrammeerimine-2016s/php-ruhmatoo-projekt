@@ -1,6 +1,8 @@
 <?php
 
 require("../functions.php");
+require("../class/Series.class.php");
+require("../class/Picture.class.php");
 
 //kui ei ole kasutaja id'd
 if (!isset($_SESSION["userId"])) {

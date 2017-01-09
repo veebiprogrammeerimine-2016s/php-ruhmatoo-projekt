@@ -2,6 +2,7 @@
     //session_start();
 	require("../functions.php");
 	require("../class/User.class.php");
+	require("../class/Picture.class.php");
 
     // $current_user = $_SESSION['user_username'];
     // $user_username = mysqli_real_escape_string($database,$_REQUEST['user_username']);
