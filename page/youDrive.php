@@ -250,7 +250,7 @@ $Rides = new Rides($mysqli);
 
 										$html .= "<th>
 
-									 Edit ride
+									 Cancel ride
 										</a>
 
 										</th>";
@@ -274,8 +274,8 @@ $Rides = new Rides($mysqli);
 
 
   							<a class='btn' href='edit.php?id=".$r->ride_id."'>
-  							Edit
-  							<span class='glyphicon glyphicon-pencil'></span>
+  							Cancel
+  							<span class='glyphicon glyphicon-trash'></span>
   							</a>
   							</td>";
 

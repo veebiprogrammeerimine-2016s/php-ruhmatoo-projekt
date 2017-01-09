@@ -338,9 +338,18 @@ class Rides {
 
     $stmt->close();
 
-
   }
 
+  function deleteRide($ride_id){
 
+
+      $stmt = $this->connection->prepare("UPDATE cp_rides SET deleted=NOW() WHERE id=? AND deleted IS NULL");
+      $stmt->bind_param("i",$ride_id);
+
+      $stmt->execute();
+
+      $stmt->close();
+
+    }
 }
 ?>
