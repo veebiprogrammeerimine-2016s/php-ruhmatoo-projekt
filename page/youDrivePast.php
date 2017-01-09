@@ -25,12 +25,12 @@ $Rides = new Rides($mysqli);
 		unset($_SESSION["message"]);
 	}
 
-  if ( isset($_POST["getUser"]) &&
-		!empty($_POST["getUser"])
+  if ( isset($_POST["getUserPastRides"]) &&
+		!empty($_POST["getUserPastRides"])
 	  ) {
 
-		echo $_POST["getUser"];
-		$Rides->getUser($Helper->cleaninput($_POST["getUser"]));
+		echo $_POST["getUserPastRides"];
+		$Rides->getUserPastRides($Helper->cleaninput($_POST["getUserPastRides"]));
 
 	}
 
@@ -51,7 +51,7 @@ $Rides = new Rides($mysqli);
 
 	}
 
-  $rides = $Rides->getUser($r, $sort, $order);
+  $rides = $Rides->getUserPastRides($r, $sort, $order);
 
 
 ?>
@@ -66,10 +66,9 @@ $Rides = new Rides($mysqli);
 
 <h2>Driver page</h2>
 
-<h4><a href="user.php"> Back</a></h4>
+<h4><a href="youDrive.php"> Back</a></h4>
 <?=$msg;?>
 
-<h4><a href="youDrivePast.php"> Past rides</a></h4>
 <form>
 	<h2>Search </h2>
 	<div class ="form-group">
@@ -87,7 +86,7 @@ $Rides = new Rides($mysqli);
 	$html = "<div class='col-md-8'>";
 		$html = "<div class='table'>";
 		$html = "<table class='table-striped table-condensed'>";
-		$html .= "<h2>Upcoming rides</h2>";
+		$html .= "<h2>Past rides</h2>";
 
   		$html .= "<tr>";
 			//User ID related
@@ -251,7 +250,7 @@ $Rides = new Rides($mysqli);
 
 										$html .= "<th>
 
-									 Cancel ride
+									 Give feedback
 										</a>
 
 										</th>";
@@ -274,9 +273,9 @@ $Rides = new Rides($mysqli);
           $html .= "<td>
 
 
-  							<a class='btn' href='editRide.php?id=".$r->ride_id."'>
-  							Cancel
-  							<span class='glyphicon glyphicon-trash'></span>
+  							<a class='btn' href='giveFeedback.php?id=".$r->guest_email."'>
+  							Feedback
+  							<span class='glyphicon glyphicon-user'></span>
   							</a>
   							</td>";
 

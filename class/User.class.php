@@ -14,7 +14,7 @@ class User
 
     function signup($email, $password, $name, $surname) {
 
-        $stmt = $this->connection->prepare("INSERT INTO cp_users (email, password, name, surname) VALUE (?, ?, ?, ?)");
+        $stmt = $this->connection->prepare("INSERT INTO cp_users (email, password, name, surname) VALUES (?, ?, ?, ?)");
         echo $this->connection->error;
 
         $stmt->bind_param("ssss", $email, $password, $name, $surname);
@@ -23,7 +23,7 @@ class User
             echo "Success!";
         } else {
             echo "ERROR ".$stmt->error;
-        }
+
 
     }
 
@@ -81,5 +81,18 @@ class User
 
     }
 
+    function userFeedback($user_id, $rating, $feedback) {
+      $stmt = $this->connection->prepare("INSERT INTO cp_feedback (user_id, poster_id, rating, feedback) VALUES (?, ?, ?, ?)");
+      echo $this->connection->error;
+      $stmt->bind_param("iiis", $user_id, $_SESSION["userId"], $rating, $feedback);
+
+      if ( $stmt->execute() ) {
+          echo "Success!";
+      } else {
+          echo "ERROR ".$stmt->error;
+        }
+
+    }
+  }
 }
 ?>
