@@ -90,7 +90,7 @@
 		
 <form method="POST">
 <br><br>
-<br><br>
+
 <form class="form-horizontal">
 		<div class="form-group">
 			<label for="inputDate" class="col-sm-4 control-label">Kuupäev</label>
@@ -99,7 +99,7 @@
 			</div>
 		</div>
 		
-		
+		<br><br>
 		<br><br>
 		 <div class="form-group">
 			<label for="inputFeeling" class="col-sm-4 control-label">Enesetunne</label>
@@ -114,7 +114,7 @@
 			  </datalist>
 			</div>
 		</div>
-
+		<br><br>
 		<br><br>
 		<div class="form-group">
 			<label for="inputNumberofSteps" class="col-sm-4 control-label">Sammude arv</label>
@@ -138,9 +138,10 @@
 
 <?php require ("header.php"); ?>
 <a class="btn btn-success" href="?logout=1" role="button">Logi välja</a>
+
 <div class="col-sm-5 col-md-5">
 
-	<h2><font color="#ff9933">Minu enesetunne ja liikumisaktiivsus</h2></font>
+	<h3><font color="#ff9933">Minu enesetunne ja liikumisaktiivsus</h3></font>
 	
 	<br><br>
  
@@ -178,7 +179,8 @@
 </form>
 
 <a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
-</div>
+<br><br>
+
 <?php require ("footer.php"); ?>
 
 

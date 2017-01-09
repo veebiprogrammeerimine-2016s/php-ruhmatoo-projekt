@@ -108,7 +108,7 @@ if (isset($_POST["loginEmail"]) &&
 		</em>
 
 		<form method="POST">
-		<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class="col-xs-4 col-sm-4 col-md-4">
 		<div class = "row">
 			<h2><font color=#3B341F>	Logi sisse </h2> </font>
 				<div class="input-field col s12">
@@ -135,7 +135,7 @@ if (isset($_POST["loginEmail"]) &&
 <div class="col-xs-6 col-sm-6 col-md-6">
 <h2><font color=#3B341F> Registreeru kasutajaks </h2></font>
 <form method="POST">
-<div class="col-xs-6 col-sm-6 col-md-6">
+<div class="col-xs-3 col-sm-6 col-md-6">
 <div class="row">
 <div class="input-field col s12">
 							<label>E-post</label>
