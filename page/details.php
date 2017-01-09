@@ -36,6 +36,7 @@ if(isset($_GET["id"]) && isset($_GET["get"])){
 
 
 <?php
+$page = "books";
 //html
 require("../header.php");
 

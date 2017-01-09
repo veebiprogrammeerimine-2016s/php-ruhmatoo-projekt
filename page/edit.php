@@ -91,7 +91,7 @@ if(empty($error)){
 
 
 ?>
-<?php $page = "edit"; ?>
+<?php $page = "user"; ?>
 
 <?php
 //HTML

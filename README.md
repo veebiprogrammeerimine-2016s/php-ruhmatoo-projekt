@@ -7,12 +7,23 @@ Karin Rikkinen
 |----|----|
 |![Alt text](image/visitormenu.png)| ![Alt text](image/usermenu.png)|
 
-    * eesmärki (3-4 lauset, mis probleemi üritate lahendada);
-    * kirjeldus (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta);
-    * funktsionaalsuse loetelu prioriteedi järjekorras, nt
-        * v0.1 Saab teha kasutaja ja sisselogida
-        * v0.2 Saab lisada huviala
-        * ...
+## Eesmärk ja kirjeldus
+Antud projekti eesmärgiks oli luua keskkond, kus kasutajad saaksid omavahel raamatuid vahetada, tegemist ei ole ostu-müügi keskkonnaga, küll on aga arveldamiseks virtuaalsed mündid. 
+Registreerinud kasutaja saab liitumise eest 10 münti. Kasutajad saavad ära anda raamatuid, mida enam ei vajata, ühtlasi saavad valida endale raamatuid teiste kasutajate pakutud raamatute hulgast.
+Raamatuid loovutades saab münte, raamatuid saades kulub münte. Iga kasutaja määrab ise, mitu münti(1-10) tema pakutav raamat väärt on.
+
+* Sihtrühm: vanusepiirangut pole
+* Sarnased rakendused: http://bookmooch.com/ , http://www.raamatuvahetus.ee/et/ ...mõlemad rakendused on ideeliselt samad, punktide arvestused on erinevad.
+
+## Funktsionaalsuse loetelu
+* Konto loomine, sisse logimine
+* Raamatute otsimine kategooriate/autori jms põhjal, filtreerimine
+* Konkreetse raamatu detailsem vaade
+* Raamatute lisamine/muutmine/kustutamine
+* Saadud/kulutatud müntide arvestus
+* Süsteemisisene kirjavahetus: kirjade saatmine, saabunud ja saadetud kirjade ülevaade 
+* Tehingute ülevaade
+
 ## Andmebaasi skeem ja tabelite loomise SQL laused
 ![Preview](image/skeem.jpg)
 
@@ -65,6 +76,6 @@ CREATE TABLE project_messages(
 	receiver_deleted VARCHAR(3)
     );
 ```
- * kokkuvõte:** mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
 
-
+## Kokkuvõte
+Õppisin juurde väga palju. Kuna varem polnud ei php-koodi ega ka sql-käskluseid kirjutanud, samuti polnud kasutanud Bootsrapi, Github'i ega andmebaase, siis uusi oskuseid sain kõvasti. Pean enda jaoks kogu projekti õnnestumiseks. Ebaõnnestumistest tooks välja stiili, antud projektis pidasin tähtsamaks nn köögipoolt, CSS jäi teisejärguliseks, eks seda on ka tulemusest näha. Projekti käigus õppisin, et lisaks koodi kirjutamisele, tuleb harjutada ka koodi lugemist, viimast pean enda nõrgemaks küljeks. 
