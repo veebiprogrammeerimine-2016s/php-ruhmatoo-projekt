@@ -1,5 +1,5 @@
 <?php
-class Series{
+class Pictures{
 
     private $connection;
 
