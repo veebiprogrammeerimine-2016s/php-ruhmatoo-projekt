@@ -40,7 +40,16 @@
     <head>
 	<?php require("../header.php"); ?>
 	<br>
-Tere tulemast koduloomade laenutuse lehele <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
+<h3>Tere tulemast Koduloom24 lehele <a href="user.php"><?=$_SESSION["userEmail"];?>!</a></h3><br>
+<p>Koduloom24 lehekülg aitab leida kõigile sobiva kodulooma ajutiseks omamiseks,</p>
+<p>ja mis kõige tähtsam - ajutise kodu nukratele omaniketa koduloomadele Eesti</p>
+<p>erinevatest koduloomade varjupaikadest!</p><br>
+<p>Vajuta menüüribalt "Otsi kuulutust" ja leia sinagi endale ajutine karvane sõber!</p>
+<br>
+<br>
+<br>
+<p>Kõike parimat soovides,</p>
+<p>Koduloom24 tiim</p>
 
 
 
