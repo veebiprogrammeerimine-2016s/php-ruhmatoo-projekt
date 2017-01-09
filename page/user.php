@@ -16,6 +16,12 @@
 		exit();
 	}
 	
+	if (!isset($_GET["m"]) && !isset($_GET["y"])) {
+		
+		header("Location: user.php?m=0&y=0");
+		exit();
+	}
+	
 	//kas ?logout on aadressireal
 	if (isset($_GET["logout"])) {
 		
@@ -112,63 +118,77 @@
 	if ($userData->gender == "male"){
 		$est_gender = "mees";
 	}
+	
+	$exerciseMsg = "";
+	if(isset($_SESSION["Exercise_message"])){
+		$exerciseMsg = $_SESSION["Exercise_message"];
+	
+		unset($_SESSION["Exercise_message"]);
+	}
+	
+	if(isset($_GET["exerciseId"]) && isset($_GET["delete"]) ) {
+		
+		$User->delExercise($_GET["exerciseId"]);
+		header("Location: user.php?m=0&y=0");
+		exit();
+ 	}
+	
+	$exerciseDelMsg = "";
+	if(isset($_SESSION["Del_exercise_message"])){
+		$exerciseDelMsg = $_SESSION["Del_exercise_message"];
+	
+		unset($_SESSION["Del_exercise_message"]);
+	}
+	
 
 ?>
 <?php require("../header.php"); ?>
 <?php require("../CSS.php")?>
 
-<div class "data" style="padding-left:10px;">
-	<div align="center"><h1>Minu treeningpäevik</h1>
+<div class "data" style="padding-left:20px; padding-right:20px">
+	<div align="center"> <h1>Minu treeningpäevik</h1>
 		<p>
 			<b><a href="data.php">&larr; Tagasi foorumisse</a></b><br>
 		</p>
 	</div>
 
-	<div class="user" style="padding-left:20px;padding-right:20px"> 
+	<div class="user" style="padding-left:10px;"> 
 		<div class="row">
-			<div class="col-sm-3 col-md-3">
-				<?=$user_msg;?>
-				<h2>Minu andmed</h2>
-					
-					<p>Eesnimi: <?php echo $userData->firstname;?></p>
-					<p>Perekonnanimi: <?php echo $userData->lastname;?></p>
-					<p>Kasutaja e-post: <?php echo $userData->email;?></p>
-					<p>Sugu: <?php echo $est_gender?></p>
-					<p>Telefoninumber: <?php echo $userData->phonenumber;?></p>
-
-					<p><a class="btn btn-default btn-sm" href="editUser.php"><span class='glyphicon glyphicon-pencil'></span> Muuda andmeid</a></p>
-					<p><a href="editPassword.php">Muuda parooli</a></p>
-					<br>
-
+			
+			<div class="col-sm-3 col-md-3" style="padding-left:3%">
+				<?=$exerciseMsg;?>
+				<?=$exerciseDelMsg;?>
 				<h2>Lisa tehtud treening</h2>
-					<p><b>Vali kalendrist kuupäev: </b><?php echo $trainingdate; ?> <?php echo $trainingDateError; ?> </p>
+					<p><b>Vali kalendrist kuupäev: <span style="color:green;"><?php echo $trainingdate; ?> </span></b><?php echo $trainingDateError; ?> </p>
 					<form method="POST"> 
 					<label>Treeningharjutus</label><br>
 								
-							<input class="form-control" type="text" name="exercise" value="<?=$exercise;?>"> <?php echo $exerciseError;?> <br>
+							<input class="form-control input-sm" type="text" name="exercise" value="<?=$exercise;?>"> <?php echo $exerciseError;?> <br>
 						
 					<label>Seeria</label><br>
 							
-							<input class="form-control" type="text" name="sets" value="<?=$sets;?>">  <br>
+							<input class="form-control input-sm" type="text" name="sets" value="<?=$sets;?>">  <br>
 							
 					<label>Kordus</label><br>
 							
-							<input class="form-control" type="text" name="repeats" value="<?=$repeats;?>"> <br>
+							<input class="form-control input-sm" type="text" name="repeats" value="<?=$repeats;?>"> <br>
+							
+					
+							
 						
 					<label>Märkmed</label><br>
 					
-					<textarea class="form-control" cols="40" rows="5" name="notes" <?=$newNotes= ""; if (isset($_POST['notes'])) { $newNotes = $_POST['notes'];}?>><?php echo $newNotes; ?></textarea> <br>
+					<textarea class="form-control input-sm" cols="40" rows="2" name="notes" <?=$newNotes= ""; if (isset($_POST['notes'])) { $newNotes = $_POST['notes'];}?>><?php echo $newNotes; ?></textarea> <br>
 					
 					<input type="submit"  class="btn btn-success" value="Salvesta">	
 					</form>
 					<br>
 			</div>
 		
-
-			<div class="col-sm-6 col-md-6" align="left">
-					<br>
-					<head></head>
-					<body>
+			<div class="col-sm-7 col-md-5" style="padding-left:3%; padding-top:3%;">
+				<br>
+				<head></head>
+				<body>
 					<?php
 					error_reporting(E_ALL ^ E_WARNING);
 					require_once('../calender/lib/donatj/SimpleCalendar.php');
@@ -180,25 +200,40 @@
 					$calendar->addDailyHtml( 'Täna', 'today');
 					$calendar->show(true);
 					?>
-					</body>
+				</body>
+			</div>
+			
+			<div class="col-sm-7 col-md-4" style="padding-right:4%;">
+				<?=$user_msg;?>
+				<h2>Minu andmed</h2>
+					
+					<p>Eesnimi: <?php echo $userData->firstname;?></p>
+					<p>Perekonnanimi: <?php echo $userData->lastname;?></p>
+					<p>Kasutaja e-post: <?php echo $userData->email;?></p>
+					<p>Sugu: <?php echo $est_gender?></p>
+					<p>Telefoninumber: <?php echo $userData->phonenumber;?></p>
+					
+					<p><a class="btn btn-default btn-sm" href="editUser.php"><span class='glyphicon glyphicon-pencil'></span> Muuda andmeid</a></p>
+					<p><a href="editPassword.php">Muuda parooli</a></p>
+					<br><br><br>
+						<h3>Otsi tehtud treeninguid</h3>
+					<form>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-sm-8">
+								<input type="search" class="form-control input-sm" name="q" value="<?=$q;?>">
+							</div> 
+							<div class="col-sm-4">
+								<input type="submit"  class="form-control btn-md" value="Otsi">
+							</div> 
+						</div>
+					</div>
+					</form>
+					<br>
 			</div>
 		</div>
-
-
-	<h3>Otsi tehtud treeninguid</h3>
-	<form>
-	<div class="form-group">
-		<div class="row">
-			<div class="col-sm-3">
-				<input type="search" class="form-control input-sm" name="q" value="<?=$q;?>">
-			</div> 
-			<div class="col-sm-2">
-				<input type="submit"  class="form-control btn-sm" value="Otsi harjutust">
-			</div> 
-		</div>
 	</div>
-	</form>
-	<br>
+
 
 	<?php
 
@@ -247,26 +282,27 @@
 
 		$html .= "<thead class='exercises_head'>";
 			$html .= "<th>
-					<a href='?q=".$q."&sort=exercise&order=".$exerciseOrder."'><font color='white'><u>
+					<a href='?m=0&y=0&q=".$q."&sort=exercise&order=".$exerciseOrder."'><font color='white'><u>
 						Treeningharjutus".$exerciseArrow."</u></font>
 					</a>
 					</th>";
 			$html .= "<th>
-					<a href='?q=".$q."&sort=sets&order=".$setsOrder."'><font color='white'><u>
+					<a href='?m=0&y=0&q=".$q."&sort=sets&order=".$setsOrder."'><font color='white'><u>
 						Seeria ".$setsArrow."</u></font>
 					</a>	
 					</th>";
 			$html .= "<th>
-					<a href='?q=".$q."&sort=repeats&order=".$repeatsOrder."'><font color='white'><u>
+					<a href='?m=0&y=0&q=".$q."&sort=repeats&order=".$repeatsOrder."'><font color='white'><u>
 						Kordused ".$repeatsArrow."</u></font>
 					</a>
 					</th>";
 			$html .= "<th>
-					<a href='?q=".$q."&sort=training_time&order=".$createdOrder."'><font color='white'><u>
+					<a href='?m=0&y=0&q=".$q."&sort=training_time&order=".$createdOrder."'><font color='white'><u>
 						Kuupäev	".$createdArrow."</u></font>
 					</a>
 					</th>";
 			$html .= "<th><font color='white'>Märkmed</font></th>";
+			$html .= "<th></th>";
 		$html .= "</tr>";
 		$html .= "</thead>";
 		
@@ -277,13 +313,13 @@
 				$html .= "<td>".$p->repeats."</td>";
 				$html .= "<td>".$p->training_time."</td>";
 				$html .= "<td>".$p->notes."</td>";
+				$html .= "<td><a class='btn btn-danger btn-sm' href='user.php?m=0&y=0&exerciseId=".$p->id."&delete=true'><span class='glyphicon glyphicon-trash'></span></a></td>";
 			$html .= "</tr>";	
 		}
 
 		$html .= "</table>";
 		echo $html;
 	?>
-	</div>
 </div>
 
 <?php require("../footer.php"); ?>

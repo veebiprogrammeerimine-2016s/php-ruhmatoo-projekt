@@ -10,6 +10,15 @@
 	
 	require("../CSS.php");
 	
+	// kui on juba sisse loginud siis suunan data lehele
+	if (isset($_SESSION["userId"])){
+		
+		//suunan sisselogimise lehele
+		header("Location: data.php");
+		exit();
+		
+	}
+	
 	//var_dump - näitab kõike, mis muutuja sees
 	//var_dump($_GET);
 	//echo "<br>";

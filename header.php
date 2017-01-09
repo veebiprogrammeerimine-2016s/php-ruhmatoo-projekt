@@ -44,7 +44,7 @@
 					</li>
 					<li class="active2">
 						<?php 
-						echo "<a href='user.php'><font color='#444f45'><b>".$username."</b></font></a>";
+						echo "<a href='user.php?m=0&y=0'><font color='#444f45'><b>".$username."</b></font></a>";
 						?>
 					</li>
 					<li class="active3">

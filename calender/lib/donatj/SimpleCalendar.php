@@ -158,7 +158,7 @@ class SimpleCalendar {
 		$prev = 'user.php?'. implode('&amp;', $prev);
 		
 		
-		$out = '<b><a href="'.$prev.'">previous</a><font size="4">'.$getmonth.' '.$getyear.'</font><a href="'. $next .'">next</a></b>';
+		$out = '<b><a href="'.$prev.'"><span class= "glyphicon glyphicon-arrow-left style="font-size: 250%""></span>Eelmine kuu</a><font size="4"> &#8194'.$getmonth.' '.$getyear.' &#8194 </font><a href="'. $next .'">Järgmine kuu <span class= "glyphicon glyphicon-arrow-right style="font-size: 250%""></span></a></b>';
 		$out .= '<br>';
 		$out .= '<table cellpadding="0" cellspacing="0" class="SimpleCalendar"><thead><tr>';
 
@@ -182,7 +182,7 @@ class SimpleCalendar {
 
 			$datetime = mktime(0, 0, 1, $this->now['mon'], $i, $this->now['year']);
 
-			$out .= '<time datetime="' . date('Y-m-d', $datetime) . '"> <a href="user.php?date='.$i.'&month='.$getmonth.'&year='.$getyear.'" style="text-decoration:none"><font size="4">' . $i . '</font></a></time>';
+			$out .= '<time datetime="' . date('Y-m-d', $datetime) . '"> <a href="user.php?m='.$this->month.'&y='.$this->year.'&date='.$i.'&month='.$getmonth.'&year='.$getyear.'" style="text-decoration:none"><font size="4">' . $i . '</font></a></time>';
 
 			$dHtml_arr = false;
 			if( isset($this->daily_html[$this->now['year']][$this->now['mon']][$i]) ) {
