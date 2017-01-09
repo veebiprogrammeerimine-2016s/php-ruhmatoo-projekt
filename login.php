@@ -140,15 +140,11 @@
 				
 				<form method="POST">
 				
-					<input name="loginEmail" placeholder="e-mail" value="<?=$loginEmail;?>" type="email"> <?php echo $loginEmailError; ?>
+					<div class="inputBox" ><input name="loginEmail" placeholder="e-mail" value="<?=$loginEmail;?>" type="email" class="loginPageInput" > <?php echo $loginEmailError; ?></div>
 					
-					<br><br>
+					<div class="inputBox" ><input name="loginPassword" placeholder="Parool" type="password" class="loginPageInput" > <?php echo $loginPasswordError; ?></div>
 					
-					<input name="loginPassword" placeholder="Parool" type="password"> <?php echo $loginPasswordError; ?>
-					
-					<br><br>
-					
-					<input type="submit" value="Logi sisse">
+					<input type="submit" value="Logi sisse" >
 				
 				</form>
 
@@ -164,34 +160,36 @@
 
 				<form method="POST">
 				
-					<input name="signupEmail" placeholder="e-mail" value="<?=$signupEmail;?>" type="email"> <?php echo $signupEmailError; ?>
-					<br><br>
+					<div class="inputBox" ><input name="signupEmail" placeholder="e-mail" value="<?=$signupEmail;?>" type="email" class="loginPageInput" > <?php echo $signupEmailError; ?></div>
 					
-					<input name="signupPassword" placeholder="Parool" type="password"> <?php echo $signupPasswordError; ?>
-					<br><br>
+					<div class="inputBox" ><input name="signupPassword" placeholder="Parool" type="password" class="loginPageInput" > <?php echo $signupPasswordError; ?></div>
 					
-					<input name="firstName" placeholder="eesnimi" value="<?=$firstName;?>" type="text">
-					<br><br>
+					<div class="inputBox" ><input name="firstName" placeholder="eesnimi" value="<?=$firstName;?>" type="text" class="loginPageInput" ></div>
 					
-					<input name="surname" placeholder="perekonnanimi" value="<?=$surname;?>" type="text">
-					<br><br>
+					<div class="inputBox" ><input name="surname" placeholder="perekonnanimi" value="<?=$surname;?>" type="text" class="loginPageInput" ></div>
 					
+					<div class="radioInputs" >
 
-					<?php if ($gender == "male") { ?>
-						<input type="radio" name="gender" value="male" checked> Mees<br>
-					<?php } else { ?>
-						<input type="radio" name="gender" value="male" > Mees<br>
-					<?php } ?>
-					<?php if ($gender == "female") { ?>
-						<input type="radio" name="gender" value="female" checked> Naine<br>
-					<?php } else { ?>
-						<input type="radio" name="gender" value="female" > Naine<br>
-					<?php } ?>
-					<?php if ($gender == "private") { ?>
-						<input type="radio" name="gender" value="private" checked> Ei avalda<br>
-					<?php } else { ?>
-						<input type="radio" name="gender" value="private" > Ei avalda<br>
-					<?php } ?>
+						<?php if ($gender == "male") { ?>
+							<input type="radio" name="gender" value="male" checked> Mees<br>
+						<?php } else { ?>
+							<input type="radio" name="gender" value="male" > Mees<br>
+						<?php } ?>
+						
+						<?php if ($gender == "female") { ?>
+							<input type="radio" name="gender" value="female" checked> Naine<br>
+						<?php } else { ?>
+							<input type="radio" name="gender" value="female" > Naine<br>
+						<?php } ?>
+						
+						<?php if ($gender == "private") { ?>
+							<input type="radio" name="gender" value="private" checked> Ei avalda<br>
+						<?php } else { ?>
+							<input type="radio" name="gender" value="private" > Ei avalda<br>
+						<?php } ?>
+					
+					</div>
+					
 					<br><br>
 
 					<input type="submit" value="Loo kasutaja">

@@ -34,7 +34,7 @@
 	
 	<body>
 		<header>
-			<h1>WasteChase kodune prooviversioon</h1>
+			<h1>WasteChase</h1>
 			<p> Chasing your Spending</p>
 		</header>
 		

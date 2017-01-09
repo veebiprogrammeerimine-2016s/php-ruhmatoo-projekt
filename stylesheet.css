@@ -29,6 +29,30 @@ header {
 	padding: 25px;
 }
 
+.loginPageInput {
+	display: inline-block;
+	float: left;
+	width: 160px;
+	margin-left: 350px;
+	margin-right: 5px;
+}
+
+.inputBox {
+	text-align: left;
+	height: 40px;
+}
+
+.radioInputs {
+	text-align: left;
+}
+
+input[type=radio] {
+	display: inline-block;
+	float: left;
+	margin-left: 390px;
+	margin-right: 5px;	
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -44,6 +68,10 @@ li {
 
 #logout {
 	float: right;
+}
+
+#logout > a:hover {
+	color: #f51414;
 }
 
 li a {
