@@ -36,4 +36,26 @@ function getSeriesData() {
 	}
 
 }
+
+function addSeriesToDb ($userid, $series){
+
+    $database = "if16_ege";
+    $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+
+    $stmt = $mysqli->prepare("INSERT INTO user_tv_shows (userid, tv_show) VALUES (?, ?)");
+    echo $mysqli->error;
+
+    $stmt->bind_param("is", $userid, $series);
+
+    if ($stmt->execute()) {
+        echo "Saved!";
+    } else {
+        echo "ERROR " . $stmt->error;
+    }
+
+    $stmt->close();
+    $mysqli->close();
+
+}
+
 ?>
