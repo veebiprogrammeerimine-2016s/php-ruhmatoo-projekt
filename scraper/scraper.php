@@ -148,7 +148,7 @@ foreach ($html->find('div#mASIO')[0]->children() as $div) {
         $spans = $div->find("span");
         if (count($spans) > 0) {
             $lessonTime = $spans[0]->innertext;
-            $lessonTime = explode("-", $time);
+            $lessonTime = explode("-", $lessonTime);
             $timeStart = $lessonTime[0];
             $timeEnd = $lessonTime[1];
             $timeStart = $dayFinished . "T" . $timeStart . ":00+02:00";
