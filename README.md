@@ -14,6 +14,8 @@ Sotsiaalne majanduslik staatus: põhiharidus - kõrgharidus
 
 Muu: Stabiilne sissetulek
 
+Projekti veebirakenduse pilt: http://puu.sh/tgW9e/c3fd2a0556.jpg
+
 LEHED:
 	Sisselogimine
 		- email, eesnimi, perekonnanimi, parool
@@ -47,7 +49,8 @@ Veebilehe koostamiseks kasutasime kuute andmebaasi tabelit:
 
 KOKKUVÕTE:
 	- Cleven
-	- Henri
+	- Henri - Sain rohkem aimu ja kätt siluda nii funktsioonide kui ka kujundamisega. Õppisin rohkem tähele panema vigu, mis on kahe silma vahele jäänud. Grupitööd tehes, sain uusi teadmisi grupikaaslastelt, mida mul varem polnud.
+	Keeruliseks osutas peast funktsiooni loomine ja siis selle realiseerimine. 
 	- Tanel - Õppisin juurde nii kujunduse kui ka funktsioonide koostamist.
 Töö koostamise käigus jäin tihti hätta ning sain otsida internetist uusi lahendusi, mis mind õpetasid edaspidi vigu vältima.
 
