@@ -117,7 +117,7 @@
 	
 ?>
 <!DOCTYPE html>
-<meta http-equiv="Content-Type" content="text/html; charset=ANSI">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </html>
 <html lang="en">
 <head>
@@ -130,32 +130,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {height: 894px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-	  background-color: #000000;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #880000;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height: auto;} 
-    }
-  </style>
+<head>
+<link rel="stylesheet" type="text/css" href="../style/navigation.css">
+</head>
 </head>
 <div class="container-fluid">
   <div class="row content">
@@ -173,16 +150,6 @@
         <li><a style="color:red;"href="#section2">About Me</a></li>
 	<div>
 	</div>
-<script>
-.panel-default {
-    border-color: #FF934F;
-  }
-.panel-default > .panel-heading {
-     color:#fff;
-     background-color:#FF934F;
-     border-color:#ff934f;
-}
-</script>
 <div class="panel-group" id="accordion">
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -195,7 +162,6 @@
         <div id="collapse1" class="panel-collapse collapse">
       <ul class="list-group">
         <li class="list-group-item">
-		
 		<html>
 	<body>
 		<form method="POST">
@@ -460,13 +426,9 @@ function openTab(evt, tabName) {
 </div>
 </div>
 
-<footer class="container-fluid">
-  <p>Copyright © Shazza Mate</p>
-<script type="text/javascript">
-var d = new Date()
-document.write(d.getFullYear())
-</script>
-</footer>
+<?php
+require("../page/footer.php");
+?>
 
 </body>
 </html>

@@ -63,7 +63,7 @@
 ?>
 
 <!DOCTYPE html>
-<meta http-equiv="Content-Type" content="text/html; charset=ANSI">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </html>
 <html lang="en">
 <head>
@@ -76,29 +76,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {height: 894px}
-    
-    .sidenav {
-	  background-color: #000000;
-      height: 100%;
-    }
-    
-    footer {
-      background-color: #880000;
-      color: white;
-      padding: 15px;
-    }
-    
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height: auto;} 
-    }
-  </style>
+<head>
+<link rel="stylesheet" type="text/css" href="../style/navigation.css">
+</head>
 </head>
 <div class="container-fluid">
   <div class="row content">
@@ -113,7 +93,7 @@
         <li>
 		<a onclick="location.href = 'login.php';" style="color:red;" href="#section1";>Home</a>
 		</li>
-        <li><a style="color:red;"href="#section2">About Me</a></li>
+        <li><a onclick="location.href = 'AboutMe.php';" style="color:red;"href="#section2">About Me</a></li>
 	<div>
 	</div>
 		
@@ -147,51 +127,9 @@
     <div class="col-sm-9">
 </ul>
 <!-- Original tabs START -->
-<style>
-body {font-family: "Lato", sans-serif;}
-
-ul.tab {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid #B10000;
-	background-color:#FF0000;
-}
-
-/* Float the list items side by side */
-ul.tab li {float: left;}
-
-/* Style the links inside the list items */
-ul.tab li a {
-	background-color:#FF0000;
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 17px;
-}
-
-/* Change background color of links on hover */
-ul.tab li a:hover {
-    background-color: #A20000;
-}
-
-/* Create an active/current tablink class */
-ul.tab li a:focus, .active {
-    background-color: #880000;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #B10000;
-    border-top: none;
-}
-</style>
+<head>
+<link rel="stylesheet" type="text/css" href="../style/tabs.css">
+</head>
 <body>
 <ul class="tab">
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'RECENT')">MOST RECENT</a></li>
@@ -420,13 +358,9 @@ function openTab(evt, cityName) {
 </div>
 </div>
 
-<footer class="container-fluid">
-  <p>Copyright © Shazza Mate</p>
-<script type="text/javascript">
-var d = new Date()
-document.write(d.getFullYear())
-</script>
-</footer>
+<?php
+require("../page/footer.php");
+?>
 
 </body>
 </html>
