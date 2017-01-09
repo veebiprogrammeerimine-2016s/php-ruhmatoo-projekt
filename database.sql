@@ -13,14 +13,14 @@ create table users (
   email varchar(128),
   password varchar(128),
   type varchar(6),
-  date_created timestamp(),
-  date_deleted timestamp(),
-  foreign key (type) references usertypes(values)
+  date_created datetime,
+  date_deleted datetime,
+  foreign key (type) references usertypes(type)
 );
 
 create table categories (
   id int not null auto_increment primary key,
-  category varchar(255) not null,
+  category varchar(255) not null
 );
 
 create table tags (
@@ -33,8 +33,8 @@ create table posts (
   title varchar(255),
   content text,
   author int,
-  date_added timestamp(),
-  date_removed timestamp(),
+  date_added datetime,
+  date_removed datetime,
   foreign key (author) references users (id)
 );
 
@@ -43,8 +43,8 @@ create table comments (
   author int,
   comment text,
   post int,
-  date_added timestamp(),
-  date_removed timestamp(),
+  date_added datetime,
+  date_removed datetime,
   foreign key (author) references users (id),
   foreign key (post) references posts (id)
 );
