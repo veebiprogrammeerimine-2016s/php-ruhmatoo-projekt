@@ -24,38 +24,59 @@
 		exit();
 	}
 	
-	if (	isset($_POST["firstname"]) &&
-			isset($_POST["lastname"]) &&
-			isset($_POST["notebook"]) &&
+	if (	isset($_POST["paid_warranty"]) &&
 			isset($_POST["serialnumber"]) &&
-			isset($_POST["priority"]) &&
-			//isset($_POST["note"]) &&
-			//isset($_POST["color"]) &&
-			isset($_POST["comment"]) &&
-			
-			!empty($_POST["firstname"]) &&
-			!empty($_POST["lastname"]) &&
-			!empty($_POST["notebook"]) &&
+			isset($_POST["device"]) &&
+			isset($_POST["manufacturer"]) &&
+			isset($_POST["model"]) &&
+			isset($_POST["date_of_purchase"]) &&
+			isset($_POST["first_lastname"]) &&
+			isset($_POST["country"]) &&
+			isset($_POST["city"]) &&
+			isset($_POST["address"]) &&
+			isset($_POST["postcode"]) &&
+			isset($_POST["email"]) &&
+			isset($_POST["number"]) &&
+			isset($_POST["problem"]) &&
+			isset($_POST["add_info"]) &&
+				
+			!empty($_POST["paid_warranty"]) &&
 			!empty($_POST["serialnumber"]) &&
-			!empty($_POST["priority"]) &&
-			//!empty($_POST["note"]) &&
-			//!empty($_POST["color"]) &&
-			!empty($_POST["comment"])  
+			!empty($_POST["device"]) &&
+			!empty($_POST["manufacturer"]) &&
+			!empty($_POST["model"]) &&
+			!empty($_POST["date_of_purchase"]) &&
+			!empty($_POST["first_lastname"]) &&
+			!empty($_POST["country"]) &&
+			!empty($_POST["city"]) &&
+			!empty($_POST["address"]) &&
+			!empty($_POST["postcode"]) &&
+			!empty($_POST["email"]) &&
+			!empty($_POST["number"]) &&
+			!empty($_POST["problem"]) &&
+			!empty($_POST["add_info"])
 	
 	) {
-		$firstname = $Helper->cleanInput($_POST["firstname"]);
-		$lastname = $Helper->cleanInput($_POST["lastname"]);
-		$notebook = $Helper->cleanInput($_POST["notebook"]);
+		$paid_warranty = $Helper->cleanInput($_POST["paid_warranty"]);
 		$serialnumber = $Helper->cleanInput($_POST["serialnumber"]);
-		$priority = $Helper->cleanInput($_POST["priority"]);
-		//$note = $Helper->cleanInput($_POST["note"]);
-		//$color = $Helper->cleanInput($_POST["color"]);
-		$comment = $Helper->cleanInput($_POST["comment"]);
-		$Note->saveNote($firstname,$lastname,$notebook,$serialnumber,$priority,$comment);
-		
+		$device = $Helper->cleanInput($_POST["device"]);
+		$manufacturer = $Helper->cleanInput($_POST["manufacturer"]);
+		$model = $Helper->cleanInput($_POST["model"]);
+		$date_of_purchase = $Helper->cleanInput($_POST["date_of_purchase"]);
+		$first_lastname = $Helper->cleanInput($_POST["first_lastname"]);
+		$country = $Helper->cleanInput($_POST["country"]);
+		$city = $Helper->cleanInput($_POST["city"]);
+		$address = $Helper->cleanInput($_POST["address"]);
+		$postcode = $Helper->cleanInput($_POST["postcode"]);
+		$email = $Helper->cleanInput($_POST["email"]);
+		$number = $Helper->cleanInput($_POST["number"]);
+		$problem = $Helper->cleanInput($_POST["problem"]);
+		$add_info = $Helper->cleanInput($_POST["add_info"]);
+		$Note->saveNote($paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info);
+
 		}
 		
-	$firstnameError = "";
+	/*$firstnameError = "";
 	$firstname = "";
 	
 	//kas on üldse olemas
@@ -107,7 +128,7 @@
 		}
 		
 	}	
-	
+	*/
 	
 	$q = "";
 	
@@ -126,11 +147,12 @@
 	}
 	
 	
-	$notes = $Note->getAllNotes($q, $sort, $order);
+	$notes = $Note->getAllNotes($q, $sort, $order); 
 	
 	//echo "<pre>";
 	//var_dump($notes);
 	//echo "</pre>";
+	
 ?>
 <?php require("../header.php"); ?>
 
@@ -143,25 +165,31 @@
 		Welcome, <a href="user.php"><?=$_SESSION["userEmail"];?></a>!
 		<a href="?logout=1">Log out</a>
 	</p>
-	<h2>Enter the information</h2>
+	<h2>Device information</h2>
 
 	<form method="POST">
-				
+			<div class ="for-group">
+			<label><b>Paid/warranty</b></label>
+			<select class ="form-control" name="notebook">
+				<option value="warranty">Warranty</option>
+				<option value="paid">Paid</option>
+			</select>
+			
 			<br>
+			
+			<label><b>Serialnumber</b></label>
 			<div class="form-group">
-			<label><b>Name<b></label>
-			<input class="form-control" name="firstname" type="text" value="<?=$firstname;?>" > <?php echo $firstnameError; ?>
+			<input class="form-control" name="serialnumber" type="text">
 			
-			<br><br>
+			<br>
 			
-			<label><b>Lastname</b></label>
-			 <br>
-			 <div class="form-group">
-			 <input class="form-control" name="lastname" type="text" value="<?=$lastname;?>" > <?php echo $lastnameError; ?>
+			<div class="form-group">
+			<label><b>Device<b></label>
+			<input class="form-control" name="device" type="text" >
 			
-			<br><br>
+			<br>
 			
-			<label><b>PC</b></label>
+			<label><b>Manufacturer</b></label>
 			
 			<br>
 			<div class="form-group">
@@ -172,59 +200,125 @@
 				<option value="lenovo">Lenovo</option>
 			</select>
 			
-			<br><br>
+			<br>
 			
-			<label><b>Serialnumber</b></label>
 			<div class="form-group">
-			<input class="form-control" name="serialnumber" type="text" value="<?=$serialnumber;?>" > <?php echo $serialnumberError; ?>
-			
-			<br><br>
-			
-			<label><b>Priority</b></label>
+			<label><b>Model<b></label>
+			<input class="form-control" name="model" type="text">
 			
 			<br>
+			
 			<div class="form-group">
-			<select class="form-control" name="priority">
-				<option value="high">High</option>
-				<option value="normal">Normal</option>
-				<option value="low">Low</option>
-			</select>
-			
-			<br><br>
-			
-			<!--<label>Notes</label><br>
+			<label><b>Date of purchase<b></label>
+			<input class="form-control" name="date_of_purchase" type="date">
+					
+
+	</form>
+						</div>
+					</div>	
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+	
+		<div class="col-sm-4 col-md-3">
+	
+			<h2>Contacts</h2>
+			<p style="color:red;"></p>
+			<form method="POST">
+				
+			<label>First- and lastname</label><br>
+				
 			<div class="form-group">
-			<input class="form-control" name="note" type="text">
+				<input class="form-control" name="first_lastname" type="text">
+			</div>
+				
+			<br>
+				
+			<label>Country</label><br>
+				
+			<div class="form-group">
+				<input class="form-control" name="country" type="text">
+			</div>
+				
+			<br>
+				
+			<label>City</label>
+			<div class="form-group">
+				<input class="form-control" name="city" type="text">
+			</div>
 			
-			<br><br>
+			<label>Address</label>
+			<div class="form-group">
+				<input class="form-control" name="address" type="text">
+			</div>
 			
+			<label>Postcode</label>
+			<div class="form-group">	
+				<input class="form-control" name="postcode" type="text">
+			</div>
 			
-			<label>Color</label><br>
-			<input name="color" type="color">
-			-->			
-			<br><br>
+			<label>E-mail</label>
+			<div class="form-group">	
+				<input class="form-control" name="email" type="text">
+			</div>
 			
-			<h3>Problem description:</h3>
+			<label>Phone number</label>
+			<div class="form-group">	
+				<input class="form-control" name="number" type="text">
+			</div>
+			
+			</form>
+				</div>
+			<div class="col-sm-4 col-md-3 col-sm-offset-4 col-md-offset-3"> 
+		</div>	
+	</div>		
+</div>	
+
+<div class="container">
+	<div class="row">
+	
+		<div class="col-sm-4 col-md-3">
+	
+			<h2>Repair</h2>
+			<p style="color:red;"></p>
+			<form method="POST">
+				
+			<label>Problem description:</label>
 			
 			<div class="form-group">
 			<textarea class="form-control" name="comment" rows="5" cols="40"> </textarea>
 			</div>
-			<br> <br>
-				
-					<input class="btn btn-primary btn-sm hidden-xs" type="submit" value="Register">
-					<input class="btn btn-primary btn-sm btn-block visible-xs-block" type="submit" value="Register">
-
-				</form>
-				</div>
-				<div class="col-sm-4 col-md-3 col-sm-offset-4 col-md-offset-3">
+			
+			<br>
+			
+			<label>Additional information</label>
+			
+			<div class="form-group">
+			<textarea class="form-control" name="comment" rows="5" cols="40"> </textarea>
 			</div>
-	</div>	</div>
-</div>	
+				
+			</form>
+		</div>
+		<input class="btn btn-primary btn-sm hidden-xs" type="submit" value="Register">
+		<input class="btn btn-primary btn-sm btn-block visible-xs-block" type="submit" value="Register">
+	 <div class="col-sm-4 col-md-3 col-sm-offset-4 col-md-offset-3"></div>
+	 
+					 
+   </div>
+</div>
 
-<h2>Search</h2>
+				
+<!--
 <div class="container">
 	<div class="row">
 		<div class="col-sm-3 col-md-4">
+		<h2>Search</h2>
 		<form>
 			<div class="form-group">
 			<input class="form-control" type="search" name="q" value="<?=$q;?>">
@@ -239,7 +333,7 @@
 		</div>
 	</div>
 </div>
-
+-->
 <?php 
 	//iga liikme kohta massiivis
 	/*foreach ($notes as $n) {
@@ -255,7 +349,7 @@
 ?>
 
 
-<h2 style="clear:both;">Information</h2>
+<!--<h2 style="clear:both;">Information</h2>
 	<div class="col-sm-4 col-md-3">
 </div>
 		
@@ -281,39 +375,6 @@
 						</a>
 					</th>";
 			
-			/*$orderNote = "ASC";
-			
-			if (isset($_GET["order"]) && 
-				$_GET["order"] == "ASC" && 
-				$_GET["sort"] == "note" ){
-				
-				$orderNote = "DESC";
-			}
-		
-			$html .= "<th>
-			
-						<a href='?q=".$q."&sort=note&order=".$orderNote."'>
-							Märkus
-						</a>
-					</th>";  
-						
-			
-			
-			$orderColor = "ASC";
-			
-			if (isset($_GET["order"]) && 
-				$_GET["order"] == "ASC" && 
-				$_GET["sort"] == "color" ){
-				
-				$orderColor = "DESC";
-			}
-		
-			$html .= "<th>
-			
-						<a href='?q=".$q."&sort=color&order=".$orderColor."'>
-							Värv
-						</a>
-					</th>"; */
 				
 		$html .= "</tr>";
 			$html .= "<th>id";
@@ -331,8 +392,6 @@
 			$html .= "<td>".$note->notebook."</td>";
 			$html .= "<td>".$note->serialnumber."</td>";
 			$html .= "<td>".$note->priority."</td>";
-			//$html .= "<td>".$note->note."</td>";
-			//$html .= "<td>".$note->noteColor."</td>";
 			$html .= "<td>".$note->comment."</td>";
 			$html .= "<td><a href='edit.php?id=".$note->id."'> <span class='glyphicon glyphicon-pencil'><span></a></td>";
 		$html .= "</tr>";
@@ -342,4 +401,6 @@
 	
 	echo $html;
 ?>
+
+-->
 <?php require("../footer.php"); ?>

@@ -148,7 +148,7 @@
 			
 			</form>
 		</div>
-		<div class="col-sm-4 col-md-3 col-sm-offset-4 col-md-offset-3">
+		<div class="col-sm-4 col-md-3 col-sm-offset-4 col-md-offset-3"> </div>
 		
 		
 	<div class="container">

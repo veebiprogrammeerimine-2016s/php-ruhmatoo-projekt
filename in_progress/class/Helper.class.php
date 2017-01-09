@@ -1,7 +1,6 @@
 <?php 
 class Helper {
 		
-	/* KLASSI FUNKTSIOONID */
     
     function cleanInput ($input) {
 		

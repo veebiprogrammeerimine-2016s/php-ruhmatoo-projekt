@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 class Note {
 	
     private $connection;
@@ -7,14 +8,14 @@ class Note {
 		$this->connection = $mysqli;
 	}
 	
-	/* KLASSI FUNKTSIOONID */
-    
-    function saveNote($firstname,$lastname,$notebook,$serialnumber,$priority,$comment) {
+   
+    function saveNote($paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO notebookRepair (firstname,lastname,notebook,serialnumber,priority,comment) VALUES (?, ?, ?, ?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO repairing (paid_warranty, serialnumber, device, manufacturer , model, date_of_purchase, first_lastname,
+										   country, city, address, postcode, email, number, problem, add_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssssss", $firstname,$lastname,$notebook,$serialnumber,$priority,$comment);
+		$stmt->bind_param("ssssssssssisiss", $paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info);
 
 		if ( $stmt->execute() ) {
 			echo "salvestamine õnnestus";	
@@ -28,7 +29,7 @@ class Note {
 	function getAllNotes($q, $sort, $order) {
 		
 		//lubatud tulbad
-		$allowedSort = ["id", "firstname","lastname","notebook","serialnumber", "color", "comment"];
+		$allowedSort = ["id"];
 		
 		if(!in_array($sort, $allowedSort)){
 			//ei olnud lubatud tulpade sees
@@ -49,26 +50,28 @@ class Note {
 			echo "Searching... ".$q;
 			
 			$stmt = $this->connection->prepare("
-				SELECT id, firstname, lastname, notebook, serialnumber, priority, comment
-				FROM notebookRepair
+				SELECT id, paid_warranty, serialnumber, device, manufacturer , model, date_of_purchase, first_lastname,
+				country, city, address, postcode, email, number, problem, add_info
+				FROM repairing
 				WHERE deleted IS NULL
-				AND (firstname LIKE ? OR lastname LIKE ? OR notebook LIKE ? OR serialnumber LIKE ? OR priority LIKE ? OR comment LIKE ?)
+				AND (serialnumber LIKE ?)
 				ORDER BY $sort $orderBy
 			");
 			$searchWord = "%".$q."%";
-			$stmt->bind_param("ssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
+			$stmt->bind_param("ssssssssssisiss", $searchWord);
 		
 		}else{
 			//ei otsi
 			$stmt = $this->connection->prepare("
-				SELECT id, firstname, lastname, notebook, serialnumber, priority, comment
-				FROM notebookRepair
+				SELECT id, paid_warranty, serialnumber, device, manufacturer , model, date_of_purchase, first_lastname,
+				country, city, address, postcode, email, number, problem, add_info
+				FROM repairing
 				WHERE deleted IS NULL
 				ORDER BY $sort $orderBy
 			");
 		}
 		
-		$stmt->bind_result($id, $firstname, $lastname, $notebook, $serialnumber, $priority, $comment);
+		$stmt->bind_result($id, $paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info);
 		$stmt->execute();
 		
 		$result = array();
@@ -80,15 +83,22 @@ class Note {
 			
 			$object = new StdClass();
 			$object->id = $id ;
-			$object->firstname = $firstname;
-			$object->lastname = $lastname;
-			$object->notebook = $notebook;
+			$object->paid_warranty = $paid_warranty;
 			$object->serialnumber = $serialnumber;
-			$object->priority = $priority;
-			$object->comment = $comment;
-			//$object->note = $note;
-			//$object->noteColor = $color;
-			
+			$object->device = $device;
+			$object->manufacturer = $manufacturer;
+			$object->model = $model;
+			$object->date_of_purchase = $date_of_purchase;
+			$object->first_lastname = $first_lastname;
+			$object->country = $country;
+			$object->city = $city;
+			$object->address = $address;
+			$object->postcode = $postcode;
+			$object->email = $email;
+			$object->number = $number;
+			$object->problem = $problem;
+			$object->add_info = $add_info;
+		
 			
 			
 			
@@ -102,10 +112,11 @@ class Note {
 	
 	function getSingleNoteData($edit_id){
     		
-		$stmt = $this->connection->prepare("SELECT firstname, lastname, notebook, serialnumber, priority, comment FROM notebookRepair WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT paid_warranty, serialnumber, device, manufacturer , model, date_of_purchase, first_lastname,
+										   country, city, address, postcode, email, number, problem, add_info FROM repairing WHERE id=? AND deleted IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($firstname, $lastname, $notebook, $serialnumber, $priority, $comment);
+		$stmt->bind_result($paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -114,12 +125,22 @@ class Note {
 		//saime ühe rea andmeid
 		if($stmt->fetch()){
 			// saan siin alles kasutada bind_result muutujaid
-			$n->firstname = $firstname;
-			$n->lastname = $lastname;
-			$n->notebook = $notebook;
+			$n->paid_warranty = $paid_warranty;
 			$n->serialnumber = $serialnumber;
-			$n->priority= $priority;
-			$n->comment= $comment;
+			$n->device = $device;
+			$n->manufacturer = $manufacturer;
+			$n->model = $model;
+			$n->date_of_purchase = $date_of_purchase;
+			$n->first_lastname= $first_lastname;
+			$n->country = $country;
+			$n->city= $city;
+			$n->address = $address;
+			$n->postcode = $postcode;
+			$n->email = $email;
+			$n->number = $number;
+			$n->problem= $problem;
+			$n->add_info = $add_info;
+			
 			
 		}else{
 			// ei saanud rida andmeid kätte
@@ -135,10 +156,11 @@ class Note {
 	}
 
 
-	function updateNote($id, $firstname, $lastname, $notebook, $serialnumber, $priority, $comment){
+	function updateNote($paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info){
 				
-		$stmt = $this->connection->prepare("UPDATE notebookRepair SET firstname=?, lastname=?, notebook=?, serialnumber=?, priority=?, comment=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("ssssssi", $firstname, $lastname, $notebook, $serialnumber, $priority, $comment, $id);
+		$stmt = $this->connection->prepare("UPDATE repairing SET paid_warranty=?, serialnumber=?, device=?, manufacturer=?, model=?, date_of_purchase=?, first_lastname=?,
+				country=?, city=?, address=?, postcode=?, email=?, number=?, problem=?, add_info=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("ssssssssssisissi", $paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info, $id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
@@ -154,7 +176,7 @@ class Note {
 	function deleteNote($id){
 		
 		$stmt = $this->connection->prepare("
-			UPDATE notebookRepair 
+			UPDATE repairing
 			SET deleted=NOW() 
 			WHERE id=? AND deleted IS NULL
 		");

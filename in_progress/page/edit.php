@@ -49,9 +49,7 @@
 	<textarea  id="serialnumber" name="serialnumber"><?php echo $c->serialnumber;?></textarea><br>
 	<textarea  id="priority" name="priority"><?php echo $c->priority;?></textarea><br>
 	<textarea  id="comment" name="comment"><?php echo $c->comment;?></textarea><br>
-  	<!--<label for="color" >värv</label><br>
-	<input id="color" name="color" type="color" value="<?//=$c->color;?>"><br><br>
-  	-->
+  	
 	<input type="submit" name="update" value="Save">
   </form>
   
