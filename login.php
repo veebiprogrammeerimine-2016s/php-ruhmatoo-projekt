@@ -15,12 +15,12 @@ $signupEmail = "";
 $signupGender = "";
 $signUpDate = "";
 $signUpDateError= "";
-// Kontrollime, kas on üldse olemas selline muutja
+// Kontrollime, kas on Ã¼ldse olemas selline muutja
 if( isset( $_POST["signupEmail"] ) ){
 	//jah on olemas
-	//kas on tühi
+	//kas on tÃ¼hi
 	if( empty( $_POST["signupEmail"] ) ){
-		$signupEmailError = "See väli on kohustuslik";
+		$signupEmailError = "See vÃ¤li on kohustuslik";
 	} else {
 		//email olemas
 		$signupEmail = $_POST["signupEmail"];
@@ -28,9 +28,9 @@ if( isset( $_POST["signupEmail"] ) ){
 }
 if( isset( $_POST["signUpDate"] ) ){
 	//jah on
-	//kas on tühi
+	//kas on tÃ¼hi
 	if( empty( $_POST["signUpDate"] ) ){
-		$signUpDateError = "See väli on kohustuslik";
+		$signUpDateError = "See vÃ¤li on kohustuslik";
 	} else {
 		//email olemas
 		$signUpDate = $_POST["signUpDate"];
@@ -41,12 +41,12 @@ if( isset( $_POST["signupPassword"] ) ){
 		$signupPasswordError = "Parool on kohustuslik";
 	} else {
 
-		//siia jõuan siis kui parool oli olemas - isset
-		//parool ei olnud tühi -empty
-		//kas parooli pikkus on väiksem kui 8
+		//siia jÃµuan siis kui parool oli olemas - isset
+		//parool ei olnud tÃ¼hi -empty
+		//kas parooli pikkus on vÃ¤iksem kui 8
 
 		if ( strlen($_POST["signupPassword"]) < 8 ) {
-			$signupPasswordError = "Parool peab olema vähemalt 8 tähemärki pikk";
+			$signupPasswordError = "Parool peab olema vÃ¤hemalt 8 tÃ¤hemÃ¤rki pikk";
 		}
 	}
 }
@@ -57,7 +57,7 @@ if( isset( $_POST["signupGender"] ) ){
 	}
 }
 // peab olema email ja parool
-// ühtegi errorit
+// Ã¼htegi errorit
 if ( isset($_POST["signupEmail"]) &&
 	isset($_POST["signupPassword"]) &&
 	isset($_POST["signUpDate"]) &&
@@ -89,7 +89,7 @@ if (isset($_POST["loginEmail"]) &&
 ?>
 
 		<title>
-			MinuTunne - jälgi meeleolu- ja tervisemuutusi
+			MinuTunne - jÃ¤lgi meeleolu- ja tervisemuutusi
 		</title>
 
 <div class="container">
@@ -103,8 +103,8 @@ if (isset($_POST["loginEmail"]) &&
 			</font></em>
 
 		<p>
-			<em>Veebirakenduse MinuTunne eesmärgiks on oma enesetundest, kaalust ja üleüldisest heaolust lugu pidavale inimesele võimaldada monitoorida enda enesetunde muutusi, liikumisaktiivsust ning vastavalt soovile jälgida kehamassiindeksi (KMI) ja kaalu muutusi. Inimene leiab veebirakendusest tuge oma enesetunde monitoorimisel ning selle seostamisel võimalike kaalumuudatustega. Samuti on rakendus hea abimees kaalumuudatuse motiveerimiseks.
-				Kasutajal on võimalik tutvuda enda varasemate enesetunde hinnangutega, liikumisaktiivsusega ning neid vastavalt vajadusele analüüsida. </p>
+			<em>Veebirakenduse MinuTunne eesmÃ¤rgiks on oma enesetundest, kaalust ja Ã¼leÃ¼ldisest heaolust lugu pidavale inimesele vÃµimaldada monitoorida enda enesetunde muutusi, liikumisaktiivsust ning vastavalt soovile jÃ¤lgida kehamassiindeksi (KMI) ja kaalu muutusi. Inimene leiab veebirakendusest tuge oma enesetunde monitoorimisel ning selle seostamisel vÃµimalike kaalumuudatustega. Samuti on rakendus hea abimees kaalumuudatuse motiveerimiseks.
+				Kasutajal on vÃµimalik tutvuda enda varasemate enesetunde hinnangutega, liikumisaktiivsusega ning neid vastavalt vajadusele analÃ¼Ã¼sida. </p>
 		</em>
 
 		<form method="POST">
@@ -159,7 +159,7 @@ if (isset($_POST["loginEmail"]) &&
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="input-field col s12">
 
-							<label>Sünniaeg</label>
+							<label>SÃ¼nniaeg</label>
 							<input class="form-control"  name="signUpDate" type="Date"  value="<?=$signUpDate;?>"><?=$signUpDateError;?>
 							<br>
 						</div>
