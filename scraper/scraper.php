@@ -13,7 +13,7 @@ if (isset($_GET["logout"])) {
     session_destroy();
     echo("<br><a href='scraper.php'>Log in again</a><br>");
     exit();
-} else {
+} else if(isset($_SESSION["accessToken"])) {
     echo("<a href='scraper.php?logout=1'>Logi välja</a><br>");
 }
 
@@ -21,7 +21,6 @@ define('APPLICATION_NAME', 'Izipäevik');
 define('SCOPES', implode(' ', array(
         Google_Service_Calendar::CALENDAR)
 ));
-define('CREDENTIALS_PATH', '~/.credentials/calendar-php-quickstart.json');
 define('CLIENT_SECRET', '####');
 define('CLIENT_ID', "####");
 define('DEVELOPER_KEY', "####");
