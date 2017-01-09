@@ -23,24 +23,28 @@
    if ( isset($_POST["type"]) &&
 	     isset($_POST["name"]) &&
 		 isset($_POST["age"])&&
+		 isset($_POST["url"])&&
 		 isset($_POST["shelter"]) 	 &&
 		 !empty($_POST["type"]) &&
 		 !empty($_POST["name"]) &&
 		 !empty($_POST["age"])&&
+		 !empty($_POST["url"])&&
 		 !empty($_POST["shelter"])		 ) {
 			
 		  
 		$type = cleanInput($_POST["type"]);
         $name = cleanInput($_POST["name"]);
         $age = cleanInput($_POST["age"]);
+        $url = cleanInput($_POST["url"]);
 		$shelter = cleanInput($_POST["shelter"]);
 		
-		$Animal->save($_POST["type"], $_POST["name"], $_POST["age"], $_POST["shelter"]);
+		$Animal->save($_POST["type"], $_POST["name"], $_POST["age"], $_POST["url"], $_POST["shelter"]);
 	}
 	
 	 if (empty($_POST["type"]) &&
 		empty($_POST["name"]) &&
 		empty($_POST["age"])&&
+		empty($_POST["url"])&&
 		empty($_POST["shelter"]))
 {
 			 $informationError = "Täita tuleb kõik väljad!";
@@ -52,6 +56,47 @@
 ?>
 
 <html>
+<style>
+input[type=text], select {
+    width: 30%;
+    padding: 8px 16px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=int], select {
+    width: 30%;
+    padding: 8px 16px;
+    margin: 4px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 30%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+</style>
 <body style='background-color:Silver'>
     <head>
 	<?php require("../header.php"); ?>
@@ -62,11 +107,11 @@
             <form method="POST">
 				<label>Liik</label><br>
 	            <select name="type" id="type" name="type">
-				<option value="Koer">Koer</option>
-				<option value="Kass">Kass</option>
-				<option value="Papagoi">Papagoi</option>
-				<option value="Janes">Janes</option>
-				<option value="Muu">Muu</option>
+				<option value="koer">Koer</option>
+				<option value="kass">Kass</option>
+				<option value="papagoi">Papagoi</option>
+				<option value="janes">Janes</option>
+				<option value="muu">Muu</option>
 				</select>
 				</div>
 	            <br><br>
@@ -77,6 +122,10 @@
 	
 	            <label>Vanus</label><br>
 	            <input name="age" type="int" >
+	            <br><br>
+				
+				<label>Pildi url</label><br>
+	            <input name="url" type="text" >
 	            <br><br>
 				
 				<label>Varjupaik</label><br>
@@ -97,7 +146,7 @@
             
         ?>
     </select>
-	
+	<br>
 	
 	            <input type="submit" value="Salvesta">
 				<br><br>

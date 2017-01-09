@@ -158,7 +158,7 @@
 			$html .= "<tr>";
 				$html .= "<td>".$c->id."</td>";
 				$html .= "<td>".$c->type."</td>";
-				$html .= "<td><a href='animaldata.php'>".$c->name."</a></td>";
+				$html .= "<td><a href='animaldata.php?id=".$c->id."'>".$c->name."</a></td>";
 				$html .= "<td>".$c->age."</td>";
 				$html .= "<td>".$c->shelter."</td>";
 				$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span>Muuda</a></td>";
@@ -234,7 +234,7 @@
 		foreach($booked as $b){
 			$html .= "<tr>";
 				$html .= "<td>".$b->type."</td>";
-				$html .= "<td><a href='animaldata.php'>".$b->name."</a></td>";
+				$html .= "<td><a href='animaldata.php?id=".$b->id."'>".$b->name."</a></td>";
 				$html .= "<td>".$b->age."</td>";
 				$html .= "<td>".$b->shelter."</td>";
 			$html .= "</tr>";	

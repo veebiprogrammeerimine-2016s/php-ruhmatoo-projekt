@@ -1,5 +1,5 @@
 <?php 
-class Animal {
+class Apartment {
 	
 	private $connection;
 	
@@ -12,7 +12,7 @@ class Animal {
 	/*TEISED FUNKTSIOONID */
 	function delete($id){
 
-		$stmt = $this->connection->prepare("UPDATE g_animals SET deleted=NOW() WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("UPDATE korterid SET deleted=NOW() WHERE id=? AND deleted IS NULL");
 		$stmt->bind_param("i",$id);
 		
 		// kas õnnestus salvestada
@@ -28,14 +28,12 @@ class Animal {
 		
 	function get($q, $sort, $order) {
 		
-		$allowedSort = ["id", "type", "name", "age", "shelter"];
+		$allowedSort = ["id", "city", "street", "area", "rooms"];
 		
 		if(!in_array($sort, $allowedSort)){
 			// ei ole lubatud tulp
 			$sort = "id";
 		}
-		
-		//kas github t88tab??
 		
 		$orderBy = "ASC";
 		
@@ -51,12 +49,10 @@ class Animal {
 			echo "Otsib: ".$q;
 			
 			$stmt = $this->connection->prepare("
-				SELECT id, type, name, age, shelter
-				FROM g_animals
-				WHERE deleted IS NULL AND booked IS NULL
-				
-			
-				AND (type LIKE ? OR name LIKE ? OR age LIKE ? OR shelter LIKE ?)
+				SELECT id, city, street, area, rooms
+				FROM korterid
+				WHERE deleted IS NULL 
+				AND (city LIKE ? OR street LIKE ? OR area LIKE ? OR rooms LIKE ?)
 				ORDER BY $sort $orderBy
 			");
 			$searchWord = "%".$q."%";
@@ -66,10 +62,9 @@ class Animal {
 		} else {
 			
 			$stmt = $this->connection->prepare("
-				SELECT id, type, name, age, shelter
-				FROM g_animals
-				WHERE deleted IS NULL AND booked IS NULL
-				
+				SELECT id, city, street, area, rooms
+				FROM korterid
+				WHERE deleted IS NULL
 				ORDER BY $sort $orderBy
 			");
 			
@@ -77,7 +72,7 @@ class Animal {
 		
 		echo $this->connection->error;
 		
-		$stmt->bind_result($id, $type, $name, $age, $shelter);
+		$stmt->bind_result($id, $city, $street, $area, $rooms);
 		$stmt->execute();
 		
 		
@@ -89,17 +84,18 @@ class Animal {
 		while ($stmt->fetch()) {
 			
 			//tekitan objekti
-			$Animal = new StdClass();
+			$apartment = new StdClass();
 			
-			$Animal->id = $id;
-			$Animal->type = $type;
-			$Animal->name = $name;
-			$Animal->age = $age;
-			$Animal->shelter = $shelter;
+			$apartment->id = $id;
+			$apartment->city = $city;
+			$apartment->street = $street;
+			$apartment->area = $area;
+			$apartment->rooms = $rooms;
 			
-
+			
+			//echo $plate."<br>";
 			// iga kord massiivi lisan juurde nr märgi
-			array_push($result, $Animal);
+			array_push($result, $apartment);
 		}
 		
 		$stmt->close();
@@ -108,53 +104,48 @@ class Animal {
 		return $result;
 	}
 	
-
-	
 	function getSingle($edit_id){
 
-		$stmt = $this->connection->prepare("SELECT id, type, name, age, url, shelter FROM `g_animals` WHERE id=? AND deleted IS NULL");
+		$stmt = $this->connection->prepare("SELECT city, street, area, rooms FROM korterid WHERE id=? AND deleted IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($id, $type, $name, $age, $url, $shelter);
+		$stmt->bind_result($city, $street, $area, $rooms);
 		$stmt->execute();
 		
 		//tekitan objekti
-		$Animal = new Stdclass();
+		$Apartment = new Stdclass();
 		
 		//saime ühe rea andmeid
 		if($stmt->fetch()){
 			// saan siin alles kasutada bind_result muutujaid
-			$Animal->id = $id;
-			$Animal->type = $type;
-			$Animal->name = $name;
-			$Animal->age = $age;
-			$Animal->url = $url;
-			$Animal->shelter = $shelter;
+			$Apartment->city = $city;
+			$Apartment->street = $street;
+			$Apartment->area = $area;
+			$Apartment->rooms = $rooms;
 			
 			
 		}else{
 			// ei saanud rida andmeid kätte
 			// sellist id'd ei ole olemas
 			// see rida võib olla kustutatud
-			
-			//header("Location: animals.php");
+			header("Location: data.php");
 			exit();
 		}
 		
 		$stmt->close();
 		
 		
-		return $Animal;
+		return $Apartment;
 		
 	}
 
-	function save ($type, $name, $age, $url, $shelter) {
+	function save ($city, $street, $area, $rooms) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO g_animals (type, name, age, url, shelter) VALUES (?, ?, ?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO korterid (city, street, area, rooms) VALUES (?, ?, ?, ?)");
 	
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssiss", $type, $name, $age, $url, $shelter);
+		$stmt->bind_param("ssii", $city, $street, $area, $rooms);
 		
 		if($stmt->execute()) {
 			echo "Salvestamine onnestus";
@@ -167,17 +158,15 @@ class Animal {
 		
 	}
 	
-	function update($id, $type, $name, $age){
+	function update($id, $city, $street, $area, $rooms){
     	
-		$stmt = $this->connection->prepare("UPDATE g_animals SET type=?, name=?, age=? WHERE id=?");
-		$stmt->bind_param("ssii",$type, $name, $age, $id);
-		
+		$stmt = $this->connection->prepare("UPDATE korterid SET city=?, street=?, area=?, rooms=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("ssiii", $city, $street, $area, $rooms, $id);
 		
 		// kas õnnestus salvestada
-		if($stmt->execute()) {
-			echo "Salvestamine onnestus";
-		} else {
-		 	echo "ERROR ".$stmt->error;
+		if($stmt->execute()){
+			// õnnestus
+			echo "Salvestus onnestus!";
 		}
 		
 		$stmt->close();

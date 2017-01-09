@@ -47,7 +47,7 @@ class Booking {
 	}
 	function getBooked ($b, $sort, $order) {
 		
-$allowedSort = ["type", "name", "age", "shelter"];
+$allowedSort = ["id", "type", "name", "age", "shelter"];
 		
 		if(!in_array($sort, $allowedSort)){
 			// ei ole lubatud tulp
@@ -70,7 +70,7 @@ $allowedSort = ["type", "name", "age", "shelter"];
 			echo "Otsib: ".$b;
 			
 			$stmt = $this->connection->prepare("
-				SELECT type, name, age, shelter
+				SELECT id, type, name, age, shelter
 				FROM g_animals
 				WHERE deleted IS NULL AND booked IS NOT NULL
 				
@@ -85,7 +85,7 @@ $allowedSort = ["type", "name", "age", "shelter"];
 		} else {
 			
 			$stmt = $this->connection->prepare("
-				SELECT type, name, age, shelter
+				SELECT id, type, name, age, shelter
 				FROM g_animals
 				WHERE deleted IS NULL AND booked IS NOT NULL
 				
@@ -96,7 +96,7 @@ $allowedSort = ["type", "name", "age", "shelter"];
 		
 		echo $this->connection->error;
 		
-		$stmt->bind_result($type, $name, $age, $shelter);
+		$stmt->bind_result($id, $type, $name, $age, $shelter);
 		$stmt->execute();
 		
 		
@@ -110,6 +110,7 @@ $allowedSort = ["type", "name", "age", "shelter"];
 			//tekitan objekti
 			$Booked = new StdClass();
 			
+			$Booked->id = $id;
 			$Booked->type = $type;
 			$Booked->name = $name;
 			$Booked->age = $age;
