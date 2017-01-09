@@ -60,7 +60,7 @@
 <link rel="stylesheet" href="triangle.css">
 </head>
 
-<h1><a href="data.php"> Home</a> <a href="Search.php"> Search</a> <a href="about.php"> About</a> <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
+<h1><a href="data.php"> Home</a> <a href="about.php"> About</a> <a href="user.php"><?=$_SESSION["userEmail"];?>!</a>
 	<a href="?logout=1">Logout</a></h1>
 
 
