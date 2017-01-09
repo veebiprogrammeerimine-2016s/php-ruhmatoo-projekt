@@ -34,29 +34,27 @@
 	
 	$topic=$_GET["topicid"];
 	
+
+		
 	if (isset($_POST["comment"])) {
 		
 		if(!empty($_POST["comment"])) {
 			
-			$Comment->insertComment($topic,$_SESSION["userId"],$Helper->cleanInput($_POST["comment"]));
+			if ( strlen($_POST["comment"])>3) {
+				$Comment->insertComment($topic,$_SESSION["userId"],$Helper->cleanInput($_POST["comment"]));
+
+			}
+		} else {
+			   echo "<script>";
+			   echo "alert('php else');";
+			   echo "</script>";
 		}
 		
 	}
-	
-	$postError="";
-	$postedTrue="";
-	
-	$postedTrue=$_GET['posted'];
-	
-	if ($postedTrue=="true") {
-		
-		$postError= "Your comment was submitted!";
+	$feedBack="";
+	if (($_GET["posted"])=="true") {
+			$feedBack="   <span style='visibility: hidden;'>tühi</span><div  id='teavitus' style='display:inline;' class='alert alert-success fade in'><strong>Postitatud!</strong></div>";
 	}
-	elseif ($postedTrue=="false") {
-			
-			$postError= "Something went wrong...";
-	}
-	
 	
 	if (isset($_GET["searchPost"]) && !empty($_GET["searchPost"])){
 		
@@ -103,6 +101,7 @@
 
 	
 ?>
+
 <?php require("../header.php"); ?>
 <div class="container">
 	<div class="page-header">
@@ -134,16 +133,35 @@
 	?>
 	</div></div>
 	</p>
-	
-		<form class="form-inline" role="form" method="post">
-		<input class="form-control input" type="text" name="comment" placeholder="Kirjuta kommentaar" />
-			<div class="form-group">
-				<button class="btn btn-default">Postita</button>
-			</div>
-	</form>
-	<br><br>
-	
-	
+	<div>
+		<form class="form-inline" method="post">
+		<input class="form-control input-sm" type="text" name="comment" placeholder="Kirjuta kommentaar" />  
+		<button type="submit" class="btn btn-default btn-xs" id="postita"> Postita  </button>     <?php echo $feedBack; ?>
+
+		</form>
+		
+	</div>
+	<br>
+
+	<br>
+	<script >
+			
+			$(document).ready(function(){
+				
+				$("#teavitus").delay(1000).fadeOut('slow')
+				
+				$("form").submit(function(event){
+				
+					
+
+				if ($('input').val() < 3) {
+					alert("Kommentaar peab olema vähemalt 4 tähemärki pikk!");
+					event.preventDefault();
+				}
+				});
+			});
+
+</script>
 	<?php
 	foreach ($results2 as $r2) {
 			
@@ -181,12 +199,17 @@
 
 	<br><br>
 	
-	<h3><?php echo $postError;?></h3>
+
 	
 
 	
 </div>
 </div>
+
+
+
+
+
 
 <?php //echo$_SESSION["userEmail"];?>
 
