@@ -30,9 +30,41 @@
 		$order = $_GET["order"];
 	}
 	
+	if(isset($_GET["b"])){
+		
+		$b = $_GET["b"];
+		
+	}else{
+		
+		$b = "";
+	}
+	$sort = "id";
+	$order = "ASC";
+	
+	if(isset($_GET["sort"]) && isset($_GET["order"])) {
+		$sort = $_GET["sort"];
+		$order = $_GET["order"];
+	}
+	
+	 	if(isset($_GET["b"])){
+		
+		$q = $_GET["b"];
+		
+	}else{
+		
+		$b = "";
+	}
+	$sort = "id";
+	$order = "ASC";
+	
+	if(isset($_GET["sort"]) && isset($_GET["order"])) {
+		$sort = $_GET["sort"];
+		$order = $_GET["order"];
+	}
+	
 	//otsisõna fn sisse
 	$animal = $Animal->get($q, $sort, $order);
-	$booked = $Booking->getBooked();
+	$booked = $Booking->getBooked($b, $sort, $order);
 	//kleklekle
 
 ?>
@@ -40,7 +72,7 @@
 <body style='background-color:Silver'>
     <head>
 	<?php require("../header.php"); ?>
-<h1>Rentimiseks valmis loomad</h1>
+<h3>Rentimiseks valmis loomad</h3>
 
 <form>
 
@@ -106,6 +138,20 @@
 						Vanus ".$arrow."
 					</a>
 				 </th>";
+		
+		$shelterOrder = "ASC";
+		$arrow ="&darr;";
+		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
+			$shelterOrder = "DESC";
+			$arrow ="&uarr;";
+			
+		}	
+	
+		$html .= "<th>
+					<a href='?q=".$q."&sort=shelter&order=".$shelterOrder."'>
+						Varjupaik ".$arrow."
+					</a>
+				 </th>";
 				 
 // katse kas github t88tab
 		foreach($animal as $c){
@@ -114,6 +160,7 @@
 				$html .= "<td>".$c->type."</td>";
 				$html .= "<td>".$c->name."</td>";
 				$html .= "<td>".$c->age."</td>";
+				$html .= "<td>".$c->shelter."</td>";
 				$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span>Muuda</a></td>";
 				$html .= "<td><a class='btn btn-default btn-sm' href='booking.php?id=".$c->id."'><span class='glyphicon glyphicon'></span>Broneeri</a></td>";
 			$html .= "</tr>";	
@@ -127,21 +174,73 @@
 </html>
 <?php
 	$html = "<table class='table table-striped'>";
-	$html="<table>";
-		$html .="<tr>";
-			$html .="<th>Liik</th>";
-			$html .="<th>Nimi</th>";
-			$html .="<th>Vanus</th>";
-		$html .="</tr>";
-
-		foreach($booked as $b) {
-				$html .="<tr>";
-					$html .="<td>".$b->type."</td>";
-					$html .="<td>".$b->name."</td>";
-					$html .="<td>".$b->age."</td>";
-				$html .="</tr>";
+	
+	$html .= "<tr>";
+	
+		$typeOrder = "ASC";
+		$arrow ="&darr;";
+		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
+			$typeOrder = "DESC";
+			$arrow ="&uarr;";
+		}
+		
+		$html .= "<th>
+					<a href='?b=".$b."&sort=type&order=".$typeOrder."'>
+						Liik ".$arrow."
+					</a>
+				 </th>";
+				 
+		$nameOrder = "ASC";
+		$arrow ="&darr;";
+		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
+			$nameOrder = "DESC";
+			$arrow ="&uarr;";
+		}
+		
+		$html .= "<th>
+					<a href='?b=".$b."&sort=name&order=".$nameOrder."'>
+						Nimi ".$arrow."
+					</a>
+				 </th>";
+				 
+		$ageOrder = "ASC";
+		$arrow ="&darr;";
+		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
+			$ageOrder = "DESC";
+			$arrow ="&uarr;";
+		}
+		
+		$html .= "<th>
+					<a href='?b=".$b."&sort=age&order=".$ageOrder."'>
+						Vanus ".$arrow."
+					</a>
+				 </th>";
+				 
+		$shelterOrder = "ASC";
+		$arrow ="&darr;";
+		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
+			$shelterOrder = "DESC";
+			$arrow ="&uarr;";
+			
 		}	
-	$html .="</table>";
+	
+		$html .= "<th>
+					<a href='?b=".$b."&sort=shelter&order=".$shelterOrder."'>
+						Varjupaik ".$arrow."
+					</a>
+				 </th>";
+				 
+// katse kas github t88tab
+		foreach($booked as $b){
+			$html .= "<tr>";
+				$html .= "<td>".$b->type."</td>";
+				$html .= "<td>".$b->name."</td>";
+				$html .= "<td>".$b->age."</td>";
+				$html .= "<td>".$b->shelter."</td>";
+			$html .= "</tr>";	
+		}
+		
+	$html .= "</table>";
 	echo $html;
 ?>
 <br><br>

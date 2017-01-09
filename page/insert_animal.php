@@ -89,7 +89,7 @@
 				foreach($shelter as $x){
         		
         		
-        		$listHtml .= "<option value='".$x->id."'>".$x->name."</option>";
+        		$listHtml .= "<option value='".$x->name."'>".$x->name."</option>";
         
 				}
         	

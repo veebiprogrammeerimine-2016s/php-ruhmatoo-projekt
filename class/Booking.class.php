@@ -45,14 +45,56 @@ class Booking {
 		
 		
 	}
-	function getBooked () {
+	function getBooked ($b, $sort, $order) {
+		
+$allowedSort = ["type", "name", "age", "shelter"];
+		
+		if(!in_array($sort, $allowedSort)){
+			// ei ole lubatud tulp
+			$sort = "id";
+		}
+		
+		//kas github t88tab??
+		
+		$orderBy = "ASC";
+		
+		if ($order == "DESC") {
+			$orderBy = "DESC";
+		}
+		//echo "Sorteerin: ".$sort." ".$orderBy." ";
 		
 		
-		$database = "if16_Tanelmaas_1";
-		$this-> connection= new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		//kas otsib
+		if ($b != "") {
+			
+			echo "Otsib: ".$b;
+			
+			$stmt = $this->connection->prepare("
+				SELECT type, name, age, shelter
+				FROM g_animals
+				WHERE deleted IS NULL AND booked IS NOT NULL
+				
+			
+				AND (type LIKE ? OR name LIKE ? OR age LIKE ? OR shelter LIKE ?)
+				ORDER BY $sort $orderBy
+			");
+			$searchWord = "%".$b."%";
+			$stmt->bind_param("ssss", $searchWord, $searchWord, $searchWord, $searchWord);
+			
+			
+		} else {
+			
+			$stmt = $this->connection->prepare("
+				SELECT type, name, age, shelter
+				FROM g_animals
+				WHERE deleted IS NULL AND booked IS NOT NULL
+				
+				ORDER BY $sort $orderBy
+			");
+			
+		}
 		
-		$stmt = $this-> connection->prepare("SELECT type, name, age, shelter FROM g_animals WHERE booked IS NOT NULL");
-		echo $this-> connection->error;
+		echo $this->connection->error;
 		
 		$stmt->bind_result($type, $name, $age, $shelter);
 		$stmt->execute();
@@ -66,17 +108,20 @@ class Booking {
 		while ($stmt->fetch()) {
 			
 			//tekitan objekti
-			$b = new StdClass();
+			$Animal = new StdClass();
 			
-			$b->type = $type;
-			$b->name = $name;
-			$b->age = $age;
-			$b->shelter = $shelter;
-		
-			array_push($result, $b);
+			$Animal->type = $type;
+			$Animal->name = $name;
+			$Animal->age = $age;
+			$Animal->shelter = $shelter;
+			
+
+			// iga kord massiivi lisan juurde nr märgi
+			array_push($result, $Animal);
 		}
 		
 		$stmt->close();
+		
 		
 		return $result;
 	}
