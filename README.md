@@ -3,6 +3,10 @@
 ![Preview](image/index.jpg)
 Karin Rikkinen
 
+| Külastaja valikud | Kasutaja valikud |
+|----|----|
+|![Alt text](image/visitormenu.png)| ![Alt text](image/usermenu.png)|
+
     * eesmärki (3-4 lauset, mis probleemi üritate lahendada);
     * kirjeldus (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta);
     * funktsionaalsuse loetelu prioriteedi järjekorras, nt
@@ -11,10 +15,6 @@ Karin Rikkinen
         * ...
 ## Andmebaasi skeem ja tabelite loomise SQL laused
 ![Preview](image/skeem.jpg)
-
-| Külastaja valikud | Kasutaja valikud |
-|----|----|
-|![Alt text](image/visitor.png)| ![Alt text](image/user.png)|
 
 ```
 CREATE TABLE project_users (
