@@ -158,7 +158,7 @@ class SimpleCalendar {
 		$prev = 'user.php?'. implode('&amp;', $prev);
 		
 		
-		$out = '<b><a href="'.$prev.'"><span class= "glyphicon glyphicon-arrow-left style="font-size: 250%""></span> Eelmine kuu</a><font size="4"> &#8194'.$getmonth.' '.$getyear.' &#8194 </font><a href="'. $next .'">Järgmine kuu <span class= "glyphicon glyphicon-arrow-right style="font-size: 250%""></span></a></b>';
+		$out = '<b><a href="'.$prev.'"><span class= "glyphicon glyphicon-arrow-left style="font-size: 250%""></span>Eelmine kuu</a><font size="4"> &#8194'.$getmonth.' '.$getyear.' &#8194 </font><a href="'. $next .'">Järgmine kuu <span class= "glyphicon glyphicon-arrow-right style="font-size: 250%""></span></a></b>';
 		$out .= '<br>';
 		$out .= '<table cellpadding="0" cellspacing="0" class="SimpleCalendar"><thead><tr>';
 

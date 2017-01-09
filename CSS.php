@@ -126,8 +126,8 @@
 	
   table.SimpleCalendar tbody td {
     vertical-align: top;
-    width: 90px;
-    height: 90px;
+    width: 50px;
+    height: 50px;
     border: 1px solid #bbb;
     background: #e6e6e6; }
 	
