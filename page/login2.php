@@ -302,7 +302,7 @@
     font-size: 16px;
     margin: 2px 20px;
     -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.8s;
+    transition-duration: 0.3s;
     cursor: pointer;
 }
 
