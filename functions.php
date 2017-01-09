@@ -53,7 +53,7 @@ function getProfileURL() {
 			$myDataRow = $myData->fetch_assoc();
 			$url = $myDataRow['url'];
 			
-			if (empty($url)) $url = "profilepics/defaultPic.jpg";
+			//if (empty($url)) $url = "profilepics/defaultPic.jpg";
 
 
 		$myData->close();
