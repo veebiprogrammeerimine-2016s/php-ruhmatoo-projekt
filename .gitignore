@@ -53,5 +53,7 @@ scraper/client_secret.json
 scraper/composer.json
 scraper/composer.lock
 scraper/vendor
+/scraper/completed_days.txt
 
-
+# DEV
+/DEV

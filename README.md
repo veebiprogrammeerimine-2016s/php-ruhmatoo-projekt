@@ -22,7 +22,7 @@
 
 ## Setup       
 ### --Scraper
-    In scraper folder, run "php composer.phar require google/apiclient:^2.0 " in command line
+    In scraper folder, run "php composer.phar require google/apiclient" in command line
     In scraper.php:
         CLIENT_ID = Izipaevik Client ID from Google API Manager
         REDIRECT_URI = ####.com/scraper/scraper.php (The domain the scraper is on)

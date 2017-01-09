@@ -27,7 +27,8 @@ class User
                 $_SESSION["userId"] = $id;
                 $_SESSION["userEmail"] = $emailFromDb;
 
-                $error = "Õnnestus!";
+                header("Location: addhomework.php");
+                exit();
             } else {
                 $error = "Vale parool!";
             }

@@ -8,7 +8,7 @@ $Helper = new Helper();
 
 // If active session found
 if (isset($_SESSION["userId"])) {
-    header("Location: homework.php");
+    header("Location: addhomework.php");
     exit();
 }
 
@@ -22,29 +22,6 @@ if (isset($_POST["loginEmail"]) && isset($_POST["loginPassword"]) && !empty($_PO
 
 <?php require "../parts/header.php"; ?>
 
-<div class="container-fluid">
-    <!-- Static navbar -->
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                </button>
-                <a class="navbar-brand" href="../index.php">Izipäevik</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="homework.php">Kodused tööd</a></li>
-                    <li><a href="curriculum.php">Tunniplaan</a></li>
-                </ul>
-                <!-- Navbar right side -->
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#">Admin</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
-    </nav>
-</div> <!-- /container -->
 <div class="container">
     <!-- Signin -->
     <form method="POST" class="form-signin">

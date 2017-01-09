@@ -26,3 +26,32 @@
 
 </head>
 <body>
+<div class="container-fluid">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                </button>
+                <a class="navbar-brand" href="../index.php">Izipäevik</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="homework.php">Kodused tööd</a></li>
+                    <li><a href="curriculum.php">Tunniplaan</a></li>
+                </ul>
+                <!-- Navbar right side -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="admin.php">Admin</a></li>
+                    <?php if (isset($_SESSION["userId"])) {
+                        echo('
+                           <li><a href="../scraper/scraper.php">Scraper</a> </li>
+                           <li><a href = "?logout=1" > Logout</a ></li >
+                           ');
+                    }
+                    ?>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
