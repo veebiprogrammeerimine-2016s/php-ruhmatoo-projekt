@@ -16,6 +16,12 @@
 		exit();
 	}
 	
+	if (!isset($_GET["m"]) && !isset($_GET["y"])) {
+		
+		header("Location: user.php?m=0&y=0");
+		exit();
+	}
+	
 	//kas ?logout on aadressireal
 	if (isset($_GET["logout"])) {
 		
@@ -164,7 +170,7 @@
 
 				<?=$exerciseMsg;?>
 				<h2>Lisa tehtud treening</h2>
-					<p><b>Vali kalendrist kuupäev: </b><?php echo $trainingdate; ?> <?php echo $trainingDateError; ?> </p>
+					<p><b>Vali kalendrist kuupäev: <span style="color:green;"><?php echo $trainingdate; ?> </span></b><?php echo $trainingDateError; ?> </p>
 					<form method="POST"> 
 					<label>Treeningharjutus</label><br>
 								

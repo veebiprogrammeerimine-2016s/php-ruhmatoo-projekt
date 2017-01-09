@@ -191,7 +191,7 @@
 <?php require("../CSS.php")?>
 <div class="data" style="padding-left:20px;padding-right:20px">
 		<p align="center"><b>
-			Tere tulemast <?=$_SESSION["firstName"];?> <?=$_SESSION["lastName"];?>! <a href="user.php">Mine treeningpäevikusse &rarr;</a>
+			Tere tulemast <?=$_SESSION["firstName"];?> <?=$_SESSION["lastName"];?>! <a href="user.php?m=0&y=0">Mine treeningpäevikusse &rarr;</a>
 		</b></p>
 		<h1 align="center">Foorum</h1>	
 		<br><br>
