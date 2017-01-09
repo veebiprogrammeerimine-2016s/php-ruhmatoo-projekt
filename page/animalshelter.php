@@ -53,20 +53,6 @@
 	
 	$html .= "<tr>";
 	
-		$idOrder = "ASC";
-		$arrow ="&darr;";
-		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
-			$idOrder = "DESC";
-			$arrow ="&uarr;";
-			
-		}	
-	
-		$html .= "<th>
-					<a href='?s=".$s."&sort=id&order=".$idOrder."'>
-						Id ".$arrow."
-					</a>
-				 </th>";
-				 
 		$nameOrder = "ASC";
 		$arrow ="&darr;";
 		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
@@ -109,7 +95,6 @@
 
 		foreach($shelter as $s){
 			$html .= "<tr>";
-				$html .= "<td>".$s->id."</td>";
 				$html .= "<td>".$s->name."</td>";
 				$html .= "<td>".$s->county."</td>";
 				$html .= "<td>".$s->city."</td>";

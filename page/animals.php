@@ -98,20 +98,7 @@
 	
 	$html .= "<tr>";
 	
-		$idOrder = "ASC";
-		$arrow ="&darr;";
-		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
-			$idOrder = "DESC";
-			$arrow ="&uarr;";
-			
-		}	
-	
-		$html .= "<th>
-					<a href='?q=".$q."&sort=id&order=".$idOrder."'>
-						Id ".$arrow."
-					</a>
-				 </th>";
-				 
+		
 		$typeOrder = "ASC";
 		$arrow ="&darr;";
 		if (isset($_GET["order"]) && $_GET["order"] == "ASC"){
@@ -168,7 +155,6 @@
 // katse kas github t88tab
 		foreach($animal as $c){
 			$html .= "<tr>";
-				$html .= "<td>".$c->id."</td>";
 				$html .= "<td>".$c->type."</td>";
 				$html .= "<td><a href='animaldata.php?id=".$c->id."'>".$c->name."</a></td>";
 				$html .= "<td>".$c->age."</td>";
