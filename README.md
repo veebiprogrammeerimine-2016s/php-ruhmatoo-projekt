@@ -13,7 +13,7 @@ git config user.email romilrobtsenkov@users.noreply.github.com
 1. Tee valmis korralik veebirakendus
 
 ### Nõuded
-
+ OK
 1. **README.md sisaldab:**
     * suurelt projekti nime;
     * suurelt projekti veebirakenduse pilt;
