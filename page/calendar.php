@@ -1,14 +1,22 @@
+<?php
+    require("../functions.php");
+
+    if(isset ($_GET["logout"])) {
+
+        session_destroy();
+        header("Location:login.php");
+        exit();
+    }
+
+?>
+
 <?php require("../header.php"); ?>
 
-<html>
-<head>   
-</head>
 <link href="calendar.css" type="text/css" rel="stylesheet" />
-<body>
-
+<br>
 <input type="button" value="My profile" onclick="location='myprofile'" />
 <br>
-<a href="?logout=1"> Log out</a>
+<a href="?logout=2"> Log out</a>
 
 <?php
 include '../class/Calendar.class.php';
@@ -17,7 +25,5 @@ $calendar = new Calendar();
  
 echo $calendar->show();
 ?>
-</body>
-</html>
 
 <?php require("../footer.php"); ?>

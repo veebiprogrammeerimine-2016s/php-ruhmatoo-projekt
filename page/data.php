@@ -1,8 +1,6 @@
 <?php
 
 require("../functions.php");
-require("../class/User.class.php");
-require("../class/Series.class.php");
 
 //kui ei ole kasutaja id'd
 if (!isset($_SESSION["userId"])) {
