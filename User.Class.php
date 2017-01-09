@@ -72,7 +72,7 @@ class User {
 				} else {
 					
 					//ei olnud ühtegi rida
-					$notice = "Sellise emailiga: ".$email."kasutajat ei ole olemas.";
+					$notice = "Sellise emailiga: ".$email." kasutajat ei ole olemas.";
 				}
 				return $notice;
 	}

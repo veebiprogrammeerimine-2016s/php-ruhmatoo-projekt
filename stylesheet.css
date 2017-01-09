@@ -44,6 +44,7 @@ header {
 
 .radioInputs {
 	text-align: left;
+	margin-bottom: 17px;
 }
 
 input[type=radio] {

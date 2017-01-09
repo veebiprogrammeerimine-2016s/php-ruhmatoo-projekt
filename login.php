@@ -136,13 +136,14 @@
 			<div class="login box">
 			
 				<h2>Logi sisse</h2>
-				<p style="color:red;" ><?=$notice;?></p>
 				
 				<form method="POST">
 				
 					<div class="inputBox" ><input name="loginEmail" placeholder="e-mail" value="<?=$loginEmail;?>" type="email" class="loginPageInput" > <?php echo $loginEmailError; ?></div>
 					
 					<div class="inputBox" ><input name="loginPassword" placeholder="Parool" type="password" class="loginPageInput" > <?php echo $loginPasswordError; ?></div>
+					
+					<p style="color:red;" ><?=$notice;?></p>
 					
 					<input type="submit" value="Logi sisse" >
 				
@@ -190,8 +191,6 @@
 					
 					</div>
 					
-					<br><br>
-
 					<input type="submit" value="Loo kasutaja">
 
 				</form>
