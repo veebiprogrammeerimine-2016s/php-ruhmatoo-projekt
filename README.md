@@ -29,30 +29,30 @@ Raamatuid loovutades saab münte, raamatuid saades kulub münte. Iga kasutaja m�
 
 ```
 CREATE TABLE project_users (
-    -> user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    -> username VARCHAR(50) NOT NULL,
-    -> email VARCHAR(128) NOT NULL,
-    -> password VARCHAR(128) NOT NULL,
-    -> joined TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    -> UNIQUE(email)
-    -> );
+    user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(128) NOT NULL,
+    password VARCHAR(128) NOT NULL,
+    joined TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(email)
+    );
 	
 CREATE TABLE project_books (
-    -> book_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    -> cat VARCHAR(255) NOT NULL,
-    -> title VARCHAR(255) NOT NULL,
-    -> author VARCHAR(128) NOT NULL,
-    -> year INT(4),
-	-> bookCondition VARCHAR(50) NOT NULL,
-	-> location VARCHAR(128) NOT NULL,
-	-> description TEXT,
-	-> points INT(2),
-	-> created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	-> deleted DATE DEFAULT NULL
-	-> image VARCHAR(500),
-	-> user_id INT(11),
-	-> FOREIGN KEY (user_id) REFERENCES project_users(user_id)
-	-> );
+    book_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cat VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(128) NOT NULL,
+    year INT(4),
+	bookCondition VARCHAR(50) NOT NULL,
+	location VARCHAR(128) NOT NULL,
+	description TEXT,
+	points INT(2),
+	created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	deleted DATE DEFAULT NULL
+	image VARCHAR(500),
+	user_id INT(11),
+	FOREIGN KEY (user_id) REFERENCES project_users(user_id)
+	);
 	
 CREATE TABLE project_points (
 	book_id INT NOT NULL UNIQUE,
@@ -78,4 +78,5 @@ CREATE TABLE project_messages(
 ```
 
 ## Kokkuvõte
-Õppisin juurde väga palju. Kuna varem polnud ei php-koodi ega ka sql-käskluseid kirjutanud, samuti polnud kasutanud Bootsrapi, Github'i ega andmebaase, siis uusi oskuseid sain kõvasti. Pean enda jaoks kogu projekti õnnestumiseks. Ebaõnnestumistest tooks välja stiili, antud projektis pidasin tähtsamaks nn köögipoolt, CSS jäi teisejärguliseks, eks seda on ka tulemusest näha. Projekti käigus õppisin, et lisaks koodi kirjutamisele, tuleb harjutada ka koodi lugemist, viimast pean enda nõrgemaks küljeks. 
+Õppisin juurde väga palju. Kuna varem polnud ei php-koodi ega ka sql-käskluseid kirjutanud, samuti polnud kasutanud Bootsrapi, Github'i ega andmebaase, siis uusi oskuseid sain kõvasti. 
+Pean enda jaoks kogu projekti õnnestumiseks. Ebaõnnestumistest tooks välja stiili, antud projektis pidasin tähtsamaks nn köögipoolt, CSS jäi teisejärguliseks, eks seda on ka tulemusest näha. Projekti käigus õppisin, et lisaks koodi kirjutamisele, tuleb harjutada ka koodi lugemist, viimast pean enda nõrgemaks küljeks. 
