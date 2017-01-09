@@ -191,7 +191,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="Age">Vanus</label>
-                            <input type="text" class="form-control" name="signupAge" id="vanus" value="<?=$signupAge;?>"> <?=$signupAgeError;?>
+                            <input type="date" class="form-control" name="signupAge" id="vanus" value="<?=$signupAge;?>"> <?=$signupAgeError;?>
                         </div>
 
 					<div class="form-group col-md-6">
