@@ -16,18 +16,6 @@
 		exit();
 	}
 	
-	//KOMMENTAARI SALVESTAMINE
-	if (isset($_POST["category"])&&
-		isset($_POST["headline"]) &&
-		isset($_POST["comment"]) &&
-		!empty($_POST["category"])&&
-		!empty($_POST["headline"])&&
-		!empty($_POST["comment"])
-		)
-	{
-	comment($_POST["category"],$_POST["headline"], $_POST["comment"], $_SESSION["userEmail"]);
-	}
-	
 	$people = allinfo();
 ?>
 
@@ -49,17 +37,17 @@
 	
 	<td>
 		<form action="post">
-		<input type="button" onclick="location.href='userpages/createnewpost.php';" value="CREATE NEW POST " class="submit submit2">
+		<input type="button" onclick="location.href='createnewpost.php';" value="CREATE NEW POST " class="submit submit2">
 		</form>
 	</td>
 	<td>
 		<form method="POST">
-		<input type="button" value="VIEW MY POSTS" class="submit submit2" onclick="location.href='userpages/viewmypost.php';">
+		<input type="button" value="VIEW MY POSTS" class="submit submit2" onclick="location.href='viewmypost.php';">
 		</form>
 	</td>
 	<td>
 		<form method="POST">
-		<input type="button" value="VIEW MY COMMENTS" class="submit submit2" onclick="location.href='userpages/viewmycomments.php';">
+		<input type="button" value="VIEW MY COMMENTS" class="submit submit2" onclick="location.href='viewmycomments.php';">
 		</form>
 	</td>
 
