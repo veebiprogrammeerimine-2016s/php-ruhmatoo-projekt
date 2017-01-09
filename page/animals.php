@@ -246,7 +246,7 @@
 		foreach($booked as $b){
 			$html .= "<tr>";
 				$html .= "<td>".$b->type."</td>";
-				$html .= "<td><a href='animaldata.php?id=".$b->id."'>".$b->name."</a></td>";
+				$html .= "<td><a href='bookedanimaldata.php?id=".$b->id."'>".$b->name."</a></td>";
 				$html .= "<td>".$b->age."</td>";
 				$html .= "<td>".$b->shelter."</td>";
 				$html .= "<td><a class='btn btn-default btn-sm' href='animals.php?returned=".$b->id."'><span class='glyphicon glyphicon'></span>Tagastatud</a></td>";
