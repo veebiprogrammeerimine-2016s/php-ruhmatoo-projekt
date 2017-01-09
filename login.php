@@ -84,18 +84,15 @@ if (isset($_POST["loginEmail"]) &&
    ) {
 	$error = login( $_POST["loginEmail"], $_POST["loginPassword"]);
 }
-require ("header.php");
+
 ?>
+<?php require ("header.php"); ?>
 
-
-<html>
-	<head>
 		<title>
 			MinuTunne - jälgi meeleolu- ja tervisemuutusi
 		</title>
-	</head>
-	<body>
-		<div class="container">
+
+<div class="container">
 		<em><h1>
 			<b>
 				<font color = #100B00>
@@ -110,59 +107,72 @@ require ("header.php");
 				Kasutajal on võimalik tutvuda enda varasemate enesetunde hinnangutega, liikumisaktiivsusega ning neid vastavalt vajadusele analüüsida. </p>
 		</em>
 
-			<div class="container">
-			 <div class="row" style="margin-top:20px">
-				 	<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-				 	<form role="form">
-						<fieldset>
-							<h2><font color=#3B341F>	Logi sisse </h2> </font>
-				<form method="POST">
-					<div class="form-group">
+		<form method="POST">
+		<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class = "row">
+			<h2><font color=#3B341F>	Logi sisse </h2> </font>
+				<div class="input-field col s12">
 					<p style="color:red;">
 						<?=$error;?></p>
 					<label>E-post</label>
-					<input  class="form-control input-lg" name="loginEmail" type="text"> </div>
-						<br>
-
-						<div class="form-group">
+					<!--<div class="form-group">-->
+					<input  class="form-control" name="loginEmail" type="text">
+					<br>
+					</div>
+				</div>
+						<div class = "row">
+						<div class="input-field col s12">
 						<label>Parool</label>
 						<br>
-						<input type="Password" class="form-control input-lg" name="loginPassword"> </div>
+						<input type="Password" class="form-control" name="loginPassword">
 						<br>
-
-						<div class="row">
-							<div class="col-xs-6 col-sm-6 col-md-6">
 						<input class = "btn btn-success btn-sm"  style="height:80;width:100" type="submit" value="Logi sisse">
-					</div>
-					</form>
-					<br><br>
+				</div>
+		</div>
+	</div>
+</form>
 
-			</fieldset>
-		</form>
-
-
-							<div class="row" style="margin-top:20px">
-								<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-								<form role="form">
-									<div class="form-group">
-						<h2><font color=#3B341F> Registreeru kasutajaks </h2></font>
-						<form method="POST">
-							<div style="display: inline;">
+<div class="col-xs-6 col-sm-6 col-md-6">
+<h2><font color=#3B341F> Registreeru kasutajaks </h2></font>
+<form method="POST">
+<div class="col-xs-6 col-sm-6 col-md-6">
+<div class="row">
+<div class="input-field col s12">
 							<label>E-post</label>
 							<br>
-							<input class="form-control input-xs"  name="signupEmail" type="text"  value="<?=$signupEmail;?>"><?=$signupEmailError;?>
+							<input class="form-control"  name="signupEmail" type="text"  value="<?=$signupEmail;?>"><?=$signupEmailError;?>
 							<br>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 col-sm-6 col-md-6">
+					<div class="input-field col s12">
 							<label>Parool</label>
 							<br>
-							<input class="form-control input-xs" type="Password" name="signupPassword" ></div>
+							<input class="form-control" type="Password" name="signupPassword" ></div>
 							<?php echo $signupPasswordError; ?>
-							<br>
+						</div>
+					</div>
+
+						<div class="row">
+								<div class="col-xs-6 col-sm-6 col-md-6">
+									<div class="input-field col s12">
+
 							<label>Sünniaeg</label>
+							<input class="form-control"  name="signUpDate" type="Date"  value="<?=$signUpDate;?>"><?=$signUpDateError;?>
 							<br>
-							<input class="form-control input-xs"  name="signUpDate" type="Date"  value="<?=$signUpDate;?>"><?=$signUpDateError;?>
-							<br>
+						</div>
+						</div>
+							<div class="row">
+							<div class="col-xs-3 col-sm-6 col-md-6">
+								<div class="input-field col s12">
 							<label>Sugu</label>
-							<br>
+
+						<div class="row">
+									<div class="col-xs-3 col-sm-6 col-md-6">
+										<div class="input-field col s12">
+
 							<?php if($signupGender == "male") { ?>
 							<input type="radio" name="signupGender" value="male" checked>
 							Mees
@@ -171,7 +181,9 @@ require ("header.php");
 							<input type="radio" name="signupGender" value="male">
 							Mees
 							<br>
+
 							<?php } ?>
+
 							<?php if($signupGender == "female") { ?>
 							<input type="radio" name="signupGender" value="female" checked>
 							Naine
@@ -190,13 +202,9 @@ require ("header.php");
 							Muu
 							<br>
 							<?php } ?>
-							<br>
-							<input class = "btn btn-success btn-sm" type="submit" style="height:80;width:100" value="Registreerun">
 
-					</fieldset>
-				</div>
-						</form>
-					</div>
-				</div>
-				</body>
-			</html>
+			<br>	<input class = "btn btn-success btn-sm" type="submit" style="height:80;width:100" value="Registreerun">
+		</div>
+	</div>
+	</form>
+</div>
