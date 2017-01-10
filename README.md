@@ -1,19 +1,28 @@
-Projekti nimi - TireJack
+# TireJack
 
-Pilt - veel tegemisel
+![Alt text](img/rehv.png?raw=true "Home")
 
-Rühma liikmed - Kristjan Liiva ja Kert Aavik
+## Rühma liikmed
 
-Eesmärk - Kuna rehvivahetusega on pidevalt probleeme(pikad järjekorrad näiteks), siis on meie veebirakenduse
+Kristjan Liiva ja Kert Aavik
+
+## Eesmärk
+
+Kuna rehvivahetusega on pidevalt probleeme(pikad järjekorrad näiteks), siis on meie veebirakenduse
 eesmärgiks pakkuda võimalust kõige kiiremaks rehvivahetuseks.
 
-Kirjeldus - Sihtrühmaks on kõik inimesed, kellel on olemas juhiload ning sõiduk (Kaubik, maastur jne). Eripäraks
+## Kirjeldus
+
+Sihtrühmaks on kõik inimesed (olenemata vanusest), kellel on olemas juhiload ning sõiduk (Kaubik, maastur jne). Eripäraks
 meie veebirakenduse juures on see, et me pakume välja kõige kiirema aja inimestele (olenemata asukohast).
 
-Funktsionaalsuse loetelu - v0.1 Saab esilehel tagasisidet anda, v0.2 Saab broneerida aega (algne olek - puudub veel kalendri salvestus),
+## Funktsionaalsuse loetelu
+
+v0.1 Saab esilehel tagasisidet anda
+v0.2 Saab broneerida aega (algne olek - puudub veel kalendri salvestus)
 v0.3 Plaanitud (Saada tööle kalendri aja salvestuse)
 
-Andmebaasi skeem pildina + tabelite loomise SQL laused -
+## Andmebaasi skeem pildina + tabelite loomise SQL laused
 
 CREATE TABLE Reservation_Data(
 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,4 +33,6 @@ Car_Model TEXT,
 Telephone_Nr INT(11)
 );
 
-Kokkuvõte - tegemisel
+![Alt text](img/database.png?raw=true "Andmebaas")
+
+## Kokkuvõte - tegemisel
