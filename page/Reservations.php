@@ -284,7 +284,7 @@
 			
 			<input type="submit" value="Broneeri" class="btn btn-primary">
 			
-			<input type="button" onClick="parent.open('tagasiside.html')" value='Tagasiside' >	
+			<input type="button" onClick="parent.open('../tagasiside.html')" value='Tagasiside' >	
 		
 			<br><br>			
 		</form>
