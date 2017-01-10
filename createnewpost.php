@@ -34,7 +34,7 @@
 	<form method="POST">
 	
 	<!--KATEGOORIA-->
-	<label for="category">Vali eriala:</label></br>
+	<label for="category">Vali instituut:</label></br>
 	<select name="category" id="category" required>
 	<option value="">Näita</option>
 	<option value="Balti filmi, meedia, kunstide ja kommunikatsiooni instituut">Balti filmi, meedia, kunstide ja kommunikatsiooni instituut</option>
