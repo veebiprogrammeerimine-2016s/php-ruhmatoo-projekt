@@ -33,7 +33,7 @@ Car_Model TEXT,
 Telephone_Nr INT(11)
 );
 
-![Alt text](img/database.png?raw=true "Andmebaas")
+![Alt text](img/Andmebaas.png?raw=true "Andmebaas")
 
 ## Kokkuvõte
 
