@@ -133,7 +133,9 @@
 		<!--PAROOLI LOGIMINE-->
 		<input name="loginPassword" type="password" class="text" placeholder="Parool">
 		<br><?php echo $loginPasswordError;?>
-
+		
+	<td><input type="checkbox" name="checkbox" value="" checked="checkbox"><b> Jäta meelde</b></td> <br>
+	
 		<!--LOGIN BUTTON-->
 		<input type="submit" value="Logi sisse" class="submit submit1">
 		</form>
