@@ -96,7 +96,7 @@ class User
 
     function getFeedback($r, $sort, $order) {
 
-      $allowedSort = ["id", "user_id", "poster_id",
+      $allowedSort = ["id", "user_id", "user_email", "poster_id",
       "rating", "feedback", "added"];
 
       if(!in_array ($sort, $allowedSort)) {
@@ -113,25 +113,25 @@ class User
     if ($r != "") {
 
       $stmt = $this->connection->prepare("
-      SELECT cp_feedback.id, cp_feedback.user_id,
+      SELECT cp_feedback.id, cp_feedback.user_id, cp_users.email,
       cp_feedback.poster_id, cp_feedback.rating,
       cp_feedback.feedback, cp_feedback.added
       FROM cp_feedback
       LEFT JOIN cp_users ON cp_users.id=cp_feedback.user_id
-      WHERE cp_feedback.id = ? AND cp_feedback.deleted IS NULL
-        AND (cp_feedback.user_id LIKE ? OR cp_feedback.poster_id LIKE ? OR cp_feedback.rating LIKE ?
+      WHERE cp_feedback.deleted IS NULL
+        AND (cp_feedback.id LIKE ? OR cp_feedback.user_id LIKE ? OR cp_users.email LIKE ? OR cp_feedback.poster_id LIKE ? OR cp_feedback.rating LIKE ?
         OR cp_feedback.feedback LIKE ? OR cp_feedback.added LIKE ?)
         ORDER BY $sort $orderBy
       ");
 
       $searchWord = "%".$r."%";
-      $stmt->bind_param("sssssssss", $searchWord, $searchWord, $searchWord, $searchWord,
+      $stmt->bind_param("sssssss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord,
       $searchWord, $searchWord);
 
     } else {
 
     $stmt = $this->connection->prepare("
-    SELECT cp_feedback.id, cp_feedback.user_id,
+    SELECT cp_feedback.id, cp_feedback.user_id, cp_users.email,
     cp_feedback.poster_id, cp_feedback.rating,
     cp_feedback.feedback, cp_feedback.added
     FROM cp_feedback
@@ -142,7 +142,7 @@ class User
 
     echo $this->connection->error;
   }
-    $stmt->bind_result($feedback_id, $user_id, $poster_id, $rating,
+    $stmt->bind_result($feedback_id, $user_id, $user_email, $poster_id, $rating,
     $feedback, $added);
     $stmt->execute();
 
@@ -155,6 +155,7 @@ class User
       $r = new StdClass();
       $r->feedback_id = $feedback_id;
       $r->user_id = $user_id;
+      $r->user_email = $user_email;
       $r->poster_id = $poster_id;
       $r->rating = $rating;
       $r->feedback = $feedback;

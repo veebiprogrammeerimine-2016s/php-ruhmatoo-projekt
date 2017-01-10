@@ -46,7 +46,7 @@ $User = new User($mysqli);
 
 
 	<div class="col-centered col-md-8">
-    <h2> Give feedback:</h2>
+    <h2> Give feedback to the passenger:</h2>
 
 		<form method="POST" >
     <div class ="form-group">

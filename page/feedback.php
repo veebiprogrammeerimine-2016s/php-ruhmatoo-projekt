@@ -84,74 +84,34 @@ $feedback = $User->getFeedback($r, $sort, $order);
 		$html .= "<h2>Feedback</h2>";
 
   		$html .= "<tr>";
-			//User ID related
-  		$orderFeedback_id = "ASC";
-  		$arr="&darr;";
-  		if (isset($_GET["order"]) &&
-  		$_GET["order"] == "ASC" &&
-  		$_GET["sort"] == "id") {
 
-  			$orderFeedback_id = "DESC";
-  			$arr="&uarr;";
-  		}
-
-
-  			$html .= "<th>
-  			<a href='?q=".$r."&sort=id&order=".$orderFeedback_id."'>
-
-  			Feedback ID ".$arr."
-
-  			</a>
-
-  			</th>";
-
-				//start_location related
-
-  			$orderuser_id = "ASC";
+  			$orderID= "ASC";
   			$arr="&darr;";
 
   			if (isset($_GET["order"]) &&
   			$_GET["order"] == "ASC" &&
-  			$_GET["sort"] == "user_id") {
+  			$_GET["sort"] == "id") {
 
-  				$orderuser_id = "DESC";
+  				$orderID= "DESC";
   				$arr="&uarr;";
   			}
 
   				$html .= "<th>
-  				<a href='?q=".$r."&sort=user_id&order=".$orderuser_id."'>
+  				<a href='?q=".$r."&sort=id&order=".$orderID."'>
 
-  				user_id ".$arr."
+  				User ".$arr."
   				</a>
 
   				</th>";
 
 					//Start_time related
-  				$orderposter_id = "ASC";
-					$arr="&darr;";
-  				if (isset($_GET["order"]) &&
-  				$_GET["order"] == "ASC" &&
-  				$_GET["sort"] == "poster_id") {
-
-  					$orderposter_id = "DESC";
-						$arr="&uarr;";
-
-  				}
-
-  					$html .= "<th>
-  					<a href='?q=".$r."&sort=poster_id&order=".$orderposter_id."'>
-
-  					poster_id ".$arr."
-  					</a>
-
-  					</th>";
 
 						//Guest_id related
 	  				$orderRating = "ASC";
 						$arr="&darr;";
 	  				if (isset($_GET["order"]) &&
 	  				$_GET["order"] == "ASC" &&
-	  				$_GET["sort"] == "rating ") {
+	  				$_GET["sort"] == "rating") {
 
 	  					$orderRating = "DESC";
 							$arr="&uarr;";
@@ -212,14 +172,12 @@ $feedback = $User->getFeedback($r, $sort, $order);
   		foreach ($feedback as $r) {
 
   			$html .= "<tr>";
-					$html .= "<td>".$r->feedback_id."</td>";
-  				$html .= "<td>".$r->user_id."</td>";
-  				$html .= "<td>".$r->poster_id."</td>";
+  				$html .= "<td>".$r->user_email."</td>";
 					$html .= "<td>".$r->rating."</td>";
 					$html .= "<td>".$r->feedback."</td>";
 					$html .= "<td>".$r->added."</td>";
 
-    
+
   			$html .= "</tr>";
 
   		}
