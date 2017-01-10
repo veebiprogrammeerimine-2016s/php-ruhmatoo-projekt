@@ -14,7 +14,7 @@ class User {
 		
 	function signUp ($email, $password, $fistname, $lastname, $gender, $username, $DoB) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO sm_users(firstname, lastname, dateofbirth, gender, username, email, password) VALUES(?, ?, ?, ?, ?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO sm_users(firstname, lastname, dateofbirth, gender, username, email, password, userlevel) VALUES(?, ?, ?, ?, ?, ?, ?, 1)");
 	
 		echo $this->connection->error;
 		

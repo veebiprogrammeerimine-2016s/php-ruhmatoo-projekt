@@ -110,6 +110,18 @@ CREATE TABLE sm_postinfo(
 );
 
 
+6 - kommentaaride tabel
+
+CREATE TABLE sm_comments(
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	postid INT,
+	userid INT,
+	comment VARCHAR(255),
+	created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY(postid) REFERENCES sm_posts(id),
+	FOREIGN KEY(userid) REFERENCES proov1(id)
+);
+
 
 
 
@@ -282,8 +294,9 @@ SELECT i.postid, heading, model, price, description, name
 
 
 
-
-
+SELECT COUNT(*) AS checkpost
+	FROM (SELECT * FROM sm_posts WHERE userid = ?) AS p
+	JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL AND postid = ?) AS i ON p.id=i.postid;
 
 
 

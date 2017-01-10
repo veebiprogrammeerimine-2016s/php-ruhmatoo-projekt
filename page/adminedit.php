@@ -13,10 +13,7 @@ require("../functions.php");
 		exit();
 	}
 
-	if(!isset($_GET["id"])) {
-		header("Location: data.php");
-		exit();
-	}
+
 	
 
 $currentId = $_GET["id"];
@@ -45,7 +42,7 @@ if(isset($_POST["model"]) && isset($_POST["description"]) && isset($_POST["price
 		$recentId = $recentPostData->id;
 		$Sneakers->deletePreviousPostVersions($currentId, $recentId);
 		
-		header("Location: editpost.php?id=".$currentId);
+		header("Location: adminedit.php?id=".$currentId);
 		exit();
 	}
 	
@@ -53,7 +50,7 @@ if(isset($_POST["model"]) && isset($_POST["description"]) && isset($_POST["price
 		
 		$Sneakers->deleteUnfinishedPost($currentId);
 		
-		header("Location: myposts.php");
+		header("Location: admin.php");
 		exit();
 	}
 
@@ -190,7 +187,7 @@ $displayedImage = "";
 		
 		$Sneakers->deletePreviousImages($currentId, $recentImageId);
 		
-		header("Location: editpost.php?id=".$currentId);
+		header("Location: adminedit.php?id=".$currentId);
 		exit();
 	}
 
@@ -204,19 +201,13 @@ $displayedImage = "";
 		
 		$Sneakers->deletePreviousImages($currentId, $recentImageId);
 		
-		header("Location: editpost.php?id=".$currentId);
+		header("Location: adminedit.php?id=".$currentId);
 		exit();
 		
 	}
 
 
-$checkPostId = $Sneakers->checkModifiedPost($currentId);
-$checkId = $checkPostId->postcheck;
 
-if($checkId == 0) {
-	header("Location: myposts.php");
-	exit();
-}
 
 
 
@@ -361,7 +352,7 @@ require("../header.php");
 						</div>
 						
 						<div class="col-md-12">
-							<form action="editpost.php?id=<?php echo $_GET["id"]; ?>" method="POST" enctype="multipart/form-data">					
+							<form action="adminedit.php?id=<?php echo $_GET["id"]; ?>" method="POST" enctype="multipart/form-data">					
 								<div class="form-group">
 									<label for="fileToUpload">Uploadi pilt:</label><br>
 									<label class="btn btn-default btn-file" for="fileToUpload">
@@ -415,4 +406,3 @@ require("../header.php");
 
 
 
-<?php require("../footer.php"); ?>

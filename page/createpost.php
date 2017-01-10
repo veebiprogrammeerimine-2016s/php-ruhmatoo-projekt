@@ -288,7 +288,6 @@ $updateStatus = "";
 		
 		header("Location: createpost.php?id=".$currentId);
 		exit();
-		
 	}
 	
 	

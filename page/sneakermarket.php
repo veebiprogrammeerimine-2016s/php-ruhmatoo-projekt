@@ -70,7 +70,7 @@ require("../header.php");
 				$html .= "<img src='../uploads/".$p->name."'>";
 				$html .= "<div class='caption'>";
 					$html .= "<h3>".$p->heading."</h3>";
-					$html .= "<p>".$p->description."</p>";
+					$html .= "<p>".$p->brand.", ".$p->model.", Suurus ".$p->size."</p>";
 					$html .= "<p><a href='post.php?id=".$p->postid."' class='btn btn-primary' role='button'>Vaata</a></p>";
 				$html .= "</div>";
 			$html .= "</div>";

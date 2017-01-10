@@ -202,6 +202,27 @@ class Sneakers {
 		return $postCheck;
 	}
 	
+	function checkModifiedPost($currentid) {
+		$stmt = $this->connection->prepare("SELECT COUNT(*) AS postcheck
+												FROM (SELECT * FROM sm_posts WHERE userid = ?) AS p
+												JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL AND postid = ?) AS i ON p.id=i.postid");
+		echo $this->connection->error;
+		$stmt->bind_param("ii", $_SESSION["userId"], $currentid);
+		$stmt->bind_result($postcheck);
+		$stmt->execute();
+		
+		$postCheck = new StdClass();
+		
+		if($stmt->fetch()) {
+			$postCheck->postcheck = $postcheck;
+		} else {
+			echo $stmt->error." Oli mingi kamm postcheckiga..";
+		}
+		$stmt->close();
+		return $postCheck;		
+	}
+	
+	
 
 /****** VÕTAB KASUTAJA POOLT LOODUD VIIMASE REA 'sm_postinfo' ANDMEBAASIST ******
 	createpost.php
@@ -400,12 +421,12 @@ class Sneakers {
 */
 	function getAllPosts() {
 		
-		$stmt = $this->connection->prepare("SELECT i.postid, heading, model, price, description, name
+		$stmt = $this->connection->prepare("SELECT i.postid, heading, brand, model, size, type, sneakercondition, price, description, name
 												FROM (SELECT * FROM sm_posts WHERE postcompleted IS NOT NULL) AS p
 												JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL) AS i ON p.id=i.postid
 												JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid");
 		echo $this->connection->error;
-		$stmt->bind_result($postid, $heading, $model, $price, $description, $imgname);
+		$stmt->bind_result($postid, $heading, $brand, $model, $size, $type, $condition, $price, $description, $imgname);
 		$stmt->execute();
 		
 		$result = array();
@@ -416,7 +437,11 @@ class Sneakers {
 			
 			$sneakerPost->postid = $postid;
 			$sneakerPost->heading = $heading;
+			$sneakerPost->brand = $brand;
 			$sneakerPost->model = $model;
+			$sneakerPost->size = $size;
+			$sneakerPost->type = $type;
+			$sneakerPost->condition = $condition;
 			$sneakerPost->price = $price;
 			$sneakerPost->description = $description;
 			$sneakerPost->name = $imgname;
@@ -436,13 +461,13 @@ class Sneakers {
 */
 	function getSinglePostData($currentid) {
 		
-		$stmt = $this->connection->prepare("SELECT i.postid, heading, model, price, description, name
+		$stmt = $this->connection->prepare("SELECT i.postid, heading, brand, model, size, type, sneakercondition, price, description, name
 												FROM (SELECT * FROM sm_posts WHERE postcompleted IS NOT NULL) AS p
 												JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL AND postid = ?) AS i ON p.id=i.postid
 												JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid");
 		echo $this->connection->error;
 		$stmt->bind_param("i", $currentid);
-		$stmt->bind_result($postid, $heading, $model, $price, $description, $imgname);
+		$stmt->bind_result($postid, $heading, $brand, $model, $size, $type, $condition, $price, $description, $imgname);
 		$stmt->execute();
 		
 		$singlePostData = new StdClass();
@@ -451,7 +476,11 @@ class Sneakers {
 			
 			$singlePostData->postid = $postid;
 			$singlePostData->heading = $heading;
+			$singlePostData->brand = $brand;
 			$singlePostData->model = $model;
+			$singlePostData->size = $size;
+			$singlePostData->type = $type;
+			$singlePostData->condition = $condition;
 			$singlePostData->price = $price;
 			$singlePostData->description = $description;
 			$singlePostData->name = $imgname;
@@ -509,16 +538,82 @@ class Sneakers {
 		$stmt->close();
 		return $result;
 	}
+	
+	
+	function postComment($currentid, $comment) {
+		
+		$stmt = $this->connection->prepare("INSERT INTO sm_comments (postid, userid, comment) VALUES (?, ?, ?)");
+		echo $this->connection->error;
+		$stmt->bind_param("iis", $currentid, $_SESSION["userId"], $comment);
+		
+		if($stmt->execute()) {
+			echo "salvestamine õnnestus";
+		} else {
+			echo "ERROR".$stmt->error;
+		}
+		$stmt->close();
+	}
+	
+	
+
+
+	function getAllComments($currentid) {
+		
+		$stmt = $this->connection->prepare("SELECT userid, comment FROM sm_comments WHERE postid = ?");
+		echo $this->connection->error;
+		$stmt->bind_param("i", $currentid);
+		$stmt->bind_result($userid, $comment);
+		$stmt->execute();
+		
+		$result = array();
+		
+		while($stmt->fetch()) {
+			
+			$allComments = new StdClass();
+			
+			$allComments->userid = $userid;
+			$allComments->comment = $comment;
+			
+			array_push($result, $allComments);
+		}
+		$stmt->close();
+		return $result;
+	}
+	
+	
+	function flagPost($currentid) {
+		$stmt = $this->connection->prepare("UPDATE sm_postinfo SET postflagged = NOW() WHERE postid = ? AND postdeleted IS NULL");
+		echo $this->connection->error;
+		$stmt->bind_param("i", $currentid);
+		$stmt->execute();
+		$stmt->close();
+	}
 
 
 
 
 
 
-
-
-
-
+	function getAllFlaggedPosts() {
+		
+		$stmt = $this->connection->prepare("SELECT postid FROM sm_postinfo WHERE postflagged IS NOT NULL");
+		echo $this->connection->error;
+		$stmt->bind_result($postid);
+		$stmt->execute();
+		
+		$result = array();
+		
+		while($stmt->fetch()) {
+			
+			$flaggedPost = new StdClass();
+			
+			$flaggedPost->postid = $postid;
+			
+			array_push($result, $flaggedPost);
+		}
+		$stmt->close();
+		return $result;
+	}
 
 
 

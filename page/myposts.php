@@ -131,11 +131,11 @@ $direction = "ascending";
 		foreach($myPosts as $mp) {
 			
 			$html .= "<tr>";
-				$html .= "<td>".$mp->heading."</td>";
+				$html .= "<td><a href='post.php?id=".$mp->postid."'>".$mp->heading."</a></td>";
 				$html .= "<td>".$mp->model."</td>";
 				$html .= "<td>".$mp->price."</td>";
 				$html .= "<td>".$mp->description."</td>";
-				$html .= "<td><a href='editpost.php?id=".$mp->postid."'><span class='glyphicon glyphicon-pencil'></span></td>";
+				$html .= "<td><a href='editpost.php?id=".$mp->postid."'><span class='glyphicon glyphicon-pencil'></span></a></td>";
 			$html .= "</tr>";
 		}
 
