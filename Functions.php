@@ -1,17 +1,17 @@
 <?php 
 
-	require("../../config.php");
+	require("../../../config.php");
 	
 	$database = "if16_kliiva";
 
 
-	function SaveReservation($reg_nr, $veichle_type, $car_brand, $car_model, $telephone_nr) {
+	function SaveReservation($reg_nr, $veichle_type, $car_brand, $car_model, $telephone_nr, $date, $time) {
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $mysqli->prepare("INSERT INTO Reservation_Data (Registration_Nr, Veichle_Type, Car_Brand, Car_Model, Telephone_Nr) VALUES (?, ?, ?, ?, ?) ");
+		$stmt = $mysqli->prepare("INSERT INTO Reservation_Data (Registration_Nr, Veichle_Type, Car_Brand, Car_Model, Telephone_Nr, Reserved_Date, Reserved_Time) VALUES (?, ?, ?, ?, ?, ?, ?) ");
 		echo $mysqli->error;
 		
-		$stmt->bind_param("ssssi", $reg_nr, $veichle_type, $car_brand, $car_model, $telephone_nr);
+		$stmt->bind_param("ssssiss", $reg_nr, $veichle_type, $car_brand, $car_model, $telephone_nr, $date, $time);
 		if($stmt->execute()) {
 			
 			echo "Salvestamine õnnestus";
@@ -24,6 +24,7 @@
 		
 	}
 	
+	
 	function CleanInput($input) {
 		
 		$input = trim($input);
@@ -33,6 +34,9 @@
 		return $input;
 		
 	}
+	
+	
+	
 
 	
 ?>

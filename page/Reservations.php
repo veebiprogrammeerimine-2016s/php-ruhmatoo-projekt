@@ -1,8 +1,8 @@
 <?php
 
 
-	require("../../config.php");
-	require("Functions.php");
+	require("../../../config.php");
+	require("../Functions.php");
 	
 	$veichle_type = "";
 	$car_brand = "";
@@ -14,7 +14,39 @@
 	$reg_nr_error = "";
 	$telephone_nr_error = "";
 	$veichle_type_error = "";
+	$date = "";
+	$time = "";
+	$time_error = "";
+	$date_error = "";
+
 	
+	if (isset($_GET["time"])) {
+		
+		if(empty($_GET["time"])) {
+			
+			$time_error = "Palun valige kellaaeg, millal soovite rehvivahetust";
+			
+		} else {
+			
+			$time = $_GET["time"];
+			
+		}
+		
+	}
+	
+	if (isset($_GET["date"])) {
+		
+		if (empty($_GET["date"])) {
+			
+			$date_error = "Palun valige kuupäev, millal tahate rehvivahetust";
+			
+		} else {
+			
+			$date = $_GET["date"];
+			
+		}
+		
+	}
 	
 	if(isset($_POST["veichle_type"])) {
 		
@@ -93,6 +125,10 @@
 	   isset($_POST["car_brand"]) &&
 	   isset($_POST["car_model"]) &&
 	   isset($_POST["telephone_nr"]) &&
+	   isset($_GET["date"]) &&
+	   isset($_GET["time"]) &&
+	   empty($time_error) &&
+	   empty($date_error) &&
 	   empty($reg_nr_error) &&
 	   empty($veichle_type_error) &&
 	   empty($car_brand_error) &&
@@ -100,15 +136,15 @@
 	   empty($telephone_nr_error)
 	) {
 		
-		echo "Salvestan....<br>";
-		echo "Sõiduki tüüp ".$veichle_type."<br>";
-		SaveReservation($reg_nr, $veichle_type, $car_brand, $car_model, $telephone_nr);
+		//echo "Salvestan....<br>";
+		//echo "Sõiduki tüüp ".$veichle_type."<br>";
+		SaveReservation($reg_nr, $veichle_type, $car_brand, $car_model, $telephone_nr, $date, $time);
 		
 	}
 
 ?>
 
-<?php require("Header.php"); ?>
+<?php require("../Header.php"); ?>
 
 
 <div class="container">
@@ -248,7 +284,7 @@
 			
 			<input type="submit" value="Broneeri" class="btn btn-primary">
 			
-			<input type=button onClick="parent.open('tagasiside.html')" value='Tagasiside' >	
+			<input type="button" onClick="parent.open('tagasiside.html')" value='Tagasiside' >	
 		
 			<br><br>			
 		</form>
