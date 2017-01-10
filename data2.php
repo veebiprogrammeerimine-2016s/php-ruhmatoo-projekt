@@ -106,3 +106,4 @@ echo '<img src="weight.jpg"/>';
 
 
 </form>
+<?php require ("footer.php"); ?>
