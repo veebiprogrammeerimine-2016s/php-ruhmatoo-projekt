@@ -1,4 +1,3 @@
-
 <?php
 //Teine data leht, KMI ja pilt
 require("functions.php");
@@ -33,12 +32,7 @@ $weightError = "";
 
 //kontrollin, kas kasutaja sisestas andmed
 
-if(isset($_POST["height"])) {
-  if (empty($_POST["height"])){
-    $lengthError="See väli on kohustuslik!";
 
-  }else {
-    $length=$_POST["height"];
 
 if(isset($_POST["height"])) {
   if (empty($_POST["height"])){
@@ -69,40 +63,33 @@ if(isset($_POST["height"]) &&
 
 saveUserLW ($height, $weight);
 
-
-exit();
 }
-
-//tahaks printida pilti
-echo '<img src="weight.jpg"/>';
 
 ?>
 
-
-
+<div class="container">
+<form method="GET">
+<div class="col-xs-6 col-sm-6 col-md-6">
+<div class = "row">
+<div class="input-field col s12">
 <?php require ("header.php"); ?>
-<h1> Pikkus ja kehakaal </h1>
+<img src="weight.jpg"  style="width:304px;height:228px;">
+
+
 <h3> Sisesta kehakaal ja pikkus KMI arvutamiseks </h3>
-
-<form method="POST">
-<label><h3>Pikkus</h3></label>
-<input name="length" type="length" value="<?=$height;?>"> <?php echo $heightError; ?>
-<br><br>
-<label><h3>Kaal</h3></label>
-<input name="weight" type="weight" value="<?=$weight;?>"> <?php echo $weightError; ?>
-<br><br>
-<input type="submit" value="Arvuta">
-
 <form method="GET" action="<?=$_SERVER['PHP_SELF'];?>">
 <label><h3>Pikkus:</h3></label>
-<input type="text" name="height" value="" /> <?php echo $heightError; ?>
+<input class="form-control-sm" placeholder="cm" type="text" name="height" value="" /> <?php echo $heightError;?>
 <br/>
+</div>
+
+<div class="row">
+	<div class="col-xs-6 col-sm-6 col-md-6">
+		<div class="input-field col s12">
 <label><h3>Kaal:</h3></label>
-<input type="text" name="weight" value="" /> <?php echo $weightError; ?>
-<br />
-<button <p type="submit" class="text-center" name="calculate">Arvuta</button> </p>
+<input  class="form-control-sm"  placeholder="kg" type="text" name="weight" value="" /> <?php echo $weightError;?>
+</div>
+<button <p type="submit" class="text-center btn btn-primary " name="calculate"> Arvuta</button> </p>
+<a class="btn btn-success btn-warning" href="?logout=1" role="button">Logi välja</a>
 </form>
-
-
-
-</form>
+<?php require ("footer.php");?>
