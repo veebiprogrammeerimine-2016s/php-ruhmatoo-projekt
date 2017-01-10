@@ -353,6 +353,90 @@ class Rides {
   }
 
 
+  function getPassengerPastRides($r, $sort, $order) {
+
+    $allowedSort = ["rde_id", "start_location", "start_time",
+    "arrival_location", "arrival_time", "free_seats", "price",
+    "name", "email"];
+
+    if(!in_array ($sort, $allowedSort)) {
+      $sort = "ride_id";
+    }
+
+    $orderBy = "ASC";
+
+
+  if($order == "DESC") {
+    $orderBy = "DESC";
+  }
+
+  if ($r != "") {
+
+    $stmt = $this->connection->prepare("
+    SELECT cp_rideusers.ride_id, cp_rides.start_location,
+    cp_rides.start_time, cp_rides.arrival_location,
+    cp_rides.arrival_time, cp_rides.free_seats, cp_users.name, cp_users.email
+    FROM cp_rides
+    JOIN cp_users ON cp_users.id=cp_rides.user_id
+    JOIN cp_rideusers ON cp_rideusers.ride_id=cp_rides.id
+    WHERE cp_rideusers.user_id = ? AND cp_rides.start_time < NOW() AND cp_rides.deleted IS NOT NULL
+      AND (cp_rideusers.ride_id LIKE ? OR cp_rides.start_location LIKE ? OR cp_rides.start_time LIKE ?
+      OR cp_rides.arrival_location LIKE ? OR cp_rides.arrival_time LIKE ?
+      OR cp_rides.free_seats LIKE ? OR cp_rides.user_id LIKE ? OR cp_users.name LIKE ? OR cp_users.email LIKE ?)
+      ORDER BY $sort $orderBy
+    ");
+
+    $searchWord = "%".$r."%";
+    $stmt->bind_param("isssssssss", $_SESSION["userId"], $searchWord, $searchWord, $searchWord, $searchWord, $searchWord,
+    $searchWord, $searchWord, $searchWord, $searchWord);
+
+  } else {
+
+    $stmt = $this->connection->prepare("
+    SELECT cp_rideusers.ride_id, cp_rides.start_location,
+    cp_rides.start_time, cp_rides.arrival_location,
+    cp_rides.arrival_time, cp_rides.free_seats, cp_rides.user_id, cp_users.name, cp_users.email
+    FROM cp_rides
+    JOIN cp_users ON cp_users.id=cp_rides.user_id
+    JOIN cp_rideusers ON cp_rideusers.ride_id=cp_rides.id
+    WHERE cp_rideusers.user_id = ? AND cp_rides.start_time < NOW() AND cp_rides.deleted IS NOT NULL
+    ORDER BY $sort $orderBy
+    ");
+
+    echo $this->connection->error;
+    $stmt->bind_param("i", $_SESSION["userId"]);
+    }
+    $stmt->bind_result($ride_id, $start_location, $start_time, $arrival_location,
+    $arrival_time, $free_seats, $driver_id, $driver_name, $driver_email);
+    $stmt->execute();
+
+    //tekitan objekti
+    $results = array();
+    //tsykli sisu tehakse nii mitu korda, mitu rida
+    //SQL lausega tuleb
+    while ($stmt->fetch()) {
+
+      $r = new StdClass();
+      $r->ride_id = $ride_id;
+      $r->start_location = $start_location;
+      $r->start_time = $start_time;
+      $r->arrival_location = $arrival_location;
+      $r->arrival_time = $arrival_time;
+      $r->free_seats= $free_seats;
+      $r->driver_id= $driver_id;
+      $r->driver_name= $driver_name;
+      $r->driver_email = $driver_email;
+
+      //echo $age."<br>";
+      //echo $color."<br>";
+      array_push($results, $r);
+    }
+
+    $stmt->close();
+    return $results;
+  }
+
+
   function save ($start_location, $start_time, $arrival_location,
   $arrival_time, $free_seats, $price) {
 

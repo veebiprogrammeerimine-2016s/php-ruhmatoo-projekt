@@ -16,8 +16,7 @@ $Rides = new Rides($mysqli);
 		exit();
 	}
 
-
-  $msg = "";
+ $msg = "";
 
 	if(isset($_SESSION["message"])){
 		$msg = $_SESSION["message"];
@@ -26,12 +25,12 @@ $Rides = new Rides($mysqli);
 		unset($_SESSION["message"]);
 	}
 
-  if ( isset($_POST["getPassenger"]) &&
-		!empty($_POST["getPassenger"])
+  if ( isset($_POST["getPassengerPastRides"]) &&
+		!empty($_POST["getPassengerPastRides"])
 	  ) {
 
-		echo $_POST["getPassenger"];
-		$Rides->getPassenger($Helper->cleaninput($_POST["getPassenger"]));
+		echo $_POST["getUserPastRides"];
+		$Rides->getPassengerPastRides($Helper->cleaninput($_POST["getPassengerPastRides"]));
 
 	}
 
@@ -52,7 +51,7 @@ $Rides = new Rides($mysqli);
 
 	}
 
-    $rides = $Rides->getPassenger($r, $sort, $order);
+  $rides = $Rides->getPassengerPastRides($r, $sort, $order);
 
 
 ?>
@@ -65,12 +64,11 @@ $Rides = new Rides($mysqli);
 	<div class="col-sm-4 col-md-3">
 
 
-<h2> Passenger page</h2>
+<h2>Passenger page</h2>
 
-<h4><a href="user.php"> Back</a></h4>
+<h4><a href="youPassenger.php"> Back</a></h4>
 <?=$msg;?>
 
-<h4><a href="youPassengerPast.php"> Past rides</a></h4>
 <form>
 	<h2>Search </h2>
 	<div class ="form-group">
@@ -88,48 +86,48 @@ $Rides = new Rides($mysqli);
 	$html = "<div class='col-md-8'>";
 		$html = "<div class='table'>";
 		$html = "<table class='table-striped table-condensed'>";
-		$html .= "<h2>Upcoming rides</h2>";
+		$html .= "<h2>Past rides</h2>";
 
   		$html .= "<tr>";
 			//User ID related
-	  		$orderId = "ASC";
-	  		$arr="&darr;";
-	  		if (isset($_GET["order"]) &&
-		  		$_GET["order"] == "ASC" &&
-		  		$_GET["sort"] == "id") {
+  		$orderId = "ASC";
+  		$arr="&darr;";
+  		if (isset($_GET["order"]) &&
+  		$_GET["order"] == "ASC" &&
+  		$_GET["sort"] == "id") {
 
-	  			$orderId = "DESC";
-	  			$arr="&uarr;";
-  			}
+  			$orderId = "DESC";
+  			$arr="&uarr;";
+  		}
 
 
   			$html .= "<th>
-				<a href='?q=".$r."&sort=id&order=".$orderId."'>
+  			<a href='?q=".$r."&sort=id&order=".$orderId."'>
 
-				Ride ID ".$arr."
+  			Ride ID ".$arr."
 
-				</a>
+  			</a>
 
-				</th>";
+  			</th>";
 
 				//start_location related
 
   			$orderStart_location = "ASC";
   			$arr="&darr;";
 
-  				if (isset($_GET["order"]) &&
-		  			$_GET["order"] == "ASC" &&
-		  			$_GET["sort"] == "start_location") {
+  			if (isset($_GET["order"]) &&
+  			$_GET["order"] == "ASC" &&
+  			$_GET["sort"] == "start_location") {
 
-  					$orderStart_location = "DESC";
-  					$arr="&uarr;";
-  				}
+  				$orderStart_location = "DESC";
+  				$arr="&uarr;";
+  			}
 
   				$html .= "<th>
-  						<a href='?q=".$r."&sort=start_location&order=".$orderStart_location."'>
+  				<a href='?q=".$r."&sort=start_location&order=".$orderStart_location."'>
 
-  						Start location ".$arr."
-  					</a>
+  				Start location ".$arr."
+  				</a>
 
   				</th>";
 
@@ -160,7 +158,7 @@ $Rides = new Rides($mysqli);
 	  				$_GET["order"] == "ASC" &&
 	  				$_GET["sort"] == "arrival_location ") {
 
-	  					$orderArrival_location = "DESC";
+	  					$orderArrival_location  = "DESC";
 							$arr="&uarr;";
 
 	  				}
@@ -211,47 +209,60 @@ $Rides = new Rides($mysqli);
 
 									</th>";
 
-									$orderDriver_name= "ASC";
+									$orderGuest_name= "ASC";
 									$arr="&darr;";
 									if (isset($_GET["order"]) &&
 									$_GET["order"] == "ASC" &&
-									$_GET["sort"] == "driver_name") {
+									$_GET["sort"] == "guest_name") {
 
-										$orderDriver_name= "DESC";
+										$orderGuest_name = "DESC";
 										$arr="&uarr;";
 
 									}
 
+                  $orderDriver_name= "ASC";
+                  $arr="&darr;";
+                  if (isset($_GET["order"]) &&
+                  $_GET["order"] == "ASC" &&
+                  $_GET["sort"] == "driver_name") {
+
+                    $orderDriver_name= "DESC";
+                    $arr="&uarr;";
+
+                  }
+
+                    $html .= "<th>
+                    <a href='?q=".$r."&sort=driver_name&order=".$orderDriver_name."'>
+
+                   Driver ".$arr."
+                    </a>
+
+                    </th>";
+
+                    $orderDriver_email = "ASC";
+                    $arr="&darr;";
+                    if (isset($_GET["order"]) &&
+                    $_GET["order"] == "ASC" &&
+                    $_GET["sort"] == "driver_email") {
+
+                      $orderDriver_email = "DESC";
+                      $arr="&uarr;";
+
+                    }
+
+                    $html .= "<th>
+                    <a href='?q=".$r."&sort=driver_email&order=".$orderDriver_email."'>
+
+                   Driver email ".$arr."
+                    </a>
+
+                    </th>";
+
+
+
 										$html .= "<th>
-										<a href='?q=".$r."&sort=driver_name&order=".$orderDriver_name."'>
 
-									 Driver ".$arr."
-										</a>
-
-										</th>";
-
-										$orderDriver_email = "ASC";
-										$arr="&darr;";
-										if (isset($_GET["order"]) &&
-										$_GET["order"] == "ASC" &&
-										$_GET["sort"] == "driver_email") {
-
-											$orderDriver_email = "DESC";
-											$arr="&uarr;";
-
-										}
-
-										$html .= "<th>
-										<a href='?q=".$r."&sort=driver_email&order=".$orderDriver_email."'>
-
-									 Driver email ".$arr."
-										</a>
-
-										</th>";
-
-										$html .= "<th>
-
-									 Cancel registration
+									 Give feedback
 										</a>
 
 										</th>";
@@ -274,9 +285,9 @@ $Rides = new Rides($mysqli);
           $html .= "<td>
 
 
-  							<a class='btn' href='editRegistration.php?id=".$r->ride_id."'>
-  							Cancel
-  							<span class='glyphicon glyphicon-trash'></span>
+  							<a class='btn' href='giveFeedbackToDriver.php?id=".$r->driver_id."'>
+  							Feedback
+  							<span class='glyphicon glyphicon-user'></span>
   							</a>
   							</td>";
 
@@ -284,7 +295,7 @@ $Rides = new Rides($mysqli);
 
   		}
 
-		$html .= "</table>";
+  	$html .= "</table>";
 		$html .= "</div>";
 	$html .= "</div>";
 
