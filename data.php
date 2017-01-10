@@ -60,7 +60,7 @@
 		}
 
 	}
-
+	var_dump($_POST);
 	//ühtegi viga ei olnud ja saan kasutaja andmed salvestada
 	if(isset($_POST["Feeling"]) &&
 		isset($_POST["date"]) &&
@@ -97,11 +97,11 @@
 <form method="POST">
 <br><br>
 
-<form class="form-horizontal">
+<form method="POST" class="form-horizontal">
 		<div class="form-group">
 			<label for="inputDate" class="col-sm-4 control-label">Kuupäev</label>
 			<div class="col-sm-10">
-				<input type="date" class="form-control" id="inputdate" label="Kuupäev">
+				<input name="date" type="Date" class="form-control" id="inputDate" label="Kuupäev">
 			</div>
 		</div>
 		
@@ -110,7 +110,7 @@
 		 <div class="form-group">
 			<label for="inputFeeling" class="col-sm-4 control-label">Enesetunne</label>
 			<div class="col-sm-10">
-				<input list="Feeling" class="form-control" id="inputFeeling" label="Enesetunne">
+				<input name="Feeling" list="Feeling" class="form-control" id="inputFeeling" label="Enesetunne">
 			  <datalist id="Feeling">
 				<option value="Suurepärane">
 				<option value="Hea">
@@ -125,29 +125,27 @@
 		<div class="form-group">
 			<label for="inputNumberofSteps" class="col-sm-4 control-label">Sammude arv</label>
 			<div class="col-sm-10">
-				<input type="NumberofSteps" class="form-control" id="inputNumberofSteps">
+				<input name="NumberofSteps" type="number" class="form-control" id="inputNumberofSteps">
 			</div>
 		</div>
-</form>		
-<br><br>
-<br><br>
-		<a class="btn btn-success" type="submit" role="button">Salvesta andmed</a>
 	
+<br><br>
+<br><br>
+		
+		<input class="btn btn-success" type="submit" value="Salvesta andmed" />
 		<br>
 		<br>
 		
+
 <p></p>		
 </form>	
 </div>
 
 <?php require ("header.php"); ?>
-<!--<div class="form-group" style="padding-top:-1%;">
-	<a class="btn btn-success" href="?logout=1" role="button">Logi välja</a>
-</div>-->
+
 <div class="col-sm-5 col-md-5">
 
 	<h2><font color="#ff9933">Minu enesetunne ja liikumisaktiivsus</h2></font>
-
 	<br><br>
  
 <?php	
@@ -177,10 +175,12 @@
 	$listHtml = "<br><br>";
 
 ?>
-		
+	
+	
+
 </p>
 </form>
 
-	<a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
-	
+<a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
+</div>
 <?php require ("footer.php"); ?>
