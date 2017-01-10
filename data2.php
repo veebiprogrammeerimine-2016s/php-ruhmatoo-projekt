@@ -73,7 +73,7 @@ saveUserLW ($height, $weight);
 <div class = "row">
 <div class="input-field col s12">
 <?php require ("header.php"); ?>
-<img src="weight.jpg"  style="width:304px;height:228px;">
+<img src="KMI.png"  style="width:250px;height:228px;">
 
 
 <h3> Sisesta kehakaal ja pikkus KMI arvutamiseks </h3>
@@ -88,8 +88,10 @@ saveUserLW ($height, $weight);
 		<div class="input-field col s12">
 <label><h3>Kaal:</h3></label>
 <input  class="form-control-sm"  placeholder="kg" type="text" name="weight" value="" /> <?php echo $weightError;?>
+<br><br>
 </div>
 <button <p type="submit" class="text-center btn btn-primary " name="calculate"> Arvuta</button> </p>
 <a class="btn btn-success btn-warning" href="?logout=1" role="button">Logi välja</a>
 </form>
 <?php require ("footer.php"); ?>
+<?php
