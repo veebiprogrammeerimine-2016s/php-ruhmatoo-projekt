@@ -46,9 +46,7 @@
 			text-decoration:none;
 			color: #bdc3c7;
 		}
-		.form-control {
-			width: 30%;
-		}
+
 		a {
 			color:#bdc3c7;
 		}
@@ -74,9 +72,6 @@
 			width:50%;
 			left:87%;
 		}
-		.input-group {
-			width:25%;
-		}
 
 		.report:active {
 			text-decoration:none;
@@ -98,7 +93,16 @@
 		a.under:hover {
 			text-decoration: underline;
 		}
-
+		.active {
+			font-weight: 900;
+			text-decoration:none;
+			color:black;
+		}
+		.active:hover {
+			font-weight: 900;
+			text-decoration:none;
+			color:black;
+		}
 		</style>
 	</head>
 	<body>
@@ -113,7 +117,7 @@
 			<li><a href="upload.php"> uus postitus</a></li>
 			<li><p class="invisible">tyhi ruum</p></li>
 		  </ul>
-		<p class="navbar-text navbar-right">Tere, <a href="user.php?username=<?=$_SESSION["username"];?>"> <?=$_SESSION["username"];  ?>  </a>  <a class="btn btn-xs btn-primary" href="?logout=1" style="text-decoration:none; color:white;" >logi välja</a></p>
+		<p class="navbar-text navbar-right">Tere, <a href="user.php?username=<?=$_SESSION["username"];?>&postitas"> <?=$_SESSION["username"];  ?>  </a>  <a class="btn btn-xs btn-primary" href="?logout=1" style="text-decoration:none; color:white;" >logi välja</a></p>
 
 
         </div><!--/.nav-collapse -->

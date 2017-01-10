@@ -80,28 +80,28 @@
 	
 	if	(isset($_GET["empty"])) {
 				 $uploadError="
-						<br><div class='alert alert-danger'>
+						<br><div class='alert alert-danger' style='text-align: center'>
 						<strong>
-						 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-						Tühjasi väljasi ei tohi olla</strong>
+						 <span  class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
+						Tühjasi väljasi ei tohi olla!</strong>
 						</div>";	 
 	}
 	
 	if	(isset($_GET["short"])) {
 				 $uploadError="
-						<br><div class='alert alert-danger'>
+						<br><div class='alert alert-danger' style='text-align: center'>
 						<strong>
 						 <span class='glyphicon glyphicon-exclamation-sign' aria-hidden='true'> </span>
-						Pealkiri peab olema vähemalt 3 tähemärki ning võib olla kuni 30 tähemärki pikk</strong>
+						Pealkiri peab olema vähemalt 3 tähemärki pikk!</strong>
 						</div>";
 	}
 	
 	if	(isset($_GET["success"])) {
 				 $uploadError="
-						<br><div class='alert alert-success'>
-						<strong>
+						<br><div class='alert alert-success' style='text-align: center'>
+						
 						<span class='glyphicon glyphicon-ok' aria-hidden='true'> </span>
-						Sinu postitus laeti üles! <a href='data.php'>Trehva üle</a> </strong>
+						Sinu postitus laeti üles! <strong><a style='color:green; font-size:150%' href='data.php'>Trehva üle</a>    <span class='glyphicon glyphicon-sunglasses' aria-hidden='true'></span></strong>
 						</div>";	 
 	}
 	
@@ -131,14 +131,16 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 </script>
+
 <div class="container">
+	<div class="col-lg-4">
 	<div class="page-header">
 		<h1>Loo uus postitus</h1>
 	</div>
-	<form method=post enctype="multipart/form-data">
+	<form class="form" method=post enctype="multipart/form-data">
 	  <div class="form-group">
 		<label>Postituse pealkiri</label>
-		<input type="text" name="caption" id="caption" class="form-control" placeholder="Sisesta pealkiri">
+		<input type="text" name="caption" id="caption" class="form-control" placeholder="Sisesta pealkiri" /required>
 	  </div>
 	  <a data-toggle="tooltip" title="Pilt peab olema .bmp, .gif, .png, .jpg või .jpeg formaadis ning maksimaalselt 5mb.">Lisainfo</a>
 	  <div class="form-group">
@@ -146,11 +148,16 @@ $(function () {
 		<label for="exampleInputFile">Pildifail</label>
 			<input type="file" name="fileToUpload"  id="fileToUpload">
 		<p class="help-block">
+		
 		</p>
 	  </div>
-	  <button type="submit" name="submit" class="btn btn-default">Lae üles</button>
+	  <button type="submit" name="submit" class="btn btn-default btn-block">Lae üles</button>
 	</form>
+	
+		<?php echo $uploadError; ?>
+	</div>
 
-	<?php echo $uploadError; ?>
+
 </div>
+
 <?php require("../footer.php"); ?>

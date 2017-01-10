@@ -107,44 +107,40 @@
 	<div class="page-header">
 		<h1>Teema #<?php echo $topic; ?></h1>
 	</div>
-
-
 	
-	
-	<p class="lead">
-	<div class='container'>
-	<div class='row'><div class='col-lg-4'>
-	<?php
-	foreach ($results as $r) {
-			
-			
-			
-		
-			$html .= '<div style="padding-bottom:15px;" ><table>';
-				$html .= "<tr><h2>".$r->name."</h2></tr>";
-				$html .= "<td><img src=".$r->message."></td></table>";
-				//$html .= " <a href='user.php?username=".$r->author."'>". $r->author.'</a>';
+<p class="lead">
+<div class='container'>
+	<div class='row'>
+		<div  class='col-lg-4'>
+			<?php
+			foreach ($results as $r) {
+					
+					
+					
+				
+					$html .= '<div style="padding-bottom:15px;" ><table>';
+						$html .= "<tr><h2>".$r->name."</h2></tr>";
+						$html .= "<td><img src=".$r->message."></td></table>";
+						//$html .= " <a href='user.php?username=".$r->author."'>". $r->author.'</a>';
 
-			$html .= "</div>";
-		
-		}
-	
-	echo $html;
-	?>
-	</div></div>
-	</p>
-	<div>
-		<form class="form-inline" method="post">
-		<input class="form-control input-sm" type="text" name="comment" placeholder="Kirjuta kommentaar" />  
-		<button type="submit" class="btn btn-default btn-xs" id="postita"> Postita  </button>     <?php echo $feedBack; ?>
-
-		</form>
-		
+					$html .= "</div>";
+				
+				}
+			
+			echo $html;
+			?>
+				<div >
+					<form class="form-inline" method="post">
+						<input class="form-control input-sm" type="text" name="comment" placeholder="Kirjuta kommentaar" />  
+						<button type="submit" class="btn btn-default btn-xs" id="postita"> Postita  </button>     <?php echo $feedBack; ?>
+					</form>
+				</div>
+		</div>
 	</div>
-	<br>
-
-	<br>
-	<script >
+</p>
+<br>
+<br>
+<script >
 			
 			$(document).ready(function(){
 				
@@ -155,7 +151,7 @@
 					
 
 				if ($('input').val() < 3) {
-					alert("Kommentaar peab olema vähemalt 4 tähemärki pikk!");
+					alert("Kommentaar ei tohi tühi olla ning peab olema vähemalt 4 tähemärki pikk!");
 					event.preventDefault();
 				}
 				});
@@ -194,28 +190,9 @@
 		</div>
 	</div>
 </div> 
-	
-	
-
-	<br><br>
-	
-
-	
-
-	
+<br><br>
 </div>
 </div>
-
-
-
-
-
-
 <?php //echo$_SESSION["userEmail"];?>
-
 <?//=$_SESSION["userEmail"];?>
-
-
-
-
 <?php require("../footer.php"); ?>

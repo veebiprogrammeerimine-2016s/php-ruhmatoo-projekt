@@ -51,7 +51,7 @@
 <?php require("../header.php"); ?>
 <div class="container">
 	<div class="page-header">
-		<h1>Kasutaja kasutajanimi viimati <a href="user.php?username=<?php echo $_GET["username"]; ?>&postitas">postitas</a>/<a href="user.php?username=<?php echo $_GET["username"]; ?>&laikis">laikis</a></h1>
+		<h1>Kasutaja kasutajanimi viimati <a class="active" id="postitase" href="user.php?username=<?php echo $_GET["username"]; ?>&postitas">postitas</a>/<a id="laikise" href="user.php?username=<?php echo $_GET["username"]; ?>&laikis">laikis</a></h1>
 	</div>
 	<p class="lead">
 	
@@ -65,6 +65,7 @@
 	
 	
 	if (isset($_GET["postitas"])){
+		
 		
 		foreach ($andmed as $a) {
 			
@@ -113,6 +114,20 @@
 	
 
 </div>
+<script>
+
+$(document).ready(function(){
+  var loc = window.location.href; // returns the full URL
+  if(/postitas/.test(loc)) {
+    $('#postitase').addClass('active');
+	$("#laikise").removeClass('active');
+  } else if(/laikis/.test(loc)) {
+	$('#laikise').addClass('active');
+	$("#postitase").removeClass('active');
+  }
+});
+
+</script>
 <?php //echo$_SESSION["userEmail"];?>
 
 <?//=$_SESSION["userEmail"];?>
