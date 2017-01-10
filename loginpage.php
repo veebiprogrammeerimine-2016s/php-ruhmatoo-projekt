@@ -77,8 +77,8 @@
 		$loginEmail = $_POST ["loginEmail"];
 		}
 	}
-	
-	//PAROOLI LOOGIMINE
+
+	//PAROOLI LOGIMINE
 	if (isset ($_POST["loginPassword"])) {
 		if (empty ($_POST["loginPassword"])) {
 		$loginPasswordError = "See väli on kohustuslik!";
@@ -180,8 +180,8 @@
 		
 		<!--PAROOLI LOGIMINE-->
 		<input name="loginPassword" type="password" class="text" placeholder="Parool">
-		<br><?php echo $loginPasswordError;?></br>
-		
+		<br><?php echo $loginPasswordError;?>
+
 		<!--LOGIN BUTTON-->
 		<input type="submit" value="Logi sisse" class="submit submit1">
 		</form>
