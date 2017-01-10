@@ -154,6 +154,7 @@
 		return $result;
 	}
 	
+	
 	function cleanInput($input){
 		
 		$input = trim($input);
@@ -164,15 +165,16 @@
 		
 	}
 	
-		function savecontact ($contact) {
+	
+	function savecontact ($contact) {
 		
 		$database = "if16_andryzag";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-		$stmt = $mysqli->prepare("INSERT INTO contacts (contact) VALUES (?)");
+		$stmt = $mysqli->prepare("INSERT INTO contacts (contact, user_id) VALUES (?, ?)");
 	
 		echo $mysqli->error;
 		
-		$stmt->bind_param("s", $contact);
+		$stmt->bind_param("si", $contact, $_SESSION ["userId"]);
 		
 		if($stmt->execute()) {
 			echo "Successfully saved!";
@@ -184,6 +186,7 @@
 		$mysqli->close();
 		
 	}
+	
 	
 	function getAllcontacts() {
 		
@@ -198,9 +201,10 @@
 		");
 		echo $mysqli->error;
 		$stmt->bind_param("i", $_SESSION["userId"]);
+		echo $mysqli->error;
+		$stmt->bind_result($id, $contact);	
 		
 		$stmt->execute();
-		
 		
 		//tekitan massiivi
 		$result = array();
@@ -210,19 +214,22 @@
 		while ($stmt->fetch()) {
 			
 			//tekitan objekti
-			$i = new StdClass();
+			$contactt = new StdClass();
 			
-			$i->id = $id;
-			$i->contact = $contact;
-		
-			array_push($result, $i);
+			$contactt->contact = $contact;
+			
+			//echo $plate."<br>";
+			// iga kord massiivi lisan juurde ülesande
+			array_push($result, $contactt);
 		}
 		
 		$stmt->close();
 		$mysqli->close();
 		
 		return $result;
+
 	}
+	
 	
 	function getAllUsercontacts() {
 		
@@ -230,13 +237,15 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
 		$stmt = $mysqli->prepare("
-			SELECT contact FROM contacts
-			JOIN user_contacts 
-			ON contacts.id=user_contacts.contact_id
-			WHERE user_contacts.user_id = ?
+			SELECT contact
+			FROM contacts
+			WHERE user_id=?
+		
 		");
 		echo $mysqli->error;
 		$stmt->bind_param("i", $_SESSION["userId"]);
+		
+		echo $mysqli->error;
 		
 		$stmt->bind_result($contact);
 		$stmt->execute();
@@ -250,18 +259,22 @@
 		while ($stmt->fetch()) {
 			
 			//tekitan objekti
-			$i = new StdClass();
+			$contactt = new StdClass();
 			
-			$i->contact = $contact;
-		
-			array_push($result, $i);
+			$contactt->contact = $contact;
+			
+			//echo $plate."<br>";
+			// iga kord massiivi lisan juurde ülesande
+			array_push($result, $contactt);
 		}
 		
 		$stmt->close();
 		$mysqli->close();
 		
 		return $result;
+	
 	}
+	
 	
 	function saveUsercontact ($contact) {
 		
@@ -305,7 +318,8 @@
 		
 	}
 	
-		function getSingleData($edit_id){
+		
+	function getSingleData($edit_id){
     
         $database = "if16_andryzag";
 		
@@ -333,7 +347,9 @@
 		return $tasker;
 		
 	}
-		function update($id, $task, $date){
+		
+		
+	function update($id, $task, $date){
     	
         $database = "if16_andryzag";
 		
@@ -352,7 +368,8 @@
 		
 	}
 	
-		function deletetask($id){
+		
+	function deletetask($id){
     	
         $database = "if16_andryzag";
 		

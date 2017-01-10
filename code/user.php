@@ -67,26 +67,6 @@
 </form>
 
 <form method="POST">
-	
-	<select name="usercontact" type="text">
-        <?php
-            
-            $listHtml = "";
-        	
-        	foreach($contacts as $i){
-        		
-        		
-        		$listHtml .= "<option value='".$i->id."'>".$i->contact."</option>";
-        
-        	}
-        	
-        	echo $listHtml;
-            
-        ?>
-    </select>
-    	
-
-	<input type="submit" value="Add">
 
 <h2>Your contacts!</h2>
 <?php

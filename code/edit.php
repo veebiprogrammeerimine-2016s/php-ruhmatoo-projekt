@@ -9,18 +9,22 @@
 			
 		}
 		
-
-		
+		//kustutan
+		elseif(isset($_POST["delete"])){
+			deletetask ($_POST["id"]);
+		header("Location: data.php");
+		exit();
+	}
 		
 		
 		// kui ei ole id'd aadressireal siis suunan
 		if(!isset($_GET["id"])){
-
+			header("Location: data.php");
 			exit();
 		}
-		
 		$s = getSingleData($_GET["id"]);
-	///	var_dump($s);
+
+		var_dump($s);
 		
 		
 	?>
