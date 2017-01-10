@@ -364,6 +364,7 @@ $upcomingRides = $Rides->get($r, $sort, $order);
                           $html .= "<th>
 
         								  Register
+
         									</a>
 
         									</th>";
@@ -383,7 +384,8 @@ $upcomingRides = $Rides->get($r, $sort, $order);
                 $html .= "<td>".$r->arrival_time."</td>";
                 $html .= "<td>".$r->free_seats."</td>";
                 $html .= "<td>".$r->price."</td>";
-                $html .= "<td><a href='?register=".$r->id."'>Ride-ID ".$r->id."</a></td>";
+                $html .= "<td><a href='?register=".$r->id."'>Ride ".$r->id."
+                <span class='glyphicon glyphicon-plus-sign'></span></a></td>";
             $html .= "</tr>";
 
         }
