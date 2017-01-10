@@ -18,7 +18,7 @@
 		$stmt->bind_param("ssss",$email, $password, $nickname, $gender);
 		
 		if ( $stmt->execute() ) {
-			echo "Registration completed!";
+			echo "Registreeritud!";
 		} else {
 			echo "ERROR ".$stmt->error;
 		}	
@@ -54,10 +54,10 @@
 			$_SESSION["userEmail"] = $emailFromDb;
 			header("Location: homepage.php");
 		} else {
-			$error = "Wrong password";
+			$error = "Vale parool";
 			}	
 		} else {
-			$error = "Email address ".$email." you entered couldn't be found";
+			$error = "Kasutajat e-posti aadressiga ".$email." ei leitud.";
 		}
 		
 		return $error;
@@ -75,7 +75,7 @@
 		echo $mysqli->error;
 		$stmt->bind_param("ssss",$category, $headline , $comment, $_SESSION["userEmail"]);
 		if ( $stmt->execute() ) {
-			echo "Success!";
+			echo "Õnnestus!";
 		} else {
 			echo "ERROR ".$stmt->error;
 		}	

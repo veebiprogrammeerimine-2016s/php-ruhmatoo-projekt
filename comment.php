@@ -64,16 +64,16 @@
 	$people = show_comment();
 ?>
 
-<a href="homepage.php">back</a>
+<a href="homepage.php">Tagasi</a>
 
 <?php 
 $html = "<table>";
 	
 	$html .= "<tr>";
-		$html .= "<th>Category</th>";
+		$html .= "<th>Kategooria</th>";
 		$html .= "<th>Pealkiri</th>";
 		$html .= "<th>Kommentaar</th>";
-		$html .= "<th>Postitud</th>";
+		$html .= "<th>Kellaaeg</th>";
 		$html .= "<th>Kasutaja</th>";	
 	$html .= "</tr>";
 
@@ -96,10 +96,10 @@ echo $html
 	<form method="POST">
 	
 	<!--FEEDBACK-->
-	<label for="feedback">Your feedback:</label><br>
-	<input name="feedback" type="text1" placeholder="Leave your feedback">
+	<label for="feedback">Tagasiside:</label><br>
+	<input name="feedback" type="text1" placeholder="Jäta tagasiside">
 	
-	<br><input type="submit" value="Send your comment"></br>
+	<br><input type="submit" value="Saada"></br>
 	
 	</form>
 	

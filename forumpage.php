@@ -23,31 +23,31 @@
 
 <body>
 	<ul>
-		<li><a class="active1" href="homepage.php">HOME</a></li>
-		<li><a class="active" href="forumpage.php">FORUM</a></li>
-		<li><a class="active1" href="userpage.php">MY ACCOUNT</a></li>
-		<li><a class="active1" href="?logout=1">LOG OUT</a></li>
+		<li><a class="active1" href="homepage.php">AVALEHT</a></li>
+		<li><a class="active" href="forumpage.php">FOORUM</a></li>
+		<li><a class="active1" href="userpage.php">MINU KASUTAJA</a></li>
+		<li><a class="active1" href="?logout=1">LOGI VÄLJA</a></li>
 	</ul>
 
 <div style="page">
 
-<p class="down"> FORUM </p>
+<p class="down"> FOORUM </p>
 
 <table class="table1">
 	
 	<td>
 		<form action="post">
-		<input type="button" onclick="location.href='createnewpost.php';" value="CREATE NEW POST " class="submit submit2">
+		<input type="button" onclick="location.href='createnewpost.php';" value="UUS POSTITUS " class="submit submit2">
 		</form>
 	</td>
 	<td>
 		<form method="POST">
-		<input type="button" value="VIEW MY POSTS" class="submit submit2" onclick="location.href='viewmypost.php';">
+		<input type="button" value="MINU POSTITUSED" class="submit submit2" onclick="location.href='viewmypost.php';">
 		</form>
 	</td>
 	<td>
 		<form method="POST">
-		<input type="button" value="VIEW MY COMMENTS" class="submit submit2" onclick="location.href='viewmycomments.php';">
+		<input type="button" value="MINU KOMMENTAARID" class="submit submit2" onclick="location.href='viewmycomments.php';">
 		</form>
 	</td>
 
@@ -59,10 +59,10 @@
 $html = "<table>";
 	
 	$html .= "<tr>";
-		$html .= "<th>User</th>";
-		$html .= "<th>Title</th>";
-		$html .= "<th>Category</th>";
-		$html .= "<th>Posted</th>";
+		$html .= "<th>Kasutaja</th>";
+		$html .= "<th>Pealkiri</th>";
+		$html .= "<th>Kategooria</th>";
+		$html .= "<th>Kellaaeg</th>";
 		$html .= "<th></th>";
 	$html .= "</tr>";
 
@@ -73,7 +73,7 @@ $html = "<table>";
 		$html .= "<td>".$p->headline."</td>";
 		$html .= "<td>".$p->category."</a></td>";
 		$html .= "<td>".$p->created."</td>";
-		$html .= "<td><a href='comment.php?id=".$p->id."'>Reply</a></td>";
+		$html .= "<td><a href='comment.php?id=".$p->id."'>Vasta</a></td>";
 	$html .= "</tr>";
 	}
 

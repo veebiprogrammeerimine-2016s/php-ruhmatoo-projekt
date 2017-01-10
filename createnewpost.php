@@ -21,15 +21,15 @@
 
 <body>
 	<ul>
-		<li><a class="active1" href="homepage.php">HOME</a></li>
-		<li><a class="active1" href="forumpage.php">FORUM</a></li>
-		<li><a class="active" href="">MY ACCOUNT</a></li>
-		<li><a class="active1" href="?logout=1">LOG OUT</a></li>
+		<li><a class="active1" href="homepage.php">AVALEHT</a></li>
+		<li><a class="active1" href="forumpage.php">FOORUM</a></li>
+		<li><a class="active" href="">MINU KASUTAJA</a></li>
+		<li><a class="active1" href="?logout=1">LOGI VÄLJA</a></li>
 	</ul>
 
 <div style="page">
 
-<p class="down"> CREATE NEW POST </p>
+<p class="down">UUS POSTITUS</p>
 	
 	<form method="POST">
 	
@@ -49,14 +49,14 @@
 	<br><br>
 	
 	<!--pealkiri-->
-	<label for="headline">Uue postitus:</label><br>
+	<label for="headline">Uus postitus:</label><br>
 	<input placeholder="Pealkiri" name="headline">
 	
 	<!--Kommentaar-->
 	<br>
 	<textarea rows="4" cols="50" placeholder="Kirjuta milline probleem sul tekkis.." name="comment"></textarea>
 	
-	<input type="submit" value="postita">
+	<input type="submit" value="Postita">
 	</form>
 	
 	<br><br>
