@@ -189,17 +189,18 @@
 		$GLOBALS["database"]);
 		
 		$stmt = $mysqli->prepare("
-		SELECT category, pealkiri, comment, created
+		SELECT id, category, pealkiri, comment, created
 		FROM grupp_category
 		WHERE email = ?
 		");
 		$stmt->bind_param("s", $_SESSION["userEmail"]);
-		$stmt->bind_result($category, $pealkiri, $comment, $created);
+		$stmt->bind_result($id,$category, $pealkiri, $comment, $created);
 		$stmt->execute();
 		$results = array();
 		
 		while ($stmt->fetch()) {
 			$human = new StdClass();
+			$human->id = $id;
 			$human->category = $category;
 			$human->pealkiri = $pealkiri;
 			$human->comment = $comment;
@@ -236,5 +237,63 @@
 		
 		return $results;
 	}	
+	
+	//PARANDADA ÜHE POSTITUSE ANDMED
+		function editpost($show_post_id){
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], 
+		$GLOBALS["serverUsername"], 
+		$GLOBALS["serverPassword"], 
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("
+		SELECT category, pealkiri, comment
+		FROM grupp_category 
+		WHERE id = ?");
+		
+		$stmt->bind_param("i", $show_post_id);
+		$stmt->bind_result($category, $headline , $comment);
+		$stmt->execute();
 
+		$finish = new Stdclass();
+		
+		if($stmt->fetch()){
+			$finish->category = $category;
+			$finish->headline = $headline;
+			$finish->comment = $comment;
+		
+		}else{
+			header("Location: editmyposts.php");
+			exit();
+		}
+		
+		$stmt->close();
+		
+		return $finish;
+	}
+	
+	//UUENDA POSTITUSE
+	function updatePosts($category, $pealkiri, $comment){
+		$mysqli = new mysqli($GLOBALS["serverHost"],
+		$GLOBALS["serverUsername"],
+		$GLOBALS["serverPassword"],
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("UPDATE grupp_category SET category=?, pealkiri=?, comment=? WHERE id=?");
+		$stmt->bind_param("sssi", $category, $pealkiri, $comment, $_GET["id"]);
+
+		if($stmt->execute()){
+			header("Location: editmyposts.php?id=". $_GET["id"]."&success=true");
+		}
+		$stmt->close();
+		$mysqli->close();	
+	}
+	
+	//CLEANINPUT
+	function cleanInput($input) {
+		$input = trim($input);
+		$input = stripslashes($input);
+		$input = htmlspecialchars($input);
+		return $input;
+	}
 ?>

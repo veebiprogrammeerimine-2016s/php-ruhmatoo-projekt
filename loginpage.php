@@ -3,6 +3,7 @@
 	require("../../config.php");
 	require("functions.php");
 	require("style/style.php");
+	require("style/pagestyle.php");
 	
 	//SESSION
 	if (isset($_SESSION["userId"]))
@@ -109,59 +110,10 @@
 </head>
 
 	<style>	
-	div[class=login] {
-		border: 2px solid rgba(255, 255, 255, 0.2) ;
-		border-radius: 15px 50px;
-		padding: 20px;
-		background: rgba(255, 255, 255, 0.3);
-		width: 35%;
-		margin: 15%;
-	}
 
 	body {
 		background: url(image/background.png);
 	}
-	
-	input[class=text],select {
-		width: 60%;
-		padding: 12px 20px;
-		margin: 8px 0;
-		display: inline-block;
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		box-sizing: border-box;
-	}
-	.submit {
-		width: 50%;
-		height: 50px;
-		background-color: #AA7CFF;
-		border: 1px solid #ADADAD;
-		color: white;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		margin: 4px 2px;
-		-webkit-transition-duration: 0.4s; /* Safari */
-		transition-duration: 0.4s;
-		cursor: pointer;
-		border-radius: 12px;
-	}			
-
-	.submit1 {
-		background-color: white; 
-		color: black; 
-	}
-
-	.submit1:hover {
-		background-color: #E6E6E6;
-		color: black;
-	}
-	
-	p {font-family:  Futura, "Trebuchet MS", Arial, sans-serif;}
-	
-	p[class=border]{border-bottom: 1px solid black;}
-	
 	</style>
 
 </html>
@@ -172,7 +124,7 @@
 	<!--KASUTAJA SISENEB-->
 	<div class="login">
 	<form method="POST">
-		<p class="border">Sisselogimine<p>
+		<p class="down">Sisselogimine<p>
 		<?=$error;?>
 		<!--EMAILI LOGIMINE-->
 		<input name="loginEmail" type="loginEmail" class="text" placeholder="E-Post" value=<?=$loginEmail;?>>
@@ -187,7 +139,7 @@
 		</form>
 		
 		<!--UUS KASUTAJA BUTTON-->
-		<p class="border">VÕI</p>
+		<p class="down">VÕI</p>
 		<form method="POST">
 		<input type="button" value="Tee uus kasutaja" class="submit submit1" data-toggle="modal" data-target="#myModal" data-backdrop="static" data-keyboard="false">
 		</form>
@@ -244,7 +196,6 @@
     </div>
   </div>
 </div>
-<?php include 'footer.php';?>
 </center>
 </body>
 </html>
