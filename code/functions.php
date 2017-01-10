@@ -17,7 +17,7 @@
 		$stmt->bind_param("ss", $email, $password);
 		
 		if($stmt->execute()) {
-			echo "Saving succeeded";
+			;
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
@@ -98,7 +98,7 @@
 		$stmt->bind_param("ssi", $task, $date, $_SESSION ["userId"]);
 		
 		if($stmt->execute()) {
-			echo "saving succeeded";
+			;
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
@@ -178,7 +178,7 @@
 		$stmt->bind_param("si", $contact, $_SESSION ["userId"]);
 		
 		if($stmt->execute()) {
-			echo "Successfully saved!";
+			;
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
@@ -250,8 +250,8 @@
 		$stmt->execute();
 		
 		if ($stmt->fetch()) {
-			// oli olemas juba selline rida
-			echo "Already exists!";
+		
+			;
 			// pärast returni midagi edasi ei tehta funktsioonis
 			return;
 			
@@ -320,7 +320,7 @@
 		
 		
 		if($stmt->execute()){
-			echo "Successfully deleted!";
+			;
 		}
 		
 		$stmt->close();
@@ -373,7 +373,7 @@
 		
 	
 		if($stmt->execute()){
-			echo "Successfully changed!";
+			;
 		}
 		
 		$stmt->close();

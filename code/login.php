@@ -149,33 +149,40 @@
 	
 
 ?>
-<head>
-<link rel="stylesheet" href="pikaday.css">
-<link rel="stylesheet" href="site.css">
-<link rel="stylesheet" href="theme.css">
-<link rel="stylesheet" href="triangle.css">
-</head>
-<link rel="stylesheet" href="pikaday.css">
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 
 <html>
+	<head>
+		<title>e-Diary | Login or Sign-Up</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
 
-<head>
-	<title>Login or Sign-Up</title>
-</head>
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<a href="index.html" class="logo">e-Diary</a>
+					<nav id="nav">
+						<a href="login.php">Home</a>
+						<a href="about.php">About</a>
+					</nav>
+				</div>
+			</header>
+			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
-	  <h1>Accomplish More with Us!</h1> 
-
-		
-		
-	</form>
-    </div>
-  </form>
-</div>
-
-	<h1>Login</h1>
-	<form method="POST">
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<h1>E-DIARY: <span>Accomplish more with us!<br />
+					</span></h1>
+					<ul class="actions">
+						<h1>Login</h1>
+						<form method="POST">
+						
+						
 		<p style="color:red;"><?=$error;?></p>
 	
 		<input type="text" name="loginEmail" placeholder="E-Mail"  value="<?=$loginEmail;?>"> <?php echo $loginEmailError; ?>
@@ -187,9 +194,8 @@
 		
 		
 	</form>
-	
-	
-	<h1>Sign-Up</h1>
+				
+					<h1>Sign-Up</h1>
 	<form method="POST">
 		
 		<input name="signupEmail" type="text" placeholder="E-Mail" value="<?=$signupEmail;?>"> <?=$signupEmailError;?>
@@ -198,11 +204,34 @@
 		<br><br>
 		
 		<input type="submit" value="Sign-Up">
-	<h4><a href="about.php"> About</a><h4>
 		
 		
 	</form>
-	
+						
+					</ul>
+				</div>
+			</section>
 
-</body>
+		<!-- One -->
+			<section id="one">
+				<div class="inner">
+					<header>
+						<h2>About us</h2>
+					</header>
+					<p>Sign-Up for free and carry your e-diary everywhere you go! You can access to your scheduled tasks and contacts from computer, mobile and even from Smart-TV. You dont have to worry anymore by just remembering things what you need to do on next week or next month. You can simply add in e-Diary your scheduled tasks or contacts. Sign-Up for free and enjoy! Your Brain is not a trashcan! 
+					Developer: Andry Zagars
+					Estonia, Tallinn </p>
+					<ul class="actions">
+
+					</ul>
+				</div>
+			</section>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
 </html>
