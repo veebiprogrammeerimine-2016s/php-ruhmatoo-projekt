@@ -37,17 +37,17 @@
 	
 	<td>
 		<form action="post">
-		<input type="button" onclick="location.href='createnewpost.php';" value="UUS POSTITUS " class="submit submit2">
+		<input type="button" onclick="location.href='createnewpost.php';" value="UUS POSTITUS " class="submit2">
 		</form>
 	</td>
 	<td>
 		<form method="POST">
-		<input type="button" value="MINU POSTITUSED" class="submit submit2" onclick="location.href='viewmypost.php';">
+		<input type="button" value="MINU POSTITUSED" class="submit2" onclick="location.href='viewmypost.php';">
 		</form>
 	</td>
 	<td>
 		<form method="POST">
-		<input type="button" value="MINU KOMMENTAARID" class="submit submit2" onclick="location.href='viewmycomments.php';">
+		<input type="button" value="MINU KOMMENTAARID" class="submit2" onclick="location.href='viewmycomments.php';">
 		</form>
 	</td>
 

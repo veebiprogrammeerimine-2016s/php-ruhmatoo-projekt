@@ -3,6 +3,7 @@
 	require("functions.php");
 	require("style/style.php");
 	require("style/pagestyle.php");
+	
 	$posts = profile_posts();
 	
 ?>
@@ -19,7 +20,7 @@
 
 <div style="page">
 
-<p class="down"> MINU POSTITUSED </p>
+<p class="down"> <a href="forumpage.php"> FORUM </a> / <a href="userpage.php"> MINU KASUTAJA</a> / MINU POSTITUSED </p>
 
 <?php 
 $html1 = "<table>";
@@ -28,7 +29,8 @@ $html1 = "<table>";
 		$html1 .= "<th>Kategooria</th>";
 		$html1 .= "<th>Pealkiri</th>";
 		$html1 .= "<th>Kommentaar</th>";
-		$html1 .= "<th>Pealkiri</th>";		
+		$html1 .= "<th>Pealkiri</th>";
+		$html1 .= "<th></th>";		
 	$html1 .= "</tr>";
 	
 	foreach ($posts as $p) {
@@ -37,6 +39,7 @@ $html1 = "<table>";
 		$html1 .= "<td>".$p->pealkiri."</td>";
 		$html1 .= "<td>".$p->comment."</td>";
 		$html1 .= "<td>".$p->created."</td>";
+		$html1 .= "<td><a href='editmyposts.php?id=".$p->id."'>Muuda</a></td>";
 	$html1 .= "</tr>";
 	}
 $html1 .= "</table>";
