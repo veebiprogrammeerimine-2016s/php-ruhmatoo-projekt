@@ -90,7 +90,7 @@
 		
 <form method="POST">
 <br><br>
-
+<br><br>
 <form class="form-horizontal">
 		<div class="form-group">
 			<label for="inputDate" class="col-sm-4 control-label">Kuupäev</label>
@@ -99,7 +99,7 @@
 			</div>
 		</div>
 		
-		<br><br>
+		
 		<br><br>
 		 <div class="form-group">
 			<label for="inputFeeling" class="col-sm-4 control-label">Enesetunne</label>
@@ -114,7 +114,7 @@
 			  </datalist>
 			</div>
 		</div>
-		<br><br>
+
 		<br><br>
 		<div class="form-group">
 			<label for="inputNumberofSteps" class="col-sm-4 control-label">Sammude arv</label>
@@ -127,7 +127,6 @@
 <br><br>
 
 		<a class="btn btn-success" type="submit" role="button">Salvesta andmed</a>
-		
 		<br>
 		<br>
 		
@@ -138,11 +137,9 @@
 
 <?php require ("header.php"); ?>
 <a class="btn btn-success" href="?logout=1" role="button">Logi välja</a>
-
 <div class="col-sm-5 col-md-5">
 
-	<h3><font color="#ff9933">Minu enesetunne ja liikumisaktiivsus</h3></font>
-	
+	<h2><font color="#ff9933">Minu enesetunne ja liikumisaktiivsus</h2></font>
 	<br><br>
  
 <?php	
@@ -170,19 +167,29 @@
 	
 	
 	$listHtml = "<br><br>";
+<<<<<<< HEAD
 
 ?>
 	
+=======
+	
+?>
+	
+>>>>>>> 1346247f79ea63abc6bb648362ca898bafc34ea3
 	<!--<a href="?logout=1">Logi välja</a>-->
 	<!--<a class="btn btn-default" href="?logout=1" role="button">Logi välja</a>-->
 
 </p>
 </form>
+<<<<<<< HEAD
 
 	<a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
 
+=======
+>>>>>>> 1346247f79ea63abc6bb648362ca898bafc34ea3
 <br><br>
-
+<a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
+</div>
 <?php require ("footer.php"); ?>
 
 
