@@ -175,7 +175,7 @@
 
                                 $html = "<table class='table table-hover table-condensed' style='background-color:white'>";
                                 $html .= "<tr>";
-                                    $html .= "<th style='width:300px'><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
+                                    $html .= "<th style='width:300px; padding-left: 20px;'><a href='?q=".$q."&sort=name&direction=".$direction."'>plant</a></th>";
                                     $html .= "<th style='width:50px; text-align: center;'>kasta</th>";
                                     $html .= "<th style='width:70px'></th>";
                                 $html .= "</tr>";
@@ -188,7 +188,7 @@
 
 
                                     $html .= "<tr>";
-                                        $html .= "<td>".$p->name."</td>";
+                                        $html .= "<td style='text-align: left; padding-left: 20px;'>".$p->name."</td>";
                                         $html .= "<td style='text-align: center;'>".$p->intervals."</td>";
                                         $html .= "<td> 
                                         <a href='edit.php?id=".$p->id."'>
