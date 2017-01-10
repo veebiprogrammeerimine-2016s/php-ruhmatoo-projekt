@@ -117,6 +117,7 @@
 		$stmt = $mysqli->prepare("
 			SELECT id, task, date
 			FROM task_and_date
+			WHERE user_id=?
 		
 		");
 		echo $mysqli->error;
