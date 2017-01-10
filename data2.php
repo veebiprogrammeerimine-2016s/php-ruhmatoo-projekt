@@ -11,6 +11,15 @@ require("Class/KMI.class.php");
 		header("Location: login.php");
 		exit();
 	}
+	
+	if (isset($_GET["logout"])) {
+
+		session_destroy();
+
+		header("Location: login.php");
+		exit();
+
+	}
 
 
 if(isset($_GET['height'], $_GET['weight'], $_GET['calculate'])):
