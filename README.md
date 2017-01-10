@@ -1,68 +1,119 @@
 ﻿# PHP rühmatöö projekt
 
+<img src="https://cloud.githubusercontent.com/assets/22025409/21752453/db5e6170-d5e0-11e6-91bc-85b5ebd43709.png" width="90%"></img> 
 
 
 
 
-    * Rehvivahetuse online rakendus;
-    
-    * Stas Majevski, Pjotr Iljukov, Juri Gussarov;
+<img src="https://cloud.githubusercontent.com/assets/22025409/21752463/0ef264be-d5e1-11e6-81e6-6df57a1b6a3d.png" width="90%"></img> 
+ 
+ 
+ Stas Majevski, Pjotr Iljukov, Juri Gussarov
 	
-    * Veebirakendus kus on erinevaid rehvivahetuse punktid ja annab võimalus broneerida endale sobiv aeg;
-    * Loodame et rakendus tuleb vaja inimestele kellel on probleemid rehvivahetusega kui hooaeg algab. Üritame teha oma rakendus võimalikult lihtne ;
-	  Sarnased rakendused mida eeskujuks võtta - https://www.kummiproff.ee/rehvivahetus/, https://www.kumm.ee/, http://www.rehvitakso.ee/;
-    * Funtksionaalsus;
-        * saab valida kumb lehele minna, kas klient või rehvitöökoda omanik
-        * kui klient siis saab valida rehvivahetuse punkt ja broneerida endale sobiv aeg
-		* saab jätta kommentaari 
-		* saab hinnata
-        * kui omanik siis saab oma rehvitöökoda registreerida ja edaspidi  muuta/kustuta
+
+# Esmark
+
+Projekti eesmark on anda rehvihavetuse punkti omanikutele valja pakkuda oma teenused, 
+ning lihtsustab auto omanikutele otsida endale soobiv aeg ja hind. Rakendus annab voimalus vorrelda erinevad punktid 
+ja kohe broneerida sobiv aeg.
+
+# Kirjeldus 
+
+* Sihtruhm:
+	Vanus Auto omanikud 18-70+
+	Sugu: pole oluline
+	
+* Eripara: Rakendused nagu kummiproff.ee ja kumm.ee mis pakkuvad sarnased voimalused. 
+Me proovisime teha oma rakendus lihtsam ja rohkem kasutaja sobralikum. Lisasime vaid koige vavalikumad
+voimalused ja teenused.
+
+* Funktsionaalsus: 
 		
-    * andmebaasi skeem ;
-	* ORDER;
-    * 1. ID;
-	* 2. DATE;
-	* 3. TIME VARCHAR;
-	* 4. CLIENT_ID FOREIGN KEY;
-	* 5. REHVIVAHETUS_PUNKT_ID FOREIGN KEY REFERENCES REHVIVAHETUS_PUNKT.ID;
+		*Omanikule:  Sisse logimine
+					Oma puntki lisamine
+					Oma broneeringute vaatamine
+					Hinnade lisamine\muutmine 
+		
+		*Kasutaja:	Punkti ulevade
+					Hinna vaade
+					Aja broneerimine
 
-	* CLIENT;
-	* 1. ID;
-	* 2. NAME;
-	* 3. CAR_NUMBER;
-	* 4. TELEPHONE_NUMBER;
 
-	* COMMETNS;
-	* 1. ID;
-	* 2. REHVIVAHETUS_PUNKT_ID FOREIGN KEY REFERENCES REHVIVAHETUS_PUNKT.ID;
-	* 3. BODY;
 
-	* RATING;
-	* 1. ID;
-	* 2. REHVIVAHETUS_PUNKT_ID FOREIGN KEY REFERENCES REHVIVAHETUS_PUNKT.ID;
-	* 3. RATE;
+# Andmebaasi skeem ja tabelite loomise SQL laused
 
-	* REHVIVAHETUS PUNKTI OMANIKU PAGE:
-	* 1. TIRE PUNKT REGISTRATION;
-	* 2. ORDER STATISTICS PAGE;
+					
+<img src="https://cloud.githubusercontent.com/assets/22025409/21752392/af6cd7a0-d5df-11e6-9ed8-4dcc5dfb58cf.png" width="45%"></img> 
+	
+CREATE TABLE p_open_time(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+day INT,
+open TIME,
+close TIME,
+lunch_begin TIME,
+lunch_end,
+tyre_fitting_id INT,
+FOREING KEY(tyre_fitting_id) REFERENCES p_tyre_fittings(id)
+);
 
-	* REHVIVAHETUS PUNKTI OMANIK;
-	* 1. ID PRIMARY KEY;
-	* 2. username -> email? UNIQUE VALUE;
-	* 3. password -> bcrypt crypted;
+CRATE TABLE p_owners(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(30),
+password VARCHAR(254)
+);
 
-	* REHVIVAHETUS PUNKT;
-	* 1. ID PRIMARY KEY;
-	* 2. NAME;
-	* 3. ADDRESS;
-	* 4. OWNER_ID -> FOREIGN KEY REFERENCES OMANIK-ID;
+CREATE TABLE p_orders(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(30),
+email VARCHAR(30),
+phone VARCHAR(30),
+note TEXT,
+service VARCHAR(30),
+carnumber VARCHAR(30),
+booktime VARCHAR(30),
+tyre_fitting_id INT,
+FOREIGN KEY(tyre_fitting_id) REFERENCES p_tyre_fittings(id)
+);
 
-	* TIRE_CHANGE_SERVICES;
-	* 1. ID PRIMARY KEY;
-	* 2. TIRE_CHANGE_PUNKT_ID FOREIGN KEY;
-	* 3. NAME;
-	* 4. DESCRIPTION;
-	* 5. PRICE;
+CREATE TABLE p_tyre_fittings_services(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(30),
+description TEXT,
+category VARCHAR(30),
+size FLOAT,
+price DECIMAL(10,0),
+tyre_fitting_id INT,
+FOREIGN KEY(tyre_fitting_id) REFERENCES p_tyre_fittings(id)
+);
+
+CREATE TABLE p_tyre_fittings(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(30),
+logo VARCHAR(254),
+description TEXT,
+location TEXT,
+pricelist TEXT,
+owner_id INT,
+FOREIGN KEY(owner_id) REFERENCES p_owners(id)
+);
+
+
+# Kokkuvote
+
+Mida oppisid jurde? Mis ebaonnestus? Mis oli raske?
+
+	*Juri: Oppisin kuidas ruhmas tootada, oppisin CSS ja PDF kasutada. 
+	Oppisin oma aja planeerida. PDF vormistaine ebaonnestus? loodan parast saan rohkem sellest teada ja parandan.
+	Keeruline oli gruppis hakkama saama sest oli koige norgem osa.
+
+	*Stas: Õppisin kuidas kasutada Bootstrap, jquery / js.
+		Kõige raskem minu jaoks oli gruppis töötada.
+	
+	*Pjotr:
+
+
+
+
 
 
 
