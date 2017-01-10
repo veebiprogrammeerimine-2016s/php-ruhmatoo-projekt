@@ -93,7 +93,7 @@ li a:hover:not(.active) {
 }
 
 .singleInput {
-	width: 250px;
+	width: 275px;
 	float: left;
 }
 
@@ -130,6 +130,33 @@ li a:hover:not(.active) {
 	background-color: #f51414;
 	padding: 0;
 }
+
+#storeName {
+	width: 300px;
+	margin-bottom: 20px;
+}
+
+#date, #receiptNumber {
+	margin-bottom: 40px;
+}
+
+.shoppingDate {
+	display: inline-block;
+	float: left;
+	margin-left: 200px
+}
+
+.receiptNumber {
+	display: inline-block;
+	float: right;
+	margin-right: 200px
+}
+
+
+
+
+
+
 
 
 

@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 	$("#add").click(function (e) {
 		
-		$('.fields').append('<div class="singleField">'+
+		$('.dynamicFields').append('<div class="singleField">'+
 		'<div class="singleInput"><label>Kategooria</label><br><input name="category[]" type="text" ></div>'+
 		'<div class="singleInput"><label>Toode</label><br><input name="productName[]" type="text" ></div>'+
 		'<div class="singleInput"><label>Hind</label><br><input name="productPrice[]" type="number" step="0.01" min="0" ></div>'+
@@ -19,3 +19,5 @@ $(document).ready(function() {
 	});
 
 });
+
+// Lisaväljade tegemiseks kasutasin peamiselt selle video abi: https://www.youtube.com/watch?v=jSSRMC0F6u8

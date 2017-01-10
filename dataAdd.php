@@ -58,19 +58,22 @@
 				
 				<form method="POST" >
 	
-					<label>Pood</label><br>
-					<input name="storeName" type="text" >
-					<br><br>
+					<div class="storeName" >
+						<label for="storeName" >Pood</label><br>
+						<input name="storeName" type="text" id="storeName" >
+					</div>
 					
-					<label>Ostukuupäev</label><br>
-					<input name="shoppingDate" type="text" id="date" >
-					<br><br>
+					<div class="shoppingDate" >
+						<label for="date" >Ostukuupäev</label><br>
+						<input name="shoppingDate" type="text" id="date" > <!-- id siin teises stiilis kuna jQuery datepicker kasutab sellist id'd -->
+					</div>
 					
-					<label>Tsekinumber</label><br>
-					<input name="receiptNumber" type="text" >
-					<br><br>
-					
-					<div class="fields">
+					<div class="receiptNumber" >
+						<label for="receiptNumber" >Tsekinumber</label><br>
+						<input name="receiptNumber" type="text" id="receiptNumber" >
+					</div>
+				
+					<div class="dynamicFields">
 					
 						<div class="singleField">
 					
