@@ -121,8 +121,11 @@
 		
 		");
 		echo $mysqli->error;
-		
 		$stmt->bind_param("i", $_SESSION["userId"]);
+		
+		echo $mysqli->error;
+		
+		$stmt->bind_result($id, $task, $date);
 		$stmt->execute();
 		
 		
@@ -297,6 +300,70 @@
 		} else {
 			echo "ERROR ".$stmt->error;
 		}
+		
+	}
+	
+		function getSingleData($edit_id){
+    
+        $database = "if16_andryzag";
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $mysqli->prepare("SELECT id, task, date FROM task_and_date WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("i", $edit_id);
+		$stmt->bind_result($id, $task, $date);
+		$stmt->execute();
+		
+		$tasker = new StdClass();
+		
+		if($stmt->fetch()){
+			$tasker->id = $id;
+			$tasker->task = $task;
+			$tasker->date = $date;		
+			
+		}else{
+			header("Location: data.php");
+			exit();
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+		return $money;
+		
+	}
+		function update($id, $task, $date){
+    	
+        $database = "if16_andryzag";
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $mysqli->prepare("UPDATE task_and_date SET id=?, task=?, date=? WHERE id=? AND deleted IS NULL");
+		$stmt->bind_param("isiiii", $id, $task, $date);
+		
+	
+		if($stmt->execute()){
+			echo "salvestus õnnestus!";
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+	}
+	
+		function deletetask($id){
+    	
+        $database = "if16_andryzag";
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $mysqli->prepare("UPDATE task_and_date SET deleted=1 WHERE id=?");
+		$stmt->bind_param("i", $id);
+		if($stmt->execute()){
+		}
+		
+		$stmt->close();
+		$mysqli->close();
 		
 	}
 	

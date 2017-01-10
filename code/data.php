@@ -103,6 +103,7 @@
 			$html .= "<td>".$c->task."</td>";
 			$html .= "<td>".$c->date."</td>";
 		$html .= "</tr>";
+		$html .= "<td><a href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span> Muuda</a></td>";
 	}
 	
 	$html .= "</table>";
