@@ -31,7 +31,9 @@ Registration_Nr TEXT,
 Veichle_Type TEXT,
 Car_Brand TEXT,
 Car_Model TEXT,
-Telephone_Nr INT(11)
+Telephone_Nr INT(11),
+Reserved_Date VARCHAR(50),
+Reserved_Time VARCHAR(50)
 );
 
 ![Alt text](img/Andmebaas.png?raw=true "Andmebaas")
@@ -40,6 +42,6 @@ Telephone_Nr INT(11)
 
 Algselt oli plaan teha ka kasutaja loomise leht aga sellleni ei jõudnud ning näha oli ka, et selle jaoks puudus
 eriline vajadus, sest põhiline rõhk oli broneerimislehel. Projekt oli oodatust suurem ning seetõttu tekitas see ka raskusi.
-Edasi oleks seda veebirakendust võimalik ka lahendada - lisades juurde näiteks otsingu meetod erirehvide jaoks, kasutaja loomise leht,
-et oleks kergem broneerimisvormi täita jne.
+Edasi oleks seda veebirakendust võimalik ka arendada - lisades juurde näiteks otsingu meetodi erirehvide jaoks või kasutaja loomise lehe ning kasutaja isikliku lehe,
+et oleks kergem broneerimisvormi täita.
 
