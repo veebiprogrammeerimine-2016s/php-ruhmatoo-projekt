@@ -13,30 +13,30 @@
 	}
 	
 	
-	$signinEmailError= "";
+	$signinUserError= "";
 	$signinPasswordError= "";
-	$signinemail= "";
+	$signinuser= "";
 	
 	
 	$error="";
-	if(isset($_POST["loginemail"]) && isset($_POST["loginpassword"]) &&
-		!empty($_POST["loginemail"]) && !empty($_POST["loginpassword"])
+	if(isset($_POST["loginuser"]) && isset($_POST["loginpassword"]) &&
+		!empty($_POST["loginuser"]) && !empty($_POST["loginpassword"])
 		) {
 		
-		$error = $User->login ($Helper->cleanInput($_POST["loginemail"]), $Helper->cleanInput($_POST["loginpassword"]));
+		$error = $User->login ($Helper->cleanInput($_POST["loginuser"]), $Helper->cleanInput($_POST["loginpassword"]));
 		
 		
 	}
 	
-	if(isset($_POST["loginemail"])){
+	if(isset($_POST["loginuser"])){
 		
-		if(empty($_POST["loginemail"])){
+		if(empty($_POST["loginuser"])){
 			
-			$signinEmailError= "E-mail on sisestamata!";
+			$signinUserError= "Kasutaja on sisestamata!";
 			
 		}else{
 			
-			$signinemail = $_POST["loginemail"];
+			$signinuser = $_POST["loginuser"];
 			
 		}
 	}
@@ -69,7 +69,7 @@
 				<div class="alert alert-danger" role="alert"><?=$error;?></div>
 				<?php } ?>
 				<div class="form-group">
-					<input class="form-control" name="loginemail" placeholder="Kasutaja" type="text" value="<?=$signinemail;?>"> <text style="color:red;"><?php echo $signinEmailError; ?></text>
+					<input class="form-control" name="loginuser" placeholder="Kasutaja" type="text" value="<?=$signinuser;?>"> <text style="color:red;"><?php echo $signinUserError; ?></text>
 				</div>
 				<br>
 				

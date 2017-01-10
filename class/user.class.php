@@ -9,13 +9,16 @@ class User {
 			
 		}
 
-	function signUp ($email, $password, $gender, $signupAge, $signupCountry, $signupCity, $signupShoesize) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO proov1(email, password, gender, age, country, city, shoesize) VALUES(?, ?, ?, ?, ?, ?, ?)");
+		
+		
+	function signUp ($email, $password, $fistname, $lastname, $gender, $username, $DoB) {
+		
+		$stmt = $this->connection->prepare("INSERT INTO sm_users(firstname, lastname, dateofbirth, gender, username, email, password) VALUES(?, ?, ?, ?, ?, ?, ?)");
 	
 		echo $this->connection->error;
 		
-		$stmt->bind_param("sssssss", $email, $password, $gender, $signupAge, $signupCountry, $signupCity, $signupShoesize);
+		$stmt->bind_param("sssssss", $fistname, $lastname, $DoB, $gender, $username, $email, $password);
 		
 		if($stmt->execute()) {
 			
@@ -31,20 +34,20 @@ class User {
 		
 	}
 
-	function login($email, $password) {
+	function login($username, $password) {
 		
 		$error="";
 		
-		$stmt = $this->connection->prepare("SELECT id, email, password, created FROM proov1 WHERE email=?");
+		$stmt = $this->connection->prepare("SELECT id, username, password, created FROM sm_users WHERE username=?");
 	
 		echo $this->connection->error;
 		
 		
 		//asendan kysimargi
-		$stmt->bind_param("s", $email);
+		$stmt->bind_param("s", $username);
 		
 		//maaran vaartused muutujatesse
-		$stmt->bind_result($id, $emailFromDb,$passwordFromDb, $created);
+		$stmt->bind_result($id, $usernameFromDb,$passwordFromDb, $created);
 		
 		$stmt->execute();
 		
@@ -58,7 +61,7 @@ class User {
 				echo"Kasutaja logis sisse ".$id;
 				
 				$_SESSION["userId"]=$id;
-				$_SESSION["userEmail"]=$emailFromDb;
+				$_SESSION["username"]=$usernameFromDb;
 				
 				header("Location: sneakermarket.php");
 				exit();

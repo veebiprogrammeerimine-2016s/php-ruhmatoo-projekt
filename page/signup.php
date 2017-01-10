@@ -24,12 +24,15 @@
 	
 	$signupGender = "";
 	$signupGenderError = "";
-	$signupAge = "";
-	$signupAgeError= "";
 	
-	$signupCountry = "";
-	$signupCity = "";
-	$signupShoesize = "";
+	$signupUsername = "";
+	$signupUsernameError = "";
+	$signupBDay = "";
+	$signupBDayError = "";
+	$signupBMonth = "";
+	$signupBMonthError = "";
+	$signupBYear = "";
+	$signupBYearError = "";
 	
 	if(isset($_POST["signupemail"])){
 		
@@ -50,6 +53,16 @@
 		} else {
 			
 			$signupLastname = $_POST["signupLastname"];
+			
+		}
+		
+		if(empty($_POST["signupUsername"])) {
+			
+			$signupUsernameError= "See vali on kohustuslik";
+			
+		} else {
+			
+			$signupUsername = $_POST["signupUsername"];
 			
 		}
 		
@@ -83,35 +96,45 @@
 			
 		}
 		
-		if(empty($_POST["signupCountry"])) {
+		if(empty($_POST["signupBDay"])) {
 			
-			$signupCountry = "-";
+			$signupBDayError= "Paev ";
 			
 		} else {
 			
-			$signupCountry= $_POST["signupCountry"];
-			
+			if(31>($_POST["signupBDay"])) {
+				$signupBDay = $_POST["signupBDay"];
+			} else {
+				$signupBDayError="Sellist paeva ei ole ";
+			}
 		}
 		
-		if(empty($_POST["signupCity"])) {
+		if(empty($_POST["signupBMonth"])) {
 			
-			$signupCity = "-";
+			$signupBMonthError= "Kuu ";
 			
 		} else {
 			
-			$signupCity= $_POST["signupCity"];
-			
+			if(12>($_POST["signupBMonth"])) {
+				$signupBMonth = $_POST["signupBMonth"];
+			} else {
+				$signupBMonthError="Sellist kuud ei ole ";
+			}
 		}
 		
-		if(empty($_POST["signupShoesize"])) {
+		if(empty($_POST["signupBYear"])) {
 			
-			$signupShoesize = "-";
+			$signupBYearError= "Aasta ";
 			
 		} else {
 			
-			$signupShoesize= $_POST["signupShoesize"];
-			
+			if(2017>($_POST["signupBYear"])) {
+				$signupBYear = $_POST["signupBYear"];
+			} else {
+				$signupBYearError="Sellist aastat ei ole ";
+			}
 		}
+		
 	}
 	
 	if(isset($_POST["signuppassword"])){
@@ -144,33 +167,36 @@
 	}
 	
 	
+	
+	
+	
 	if(isset($_POST["signupemail"]) &&
-		isset($_POST["signuppassword"]) &&
+		isset($_POST["signuppassword"]) &&		
+		isset($_POST["signupFirstname"]) &&
+		isset($_POST["signupLastname"]) &&
 		isset($_POST["signupGender"]) &&
-		isset($_POST["signupAge"]) &&
+		isset($_POST["signupUsername"]) &&
+		isset($_POST["signupBDay"]) &&
+		isset($_POST["signupBMonth"]) &&
+		isset($_POST["signupBYear"]) &&
 		$signupEmailError=="" &&
 		$signupPasswordError=="" &&
+		$signupFirstnameError=="" &&
+		$signupLastnameError=="" &&
 		$signupGenderError=="" &&
-		$signupAgeError== ""
+		$signupUsernameError=="" &&
+		$signupBDayError=="" &&
+		$signupBMonthError=="" &&
+		$signupBYearError==""
 		) {
+				
 		
-		//echo "Salvestan... <br>";
-		
-		//echo "email: ".$signupemail."<br>";
-		//echo "password: ".$_POST["signuppassword"]."<br>";
-		//echo "gender: ".$signupGender."<br>";
-		//echo "age: ".$signupAge."<br>";
-		//echo "country: ".$signupCountry."<br>";
-		//echo "city: ".$signupCity."<br>";
-		//echo "shoesize: ".$signupShoesize."<br>";
-		
+		$signupDoB = $signupBYear . '-' . $signupBMonth . '-' . $signupBDay;
 		$password = hash("sha512", $_POST["signuppassword"]);
 		
-		//echo "password hashed: ".$password."<br>";
 		
-		//echo $serverUsername;
+		$User->signUp($Helper->cleanInput($signupemail), $Helper->cleanInput($password), $Helper->cleanInput($signupFirstname), $Helper->cleanInput($signupLastname), $Helper->cleanInput($signupGender), $Helper->cleanInput($signupUsername), $Helper->cleanInput($signupDoB)); 
 		
-		$User->signUp($Helper->cleanInput($signupemail), $Helper->cleanInput($password), $Helper->cleanInput($signupGender), $Helper->cleanInput($signupAge), $Helper->cleanInput($signupCountry), $Helper->cleanInput($signupCity), $Helper->cleanInput($signupShoesize));
 		
 	}
 
@@ -208,14 +234,20 @@
 							<b><label>*E-mail:</label></b> <text style="color:red;"><?php echo $signupEmailError; ?></text>
 							<input class="form-control" name="signupemail" placeholder="example@mail.com" type="text" value="<?=$signupemail;?>"> 
 							<br>
-						
-							<b><label>*Parool:</label></b> <text style="color:red;"><?php echo $signupPasswordError; ?></text>
-							<input class="form-control" name="signuppassword" placeholder="********" type="password"> 
-							<br>
 							
-							<b><label>*Sisesta parool uuesti:</label></b> <text style="color:red;"><?php echo $reenterpasswordError; ?></text>
-							<input class="form-control" name="reenterpassword" placeholder="********" type="password"> 
-							<br>
+								<b><label>*Sünnikuupäev (P/K/A)</label></b> <text style="color:red;"><?php echo $signupBDayError,$signupBMonthError,$signupBYearError; ?></text><br>
+							<div class="form-group col-sm-2">
+								<input class="form-control" name="signupBDay" type="integer" placeholder="01" value="<?=$signupBDay;?>">
+							</div>
+							<div class="form-group col-sm-2">
+								<input class="form-control" name="signupBMonth" type="integer" placeholder="01" value="<?=$signupBMonth;?>">
+							</div>
+							<div class="form-group col-sm-2">
+								<input class="form-control" name="signupBYear" type="integer" placeholder="2001" value="<?=$signupBYear;?>">
+							</div>
+								<br>
+						
+							
 					</div>
 						
 					<div class="form-group col-sm-6">
@@ -239,21 +271,20 @@
 							<?php } ?>
 							<br>
 							
-							<b><label>*Vanus:</label></b> <text style="color:red;"><?php echo $signupAgeError; ?></text><br>
-							<input class="form-control" name="signupAge" type="integer" value="<?=$signupAge;?>">
+							<b><label>*Kasutajanimi:</label></b><text style="color:red;"> <?php echo $signupUsernameError; ?></text>
+							<input class="form-control" name="signupUsername" type="text" value="<?=$signupUsername;?>">
 							<br>
 							
-							<b><label>Riik:</label></b><br>
-							<input class="form-control" name="signupCountry" type="text">
+							<b><label>*Parool:</label></b> <text style="color:red;"> <?php echo $signupPasswordError; ?></text>
+							<input class="form-control" name="signuppassword" placeholder="********" type="password"> 
 							<br>
 							
-							<b><label>Linn:</label></b><br>
-							<input class="form-control" name="signupCity" type="text">
+							<b><label>*Sisesta parool uuesti:</label></b> <text style="color:red;"><?php echo $reenterpasswordError; ?></text>
+							<input class="form-control" name="reenterpassword" placeholder="********" type="password"> 
 							<br>
 							
-							<b><label>Jalanumber (EUR):</label></b><br>
-							<input class="form-control" name="signupShoesize" type="float">
-							<br>
+				
+							
 					</div>
 							<input class="btn btn-success btn-block visible-xs-block" type="submit" value="Loo Kasutaja">
 							<input class="btn btn-success btn-block btn-sm hidden-xs" type="submit" value="Loo Kasutaja">
