@@ -1,8 +1,6 @@
 <?php 
 class User {
 	
-	//private $name = "Romil";
-	//public $familyName = "Robtsenkov";
 	private $connection;
 	
 	// käivitatakse siis kui new ja see mis saadekse
@@ -62,12 +60,12 @@ class User {
 		return $notice;
 	}
 	
-	function signup($email, $password) {
+	function signup($username, $email, $password) {
 		
 		$stmt = $this->connection->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ss", $email, $password );
+		$stmt->bind_param("sss",$username, $email, $password );
 		if ( $stmt->execute() ) {
 			echo "salvestamine õnnestus";	
 		} else {	

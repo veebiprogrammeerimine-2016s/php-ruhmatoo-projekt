@@ -7,7 +7,7 @@
 	session_start(); 
 	
 	/* ÜHENDUS */
-	$database = "if16_derkun";
-	$mysqli = new mysqli($serverHost, $serverUsername,  $serverPassword, $database);
+	$db = "if16_derkun_shazza";
+	$mysqli = new mysqli($serverHost, $serverUsername,  $serverPassword, $db);
 	
 ?>
