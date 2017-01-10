@@ -147,6 +147,56 @@
 		
 	}
 	
+	    
+    if(
+        isset($_POST["sender"]) && isset($_POST["reciever"]) && isset($_POST["content"]) &&
+        !empty($_POST["sender"]) && !empty($_POST["reciever"]) && !empty($_POST["content"])
+    ){
+        var_dump($_POST);
+    
+        $to = $_POST["reciever"];
+        $subject = "HTML email test";
+        
+        $message = "
+        <html>
+        <head>
+        <title>HTML email</title>
+        </head>
+        <body>
+        <p>This email contains HTML Tags!</p>
+        <table>
+        <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        </tr>
+        <tr>
+        <td>John</td>
+        <td>Doe</td>
+        </tr>
+        </table>
+        <p>".$_POST["content"]."</p>
+        </body>
+        </html>
+        ";
+        
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        
+        // More headers
+        $headers .= 'From: Greeny Server <'.$_POST["sender"].'>' . "\r\n";
+        //$headers .= 'Cc: myboss@example.com' . "\r\n";
+        
+        
+        if(mail($to,$subject,$message,$headers)){
+            echo "email sent";
+        }else {
+            echo "something went wrong";
+        }
+        
+        
+}
+	
 
 ?>
 
@@ -178,6 +228,7 @@
 				<div class="inner">
 					<h1>E-DIARY: <span>Accomplish more with us!<br />
 					</span></h1>
+
 					<ul class="actions">
 						<h1>Login</h1>
 						<form method="POST">
@@ -194,7 +245,7 @@
 		
 		
 	</form>
-				
+				<hr />
 					<h1>Sign-Up</h1>
 	<form method="POST">
 		
@@ -224,6 +275,35 @@
 					<ul class="actions">
 
 					</ul>
+				</div>
+			</section>
+			
+				<!-- Footer -->
+			<section id="footer">
+				<div class="inner">
+					<header>
+						<h2>Get in Touch</h2>
+					</header>
+					<form method="post" action="#">
+						<div class="field half first">
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name" />
+						</div>
+						<div class="field half">
+							<label for="email">Email</label>
+							<input type="email" name="email" id="email" />
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="content" id="message" rows="6"></textarea>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="Send Message" class="alt" /></li>
+						</ul>
+					</form>
+					<div class="copyright">
+						&copy; Veebiprogrammeerimine: ANDRY ZAGARS</a>
+					</div>
 				</div>
 			</section>
 

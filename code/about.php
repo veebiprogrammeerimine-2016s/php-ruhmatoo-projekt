@@ -22,7 +22,7 @@
 			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
 
 		<!-- Main -->
-			<section id="main">
+		<section id="banner">
 				<div class="inner">
 					<header class="major special">
 
@@ -31,11 +31,12 @@
 			<section id="one">
 				<div class="inner">
 					<header>
+					
 						<h2>About us</h2>
 					</header>
-					<p>Sign-Up for free and carry your e-diary everywhere you go! You can access to your scheduled tasks and contacts from computer, mobile and even from Smart-TV. You dont have to worry anymore by just remembering things what you need to do on next week or next month. You can simply add in e-Diary your scheduled tasks or contacts. Sign-Up for free and enjoy! Your Brain is not a trashcan! 
+					<p><font color="white">Sign-Up for free and carry your e-diary everywhere you go! You can access to your scheduled tasks and contacts from computer, mobile and even from Smart-TV. You dont have to worry anymore by just remembering things what you need to do on next week or next month. You can simply add in e-Diary your scheduled tasks or contacts. Sign-Up for free and enjoy! Your Brain is not a trashcan! 
 					Developer: Andry Zagars
-					Estonia, Tallinn </p>
+					Estonia, Tallinn </font></p>
 					<ul class="actions">
 
 					</ul>
