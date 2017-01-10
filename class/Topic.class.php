@@ -9,14 +9,14 @@
 	function createNew($subject, $content, $username, $user_id, $category){
 		
 		$stmt = $this->connection->prepare("INSERT INTO topics(subject, content, username, user_id, category) VALUES(?,?,?,?,?)");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("sssis", $subject, $content, $username, $user_id, $category); 
 		
 		if($stmt->execute()) {
 			$_SESSION["topic_message"] = "<p style='color:green;'>TEEMA LISATUD!</p'>";
 		} else {
-			echo "ERROR".$stmt->error;
+			//echo "ERROR".$stmt->error;
 		}
 		
 	}
@@ -24,14 +24,14 @@
 	function addTopicAndFile ($subject, $content, $username, $user_id, $category, $target_file){
 		
 		$stmt = $this->connection->prepare("INSERT INTO topics(subject, content, username, user_id, category, file) VALUES(?,?,?,?,?,?)");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("sssiss", $subject, $content, $username, $user_id, $category, $target_file); 
 		
 		if($stmt->execute()) {
 			$_SESSION["topic_message"] = "<p style='color:green;'>TEEMA LISATUD!</p'>";
 		} else {
-			echo "ERROR".$stmt->error;
+			//echo "ERROR".$stmt->error;
 		}
 	}
 	
@@ -76,7 +76,7 @@
 			");
 		}
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_result ($id, $subject, $date, $username);
 		$stmt-> execute();
@@ -133,7 +133,7 @@
 			");
 		}
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_result ($id, $subject, $date, $username);
 		$stmt-> execute();
@@ -159,7 +159,7 @@
 		
 		$stmt = $this->connection-> prepare("SELECT subject, content, created, username, file FROM topics WHERE id=? AND deleted IS NULL");
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 
 		$stmt->bind_param("i", $topic_id);
 		$stmt->bind_result($subject, $content, $created, $username, $file);
@@ -194,7 +194,7 @@
 	function checkUser($topic_id, $user_id){
 		$stmt = $this->connection-> prepare("SELECT subject, content FROM topics WHERE id=? and user_id=?");
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("ii", $topic_id, $user_id);
 		$stmt->bind_result($subject, $content);
@@ -217,7 +217,7 @@
 		
 		$stmt = $this->connection-> prepare("SELECT content FROM topics WHERE id=? and user_id=?");
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("ii", $topic_id, $_SESSION["userId"]);
 		$stmt->bind_result($content);

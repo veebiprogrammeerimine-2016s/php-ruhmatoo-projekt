@@ -58,14 +58,6 @@
 	$sets = "";
 	$repeats = "";
 	
-	if (isset ($_POST["loginEmail"]) ){
-		if (empty ($_POST["loginEmail"]) ){
-			$loginEmailError = "Palun sisesta e-post! &#8194 &#8194 &#8194 &#8194";		
-		} else {
-			$loginEmail = $_POST["loginEmail"];
-		}
-	}
-	
 	if (isset ($_POST["exercise"]) ){ 
 		if (empty ($_POST["exercise"]) ){ 
 			$exerciseError = "<p style='color: red;'>Palun täida see väli!</p>";		
@@ -90,10 +82,17 @@
 		} 
 	}
 	
+	if (isset ($_POST["q"]) ){ 
+		$q= $_POST["q"];
+		header('Location: user.php?m=0&y=0&q='. $q .''); //wooow nüüd töötab!!
+		exit();
+	}
+	
 	if(isset($_GET["q"])) {
 		
 		//kui otsib, võtame otsisõna aadressirealt
 		$q = $_GET["q"];
+		//echo "Hakkab";
 	} else {
 		//kas otsisõna on tühi
 		$q = "";
@@ -216,12 +215,12 @@
 					<p><a class="btn btn-default btn-sm" href="editUser.php"><span class='glyphicon glyphicon-pencil'></span> Muuda andmeid</a></p>
 					<p><a href="editPassword.php">Muuda parooli</a></p>
 					<br><br><br>
-						<h3>Otsi tehtud treeninguid</h3>
-					<form>
+					<h3>Otsi tehtud treeninguid</h3>
+					<form method="POST">
 					<div class="form-group">
 						<div class="row">
 							<div class="col-sm-8">
-								<input type="search" class="form-control input-sm" name="q" value="<?=$q;?>">
+								<input type="text" class="form-control input-sm" name="q" value="<?=$q;?>">
 							</div> 
 							<div class="col-sm-4">
 								<input type="submit"  class="form-control btn-md" value="Otsi">
@@ -245,11 +244,11 @@
 			$exerciseOrder = "ASC";
 			$setsOrder="ASC"; 
 			$repeatsOrder="ASC"; 
-			$createdOrder="ASC";
+			//$createdOrder="ASC";
 			$exerciseArrow = "&uarr;";
 			$setsArrow = "&uarr;";
 			$repeatsArrow = "&uarr;";
-			$createdArrow = "&uarr;";
+			//$createdArrow = "&uarr;";
 
 			
 			if (isset($_GET["sort"]) && $_GET["sort"] == "exercise") {
@@ -273,12 +272,13 @@
 				}
 			}
 			
-			if (isset($_GET["sort"]) && $_GET["sort"] == "training_time") {
+			//SRY sõbrad, ei saa, tegu pole timestambiga. 
+			/*if (isset($_GET["sort"]) && $_GET["sort"] == "training_time") {
 				if (isset($_GET["order"]) && $_GET["order"] == "ASC") {
 					$createdOrder="DESC";
 					$createdArrow = "&darr;";
 				}
-			}
+			}*/
 
 		$html .= "<thead class='exercises_head'>";
 			$html .= "<th>
@@ -296,9 +296,7 @@
 						Kordused ".$repeatsArrow."</u></font>
 					</a>
 					</th>";
-			$html .= "<th>
-					<a href='?m=0&y=0&q=".$q."&sort=training_time&order=".$createdOrder."'><font color='white'><u>
-						Kuupäev	".$createdArrow."</u></font>
+			$html .= "<th><font color='white'>Kuupäev</font>
 					</a>
 					</th>";
 			$html .= "<th><font color='white'>Märkmed</font></th>";

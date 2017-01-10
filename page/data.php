@@ -71,7 +71,7 @@
 		unset($_SESSION["topic_del_message"]);
 	}
 	
-	$pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
+	//$pageWasRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) && $_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0';
 
 	/*if($pageWasRefreshed ) {
 		$topic_msg = "";

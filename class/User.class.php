@@ -20,7 +20,7 @@
 		//$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
 		$stmt = $this->connection->prepare("INSERT INTO users(username, firstname, lastname, email, password, gender, phonenumber) VALUES(?,?,?,?,?,?,?)");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("sssssss", $userName, $firstName, $lastName, $email, $password, $gender, $phoneNumber); //$signupEmail emailiks lihtsalt
 		
@@ -30,7 +30,6 @@
 			$msg = "KASUTAJA LOODUD!";
 		} else {
 			//echo "ERROR".$stmt->error;
-			//$msg = "<p style='color:red;'>SELLINE E-POST ON JUBA KASUTUSEL!</p>";
 		}
 		
 		return $msg;
@@ -46,7 +45,7 @@
 			WHERE username = '".$username."'
 		");
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->execute();
 		
@@ -80,7 +79,7 @@
 			WHERE email = '".$email."'
 		");
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->execute();
 		
@@ -113,7 +112,7 @@
 			FROM users
 			WHERE email = ?
 		");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		//asendan küsimärgi
 		$stmt->bind_param("s", $email); //s-string
@@ -157,7 +156,7 @@
 			FROM users
 			WHERE id=?
 		");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("i", $_SESSION["userId"]);
 		
@@ -185,7 +184,7 @@
 	
 	function editData($edit_id){
 		$stmt = $this->connection->prepare("SELECT firstname, lastname, email, password, gender, phonenumber FROM users WHERE id=? ");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		$stmt->bind_param("i", $edit_id);
 		$stmt->bind_result($firstname, $lastname, $email, $password, $gender, $phonenumber);
 		$stmt->execute();
@@ -224,7 +223,7 @@
 		// kas õnnestus salvestada
 		if($stmt->execute()){
 			// õnnestus
-			$_SESSION["user_message"] = "<p style='color:green;'>ANDMED MUUDETUD!</p>";
+			$_SESSION["user_message"] = "<p style='color:green;'><b>ANDMED MUUDETUD!</b></p>";
 		}
 		
 		$stmt->close();
@@ -233,13 +232,13 @@
 	function saveExercise($trainingdate, $exercise, $sets, $repeats, $notes) {
 	
 		$stmt = $this->connection->prepare("INSERT INTO exercises (exercise, sets, repeats, notes, user_id, training_time) VALUES (?, ?, ?, ?, ?, ?)");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("ssssis", $exercise, $sets, $repeats, $notes, $_SESSION["userId"], $trainingdate);
 		
 		if ($stmt->execute()) {
 			//echo "Salvestamine õnnestus";
-			$_SESSION["Exercise_message"] = "<p style='color:green;'>HARJUTUS LISATUD!</p>";
+			$_SESSION["Exercise_message"] = "<p style='color:green;'><b>HARJUTUS LISATUD!</b></p>";
 		} else {
 			//echo "ERROR".$stmt->error;
 		}
@@ -288,7 +287,7 @@
 			ORDER BY $sort $orderBy");
 		}
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_result($id, $exercise, $sets, $repeats, $notes, $training_time);
 		$stmt->execute();
@@ -328,7 +327,7 @@
 			FROM users
 			WHERE id = ?
 		");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("i", $_SESSION["userId"]);
 		
@@ -351,10 +350,10 @@
 	
 	function addNewPassword ($password){
 		
-		$stmt = $this->connection->prepare("UPDATE users SET password = ? WHERE id=? AND deleted IS NULL ");
+		$stmt = $this->connection->prepare("UPDATE users SET password = ? WHERE id=? ");
 		
 		$stmt->bind_param("si", $password, $_SESSION["userId"]);
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$msg = "";
 		if($stmt->execute()) {

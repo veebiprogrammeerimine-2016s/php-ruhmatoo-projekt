@@ -278,10 +278,10 @@
 			<div class="heading" style="padding-left:30px;">
 			  <h1 style="color:black;">Loo kasutaja</h1> 	
 			</div>
-			<p style="color:green;"> <b> <?=$msg;?> </b> </p>
 			
 			<form method="POST">
 				<div class="col-sm-5 col-md-6" style="padding-left:30px;">
+					<p style="color:green;"> <b> <?=$msg;?> </b> </p>
 					<label>Kasutajanimi<span style="color:red">*</span></label>
 					<br>
 					<input class="form-control" name="userName" type="text" value= "<?=$userName;?>"> <?php echo $userNameError; ?>

@@ -9,14 +9,14 @@
 	function createNew($content, $subject_id, $username, $user_id){
 		
 		$stmt = $this->connection->prepare("INSERT INTO replies(content, username, topic_id, user_id) VALUES(?,?,?,?)");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("ssii", $content, $username, $subject_id, $user_id); 
 		
 		if($stmt->execute()) {
 			$_SESSION["reply_message"] = "<p style='color:green;'>VASTUS LISATUD!</p>";
 		} else {
-			echo "ERROR".$stmt->error;
+			//echo "ERROR".$stmt->error;
 		}
 		
 	}
@@ -24,14 +24,14 @@
 	function createNewWithFile($content, $subject_id, $username, $user_id, $target_file){
 		
 		$stmt = $this->connection->prepare("INSERT INTO replies(content, username, topic_id, user_id, file) VALUES(?,?,?,?,?)");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("ssiis", $content, $username, $subject_id, $user_id, $target_file); 
 		
 		if($stmt->execute()) {
 			$_SESSION["reply_message"] = "<p style='color:green;'>VASTUS LISATUD!</p>";
 		} else {
-			echo "ERROR".$stmt->error;
+			//echo "ERROR".$stmt->error;
 		}
 		
 	}
@@ -44,7 +44,7 @@
 			WHERE topic_id=?
 			AND deleted IS NULL
 		");
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("i", $topic_id);
 		
@@ -73,7 +73,7 @@
 	function checkUser($topic_id, $user_id, $reply_id) {
 		$stmt = $this->connection-> prepare("SELECT content FROM replies WHERE id=? and topic_id=? and user_id=?");
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("iii", $reply_id, $topic_id, $user_id);
 		$stmt->bind_result($content);
@@ -93,7 +93,7 @@
 	function checkAccess($topic_id, $reply_id, $user_id){
 		$stmt = $this->connection-> prepare("SELECT content FROM replies WHERE topic_id=? and id=? and user_id=?");
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("iii", $topic_id, $reply_id, $user_id);
 		$stmt->bind_result($content);
@@ -114,7 +114,7 @@
 	function find($topic_id, $reply_id, $user_id ){
 		$stmt = $this->connection-> prepare("SELECT content, file FROM replies WHERE topic_id=? and id=? and user_id=?");
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
 		$stmt->bind_param("iii", $topic_id, $reply_id, $user_id);
 		$stmt->bind_result($content, $file);
@@ -180,7 +180,7 @@
 		
 		$stmt->bind_param("siii",$nofile, $reply_id, $topic_id, $_SESSION["userId"] );
 		
-		echo $this->connection->error;
+		//echo $this->connection->error;
 		
  		if($stmt->execute()){
 			$_SESSION["reply_change_message"] = "<p style='color:red;'>Pilt kustutatud!</p>";

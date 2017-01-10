@@ -111,7 +111,7 @@
 		background-color: white;
 	}
 	
-  /*kalender*/
+ /*kalender*/
   table.SimpleCalendar {
     font-family: Arial;
 	border-collapse: collapse; }

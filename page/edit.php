@@ -18,8 +18,6 @@
 		header("Location: data.php");
 	}
 	
-	//kunagi võiks ka teha ifDel, kui kasutajad postitusi nt taastama tahavad hakata
-	
 	$reply = $Reply->find($_GET["topic"], $_GET["reply"], $_SESSION["userId"]);
 	
 	$fileError = "";
@@ -35,7 +33,7 @@
 		
 		if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 			if ($fileError == ""){
-			$target_dir = "../uploads/";
+				$target_dir = "../uploads/";
 				$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 				$uploadOk = 1;
 				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);

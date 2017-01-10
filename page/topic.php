@@ -124,11 +124,8 @@
 	
 	$replies = $Reply->addToArray($_GET["id"]);
 	$topic = $Topic->get($_GET["id"]);
-	//teen emaili asemel pärast user_id'ga, kuna kui emaili muuta saaks, siis enam postitust kustutada ei saaks
-	//$del_topic = $Topic->checkUser($_GET["id"], $_SESSION["email"]);
 	
 	$del_topic = $Topic->checkUser($_GET["id"], $_SESSION["userId"]);
-	//$change_reply = $Reply->checkUser($_GET["id"], $_SESSION["userId"], $reply_id); 
 	
 	$topicimagesource = "";
 	if (!empty ($topic->subject)){

@@ -30,6 +30,7 @@ Meie rakenduse eripäraks on kasutaja enda treeningpäeviku osa kalendrina, kuhu
 ##Andmebaasi skeem loetava pildina + tabelite loomise SQL laused
 ![Preview](Andmebaasi_skeem.jpg)
 
+```
 CREATE TABLE users(
 	id INT(11), NOT NULL, AUTO INCREMENT, PRIMARY KEY
 	username VARCHAR(300), NOT NULL
@@ -75,6 +76,7 @@ CREATE TABLE replies(
 	training_time VARCHAR(255), NOT NULL
 	deleted DATE, NULL
 );
+```
 
 ##Kokkuvõte:
 * **Mariann:** 

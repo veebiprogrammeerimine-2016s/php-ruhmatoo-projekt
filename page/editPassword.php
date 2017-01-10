@@ -38,7 +38,12 @@
 		if (empty ($_POST["newPassword"]) ){ 
 			$newPasswordError = "<font color='red'> Palun täida väli!</font>";		
 		} else {
-			$newPassword = $_POST["newPassword"];
+			if (strlen($_POST["newPassword"]) < 8) {
+				$newPasswordError = "<font color='red'>Parool peab olema vähemalt 8 tähemärki pikk!</font>";
+			} else {
+				$newPassword = $_POST["newPassword"];
+				$newPasswordError = "";
+			}
 		}
 	}
 	
