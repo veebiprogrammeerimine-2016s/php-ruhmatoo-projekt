@@ -167,7 +167,7 @@
 		<html>
 	<body>
 		<form method="POST">
-			
+		
 			<label>E-mail</label><br>
 			<input name="loginEmail" type="email">
 			
@@ -196,6 +196,10 @@
 	<ul class="list-group">
         <li class="list-group-item">
       <form method="POST">
+	  			<label>Username</label><br>
+			<input name="loginusername" type="username">
+			
+			<br><br>
 					<label>E-post</label><br>
 			<input name="signupEmail" type="email" value="<?=$signupEmail;?>" > <?php echo $signupEmailError; ?>
 			
