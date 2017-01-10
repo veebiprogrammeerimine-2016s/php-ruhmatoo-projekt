@@ -273,7 +273,7 @@ $Rides = new Rides($mysqli);
           $html .= "<td>
 
 
-  							<a class='btn' href='giveFeedback.php?id=".$r->guest_email."'>
+  							<a class='btn' href='giveFeedback.php?id=".$r->guest_id."'>
   							Feedback
   							<span class='glyphicon glyphicon-user'></span>
   							</a>

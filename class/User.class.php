@@ -26,7 +26,7 @@ class User
 
 
     }
-
+}
     function login($email, $password) {
 
         $notice = "";
@@ -92,7 +92,7 @@ class User
           echo "ERROR ".$stmt->error;
         }
 
-    }
-  }
+      }
+
 }
 ?>
