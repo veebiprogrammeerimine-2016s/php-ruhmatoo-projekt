@@ -1,4 +1,3 @@
-
  <!--LEHEKÜLG SISSE LOGIMISEKS JA UUE KASUTAJA LOOMISEKS"-->
 <?php
 require ("header.php");
@@ -69,12 +68,11 @@ if ( isset($_POST["signupEmail"]) &&
 	$signUpDate =  new DateTime($_POST['signUpDate']);
 	$signUpDate =  $signUpDate->format('Y-m-d');
 	// salvestame ab'i
-	echo "Salvestan... <br>";
-	echo "email: ".$signupEmail."<br>";
-	echo "Password: ".$_POST["signupPassword"]."<br>";
+	echo "Uue kasutaja loomine õnnestus!<br>";
+	echo "Email: ".$signupEmail."<br>";
+	echo "Parool: ".$_POST["signupPassword"]."<br>";
 	$Password = hash("sha512", $_POST["signupPassword"]);
-	echo "password hashed: ".$Password."<br>";
-	//echo $serverUsername;
+	
 	// KASUTAN FUNKTSIOONI
 	// $signupEmail = cleanInput($signupEmail);
 	signUp($signupEmail, $Password, $signUpDate, $signupGender);

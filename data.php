@@ -83,8 +83,12 @@
 ?>
 <!--trükitakse kasutaja sisestatud andmed välja-->
 <?php require ("header.php"); ?>
+<div class="form-group" style="padding-left:75%; padding-top:2%;">
+	<a class="btn btn-success" href="?logout=1" role="button">Logi välja</a>
+</div>
+
 <div class="col-sm-4 col-md-4">
-<br><br>
+
 <h1><font color=#00b33c><strong>Tänane päev</h1></font></strong>
 <div class="container">
 		<div class="row">
@@ -92,7 +96,7 @@
 		
 <form method="POST">
 <br><br>
-<br><br>
+
 <form class="form-horizontal">
 		<div class="form-group">
 			<label for="inputDate" class="col-sm-4 control-label">Kuupäev</label>
@@ -127,8 +131,8 @@
 </form>		
 <br><br>
 <br><br>
-
 		<a class="btn btn-success" type="submit" role="button">Salvesta andmed</a>
+	
 		<br>
 		<br>
 		
@@ -137,10 +141,13 @@
 </div>
 
 <?php require ("header.php"); ?>
-<a class="btn btn-success" href="?logout=1" role="button">Logi välja</a>
+<!--<div class="form-group" style="padding-top:-1%;">
+	<a class="btn btn-success" href="?logout=1" role="button">Logi välja</a>
+</div>-->
 <div class="col-sm-5 col-md-5">
 
 	<h2><font color="#ff9933">Minu enesetunne ja liikumisaktiivsus</h2></font>
+
 	<br><br>
  
 <?php	
@@ -175,5 +182,5 @@
 </form>
 
 	<a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
-
+	
 <?php require ("footer.php"); ?>

@@ -16,7 +16,7 @@ function signUp ($Email, $Password, $Date, $Gender) {
 		$stmt->bind_param("ssss", $Email, $Password, $Date, $Gender);
 
 		if($stmt->execute()) {
-			echo "Salvestamine �nnestus";
+			
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
@@ -159,7 +159,7 @@ function signUp ($Email, $Password, $Date, $Gender) {
 		$stmt->bind_param("iii", $height, $weight, $_SESSION["userId"]);
 
 		if($stmt->execute()) {
-			echo "Salvestamine �nnestus";
+			echo "Salvestamine Õnnestus";
 		} else {
 			echo "ERROR ".$stmt->error;
 		}
