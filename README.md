@@ -12,10 +12,7 @@ selle väljendus. Eeskujuks võib võtta OC3D veebisaiti, LinusTechTips'i foorum
 overclock.net'i.
 
 	prioriteedid:
-	*saada pealeht korda
-	*login süsteem korda
-	*anda võimalus administraatoril postitada
-	*...
+	* Saada andmebaasid lehtedele
 ## Abiks
 * **Testserver:** greeny.cs.tlu.ee, [tunneli loomise juhend](http://minitorn.tlu.ee/~jaagup/kool/java/kursused/09/veebipr/naited/greenytunnel/greenytunnel.pdf)
 * **Abiks tunninäited (rühmade lõikes):** [I rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-I-ruhm), [II rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-II-ruhm), [III rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-III-ruhm)

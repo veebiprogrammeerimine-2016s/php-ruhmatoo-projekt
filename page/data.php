@@ -90,6 +90,12 @@
 	  productions
 	  </h4>
       <ul class="nav nav-pills nav-stacked">
+<style>
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color:black;
+    background-color:#fcd900;
+    }
+</style>
         <li>
 		<a onclick="location.href = 'login.php';" style="color:red;" href="#section1";>Home</a>
 		</li>
@@ -135,10 +141,11 @@
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'RECENT')">MOST RECENT</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'GAMES')">GAMES</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'HARDWARE')">HARDWARE</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'SOFTWARE')">SOFTWARE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'YOUTUBE')">YOUTUBE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'SEARCH')">SEARCH</a></li>
 </ul>
-<div id="" style="overflow-y:scroll; overflow-x:hidden; height:810px; width:1410px">
+<div id="" style="overflow-y:scroll; overflow-x:hidden; height:auto; width:100%; max-height:825px; max-width: 1008px">
 <div id="RECENT" class="tabcontent">
   <div id="tab1" class="tab-pane">
       <hr>
@@ -157,7 +164,7 @@ When compared to the R9 390 though the RX 480 does have one major disadvantage; 
 <br>
 Propping up the RX 480 is the core clock speed which has been set at 1120 MHz and can boost as high as 1266 MHz. That’s a 27% boost over the R9 390’s operating frequency and should help account for having 10% fewer cores.
 </p>
-	  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:720px; width:1280px; margin:0 auto;">
+	  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:540px; width:960px; margin:0 auto;">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -211,6 +218,11 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
 </div>
 
 <div id="HARDWARE" class="tabcontent">
+  <h3>Tokyo Drift</h3>
+  <p>Tokyo is the capital of Japan, and i'm the DK</p>
+</div>
+
+<div id="SOFTWARE" class="tabcontent">
   <h3>Tokyo Drift</h3>
   <p>Tokyo is the capital of Japan, and i'm the DK</p>
 </div>

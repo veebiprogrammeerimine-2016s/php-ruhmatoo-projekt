@@ -74,7 +74,8 @@
 		}
 	}
 	
-	if ( isset($_POST["signupEmail"]) &&
+	if ( isset($_POST["signupusername"]) &&
+		 isset($_POST["signupEmail"]) &&
 		 isset($_POST["signupPassword"]) &&
 		 $signupEmailError == "" && 
 		 empty($signupPasswordError)
@@ -82,6 +83,7 @@
 		
 		// ühtegi viga ei ole, kõik vajalik olemas
 		echo "salvestan...<br>";
+		echo "email ".$signupUsername."<br>";
 		echo "email ".$signupEmail."<br>";
 		echo "parool ".$_POST["signupPassword"]."<br>";
 		
@@ -289,6 +291,7 @@ ul.tab li a:focus, .active {
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'RECENT')">MOST RECENT</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'GAMES')">GAMES</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'HARDWARE')">HARDWARE</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'SOFTWARE')">SOFTWARE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'YOUTUBE')">YOUTUBE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'SEARCH')">SEARCH</a></li>
 </ul>
@@ -365,6 +368,11 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
 </div>
 
 <div id="HARDWARE" class="tabcontent">
+  <h3>Tokyo Drift</h3>
+  <p>Tokyo is the capital of Japan, and i'm the DK</p>
+</div>
+
+<div id="SOFTWARE" class="tabcontent">
   <h3>Tokyo Drift</h3>
   <p>Tokyo is the capital of Japan, and i'm the DK</p>
 </div>

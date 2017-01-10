@@ -25,13 +25,17 @@
 	  <h4 style="color:white; font-size:200%">
 	  productions
 	  </h4>
+<style>
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color:black;
+    background-color:#FFFFFF;
+    }
+</style>
       <ul class="nav nav-pills nav-stacked">
         <li>
 		<a onclick="location.href = 'login.php';" style="color:red;" href="#section1";>Home</a>
 		</li>
         <li class="active"><a style="color:red;"href="#section2">About Me</a></li>
-	<div>
-	</div>
 		
 <div class="panel-group" id="accordion">
 
