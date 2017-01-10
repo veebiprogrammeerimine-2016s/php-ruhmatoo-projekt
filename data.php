@@ -1,8 +1,9 @@
+<!--LEHT KASUTAJA MEELEOLUMUUTUSTE JA SAMMUDE ARVU SISESTAMISEKS-->
+
 <?php
 	require("functions.php");
 
 	//kas kasutaja on sisse loginud, kui pole, siis suunata login lehele
-
 
 	if (!isset($_SESSION["userId"])) {
 
@@ -80,6 +81,7 @@
 		
 	$users=getUserData();	
 ?>
+<!--trükitakse kasutaja sisestatud andmed välja-->
 <?php require ("header.php"); ?>
 <div class="col-sm-4 col-md-4">
 <br><br>
@@ -95,7 +97,7 @@
 		<div class="form-group">
 			<label for="inputDate" class="col-sm-4 control-label">Kuupäev</label>
 			<div class="col-sm-10">
-				<input type="Date" class="form-control" id="inputDate" label="Kuupäev">
+				<input type="date" class="form-control" id="inputdate" label="Kuupäev">
 			</div>
 		</div>
 		
@@ -129,7 +131,6 @@
 		<a class="btn btn-success" type="submit" role="button">Salvesta andmed</a>
 		<br>
 		<br>
-		
 		
 <p></p>		
 </form>	
@@ -167,16 +168,12 @@
 	
 	
 	$listHtml = "<br><br>";
-	
+
 ?>
-	
-	<!--<a href="?logout=1">Logi välja</a>-->
-	<!--<a class="btn btn-default" href="?logout=1" role="button">Logi välja</a>-->
+		
 </p>
 </form>
-<br><br>
-<a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
-</div>
+
+	<a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
+
 <?php require ("footer.php"); ?>
-
-

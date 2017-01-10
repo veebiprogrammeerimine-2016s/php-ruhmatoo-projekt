@@ -92,4 +92,4 @@ saveUserLW ($height, $weight);
 <button <p type="submit" class="text-center btn btn-primary " name="calculate"> Arvuta</button> </p>
 <a class="btn btn-success btn-warning" href="?logout=1" role="button">Logi välja</a>
 </form>
-<?php require ("footer.php");?>
+<?php require ("footer.php"); ?>
