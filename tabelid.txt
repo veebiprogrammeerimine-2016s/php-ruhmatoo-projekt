@@ -95,8 +95,9 @@ CREATE TABLE sm_postinfo(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	postid INT,
 	heading VARCHAR(50),
-	brandid INT,
+	brand VARCHAR(50),
 	model VARCHAR(100),
+	size INT(2),
 	type VARCHAR(30),
 	sneakercondition VARCHAR(30),
 	price DECIMAL(8, 2),
@@ -104,19 +105,13 @@ CREATE TABLE sm_postinfo(
 	postdeleted DATETIME,
 	postflagged DATETIME,
 	postcreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	status INT(1),
-	FOREIGN KEY(postid) REFERENCES sm_posts(id),
-	FOREIGN KEY(brandid) REFERENCES sm_brands(id)
+	status INT(2),
+	FOREIGN KEY(postid) REFERENCES sm_posts(id)
 );
 
 
 
-6 - tootjate/brändide tabel
 
-CREATE TABLE sm_brands(
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	brand VARCHAR(100)
-);
 
 
 

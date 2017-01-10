@@ -25,7 +25,7 @@ require("../functions.php");
 
 /*** muutujad ***/
 /* poststatus määrab ära millal mingi nupp kuulutuse loomise protsessis aktiveeritakse või desaktiveeritakse */
-$postStatus = "";
+$postStatus = 9;
 
 $currentId = $_GET["id"];
 
@@ -65,7 +65,11 @@ $postsId = $sm_postsId->id;
 	if($postsId > $postinfoId) {
 		
 		$recentPostHeading = "";
+		$recentPostBrand = "";
 		$recentPostModel = "";
+		$recentPostSize = "";
+		$recentPostType = "";
+		$recentPostCondition = "";
 		$recentPostPrice = "";
 		$recentPostDescription = "";
 		
@@ -75,7 +79,11 @@ $postsId = $sm_postsId->id;
 		$postStatus = $recentPostData->status;
 		
 		$recentPostHeading = $recentPostData->heading;
+		$recentPostBrand = $recentPostData->brand;
 		$recentPostModel = $recentPostData->model;
+		$recentPostSize = $recentPostData->size;
+		$recentPostType = $recentPostData->type;
+		$recentPostCondition = $recentPostData->condition;
 		$recentPostPrice = $recentPostData->price;
 		$recentPostDescription = $recentPostData->description;
 		
@@ -292,21 +300,29 @@ $updateStatus = "";
 		header("Location: createpost.php?id=".$currentId);
 		exit();
 	}
+	
+	
+	
+	
+	/*if(isset($_POST["submit"])) {
+		$postStatus = 0;
+	}*/
 
 
 /*** KUULUTUSE ANDMETE SALVESTAMISVORMI PHP ***/
 	
-	if(isset($_POST["model"]) && isset($_POST["description"]) && isset($_POST["price"]) && isset($_POST["heading"]) &&
-		!empty($_POST["model"]) && !empty($_POST["description"]) && !empty($_POST["price"]) && !empty($_POST["heading"])
+	if(isset($_POST["model"]) && isset($_POST["description"]) && isset($_POST["price"]) && isset($_POST["heading"]) && isset($_POST["brand"]) && isset($_POST["type"]) && isset($_POST["condition"]) &&
+		!empty($_POST["model"]) && !empty($_POST["description"]) && !empty($_POST["price"]) && !empty($_POST["heading"]) && !empty($_POST["brand"]) && !empty($_POST["type"]) && !empty($_POST["condition"])
 		) {
 		
 		if($imageCheck != 1) {
 			
 			$updateStatus = 1;
-			$Sneakers->savesneaker($_GET["id"], $Helper->cleanInput($_POST["heading"]), $Helper->cleanInput($_POST["model"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]), $updateStatus);
+			$Sneakers->savesneaker($_GET["id"], $Helper->cleanInput($_POST["heading"]), $Helper->cleanInput($_POST["brand"]), $Helper->cleanInput($_POST["model"]), $Helper->cleanInput($_POST["size"]), $Helper->cleanInput($_POST["type"]), $Helper->cleanInput($_POST["condition"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]), $updateStatus);
 		
 			$recentPostData = $Sneakers->getRecentPostInfo($_GET["id"]);
 			$postStatus = $recentPostData->status;
+			//$postStatus = 0;
 			$recentId = $recentPostData->id;
 			
 			$Sneakers->deletePreviousPostVersions($currentId, $recentId);
@@ -317,20 +333,19 @@ $updateStatus = "";
 		} else {
 			
 			$updateStatus = 2;
-			$Sneakers->savesneaker($_GET["id"], $Helper->cleanInput($_POST["heading"]), $Helper->cleanInput($_POST["model"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]), $updateStatus);
+			$Sneakers->savesneaker($_GET["id"], $Helper->cleanInput($_POST["heading"]), $Helper->cleanInput($_POST["brand"]), $Helper->cleanInput($_POST["model"]), $Helper->cleanInput($_POST["size"]), $Helper->cleanInput($_POST["type"]), $Helper->cleanInput($_POST["condition"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]), $updateStatus);
 		
 			$recentPostData = $Sneakers->getRecentPostInfo($_GET["id"]);
 			$postStatus = $recentPostData->status;
+			//$postStatus = 0;
 			$recentId = $recentPostData->id;
 			
 			$Sneakers->deletePreviousPostVersions($currentId, $recentId);
 			
 			header("Location: createpost.php?id=".$currentId);
 			exit();
-			
 		}
 	}
-	
 	
 	if(isset($_POST["finishPostSubmit"])) {
 		
@@ -340,7 +355,6 @@ $updateStatus = "";
 		exit();
 	}
 	
-	
 	if(isset($_POST["cancelPostSubmit"])) {
 		
 		$Sneakers->deleteUnfinishedPost($currentId);
@@ -348,12 +362,7 @@ $updateStatus = "";
 		
 		header("Location: data.php");
 		exit();
-		
 	}
-	
-	
-
-
 
 	if($imageCheck == 0) {
 		$imageData = "";
@@ -375,6 +384,202 @@ $displayedImage = "";
 	} else {
 		$displayedImage = "../uploads/".$imageName;
 	}
+	
+
+
+
+
+$maleShoes = "";
+$femaleShoes = "";
+	
+	if($recentPostType == "male") {
+		$maleShoes = "checked";
+	} else {
+		if($recentPostType == "female") {
+			$femaleShoes = "checked";
+		}
+	}
+
+
+$usedShoes = "";
+$newShoes = "";
+	
+	if($recentPostCondition == "used") {
+		$usedShoes = "checked";
+	} else {
+		if($recentPostCondition == "new") {
+			$newShoes = "checked";
+		}
+	}
+	
+
+
+
+
+//echo "<br> poststatus: ".$postStatus;
+
+
+$postHeading = "";
+$postBrand = "";
+$postModel = "";
+$postSize = "";
+$postType = "";
+$postCondition = "";
+$postPrice = "";
+$postDescription = "";
+
+$formHeadingError = "";
+$formBrandError = "";
+$formModelError = "";
+$formSizeError = "";
+$formTypeError = "";
+$formConditionError = "";
+$formPriceError = "";
+$formDescriptionError = "";
+
+
+
+	if(isset($_POST["heading"] )) {
+		if(empty($_POST["heading"] )) {
+			$formHeadingError = "has-error";
+		} else {
+			$postHeading = $_POST["heading"];
+		}
+	}
+	
+	if(isset($_POST["brand"] )) {
+		if(empty($_POST["brand"] )) {
+			$formBrandError = "has-error";
+		} else {
+			$postBrand = $_POST["brand"];
+		}
+	}
+	
+	if(isset($_POST["model"] )) {
+		if(empty($_POST["model"] )) {
+			$formModelError = "has-error";
+		} else {
+			$postModel = $_POST["model"];
+		}
+	}
+	
+	if(isset($_POST["size"] )) {
+		if(empty($_POST["size"] )) {
+			$formSizeError = "has-error";
+		} else {
+			$postSize = $_POST["size"];
+		}
+	}
+	
+	if(isset($_POST["type"] )) {
+		if(empty($_POST["type"] )) {
+			$formTypeError = "has-error";
+		} else {
+			$postType = $_POST["type"];
+		}
+	}
+	
+	if(isset($_POST["condition"] )) {
+		if(empty($_POST["condition"] )) {
+			$formConditionError = "has-error";
+		} else {
+			$postCondition = $_POST["condition"];
+		}
+	}
+	
+	if(isset($_POST["price"] )) {
+		if(empty($_POST["price"] )) {
+			$formPriceError = "has-error";
+		} else {
+			$postPrice = $_POST["price"];
+		}
+	}
+	
+	if(isset($_POST["description"] )) {
+		if(empty($_POST["description"] )) {
+			$formDescriptionError = "has-error";
+		} else {
+			$postDescription = $_POST["description"];
+		}
+	}
+	
+	if($postType == "" && isset($_POST["submit"])) {
+		$formTypeError = "has-error";
+	}
+	
+	if($postCondition == "" && isset($_POST["submit"])) {
+		$formConditionError = "has-error";
+	}
+	
+	
+
+//echo "<br>postheading: ".$postHeading;
+//echo "<br>posttype: ".$postType;
+
+
+$maleShoesType = "";
+$femaleShoesType = "";
+	
+	if($postType == "male") {
+		$maleShoesType = "checked";
+	} else {
+		if($postType == "female") {
+			$femaleShoesType = "checked";
+		}
+	}
+
+
+$usedShoesType = "";
+$newShoesType = "";
+	
+	if($postCondition == "used") {
+		$usedShoesType = "checked";
+	} else {
+		if($postCondition == "new") {
+			$newShoesType = "checked";
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*if(isset($_POST["submit"])) {
+		$postStatus = 0;
+	}*/
+
+
+
+
+
+
+
+
 
 
 	
@@ -539,7 +744,7 @@ $finishPostPanelDeleteBtn = "btn-default";
 require("../header.php"); 
 ?>
 
-<!-- AJUTINE KONTROLLPANEEL
+<!--AJUTINE KONTROLLPANEEL
 
 <div class="container">
 	<div class="panel panel-default">
@@ -547,20 +752,20 @@ require("../header.php");
 			<div class="row">
 			
 				<div class="col-md-2">
-					<?php echo "sm_posts id: ".$postsId; ?><br>
-					<?php echo "sm_postinfo id: ".$postinfoId; ?>
+					<?php //echo "sm_posts id: ".$postsId; ?><br>
+					<?php //echo "sm_postinfo id: ".$postinfoId; ?>
 				</div>
 				
 				<div class="col-md-2">
-					<?php echo "<br>sm_postinfo postcheck: ".$postInfoCheck; ?>
+					<?php //echo "<br>sm_postinfo postcheck: ".$postInfoCheck; ?>
 				</div>
 				
 				<div class="col-md-2">
-					<?php echo "<br>Image check: ".$imageCheck; ?>
+					<?php //echo "<br>Image check: ".$imageCheck; ?>
 				</div>
 				
 				<div class="col-md-2">
-					<?php echo "<br>poststatus: ".$postStatus; ?>
+					<?php //echo "<br>poststatus: ".$postStatus; ?>
 				</div>
 				
 			</div>
@@ -598,24 +803,65 @@ require("../header.php");
 					<form method="POST">
 						<fieldset <?php echo $submitBtn; ?>>
 						
-							<div class="form-group">
-								<label for="heading">Pealkiri</label>
-								<input type="text" name="heading" class="form-control" placeholder="kuulutuse pealkiri" id="heading" value="<?php echo $recentPostHeading; ?>">
+							<div class="form-group <?php echo $formHeadingError; ?>">
+								<label class="control-label" for="heading">Pealkiri</label>
+								<input type="text" name="heading" class="form-control" placeholder="Kuulutuse pealkiri" id="heading" value="<?php if($postStatus == 9) {echo $postHeading;} else {echo $recentPostHeading;} ?>">
+							</div>
+							
+							<div class="form-group <?php echo $formBrandError; ?>">
+								<label class="control-label" for="brand">Bränd</label>
+								<input type="text" name="brand" class="form-control" placeholder="Bränd" id="brand" value="<?php if($postStatus == 9) {echo $postBrand;} else {echo $recentPostBrand;} ?>">
 							</div>
 						
-							<div class="form-group">
-								<label for="model">Mudel</label>
-								<input type="text" name="model" class="form-control" placeholder="mudeli nimi" id="model" value="<?php echo $recentPostModel; ?>">
+							<div class="form-group <?php echo $formModelError; ?>">
+								<label class="control-label" for="model">Mudel</label>
+								<input type="text" name="model" class="form-control" placeholder="Mudeli nimi" id="model" value="<?php if($postStatus == 9) {echo $postModel;} else {echo $recentPostModel;} ?>">
+							</div>
+							
+							<div class="form-group <?php echo $formSizeError; ?>">
+								<label class="control-label" for="size">Suurus</label>
+								<input type="integer" name="size" class="form-control" placeholder="Jalanumbrile" id="size" value="<?php if($postStatus == 9) {echo $postSize;} else {echo $recentPostSize;} ?>">
 							</div>
 						
-							<div class="form-group">	
-								<label for="price">Hind</label>
-								<input type="integer" name="price" class="form-control" placeholder="ex. 490" id="price" value="<?php echo $recentPostPrice; ?>">
+							
+							<div class="<?php echo $formTypeError; ?>">
+								<label class="control-label">Tüüp</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="type" id="type1" value="male" <?php echo $maleShoesType; ?><?php echo $maleShoes; ?>> Meeste jalanõud
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="type" id="type2" value="female" <?php echo $femaleShoesType; ?><?php echo $femaleShoes; ?>> Naiste jalanõud
+									</label>
+								</div>
 							</div>
+							
+							
+							<div class="<?php echo $formConditionError; ?>">
+								<label class="control-label">Seisukord</label>
+								<div class="radio">
+									<label>
+										<input type="radio" name="condition" id="condition1" value="used" <?php echo $usedShoesType; ?><?php echo $usedShoes; ?>> Kasutatud
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+										<input type="radio" name="condition" id="condition2" value="new" <?php echo $newShoesType; ?><?php echo $newShoes; ?>> Uued
+									</label>
+								</div>
+							</div>
+							
 
-							<div class="form-group">
-								<label for="description">Kirjeldus</label>
-								<textarea type="text" name="description" cols="40" rows="2" maxlength="50" placeholder="ex. Air Jordan X Retro 'OVO', size 43" class="form-control" id="description"><?php echo $recentPostDescription; ?></textarea>
+							<div class="form-group <?php echo $formPriceError; ?>">	
+								<label class="control-label" for="price">Hind</label>
+								<input type="integer" name="price" class="form-control" placeholder="€" id="price" value="<?php if($postStatus == 9) {echo $postPrice;} else {echo $recentPostPrice;} ?>">
+							</div>
+							
+							<div class="form-group <?php echo $formDescriptionError; ?>">
+								<label class="control-label" for="description">Kirjeldus</label>
+								<textarea type="text" name="description" cols="40" rows="2" maxlength="50" placeholder="Lühikirjeldus" class="form-control" id="description"><?php if($postStatus == 9) {echo $postDescription;} else {echo $recentPostDescription;} ?></textarea>
 							</div>
 							
 							<div class="form-group">
@@ -658,9 +904,37 @@ require("../header.php");
 							</div>
 							
 							<div class="form-group">
+								<label class="col-md-2 control-label">Bränd</label>
+								<div class="col-md-9 col-md-offset-1">
+									<p class="form-control-static"><?php echo $recentPostBrand; ?></p>
+								</div>
+							</div>
+							
+							<div class="form-group">
 								<label class="col-md-2 control-label">Mudel</label>
 								<div class="col-md-9 col-md-offset-1">
 									<p class="form-control-static"><?php echo $recentPostModel; ?></p>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-md-2 control-label">Suurus</label>
+								<div class="col-md-9 col-md-offset-1">
+									<p class="form-control-static"><?php echo $recentPostSize; ?></p>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-md-2 control-label">Tüüp</label>
+								<div class="col-md-9 col-md-offset-1">
+									<p class="form-control-static"><?php if($recentPostType == "male") {echo "Meeste jalanõud";} else {if($recentPostType == "female") {echo "Naiste jalanõud";} else {echo "";}} ?></p>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label class="col-md-2 control-label">Seisukord</label>
+								<div class="col-md-9 col-md-offset-1">
+									<p class="form-control-static"><?php if($recentPostCondition == "used") {echo "Kasutatud";} else {if($recentPostCondition == "new") {echo "Uued";} else {echo "";}} ?></p>
 								</div>
 							</div>
 							
@@ -759,13 +1033,6 @@ require("../header.php");
 
 
 
-<!--
-	<h2>Market</h2>
-	<form>
-		<input type="search" name="q" value="<?=$q;?>">
-		<input type="submit" value="Search"><br><br>
-	</form>
--->
 
 
 

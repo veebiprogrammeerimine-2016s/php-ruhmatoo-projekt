@@ -14,11 +14,11 @@ class Sneakers {
 /****** UUE KUULUTUSE ANDMETE SISESTAMINE ******
 	createpost.php
 */
-	function savesneaker ($postid, $heading, $model, $description, $price, $status) {
+	function savesneaker ($postid, $heading, $brand, $model, $size, $type, $condition, $description, $price, $status) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO sm_postinfo (postid, heading, model, description, price, status) VALUES (?, ?, ?, ?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO sm_postinfo (postid, heading, brand, model, size, type, sneakercondition, description, price, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 		echo $this->connection->error;
-		$stmt->bind_param("isssii", $postid, $heading, $model, $description, $price, $status);
+		$stmt->bind_param("isssisssii", $postid, $heading, $brand, $model, $size, $type, $condition, $description, $price, $status);
 		
 		if($stmt->execute()) {
 			echo "salvestamine õnnestus";
@@ -31,7 +31,7 @@ class Sneakers {
 	
 	
 	
-	function getallsneakers($q, $sort, $direction) {
+	/*function getallsneakers($q, $sort, $direction) {
 		
 		$allowedSortOptions=["contactemail","description","price"];
 		if(!in_array($sort, $allowedSortOptions)){
@@ -90,9 +90,9 @@ class Sneakers {
 		$stmt->close();
 		
 		return $result;
-	}
+	}*/
 	
-	function getallusersneakers() {
+	/*function getallusersneakers() {
 		
 		$stmt=$this->connection->prepare("
 			SELECT contactemail, description, price FROM sneakers WHERE user=?");
@@ -117,7 +117,7 @@ class Sneakers {
 		$stmt->close();
 		
 		return $result;
-	}
+	}*/
 
 	
 	
@@ -228,7 +228,9 @@ class Sneakers {
 	}
 	
 	
-	
+/****** UUENDAB STATUST 'sm_postinfo' TABELIS ******
+	createpost.php
+*/	
 	function updatePostStatus($updatestatus, $postid) {
 		$stmt = $this->connection->prepare("UPDATE sm_postinfo SET status = ? WHERE postid = ? ORDER BY id DESC LIMIT 1");
 		echo $this->connection->error;
@@ -238,7 +240,9 @@ class Sneakers {
 	}
 
 	
-	
+/****** LÕPETAB KUULUTUSE LOOMISE, ET KUULUTUS OLEKS ESILEHEL NÄHTAV ******
+	createpost.php
+*/	
 	function finishPost($postid) {
 		$stmt = $this->connection->prepare("UPDATE sm_posts SET postcompleted = NOW(), status = 1 WHERE userid = ? AND id = ?");
 		echo $this->connection->error;
@@ -248,8 +252,11 @@ class Sneakers {
 		}
 		$stmt->close();
 	}
+
 	
-	
+/****** MÄRGIB TABELISSE 'sm_posts', ET KUULUTUS KUSTUTATI LOOMISEL ******
+	createpost.php
+*/
 	function finishDeletedPost($postid) {
 		$stmt = $this->connection->prepare("UPDATE sm_posts SET status = 1 WHERE userid = ? AND id = ?");
 		echo $this->connection->error;
@@ -260,7 +267,10 @@ class Sneakers {
 		$stmt->close();
 	}
 	
-	
+
+/****** EEMALDAB KUULUTUSE ******
+	createpost.php, editpost.php
+*/
 	function deleteUnfinishedPost($postid) {
 		$stmt = $this->connection->prepare("UPDATE sm_postinfo SET postdeleted = NOW() WHERE postid = ? ORDER BY id DESC LIMIT 1");
 		echo $this->connection->error;
@@ -272,23 +282,25 @@ class Sneakers {
 	}
 
 
-
-
-/* funktsioon kasutaja viimase postituse andmete kättesaamiseks andmebaasist 'sm_postinfo'
-	data.php
+/****** KASUTAJA VIIMASE POSTITUSE ANDMETE KÄTTESAAMISEKS TABELIST 'sm_postinfo' ******
+	data.php, createpost.php
 */
 	function getRecentPostInfo($postid) {
-		$stmt = $this->connection->prepare("SELECT id, heading, model, price, description, status FROM sm_postinfo WHERE postid = ? ORDER BY id DESC LIMIT 1");
+		$stmt = $this->connection->prepare("SELECT id, heading, brand, model, size, type, sneakercondition, price, description, status FROM sm_postinfo WHERE postid = ? ORDER BY id DESC LIMIT 1");
 		echo $this->connection->error;
 		$stmt->bind_param("i", $postid);
-		$stmt->bind_result($id, $heading, $model, $price, $description, $status);
+		$stmt->bind_result($id, $heading, $brand, $model, $size, $type, $condition, $price, $description, $status);
 		$stmt->execute();
 		
 		$recentPost = new StdClass();
 		if($stmt->fetch()) {
 			$recentPost->id = $id;
 			$recentPost->heading = $heading;
+			$recentPost->brand = $brand;
 			$recentPost->model = $model;
+			$recentPost->size = $size;
+			$recentPost->type = $type;
+			$recentPost->condition = $condition;
 			$recentPost->price = $price;
 			$recentPost->description = $description;
 			$recentPost->status = $status;
@@ -300,7 +312,9 @@ class Sneakers {
 	}
 	
 	
-	
+/****** KUI UUS RIDA TULEB TABELISSE 'sm_postinfo', SIIS SEE MÄRGIB VANAD READ "KUSTUTATUKS", ET NEID EI KUVATAKS ******
+	createpost.php, editpost.php
+*/
 	function deletePreviousPostVersions($postid, $recentid) {
 		$stmt = $this->connection->prepare("UPDATE sm_postinfo SET postdeleted = NOW() WHERE postid = ? AND id < ?");
 		echo $this->connection->error;
@@ -314,7 +328,7 @@ class Sneakers {
 
 
 /****** PILTIDE ÜLESLAADIMINE ******
-	data.php
+	createpost.php
 */	
 	function uploadImages($name, $postid) {
 		$stmt = $this->connection->prepare("INSERT INTO sm_uploads (name, postid, primarypic) VALUES (?, ?, 1)");
@@ -450,7 +464,9 @@ class Sneakers {
 	}
 	
 	
-
+/****** ANDMED KINDLA KASUTAJA POOLT LOODUD KUULUTUSTE JAOKS ******
+	myposts.php
+*/
 	function getAllMyPosts($sort, $direction) {
 		
 		$allowedSortOptions = ["heading", "model", "price", "description"];
