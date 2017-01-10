@@ -95,9 +95,9 @@ CREATE TABLE exercises(
 	* **Mis oli keeruline?** Keeruline oli lehele kujunduse tegemine nii, et leht näeks ka brauseriakna väiksemaks tegemisel normaalne välja (div'ide paigutamine ja suuruste määramine) ning muidugi tuli ette ka erinevaid keerulisi php erroreid.
 	
 * **Elise:**
-	* **Mida õppisid juurde?**
-	* **Mis ebaõnnestus?**
-	* **Mis oli keeruline?**
+	* **Mida õppisid juurde?** Kuna see oli esimene kord veebilehte teha, siis õppis väga palju juurde, kuidas üldse veebilehte ülesehitada, kuidas foorumi tegemine toimub, kuidas andmeid kustutada, parooli muuta jne.
+	* **Mis ebaõnnestus?** Mul oleks kõik ebaõnnestunud, kui rühmakaaslasi poleks olnud...
+	* **Mis oli keeruline?** Kõik oli keeruline :D 
 	
 * **Karoliina:**
 	* **Mida õppisid juurde?** Õppisin juurde, kuidas töötab foorum ning funktsioonide liikumine selle siseselt; kuidas muuta parooli ning kuidas siduda omavahel kalender ja kasutaja sisestatud andmed; veebirakenduse disaini.
