@@ -13,18 +13,18 @@ require("functions.php");
 
 
   //Muutujad:
-$length = "";
+$height = "";
 $weight = "";
-$lengthError = "";
+$heightError = "";
 $weightError = "";
 
 //kontrollin, kas kasutaja sisestas andmed
-if(isset($_POST["length"])) {
-  if (empty($_POST["length"])){
+if(isset($_POST["len"])) {
+  if (empty($_POST["height"])){
     $lengthError="See väli on kohustuslik!";
 
   }else {
-    $length=$_POST["length"];
+    $length=$_POST["height"];
   }
 
 }
@@ -39,15 +39,15 @@ if(isset($_POST["weight"])) {
 
 }
 
-if(isset($_POST["length"]) &&
+if(isset($_POST["height"]) &&
   isset($_POST["weight"]) &&
   empty($lengthError) &&
   empty($weightError)
   ){
 
-saveUserLW ($length, $weight);
+saveUserLW ($height, $weight);
 
-header("Location: data3.php");
+
 exit();
 }
 
@@ -60,7 +60,7 @@ echo '<img src="weight.jpg"/>';
 <h3> Sisesta kehakaal ja pikkus KMI arvutamiseks </h3>
 <form method="POST">
 <label><h3>Pikkus</h3></label>
-<input name="length" type="length" value="<?=$length;?>"> <?php echo $lengthError; ?>
+<input name="length" type="length" value="<?=$height;?>"> <?php echo $heightError; ?>
 <br><br>
 <label><h3>Kaal</h3></label>
 <input name="weight" type="weight" value="<?=$weight;?>"> <?php echo $weightError; ?>
