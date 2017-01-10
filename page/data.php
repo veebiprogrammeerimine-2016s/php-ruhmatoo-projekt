@@ -153,7 +153,13 @@
                   </ul>
 
                 <div class="tab-content"> <!----TABI ALGUS  --->
-
+                        <script type="text/javascript">
+                            function confirmationDelete(anchor) {
+                               var conf = confirm('Are you sure want to delete this plänt?');
+                               if(conf)
+                                  window.location=anchor.attr("href");
+                            }
+                        </script>
 
                     <div role="tabpanel" class="tab-pane active" id="MyPlänts"><!--- TABI ESIMESE PANEELI SISU ALGUS --->
 
@@ -189,7 +195,7 @@
                                         <i class='glyphicon glyphicon-edit'></i>
                                         </a>
                                         <a href='?id=".$p->id."&deleted=true'
-                                        onclick='confirm(\"Are you sure you want to delete ".$p->name."?\");'>
+                                        onclick='javascript:confirmationDelete($(this));return false;'>
                                         <i class='glyphicon glyphicon-remove'></i>
                                         </a>
                                         </td>";
