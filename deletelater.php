@@ -11,15 +11,15 @@
 
 <body>
 	<ul>
-		<li><a class="active1" href="homepage.php">HOME</a></li>
-		<li><a class="active1" href="forumpage.php">FORUM</a></li>
-		<li><a class="active" href="">MY ACCOUNT</a></li>
-		<li><a class="active1" href="?logout=1">LOG OUT</a></li>
+		<li><a class="active1" href="homepage.php">AVALEHT</a></li>
+		<li><a class="active1" href="forumpage.php">FOORUM</a></li>
+		<li><a class="active" href="">MINU KASUTAJA</a></li>
+		<li><a class="active1" href="?logout=1">LOGI VÄLJA</a></li>
 	</ul>
 
 <div style="page">
 
-<p class="down"> MY POSTS </p>
+<p class="down"> MINU POSTITUSED </p>
 
 <?php 
 $html1 = "<table>";
