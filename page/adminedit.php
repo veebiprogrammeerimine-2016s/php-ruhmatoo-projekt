@@ -12,6 +12,11 @@ require("../functions.php");
 		header("Location: login.php");
 		exit();
 	}
+	
+	if($_SESSION["userlevel"] != 2) {
+		header("Location: sneakermarket.php");
+		exit();
+	}
 
 
 	

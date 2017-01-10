@@ -136,9 +136,13 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
 // pildiformaatide kontroll
 	if($imageFileType != "jpg" &&
+	if($imageFileType != "JPG" &&
 		$imageFileType != "png" &&
+		$imageFileType != "PNG" &&
 		$imageFileType != "jpeg" &&
-		$imageFileType != "gif") {
+		$imageFileType != "JPEG" &&
+		$imageFileType != "gif") &&
+		$imageFileType != "GIF") {
 			echo "<br>Ainult .jpg, .jpeg, .png ja .gif formaadid on lubatud";
 			$uploadOk = 0;
 		}

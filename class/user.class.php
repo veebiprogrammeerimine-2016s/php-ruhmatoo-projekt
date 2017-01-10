@@ -38,7 +38,7 @@ class User {
 		
 		$error="";
 		
-		$stmt = $this->connection->prepare("SELECT id, username, password, created FROM sm_users WHERE username=?");
+		$stmt = $this->connection->prepare("SELECT id, username, password, created, userlevel FROM sm_users WHERE username=?");
 	
 		echo $this->connection->error;
 		
@@ -47,7 +47,7 @@ class User {
 		$stmt->bind_param("s", $username);
 		
 		//maaran vaartused muutujatesse
-		$stmt->bind_result($id, $usernameFromDb,$passwordFromDb, $created);
+		$stmt->bind_result($id, $usernameFromDb,$passwordFromDb, $created, $userlevel);
 		
 		$stmt->execute();
 		
@@ -62,6 +62,7 @@ class User {
 				
 				$_SESSION["userId"]=$id;
 				$_SESSION["username"]=$usernameFromDb;
+				$_SESSION["userlevel"]=$userlevel;
 				
 				header("Location: sneakermarket.php");
 				exit();

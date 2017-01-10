@@ -559,10 +559,12 @@ class Sneakers {
 
 	function getAllComments($currentid) {
 		
-		$stmt = $this->connection->prepare("SELECT userid, comment FROM sm_comments WHERE postid = ?");
+		$stmt = $this->connection->prepare("SELECT username, comment
+												FROM (SELECT * FROM sm_comments WHERE postid = ?) AS c
+												JOIN sm_users AS u ON c.userid=u.id;");
 		echo $this->connection->error;
 		$stmt->bind_param("i", $currentid);
-		$stmt->bind_result($userid, $comment);
+		$stmt->bind_result($username, $comment);
 		$stmt->execute();
 		
 		$result = array();
@@ -571,7 +573,7 @@ class Sneakers {
 			
 			$allComments = new StdClass();
 			
-			$allComments->userid = $userid;
+			$allComments->username = $username;
 			$allComments->comment = $comment;
 			
 			array_push($result, $allComments);
@@ -596,7 +598,7 @@ class Sneakers {
 
 	function getAllFlaggedPosts() {
 		
-		$stmt = $this->connection->prepare("SELECT postid FROM sm_postinfo WHERE postflagged IS NOT NULL");
+		$stmt = $this->connection->prepare("SELECT postid FROM sm_postinfo WHERE postflagged IS NOT NULL AND postdeleted IS NULL");
 		echo $this->connection->error;
 		$stmt->bind_result($postid);
 		$stmt->execute();

@@ -85,7 +85,7 @@ CREATE TABLE sm_posts(
 	postcompleted DATETIME,
 	status INT(1),
 	userid INT,
-	FOREIGN KEY(userid) REFERENCES proov1(id)
+	FOREIGN KEY(userid) REFERENCES sm_users(id)
 );
 
 
@@ -119,7 +119,7 @@ CREATE TABLE sm_comments(
 	comment VARCHAR(255),
 	created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	FOREIGN KEY(postid) REFERENCES sm_posts(id),
-	FOREIGN KEY(userid) REFERENCES proov1(id)
+	FOREIGN KEY(userid) REFERENCES sm_users(id)
 );
 
 
@@ -300,7 +300,9 @@ SELECT COUNT(*) AS checkpost
 
 
 
-
+SELECT username, comment
+	FROM (SELECT * FROM sm_comments WHERE postid = 1) AS c
+	JOIN sm_users AS u ON c.userid=u.id;
 
 
 

@@ -36,6 +36,7 @@ $newPostBtn = "";
 $modifyPostBtn = "disabled";
 
 
+
 /* muutujad postcounti jaoks */
 $pc = $Sneakers->ifUserHasCreatedPost();
 $upc = $pc->postcheck;

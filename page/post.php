@@ -204,7 +204,7 @@ $allComments = $Sneakers->getAllComments($_GET["id"]);
 		$html .= "<div class='panel panel-default'>";
 			$html .= "<form method='POST' class='form-horizontal'>";
 				$html .= "<div class='form-group'>";
-				$html .= "<label class='col-md-2 control-label'>".$ac->userid."</label>";
+				$html .= "<label class='col-md-2 control-label'>".$ac->username."</label>";
 					$html .= "<div class='col-md-9 col-md-offset-1'>";
 						$html .= "<p class='form-control-static'>".$ac->comment."</p>";
 					$html .= "</div>";
