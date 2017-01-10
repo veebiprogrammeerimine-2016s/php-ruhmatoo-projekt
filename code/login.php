@@ -183,7 +183,7 @@
 		<input type="password" name="loginPassword" placeholder="Password"> <?php echo $loginPasswordError; ?>
 		<br><br>
 		
-		<input type="submit" value="Sign-Up">
+		<input type="submit" value="Login">
 		
 		
 	</form>
@@ -198,6 +198,7 @@
 		<br><br>
 		
 		<input type="submit" value="Sign-Up">
+	<h4><a href="about.php"> About</a><h4>
 		
 		
 	</form>

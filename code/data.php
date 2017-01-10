@@ -69,17 +69,15 @@
 <h2>What do you need to get done?</h2>
 <form method="POST">
 	
-	<label>Task</label><br>
-	<input name="task" type="text"> 
-	<br><br>
+				<input type="hidden" name="id" value="<?=$_GET["id"];?>" > 
+				<label>Task</label><br>
+				<input name="task" type="text"> 
+				<br>
 	
-	<label>Deadline</label><br>
-	<input name="date" type="text" id="datepicker">
-	<br><br>
-	
-	<input type="submit" value="Save">
-	
-	
+				<label>Deadline</label><br>
+				<input name="date" type="text" id="datepicker">
+				<br>			
+				<input a href="data.php" type="submit" name="update" value="Save">
 </form>
 
 <h2>Tasks</h2>
@@ -102,8 +100,9 @@
 			$html .= "<td>".$c->id."</td>";
 			$html .= "<td>".$c->task."</td>";
 			$html .= "<td>".$c->date."</td>";
+			$html .= "<td><a href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span> Change</a></td>";
+	
 		$html .= "</tr>";
-		$html .= "<td><a href='edit.php?id=".$c->id."'><span class='glyphicon glyphicon-pencil'></span> Muuda</a></td>";
 	}
 	
 	$html .= "</table>";

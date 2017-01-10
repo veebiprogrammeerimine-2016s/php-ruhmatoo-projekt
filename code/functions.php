@@ -91,11 +91,11 @@
 		$database = "if16_andryzag";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 
-		$stmt = $mysqli->prepare("INSERT INTO task_and_date (task, date) VALUES (?, ?)");
+		$stmt = $mysqli->prepare("INSERT INTO task_and_date (task, date, user_id) VALUES (?, ?, ?)");
 	
 		echo $mysqli->error;
 		
-		$stmt->bind_param("ss", $task, $date);
+		$stmt->bind_param("ssi", $task, $date, $_SESSION ["userId"]);
 		
 		if($stmt->execute()) {
 			echo "saving succeeded";
@@ -191,12 +191,14 @@
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
 		$stmt = $mysqli->prepare("
-			SELECT id, contact
-			FROM contacts
+		SELECT id, contact
+		FROM contacts
+		WHERE id=?
+		
 		");
 		echo $mysqli->error;
+		$stmt->bind_param("i", $_SESSION["userId"]);
 		
-		$stmt->bind_result($id, $contact);
 		$stmt->execute();
 		
 		
@@ -309,15 +311,14 @@
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
-		$stmt = $mysqli->prepare("SELECT id, task, date FROM task_and_date WHERE id=? AND deleted IS NULL");
+		$stmt = $mysqli->prepare("SELECT task, date FROM task_and_date WHERE id=?");
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($id, $task, $date);
+		$stmt->bind_result($task, $date);
 		$stmt->execute();
 		
 		$tasker = new StdClass();
 		
 		if($stmt->fetch()){
-			$tasker->id = $id;
 			$tasker->task = $task;
 			$tasker->date = $date;		
 			
@@ -329,7 +330,7 @@
 		$stmt->close();
 		$mysqli->close();
 		
-		return $money;
+		return $tasker;
 		
 	}
 		function update($id, $task, $date){
@@ -338,8 +339,8 @@
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
-		$stmt = $mysqli->prepare("UPDATE task_and_date SET id=?, task=?, date=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("isiiii", $id, $task, $date);
+		$stmt = $mysqli->prepare("UPDATE task_and_date SET task=?, date=? WHERE id=?");
+		$stmt->bind_param("ssi", $task, $date, $id);
 		
 	
 		if($stmt->execute()){
