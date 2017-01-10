@@ -155,9 +155,11 @@ $upcomingRides = $Rides->get($r, $sort, $order);
 
         Welcome <?=$_SESSION["userEmail"];?>!
         <br>
-        <a href="?logout=1">Log out</a>
-        <br>
-        <a href="user.php">User page</a>
+        <h5><a href="?logout=1">Log out</a></h5>
+
+        <h5><a href="user.php">User page</a></h5>
+
+        <h5><a href="feedback.php">View feedback</a></h5>
     </p>
 
     <form>

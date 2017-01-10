@@ -94,5 +94,76 @@ class User
 
       }
 
+    function getFeedback($r, $sort, $order) {
+
+      $allowedSort = ["id", "user_id", "poster_id",
+      "rating", "feedback", "added"];
+
+      if(!in_array ($sort, $allowedSort)) {
+        $sort = "id";
+      }
+
+      $orderBy = "ASC";
+
+
+    if($order == "DESC") {
+      $orderBy = "DESC";
+    }
+
+    if ($r != "") {
+
+      $stmt = $this->connection->prepare("
+      SELECT cp_feedback.id, cp_feedback.user_id,
+      cp_feedback.poster_id, cp_feedback.rating,
+      cp_feedback.feedback, cp_feedback.added
+      FROM cp_feedback
+      LEFT JOIN cp_users ON cp_users.id=cp_feedback.user_id
+      WHERE cp_feedback.id = ? AND cp_feedback.deleted IS NULL
+        AND (cp_feedback.user_id LIKE ? OR cp_feedback.poster_id LIKE ? OR cp_feedback.rating LIKE ?
+        OR cp_feedback.feedback LIKE ? OR cp_feedback.added LIKE ?)
+        ORDER BY $sort $orderBy
+      ");
+
+      $searchWord = "%".$r."%";
+      $stmt->bind_param("sssssssss", $searchWord, $searchWord, $searchWord, $searchWord,
+      $searchWord, $searchWord);
+
+    } else {
+
+    $stmt = $this->connection->prepare("
+    SELECT cp_feedback.id, cp_feedback.user_id,
+    cp_feedback.poster_id, cp_feedback.rating,
+    cp_feedback.feedback, cp_feedback.added
+    FROM cp_feedback
+    LEFT JOIN cp_users ON cp_users.id=cp_feedback.user_id
+    WHERE cp_feedback.deleted IS NULL
+    ORDER BY $sort $orderBy
+    ");
+
+    echo $this->connection->error;
+  }
+    $stmt->bind_result($feedback_id, $user_id, $poster_id, $rating,
+    $feedback, $added);
+    $stmt->execute();
+
+    //tekitan objekti
+    $results = array();
+    //tsykli sisu tehakse nii mitu korda, mitu rida
+    //SQL lausega tuleb
+    while ($stmt->fetch()) {
+
+      $r = new StdClass();
+      $r->feedback_id = $feedback_id;
+      $r->user_id = $user_id;
+      $r->poster_id = $poster_id;
+      $r->rating = $rating;
+      $r->feedback = $feedback;
+      $r->added = $added;
+
+      array_push($results, $r);
+    }
+
+    $stmt->close();
+    return $results; }
 }
 ?>
