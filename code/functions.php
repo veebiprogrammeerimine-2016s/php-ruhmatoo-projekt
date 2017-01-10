@@ -122,7 +122,7 @@
 		");
 		echo $mysqli->error;
 		
-		$stmt->bind_result($id, $task, $date);
+		$stmt->bind_param("i", $_SESSION["userId"]);
 		$stmt->execute();
 		
 		
