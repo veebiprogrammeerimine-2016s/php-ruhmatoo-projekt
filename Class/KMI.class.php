@@ -1,17 +1,7 @@
 <?php
 require_once "math.php";
-
 class KMI {
-	
-	private $connection;
-	
-	function __construct($mysqli){
-		
-		$this->connection = $mysqli;
-		
-	}
-	
-    use Math;
+	use Math;
 
     protected static $height;
     protected static $weight;
