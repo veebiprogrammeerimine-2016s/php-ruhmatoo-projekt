@@ -109,7 +109,7 @@ if (isset($_POST["loginEmail"]) &&
 
 		<form method="POST">
 		<div class="col-xs-4 col-sm-4 col-md-4">
-		<div class = "row">
+				<div class = "row">
 			<h2><font color=#3B341F>	Logi sisse </h2> </font>
 				<div class="input-field col s12">
 					<p style="color:red;">

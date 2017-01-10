@@ -170,15 +170,17 @@
 	
 	
 	$listHtml = "<br><br>";
-	
+
 ?>
 	
 	<!--<a href="?logout=1">Logi välja</a>-->
 	<!--<a class="btn btn-default" href="?logout=1" role="button">Logi välja</a>-->
+
 </p>
 </form>
 
-<a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
+	<a href="data2.php" class="btn"><h3>Mis on minu KMI?</h3></a>
+
 <br><br>
 
 <?php require ("footer.php"); ?>
