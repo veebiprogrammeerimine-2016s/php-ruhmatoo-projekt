@@ -35,4 +35,5 @@ Telephone_Nr INT(11)
 
 ![Alt text](img/database.png?raw=true "Andmebaas")
 
-## Kokkuvõte - tegemisel
+## Kokkuvõte
+
