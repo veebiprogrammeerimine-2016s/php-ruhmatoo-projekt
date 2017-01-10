@@ -1,5 +1,6 @@
 # IziPäevik - http://kool.iziveeb.ee
 ![Izipäevik](izipaevik.jpg)
+![Database](db.jpeg)
 ## Description
     Web application for adding the homework and the curriculum of Tallinn University IFIFB-1 group to Google Calendar.
     The homework is added by selected students.
