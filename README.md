@@ -1,26 +1,17 @@
-1) NAME: 		JOKER
+1) NAME: 		Diary
 
-2) TARGET:		An online social networking service that enables users to post and read short 255-character jokes.
+2) TARGET:		Save tasks and contacts
 
 3) TARGET GROUP: 	Young people, Age 16-28.
 
-4) ALTERNATIVES:	Twitter  - Login Screen, News Feed
-		https://twitter.com/
-		Facebook - Like, Share, Comment
-		https://www.facebook.com/
-		Instagram- User Profile/ Menu-Bar
-		https://www.instagram.com/
+4) ALTERNATIVES:	
 
-5) PAGES / SCREENS:
+5) DEVELOPER: Andry Žagars
 
-(HOME - H) (SEARCH - S) (POST - P) (USER - U) (ABOUT - A) 
-
-6) DEVELOPER: Andry Žagars
-
-7) VERSIONS:
+6) VERSIONS:
 v0.1 - Login / Sign-Up Screen
 v0.2 - Home Screen
-v0.3 - Post Screen
+v0.3 - User Screen
 v0.4 - User Profile
 ...
 v1.0 - The Real MVP

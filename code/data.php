@@ -93,8 +93,7 @@
 	
 	//iga liikme kohta massiivis
 	foreach($taskData as $c){
-		// iga auto on $c
-		//echo $c->plate."<br>";
+
 		
 		$html .= "<tr>";
 			$html .= "<td>".$c->id."</td>";

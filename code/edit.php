@@ -15,8 +15,7 @@
 		header("Location: data.php");
 		exit();
 	}
-		
-		
+				
 		// kui ei ole id'd aadressireal siis suunan
 		if(!isset($_GET["id"])){
 			header("Location: data.php");
@@ -24,11 +23,11 @@
 		}
 		$s = getSingleData($_GET["id"]);
 
-		var_dump($s);
+//	var_dump($s);
 		
 		
 	?>
-<h1><a href="about.php"> About</a> Home</a> <a href="user.php"> Contacts</a> <?=$_SESSION["userEmail"];?>!</a>
+<h1><a href="about.php"> About</a><a href="data.php"> Home</a> <a href="user.php"> Contacts</a> <?=$_SESSION["userEmail"];?>!</a>
 	<a href="?logout=1">Logout</a></h1>
 
 	<h2><a href="data.php"> Back </a> Change </h2>

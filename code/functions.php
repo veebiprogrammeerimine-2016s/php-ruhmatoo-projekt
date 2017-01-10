@@ -118,6 +118,7 @@
 			SELECT id, task, date
 			FROM task_and_date
 			WHERE user_id=?
+			AND deleted IS NULL
 		
 		");
 		echo $mysqli->error;
@@ -188,58 +189,16 @@
 	}
 	
 	
-	function getAllcontacts() {
-		
-		$database = "if16_andryzag";
-		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
-		
-		$stmt = $mysqli->prepare("
-		SELECT id, contact
-		FROM contacts
-		WHERE id=?
-		
-		");
-		echo $mysqli->error;
-		$stmt->bind_param("i", $_SESSION["userId"]);
-		echo $mysqli->error;
-		$stmt->bind_result($id, $contact);	
-		
-		$stmt->execute();
-		
-		//tekitan massiivi
-		$result = array();
-		
-		// tee seda seni, kuni on rida andmeid
-		// mis vastab select lausele
-		while ($stmt->fetch()) {
-			
-			//tekitan objekti
-			$contactt = new StdClass();
-			
-			$contactt->contact = $contact;
-			
-			//echo $plate."<br>";
-			// iga kord massiivi lisan juurde ülesande
-			array_push($result, $contactt);
-		}
-		
-		$stmt->close();
-		$mysqli->close();
-		
-		return $result;
-
-	}
-	
-	
 	function getAllUsercontacts() {
 		
 		$database = "if16_andryzag";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
 		$stmt = $mysqli->prepare("
-			SELECT contact
+			SELECT id, contact
 			FROM contacts
-			WHERE user_id=?
+			WHERE user_id=? 
+			AND deleted IS NULL
 		
 		");
 		echo $mysqli->error;
@@ -247,7 +206,7 @@
 		
 		echo $mysqli->error;
 		
-		$stmt->bind_result($contact);
+		$stmt->bind_result($id, $contact);
 		$stmt->execute();
 		
 		
@@ -261,6 +220,7 @@
 			//tekitan objekti
 			$contactt = new StdClass();
 			
+			$contactt->id = $id;
 			$contactt->contact = $contact;
 			
 			//echo $plate."<br>";
@@ -325,7 +285,7 @@
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
-		$stmt = $mysqli->prepare("SELECT task, date FROM task_and_date WHERE id=?");
+		$stmt = $mysqli->prepare("SELECT task, date FROM task_and_date WHERE id=? AND deleted IS NULL");
 		$stmt->bind_param("i", $edit_id);
 		$stmt->bind_result($task, $date);
 		$stmt->execute();
@@ -348,6 +308,59 @@
 		
 	}
 		
+
+	function deletetask($id){
+    	
+        $database = "if16_andryzag";
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $mysqli->prepare("UPDATE task_and_date SET deleted=1 WHERE id=?");
+		$stmt->bind_param("i", $id);
+		
+		
+		if($stmt->execute()){
+			echo "Successfully deleted!";
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+	}
+	
+	
+	function getSingleContact($id){
+    
+        $database = "if16_andryzag";
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $mysqli->prepare("SELECT contact FROM contacts WHERE id=?");
+		$stmt->bind_param("i", $id);
+		$stmt->bind_result($contact);
+		$stmt->execute();
+		
+		$contacter = new StdClass();
+		
+		if($stmt->fetch()){
+			$contacter->contact = $contact;	
+		
+		//echo $plate."<br>";
+		// iga kord massiivi lisan juurde ülesande
+		//	array_push($result, $contacter);				
+		
+		}else{
+			header("Location: user.php");
+			exit();
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+		return $contacter;
+		
+	}
+		
 		
 	function update($id, $task, $date){
     	
@@ -360,7 +373,7 @@
 		
 	
 		if($stmt->execute()){
-			echo "salvestus õnnestus!";
+			echo "Successfully changed!";
 		}
 		
 		$stmt->close();
@@ -369,15 +382,18 @@
 	}
 	
 		
-	function deletetask($id){
+		function updatecontact($id, $contact){
     	
         $database = "if16_andryzag";
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
 		
-		$stmt = $mysqli->prepare("UPDATE task_and_date SET deleted=1 WHERE id=?");
-		$stmt->bind_param("i", $id);
+		$stmt = $mysqli->prepare("UPDATE contacts SET contact=? WHERE id=?");
+		$stmt->bind_param("si",$contact, $id);
+		
+	
 		if($stmt->execute()){
+			echo "Successfully changed!";
 		}
 		
 		$stmt->close();
@@ -385,4 +401,23 @@
 		
 	}
 	
+		
+		function deletecontact($id){
+    	
+        $database = "if16_andryzag";
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		
+		$stmt = $mysqli->prepare("DELETE FROM contacts WHERE contacts=? id = ?");
+		$stmt->bind_param("i", $id);
+		
+		
+		if($stmt->execute()){
+			echo "Successfully deleted!";
+		}
+		
+		$stmt->close();
+		$mysqli->close();
+		
+	}
 ?>

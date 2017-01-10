@@ -115,14 +115,14 @@
 		) {
 		
 		// salvestame ab'i
-		echo "Saving... <br>";
+	//	echo "Saving... <br>";
 		
-		echo "email: ".$signupEmail."<br>";
-		echo "password: ".$_POST["signupPassword"]."<br>";
+	//	echo "email: ".$signupEmail."<br>";
+	//	echo "password: ".$_POST["signupPassword"]."<br>";
 		
 		$password = hash("sha512", $_POST["signupPassword"]);
 		
-		echo "password hashed: ".$password."<br>";
+	//	echo "password hashed: ".$password."<br>";
 		
 		
 		//echo $serverUsername;

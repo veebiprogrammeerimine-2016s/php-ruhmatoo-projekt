@@ -44,7 +44,7 @@
 		
 	}
 	
-    $contacts = getAllcontacts();
+
     $usercontacts = getAllUsercontacts();
 	
 ?>
@@ -77,8 +77,10 @@
 		
 		
 		$listHtml .= "<li>".$i->contact."</li>";
+    	$listHtml .= "<td><a href='editcontact.php?id=".$i->id."'><span class='glyphicon glyphicon-pencil'></span> Change</a></td>";
+	
 	}
-    
+
     $listHtml .= "</ul>";
 	
 	echo $listHtml;
