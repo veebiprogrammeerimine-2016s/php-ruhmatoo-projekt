@@ -16,23 +16,23 @@
 	//echo "<br>";
 	//var_dump($_POST);
 		
-	$signupemailError = "";
-	$signupemail = "";
+	$DbError = "";
+	$Db = "";
 	
 	//kas on üldse olemas
-	if (isset ($_POST["signupemail"])) {
+	if (isset ($_POST["Db"])) {
 		
 		// oli olemas, ehk keegi vajutas nuppu
 		// kas oli tühi
-		if (empty ($_POST["signupemail"])) {
+		if (empty ($_POST["Db"])) {
 			
 			//oli tõesti tühi
-			$signupemailError = "See väli on kohustuslik";
+			$DbError = "See väli on kohustuslik";
 			
 		} else {
 				
 			// kõik korras, email ei ole tühi ja on olemas
-			$signupemail = $_POST["signupemail"];
+			$Db = $_POST["Db"];
 		}
 		
 	}
@@ -67,24 +67,24 @@
 
 	
 	if ( isset($_POST["signupusername"]) &&
-		 isset($_POST["signupemail"]) &&
+		 isset($_POST["Db"]) &&
 		 isset($_POST["signuppassword"]) &&
-		 $signupemailError == "" && 
+		 $DbError == "" && 
 		 empty($signuppasswordError)
 	   ) {
 		
 		// ühtegi viga ei ole, kõik vajalik olemas
 		echo "salvestan...<br>";
-		echo "username ".$signupusername."<br>";
-		echo "email ".$signupemail."<br>";
-		echo "parool ".$_POST["signuppassword"]."<br>";
+		echo "username ".$signupUsername."<br>";
+		echo "email ".$Db."<br>";
+		echo "parool ".$_POST["signupPassword"]."<br>";
 		
-		$password = hash("sha512", $_POST["signuppassword"]);
+		$password = hash("sha512", $_POST["signupPassword"]);
 		
 		echo "räsi ".$password."<br>";
 		
 		//kutsun funktsiooni, et salvestada
-		$User->signup($signupemail, $signuppassword);
+		$User->signup($Db, $signupPassword);
 		
 	}	
 	
@@ -193,7 +193,7 @@
 			
 			<br><br>
 					<label>E-post</label><br>
-			<input name="signupemail" type="email" value="<?=$signupemail;?>" > <?php echo $signupemailError; ?>
+			<input name="Db" type="email" value="<?=$Db;?>" > <?php echo $DbError; ?>
 			
 			<br><br>
 			<label>Parool</label><br>

@@ -67,8 +67,7 @@ class User {
 		
 		$stmt->bind_param("sss",$username, $email, $password );
 		if ( $stmt->execute() ) {
-			echo "salvestamine õnnestus";	
-		} else {	
+		}	else {	
 			echo "ERROR ".$stmt->error;
 		}
 		
