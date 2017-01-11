@@ -4,13 +4,13 @@
 		bottom : 0;
 		height : 30px;
 		margin-top : 30px; 
-		left: 47%;
+		left: 45%;
 	}
 </style>
 <div id="footer">
 <div class="container-fluid">
 <div class="row">
-	<img src="../trifusefooter.png">
+	<img src="../footer.png">
 </div>
 </div>
 </div>

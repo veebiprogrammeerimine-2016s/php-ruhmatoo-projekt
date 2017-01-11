@@ -1,3 +1,14 @@
+<?php 
+	require("../functions.php");
+	
+	if (isset($_GET["logout"])) {
+		
+		session_destroy();
+		header("Location: login.php");
+		exit();
+		
+	}
+?>
 
 <html>
 	<style>
@@ -111,8 +122,8 @@
 				<img src="../tri.gif"><img src="../fuse.gif"><br>
 			</div>
 			<div id="right">
-				<a href="signup.php" class="button button1">Sign up</a>
-				<a href="data.php" class="button button1">Login</a>
+				<a href="data.php" class="button button1">Upload</a>
+				<a href="?logout=1" class="button button1">Logout</a>
 			</div>
 
 		</div>

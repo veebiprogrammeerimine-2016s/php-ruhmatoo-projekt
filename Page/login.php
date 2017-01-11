@@ -72,12 +72,19 @@
 
 <?php require("../header.php"); ?>
 
+<style>
+	.container-fluid {
+		font-family: 'Open Sans', sans-serif;
+		font-size: 13px;
+	}
+</style>
+
 <div class="container-fluid">
     <div align="center">
 	<div class="row">
         <div class="col-sm-4"></div>
 		<div class="col-sm-4">
-		<h1>Logi in</h1>
+		<h1>Login</h1>
 		<p style="color:red;"><?php echo $error; ?></p>
 		<form method="POST">
 			

@@ -1,65 +1,84 @@
-<?php
-if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])){
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
-    }
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
-    // Allow certain file formats
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-            
-            // save file name to DB here
-            
-        } else {
-            echo "Sorry, there was an error uploading your file.";
-        }
-    }
-}else{
-    echo "Please select the file that you want to upload!";
-}
+<?php 
+	require("../functions.php");
+	
+	if(!isset ($_SESSION["userId"])) {
+		header("Location: login.php");
+		exit();
+		
+	}
+	
+	if (isset($_GET["logout"])) {
+		
+		session_destroy();
+		header("Location: login.php");
+		exit();
+		
+	}
+	
+	$msg = " ";
+	if(isset($_SESSION["message"])) {
+		$msg = $_SESSION["message"];
+	
+	unset($_SESSION["message"]);
+	
+		}
+	
+	
 ?>
+
 <?php require("../header.php"); ?>
-<!DOCTYPE html>
-<html>
+
+<style>
+	.container-fluid {
+		font-family: 'Open Sans', sans-serif;
+		font-size: 13px;
+	}
+	
+		.button {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 8px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 14px;
+			margin: 4px 2px;
+			-webkit-transition-duration: 0.4s;
+			transition-duration: 0.4s;
+			cursor: pointer;
+			font-family: 'Open Sans', sans-serif;
+		}
+		
+		.button1 {
+			background-color: white;
+			color: black;
+			border: 1px solid #000000;
+		}
+
+		.button1:hover {
+			background-color: #555555;
+			color: white;
+		}
+</style>
+
 <body>
-
-<form action="upload.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload Image" name="submit">
-</form>
-
+<div class="container-fluid">
+    <div class="row">
+		<div align="center">
+			<h2>Upload</h2>
+			What type of content would you like to upload?<br><br><br>
+			<h3>Pictures</h3>
+			<a href="pictures_animals_imageUpload.php" class="button button1">Animals</a>
+			<a href="pictures_nature_imageUpload.php" class="button button1">Nature</a>
+			<br><br>
+			<h3>Gifs</h3>
+			<a href="gifs_animals_imageUpload.php" class="button button1">Animals</a>
+			<a href="gifs_art_imageUpload.php" class="button button1">Art</a>
+			<a href="gifs_nature_imageUpload.php" class="button button1">Nature</a>
+		</div>
+	</div>
+</div>
 </body>
-</html>
+
 <?php require("../footer.php"); ?>

@@ -70,6 +70,14 @@ if (isset ($_POST["signupUsername"])) {
 ?>
 
 <?php require("../header.php"); ?>
+
+<style>
+	.container-fluid {
+		font-family: 'Open Sans', sans-serif;
+		font-size: 13px;
+	}
+</style>
+
 <div class="container-fluid">
 
     <div class="row">
@@ -96,11 +104,11 @@ if (isset ($_POST["signupUsername"])) {
 			<br><br>
 			
 			<label>Password</label><br>
-			<input placeholder="Parool" name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
+			<input name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
 						
 			<br><br> 
 			
-			<input type="submit" value="Save">
+			<input type="submit" value="Sign up">
 			<br><br>
 		</div>
 		<div class="col-sm-4"></div>
