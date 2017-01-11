@@ -173,7 +173,7 @@
 					</a>
 				 </th>";
 		$html .= "<th>
-					<a href='?q=".$q."&sort=description'>
+					<a href='?q=".$q."&sort=description&order=".$levelOrder."'>
 						description
 					</a>
 				 </th>";
@@ -188,14 +188,15 @@
 	foreach($finishData as $f){
 		
 		//echo $c->plate."<br>";
+	
+			$html .= "<tr>";
+				$html .= "<td>".$f->id."</td>";
+				$html .= "<td>".$f->idea."</td>";
+				$html .= "<td>".$f->description."</td>";
+				$html .= "<td>".$f->user."</td>";
+				
+			$html .= "</tr>";
 		
-		$html .= "<tr>";
-			$html .= "<td>".$f->id."</td>";
-			$html .= "<td>".$f->idea."</td>";
-			$html .= "<td>".$f->description."</td>";
-			$html .= "<td>".$f->user."</td>";
-			
-		$html .= "</tr>";
 	}
 	
 	$html .= "</table>";

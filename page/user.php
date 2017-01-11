@@ -2,6 +2,9 @@
 	
 	require("../functions.php");
 	
+	require("../class/Level.class.php");
+	$Level = new Level($mysqli);
+	
 	require("../class/Finish.class.php");
 	$Finish = new Finish($mysqli);
 	
@@ -16,8 +19,6 @@
 		exit();
 	}
 	
-	
-	//kui on ?logout aadressireal siis login välja
 	if (isset($_GET["logout"])) {
 		
 		session_destroy();
@@ -34,19 +35,25 @@
 	}
 	
 	
-	if ( isset($_POST["idea"]) && 
-		isset($_POST["idea"]) && 
-		!empty($_POST["description"]) && 
-		!empty($_POST["description"])
+	if ( isset($_POST["level"]) && 
+		!empty($_POST["level"])
 	  ) {
 		  
-		$Finish->save($Helper->cleanInput($_POST["idea"]), $Helper->cleanInput($_POST["description"]));
+		$Level->save($Helper->cleanInput($_POST["level"]));
 		
 	}
-	 
-	//saan kõik auto andmed
 	
-	//kas otsib
+	if ( isset($_POST["userLevel"]) && 
+		!empty($_POST["userLevel"])
+	  ) {
+		  
+		$Level->saveUser($Helper->cleanInput($_POST["userLevel"]));
+		
+	}
+	
+    $levels = $Level->get();
+    $userLevels = $Level->getUser();
+	
 	if(isset($_GET["q"])){
 		
 		// kui otsib, võtame otsisõna aadressirealt
@@ -70,6 +77,10 @@
 	$finishData = $Finish->get($q, $sort, $order);
 	
 ?>
+
+
+
+
 <?php require("../header.php"); ?>
 <div class="navbar navbar-inverse navbar-static-top">
 	<div class="container">
@@ -86,39 +97,6 @@
 	</div>
 </div>
 
-<div id="myModal" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-		<form id="Ideas" method="post" role="form">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h4 class="modal-title">Add your idea</h4>
-		  </div>
-		  <div class="modal-body">
-				<label for="idea" class="col-md-0 control-label"> <h3>Idea name</h3></label>
-			<div class="row">
-				<div class="col-md-4">
-					<input type="text" class="form-control" name="idea" id="idea" placeholder="This idea name is..." required>
-				</div>
-			</div>
-				<label for="description" class="col-md-0 control-label"><h3>Idea description</h3></label>
-			<div class="row">
-				<div class="form-group">
-					<div class="col-md-12">
-						<textarea class="form-control" rows="5" id="description" name= "description" placeholder="This idea is about..." required></textarea>
-					</div>
-				</div>
-			</div>
-		  </div>	
-		  <div class="modal-footer">
-			<button type="submit" class = "btn btn-success btn-sm ">Complete</button>
-			<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
-		  </div>
-		</form>
-    </div>
-  </div>
-</div>
-
 <div class="container">
 <div class="row">
 	<img src="../img/idea.png" class="pull-right" width="200" height="250">
@@ -127,6 +105,67 @@
 	
 	$html = "<table class='table table-striped'>";
 	
+
+
+
+?>
+<h2>Programming languages you work with:</h2>
+<?php
+    
+    $listHtml = "<ul>";
+	
+	foreach($userLevels as $i){
+		
+		
+		$listHtml .= "<li>".$i->level."</li>";
+
+	}
+    
+    $listHtml .= "</ul>";
+
+	
+	echo $listHtml;
+    
+?>
+<form method="POST">
+	
+	<label>Select</label><br>
+	<select name="userLevel" type="text">
+        <?php
+            
+            $listHtml = "";
+        	
+        	foreach($levels as $i){
+        		
+        		
+        		$listHtml .= "<option value='".$i->id."'>".$i->level."</option>";
+        
+        	}
+        	
+        	echo $listHtml;
+            
+        ?>
+    </select>
+    	
+	
+	<input type="submit" value="Add">
+	
+</form>
+<h2>If you did not find the programming language you looked for...</h2>
+<form method="POST">
+	
+	<label> Insert missing programming language</label><br>
+	<input name="level" type="text">
+	
+	<input type="submit" value="Save">
+	
+</form>
+
+<?php 
+
+	$html = "<table class='table table-striped'>";
+	
+
 	
 	$html .= "<tr>";
 	
@@ -156,8 +195,13 @@
 					</a>
 				 </th>";
 		$html .= "<th>
-					<a href='?q=".$q."&sort=description'>
+					<a href='?q=".$q."&sort=description&order=".$levelOrder."'>
 						description
+					</a>
+				 </th>";
+		$html .= "<th>
+					<a href='?q=".$q."&sort=user&order=".$levelOrder."'>
+						user
 					</a>
 				 </th>";
 	$html .= "</tr>";
@@ -166,14 +210,17 @@
 	foreach($finishData as $f){
 		
 		//echo $c->plate."<br>";
-		
-		$html .= "<tr>";
-			$html .= "<td>".$f->id."</td>";
-			$html .= "<td>".$f->idea."</td>";
-			$html .= "<td>".$f->description."</td>";
-			$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$f->id."'><span class='glyphicon glyphicon-pencil'></span> Edit</a></td>";
-			
-		$html .= "</tr>";
+		if($f->user == $_SESSION["userEmail"]){
+			$html .= "<tr>";
+				$html .= "<td>".$f->id."</td>";
+				$html .= "<td>".$f->idea."</td>";
+				$html .= "<td>".$f->description."</td>";
+				$html .= "<td>".$f->user."</td>";
+				
+				$html .= "<td><a class='btn btn-default btn-sm' href='edit.php?id=".$f->id."'><span class='glyphicon glyphicon-pencil'></span> Edit</a></td>";
+				
+			$html .= "</tr>";
+		}
 	}
 	
 	$html .= "</table>";
@@ -189,5 +236,14 @@
 		$listHtml .= "<h1>".$f->idea."</h1>";
 		$listHtml .= "<p>idea = ".$f->description."</p>";
 	}
+	
+	//echo $listHtml;
+	
+	
+	
+
 ?>
+
+
+
 <?php require("../footer.php"); ?>

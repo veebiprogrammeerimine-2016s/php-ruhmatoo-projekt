@@ -155,8 +155,8 @@ class Finish {
 	
 	function update($id, $idea, $description){
     	
-		$stmt = $this->connection->prepare("UPDATE idea_description SET idea=?, description=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("ssi",$idea, $description, $id);
+		$stmt = $this->connection->prepare("UPDATE idea_description SET idea=?, description=? WHERE id=? AND user = ? AND deleted IS NULL");
+		$stmt->bind_param("sssi",$idea, $description, $_SESSION["userEmail"], $id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
