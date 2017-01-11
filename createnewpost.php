@@ -1,8 +1,16 @@
 <?php
 	
+	//FUNKTSIOONID
 	require("functions.php");
 	require("style/style.php");
 	require("style/pagestyle.php");
+	
+	//LOOGIMINE OUT
+	if (isset($_GET["logout"])) {
+		session_destroy();
+		header("Location: loginpage.php");
+		exit();
+	}
 	
 	//KOMMENTAARI SALVESTAMINE
 	if (isset($_POST["category"])&&
@@ -22,14 +30,16 @@
 <body>
 	<ul>
 		<li><a class="active1" href="homepage.php">AVALEHT</a></li>
-		<li><a class="active1" href="forumpage.php">FOORUM</a></li>
-		<li><a class="active" href="">MINU KASUTAJA</a></li>
+		<li><a class="active" href="forumpage.php">FOORUM</a></li>
+		<li><a class="active1" href="userpage.php">MINU KASUTAJA</a></li>
 		<li><a class="active1" href="?logout=1">LOGI VÄLJA</a></li>
 	</ul>
 
 <div style="page">
 
-<p class="down">UUS POSTITUS</p>
+	<p class="down"> <a href="forumpage.php"> FORUM </a> / UUS POSTITUS</p>
+	
+	<center>
 	
 	<form method="POST">
 	
@@ -47,19 +57,23 @@
 	<option value="Rakvere Kolledž">Rakvere Kolledž</option>
 	</select>
 	<br><br>
-	
 	<!--pealkiri-->
 	<label for="headline">Uus postitus:</label><br>
-	<input placeholder="Pealkiri" name="headline">
+	<input placeholder="Pealkiri" class="text" name="headline" required>
 	
 	<!--Kommentaar-->
 	<br>
-	<textarea rows="4" cols="50" placeholder="Kirjuta milline probleem sul tekkis.." name="comment"></textarea>
+	<input placeholder="Kirjuta milline probleem sul tekkis.." name="comment" class="text" required>
 	
-	<input type="submit" value="Postita">
+	<input type="submit" class="submit submit1" value="Postita">
 	</form>
 	
+	</center>
 	<br><br>
+
+	<p class="down"></p>
+
 </div>	
+
 </body>
 </html>

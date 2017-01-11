@@ -1,8 +1,16 @@
 <?php	
 	
+	//FUNKTSIOONID
 	require("functions.php");
 	require("style/style.php");
 	require("style/pagestyle.php");
+	
+	//LOG OUT
+	if (isset($_GET["logout"])) {
+		session_destroy();
+		header("Location: loginpage.php");
+		exit();
+	}
 	
 	$posts = profile_posts();
 	
@@ -14,7 +22,7 @@
 	<ul>
 		<li><a class="active1" href="homepage.php">AVALEHT</a></li>
 		<li><a class="active1" href="forumpage.php">FOORUM</a></li>
-		<li><a class="active" href="">MINU KASUTAJA</a></li>
+		<li><a class="active" href="userpage.php">MINU KASUTAJA</a></li>
 		<li><a class="active1" href="?logout=1">LOGI VÄLJA</a></li>
 	</ul>
 
@@ -46,6 +54,10 @@ $html1 .= "</table>";
 echo $html1
 ?>
 
+<br><br>
+<p class="down"><p>
+
 </div>	
+
 </body>
 </html>

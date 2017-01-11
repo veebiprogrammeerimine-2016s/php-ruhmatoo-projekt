@@ -220,17 +220,18 @@
 		$GLOBALS["database"]);
 		
 		$stmt = $mysqli->prepare("
-		SELECT feedback
+		SELECT id, feedback
 		FROM grupp_comment
 		WHERE email_id = ?
 		");
 		$stmt->bind_param("s", $_SESSION["userEmail"]);
-		$stmt->bind_result($feedback);
+		$stmt->bind_result($id,$feedback);
 		$stmt->execute();
 		$results = array();
 		
 		while ($stmt->fetch()) {
 			$human = new StdClass();
+			$human->id = $id;
 			$human->feedback = $feedback;
 			array_push($results, $human);	
 		}
@@ -261,14 +262,11 @@
 			$finish->category = $category;
 			$finish->headline = $headline;
 			$finish->comment = $comment;
-		
 		}else{
 			header("Location: editmyposts.php");
 			exit();
 		}
-		
 		$stmt->close();
-		
 		return $finish;
 	}
 	
@@ -288,6 +286,53 @@
 		$stmt->close();
 		$mysqli->close();	
 	}
+	
+	//UUENDA KOMMENTAARI
+	function updateComments($feedback){
+		$mysqli = new mysqli($GLOBALS["serverHost"],
+		$GLOBALS["serverUsername"],
+		$GLOBALS["serverPassword"],
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("UPDATE grupp_comment SET feedback=? WHERE id=?");
+		$stmt->bind_param("si", $feedback, $_GET["id"]);
+
+		if($stmt->execute()){
+			header("Location: editmycomments.php?id=". $_GET["id"]."&success=true");
+		}
+		$stmt->close();
+		$mysqli->close();	
+	}
+	
+	//PARANDADA ÜHE KOMMENTAARI ANDMED
+		function editcomment($show_comment_id){
+		
+		$mysqli = new mysqli($GLOBALS["serverHost"], 
+		$GLOBALS["serverUsername"], 
+		$GLOBALS["serverPassword"], 
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("
+		SELECT feedback
+		FROM grupp_comment
+		WHERE id = ?");
+		
+		$stmt->bind_param("i", $show_comment_id);
+		$stmt->bind_result($feedback);
+		$stmt->execute();
+
+		$finish = new Stdclass();
+		
+		if($stmt->fetch()){
+			$finish->feedback = $feedback;
+		}else{
+			header("Location: editmycomments.php");
+			exit();
+		}
+		$stmt->close();
+		return $finish;
+	}
+	
 	
 	//CLEANINPUT
 	function cleanInput($input) {
