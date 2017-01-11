@@ -8,6 +8,13 @@
 	} else {
 		require("../header1.php");
 	}
+	
+	if (isset($_GET["logout"])) {
+		session_destroy();
+		header('Location: '.$_SERVER['PHP_SELF']);
+		exit();
+		
+	}	
 
 ?>
 
