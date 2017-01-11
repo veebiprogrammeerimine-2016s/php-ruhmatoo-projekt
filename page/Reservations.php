@@ -141,6 +141,7 @@
 		SaveReservation($reg_nr, $veichle_type, $car_brand, $car_model, $telephone_nr, $date, $time);
 		
 	}
+	
 
 ?>
 
@@ -284,11 +285,11 @@
 			
 			<input type="submit" value="Broneeri" class="btn btn-primary">
 			
-			<input type="button" onClick="parent.open('../tagasiside.html')" value='Tagasiside' >	
+			<input type="button" onClick="parent.open('../tagasiside.html')" value='Tagasiside' >
+			<input type="button" onClick="parent.open('EditReservations.php')" value='Broneeringud' >
 		
 			<br><br>			
 		</form>
 
 	</body>
 </html>
-
