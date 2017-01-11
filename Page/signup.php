@@ -28,13 +28,13 @@
 		
 	}
 	
-if (isset ($_POST["signupUsername"])) {
+	if (isset ($_POST["signupUsername"])) {
 		if (empty ($_POST["signupUsername"])) {
 			$signupUsernameError = "Can't be empty!";
 		} else {
 			$signupUsername = $_POST["signupUsername"];
 		}
-		
+			
 	}
 		
 	
@@ -71,6 +71,9 @@ if (isset ($_POST["signupUsername"])) {
 
 <?php require("../header.php"); ?>
 
+<!DOCTYPE html>
+<html>
+<body>
 <style>
 	.container-fluid {
 		font-family: 'Open Sans', sans-serif;
@@ -79,44 +82,33 @@ if (isset ($_POST["signupUsername"])) {
 </style>
 
 <div class="container-fluid">
-
     <div class="row">
-
-		
 		<div align="center">
 		<h1>Create an account</h1>
 		
-	
-		
 		<form method="POST">
 			
-			<div class="row">
-			<div class="col-sm-4"></div>
-			 <div class="col-sm-4">
+		<div class="col-sm-4">
 			<label>Email</label><br>
-			<input name="signupEmail" type="email"> <?php echo $signupEmailError; ?>
-			
+			<input name="signupEmail" type="email" value="<?=$signupEmail;?>"> <?php echo $signupEmailError; ?>
 			<br><br>
-			
+		
 			<label>Username</label><br>
-			<input name="signupUsername" type="username"> <?php echo $signupUsernameError; ?>
-			
+			<input name="signupUsername" type="username" value="<?=$signupUsername;?>"> <?php echo $signupUsernameError; ?>
 			<br><br>
 			
 			<label>Password</label><br>
 			<input name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
-						
 			<br><br> 
 			
 			<input type="submit" value="Sign up">
 			<br><br>
 		</div>
-		<div class="col-sm-4"></div>
-		
 		</form>
 		</div>
 	</div>	
-	</div>
-	</body>
+</div>
+</body>
 </html>
+
 <?php require("../footer.php"); ?>

@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <style type="text/css">
 	#footer {
 		position : absolute;
@@ -7,13 +9,10 @@
 		left: 45%;
 	}
 </style>
-<div id="footer">
-<div class="container-fluid">
-<div class="row">
-	<img src="../footer.png">
-</div>
-</div>
-</div>
-</div>
+
+<body>
+	<div id="footer" class="row">
+		<img src="../footer.png">
+	</div>
 </body>
 </html>

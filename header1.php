@@ -1,15 +1,4 @@
-<?php 
-	require("../functions.php");
-	
-	if (isset($_GET["logout"])) {
-		
-		session_destroy();
-		header("Location: login.php");
-		exit();
-		
-	}
-?>
-
+<!DOCTYPE html>
 <html>
 	<style>
 		#container {

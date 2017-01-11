@@ -1,17 +1,17 @@
 <?php require("../header.php"); ?>
-<?php
-$conn = mysql_connect("localhost", "if16", "ifikad16");
-mysql_select_db("if16_gerltoom");
-$sql = "SELECT imageId FROM gifs_art_output_images ORDER BY imageId DESC"; 
-$result = mysql_query($sql);
-?>
-<HTML>
-<HEAD>
-<TITLE>List BLOB Images</TITLE>
-<link href="imageStyles.css" rel="stylesheet" type="text/css" />
-</HEAD>
-<BODY>
 
+<?php
+
+	$conn = mysql_connect("localhost", "if16", "ifikad16");
+	mysql_select_db("if16_gerltoom");
+	$sql = "SELECT imageId FROM gifs_art_output_images ORDER BY imageId DESC"; 
+	$result = mysql_query($sql);
+
+?>
+
+<!DOCTYPE html>
+<html>
+<body>
 <div class="row">
 	<div align="center">
 		<?php
@@ -24,5 +24,5 @@ $result = mysql_query($sql);
 		?>
 	</div>
 </div>
-</BODY>
-</HTML>
+</body>
+</html>

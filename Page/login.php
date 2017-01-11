@@ -72,6 +72,9 @@
 
 <?php require("../header.php"); ?>
 
+<!DOCTYPE html>
+<html>
+<body>
 <style>
 	.container-fluid {
 		font-family: 'Open Sans', sans-serif;
@@ -81,32 +84,30 @@
 
 <div class="container-fluid">
     <div align="center">
-	<div class="row">
-        <div class="col-sm-4"></div>
-		<div class="col-sm-4">
-		<h1>Login</h1>
-		<p style="color:red;"><?php echo $error; ?></p>
-		<form method="POST">
-			
-			<label>Email</label><br>
-			<input name="loginEmail" type="email"> <?php echo $loginEmailError; ?>
-			
-			<br><br>
-			
-			<label>Password</label><br>
-			<input name="loginPassword" type="password"> <?php echo $loginPasswordError; ?>
-						
-			<br><br>
-			
-			<input type="submit" value="Login">
-		
-		</form>
-	<div class="col-sm-4"></div>
+		<div class="row">
+			<div class="col-sm-4">
+				<h1>Login</h1>
+				<p style="color:red;"><?php echo $error; ?></p>
+				<form method="POST">
+					
+					<label>Email</label><br>
+					<input name="loginEmail" type="email" value="<?=$loginEmail;?>"> <?php echo $loginEmailError; ?>
+					
+					<br><br>
+					
+					<label>Password</label><br>
+					<input name="loginPassword" type="password"> <?php echo $loginPasswordError; ?>
+								
+					<br><br>
+					
+					<input type="submit" value="Login">
+				
+				</form>
+			</div>	
+		</div>
 	</div>	
-	</div>
-	</div>	
-	</div>
-	</div>
-	</body>
+</div>
+</body>
 </html>
+
 <?php require("../footer.php"); ?>
