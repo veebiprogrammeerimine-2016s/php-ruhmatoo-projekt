@@ -76,6 +76,17 @@
 	//otsisõna fn sisse
 	$finishData = $Finish->get($q, $sort, $order);
 	
+		//var_dump($_POST);
+	if ( isset($_POST["idea"]) && 
+		isset($_POST["description"]) && 
+		!empty($_POST["idea"]) && 
+		!empty($_POST["description"])
+	  ) {
+		  //echo "siin";
+		$Finish->save($Helper->cleanInput($_POST["idea"]), $Helper->cleanInput($_POST["description"]));
+		
+	}
+	
 ?>
 
 
@@ -97,10 +108,40 @@
 	</div>
 </div>
 
-<div class="container">
-<div class="row">
-	<img src="../img/idea.png" class="pull-right" width="200" height="250">
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		<form id="Ideas" method="post" role="form">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h4 class="modal-title">Add your idea</h4>
+		  </div>
+		  <div class="modal-body">
+				<label for="idea" class="col-md-0 control-label"> <h3>Idea name</h3></label>
+			<div class="row">
+				<div class="col-md-4">
+					<input type="text" class="form-control" name="idea" id="idea" placeholder="This idea name is..." required>
+				</div>
+			</div>
+				<label for="description" class="col-md-0 control-label"><h3>Idea description</h3></label>
+			<div class="row">
+				<div class="form-group">
+					<div class="col-md-12">
+						<textarea class="form-control" rows="5" id="description" name= "description" placeholder="This idea is about..." required></textarea>
+					</div>
+				</div>
+			</div>
+		  </div>	
+		  <div class="modal-footer">
+			<button type="submit" class = "btn btn-success btn-sm ">Complete</button>
+			<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+		  </div>
+		</form>
+    </div>
+  </div>
 </div>
+
+<div class="container">
 <?php 
 	
 	$html = "<table class='table table-striped'>";
@@ -160,6 +201,8 @@
 	<input type="submit" value="Save">
 	
 </form>
+
+<h2>Your posts</h2>
 
 <?php 
 

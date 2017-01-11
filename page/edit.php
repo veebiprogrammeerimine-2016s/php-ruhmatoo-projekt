@@ -15,7 +15,7 @@
 		
 		$Finish->update($Helper->cleanInput($_POST["id"]), $Helper->cleanInput($_POST["idea"]), $Helper->cleanInput($_POST["description"]));
 		
-		header("Location: edit.php?id=".$_POST["id"]."&success=true");
+		header("Location: user.php?id=".$_POST["id"]."&success=true");
         exit();	
 		
 	}
@@ -34,6 +34,13 @@
 	// kui ei ole id'd aadressireal siis suunan
 	if(!isset($_GET["id"])){
 		header("Location: data.php");
+		exit();
+	}
+	
+		if (isset($_GET["logout"])) {
+		
+		session_destroy();
+		header("Location: login.php");
 		exit();
 	}
 	
@@ -58,7 +65,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="user.php"><i class="fa fa-user-circle" aria-hidden="true"></i><?=$_SESSION["userEmail"];?></a></li>
-				<li><a href="?logout=1"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+				<li><a href="?logout=2"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
 			</ul>
 	</div>
 </div>
