@@ -228,14 +228,6 @@ if (isset ($_POST["signupPassword"])) {
 </body>
 </html>	
       </ul><br>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Keyword..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
     </div>
     <div class="col-sm-9">
 </ul>
@@ -325,13 +317,13 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
 </div>
 
 <div id="HARDWARE" class="tabcontent">
-  <h3>Tokyo Drift</h3>
-  <p>Tokyo is the capital of Japan, and i'm the DK</p>
+  <h2>HARDWARE</h2>
+  <p>There should be Harware related news/reviews/articles here.</p>
 </div>
 
 <div id="SOFTWARE" class="tabcontent">
-  <h3>Tokyo Drift</h3>
-  <p>Tokyo is the capital of Japan, and i'm the DK</p>
+  <h2>SOFTWARE</h2>
+  <p>There should be Software related news/reviews/articles here.</p>
 </div>
 
 <div id="SEARCH" class="tabcontent">
