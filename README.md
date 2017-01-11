@@ -26,7 +26,7 @@ sarnased lehed: http://www.kixify.com/ , https://stockx.com/sneakers
 
 
 ![Preview](db.png)
-
+```
 1 - kasutajate tabel
 
 CREATE TABLE sm_users(
@@ -118,7 +118,7 @@ CREATE TABLE sm_comments(
 	FOREIGN KEY(postid) REFERENCES sm_posts(id),
 	FOREIGN KEY(userid) REFERENCES sm_users(id)
 );
-
+```
  
 
 
