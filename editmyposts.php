@@ -37,7 +37,7 @@
 
 <div style="page">
 
-<p class="down"> <a href="forumpage.php"> FORUM </a> / <a href="userpage.php"> MINU KASUTAJA</a> / <a href="viewmypost.php">MINU POSTITUSED</a> / MUUDA POSTITUSE </p>
+<p class="down"> <a href="forumpage.php"> FOORUM </a> / <a href="userpage.php"> MINU KASUTAJA</a> / <a href="viewmypost.php">MINU POSTITUSED</a> / MUUDA POSTITUSE </p>
  <center>
   
   <form method= "POST" >

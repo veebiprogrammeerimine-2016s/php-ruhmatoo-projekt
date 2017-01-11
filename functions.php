@@ -341,4 +341,20 @@
 		$input = htmlspecialchars($input);
 		return $input;
 	}
+	
+	//KASUTAJA NIMI UUENDAMINE
+	function updateUsername($nickname){
+		$mysqli = new mysqli($GLOBALS["serverHost"],
+		$GLOBALS["serverUsername"],
+		$GLOBALS["serverPassword"],
+		$GLOBALS["database"]);
+		
+		$stmt = $mysqli->prepare("UPDATE grupp_user SET username=? WHERE id=?");
+		$stmt->bind_param("si", $nickname, $_SESSION["userId"]);
+		if($stmt->execute()){
+			echo "salvestus onnestus!";
+		}
+		$stmt->close();
+		$mysqli->close();	
+	}
 ?>

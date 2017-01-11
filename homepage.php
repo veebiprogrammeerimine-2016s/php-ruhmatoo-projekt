@@ -27,6 +27,7 @@
 <p class="down"> AVALEHT </p>
 <p> Liikmed: Andra Kaljurand, Ksenia Belorusskaja 
 
+<br>
 Eesmärk:
 	Luua veebisait, kus need õpilased, kes soovivad Tallinna Ülikooli sisse astuda, leiaksid endale sobiva eriala.
 	Nad saavad lugeda foorumist postitusi, samuti lisada sinna postitusi, kui neil on mure või küsimus mingi teatud eriala kohta.

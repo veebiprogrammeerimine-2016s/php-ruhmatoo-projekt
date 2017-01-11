@@ -37,7 +37,7 @@
 
 <div style="page">
 
-	<p class="down"> <a href="forumpage.php"> FORUM </a> / UUS POSTITUS</p>
+	<p class="down"> <a href="forumpage.php"> FOORUM </a> / UUS POSTITUS</p>
 	
 	<center>
 	

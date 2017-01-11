@@ -27,7 +27,7 @@
 
 <div style="page">
 
-<p class="down"> <a href="forumpage.php"> FORUM </a> / <a href="userpage.php"> MINU KASUTAJA</a> / MINU KOMMENTAARID </p>
+<p class="down"> <a href="forumpage.php"> FOORUM </a> / <a href="userpage.php"> MINU KASUTAJA</a> / MINU KOMMENTAARID </p>
 
 <?php 
 $html = "<table>";

@@ -174,8 +174,8 @@
 			<br><?php echo $signupPasswordError;?></br>
 			
 			<!--KASUTAJANIMI REGISTREERIMINE-->
-			<br><label for="signupUsername">Hüüdnimi</label></br>
-			<input name="signupUsername" type = "signupUsername" placeholder="Hüüdnimi" class="text" value=<?=$signupUsername;?>>
+			<br><label for="signupUsername">Kasutajanimi</label></br>
+			<input name="signupUsername" type = "signupUsername" placeholder="Kasutajanimi" class="text" value=<?=$signupUsername;?>>
 			<br><?php echo $signupUsernameError;?></br>
 
 			<!--SUGU REGISTREERIMINE-->
