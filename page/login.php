@@ -240,50 +240,9 @@ if (isset ($_POST["signupPassword"])) {
     <div class="col-sm-9">
 </ul>
 <!-- Original tabs START -->
-<style>
-body {font-family: "Lato", sans-serif;}
-
-ul.tab {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border: 1px solid #B10000;
-	background-color: #FF0000;
-}
-
-/* Float the list items side by side */
-ul.tab li {float: left;}
-
-/* Style the links inside the list items */
-ul.tab li a {
-	background-color:#FF0000;
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: 0.3s;
-    font-size: 17px;
-}
-
-/* Change background color of links on hover */
-ul.tab li a:hover {
-    background-color: #A20000;
-}
-
-/* Create an active/current tablink class */
-ul.tab li a:focus, .active {
-    background-color: #880000;
-}
-
-/* Style the tab content */
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #B10000;
-    border-top: none;
-</style>
+<head>
+<link rel="stylesheet" type="text/css" href="../style/tabs.css">
+</head>
 <body>
 <ul class="tab">
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'RECENT')">MOST RECENT</a></li>

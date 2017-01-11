@@ -145,7 +145,7 @@
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'YOUTUBE')">YOUTUBE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'SEARCH')">SEARCH</a></li>
 </ul>
-<div id="" style="overflow-y:scroll; overflow-x:hidden; height:auto; width:100%; max-height:825px; max-width: 1008px">
+<div id="" style="overflow-y:scroll; overflow-x:hidden; height:810px;">
 <div id="RECENT" class="tabcontent">
   <div id="tab1" class="tab-pane">
       <hr>
@@ -164,7 +164,7 @@ When compared to the R9 390 though the RX 480 does have one major disadvantage; 
 <br>
 Propping up the RX 480 is the core clock speed which has been set at 1120 MHz and can boost as high as 1266 MHz. That’s a 27% boost over the R9 390’s operating frequency and should help account for having 10% fewer cores.
 </p>
-	  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:540px; width:960px; margin:0 auto;">
+	  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:720px; width:1280px; margin:0 auto;">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -176,19 +176,19 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img class="img-responsive center-block" src="../images/rx480_1.jpg" alt="480">
+      <img src="../images/rx480_1.jpg" alt="480">
     </div>
 
     <div class="item">
-      <img class="img-responsive center-block" src="../images/rx480_2.jpg" alt="480">
+      <img src="../images/rx480_2.jpg" alt="480">
     </div>
 
     <div class="item">
-      <img class="img-responsive center-block" src="../images/rx480_3.jpg" alt="480">
+      <img src="../images/rx480_3.jpg" alt="480">
     </div>
 
     <div class="item">
-      <img class="img-responsive center-block" src="../images/rx480_4.jpg" alt="480">
+      <img src="../images/rx480_4.jpg" alt="480">
     </div>
   </div>
 
