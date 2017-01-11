@@ -60,12 +60,12 @@
 							$html .= "<th>Pood</th>";
 							$html .= "<th>Kuupäev</th>";
 							$html .= "<th>Tšekinumber</th>";
-							/*$html .="<tr>";
+							$html .="<tr>";
 								$html .= "<th>Toode</th>";
 								$html .= "<th>Hind</th>";
 								$html .= "<th>Kategooria</th>";
-							$html .="</tr>";*/
-					/*	$html .="</tr>";
+							$html .="</tr>";
+						$html .="</tr>";
 					
 					
 					foreach ($purchases as $p) {
@@ -74,8 +74,8 @@
 							$html .= "<td>".$p->shop."</td>";
 							$html .= "<td>".$p->shopdate."</td>";
 							$html .= "<td>".$p->check."</td>";
-							//$html .= "<td><a href='edit.php?id=".$p->id."'>edit.php</a></td>";
-/*							foreach ($purchaseContents as $pc) {
+							$html .= "<td><a href='edit.php?id=".$p->id."'>edit.php</a></td>";
+							foreach ($purchaseContents as $pc) {
 								
 						$html .= "<tr>";
 							$html .= "<td>".$pc->product."</td>";

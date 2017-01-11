@@ -55,7 +55,7 @@ CREATE TABLE WasteChase_Purchases(
 ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 AddedBY int(8),
 FromShop varchar(20),
-Created DATE,
+Date DATE,
 FOREIGN KEY (AddedBY) REFERENCES WasteChase_User(ID)
 );
 
@@ -65,13 +65,14 @@ ProductName Varchar(20) NOT NULL,
 ProductPrice int(8) NOT NULL,
 CategoryID int(8) NOT NULL,
 PurchaseID int(8) NOT NULL,
+AddedBY int(8) NOT NULL,
+FOREIGN KEY (AddedBY) REFERENCES WasteChase_User(ID),
 FOREIGN KEY (CategoryID) REFERENCES WasteChase_Categories(ID),
 FOREIGN KEY (PurchaseID) REFERENCES WasteChase_Purchases(ID)
 );
 
 CREATE TABLE WasteChase_Categories(
 ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-Category Varchar(20) NOT NULL
+Category Varchar(20) NOT NULL,
+Kirjeldus TEXT
 );
-
-ERD: https://drive.google.com/open?id=0B7r2XlMnEQ43OUx3Y2RmX25QTTQ
