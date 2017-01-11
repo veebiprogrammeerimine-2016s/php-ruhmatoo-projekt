@@ -1,13 +1,9 @@
 <?php
 	
+	//FUNKTSIOONID
 	require("functions.php");
 	require("style/style.php");
 	require("style/pagestyle.php");
-
-	if (!isset ($_SESSION["userId"])) {
-		header("Location: loginpage.php");
-		exit();	
-	}
 	
 	//LOG OUT
 	if (isset($_GET["logout"])) {
@@ -53,8 +49,6 @@
 
 </table>
 
-<p class="down"></p>
-
 <?php 
 $html = "<table>";
 	
@@ -81,7 +75,8 @@ $html = "<table>";
 	
 echo $html
 ?>
-
+	<br><br>
+	<p class="down"></p>
 	</div>
 </body>
 </html>	

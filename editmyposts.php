@@ -1,5 +1,6 @@
 <?php 
 	
+	//FUNKTSIOONID
 	require("functions.php");
 	require("style/style.php");
 	require("style/pagestyle.php");
@@ -10,6 +11,7 @@
 		exit();	
 	}
 	
+	//LOGOUT
 	if (isset($_GET["logout"])) {
 		session_destroy();
 		header("Location: loginpage.php");
@@ -37,6 +39,7 @@
 
 <p class="down"> <a href="forumpage.php"> FORUM </a> / <a href="userpage.php"> MINU KASUTAJA</a> / <a href="viewmypost.php">MINU POSTITUSED</a> / MUUDA POSTITUSE </p>
  <center>
+  
   <form method= "POST" >
 	
 	<br>
@@ -55,15 +58,22 @@
 
 	
 	<br><label for="headline" >Pealkiri:</label></br>
-	<input class="text" name="headline" value="<?=$p->headline;?>"> <br>
+	<input class="text" name="headline" value="<?=$p->headline;?>" required> <br>
 
 	<label for="comment" >Kommentaar:</label><br>
-	<input id="comment" name="comment" class="text" value="<?php echo $p->comment;?>" > <br>
+	<input id="comment" name="comment" class="text" value="<?php echo $p->comment;?>" required> <br>
   	
 	<input type="submit" name="update_posts"  class="submit submit1" value="Salvesta">
   </form>
+ 
  </center>
+
+<br><br>
+<p class="down"></p>
+ 
 </div>	
+ 
+
 </body>
 </html>
 </html>
