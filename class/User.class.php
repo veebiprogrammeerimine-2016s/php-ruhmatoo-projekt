@@ -1,6 +1,8 @@
 <?php 
 class User {
 	
+	//private $name = "Romil";
+	//public $familyName = "Robtsenkov";
 	private $connection;
 	
 	// käivitatakse siis kui new ja see mis saadekse
@@ -21,7 +23,7 @@ class User {
 		$stmt = $this->connection->prepare("
 		
 			SELECT id, email, password, created
-			FROM users
+			FROM user_sample
 			WHERE email = ?
 		
 		");
@@ -60,14 +62,15 @@ class User {
 		return $notice;
 	}
 	
-	function signup($username, $email, $password) {
+	function signup($email, $password) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password) VALUES (?, ?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("sss",$username, $email, $password );
+		$stmt->bind_param("ss", $email, $password );
 		if ( $stmt->execute() ) {
-		}	else {	
+			echo "salvestamine õnnestus";	
+		} else {	
 			echo "ERROR ".$stmt->error;
 		}
 		
