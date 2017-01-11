@@ -213,18 +213,18 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
 </div>
 
 <div id="GAMES" class="tabcontent">
-  <h3>here's a fucking game you silly cunt</h3>
-  <p>Paris is the capital of France. Or is it?</p> 
+  <h2>GAMES</h2>
+  <p>There should be Game related news/reviews/articles here.</p> 
 </div>
 
 <div id="HARDWARE" class="tabcontent">
-  <h3>Tokyo Drift</h3>
-  <p>Tokyo is the capital of Japan, and i'm the DK</p>
+  <h2>HARDWARE</h2>
+  <p>There should be Harware related news/reviews/articles here.</p>
 </div>
 
 <div id="SOFTWARE" class="tabcontent">
-  <h3>Tokyo Drift</h3>
-  <p>Tokyo is the capital of Japan, and i'm the DK</p>
+  <h2>SOFTWARE</h2>
+  <p>There should be Software related news/reviews/articles here.</p>
 </div>
 
 
