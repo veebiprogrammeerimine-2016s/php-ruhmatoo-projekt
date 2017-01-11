@@ -111,7 +111,7 @@
 				<img src="../tri.gif"><img src="../fuse.gif"><br>
 			</div>
 			<div id="right">
-				<a href="data.php" class="button button1">Upload</a>
+				<a href="data.php" class="button button1">Profile</a>
 				<a href="?logout=1" class="button button1">Logout</a>
 			</div>
 

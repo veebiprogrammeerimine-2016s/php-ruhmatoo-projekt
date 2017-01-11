@@ -44,7 +44,7 @@
 	}	
 ?>
 
-<?php require("../header.php"); ?>
+<?php require("../header1.php"); ?>
 
 <!DOCTYPE html>
 <html>

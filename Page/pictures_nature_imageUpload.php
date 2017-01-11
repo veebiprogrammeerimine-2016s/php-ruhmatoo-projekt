@@ -1,6 +1,6 @@
 <?php 
 	require("../functions.php");
-	
+
 	if(!isset ($_SESSION["userId"])) {
 		header("Location: login.php");
 		exit();
@@ -44,7 +44,7 @@
 	}
 ?>
 
-<?php require("../header.php"); ?>
+<?php require("../header1.php"); ?>
 
 <!DOCTYPE html>
 <html>

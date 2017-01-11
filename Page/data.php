@@ -24,7 +24,7 @@
 	
 ?>
 
-<?php require("../header.php"); ?>
+<?php require("../header1.php"); ?>
 
 <!DOCTYPE html>
 <html>
@@ -69,7 +69,6 @@
 			<?=$msg;?>
 			<h3><p> Welcome <?=$_SESSION["userEmail"];?>!</p></h3>
 			<a href="upload.php" class="button button1">Upload</a>
-			<a href="?logout=1" class="button button1">Logout</a>
 		</div>
 	</div>
 </div>
