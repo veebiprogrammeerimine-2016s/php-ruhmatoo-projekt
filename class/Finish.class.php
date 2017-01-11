@@ -68,7 +68,7 @@ class Finish {
 			");
 			
 		}
-		
+	
 		echo $this->connection->error;
 		
 		$stmt->bind_result($id, $idea, $description, $user);
@@ -168,6 +168,7 @@ class Finish {
 		
 		
 	}
+	
 	
 	
 	

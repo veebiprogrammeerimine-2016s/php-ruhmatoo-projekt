@@ -76,6 +76,7 @@
 	//otsisõna fn sisse
 	$finishData = $Finish->get($q, $sort, $order);
 	
+
 		//var_dump($_POST);
 	if ( isset($_POST["idea"]) && 
 		isset($_POST["description"]) && 
@@ -87,6 +88,7 @@
 		
 	}
 	
+
 ?>
 
 
@@ -107,6 +109,7 @@
 			</ul>
 	</div>
 </div>
+
 
 <div id="myModal" class="modal fade">
   <div class="modal-dialog">
@@ -140,11 +143,8 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-=======
 
-<div class="container">
->>>>>>> 85aa5358b2f281bd2c7137bfb87a7b80d5897610
+
 
 <div class="container">
 <?php 
@@ -206,6 +206,7 @@
 	<input type="submit" value="Save">
 	
 </form>
+
 
 <h2>Your posts</h2>
 
