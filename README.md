@@ -12,9 +12,6 @@ Keskkond kuhu saab üles panna kuulutusi ketside ostmiseks ja müümiseks.
 
 
 sarnased lehed: http://www.kixify.com/ , https://stockx.com/sneakers
- * pildid esilehel
- * otsingu võimalused
- * sisselogimine
  
 ## Funktsionaalsus
  * kuulutuse loomine
