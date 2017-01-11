@@ -16,15 +16,43 @@
 		exit();
 	}
 	
-	var_dump($_POST);
+	//var_dump();
 	
+	if (isset($_POST["storeName"])) {
+	
+		if (isset($_POST["shoppingDate"])){
+			
+			$date = date_create($_POST["shoppingDate"]);
+			
+			$date = date_format($date, "Y-m-d");
+			
+			if (isset($_POST["receiptNumber"])){
+				
+				if (isset($_POST["Category"])){
+					
+					if (isset($_POST["productName"])){
+						
+						if (isset($_POST["productPrice"])){
+					
+							$Data->DataAdd($_POST["storeName"], $date, $_POST["receiptNumber"], $_POST["Category"], $_POST["productName"], $_POST["productPrice"]);
+						
+						}
+					}
+				}
+			}
+		}
+		
+	}
 
+
+	
+	
 ?>
 
 
 
 <!DOCTYPE html>
-<html>
+<html ng-app="plunker">
 	<head>
 		<meta charset="utf-8">
 		<title>WasteChase</title>
@@ -32,7 +60,7 @@
 		<link rel="stylesheet" href="jquery/jquery-ui.min.css">
 	</head>
 	
-	<body>
+	<body ng-controller="MainCtrl">
 		<header>
 			<h1>WasteChase</h1>
 			<p> Chasing your Spending</p>
@@ -56,7 +84,7 @@
 			
 				<p>Ostu sisestamiseks täitke järgnevad väljad</p>
 				
-				<form method="POST" >
+				<form method="POST" action="dataAdd.php" >
 	
 					<div class="storeName" >
 						<label for="storeName" >Pood</label><br>
@@ -79,7 +107,21 @@
 					
 							<div class="singleInput">
 								<label>Kategooria</label><br>
-								<input name="category[]" type="text" >
+									<select name = "Category[]">
+										<option value="1">Saiad ja leivad</option>
+										<option value="2">Lihatooted</option>
+										<option value="3">Jahutooted</option>
+										<option value="4">Köögiviljad</option>
+										<option value="5">Kohv, tee ja kakao</option>
+										<option value="6">Kokkamismaterjalid</option>
+										<option value="7">Tervisetooted</option>
+										<option value="8">Köögitarbed</option>
+										<option value="9">Rämpstoit</option>
+										<option value="10">Hügieenitarbed</option>
+										<option value="14">Alkohol</option>
+										<option value="15">Tubakas</option>
+										<option value="16">Koduhooldus</option>
+									</select>
 							</div>
 							
 							<div class="singleInput">

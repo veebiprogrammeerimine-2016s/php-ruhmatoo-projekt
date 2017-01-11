@@ -55,7 +55,7 @@ CREATE TABLE WasteChase_Purchases(
 ID INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 AddedBY int(8),
 FromShop varchar(20),
-Created timestamp,
+Created DATE,
 FOREIGN KEY (AddedBY) REFERENCES WasteChase_User(ID)
 );
 

@@ -1,7 +1,7 @@
 <?php
 
 	require("../../config.php");
-
+	
 	session_start();
 
 	$database = "if16_kristarn";
@@ -9,7 +9,9 @@
 	
 	require("User.Class.php");
 	$User = new User($mysqli);
-
+	
+	require("Data.Class.php");
+	$Data = new Data($mysqli);
 
 	function cleanInput ($input) {
 		
