@@ -1,4 +1,48 @@
-# PHP rühmatöö projekt
+Nimi: IDEAS FOR WEBSITE PROJECT
+Liikmed: Anna Gubskaja, Mihhail Kuzmin
+Eesmärk: 
+	Luua veebisait nende inimeste jaoks, kes otsivad endale lihtsaid ja originaalseid veebilehtede ideid ning nendele, kes soovivad enda ideid pakkuda.
+	Selline veebisait oleks kasulik tulevatele tudengitele kes otsivad ideid projektide loomiseks, kuna me ise raiskasime palju aega selleks, et
+	leida huvitav idee enda projekti jaoks.
+Kirjeldus: 
+	Veebileht on suunatud kõigile inimestele, kes on huvitatud veebiprogrammeerimisest, aga peamine sihtrühm on Informaatika eriala üliõppilased.
+	Pakutud ideed ei pea olema väga keerulised, sest orienteeriv kasutajate sihtrühm ei ole veebiprogrammeerimises väga osakas.
+Funktsionaalsuse loetelu:
+	Leht 1 Signup ja login
+	Leht 2 Tabel pakutud ideedega
+	Leht 3 Kasutaja leht - võimalus valida lemmik programmeerimise keel või lisada enda oma
+	Aken 1 Idee lisamine - selle nimetus ja kirjeldus
+SQL-laused:
+	CREATE TABLE user_sample (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	email VARCHAR (255) UNIQUE,
+	password VARCHAR(180),
+	created timestamp,
+	nickname VARCHAR(180) UNIQUE);
+	
+	CREATE TABLE idea_description (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	idea VARCHAR(255) UNIQUE,
+	description TEXT,
+	deleted DATE,
+	user VARCHAR(255),
+	FOREIGN KEY user REFERENCES user_sample(email));
+	
+	CREATE TABLE user_level (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	level VARCHAR(255));
+	
+	CREATE TABLE user_levels (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	user_id INT,
+	level_id INT,
+	FOREIGN KEY user_id REFERENCES user_sample(id),
+	FOREIGN KEY level_id REFERENCES user_level(id));
+	
+Kokkuvõte:
+	Anna - õppisin juurde funktsioonide kirjutamist, bootstrapi kasutamist, parandasin ja täiendasin teadmisi SQL tabelite muutmise kohta.
+	Välja ei tulnud Edit-lehe funktsioneerimine ja submit-nupu loomine mis käituks nagu href ning samuti salvestaks sisestatud andmeid.
+	
+	Mihhail - õppisin juurde bootstrapi kasutamist. Välja ei tulnud hindamis-süsteemi loomine.
+	
+
+**************************************************************************************************************************************************************
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 
 ## Tööjuhend
@@ -43,3 +87,6 @@ git config user.email romilrobtsenkov@users.noreply.github.com
 * **Stiilijuhend:** [Coding Style Guide](http://www.php-fig.org/psr/psr-2/)
 * **GIT õpetus:** [Become a git guru.](https://www.atlassian.com/git/tutorials/)
 * **Abimaterjale:** [Veebirakenduste loomine PHP ja MySQLi abil](http://minitorn.tlu.ee/~jaagup/kool/java/loeng/veebipr/veebipr1.pdf), [PHP with MySQL Essential Training] (http://www.lynda.com/MySQL-tutorials/PHP-MySQL-Essential-Training/119003-2.html)
+
+
+asdsadasdsasds
