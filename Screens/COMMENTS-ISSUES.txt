@@ -1,0 +1,24 @@
+1. LOGIN & SIGN-UP
+	-Home button directs to News Feed. If User is not logged in, then it directs to Login & Sign-Up Screen.
+	-About Button directs user to About screen.
+	-On Login & Sign-Up screen user can sign-up by entering Username, E-mail and Password.
+	-User can log-in by entering E-mail or Username and Password. After Logging in user will be directed to News Feed (Home).
+
+2. ABOUT 
+	-On About screen user can read the story behind Jokker
+	-Home Button will direct User back to Home Screen
+
+3. HOME
+	-On Home screen will be shown different users Posts, username and Avatar. Options to see posts as New ones or Trending (Most Liked last hours).
+	-Every user can Like, Comment or Share those posts
+
+4. USER
+	-On User screen will be shown user personal information and posts or by Search other user profile and posts.
+
+5. SEARCH
+	-On Search Screen can every user search for other users
+
+6. POST
+	-On Post Screen user can post maximum 255 character text
+
+
