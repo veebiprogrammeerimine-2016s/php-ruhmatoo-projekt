@@ -10,7 +10,7 @@ sihtrühm: noored (vanus 16-30)
 
 sarnased lehed: http://www.kixify.com/ , https://stockx.com/sneakers
  * pildid esilehel
- * sort/filter, otsingu võimalused
+ * otsingu võimalused
  * sisselogimine
 
 
@@ -19,21 +19,20 @@ sarnased lehed: http://www.kixify.com/ , https://stockx.com/sneakers
 leht 1 - esileht (sneakermarket.php)
  * näha müügilolevad jalanõud piltidena (emaili ja muid kontaktandmeid ei ole näha kui ei logi sisse)
  * saab otsida mingite tunnuste alusel
- * logi sisse/loo kasutaja vorm
+ * link logi sisse/loo kasutaja vormile
 
-leht 2 - loo kasutaja (login.php)
+leht 2 - loo kasutaja (signup.php)
+
+leht 3 - logi sisse (login.php)
  
-leht 3 - kasutaja esimene leht sisselogimisel (sneakermarket.php)
+leht 4 - kasutaja esimene leht sisselogimisel (sneakermarket.php)
  * pmst sama mis leht 1
- * lisaks link oma profiilile, seda muuta jne
  * lisaks link/nupp kus lisada uus müük
 
-leht 4 - kasutaja profiil (profile.php)
- * lisada/valida lemmikbrändi
- * uuendada oma andmeid jne
+leht 5 - kasutaja kuulutused (myposts.php)
  * oma kuulutuste nägemine, nende muutmine, kustutamine
 
-leht 5 - kuulutuse lisamisvorm (data.php)
+leht 6 - kuulutuse lisamisvorm (createpost.php)
  * pildi lisamise võimalus
  * tootja/firma
  * jalasuurus
@@ -42,11 +41,11 @@ leht 5 - kuulutuse lisamisvorm (data.php)
  * seisukord (uus/kasutatud)
  * hind
  * meeste/naiste jalanõud
- * soovitud kontaktiviis
+ 
+leht 7 - kuulutuse muutmine,kustutamine (editpost.php)
 
-leht 6 - kellegi teise kuulutuse vaatamine ()
-
-(leht 7) - suhtlus/kommentaarid
+leht 7 - kellegi teise kuulutuse vaatamine (post.php)
+ kommenteerimine
 
 
  
