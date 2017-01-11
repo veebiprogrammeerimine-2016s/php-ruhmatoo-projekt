@@ -419,12 +419,31 @@ class Sneakers {
 /****** FUNKTSIOON ESILEHEL KUVATAVATE KUULUTUSTE ANDMETE JAOKS ******
 	sneakermarket.php
 */
-	function getAllPosts() {
+	function getAllPosts($q) {
 		
-		$stmt = $this->connection->prepare("SELECT i.postid, heading, brand, model, size, type, sneakercondition, price, description, name
-												FROM (SELECT * FROM sm_posts WHERE postcompleted IS NOT NULL) AS p
-												JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL) AS i ON p.id=i.postid
-												JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid");
+			
+		
+		
+		if($q==""){
+			$stmt=$this->connection->prepare("SELECT i.postid, heading, brand, model, size, type, sneakercondition, price, description, name
+				FROM (SELECT * FROM sm_posts WHERE postcompleted IS NOT NULL) AS p
+				JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL) AS i ON p.id=i.postid
+				JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid"
+		);
+		} else {
+			$searchword="%".$q."%";
+			$stmt=$this->connection->prepare("
+			SELECT * FROM (SELECT i.postid, heading, brand, model, size, type, sneakercondition, price, description, name
+			FROM (SELECT * FROM sm_posts WHERE postcompleted IS NOT NULL) AS p
+			JOIN (SELECT * FROM sm_postinfo WHERE postdeleted IS NULL) AS i ON p.id=i.postid
+			JOIN (SELECT * FROM sm_uploads WHERE primarypic = 1 AND picdeleted IS NULL) AS u ON p.id=u.postid) AS m
+			WHERE (heading LIKE ? OR brand LIKE ? OR model LIKE ? OR size LIKE ? OR price LIKE ?)
+		");
+		
+		$stmt->bind_param("sssss", $searchword, $searchword, $searchword, $searchword, $searchword);
+		
+		}
+		
 		echo $this->connection->error;
 		$stmt->bind_result($postid, $heading, $brand, $model, $size, $type, $condition, $price, $description, $imgname);
 		$stmt->execute();

@@ -15,10 +15,18 @@ require("../functions.php");
 
 
 
+if(isset($_GET["q"])){
+		
+		$q = $Helper->cleanInput($_GET["q"]);
+		
+		$allPosts = $Sneakers->getAllPosts($q);
+		
+	}else{
+		
+		$q="";
+		$allPosts = $Sneakers->getAllPosts($q);
 
-
-
-
+	}
 
 
 
@@ -42,7 +50,7 @@ require("../functions.php");
 
 // karl-erik
 
-$allPosts = $Sneakers->getAllPosts();
+//$allPosts = $Sneakers->getAllPosts();
 
 
 
@@ -55,8 +63,23 @@ $allPosts = $Sneakers->getAllPosts();
 
 require("../header.php");
 ?>
-
-
+<div class="col-sm-6 col-sm-offset-3">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form>
+				<div class="col-lg-12">
+					<div class="input-group">
+					  <input type="search" class="form-control" placeholder="Otsi" name="q" value="<?=$q;?>">
+					  <span class="input-group-btn">
+						<input class="btn btn-primary" type="submit" value="Otsi!" >
+					  </span>
+					</div>
+				  </div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 <!-- ****** KUVATAKSE KÕIKIDE KASUTAJATE POSTITUSED ****** -->
 <div class="container">
 <?php
