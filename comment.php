@@ -2,8 +2,15 @@
 
 	require("functions.php");
 	require("style/style.php");
+	require("style/pagestyle.php");
 	
-	$p = getsingleId($_GET["id"]);
+	//LOGOUT
+	if (isset($_GET["logout"])) {
+		session_destroy();
+		header("Location: loginpage.php");
+		exit();
+	}
+	
 	
 	//REGISTREERIMISE ANDMED
 	function send_comment($feedback){
@@ -62,50 +69,44 @@
 	}
 	
 	$people = show_comment();
+	
+	$p = getsingleId($_GET["id"]);
+	
 ?>
 
-<a href="homepage.php">Tagasi</a>
+<html>
+
+<body>
+	<ul>
+		<li><a class="active1" href="homepage.php">AVALEHT</a></li>
+		<li><a class="active" href="forumpage.php">FOORUM</a></li>
+		<li><a class="active1" href="userpage.php">MINU KASUTAJA</a></li>
+		<li><a class="active1" href="?logout=1">LOGI VÄLJA</a></li>
+	</ul>
+	
+<div style="page">
+
+
+<p class="down"> <a href="forumpage.php"> FOORUM </a> / KOMMENTAARID </p>
+
+<br><br>
 
 <?php 
 $html = "<table>";
-	
-	$html .= "<tr>";
-		$html .= "<th>Kategooria</th>";
-		$html .= "<th>Pealkiri</th>";
-		$html .= "<th>Kommentaar</th>";
-		$html .= "<th>Kellaaeg</th>";
-		$html .= "<th>Kasutaja</th>";	
-	$html .= "</tr>";
 
 	$html .= "<tr>";
-		$html .= "<td>".$p->category."</a></td>";
+		$html .= "<td>".$p->email."</td>";
 		$html .= "<td>".$p->headline."</td>";
 		$html .= "<td>".$p->comment."</td>";
-		$html .= "<td>".$p->created."</td>";
-		$html .= "<td>".$p->email."</td>";	
+		
 	$html .= "</tr>";
 
 $html .= "</table>";
 echo $html
 ?>
 
-
-<html>
-	<body>
+<br><br>	
 	
-	<form method="POST">
-	
-	<!--FEEDBACK-->
-	<label for="feedback">Tagasiside:</label><br>
-	<input name="feedback" type="text1" placeholder="Jäta tagasiside">
-	
-	<br><input type="submit" value="Saada"></br>
-	
-	</form>
-	
-	</body>
-</html>
-
 <?php 
 $html1 = "<table>";
 	foreach ($people as $p) {
@@ -117,3 +118,22 @@ $html1 = "<table>";
 $html1 .= "</table>";
 echo $html1
 ?>
+
+<center>
+	<form method="POST">
+	
+	<!--FEEDBACK-->
+	<input name="feedback" class="text" placeholder="Jäta kommentaar">
+	
+	<br><input type="submit"  class="submit submit1" value="Saada"></br>
+
+	</form>
+</center>
+
+<br><br>
+<p class="down"></p>
+
+
+</div>
+</body>
+</html>

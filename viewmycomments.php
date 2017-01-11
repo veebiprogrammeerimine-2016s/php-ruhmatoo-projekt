@@ -33,12 +33,14 @@
 $html = "<table>";
 	
 	$html .= "<tr>";
+		$html .= "<th>Postituse NR</th>";
 		$html .= "<th>Kommentaarid</th>";
 		$html .= "<th></th>";		
 	$html .= "</tr>";
 	
 	foreach ($comments as $p) {
 	$html .= "<tr>";
+		$html .= "<td>".$p->comment_id."</a></td>";
 		$html .= "<td>".$p->feedback."</a></td>";
 	$html .= "<td><a href='editmycomments.php?id=".$p->id."'>Muuda</a></td>";
 	}

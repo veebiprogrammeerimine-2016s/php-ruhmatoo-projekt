@@ -50,6 +50,8 @@
 		width: 100%;
 		
 	}
+	
+	tr:nth-child(even){background-color: #f3f3f3}
 
 	th {
 		height: 50px;

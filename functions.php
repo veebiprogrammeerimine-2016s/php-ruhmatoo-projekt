@@ -220,18 +220,19 @@
 		$GLOBALS["database"]);
 		
 		$stmt = $mysqli->prepare("
-		SELECT id, feedback
+		SELECT id, feedback, comment_id
 		FROM grupp_comment
 		WHERE email_id = ?
 		");
 		$stmt->bind_param("s", $_SESSION["userEmail"]);
-		$stmt->bind_result($id,$feedback);
+		$stmt->bind_result($id,$feedback,$comment_id);
 		$stmt->execute();
 		$results = array();
 		
 		while ($stmt->fetch()) {
 			$human = new StdClass();
 			$human->id = $id;
+			$human->comment_id = $comment_id;
 			$human->feedback = $feedback;
 			array_push($results, $human);	
 		}

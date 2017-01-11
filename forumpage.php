@@ -27,7 +27,7 @@
 
 <div style="page">
 
-<p class="down"> FOORUM </p>
+<p class="down"> <a href="forumpage.php"> FOORUM </a> </p>
 
 <table class="table1">
 	
@@ -53,6 +53,7 @@
 $html = "<table>";
 	
 	$html .= "<tr>";
+		$html .= "<th>Postituse NR</th>";
 		$html .= "<th>Kasutaja</th>";
 		$html .= "<th>Pealkiri</th>";
 		$html .= "<th>Kategooria</th>";
@@ -63,6 +64,7 @@ $html = "<table>";
 	
 	foreach ($people as $p) {
 	$html .= "<tr>";
+		$html .= "<td>".$p->id."</td>";
 		$html .= "<td>".$p->email."</td>";
 		$html .= "<td>".$p->headline."</td>";
 		$html .= "<td>".$p->category."</a></td>";
