@@ -1,6 +1,5 @@
 <?php
 Class Data {
-
 		private $connection;
 		
 			function __construct($mysqli) {
@@ -70,14 +69,11 @@ Class Data {
 							echo "edukalt sisestatud";
 						
 						
-
 						
 					} else { 
-
 					echo "ei suutnud Ostu ID-d kätte saada";
 				
 					}				
-
 			} else {
 				
 				echo "ei saanud sisestada ostu infot";
@@ -85,5 +81,109 @@ Class Data {
 			}
 	
 		}
-}
+		
+				function showPurchases() {
+				 
+		
+			$stmt = $this->connection->prepare("
+			
+				SELECT FromShop, Date, Checknumber
+				FROM WasteChase_Purchases
+				Where AddedBY = ?
+				");
+			
+			$stmt->bind_param("i", $_SESSION["userID"]);
+			
+			$stmt->bind_result($Shop, $Date, $Check);
+		
+			$stmt->execute();
+			
+			$table1 = array();
+			
+			// tsüklit tehakse nii mitu korda, mitu rida sql lausega tuleb.			
+			while ($stmt->fetch()) {
+				
+				$purchase = new StdClass();
+				$purchase->shop = $Shop;
+				$purchase->shopdate = $Date;
+				$purchase->check = $Check;
+			
+					//echo $color."<br>";
+					array_push($table1, $purchase);
+					
+			}
+
+			return $table1;
+			
+		}
+	
+		
+		function showPurchaseContents() {
+			$stmt = $this->connection->prepare("
+			
+				SELECT ProductName, ProductPrice, CategoryID
+				FROM WasteChase_PurchaseContents
+				Where AddedBY = ?
+				");
+			
+			$stmt->bind_param("i", $_SESSION["userID"]);
+			
+			$stmt->bind_result($Product, $Price, $Category);
+		
+			$stmt->execute();
+			
+			$table2 = array();
+			
+			$Categories = array();
+			
+			while ($stmt->fetch()) {
+				
+				$purchaseContents = new StdClass();
+				$CategoryTable = new StdClass();
+				$purchaseContents->product = $Product;
+				$purchaseContents->price = $Price;
+				$CategoryTable->id = $Category;
+			
+					//echo $color."<br>";
+					array_push($table2, $purchaseContents);
+					
+			}
+			
+			return $table2;
+			
+			$stmt->close();
+			
+		
+		
+
+			for($i=0;$i<count($CategoryTable);$i++){
+				$stmt = $this->connection->prepare("
+				
+				Select ID, Category
+				FROM WasteChase_Categories
+				Where ID = ?
+				
+				");
+				
+				$stmt->bind_param("i", $_SESSION["userID"]);
+				
+				$stmt->bind_result($CategoryName);
+				
+				$stmt->execute();
+				
+			}
+			while ($stmt->fetch()) {
+				
+				$CategoryTable->categoryname = $CategoryName;
+			
+					//echo $color."<br>";
+					array_push($Categories, $CategoryTable);
+					
+			}
+			
+			return $Categories;
+			
+		}
+		
+}//classi lõpp
 ?>
