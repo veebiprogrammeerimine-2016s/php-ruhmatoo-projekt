@@ -8,6 +8,32 @@
         $this->connection = $mysqli;
 
     }
+
+    function getOrdersByOwnerId($id) {
+        $time = date("d.m.Y H:i");
+        $stmt = $this->connection->set_charset("utf8");
+        $stmt = $this->connection->prepare("SELECT p_orders.id, p_orders.name, p_orders.phone, p_orders.carnumber, p_orders.booktime FROM p_tyre_fittings JOIN p_orders ON p_orders.tyre_fitting_id = p_tyre_fittings.id WHERE p_tyre_fittings.owner_id = ? AND booktime > ? ORDER BY booktime DESC");
+        $stmt->bind_param("is", $id, $time);
+        $stmt->bind_result($id, $name, $phone, $carNumber, $booktime);
+        $stmt->execute();
+
+        $orders = array();
+
+        while ($stmt->fetch()) {
+            $order = new StdClass();
+            $order->id = $id;
+            $order->name = $name;
+            $order->phone = $phone;
+            $order->carNubmer = $carNumber;
+            $order->booktime = $booktime;
+            array_push($orders, $order);
+        }
+
+        $stmt->close();
+        return $orders;
+    }
+
+
     function getOrders($id)
     {
         $stmt = $this->connection->set_charset("utf8");

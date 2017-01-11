@@ -5,7 +5,7 @@
                 <a class="nav-link" href="data.php">Main page <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Schedule <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="orders.php">Schedule <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <a class="navbar-brand pull-sm-right m-r-0 hidden-sm-down" href="http://www.tlu.ee">Presented by TLÜ

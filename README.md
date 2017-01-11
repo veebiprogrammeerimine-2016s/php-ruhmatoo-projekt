@@ -109,7 +109,7 @@ Mida oppisid jurde? Mis ebaonnestus? Mis oli raske?
 	*Stas: Õppisin kuidas kasutada Bootstrap, jquery / js.
 		Kõige raskem minu jaoks oli gruppis töötada.
 	
-	*Pjotr:
+	*Pjotr: PHP suntaksi.
 
 
 

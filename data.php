@@ -1,17 +1,29 @@
 <?php
+    require("functions.php");
+    require("classes/tyrefitting_class.php");
 
-require("functions.php");
+    if (!isset($_SESSION["userId"])){
+            header("Location: index.php");
+            exit();
+        }
 
-if (!isset($_SESSION["userId"])){
-		header("Location: index.php");
-		exit();
-	}
+    if (isset($_GET["logout"])) {
+            session_destroy();
+            header("Location: index.php");
+            exit();
+        }
 
-if (isset($_GET["logout"])) {
-		session_destroy();
-		header("Location: index.php");
-		exit();
-	}
+    $TyreFitting = new TyreFitting($mysqli);
+    $tyreFittings = $TyreFitting->getTyreFittingsByOwnerId($_SESSION["userId"]);
+
+    if (isset($_GET['delete'])) {
+        $deleteID = $_GET['delete'];
+        $delteQuery = new TyreFitting($mysqli);
+        $deleted = $delteQuery->removeTyreFitter($deleteID);
+        if ($deleted == "ok") {
+            header("Refresh:0");
+        }
+    }
 
 ?>
 <!doctype html>
@@ -32,27 +44,46 @@ if (isset($_GET["logout"])) {
     <?php require("office-nav.php") ?>
 
     <div class="container" style="margin-top:150px;">
+
+        <div class="row" style="margin-bottom: 50px;">
+            <div class="col-md-offset-8 col-md-4">
+                <a href="addNewTyreFitter.php" type="button" class="btn btn-primary" style="float: right">Add new</a>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-sm">
                     <thead>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Working time</th>
                         <th colspan="2"></th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Sample tire fitter name</td>
-                            <td>8:00-20:00</td>
-                            <td><i class="fa fa-gear"></i></td>
-                            <td><i class="fa fa-trash-o"></i></td>
-                        </tr>
+                        <?php
+                        $html = "";
+                        if ($tyreFittings != null) {
+                            foreach ($tyreFittings as $key => $tyreFitting) {
+                                $key+=1;
+                                $html .= "<tr>";
+                                $html .= "<td>".$key."</td>";
+                                $html .= "<td>".$tyreFitting->name."</td>";
+                                $html .= "<td data-id='$tyreFitting->id'><i class='fa fa-gear'></i></td>";
+                                $html .= "<td data-id='$tyreFitting->id'><i class='fa fa-trash-o'></i></td>";
+                                $html .= "</tr>";
+                            }
+                        } else {
+                            $html .= "<tr><td style='text-align: center' colspan='4'>Teil ei ole ühtegi rehvivahetus punkti</td></tr>";
+                        }
+                        echo $html;
+                        ?>
                     </tbody>
                 </table>
             </div>
         </div>
+
+
+
 
     </div>
 
@@ -67,12 +98,16 @@ if (isset($_GET["logout"])) {
     <script>
         $(function () {
             $('.fa-gear').click(function (e) {
-                window.location.href = "tyre-fitter.php?id=1";
+                var id = $(this).parent().data('id');
+                window.location.href = "tyre-fitter.php?id=" + id;
             });
 
             $('.fa-trash-o').click(function (e) {
+                var id = $(this).parent().data('id');
                 bootbox.confirm('Are you sure?', function (resonse) {
-                    console.log(resonse);
+                    if (resonse) {
+                        $.get("data.php?delete=" + id);
+                    }
                 });
             });
 
