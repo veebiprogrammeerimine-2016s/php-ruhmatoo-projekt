@@ -32,6 +32,38 @@ CREATE TABLE posts (
 	FOREIGN KEY(poster) REFERENCES user(user_id)
 );
 
+CREATE TABLE IF NOT EXISTS `pictures_animals_output_images` (
+  `imageId` tinyint(3) NOT NULL AUTO_INCREMENT,
+  `imageType` varchar(25) NOT NULL DEFAULT '',
+  `imageData` mediumblob NOT NULL,
+  PRIMARY KEY (`imageId`)
+);
+ 
+ CREATE TABLE IF NOT EXISTS `gifs_animals_output_images` (
+  `imageId` tinyint(3) NOT NULL AUTO_INCREMENT,
+  `imageType` varchar(25) NOT NULL DEFAULT '',
+  `imageData` mediumblob NOT NULL,
+  PRIMARY KEY (`imageId`)
+);
 
+ CREATE TABLE IF NOT EXISTS `gifs_art_output_images` (
+  `imageId` tinyint(3) NOT NULL AUTO_INCREMENT,
+  `imageType` varchar(25) NOT NULL DEFAULT '',
+  `imageData` mediumblob NOT NULL,
+  PRIMARY KEY (`imageId`)
+);
 
+ CREATE TABLE IF NOT EXISTS `gifs_nature_output_images` (
+  `imageId` tinyint(3) NOT NULL AUTO_INCREMENT,
+  `imageType` varchar(25) NOT NULL DEFAULT '',
+  `imageData` mediumblob NOT NULL,
+  PRIMARY KEY (`imageId`)
+);
 
+ CREATE TABLE IF NOT EXISTS `pictures_nature_output_images` (
+  `imageId` tinyint(3) NOT NULL AUTO_INCREMENT,
+  `imageType` varchar(25) NOT NULL DEFAULT '',
+  `imageData` mediumblob NOT NULL,
+  PRIMARY KEY (`imageId`)
+);
+ 
