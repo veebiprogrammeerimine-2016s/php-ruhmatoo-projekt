@@ -1,45 +1,49 @@
-# PHP rühmatöö projekt
-**Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
+# TireJack
 
-## Tööjuhend
-1. Üks rühma liikmetest _fork_'ib endale käesoleva repositooriumi ning annab teistele kirjutamisõiguse/ligipääsu (_Settings > Collaborators_)
-1. Muudate vastavalt _git config_'ut
-```
-git config user.name "Romil Robtsenkov"
-git config user.email romilrobtsenkov@users.noreply.github.com
-```
-1. Üks rühma liikmetest teeb esimesel võimaluse _Pull request_'i (midagi peab olema repositooriumis muudetud)
-1. Muuda repositooriumi README.md faili vastavalt nõutele
-1. Tee valmis korralik veebirakendus
+![Alt text](img/rehv.png?raw=true "Home")
 
-### Nõuded
+## Rühma liikmed
 
-1. **README.md sisaldab:**
-    * suurelt projekti nime;
-    * suurelt projekti veebirakenduse pilt;
-    * rühma liikmete nimed;
-    * eesmärki (3-4 lauset, mis probleemi üritate lahendada);
-    * kirjeldus (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta);
-    * funktsionaalsuse loetelu prioriteedi järjekorras, nt
-        * v0.1 Saab teha kasutaja ja sisselogida
-        * v0.2 Saab lisada huviala
-        * ...
-    * andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
-    * **kokkuvõte:** mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
+Kristjan Liiva ja Kert Aavik
 
+## Eesmärk
 
-2. **Veebirakenduse nõuded:**
-    * rakendus on terviklik (täidab mingit funktsiooni ja sellega saab midagi teha);
-    * terve arenduse ajal on kasutatud _git_'i ja _commit_'ide sõnumid annavad edasi tehtud muudatuste sisu; 
-    * kasutusel on vähemalt 6 tabelit;
-    * kood on jaotatud klassidesse;
-    * koodis kasutatud muutujad/tabelid on inglise keeles;
-    * rakendus on piisava funktsionaalsusega ja turvaline;
-    * kõik tiimi liikmed on panustanud rakenduse arendusprotsessi.
+Kuna rehvivahetusega on pidevalt probleeme(pikad järjekorrad näiteks), siis on meie veebirakenduse
+eesmärgiks pakkuda võimalust kõige kiiremaks rehvivahetuseks.
 
-## Abiks
-* **Testserver:** greeny.cs.tlu.ee, [tunneli loomise juhend](http://minitorn.tlu.ee/~jaagup/kool/java/kursused/09/veebipr/naited/greenytunnel/greenytunnel.pdf)
-* **Abiks tunninäited (rühmade lõikes):** [I rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-I-ruhm), [II rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-II-ruhm), [III rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-III-ruhm)
-* **Stiilijuhend:** [Coding Style Guide](http://www.php-fig.org/psr/psr-2/)
-* **GIT õpetus:** [Become a git guru.](https://www.atlassian.com/git/tutorials/)
-* **Abimaterjale:** [Veebirakenduste loomine PHP ja MySQLi abil](http://minitorn.tlu.ee/~jaagup/kool/java/loeng/veebipr/veebipr1.pdf), [PHP with MySQL Essential Training] (http://www.lynda.com/MySQL-tutorials/PHP-MySQL-Essential-Training/119003-2.html)
+## Kirjeldus
+
+Sihtrühmaks on kõik inimesed (olenemata vanusest), kellel on olemas juhiload ning sõiduk (Kaubik, maastur jne). Eripäraks
+meie veebirakenduse juures on see, et me pakume välja kõige kiirema aja inimestele (olenemata asukohast).
+
+## Funktsionaalsuse loetelu
+
+v0.1 Saab esilehel tagasisidet anda
+v0.2 Saab broneerida aega (algne olek - puudub veel kalendri salvestus)
+v0.3 Tagasiside nyyd eralide lehena (Pääseb ligi broneeringu lehelt)
+v0.4 Saab Broneeringu salvestada andmebaasi (Double bookingu probleem)
+v0.5 Saab broneeringuid näha ning kustutada (võimalik lahendus Double bookingu probleemile - sest admin saaks kustutada yleliigsed broneeringud)
+
+## Andmebaasi skeem pildina + tabelite loomise SQL laused
+
+CREATE TABLE Reservation_Data(
+id INT AUTO_INCREMENT PRIMARY KEY,
+Registration_Nr TEXT,
+Veichle_Type TEXT,
+Car_Brand TEXT,
+Car_Model TEXT,
+Telephone_Nr INT(11),
+Reserved_Date VARCHAR(50),
+Reserved_Time VARCHAR(50),
+deleted INT(11) NULL
+);
+
+![Alt text](img/Andmebaas.png?raw=true "Andmebaas")
+
+## Kokkuvõte
+
+Algselt oli plaan teha ka kasutaja loomise leht aga sellleni ei jõudnud ning näha oli ka, et selle jaoks puudus
+eriline vajadus, sest põhiline rõhk oli broneerimislehel. Projekt oli oodatust suurem ning seetõttu tekitas see ka raskusi.
+Edasi oleks seda veebirakendust võimalik ka arendada - lisades juurde näiteks otsingu meetodi erirehvide jaoks või kasutaja loomise lehe ning kasutaja isikliku lehe,
+et oleks kergem broneerimisvormi täita.
+
