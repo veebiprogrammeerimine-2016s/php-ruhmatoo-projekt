@@ -8,15 +8,15 @@
 	$User = new User($mysqli);
 	
 	// kui kasutaja on sisseloginud, siis suuna data lehele
-	if(isset ($_SESSION["userId"])) {
-		header("Location: data.php");
+	/*if(isset ($_SESSION["userId"])) {
+		header("Location: edit.php");
 		exit();
-	}
+	}/*
 	//var_dump($_GET);
 	//echo "<br>";
 	//var_dump($_POST);
 		
-	$signupEmailError = "";
+	/*$signupEmailError = "";
 	$signupEmail = "";
 	
 	//kas on üldse olemas
@@ -93,7 +93,7 @@
 		//kutsun funktsiooni, et salvestada
 		$User->signup($signupEmail, $password);
 		
-	}	
+	}*/	
 	
 	
 	$notice = "";
@@ -106,7 +106,7 @@
 		$notice = $User->login($_POST["loginEmail"], $_POST["loginPassword"]);
 		
 		if(isset($notice->success)){
-			header("Location: login.php");
+			header("Location: edit0.php");
 			exit();
 		}else {
 			$notice = $notice->error;
@@ -116,7 +116,7 @@
 	}
 	
 ?>
-<?php require("../header.php"); ?>
+
 
 <div class="container">
 	<div class="row">
@@ -144,13 +144,13 @@
 				<br>
 				
 				<input class="btn btn-success btn-sm hidden-xs" type="submit" value="Sign in">
-				<input class="btn btn-success btn-sm btn-block visible-xs-block" type="submit" value="Sign in">
+				
 			
 			</form>
 		</div>
 		<div class="col-sm-4 col-md-3 col-sm-offset-4 col-md-offset-3"> </div>
 		
-		
+<!--		
 	<div class="container">
 		<div class="row">
 		
@@ -207,6 +207,6 @@
 		
 	</div>
 </div>
+-->
 
-<?php require("../footer.php"); ?>
 

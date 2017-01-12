@@ -48,7 +48,7 @@ class User {
 				$_SESSION["userId"] = $id;
 				$_SESSION["userEmail"] = $emailFromDb;
 				
-				header("Location: data.php");
+				header("Location: edit0.php");
 				exit();
 			} else {
 				$notice = "Vale parool!";

@@ -9,16 +9,17 @@ class Note {
 	}
 	
    
-    function saveNote($paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info) {
+    function saveNote($paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info, $rma, $status) {
+		
 		
 		$stmt = $this->connection->prepare("INSERT INTO repairing (paid_warranty, serialnumber, device, manufacturer , model, date_of_purchase, first_lastname,
-										   country, city, address, postcode, email, number, problem, add_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+										   country, city, address, postcode, email, number, problem, add_info, rma,status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
 		echo $this->connection->error;
 		
-		$stmt->bind_param("ssssssssssisiss", $paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info);
+		$stmt->bind_param("ssssssssssisissss", $paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info, $rma, $status);
 
 		if ( $stmt->execute() ) {
-			echo "salvestamine õnnestus";	
+			echo "";	
 		} else {	
 			echo "ERROR ".$stmt->error;
 		}
@@ -47,32 +48,36 @@ class Note {
 		//otsime
 		if($q != "") {
 			
-			echo "Searching... ".$q;
+//			echo "Searching... ".$q;
 			
 			$stmt = $this->connection->prepare("
 				SELECT id, paid_warranty, serialnumber, device, manufacturer , model, date_of_purchase, first_lastname,
-				country, city, address, postcode, email, number, problem, add_info
+				country, city, address, postcode, email, number, problem, add_info, rma, status
 				FROM repairing
 				WHERE deleted IS NULL
-				AND (serialnumber LIKE ?)
+				AND (id LIKE ? OR paid_warranty LIKE ? OR serialnumber LIKE ? OR device LIKE ? OR manufacturer LIKE ? OR model LIKE ? OR date_of_purchase LIKE ? OR
+				first_lastname LIKE ? OR country LIKE ? OR city LIKE ? OR postcode LIKE ? OR email LIKE ? OR number LIKE ? OR problem LIKE ? OR add_info LIKE ? OR rma LIKE ? OR status LIKE ?)
 				ORDER BY $sort $orderBy
 			");
 			$searchWord = "%".$q."%";
-			$stmt->bind_param("ssssssssssisiss", $searchWord);
+			$stmt->bind_param("issssssssssisisss", $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, 
+							  $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord, $searchWord);
 		
 		}else{
 			//ei otsi
 			$stmt = $this->connection->prepare("
 				SELECT id, paid_warranty, serialnumber, device, manufacturer , model, date_of_purchase, first_lastname,
-				country, city, address, postcode, email, number, problem, add_info
+				country, city, address, postcode, email, number, problem, add_info, rma, status
 				FROM repairing
 				WHERE deleted IS NULL
 				ORDER BY $sort $orderBy
 			");
 		}
 		
-		$stmt->bind_result($id, $paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info);
+		$stmt->bind_result($id, $paid_warranty, $serialnumber, $device, $manufacturer, 
+						   $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info, $rma, $status);
 		$stmt->execute();
+		
 		
 		$result = array();
 		
@@ -98,6 +103,8 @@ class Note {
 			$object->number = $number;
 			$object->problem = $problem;
 			$object->add_info = $add_info;
+			$object->rma = $rma;
+			$object->status= $status;
 		
 			
 			
@@ -105,7 +112,7 @@ class Note {
 			array_push($result, $object);
 			
 		}
-		
+
 		return $result;
 		
 	}
@@ -113,10 +120,11 @@ class Note {
 	function getSingleNoteData($edit_id){
     		
 		$stmt = $this->connection->prepare("SELECT paid_warranty, serialnumber, device, manufacturer , model, date_of_purchase, first_lastname,
-										   country, city, address, postcode, email, number, problem, add_info FROM repairing WHERE id=? AND deleted IS NULL");
+										   country, city, address, postcode, email, number, problem, add_info, rma, status FROM repairing WHERE id=? AND deleted IS NULL");
 
 		$stmt->bind_param("i", $edit_id);
-		$stmt->bind_result($paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info);
+		$stmt->bind_result($paid_warranty, $serialnumber, $device, $manufacturer, $model, 
+						   $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info, $rma, $status);
 		$stmt->execute();
 		
 		//tekitan objekti
@@ -140,6 +148,8 @@ class Note {
 			$n->number = $number;
 			$n->problem= $problem;
 			$n->add_info = $add_info;
+			$n->rma = $rma;
+			$n->status = $status;
 			
 			
 		}else{
@@ -156,11 +166,14 @@ class Note {
 	}
 
 
-	function updateNote($paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info){
+	function updateNote($id, $paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, 
+						$first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info, $rma, $status){
 				
 		$stmt = $this->connection->prepare("UPDATE repairing SET paid_warranty=?, serialnumber=?, device=?, manufacturer=?, model=?, date_of_purchase=?, first_lastname=?,
-				country=?, city=?, address=?, postcode=?, email=?, number=?, problem=?, add_info=? WHERE id=? AND deleted IS NULL");
-		$stmt->bind_param("ssssssssssisissi", $paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info, $id);
+				country=?, city=?, address=?, postcode=?, email=?, number=?, problem=?, add_info=?, rma=?, status=? WHERE id=? AND deleted IS NULL");
+				
+		$stmt->bind_param("ssssssssssisissssi", $paid_warranty, $serialnumber, $device, $manufacturer, $model, $date_of_purchase, 
+						  $first_lastname, $country, $city, $address, $postcode, $email, $number, $problem, $add_info, $rma, $status, $id);
 		
 		// kas õnnestus salvestada
 		if($stmt->execute()){
@@ -191,6 +204,7 @@ class Note {
 		$stmt->close();
 		
 	}
+
 	
 } 
 ?>
