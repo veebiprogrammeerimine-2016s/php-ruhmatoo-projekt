@@ -14,8 +14,7 @@
 
 	$R = GetSingleData($_GET["id"]);
 ?>
-
-<h2>Kontrollige, kas see on broneering, mille tahate kustutada</h2>
+<h2>Kontrollige, kas see on broneering, mille tahate kustutada</h2><br>
 	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 		<input type="hidden" name="id" value="<?=$_GET["id"];?>">
 		<label for="car_model">Mudel</label><br>
@@ -31,5 +30,5 @@
 		
 	</form>
 
-<a href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a><br>
-<a href="EditReservations.php">Tagasi</a>
+<a class="btn btn-primary" href="?id=<?=$_GET["id"];?>&delete=true">Kustuta</a><br><br>
+<a class="btn btn-primary" href="EditReservations.php">Tagasi</a>

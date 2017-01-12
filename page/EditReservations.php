@@ -51,6 +51,6 @@
 
 <br><br>
 
-<a href="Reservations.php">Tagasi Broneerima</a><br>
-<a href="index.html">Avaleht</a>
+<a class="btn btn-primary" href="Reservations.php">Tagasi Broneerima</a><br>
+<a class="btn btn-primary" href="index.html">Avaleht</a>
 

@@ -284,9 +284,10 @@
 			<br><br>
 			
 			<input type="submit" value="Broneeri" class="btn btn-primary">
-			
-			<input type="button" onClick="parent.open('../tagasiside.html')" value='Tagasiside' >
-			<input type="button" onClick="parent.open('EditReservations.php')" value='Broneeringud' >
+			<a class="btn btn-primary" href="EditReservations.php">Borneeringud</a>
+			<a class="btn btn-primary" href="../tagasiside.html">Tagasiside</a>
+
+
 		
 			<br><br>			
 		</form>
