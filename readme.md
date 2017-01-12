@@ -93,6 +93,7 @@ SQL laused:
 	);
 	
 Kokkuvõtte:
+	
 	Regina - Tegelesin disainiga, kirjutasin funktsioonid nagu generatePassword(), parandasin vigu andmete salvestamise kohta andmebaasile.
 	
 	Edgar - luuasin andmebaas "repairing" ja "logindata", tegin et edit page andis parandada andmed, luuasin HTML tabeli, tegin "search".
