@@ -22,6 +22,7 @@ v0.1 Saab esilehel tagasisidet anda
 v0.2 Saab broneerida aega (algne olek - puudub veel kalendri salvestus)
 v0.3 Tagasiside nyyd eralide lehena (Pääseb ligi broneeringu lehelt)
 v0.4 Saab Broneeringu salvestada andmebaasi (Double bookingu probleem)
+v0.5 Saab broneeringuid näha ning kustutada (võimalik lahendus Double bookingu probleemile - sest admin saaks kustutada yleliigsed broneeringud)
 
 ## Andmebaasi skeem pildina + tabelite loomise SQL laused
 
@@ -33,7 +34,8 @@ Car_Brand TEXT,
 Car_Model TEXT,
 Telephone_Nr INT(11),
 Reserved_Date VARCHAR(50),
-Reserved_Time VARCHAR(50)
+Reserved_Time VARCHAR(50),
+deleted INT(11) NULL
 );
 
 ![Alt text](img/Andmebaas.png?raw=true "Andmebaas")

@@ -7,7 +7,14 @@
 	$Reservation = GetAllReservations();
 
 ?>
+<section>
 
+
+</section>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
 <?php
 
 	$html = "<table class='table-bordered'>";
@@ -51,6 +58,9 @@
 
 <br><br>
 
-<a class="btn btn-primary" href="Reservations.php">Tagasi Broneerima</a><br>
 <a class="btn btn-primary" href="index.html">Avaleht</a>
+<a class="btn btn-primary" href="Reservations.php">Tagasi Broneerima</a><br>
 
+		</div>
+	</div>
+</div>

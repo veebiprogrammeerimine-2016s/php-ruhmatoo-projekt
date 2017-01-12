@@ -284,13 +284,12 @@
 			<br><br>
 			
 			<input type="submit" value="Broneeri" class="btn btn-primary">
-			<a class="btn btn-primary" href="EditReservations.php">Borneeringud</a>
+			<a class="btn btn-primary" href="EditReservations.php">Broneeringud</a>
 			<a class="btn btn-primary" href="../tagasiside.html">Tagasiside</a>
-
-
 		
-			<br><br>			
+			
+			<br><br>
+			
 		</form>
-
 	</body>
 </html>
