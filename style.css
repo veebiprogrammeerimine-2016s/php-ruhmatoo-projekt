@@ -1,0 +1,83 @@
+#wrapper {  
+	width: 100%;  
+	/*width: expression((documentElement.clientWidth||document.body.clientWidth)<995?'1000px':'');*/
+	min-width: 1000px;  
+}
+#header {
+	height: 500px;
+	background: url("img/gg.jpg") ;
+	background-size: 200px;
+	
+}
+
+#container {
+	width: 100%;
+	
+}
+#content {  
+	background:url("img/lol.jpg") ;
+	width: 100%;
+	float: left;
+	background-color:#76D3C7;
+}  
+#text {
+	color: white;
+	margin: 0 250px;
+	padding: 7px;
+	/*background-color:yellow;*/
+}  
+#left {  
+	background-image: url("img/lol.jpg");
+	float: left; 
+	height:400px;
+	width: 250px;  
+	margin-left: -100%;
+	/*background-color:#C0F8F1;*/
+}  
+.buttons{
+margin: auto auto;
+width: 180px;
+margin-top: 20px;
+
+}
+
+div.b_home {
+width:180px;
+height:28px;
+background: url("img/knopki.png") 0px 0px no-repeat; 
+}
+div.b_home:hover{
+background: url("img/knopki.png") 0px -28px no-repeat; 
+}
+div.b_photos{
+width:180px;
+height:28px;
+background: url("img/knopki.png") 0px -56px no-repeat; 
+}
+div.b_photos:hover{
+background: url("img/knopki.png") 0px -84px no-repeat; 
+}
+div.b_videos{
+width:180px;
+height:28px;
+background: url("img/knopki.png") 0px -112px no-repeat; 
+}
+div.b_videos:hover{
+background: url("img/knopki.png") 0px -140px no-repeat; 
+}
+div.b_games{
+width:180px;
+height:28px;
+background: url("img/knopki.png") 0px -168px no-repeat; 
+}
+div.b_games:hover{
+background: url("img/knopki.png") 0px -196px no-repeat; 
+}
+div.b_contact{
+width:180px;
+height:28px;
+background: url("img/knopki.png") 0px -224px no-repeat; 
+}
+div.b_contact:hover{
+background: url("img/knopki.png") 0px -252px no-repeat; 
+}

@@ -1,0 +1,102 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html {
+	height: 100%;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+	display: block;
+}
+body {
+	font: 12px/18px Arial, sans-serif;
+	height: 100%;
+
+	
+}
+.wrapper {
+	width: 100%;
+	
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	background-image: url("patter.jpg");
+}
+
+
+/* Header
+-----------------------------------------------------------------------------*/
+.header {
+	height: 150px;
+	background: #232323;
+	box-shadow: inset 0px 0px 60px 40px rgba(0,0,0,0.9);
+	
+}
+
+table{
+border-spacing: 100px 0px;
+text-align: center;
+margin:auto;
+	
+}
+
+
+.linkstyle{
+position: center;
+padding: 10px 0px 0px 90px;
+}
+.admin{
+position:left;
+}
+
+a{
+text-decoration: none;
+font-size: 17px ;	
+text-shadow: 1px 1px #2B0101;
+}
+
+a:hover{
+font-weight: bold;
+text-shadow: 1px 1px #2B0101;
+}
+
+.menu {
+	min-height: 20px;
+	background: white;
+	box-shadow: 2px 2px 15px 1px #000;
+	z-index:auto;
+	height: auto !important;
+	height: 100%;
+}
+
+/* Middle
+-----------------------------------------------------------------------------*/
+
+}
+.container {
+	width: 100%;
+	float: left;
+	overflow: hidden;
+	margin:auto;
+}
+.content {
+	margin:auto;
+	min-height: 1000px;
+	height: auto !important;
+	height: 100%;
+	max-width: 70%;
+	margin-top: 2%;
+	box-shadow: 0px 0px 160px 0px ;
+	border-radius: 10px;
+	position: relative;
+	z-index:auto;
+}
+
+
+/* Right Sidebar
+-----------------------------------------------------------------------------*/
+
+
+
+/* Footer
+-----------------------------------------------------------------------------*/
