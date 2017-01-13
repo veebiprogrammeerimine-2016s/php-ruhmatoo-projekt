@@ -17,10 +17,10 @@
 	$User = new User($mysqli);
 
 	//kui on sisse loginud siis suunan data lehele
-	if(isset($_SESSION["userId"])){
+	/*if(isset($_SESSION["userId"])){
 		header("Location: data.php");
 		exit();
-	}
+	}*/
 
 	//kui tahab kasutajat luua siis suuna signup lehele
 	/*if(isset(                            )){

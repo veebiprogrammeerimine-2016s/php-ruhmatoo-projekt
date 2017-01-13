@@ -66,20 +66,20 @@
 	//echo"<pre>";
 	//var_dump($people[1]);
 	//echo"</pre>";
-	
-	
+
+
 	//kontrollin kas tühi
-		if ( isset($_POST["username"]) && 
+		if ( isset($_POST["username"]) &&
 		 isset($_POST["comment"]) &&
 		 isset($_POST["rating"]) &&
 		 !empty($_POST["username"]) &&
 		 !empty($_POST["comment"]) &&
 		 !empty($_POST["rating"])
-	) { 
-	
-	
+	) {
+
+
 		$username = cleanInput($_POST["username"]);
-		
+
 		saveEvent(cleanInput($_POST["username"]), ($_POST["comment"]), ($_POST["rating"]));
 		header("Location: login.php");
 		exit();
@@ -88,7 +88,7 @@
 	echo"<pre>";
 	var_dump($people[1]);
 	echo"</pre>";*/
-	
+
 
 	$usernameError= "*";
 	if (isset ($_POST["username"])) {
@@ -98,7 +98,7 @@
 			$username = $_POST["username"];
 		}
 	}
-	
+
 	$commentError= "*";
 	if (isset ($_POST["comment"])) {
 		if (empty ($_POST["comment"])) {
@@ -107,7 +107,7 @@
 			$comment = $_POST["comment"];
 		}
 	}
-	
+
 	$ratingError= "*";
 	if (isset ($_POST["rating"])) {
 		if (empty ($_POST["ratingError"])) {
@@ -116,7 +116,7 @@
 			$rating = $_POST["rating"];
 		}
 	}
-	
+
 	if(isset ($_POST["rating"])) {
 		if(empty ($_POST["rating"])){
 			$ratingError = "*";
@@ -124,7 +124,7 @@
 		$rating = $_POST["rating"];
 		}
 	}
-	
+
 
 	if(isset ($_POST["comment"])) {
 		if(empty ($_POST["comment"])){
@@ -133,10 +133,10 @@
 		$comment = $_POST["comment"];
 		}
 	}
-	
-	
 
-	
+
+
+
 	if(isset ($_POST["username"])) {
 		if(empty ($_POST["username"])){
 			$usernameError = "*";
@@ -144,8 +144,8 @@
 		$username = $_POST["username"];
 		}
 	}
-	
-	
+
+
 
 ?>
 
@@ -216,7 +216,8 @@
 			</div>
 
 			<div class="row">
-<h2>Salvesta sündmus</h2>
+
+<h2>Anna oma hinne ning kommentaar</h2>
 <form method="POST" >
 	<label>Nimi</label><br>
 	<input name="username" type="text"><?php echo $usernameError;?>
@@ -229,6 +230,7 @@
 	<br><br>
 	<input type="submit" value="Salvesta">
 </form>
+
 <h2>Viimati hinnatud</h2>
 <?php
 
@@ -248,16 +250,16 @@ $html="<table class='table table-bordered table-condensed'>";
 						</a>
 					 </th>";
 
-			$orderorderComment="ASC";
+			$orderComment="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
 				$_GET["order"]=="ASC"&&
 				$_GET["sort"]=="comment"){
-				$orderorderComment="DESC";
+				$orderComment="DESC";
 				$arr="&uarr;";
 			}
 			$html .="<th>
-						<a href='?q=".$q."&sort=comment&order=".$orderorderComment."'>
+						<a href='?q=".$q."&sort=comment&order=".$orderComment."'>
 							Kommentaar
 						</a>
 					</th>";
@@ -296,35 +298,37 @@ $html="<table class='table table-bordered table-condensed'>";
 			</div>
 		</div>
 		<div class="col-sm-6">
+
 <h2>Täna eetris</h2>
+
 <?php
 
 $html="<table class='table table-bordered table-condensed'>";
 		$html .="<tr>";
-			$ordertvshow_name="ASC";
+			$orderTvshow_name="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
 				$_GET["order"]=="ASC"&&
 				$_GET["sort"]=="tvshow_name"){
-				$ordertvshow_name="DESC";
+				$orderTvshow_name="DESC";
 				$arr="&uarr;";
 			}
 			$html .= "<th>
-						<a href='?q=".$q."&sort=tvshow_name&order=".$ordertvshow_name."'>
+						<a href='?q=".$q."&sort=tvshow_name&order=".$orderTvshow_name."'>
 							Seriaali nimi
 						</a>
 					 </th>";
 
-			$ordertime="ASC";
+			$orderTime="ASC";
 			$arr="&darr;";
 			if(isset($_GET["order"])&&
 				$_GET["order"]=="ASC"&&
 				$_GET["sort"]=="time"){
-				$ordertime="DESC";
+				$orderTime="DESC";
 				$arr="&uarr;";
 			}
 			$html .="<th>
-						<a href='?q=".$q."&sort=time&order=".$ordertime."'>
+						<a href='?q=".$q."&sort=time&order=".$orderTime."'>
 							Kellaaeg
 						</a>
 					</th>";
@@ -343,21 +347,18 @@ $html="<table class='table table-bordered table-condensed'>";
 						</a>
 					 </th>";
 	$html .="</tr>";
+
 	//iga liikmekohta masssiiivis
-	foreach($people as $p){
+	foreach($eetris as $e){
 		$html .="<tr>";
-			$html .="<td>".$p->tvshow_name."</td>";
-			$html .="<td>".$p->time."</td>";
-			$html .="<td>".$p->channel."</td>";
-			$html .="</tr>";
+			$html .="<td>".$e->tvshow_name."</td>";
+			$html .="<td>".$e->time."</td>";
+			$html .="<td>".$e->channel."</td>";
+		$html .="</tr>";
 	}
 	$html .="</table>";
+
 	echo $html;
-
-
-
-
-
 
 ?>
 		</div>

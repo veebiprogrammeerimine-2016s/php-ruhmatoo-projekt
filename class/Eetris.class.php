@@ -1,29 +1,29 @@
-<?php 
+<?php
 class Eetris{
 	private $connection;
-	//käivitataks siis kui on = new User(see jõuab siia)
-	
+	//kï¿½ivitataks siis kui on = new User(see jï¿½uab siia)
+
 	function __construct($mysqli){
 		//this viitab sellele klassile ja selle klassi muutujale
 		$this->connection=$mysqli;
 	}
-	/*KÕIK FUNKTSIOONID */
-	
-	function saveEetris ($tvshow_name, $time, $channel) {	
-		$stmt = $this->connection->prepare("INSERT INTO t_eetris (tvshow_name, time, channel) VALUES (?,?)");
+	/*Kï¿½IK FUNKTSIOONID */
+
+	function saveEetris ($tvshow_name, $time, $channel) {
+		$stmt = $this->connection->prepare("INSERT INTO t_eetris (tvshow_name, time, channel) VALUES (?, ?, ?)");
 		echo $this->connection->error;
-		$stmt->bind_param("si", $tvshow_name, $time, $channel);
+		$stmt->bind_param("sis", $tvshow_name, $time, $channel);
 		if($stmt->execute()) {
-			echo "salvestamine õnnestus";
+			echo "salvestamine ï¿½nnestus";
 		} else {
 		 	echo "ERROR ".$stmt->error;
 		}
 		$stmt->close();
 		$$this->connection->close();
 	}
-	
+
 	function getAllEetris() {
-		
+
 		$allowedSort = ["id", "tvshow_name", "time", "channel"];
 
 		// sort ei kuulu lubatud tulpade sisse
@@ -109,7 +109,7 @@ class Eetris{
  		$stmt = $this->connection->prepare("UPDATE t_eetris SET tvshow_name=?, time=?, channel=? WHERE id=? AND deleted IS NULL");
 
  		$stmt->bind_param("siis",$tvshow_name, $time, $id, $channel);
- 		// kas õnnestus salvestada
+ 		// kas ï¿½nnestus salvestada
 
  		if($stmt->execute()){
  			// ?nnestus
@@ -132,8 +132,8 @@ class Eetris{
  		$stmt->close();
  		$this->connection->close();
  	}
-	
-	
-	
+
+
+
 }
 ?>
