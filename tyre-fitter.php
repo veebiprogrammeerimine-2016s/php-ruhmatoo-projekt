@@ -46,9 +46,13 @@ echo $fitterId;
 
 <div class="container" style="margin-top:150px;">
     <div class="row">
-        <div class="col-md-offset-6 col-md-6">
+        <div class="col-md-offset-4 col-md-8">
             <button data-id="<?php echo $fitterId; ?>" type="button" id="profile" class="btn btn-primary">
                 Muuda profiili
+            </button>
+
+            <button data-id="<?php echo $fitterId; ?>" type="button" id="workingTime" class="btn btn-primary">
+                Muuda tööaeg
             </button>
 
             <button data-id="<?php echo $fitterId; ?>" type="button" id="newService" class="btn btn-primary">
@@ -106,6 +110,10 @@ echo $fitterId;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 <script>
     $(function () {
+        $('#workingTime').click(function () {
+            window.location.href = "editWorkingTime.php?id=" + $(this).data('id');
+        });
+
         $('.fa-gear').click(function (e) {
             window.location.href = "editTyreFitterService.php?service=" + $(this).parent().data('id');
         });
