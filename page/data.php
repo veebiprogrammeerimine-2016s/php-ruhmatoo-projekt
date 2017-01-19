@@ -107,9 +107,8 @@
 
 			</div> 
 		
-<div class="container">
-	<div class="jumbotron">
-		<p>
+<div id="feed" class="col-lg-8 col-sm-offset-2" style="background-color:rgba(0, 0, 0, 0.3)">
+
 		<?php //displays waveform, song name(caption) and uploader(email)..
 			foreach(glob('../uploads/*', GLOB_NOSORT) as $sound)   
 			{  
@@ -119,19 +118,19 @@
 					$html = "<table class='table table-hover table-bordered '>";
 					$html .= "<tr>";
 					$html .= "<td>".$c->caption."</td>"; 
-					$html .= "<td align=right>".$c->email."</td>"; 				
+					$html .= "<td align=right>".$c->email."</td>"; 	
 					$html .= "</tr>";
 					$html .= "</table>";
 					echo $html;	
+					
 				}
 
 				
 				
 			}  
 		?>
-		</p>
 		
-	</div>
+
 </div>
 		<!--</div> -->
 
@@ -171,6 +170,15 @@
   #social-em:hover {
       color: #f39c12;
   }
+  
+  #feed{
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	padding-top:30px;
+	padding-right:30px;
+	padding-left:30px;
+	height:250px;
+}
   
  
  

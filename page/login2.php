@@ -179,7 +179,7 @@
 	</nav>
 	</header>
 
-	<body><center>
+	<center>
 	
 		
 			<div class="container">
@@ -329,6 +329,16 @@
     background-color: #6a93d1;
     color: white;
 }
+
+#login2{
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	padding-top:30px;
+	padding-right:30px;
+	padding-left:30px;
+	height:400px;
+}
+
 
 
  
