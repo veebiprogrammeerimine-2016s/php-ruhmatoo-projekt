@@ -1,40 +1,26 @@
-# PHP rühmatöö projekt
-**Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
+# Audify
 
-## Tööjuhend
-1. Üks rühma liikmetest _fork_'ib endale käesoleva repositooriumi ning annab teistele kirjutamisõiguse/ligipääsu (_Settings > Collaborators_)
-1. Üks rühma liikmetest teeb esimesel võimaluse _Pull request_'i (midagi peab olema repositooriumis muudetud)
-1. Muuda repositooriumi README.md faili vastavalt nõutele
-1. Tee valmis korralik veebirakendus
-
-### Nõuded
- OK
-1. **README.md sisaldab:**
-    * suurelt projekti nime;
-    * suurelt projekti veebirakenduse pilt;
-    * rühma liikmete nimed;
-    * eesmärki (3-4 lauset, mis probleemi üritate lahendada);
-    * kirjeldus (sihtrühm, eripära võrreldes teiste samalaadsete rakendustega – kirjeldada vähemalt 2-3 sarnast rakendust mida eeskujuks võtta);
-    * funktsionaalsuse loetelu prioriteedi järjekorras, nt
-        * v0.1 Saab teha kasutaja ja sisselogida
-        * v0.2 Saab lisada huviala
-        * ...
-    * andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
-    * **kokkuvõte:** mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
+Liikmed: Andres Alla, Karl Kruus
 
 
-2. **Veebirakenduse nõuded:**
-    * rakendus on terviklik (täidab mingit funktsiooni ja sellega saab midagi teha);
-    * terve arenduse ajal on kasutatud _git_'i ja _commit_'ide sõnumid annavad edasi tehtud muudatuste sisu; 
-    * kasutusel on vähemalt 6 tabelit;
-    * kood on jaotatud klassidesse;
-    * koodis kasutatud muutujad/tabelid on inglise keeles;
-    * rakendus on piisava funktsionaalsusega ja turvaline;
-    * kõik tiimi liikmed on panustanud rakenduse arendusprotsessi.
+Eesmärgiks oli luua keskkond, kuhu kasutaja saab üles laadida muusikat, mida teised kasutajad saavad kuulata. Eeskuju on võetud Soundcloudist, kuid 128kbit/s sageduse asemel mängib Audify üles laetud lähtefaile otse garanteerides kvaliteedikao olemasolematuse.
 
-## Abiks
-* **Testserver:** greeny.cs.tlu.ee, [tunneli loomise juhend](http://minitorn.tlu.ee/~jaagup/kool/java/kursused/09/veebipr/naited/greenytunnel/greenytunnel.pdf)
-* **Abiks tunninäited (rühmade lõikes):** [I rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-I-ruhm), [II rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-II-ruhm), [III rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-III-ruhm)
-* **Stiilijuhend:** [Coding Style Guide](http://www.php-fig.org/psr/psr-2/)
-* **GIT õpetus:** [Become a git guru.](https://www.atlassian.com/git/tutorials/)
-* **Abimaterjale:** [Veebirakenduste loomine PHP ja MySQLi abil](http://minitorn.tlu.ee/~jaagup/kool/java/loeng/veebipr/veebipr1.pdf), [PHP with MySQL Essential Training] (http://www.lynda.com/MySQL-tutorials/PHP-MySQL-Essential-Training/119003-2.html)
+
+##Funktsionaalloetelu:
+-Külaline saab luua kasutaja
+-Külaline saab nõuetele vastava loodud kasutajaga sisse logida
+-Kasutaja saab üles laadida mp3 audiofaili, mis üles laetuna kajastub data lehel
+-Sisse logitud kasutaja saab kuulata teiste poolt üles laetud audiofaile data lehel
+-Kasutaja saab välja logides lõpetada sessiooni digimuutudes tagasi külaliseks
+
+##Andmebaasi skeem
+
+
+
+##Kokkuvõte
+
+Karl:
+Loodud veebilehekülg on poolik, kuid sellegipoolest õppisin ma juurde rohkem HTML-i. Aegavõttev oli saavutada soovitud paigutus ilma lehe ülemisel navigatsioonribal CSS-i kasutamata, ning selle tõttu jäi ka jalus korratu väljanägemisega. Katsumuseks oli saada üles laetud faile normaalselt data lehel kuvama.
+
+Andres:
+Seatud eesmärgid olid suured ning eesmärkideks nad hetkeseisuga jäidki, kuid tunnen, et kasu on sellest projektist küllaga. Arvan, et kõige tähtsam oskus, mis ma õppisin, on iseseisvalt probleemide lahendamine. Töö mõte ei seisnenud minu jaoks selles, et oskaksin edaspidi mingit kindlat koodi osa kirjutada, vaid et näeksin suuremat pildi ja saaksin aru koodi kui terviku toimimisest. Kõige suurem vaev oli üles laetud helifailide kuvamine, mis pidi sisaldama loo nime ja autorit. 
