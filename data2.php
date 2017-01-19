@@ -1,3 +1,4 @@
+
 <?php
 //Teine data leht, KMI ja pilt
 require("functions.php");
@@ -10,15 +11,6 @@ require("Class/KMI.class.php");
 
 		header("Location: login.php");
 		exit();
-	}
-	
-	if (isset($_GET["logout"])) {
-
-		session_destroy();
-
-		header("Location: login.php");
-		exit();
-
 	}
 
 
@@ -41,7 +33,12 @@ $weightError = "";
 
 //kontrollin, kas kasutaja sisestas andmed
 
+if(isset($_POST["height"])) {
+  if (empty($_POST["height"])){
+    $lengthError="See väli on kohustuslik!";
 
+  }else {
+    $length=$_POST["height"];
 
 if(isset($_POST["height"])) {
   if (empty($_POST["height"])){
@@ -102,5 +99,4 @@ saveUserLW ($height, $weight);
 <button <p type="submit" class="text-center btn btn-primary " name="calculate"> Arvuta</button> </p>
 <a class="btn btn-success btn-warning" href="?logout=1" role="button">Logi välja</a>
 </form>
-<?php require ("footer.php"); ?>
-<?php
+<?php require ("footer.php");?>
