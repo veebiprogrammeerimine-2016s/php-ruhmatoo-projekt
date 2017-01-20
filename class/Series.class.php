@@ -37,7 +37,7 @@ function getSeriesData() {
 
 }
 
-<<<<<<< HEAD
+
 
 function saveSeries ($tv_show) {
 		
@@ -91,7 +91,7 @@ function saveSeries ($tv_show) {
 		
 		return $result;
 	}
-=======
+
 function addSeriesToDb ($userid, $series){
 
     $database = "if16_ege";
@@ -113,5 +113,30 @@ function addSeriesToDb ($userid, $series){
 
 }
 
->>>>>>> 7e8e5d799f9020a28b103136c9f4dd4f870c3cb5
+function getSeriesByDay($userid, $date){
+	
+	$database = "if16_ege";
+    $mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+	
+	$stmt = $mysqli->prepare("SELECT user_tv_shows.tv_show, user_tv_db.season, user_tv_db.episode
+								FROM user_tv_shows, user_tv_db
+								WHERE user_tv_shows.userid=? AND user_tv_db.date=?
+								AND user_tv_shows.tv_show=user_tv_db.title");
+	
+	echo $mysqli->error;
+	$stmt->bind_param("is", $userid, $date);
+	$stmt->execute();
+	$stmt->bind_result($tv_show, $season, $episode);
+	$result = array();
+	
+	while($stmt->fetch()) {
+		
+		$tvshow = new StdClass();
+		$tvshow->tv_show = $tv_show;	
+		$tvshow->season = $season;
+		$tvshow->episode = $episode;
+		array_push($result, $tvshow);
+	}
+	return $result;
+}
 ?>

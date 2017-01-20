@@ -1,6 +1,7 @@
 <?php
     require("../functions.php");
-
+    require("../class/Series.class.php");
+	
     if(isset ($_GET["logout"])) {
 
         session_destroy();
@@ -8,16 +9,23 @@
         exit();
     }
 
+    if(isset($_POST['user_tv_db'])){
+
+        addSeriesToDb($_SESSION['userId'], $_POST['user_tv_db']);
+    }
+	
 ?>
 
 <?php require("../header.php"); ?>
 <br>
 <h3>Save some of your TV shows here</h3>
-        <form method="POST">
-            <input name="seriesname" placeholder="Name of the series" type="text">
-
-        <input type="submit" value="Save">
-        <br><br><br>
+<form method="POST">
+	<select name="user_tv_db">
+		<?php getSeriesData() ?>
+	</select>
+	<input type="submit" value="Submit">
+</form>
+<br><br><br>
 
 <link href="calendar.css" type="text/css" rel="stylesheet" />
 <br>
