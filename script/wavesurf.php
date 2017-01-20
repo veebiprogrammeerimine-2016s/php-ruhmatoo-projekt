@@ -19,9 +19,11 @@
 								<center>
 								<h2>Comment</h2>
 						
-								test
-									
+								<form action="data.php" method="POST">
+									<input type="text" name="comment" id="comment" class="form-control" placeholder="Insert a comment here"><br>
+									<input class="button1" type="submit" value="submit" name="submit">
 								</form>
+								
 								</center>
 							</div>
 

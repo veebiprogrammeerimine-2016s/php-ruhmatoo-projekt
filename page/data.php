@@ -1,6 +1,7 @@
 <?php
 	
 	require("../functions.php");
+	//require("../class/Comment.class.php");
 	
 	$Upload = new Upload($mysqli);
 	//kui ei ole kasutaja id'd
