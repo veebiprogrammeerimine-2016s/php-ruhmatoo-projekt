@@ -37,7 +37,7 @@ function updatePicUrl($username, $picname) {
 
         if ($query->execute()) {
              //õnnestus
-            echo "Your profile picture has been updated!";
+            //echo "Your profile picture has been updated!";
         }
 
     $mysqli->close();
