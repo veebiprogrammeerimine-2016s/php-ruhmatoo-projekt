@@ -85,27 +85,25 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 <?php require("../header.php"); ?>
 
 <h1>Your profile</h1>
-<html>
-<body>
-<p>
-<img style="height: 200px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>">
+	<p>
+	<img style="height: 200px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>">
 
-<form method="post" enctype="multipart/form-data">
-	<h3>Change your profile picture:</h3>
-	<input type="file" name="fileToUpload">
-	<button type="submit" name="submit">Upload</button>
-</form>
-<h3>Username: <?=$_SESSION["userName"];?></h3>
-<h3>Age: <?=$_SESSION["userAge"]?></h3>
-<h3>E-mail: <?=$_SESSION["userEmail"]?></h3>
+	<form method="post" enctype="multipart/form-data">
+		<h3>Change your profile picture:</h3>
+		<input type="file" name="fileToUpload">
+		<br>
+		<button type="submit" name="submit">Upload</button>
+	</form>
+	<br>
+	<p>Username: <?=$_SESSION["userName"];?></p>
+	<p>Age: <?=$_SESSION["userAge"]?></p>
+	<p>E-mail: <?=$_SESSION["userEmail"]?></p>
 
 <?php
 
 //<input name="signupPassword" type="password" >
 //<input type="submit" value="Save">
 ?>
-
-</html>   
  
 <?php 
 $_SESSION['error'] = "";
@@ -113,7 +111,7 @@ $_SESSION['form_data'] = "";
 ?>
 
 <br>
-<input type="button" value="Back to calendar" onclick="location='calendar.php'" />
+<input class = "btn btn-sm btn-default" value="Back to calendar" onclick="location='calendar.php'" />
 <br><br>
 <a href="?logout=1"> Log out</a>
 </p>

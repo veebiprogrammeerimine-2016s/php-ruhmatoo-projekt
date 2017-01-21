@@ -27,77 +27,62 @@ $signupEmail = "";
 $signupAge = "";
 
 
-if(isset($_POST['submit']))
-{
-$signupUsername=mysql_real_escape_string($_POST['signupUsername']);
-$signupPassword=mysql_real_escape_string($_POST['signupPassword']);
-$signupEmail=mysql_real_escape_string($_POST['signupEmail']);
-$signupAge=mysql_real_escape_string($_POST['signupAge']);
-$rand=rand(100000,100000000);
-$query2=mysql_query("insert into user values('','$signupUsername','$signupPassword','$signupEmail','$signupAge','$rand','0')");
-if($query2)
-{
-student_confirmation($id,$signupUsername,$signupPassword,$signupEmail,$signupAge);
-}
-}
+    if(isset($_POST["signupUsername"])){
 
+        if(empty($_POST["signupUsername"])){
 
-if(isset($_POST["signupUsername"])){
-
-    if(empty($_POST["signupUsername"])){
-
-        $signupUsernameError = "Enter username!";
-    } else {
-        $signupUsername = $_POST["signupUsername"];
-    }
-}
-
-// kas e-post oli olemas
-if ( isset ( $_POST["signupEmail"] ) ) {
-
-    if ( empty ( $_POST["signupEmail"] ) ) {
-
-        // oli email, kuid see oli t�hi
-        $signupEmailError = "This field is mandatory!";
-
-    } else {
-
-        //email olemas
-        $signupEmail = $_POST["signupEmail"];
-
+            $signupUsernameError = "Enter username!";
+        } else {
+            $signupUsername = $_POST["signupUsername"];
+        }
     }
 
-}
+    // kas e-post oli olemas
+    if ( isset ( $_POST["signupEmail"] ) ) {
 
+        if ( empty ( $_POST["signupEmail"] ) ) {
 
-if ( isset ( $_POST["signupPassword"] ) ) {
+            // oli email, kuid see oli t�hi
+            $signupEmailError = "This field is mandatory!";
 
-    if ( empty ( $_POST["signupPassword"] ) ) {
+        } else {
 
-        // oli password, kuid see oli t�hi
-        $signupPasswordError = "This field is mandatory!";
-
-    } else {
-
-        // tean et parool on ja see ei olnud t�hi
-        // V�HEMALT 8
-
-        if ( strlen($_POST["signupPassword"]) < 8 ) {
-
-            $signupPasswordError = "Password has to be atleast 8 characters!";
+            //email olemas
+            $signupEmail = $_POST["signupEmail"];
 
         }
 
     }
 
 
-}
+    if ( isset ( $_POST["signupPassword"] ) ) {
 
-if ( isset ( $_POST["signupAge"] ) &&
-    !empty ( $_POST["signupAge"] )) {
+        if ( empty ( $_POST["signupPassword"] ) ) {
 
-    $signupAge = $_POST["signupAge"];
-}
+            // oli password, kuid see oli t�hi
+            $signupPasswordError = "This field is mandatory!";
+
+        } else {
+
+            // tean et parool on ja see ei olnud t�hi
+            // V�HEMALT 8
+
+            if ( strlen($_POST["signupPassword"]) < 8 ) {
+
+                $signupPasswordError = "Password has to be atleast 8 characters!";
+
+            }
+
+        }
+
+
+    }
+
+    if ( isset ( $_POST["signupAge"] ) &&
+        !empty ( $_POST["signupAge"] )) {
+
+        $signupAge = $_POST["signupAge"];
+    }
 
 
     if ( isset($_POST["signupEmail"]) &&
@@ -131,58 +116,60 @@ if ( isset ( $_POST["signupAge"] ) &&
 <?php require("../header.php"); ?>
 
 <div class= "container">
-            <div class= "row">
-                <div class="col-sm-4 col-sm-offset-4">
 
-<title>Login/signup page</title>
+        <div class= "row">
 
-        <h1>Log in</h1>
-        
-        <form method="POST">
-        
-            <p style="color:red;"><?=$error;?></p>
-        
-            <label>Username:</label><br>
-            <input name="loginUsername" type="text" value="<?=$loginUsername;?>">
-            <?php echo $loginUsernameError; ?>
-            <br><br>
-        
-            <input name="loginPassword" type="password" placeholder="Password">
-            <br><br>
-            <input class = "btn btn-sm btn-success" type="submit" value="Log in">
-        
-        </form>
-        
-        
-        <h1>Create account</h1>
-        
-        <form method="POST">
-        
-            <label>Username:</label><br>
-            <input name="signupUsername" type="text" value="<?=$signupUsername;?>">
-            <?php echo $signupUsernameError; ?>
-        
-            <br><br>
-        
-            <label>Email:</label><br>
-            <input name="signupEmail" type="email" value="<?=$signupEmail;?>">
-            <?php echo $signupEmailError; ?>
-        
-            <br><br>
-        
-            <input name="signupPassword" type="password" placeholder="Password">
-            <?php echo $signupPasswordError; ?>
-        
-            <br><br>
-        
-            <label>Age:</label><br>
-            <input name="signupAge" type="number" value="<?=$signupAge;?>">
-        
-            <br><br>
-        
-            <input class = "btn btn-info btn-sm" type="submit" value="Create account">
-        </form>
+                <div class="col-sm-3 col-sm-offset-4">
+
+                        <title>Login/signup page</title>
+
+                        <h1>Log in</h1>
+
+                        <form method="POST">
+
+                            <p style="color:red;"><?=$error;?></p>
+
+                            <label>Username:</label><br>
+                            <input name="loginUsername" type="text" class="form-control" value="<?=$loginUsername;?>">
+                            <?php echo $loginUsernameError; ?>
+                            <br><br>
+
+                            <input name="loginPassword" type="password" class="form-control" placeholder="Password">
+                            <br><br>
+                            <input class = "btn btn-sm btn-default" type="submit" value="Log in">
+
+                        </form>
+
+
+                        <h1>Create account</h1>
+                        <form method="POST">
+
+                            <label>Username:</label><br>
+                            <input name="signupUsername" type="text" class="form-control" value="<?=$signupUsername;?>">
+                            <?php echo $signupUsernameError; ?>
+
+                            <br><br>
+
+                            <label>Email:</label><br>
+                            <input name="signupEmail" type="email" class="form-control" value="<?=$signupEmail;?>">
+                            <?php echo $signupEmailError; ?>
+
+                            <br><br>
+
+                            <input name="signupPassword" type="password" class="form-control" placeholder="Password">
+                            <?php echo $signupPasswordError; ?>
+
+                            <br><br>
+
+                            <label>Age:</label><br>
+                            <input name="signupAge" type="number" class="form-control" value="<?=$signupAge;?>">
+
+                            <br><br>
+                            <input class = "btn btn-sm btn-default" type="submit" value="Create account">
+                        </form>
+                </div>
+        </div>
 </div>
-        </div>  
-                </div>        
+
+
 <?php require("../footer.php"); ?>
