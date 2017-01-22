@@ -107,14 +107,6 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 <h4>Age: <?=$_SESSION["userAge"]?></h4>
 <h4>E-mail: <?=$_SESSION["userEmail"]?></h4>
 
-	<form method="post" enctype="multipart/form-data">
-		<h3>Change your profile picture:</h3>
-		<input type="file" name="fileToUpload">
-		<br>
-		<button type="submit" name="submit">Upload</button>
-	</form>
-
-
 <?php
 
 //<input name="signupPassword" type="password" >
