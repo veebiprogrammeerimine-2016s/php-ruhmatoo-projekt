@@ -1,7 +1,6 @@
 <?php
     require("/home/egenoor/config.php");
     require("../functions.php");
-
     require("../class/User.class.php");
     $User = new User($mysqli);
 
@@ -128,6 +127,7 @@ if ( isset ( $_POST["signupAge"] ) &&
 
 ?>
 
+
 <?php require("../header.php"); ?>
 
 <div class= "container">
@@ -186,3 +186,4 @@ if ( isset ( $_POST["signupAge"] ) &&
         </div>  
                 </div>        
 <?php require("../footer.php"); ?>
+

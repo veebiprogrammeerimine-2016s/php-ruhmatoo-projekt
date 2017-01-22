@@ -106,7 +106,7 @@
 <p>
     <h2>Welcome <?=$_SESSION["userName"];?>!</h2>
     <br>
-    <img style="height: 200px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>">
+    <img style="height: 140px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>" class="img-circle">
 
     <h3>For starters, let's add one series to your calender!</h3>
     <form method="POST">

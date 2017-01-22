@@ -88,7 +88,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 <html>
 <body>
 <p>
-<img style="height: 200px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>">
+<img style="height: 140px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>" class="img-circle">
 
 <form method="post" enctype="multipart/form-data">
 	<h3>Change your profile picture:</h3>
