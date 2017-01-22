@@ -25,7 +25,6 @@
 	</select>
 	<input type="submit" value="Submit">
 </form>
-<br><br><br>
 
 <link href="calendar.css" type="text/css" rel="stylesheet" />
 <br>
