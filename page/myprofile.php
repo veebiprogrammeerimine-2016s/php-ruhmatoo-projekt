@@ -84,6 +84,10 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 
 <?php require("../header.php"); ?>
 
+<html>
+<body background="http://wallpapercave.com/wp/ZzQWCHl.jpg">
+</body>
+</html>
 
 <h1>Your profile</h1>
 <<<<<<< HEAD
@@ -139,7 +143,8 @@ $_SESSION['form_data'] = "";
 <br>
 <input class = "btn btn-sm btn-default" value="Back to calendar" onclick="location='calendar.php'" />
 <br><br>
-<a href="?logout=1"> Log out</a>
+<a href="?logout=2" class="btn btn-info btn-sm" role="button">Log out</a>
+
 </p>
 
 <?php require("../footer.php"); ?>

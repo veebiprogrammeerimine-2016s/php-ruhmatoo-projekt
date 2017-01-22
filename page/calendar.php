@@ -18,7 +18,7 @@
 
 <?php require("../header.php"); ?>
 <html>
-<body background="http://www.returndates.com/backgrounds/NewGirl.jpg">
+<body background="http://wallpapercave.com/wp/ZzQWCHl.jpg">
 </body>
 </html>
 <br>
@@ -34,7 +34,8 @@
 <br>
 <input type="button" value="My profile" onclick="location='myprofile'" />
 <br><br>
-<a href="?logout=2"> Log out</a>
+<a href="?logout=2" class="btn btn-info btn-sm" role="button">Log out</a>
+
 
 <?php
 include '../class/Calendar.class.php';
