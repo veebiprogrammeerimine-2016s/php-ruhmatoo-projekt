@@ -60,7 +60,7 @@ Kuvatakse kasutaja KMI.
   
 Lisame juurde  andmebaasi skeemi loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna).
 
-ANDMEBAASI SKEEM PILDINA
+ANDMEBAASI SKEEM PILDINA on lisatud tööle eraldi failina Skeem.png.
 
 
 KOKKUVÕTE
