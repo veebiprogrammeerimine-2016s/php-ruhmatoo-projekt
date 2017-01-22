@@ -113,7 +113,7 @@ $signupAge = "";
 ?>
 
 <html>
-<body background="http://orig09.deviantart.net/df1a/f/2013/107/0/6/tv_series_folder_icons_hd_512x512_by_stavrosvran-d621hih.jpg">
+<body background="http://wallpapercave.com/wp/ZzQWCHl.jpg">
 </body>
 </html>
 <?php require("../header.php"); ?>
@@ -126,13 +126,13 @@ $signupAge = "";
 
                         <title>Login/signup page</title>
 
-                        <h1 style="color:White;">Log in</h1><br>
+                        <h1>Log in</h1><br>
 
                         <form method="POST">
 
                             <p style="color:red;"><?=$error;?></p>
 
-                            <label style="color:White;">Username:</label><br>
+                            <label>Username:</label><br>
                             <input name="loginUsername" type="text" class="form-control" value="<?=$loginUsername;?>">
                             <?php echo $loginUsernameError; ?>
                             <br><br>
@@ -144,16 +144,16 @@ $signupAge = "";
                         </form>
 
 
-                        <h1 style="color:White;">Create Account</h1>
+                        <h1>Create Account</h1>
                         <form method="POST">
 
-                            <label style="color:White;">Username:</label><br>
+                            <label>Username:</label><br>
                             <input name="signupUsername" type="text" class="form-control" value="<?=$signupUsername;?>">
                             <?php echo $signupUsernameError; ?>
 
                             <br><br>
 
-                            <label style="color:White;">Email:</label><br>
+                            <label>Email:</label><br>
                             <input name="signupEmail" type="email" class="form-control" value="<?=$signupEmail;?>">
                             <?php echo $signupEmailError; ?>
 
@@ -163,7 +163,7 @@ $signupAge = "";
                             <?php echo $signupPasswordError; ?>
 
                             <br>
-                            <label style="color:White;">Age:</label><br>
+                            <label>Age:</label><br>
                             <input name="signupAge" type="number" class="form-control" value="<?=$signupAge;?>">
 
                             <br><br>
