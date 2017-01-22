@@ -103,9 +103,9 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 	<button type="submit" name="submit">Upload</button>
 </form>
 
-<h3>Username: <?=$_SESSION["userName"];?></h3>
-<h3>Age: <?=$_SESSION["userAge"]?></h3>
-<h3>E-mail: <?=$_SESSION["userEmail"]?></h3>
+<h4>Username: <?=$_SESSION["userName"];?></h4>
+<h4>Age: <?=$_SESSION["userAge"]?></h4>
+<h4>E-mail: <?=$_SESSION["userEmail"]?></h4>
 
 	<form method="post" enctype="multipart/form-data">
 		<h3>Change your profile picture:</h3>
@@ -114,10 +114,6 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 		<button type="submit" name="submit">Upload</button>
 	</form>
 
-	<br>
-	<p>Username: <?=$_SESSION["userName"];?></p>
-	<p>Age: <?=$_SESSION["userAge"]?></p>
-	<p>E-mail: <?=$_SESSION["userEmail"]?></p>
 
 <?php
 
