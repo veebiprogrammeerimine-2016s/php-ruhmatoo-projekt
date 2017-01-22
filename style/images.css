@@ -1,0 +1,23 @@
+body {
+font-family: Arial;
+font-size: 11px;
+color: #ffffff;
+background: #202020 url(../images/rx480_1.jpg) no-repeat top center fixed;
+background-size: cover;
+}
+
+#rx480 {
+    max-width: 60%;
+position: absolute;
+bottom: 22%;
+right: 8%;
+width: auto;
+height: auto;
+z-index: 8;
+transform: rotate(-57deg); -ms-transform: rotate(-57deg); -webkit-transform: rotate(-57deg); -moz-transform: rotate(-57deg);
+}
+
+#contact { float: left; cursor: pointer; }
+
+
+img { max-width: 100%; height: auto; }
