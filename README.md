@@ -15,7 +15,7 @@
 *Lisada seriaale enda kasutaja alla
 *Vaadata kalendrist, mis päeval midagi näha saab
 ##Andmebaas 
-
+![Alt text](pilt2.jpg?raw=true "Pilt")
 
 ##Kokkuvõte 
 Enamasti kulges kõik plaanipäraselt, kuid tegemata jäi näiteks emaili saatmine, et kontot kinnitada. Kõige keerulisem oli tõenäoliselt andmebaasi kaudu seriaali andmete kätte saamine, et kalendrist saaks seriaale näha. Kuna keegi meist ei ole varem sellise asjaga tegelenud, oli kogu projekti tegemine meie jaoks väga hariv 
