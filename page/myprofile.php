@@ -107,9 +107,6 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 <h3>Age: <?=$_SESSION["userAge"]?></h3>
 <h3>E-mail: <?=$_SESSION["userEmail"]?></h3>
 
-	<p>
-	<img style="height: 100px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>" class="img-circle">
-
 	<form method="post" enctype="multipart/form-data">
 		<h3>Change your profile picture:</h3>
 		<input type="file" name="fileToUpload">
