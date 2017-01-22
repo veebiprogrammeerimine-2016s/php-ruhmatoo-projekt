@@ -5,16 +5,13 @@
     require("../class/Helper.class.php");
 	$Helper = new Helper();
 	
-	require("../class/Note.class.php");
-	$Note = new Note($mysqli);
-	
 	//ei ole sisseloginud, suunan login lehele
 	if(!isset ($_SESSION["userId"])) {
 		header("Location: login.php");
 		exit();
 	}
 	
-	//kas kasutaja tahab välja logida
+	//kas kasutaja tahab vï¿½lja logida
 	// kas aadressireal on logout olemas
 	if (isset($_GET["logout"])) {
 		
@@ -40,7 +37,7 @@
 	
 	$q = "";
 	
-	// otsisõna aadressirealt
+	// otsisï¿½na aadressirealt
 	if(isset($_GET["q"])){
 		$q = $Helper->cleanInput($_GET["q"]);
 	}
@@ -54,8 +51,13 @@
 		$order = $_GET["order"];
 	}
 	
-	
-	$notes = $Note->getAllNotes($q, $sort, $order);
+		if (isset($_POST["Submit"])){
+		//funktsioon, et salvestada.
+		$insert->insert($_POST["insertTitle"], $_POST["insertArticle"]);
+		header("Location: data.php");
+		exit();
+	}
+
 	
 	//echo "<pre>";
 	//var_dump($notes);
@@ -115,8 +117,7 @@
     </div>
         <div id="collapse1" class="panel-collapse collapse">
       <ul class="list-group">
-        <li class="list-group-item">
-		
+        <li class="list-group-item">	
 		<html>
 	<body>
 <a href="?logout=1">Log Out</a>
@@ -124,8 +125,7 @@
       </ul>
 	  </div>
   </div>
-</div>
-    
+</div>    
 </body>
 </html>	
       </ul><br>
@@ -143,6 +143,7 @@
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'HARDWARE')">HARDWARE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'SOFTWARE')">SOFTWARE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'YOUTUBE')">YOUTUBE</a></li>
+	<li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'NEW_ARTICLE')">NEW ARTICLE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'SEARCH')">SEARCH</a></li>
 </ul>
 <div id="" style="overflow-y:scroll; overflow-x:hidden; max-height:810px;">
@@ -162,7 +163,7 @@ In total there are 36 compute units resulting in 2304 stream processors along wi
 When compared to the R9 390 though the RX 480 does have one major disadvantage; memory bandwidth. Both the 4GB and 8GB models feature GDDR5 memory clocked at 2000MHz using a 256-bit wide memory bus resulting in throughput of 256GB/s.
  In comparison the R9 390 utilizes a 512-bit memory bus and although it uses lower clocked memory it still achieves a 384 GB/s throughput.
 <br>
-Propping up the RX 480 is the core clock speed which has been set at 1120 MHz and can boost as high as 1266 MHz. That’s a 27% boost over the R9 390’s operating frequency and should help account for having 10% fewer cores.
+Propping up the RX 480 is the core clock speed which has been set at 1120 MHz and can boost as high as 1266 MHz. Thatï¿½s a 27% boost over the R9 390ï¿½s operating frequency and should help account for having 10% fewer cores.
 </p>
 	  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%; max-height:720px; max-width:1280px; margin:0 auto;">
   <!-- Indicators -->
@@ -214,7 +215,10 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
 
 <div id="GAMES" class="tabcontent">
   <h2>GAMES</h2>
-  <p>There should be Game related news/reviews/articles here.</p> 
+  <p>There should be Game related news/reviews/articles here.</p>
+	
+
+
 </div>
 
 <div id="HARDWARE" class="tabcontent">
@@ -251,6 +255,50 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
 	  
 </div>
 
+<div id="NEW_ARTICLE" class="tabcontent">
+  <h2>NEW</h2>
+  <p>There should be Software related news/reviews/articles here.</p>
+	<form method="POST">
+	<label>Title</label><br>
+  <input name="insertTitle" type="varchar(255)" placeholder="Insert title..." >
+</select>
+<br>
+	<label>New</label><br>
+	<input name="insertArticle" type="text" placeholder="Insert text...">
+	<br><br>
+<br><br>
+	<input name="Submit" type="submit" value="Submit">
+<br><br>
+
+<?php
+    
+$conn = mysql_connect($serverHost, $serverUsername, $serverPassword, $database);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysql_error());
+   }
+   
+   $sql = 'SELECT id, title, content FROM posts';
+   mysql_select_db('if16_derkun_shazza');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   
+   while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
+  
+	       echo "id :{$row['id']}  <br> ".
+         "kirjeldus : {$row['title']} <br> ";
+	           echo "korpus : {$row['content']} <br> ".
+         "--------------------------------<br>";
+
+   }
+      
+   mysql_close($conn);
+
+?>
+</div>
 
 <div id="SEARCH" class="tabcontent">
   <h3>Search</h3>
@@ -308,7 +356,7 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
 			$html .= "<th>
 			
 						<a href='?q=".$q."&sort=note&order=".$orderNote."'>
-							Märkus
+							Mï¿½rkus
 						</a>
 					</th>";
 						
@@ -326,7 +374,7 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
 			$html .= "<th>
 			
 						<a href='?q=".$q."&sort=color&order=".$orderColor."'>
-							Värv
+							Vï¿½rv
 						</a>
 					</th>";
 					
@@ -363,6 +411,7 @@ function openTab(evt, cityName) {
     evt.currentTarget.className += " active";
 }
 </script>
+</div>
 </div>
 </div>
 </div>

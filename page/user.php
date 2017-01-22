@@ -1,6 +1,6 @@
 <?php 
 	
-	require("functions.php");
+	require("../functions.php");
 	
 	//kui ei ole kasutaja id'd
 	if (!isset($_SESSION["userId"])){
@@ -11,7 +11,7 @@
 	}
 	
 	
-	//kui on ?logout aadressireal siis login välja
+	//kui on ?logout aadressireal siis login vï¿½lja
 	if (isset($_GET["logout"])) {
 		
 		session_destroy();
@@ -23,7 +23,7 @@
 	if(isset($_SESSION["message"])){
 		$msg = $_SESSION["message"];
 		
-		//kui ühe näitame siis kustuta ära, et pärast refreshi ei näitaks
+		//kui ï¿½he nï¿½itame siis kustuta ï¿½ra, et pï¿½rast refreshi ei nï¿½itaks
 		unset($_SESSION["message"]);
 	}
 	
@@ -36,7 +36,7 @@
 		
 	}
 	
-	// RIPPMENÜÜ VALIK
+	// RIPPMENï¿½ï¿½ VALIK
 	if ( isset($_POST["userInterest"]) && 
 		!empty($_POST["userInterest"])
 	  ) {
@@ -54,7 +54,7 @@
 <?=$msg;?>
 <p>
 	Tere tulemast <?=$_SESSION["userEmail"];?>!
-	<a href="?logout=1">Logi välja</a>
+	<a href="?logout=1">Logi vï¿½lja</a>
 </p>
 
 

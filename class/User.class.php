@@ -1,12 +1,11 @@
 <?php 
 class User {
 	
-	//private $name = "Romil";
-	//public $familyName = "Robtsenkov";
+
 	private $connection;
 	
-	// käivitatakse siis kui new ja see mis saadekse
-	//sulgudesse new User(?) see jõuab siia
+	// kï¿½ivitatakse siis kui new ja see mis saadekse
+	//sulgudesse new User(?) see jï¿½uab siia
 	function __construct($mysqli){
 		
 		// this viitab sellele klassile siin
@@ -22,31 +21,31 @@ class User {
 				
 		$stmt = $this->connection->prepare("
 		
-			SELECT id, email, password, created
-			FROM user_sample
+			SELECT id, email, password, date_created
+			FROM users
 			WHERE email = ?
 		
 		");
 		// asendan ?
 		$stmt->bind_param("s", $email);
 		
-		// määran muutujad reale mis kätte saan
-		$stmt->bind_result($id, $emailFromDb, $passwordFromDb, $created);
+		// mï¿½ï¿½ran muutujad reale mis kï¿½tte saan
+		$stmt->bind_result($id, $emailFromdatabase, $passwordFromdatabase, $date_created);
 		
 		$stmt->execute();
 		
 		// ainult SLECTI'i puhul
 		if ($stmt->fetch()) {
 			
-			// vähemalt üks rida tuli
-			// kasutaja sisselogimise parool räsiks
+			// vï¿½hemalt ï¿½ks rida tuli
+			// kasutaja sisselogimise parool rï¿½siks
 			$hash = hash("sha512", $password);
-			if ($hash == $passwordFromDb) {
-				// õnnestus 
+			if ($hash == $passwordFromdatabase) {
+				// ï¿½nnestus 
 				echo "Kasutaja ".$id." logis sisse";
 				
 				$_SESSION["userId"] = $id;
-				$_SESSION["userEmail"] = $emailFromDb;
+				$_SESSION["userEmail"] = $emailFromdatabase;
 				
 				header("Location: data.php");
 				exit();
@@ -55,7 +54,7 @@ class User {
 			}
 			
 		} else {
-			// ei leitud ühtegi rida
+			// ei leitud ï¿½htegi rida
 			$notice = "Sellist emaili ei ole!";
 		}
 		
@@ -64,12 +63,12 @@ class User {
 	
 	function signup($email, $password) {
 		
-		$stmt = $this->connection->prepare("INSERT INTO user_sample (email, password) VALUES (?, ?)");
+		$stmt = $this->connection->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
 		echo $this->connection->error;
 		
 		$stmt->bind_param("ss", $email, $password );
 		if ( $stmt->execute() ) {
-			echo "salvestamine õnnestus";	
+			echo "salvestamine ï¿½nnestus";	
 		} else {	
 			echo "ERROR ".$stmt->error;
 		}
