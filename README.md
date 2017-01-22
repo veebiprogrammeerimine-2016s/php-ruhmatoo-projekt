@@ -12,7 +12,9 @@ selle väljendus. Eeskujuks võib võtta OC3D veebisaiti, LinusTechTips'i foorum
 overclock.net'i.
 
 	prioriteedid:
-	* Saada andmebaasid lehtedele
+	* Saada kujundus korda
+
+	Sisse on võimalik logida kasutajaga "testin123@test123.ee" "asdfasdf"
 ## Abiks
 * **Testserver:** greeny.cs.tlu.ee, [tunneli loomise juhend](http://minitorn.tlu.ee/~jaagup/kool/java/kursused/09/veebipr/naited/greenytunnel/greenytunnel.pdf)
 * **Abiks tunninäited (rühmade lõikes):** [I rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-I-ruhm), [II rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-II-ruhm), [III rühm](https://github.com/veebiprogrammeerimine-2016s?utf8=%E2%9C%93&query=-III-ruhm)

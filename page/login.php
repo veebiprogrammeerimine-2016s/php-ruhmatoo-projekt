@@ -19,19 +19,19 @@
 	$signupEmailError = "";
 	$signupEmail = "";
 	
-	//kas on üldse olemas
+	//kas on ï¿½ldse olemas
 if (isset ($_POST["signupEmail"])) {
 		
 		// oli olemas, ehk keegi vajutas nuppu
-		// kas oli tühi
+		// kas oli tï¿½hi
 		if (empty ($_POST["signupEmail"])) {
 			
-			//oli tõesti tühi
-			$signupEmailError = "See väli on kohustuslik";
+			//oli tï¿½esti tï¿½hi
+			$signupEmailError = "See vï¿½li on kohustuslik";
 			
 		} else {
 				
-			// kõik korras, email ei ole tühi ja on olemas
+			// kï¿½ik korras, email ei ole tï¿½hi ja on olemas
 			$signupEmail = $_POST["signupEmail"];
 		}
 		
@@ -39,24 +39,24 @@ if (isset ($_POST["signupEmail"])) {
 	
 	$signupPasswordError = "";
 	
-	//kas on üldse olemas
+	//kas on ï¿½ldse olemas
 if (isset ($_POST["signupPassword"])) {
 		
 		// oli olemas, ehk keegi vajutas nuppu
-		// kas oli tühi
+		// kas oli tï¿½hi
 		if (empty ($_POST["signupPassword"])) {
 			
-			//oli tõesti tühi
-			$signupPasswordError = "See väli on kohustuslik";
+			//oli tï¿½esti tï¿½hi
+			$signupPasswordError = "See vï¿½li on kohustuslik";
 			
 		} else {
 			
-			// oli midagi, ei olnud tühi
+			// oli midagi, ei olnud tï¿½hi
 			
-			// kas pikkus vähemalt 8
+			// kas pikkus vï¿½hemalt 8
 			if (strlen ($_POST["signupPassword"]) < 8 ) {
 				
-				$signupPasswordError = "Parool peab olema vähemalt 8 tm pikk";
+				$signupPasswordError = "Parool peab olema vï¿½hemalt 8 tm pikk";
 				
 			}
 			
@@ -69,7 +69,7 @@ if (isset ($_POST["signupPassword"])) {
 	if(isset($_POST["gender"])) {
 		if(!empty($_POST["gender"])){
 			
-			//on olemas ja ei ole tühi
+			//on olemas ja ei ole tï¿½hi
 			$gender = $_POST["gender"];
 		}
 	}
@@ -80,14 +80,14 @@ if (isset ($_POST["signupPassword"])) {
 		 empty($signupPasswordError)
 	   ) {
 		
-		// ühtegi viga ei ole, kõik vajalik olemas
+		// ï¿½htegi viga ei ole, kï¿½ik vajalik olemas
 		echo "salvestan...<br>";
 		echo "email ".$signupEmail."<br>";
 		echo "parool ".$_POST["signupPassword"]."<br>";
 		
 		$password = hash("sha512", $_POST["signupPassword"]);
 		
-		echo "räsi ".$password."<br>";
+		echo "rï¿½si ".$password."<br>";
 		
 		//kutsun funktsiooni, et salvestada
 		$User->signup($signupEmail, $password);
@@ -96,7 +96,7 @@ if (isset ($_POST["signupPassword"])) {
 	
 	
 	$notice = "";
-	// mõlemad login vormi väljad on täidetud
+	// mï¿½lemad login vormi vï¿½ljad on tï¿½idetud
 	if (	isset($_POST["loginEmail"]) && 
 			isset($_POST["loginPassword"]) && 
 			!empty($_POST["loginEmail"]) && 
@@ -147,7 +147,6 @@ if (isset ($_POST["signupPassword"])) {
         <li>
 		<a onclick="location.href = 'login.php';" style="color:red;" href="#section1";>Home</a>
 		</li>
-        <li><a onclick="location.href = 'AboutMe.php';" style="color:red;"href="#section2">About Me</a></li>
 	<div>
 	</div>
 <div class="panel-group" id="accordion">
@@ -181,48 +180,6 @@ if (isset ($_POST["signupPassword"])) {
       </ul>
 	  </div>
   </div>
-  
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-        Register
-		</a>
-      </h4>
-    </div>
-    <div id="collapse2" class="panel-collapse collapse">
-	<ul class="list-group">
-        <li class="list-group-item">
-      <form method="POST">
-					<label>E-post</label><br>
-			<input name="signupEmail" type="email" value="<?=$signupEmail;?>" > <?php echo $signupEmailError; ?>
-			
-			<br><br>
-			<label>Parool</label><br>
-			<input name="signupPassword" type="password"> <?php echo $signupPasswordError; ?>
-						
-			<br><br>
-			
-			<?php if ($gender == "male") { ?>
-				<input type="radio" name="gender" value="male" checked > Mees<br>
-			<?php } else { ?>
-				<input type="radio" name="gender" value="male"> Mees<br>
-			<?php } ?>
-			
-			<?php if ($gender == "female") { ?>
-				<input type="radio" name="gender" value="female" checked > Naine<br>
-			<?php } else { ?>
-				<input type="radio" name="gender" value="female"> Naine<br>
-			<?php } ?>
-			
-			<input type="submit" value="Loo kasutaja">
-			
-		
-		</form>
-		</li>
-      </ul>
-    </div>
-  </div>
 </div>
     
 </body>
@@ -238,11 +195,9 @@ if (isset ($_POST["signupPassword"])) {
 <body>
 <ul class="tab">
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'RECENT')">MOST RECENT</a></li>
-  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'GAMES')">GAMES</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'HARDWARE')">HARDWARE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'SOFTWARE')">SOFTWARE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'YOUTUBE')">YOUTUBE</a></li>
-  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'SEARCH')">SEARCH</a></li>
 </ul>
 
 <div id="" style="overflow-y:scroll; overflow-x:hidden; height:810px;">
@@ -262,7 +217,7 @@ In total there are 36 compute units resulting in 2304 stream processors along wi
 When compared to the R9 390 though the RX 480 does have one major disadvantage; memory bandwidth. Both the 4GB and 8GB models feature GDDR5 memory clocked at 2000MHz using a 256-bit wide memory bus resulting in throughput of 256GB/s.
  In comparison the R9 390 utilizes a 512-bit memory bus and although it uses lower clocked memory it still achieves a 384 GB/s throughput.
 <br>
-Propping up the RX 480 is the core clock speed which has been set at 1120 MHz and can boost as high as 1266 MHz. That’s a 27% boost over the R9 390’s operating frequency and should help account for having 10% fewer cores.
+Propping up the RX 480 is the core clock speed which has been set at 1120 MHz and can boost as high as 1266 MHz. Thatï¿½s a 27% boost over the R9 390ï¿½s operating frequency and should help account for having 10% fewer cores.
 </p>
 	  <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%; max-height:720px; max-width:1280px; margin:0 auto;">
   <!-- Indicators -->
@@ -312,32 +267,76 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
           </div>
 </div>
 
-<div id="GAMES" class="tabcontent">
-  <h2>GAMES</h2>
-  <p>There should be Game related news/reviews/articles here.</p> 
-</div>
-
 <div id="HARDWARE" class="tabcontent">
   <h2>HARDWARE</h2>
   <p>There should be Harware related news/reviews/articles here.</p>
+	<?php
+    
+$conn = mysql_connect($serverHost, $serverUsername, $serverPassword, $database);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysql_error());
+   }
+   
+   $sql = 'SELECT id, title, content, author FROM posts';
+   mysql_select_db('if16_derkun_shazza');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   
+   while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
+  
+   if($row['author']==5){
+	       echo "id :{$row['id']}  <br> ".
+         "kirjeldus : {$row['title']} <br> ";
+	           echo "korpus : {$row['content']} <br> ".
+         "--------------------------------<br>";
+   }
+
+   }
+      
+   mysql_close($conn);
+
+?>
 </div>
 
 <div id="SOFTWARE" class="tabcontent">
   <h2>SOFTWARE</h2>
   <p>There should be Software related news/reviews/articles here.</p>
+		<?php
+    
+$conn = mysql_connect($serverHost, $serverUsername, $serverPassword, $database);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysql_error());
+   }
+   
+   $sql = 'SELECT id, title, content, author FROM posts';
+   mysql_select_db('if16_derkun_shazza');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   
+   while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
+  
+   if($row['author']==6){
+	       echo "id :{$row['id']}  <br> ".
+         "kirjeldus : {$row['title']} <br> ";
+	           echo "korpus : {$row['content']} <br> ".
+         "--------------------------------<br>";
+   }
+
+   }
+      
+   mysql_close($conn);
+
+?>
 </div>
 
-<div id="SEARCH" class="tabcontent">
-  <h3>Search</h3>
-        <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Keyword..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
-</div>
 
 <div id="YOUTUBE" class="tabcontent">
       <hr>
@@ -359,6 +358,37 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
 	  <br>
 	  <iframe width="560" height="315" src="https://www.youtube.com/embed/ANz0CBa0wyg"
 	  frameborder="0" allowfullscreen></iframe>
+
+			<?php
+    
+$conn = mysql_connect($serverHost, $serverUsername, $serverPassword, $database);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysql_error());
+   }
+   
+   $sql = 'SELECT id, title, content, author FROM posts';
+   mysql_select_db('if16_derkun_shazza');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   
+   while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
+  
+   if($row['author']==7){
+	       echo "id :{$row['id']}  <br> ".
+         "kirjeldus : {$row['title']} <br> ";
+	           echo "Video : {$row['content']} <br> ".
+         "--------------------------------<br>";
+   }
+
+   }
+      
+   mysql_close($conn);
+
+?>
 	  
 </div>
 

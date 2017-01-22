@@ -53,7 +53,7 @@
 	
 		if (isset($_POST["Submit"])){
 		//funktsioon, et salvestada.
-		$insert->insert($_POST["insertTitle"], $_POST["insertArticle"]);
+		$insert->insert($_POST["insertTitle"], $_POST["insertArticle"], $_POST["insertAuthor"]);
 		header("Location: data.php");
 		exit();
 	}
@@ -139,7 +139,6 @@
 <body>
 <ul class="tab">
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'RECENT')">MOST RECENT</a></li>
-  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'GAMES')">GAMES</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'HARDWARE')">HARDWARE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'SOFTWARE')">SOFTWARE</a></li>
   <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'YOUTUBE')">YOUTUBE</a></li>
@@ -213,59 +212,127 @@ Propping up the RX 480 is the core clock speed which has been set at 1120 MHz an
           </div>
 </div>
 
-<div id="GAMES" class="tabcontent">
-  <h2>GAMES</h2>
-  <p>There should be Game related news/reviews/articles here.</p>
-	
-
-
-</div>
-
 <div id="HARDWARE" class="tabcontent">
   <h2>HARDWARE</h2>
-  <p>There should be Harware related news/reviews/articles here.</p>
+	<hr>
+	<?php
+    
+$conn = mysql_connect($serverHost, $serverUsername, $serverPassword, $database);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysql_error());
+   }
+   
+   $sql = 'SELECT id, title, content, author FROM posts';
+   mysql_select_db('if16_derkun_shazza');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   
+   while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
+  
+   if($row['author']==5){
+	       echo "{$row['title']} <br> ";  
+	           echo "{$row['content']} <br> ".
+         "<br>";
+   }
+
+   }
+      
+   mysql_close($conn);
+
+?>
 </div>
 
 <div id="SOFTWARE" class="tabcontent">
   <h2>SOFTWARE</h2>
   <p>There should be Software related news/reviews/articles here.</p>
+		<?php
+    
+$conn = mysql_connect($serverHost, $serverUsername, $serverPassword, $database);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysql_error());
+   }
+   
+   $sql = 'SELECT id, title, content, author FROM posts';
+   mysql_select_db('if16_derkun_shazza');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   
+   while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
+  
+   if($row['author']==6){
+	       echo "id :{$row['id']}  <br> ".
+         "kirjeldus : {$row['title']} <br> ";
+	           echo "korpus : {$row['content']} <br> ".
+         "--------------------------------<br>";
+   }
+
+   }
+      
+   mysql_close($conn);
+
+?>
 </div>
 
 
 <div id="YOUTUBE" class="tabcontent">
       <hr>
-      <h2>Shazza Mate's YouTube</h2>
-	  <br>
-	  <div>
-	  <br>
-	  <font size="4">FX-6300 review!</font>
-	  <br>
-	  <iframe width="560" height="315" src="https://www.youtube.com/embed/4AddwU7EVOg"
-	  frameborder="0" allowfullscreen></iframe>
-	  </div>
-	  <br><br>
-	  
-	  <hr>
-      <h2>Shazza Mate's Favorites</h2>
-	  <br><br>
-	  <font size="3">Stop Supporting NVIDIAs Anti Consumer Practices!!! Why Supporting AMD is Supporting PC Gaming!</font>
-	  <br>
-	  <iframe width="560" height="315" src="https://www.youtube.com/embed/ANz0CBa0wyg"
-	  frameborder="0" allowfullscreen></iframe>
+			<?php
+    
+$conn = mysql_connect($serverHost, $serverUsername, $serverPassword, $database);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysql_error());
+   }
+   
+   $sql = 'SELECT id, title, content, author FROM posts';
+   mysql_select_db('if16_derkun_shazza');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not get data: ' . mysql_error());
+   }
+   
+   while($row = mysql_fetch_array($retval, MYSQL_ASSOC)) {
+  
+   if($row['author']==7){
+	       echo "id :{$row['id']}  <br> ".
+         "kirjeldus : {$row['title']} <br> ";
+	           echo "Video : {$row['content']} <br> ".
+         "--------------------------------<br>";
+   }
+
+   }
+      
+   mysql_close($conn);
+
+?>
 	  
 </div>
 
 <div id="NEW_ARTICLE" class="tabcontent">
   <h2>NEW</h2>
-  <p>There should be Software related news/reviews/articles here.</p>
 	<form method="POST">
 	<label>Title</label><br>
-  <input name="insertTitle" type="varchar(255)" placeholder="Insert title..." >
+  <input id=insertTitle name="insertTitle" type="varchar(255)" placeholder="Insert title...">
 </select>
 <br>
 	<label>New</label><br>
-	<input name="insertArticle" type="text" placeholder="Insert text...">
+	<textarea name="insertArticle" type="text" placeholder="Insert text..." rows="20" cols="100">
+	</textarea>
 	<br><br>
+	<select name="insertAuthor">
+  <option value="5">HARDWARE</option>
+	<option value="6">SOFTWARE</option>
+	<option value="7">YOUTUBE</option>
+</select>
 <br><br>
 	<input name="Submit" type="submit" value="Submit">
 <br><br>
