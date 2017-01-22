@@ -112,7 +112,10 @@ $signupAge = "";
 
 ?>
 
-
+<html>
+<body background="http://orig09.deviantart.net/df1a/f/2013/107/0/6/tv_series_folder_icons_hd_512x512_by_stavrosvran-d621hih.jpg">
+</body>
+</html>
 <?php require("../header.php"); ?>
 
 <div class= "container">
@@ -123,13 +126,13 @@ $signupAge = "";
 
                         <title>Login/signup page</title>
 
-                        <h1>Log in</h1>
+                        <h1 style="color:White;">Log in</h1><br>
 
                         <form method="POST">
 
                             <p style="color:red;"><?=$error;?></p>
 
-                            <label>Username:</label><br>
+                            <label style="color:White;">Username:</label><br>
                             <input name="loginUsername" type="text" class="form-control" value="<?=$loginUsername;?>">
                             <?php echo $loginUsernameError; ?>
                             <br><br>
@@ -141,16 +144,16 @@ $signupAge = "";
                         </form>
 
 
-                        <h1>Create account</h1>
+                        <h1 style="color:White;">Create Account</h1>
                         <form method="POST">
 
-                            <label>Username:</label><br>
+                            <label style="color:White;">Username:</label><br>
                             <input name="signupUsername" type="text" class="form-control" value="<?=$signupUsername;?>">
                             <?php echo $signupUsernameError; ?>
 
                             <br><br>
 
-                            <label>Email:</label><br>
+                            <label style="color:White;">Email:</label><br>
                             <input name="signupEmail" type="email" class="form-control" value="<?=$signupEmail;?>">
                             <?php echo $signupEmailError; ?>
 
@@ -159,9 +162,8 @@ $signupAge = "";
                             <input name="signupPassword" type="password" class="form-control" placeholder="Password">
                             <?php echo $signupPasswordError; ?>
 
-                            <br><br>
-
-                            <label>Age:</label><br>
+                            <br>
+                            <label style="color:White;">Age:</label><br>
                             <input name="signupAge" type="number" class="form-control" value="<?=$signupAge;?>">
 
                             <br><br>
@@ -170,13 +172,10 @@ $signupAge = "";
                 </div>
         </div>
 </div>
-<<<<<<< HEAD
+
         </div>  
                 </div>        
 <?php require("../footer.php"); ?>
 
-=======
-
-
 <?php require("../footer.php"); ?>
->>>>>>> 819f6dfb4157a304a4d6a8fcb18a727af57d57bc
+
