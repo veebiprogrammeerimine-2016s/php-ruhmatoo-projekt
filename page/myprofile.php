@@ -90,11 +90,9 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 </html>
 
 <h1>Your profile</h1>
-<<<<<<< HEAD
-=======
+
 <html>
 <body>
->>>>>>> 44b821d298b11596c691b795f2d9a85de7611f43
 <p>
 <img style="height: 140px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>" class="img-circle">
 
@@ -104,8 +102,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 	<br>
 	<button type="submit" name="submit">Upload</button>
 </form>
-<<<<<<< HEAD
-=======
+
 <h3>Username: <?=$_SESSION["userName"];?></h3>
 <h3>Age: <?=$_SESSION["userAge"]?></h3>
 <h3>E-mail: <?=$_SESSION["userEmail"]?></h3>
@@ -119,16 +116,12 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 		<br>
 		<button type="submit" name="submit">Upload</button>
 	</form>
->>>>>>> 44b821d298b11596c691b795f2d9a85de7611f43
+
 	<br>
 	<p>Username: <?=$_SESSION["userName"];?></p>
 	<p>Age: <?=$_SESSION["userAge"]?></p>
 	<p>E-mail: <?=$_SESSION["userEmail"]?></p>
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 44b821d298b11596c691b795f2d9a85de7611f43
 <?php
 
 //<input name="signupPassword" type="password" >
