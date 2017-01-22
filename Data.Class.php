@@ -32,9 +32,9 @@ Class Data {
 				
 					if($stmt->fetch()){
 					$stmt->store_result();
-					$stmt->close();
+					
 						for($i=0;$i<count($toode);$i++){
-					 
+						$stmt->close();
 							$Sisestatavtoode = $toode[$i];
 					 
 							$Sisestatavhind = str_replace(",",".",$hind[$i]);
@@ -53,17 +53,17 @@ Class Data {
 								ProductName,
 								ProductPrice,
 								CategoryID,
-								PurchaseID
+								PurchaseID,
+								AddedBY
 								)
-								VALUES (?, ?, ?, ?)"
+								VALUES (?, ?, ?, ?, ?)
 								
-								);
+								");
 								
-							$stmt->bind_param("sdii", $Sisestatavtoode, $Sisestatavhind, $Sisestatavkategooria, $purchaseID);
+							$stmt->bind_param("sdiii", $Sisestatavtoode, $Sisestatavhind, $Sisestatavkategooria, $purchaseID, $_SESSION["userId"]);
 								
 							$stmt->execute();
 											
-							var_dump(count($toode));
 							} 
 							
 							echo "edukalt sisestatud";
@@ -83,18 +83,18 @@ Class Data {
 		}
 		
 				function showPurchases() {
-				 
+				
 		
 			$stmt = $this->connection->prepare("
 			
-				SELECT FromShop, Date, Checknumber
+				SELECT FromShop, Date, Checknumber, ID
 				FROM WasteChase_Purchases
 				Where AddedBY = ?
 				");
 			
-			$stmt->bind_param("i", $_SESSION["userID"]);
+			$stmt->bind_param("i", $_SESSION["userId"]);
 			
-			$stmt->bind_result($Shop, $Date, $Check);
+			$stmt->bind_result($Shop, $Date, $Check, $PurchaseID);
 		
 			$stmt->execute();
 			
@@ -107,8 +107,9 @@ Class Data {
 				$purchase->shop = $Shop;
 				$purchase->shopdate = $Date;
 				$purchase->check = $Check;
+				$purchase->id = $PurchaseID;
 			
-					//echo $color."<br>";
+					
 					array_push($table1, $purchase);
 					
 			}
@@ -118,15 +119,15 @@ Class Data {
 		}
 	
 		
-		function showPurchaseContents() {
+		function showPurchaseContents($id) {
 			$stmt = $this->connection->prepare("
 			
 				SELECT ProductName, ProductPrice, CategoryID
 				FROM WasteChase_PurchaseContents
-				Where AddedBY = ?
+				Where AddedBY = ? AND PurchaseID = $id
 				");
 			
-			$stmt->bind_param("i", $_SESSION["userID"]);
+			$stmt->bind_param("i", $_SESSION["userId"]);
 			
 			$stmt->bind_result($Product, $Price, $Category);
 		
@@ -134,15 +135,13 @@ Class Data {
 			
 			$table2 = array();
 			
-			$Categories = array();
+
 			
 			while ($stmt->fetch()) {
 				
 				$purchaseContents = new StdClass();
-				$CategoryTable = new StdClass();
 				$purchaseContents->product = $Product;
 				$purchaseContents->price = $Price;
-				$CategoryTable->id = $Category;
 			
 					//echo $color."<br>";
 					array_push($table2, $purchaseContents);
@@ -152,36 +151,70 @@ Class Data {
 			return $table2;
 			
 			$stmt->close();
-			
+		}	
 		
 		
+		function getCategoryName() {
 
-			for($i=0;$i<count($CategoryTable);$i++){
+			
 				$stmt = $this->connection->prepare("
 				
-				Select ID, Category
-				FROM WasteChase_Categories
-				Where ID = ?
+				SELECT  CategoryID
+				FROM WasteChase_PurchaseContents
+				Where AddedBY = ?
 				
 				");
 				
-				$stmt->bind_param("i", $_SESSION["userID"]);
+			$stmt->bind_param("i", $_SESSION["userId"]);
 				
-				$stmt->bind_result($CategoryName);
+				$stmt->bind_result($CategoryID);
 				
 				$stmt->execute();
 				
-			}
-			while ($stmt->fetch()) {
+				$Categories = array();
 				
-				$CategoryTable->categoryname = $CategoryName;
+				while ($stmt->fetch()) {
+				
+				$CategoryTable = new StdClass();
+				$CategoryTable->categoryid = $CategoryID;
 			
 					//echo $color."<br>";
 					array_push($Categories, $CategoryTable);
 					
 			}
+				
+				$stmt->close();
+				
+				//var_dump($categories);
+				
+				foreach($Categories as $ct){
+					$stmt = $this->connection->prepare("
+				
+					SELECT  Category
+					FROM WasteChase_Categories
+					Where ID = ?
+					
+					");
+				
+				$stmt->bind_param("i", $ct->categoryid);
+				
+				$stmt->bind_result($CategoryName);
+				
+				$stmt->execute();
+				
+				$nimed = array();
 			
-			return $Categories;
+				while ($stmt->fetch()) {
+				$Categooriad = new StdClass();
+				$Categooriad->categoryname = $CategoryName;
+			
+					//echo $color."<br>";
+					array_push($nimed, $Categooriad);
+					
+			}
+				}
+			
+			return $nimed;
 			
 		}
 		

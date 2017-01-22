@@ -17,8 +17,10 @@
 	}
 
 	$purchases = $Data->showPurchases();
+
 	
-	$purchaseContents = $Data->showPurchaseContents();
+	
+
 	//$Categories = $Data->showCategories();
 	
 ?>
@@ -54,18 +56,15 @@
 		
 			<div class="box">
 				<p><?php echo "Siia lehele tuleb üksikute sissekannete list koos selle sorteerimisega";
-				/*
-					$html = "<table>";
-						$html .= "<tr>";
+				
+					$html = "<table border ='1' align = 'center'>";
+						$html .= "<tr >";
 							$html .= "<th>Pood</th>";
 							$html .= "<th>Kuupäev</th>";
 							$html .= "<th>Tšekinumber</th>";
-							$html .="<tr>";
-								$html .= "<th>Toode</th>";
-								$html .= "<th>Hind</th>";
-								$html .= "<th>Kategooria</th>";
+							$html .= "<th>Toode</th>";
+							$html .= "<th>Hind</th>";
 							$html .="</tr>";
-						$html .="</tr>";
 					
 					
 					foreach ($purchases as $p) {
@@ -74,22 +73,41 @@
 							$html .= "<td>".$p->shop."</td>";
 							$html .= "<td>".$p->shopdate."</td>";
 							$html .= "<td>".$p->check."</td>";
-							$html .= "<td><a href='edit.php?id=".$p->id."'>edit.php</a></td>";
+							//$html .= "<td><a href='edit.php?id=".$p->id."'>edit.php</a></td>";
+							$html .= "<td>";
+							
+							$purchaseContents = $Data->showPurchaseContents($p->id);
+							
 							foreach ($purchaseContents as $pc) {
 								
-						$html .= "<tr>";
-							$html .= "<td>".$pc->product."</td>";
-							$html .= "<td>".$p->price."</td>";
-							$html .= "<td>".$p->categoryname."</td>";
-						$html .= "</tr>";
-						echo $html;
+						
+							$html .= $pc->product."<br>";
+							//$html .= "<td>".$pc->price."</td>"."<br>";
+							//$html .= "<td>".$pc->categoryname."</td>";
+							
 							}
+							$html .= "</td>";
+							$html .= "<td>";
+							
+							foreach ($purchaseContents as $pc) {
+								
+						
+							$html .= $pc->price."<br>";
+							//$html .= "<td>".$pc->price."</td>"."<br>";
+							//$html .= "<td>".$pc->categoryname."</td>";
+							
+							}
+							$html .= "</td>";
+						
+							
 						$html .= "</tr>";
-					}
+					
+						}
+					
 					$html .= "</table>";			
 				
 				echo $html;					
-				*/
+					
 				?></p>
 			</div><!--.BOX-->
 			
