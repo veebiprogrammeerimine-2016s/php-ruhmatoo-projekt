@@ -11,6 +11,13 @@ eripäraks võrreldes teiste samalaadsete saitidega on looja enda huumor, arvamu
 selle väljendus. Eeskujuks võib võtta OC3D veebisaiti, LinusTechTips'i foorumit ja
 overclock.net'i.
 
+Saidi eesmärk on võimalus postitada nö blogistiilis arvustusi ja promoda oma loomingut.
+Kujunduse poole pealt jäi aega väheseks ja olen üldiselt õnnelik, et ma sain andmebaasid enamvähem tööle, 
+aga kindlalt oleks ruumi muudatusteks. Oleksin soovinud saada rohkem tegeleda kujundusega, aga üksi seda projekti tehes
+oli päris palju korraga käsile võtta. Ülsidelt töövoog edenes hästi, sest ei pidanud ootama kellegi järele, vaid
+sain tegeleda just sellega mis minu arust parasjagu tööd vajas.
+
+
 	prioriteedid:
 	* Saada kujundus korda
 
