@@ -17,6 +17,10 @@
 ?>
 
 <?php require("../header.php"); ?>
+<html>
+<body background="http://www.returndates.com/backgrounds/NewGirl.jpg">
+</body>
+</html>
 <br>
 <h3>Save some of your TV shows here</h3>
 <form method="POST">

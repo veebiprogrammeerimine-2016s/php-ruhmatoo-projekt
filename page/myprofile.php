@@ -86,7 +86,6 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 
 
 <h1>Your profile</h1>
-<<<<<<< HEAD
 <html>
 <body>
 <p>
@@ -100,9 +99,9 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 <h3>Username: <?=$_SESSION["userName"];?></h3>
 <h3>Age: <?=$_SESSION["userAge"]?></h3>
 <h3>E-mail: <?=$_SESSION["userEmail"]?></h3>
-=======
+
 	<p>
-	<img style="height: 200px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>">
+	<img style="height: 100px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>" class="img-circle">
 
 	<form method="post" enctype="multipart/form-data">
 		<h3>Change your profile picture:</h3>
@@ -114,7 +113,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 	<p>Username: <?=$_SESSION["userName"];?></p>
 	<p>Age: <?=$_SESSION["userAge"]?></p>
 	<p>E-mail: <?=$_SESSION["userEmail"]?></p>
->>>>>>> 819f6dfb4157a304a4d6a8fcb18a727af57d57bc
+
 
 <?php
 
