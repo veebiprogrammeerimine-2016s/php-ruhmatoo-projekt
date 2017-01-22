@@ -84,6 +84,7 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 
 <?php require("../header.php"); ?>
 
+
 <h1>Your profile</h1>
 <html>
 <body>
