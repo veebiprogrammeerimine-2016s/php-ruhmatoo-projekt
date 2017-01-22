@@ -86,36 +86,19 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 
 
 <h1>Your profile</h1>
-<<<<<<< HEAD
-<html>
-<body>
 <p>
 <img style="height: 140px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>" class="img-circle">
 
 <form method="post" enctype="multipart/form-data">
 	<h3>Change your profile picture:</h3>
 	<input type="file" name="fileToUpload">
+	<br>
 	<button type="submit" name="submit">Upload</button>
 </form>
-<h3>Username: <?=$_SESSION["userName"];?></h3>
-<h3>Age: <?=$_SESSION["userAge"]?></h3>
-<h3>E-mail: <?=$_SESSION["userEmail"]?></h3>
-=======
-	<p>
-	<img style="height: 200px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>">
-
-	<form method="post" enctype="multipart/form-data">
-		<h3>Change your profile picture:</h3>
-		<input type="file" name="fileToUpload">
-		<br>
-		<button type="submit" name="submit">Upload</button>
-	</form>
 	<br>
 	<p>Username: <?=$_SESSION["userName"];?></p>
 	<p>Age: <?=$_SESSION["userAge"]?></p>
 	<p>E-mail: <?=$_SESSION["userEmail"]?></p>
->>>>>>> 819f6dfb4157a304a4d6a8fcb18a727af57d57bc
-
 <?php
 
 //<input name="signupPassword" type="password" >
