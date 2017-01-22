@@ -6,5 +6,3 @@ Eeskuju: mõnes mõttes www.drive2.ru, kuid seal funktsionaalsus on väga piirat
 
 
 ![Alt text](garagediary.png?raw=true "Title")
-
-![Alt text](dbscheme.png?raw=true "Title")
