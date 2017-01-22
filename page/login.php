@@ -124,9 +124,9 @@ $signupAge = "";
 
                 <div class="col-sm-3 col-sm-offset-4">
 
-                        <title>Login/signup page</title>
-
-                        <h1>Log in</h1><br>
+                        <title>SeriesPal</title>
+                        <h1>SeriesPal</h1>
+                        <h2>Log in</h2><br>
 
                         <form method="POST">
 
@@ -144,7 +144,7 @@ $signupAge = "";
                         </form>
 
 
-                        <h1>Create Account</h1>
+                        <h2>Create Account</h2>
                         <form method="POST">
 
                             <label>Username:</label><br>
@@ -176,7 +176,7 @@ $signupAge = "";
         </div>  
                 </div>     
 
-                   
+
 <?php require("../footer.php"); ?>
 
 <?php require("../footer.php"); ?>
