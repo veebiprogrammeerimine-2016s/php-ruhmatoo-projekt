@@ -1,4 +1,5 @@
 #SeriesPal
+![Alt text](pilt1.jpg?raw=true "Pilt")
 
 *Rühma kuuluvad: Ege-Rita Noor, Anu Sadam ja Sandra-Annete Tagam
 
