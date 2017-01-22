@@ -1,0 +1,174 @@
+header {
+	background-color: #f2f2f2;
+	width: 960px;
+	height: 96px;
+	margin: 25px auto 0px auto;
+	border-radius: 5px 5px 0px 0px;
+	text-align:center;
+}
+
+.wrapper {
+	width: 960px;
+	min-height: 800px;
+	background-color: white;
+	margin: 0px auto 0px auto;
+	overflow: auto;
+}
+
+.invitation {
+	text-align: center;
+	padding-left: 200px;
+	padding-right: 200px;
+}
+
+.box {
+	text-align: center;
+	background-color: #f2f2f2;
+	margin: 50px 25px 25px 25px;
+	border-radius: 5px;
+	padding: 25px;
+}
+
+.loginPageInput {
+	display: inline-block;
+	float: left;
+	width: 160px;
+	margin-left: 350px;
+	margin-right: 5px;
+}
+
+.inputBox {
+	text-align: left;
+	height: 40px;
+}
+
+.radioInputs {
+	text-align: left;
+	margin-bottom: 17px;
+}
+
+input[type=radio] {
+	display: inline-block;
+	float: left;
+	margin-left: 390px;
+	margin-right: 5px;	
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #f2f2f2;
+	border-radius: 0px 0px 5px 5px;
+}
+
+li {
+    float: left;
+}
+
+#logout {
+	float: right;
+}
+
+#logout > a:hover {
+	color: #f51414;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	
+}
+
+.active {
+	background-color: white;
+}
+
+li a:hover:not(.active) {
+    background-color: #d9d9d9;
+}
+
+.singleInput {
+	width: 275px;
+	float: left;
+}
+
+.singleField {
+	overflow: hidden;
+	width: 100%;
+	height:  50px;
+	border: 1px solid #b3b3b3;
+	border-radius: 5px;
+	padding: 12px 0px;
+	margin: 0px 0px 10px 0px;
+}
+
+.delete {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-color: #fff;
+	border: 1px solid #f51414;
+	border-radius: 5px;
+	font-size: 10px;
+	line-height: 10px;
+	font-weight: bold;
+	cursor: pointer;
+	float: right;
+	margin: -7px 5px;
+}
+
+.delete:hover {
+	background-color: #f51414;
+}
+
+.delete:active {
+	background-color: #f51414;
+	padding: 0;
+}
+
+#storeName {
+	width: 300px;
+	margin-bottom: 20px;
+}
+
+#date, #receiptNumber {
+	margin-bottom: 40px;
+}
+
+.shoppingDate {
+	display: inline-block;
+	float: left;
+	margin-left: 200px
+}
+
+.receiptNumber {
+	display: inline-block;
+	float: right;
+	margin-right: 200px
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
