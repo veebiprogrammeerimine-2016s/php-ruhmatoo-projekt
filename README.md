@@ -1,3 +1,25 @@
+#Anu, Ege, Sandra
+
+*Projekti nimi: Tv shows
+
+*Eesmärk: Luua kasutajasõbralik keskkond, kus inimesed saavad end kurssi viia kuupäevadega,
+millal seriaalid, (albumid ja lood) release'itud on ning saada teateid
+nende kohta
+
+* Suunatud inimestele vanuses: 12-50+
+*Sugu: Kõigile 
+
+*Sarnast teenust pakkuvad leheküljed:
+TV showtime, Pogdesign, Tvguide, (Allmusic)
+
+-Leht1: Sisaldab sisselogimise või kasutaja loomise võimalust
+-Leht2: Seriaalikalender - Lisad sarju ja kalender automaatselt salvestab
+Leht 3: Kasutaja profiil- laseb muuta konto andmeid ja ära eemaldada vajadusel seriaale
+
+
+!##Ege
+##Sandra
+
 # PHP rühmatöö projekt
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 
@@ -43,3 +65,5 @@ git config user.email romilrobtsenkov@users.noreply.github.com
 * **Stiilijuhend:** [Coding Style Guide](http://www.php-fig.org/psr/psr-2/)
 * **GIT õpetus:** [Become a git guru.](https://www.atlassian.com/git/tutorials/)
 * **Abimaterjale:** [Veebirakenduste loomine PHP ja MySQLi abil](http://minitorn.tlu.ee/~jaagup/kool/java/loeng/veebipr/veebipr1.pdf), [PHP with MySQL Essential Training] (http://www.lynda.com/MySQL-tutorials/PHP-MySQL-Essential-Training/119003-2.html)
+
+
