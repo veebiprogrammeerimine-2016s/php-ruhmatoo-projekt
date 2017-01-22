@@ -89,25 +89,40 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 </body>
 </html>
 
-<h1>Your profile</h1>
 
-<html>
-<body>
-<p>
-<img style="height: 140px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>" class="img-circle">
+<div class= "container">
 
-<form method="post" enctype="multipart/form-data">
+        <div class= "row">
+
+                <div class="col-sm-3 col-sm-offset-4">
+                	<h1>Your profile</h1>
+					<html>
+					<body>
+					<p>
+					<img style="height: 140px; width: auto; " src="../profilepics/<?php getProfileURL(); ?>"					 class="img-circle">
+					
+					<form method="post" enctype="multipart/form-data">
 	<h3>Change your profile picture:</h3>
 	<input type="file" name="fileToUpload">
 	<br>
 	<button type="submit" class="btn btn-success btn-xs">Upload</button>
+					
+					</form>
+					
+					<h4>Username: <?=$_SESSION["userName"];?></h4>
+					<h4>Age: <?=$_SESSION["userAge"]?></h4>
+					<h4>E-mail: <?=$_SESSION["userEmail"]?></h4>
+					<br>
 
-</form>
+					<input class = "btn btn-sm btn-success" value="Back to calendar" onclick="location='					calendar.php'" />
+					<br><br>
+					<a href="?logout=2" class="btn btn-warning btn-sm" role="button">Log out</a>
 
-<h4>Username: <?=$_SESSION["userName"];?></h4>
-<h4>Age: <?=$_SESSION["userAge"]?></h4>
-<h4>E-mail: <?=$_SESSION["userEmail"]?></h4>
-
+</p>
+</div>
+		</div>
+				</p>
+				</div>
 <?php
 
 //<input name="signupPassword" type="password" >
@@ -119,11 +134,5 @@ $_SESSION['error'] = "";
 $_SESSION['form_data'] = "";
 ?>
 
-<br>
-<input class = "btn btn-sm btn-success" value="Back to calendar" onclick="location='calendar.php'" />
-<br><br>
-<a href="?logout=2" class="btn btn-warning btn-sm" role="button">Log out</a>
-
-</p>
 
 <?php require("../footer.php"); ?>
