@@ -139,7 +139,7 @@ $signupAge = "";
 
                             <input name="loginPassword" type="password" class="form-control" placeholder="Password">
                             <br><br>
-                            <input class = "btn btn-sm btn-default" type="submit" value="Log in">
+                            <input class = "btn btn-sm btn-success" type="submit" value="Log in">
 
                         </form>
 
@@ -167,7 +167,7 @@ $signupAge = "";
                             <input name="signupAge" type="number" class="form-control" value="<?=$signupAge;?>">
 
                             <br><br>
-                            <input class = "btn btn-sm btn-default" type="submit" value="Create account">
+                            <input class = "btn btn-sm btn-success" type="submit" value="Create account">
                         </form>
                 </div>
         </div>

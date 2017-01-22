@@ -2,6 +2,7 @@
 require('../functions.php'); 
 require('../class/Series.class.php');
 
+
 $day = "";
 $month = "";
 $year = "";
@@ -25,12 +26,12 @@ if(!empty($tvshows)){
 	foreach($tvshows as $t){
 		
 		echo $t->tv_show."<br>";
+		
 		echo "Season ".$t->season."<br>";
 		echo "Episode ".$t->episode."<br>";
 		
 	}
 } else {
-	
 	echo "No shows today.";
 }
 
@@ -38,3 +39,8 @@ echo "<br><br>";
 echo "<a href='calendar.php'>Go Back</a>";
 
 ?>
+
+<html>
+<body background="http://wallpapercave.com/wp/ZzQWCHl.jpg">
+</body>
+</html>

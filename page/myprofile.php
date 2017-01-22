@@ -100,7 +100,8 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]['name'])){
 	<h3>Change your profile picture:</h3>
 	<input type="file" name="fileToUpload">
 	<br>
-	<button type="submit" name="submit">Upload</button>
+	<button type="submit" class="btn btn-success btn-xs">Upload</button>
+
 </form>
 
 <h4>Username: <?=$_SESSION["userName"];?></h4>
@@ -119,9 +120,9 @@ $_SESSION['form_data'] = "";
 ?>
 
 <br>
-<input class = "btn btn-sm btn-default" value="Back to calendar" onclick="location='calendar.php'" />
+<input class = "btn btn-sm btn-success" value="Back to calendar" onclick="location='calendar.php'" />
 <br><br>
-<a href="?logout=2" class="btn btn-info btn-sm" role="button">Log out</a>
+<a href="?logout=2" class="btn btn-warning btn-sm" role="button">Log out</a>
 
 </p>
 

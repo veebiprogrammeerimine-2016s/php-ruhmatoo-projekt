@@ -27,14 +27,15 @@
 	<select name="user_tv_db">
 		<?php getSeriesData() ?>
 	</select>
-	<input type="submit" value="Submit">
+    <button type="submit" class="btn btn-success btn-xs">Submit</button>
 </form>
 
 <link href="calendar.css" type="text/css" rel="stylesheet" />
 <br>
-<input type="button" value="My profile" onclick="location='myprofile'" />
+
+<input class = "btn btn-sm btn-success" value="My profile" onclick="location='myprofile'" />
 <br><br>
-<a href="?logout=2" class="btn btn-info btn-sm" role="button">Log out</a>
+<a href="?logout=2" class="btn btn-warning btn-sm" role="button">Log out</a>
 
 
 <?php
