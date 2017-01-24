@@ -46,7 +46,43 @@ $upc = $pc->postcheck;
 require("../header.php"); 
 
 
-
-
-
 ?>
+
+
+<!-- MenÜÜ -->
+	
+		<ul class="nav nav-pills nav-stacked">
+			<li role="presentation" class="active" ><a href="">Uus toote lisamine</a></li>
+			<li role="presentation"><a href="myposts.php">Minu üleslaetud kuulutuste vaatamine</a></li>
+		</ul>
+	
+	<div class="col-md-12 col-md-offset-0">
+		<div>
+			<h3></h3>
+		</div>
+		<div>
+			<form method="POST">
+				<fieldset <?php echo $newPostBtn; ?>>
+					<label class="btn btn-primary btn-lg btn-block">
+						Loo uus kuulutus<input type="submit" name="newpost" value="true" style="display: none;">
+					</label>
+				</fieldset>
+			</form>
+			<div>
+				<br>
+			</div>
+			<fieldset <?php echo $modifyPostBtn; ?>>
+				<a href="createpost.php?id=<?php echo $newPostId; ?>" class="btn btn-info btn-lg btn-block" role="button">Jätka oma kuulutuse loomist</a>
+			</fieldset>
+		</div>
+	</div>
+
+</div>
+
+<?php require("../footer.php"); ?>
+
+
+
+
+
+
