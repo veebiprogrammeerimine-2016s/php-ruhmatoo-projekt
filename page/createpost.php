@@ -225,6 +225,87 @@ $updateStatus = "";
 	}
 	
 	
+	/*andmete salvestamine vormi*/
+	
+	if(isset($_POST["description"]) && isset($_POST["price"]) && isset($_POST["heading"]) && isset($_POST["condition"])  &&
+		 !empty($_POST["description"]) && !empty($_POST["price"]) && !empty($_POST["heading"]) && !empty($_POST["condition"]) 
+		) {
+		
+		if($imageCheck != 1) {
+			
+			$updateStatus = 1;
+			$Products->saveproduct($_GET["id"], $Helper->cleanInput($_POST["heading"]), $Helper->cleanInput($_POST["condition"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]),  $updateStatus);
+		
+			$recentPostData = $Products->getRecentPostInfo($_GET["id"]);
+			$postStatus = $recentPostData->status;
+			$recentId = $recentPostData->id;
+			
+			$Products->deletePreviousPostVersions($currentId, $recentId);
+			
+			header("Location: createpost.php?id=".$currentId);
+			exit();
+			
+		} else {
+			
+			$updateStatus = 2;
+			$Products->saveproduct($_GET["id"], $Helper->cleanInput($_POST["heading"]), $Helper->cleanInput($_POST["condition"]), $Helper->cleanInput($_POST["description"]), $Helper->cleanInput($_POST["price"]), $updateStatus);
+		
+			$recentPostData = $Products->getRecentPostInfo($_GET["id"]);
+			$postStatus = $recentPostData->status;
+			$recentId = $recentPostData->id;
+			
+			$Products->deletePreviousPostVersions($currentId, $recentId);
+			
+			header("Location: createpost.php?id=".$currentId);
+			exit();
+		}
+	}
+	
+	if(isset($_POST["finishPostSubmit"])) {
+		$Products->finishPost($_GET["id"]);
+		header("Location: data.php");
+		exit();
+	}
+	
+	if(isset($_POST["cancelPostSubmit"])) {
+		
+		$Products->deleteUnfinishedPost($currentId);
+		$Products->finishDeletedPost($currentId);
+		
+		header("Location: data.php");
+		exit();
+	}
+
+	if($imageCheck == 0) {
+		$imageData = "";
+	} else {
+		$imageData = $Products->getImageData($currentId);
+		$imageName = $imageData->name;
+		echo "Image name: ".$imageName."<br>";
+	}
+echo "Image check: ".$imageCheck."<br>";
+$displayedImage = "";
+
+	if($imageCheck == 0) {
+		$displayedImage = "../uploads/Untitled.png";
+	} else {
+		$displayedImage = "../uploads/".$imageName;
+	}
+	
+$usedProducts = "";
+$newProducts = "";
+	
+	if($recentPostCondition == "used") {
+		$usedProducts = "checked";
+	} else {
+		if($recentPostCondition == "new") {
+			$newProducts = "checked";
+		}
+	}
+	
+	
+	
+	
 	
 	
 ?>
