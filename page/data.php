@@ -23,6 +23,28 @@ require("../functions.php");
 	}
 
 
+$newPostBtn = "";
+$modifyPostBtn = "disabled";
+$pc = $Products->ifUserHasCreatedPost();
+$upc = $pc->postcheck;
+
+	if($upc == 0) {
+		$newPostData = "";
+	} else {
+		$newPostData = $Products->getNewPostId();
+		$newPostStatus = $newPostData->status;
+		$newPostId = $newPostData->id;
+		
+		if($newPostStatus == 0) {
+		$newPostBtn = "disabled";
+		$modifyPostBtn = "";
+		} else {
+			$newPostBtn = "";
+			$modifyPostBtn = "disabled";
+		}
+	}
+require("../header.php"); 
+
 
 
 
