@@ -373,6 +373,160 @@ $newProductType = "";
 		}
 	}
 
+	$submitBtn = "";
+$submitUploadBtn = "disabled";
+
+$finishPostBtn = "disabled";
+$cancelPostSubmitBtn = "disabled";
+
+$modifyDataBtn = "disabled";
+$cancelModifyDataBtn = "disabled";
+
+$modifyUploadBtn = "disabled";
+$cancelModifyUploadBtn = "disabled";
+
+$submitDefaultPicBtn = "disabled";
+
+$dataPanelStatus = "panel-primary";
+$uploadPanelStatus = "panel-default";
+
+$finishPostPanelStatus = "panel-default";
+
+
+$dataPanelSubmitBtn = "btn-primary";
+$dataPanelModifyBtn = "btn-default";
+$dataPanelCancelBtn = "btn-default";
+
+$uploadPanelSubmitBtn = "btn-default";
+$uploadPanelModifyBtn = "btn-default";
+$uploadPanelDeleteBtn = "btn-default";
+$uploadPanelCancelBtn = "btn-default";
+
+$finishPostPanelSubmitBtn = "btn-default";
+$finishPostPanelDeleteBtn = "btn-default";
+
+
+
+	if($postStatus === 0) {
+		$submitBtn = "";
+		$submitUploadBtn = "disabled";
+		$finishPostBtn = "disabled";
+		$cancelPostSubmitBtn = "disabled";
+		
+		$modifyDataBtn = "disabled";
+		$cancelModifyDataBtn = "";
+		$modifyUploadBtn = "disabled";
+		$cancelModifyUploadBtn = "disabled";
+		$submitDefaultPicBtn = "disabled";
+		
+		$dataPanelStatus = "panel-primary";
+		$uploadPanelStatus = "panel-default";
+		$finishPostPanelStatus = "panel-default";
+		
+		$dataPanelSubmitBtn = "btn-primary";
+		$dataPanelModifyBtn = "btn-default";
+		$dataPanelCancelBtn = "btn-default";
+
+		$uploadPanelSubmitBtn = "btn-default";
+		$uploadPanelModifyBtn = "btn-default";
+		$uploadPanelDeleteBtn = "btn-default";
+		$uploadPanelCancelBtn = "btn-default";
+
+		$finishPostPanelSubmitBtn = "btn-default";
+		$finishPostPanelDeleteBtn = "btn-default";
+	}
+
+	if($postStatus == 1) {
+		$submitBtn = "disabled";
+		$submitUploadBtn = "";
+		$finishPostBtn = "disabled";
+		$cancelPostSubmitBtn = "";
+		
+		$modifyDataBtn = "";
+		$cancelModifyDataBtn = "disabled";
+		$modifyUploadBtn = "disabled";
+		$cancelModifyUploadBtn = "";
+		$submitDefaultPicBtn = "disabled";
+		
+		$dataPanelStatus = "panel-default";
+		$uploadPanelStatus = "panel-primary";
+		$finishPostPanelStatus = "panel-default";
+		
+		$dataPanelSubmitBtn = "btn-default";
+		$dataPanelModifyBtn = "btn-primary";
+		$dataPanelCancelBtn = "btn-default";
+
+		$uploadPanelSubmitBtn = "btn-primary";
+		$uploadPanelModifyBtn = "btn-default";
+		$uploadPanelDeleteBtn = "btn-default";
+		$uploadPanelCancelBtn = "btn-default";
+
+		$finishPostPanelSubmitBtn = "btn-default";
+		$finishPostPanelDeleteBtn = "btn-default";
+	}
+
+	if($postStatus == 2) {
+		$submitBtn = "disabled";
+		$submitUploadBtn = "disabled";
+		$finishPostBtn = "";
+		$cancelPostSubmitBtn = "";
+		
+		$modifyDataBtn = "";
+		$cancelModifyDataBtn = "disabled";
+		$modifyUploadBtn = "";
+		$cancelModifyUploadBtn = "disabled";
+		$submitDefaultPicBtn = "disabled";
+		
+		$dataPanelStatus = "panel-default";
+		$uploadPanelStatus = "panel-default";
+		$finishPostPanelStatus = "panel-primary";
+		
+		$dataPanelSubmitBtn = "btn-default";
+		$dataPanelModifyBtn = "btn-primary";
+		$dataPanelCancelBtn = "btn-default";
+
+		$uploadPanelSubmitBtn = "btn-default";
+		$uploadPanelModifyBtn = "btn-primary";
+		$uploadPanelDeleteBtn = "btn-default";
+		$uploadPanelCancelBtn = "btn-default";
+
+		$finishPostPanelSubmitBtn = "btn-primary";
+		$finishPostPanelDeleteBtn = "btn-default";
+	}
+	
+	if($postStatus == 3) {
+		$submitBtn = "disabled";
+		$submitUploadBtn = "";
+		$finishPostBtn = "disabled";
+		$cancelPostSubmitBtn = "disabled";
+		
+		$modifyDataBtn = "disabled";
+		$cancelModifyDataBtn = "disabled";
+		$modifyUploadBtn = "disabled";
+		$cancelModifyUploadBtn = "";
+		$submitDefaultPicBtn = "";
+		
+		$dataPanelStatus = "panel-default";
+		$uploadPanelStatus = "panel-primary";
+		$finishPostPanelStatus = "panel-default";
+		
+		$dataPanelSubmitBtn = "btn-default";
+		$dataPanelModifyBtn = "btn-default";
+		$dataPanelCancelBtn = "btn-default";
+
+		$uploadPanelSubmitBtn = "btn-primary";
+		$uploadPanelModifyBtn = "btn-default";
+		$uploadPanelDeleteBtn = "btn-default";
+		$uploadPanelCancelBtn = "btn-default";
+
+		$finishPostPanelSubmitBtn = "btn-default";
+		$finishPostPanelDeleteBtn = "btn-default";
+	}
+	
+require("../header.php"); 
+	
+	
+	
 	
 	
 	
