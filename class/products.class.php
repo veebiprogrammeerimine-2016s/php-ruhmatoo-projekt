@@ -72,6 +72,29 @@ class Products {
 		return $postId;
 	}
 	
+	/*väärtuse tekitamine	createpost.php */
+	function ifUserHasCreatedPostInfo($currentid) {
+		$stmt = $this->connection->prepare("SELECT COUNT(*) AS postcheck
+												FROM (SELECT * FROM prod_postinfo WHERE postid = ? ORDER BY id DESC LIMIT 1) AS i
+												JOIN (SELECT * FROM prod_posts WHERE userid = ?) AS p ON i.postid=p.id");
+		echo $this->connection->error;
+		$stmt->bind_param("ii", $currentid, $_SESSION["userId"]);
+		$stmt->bind_result($postcheck);
+		$stmt->execute();
+		
+		$postCheck = new StdClass();
+		
+		if($stmt->fetch()) {
+			$postCheck->postcheck = $postcheck;
+		} else {
+			echo $stmt->error." Oli mingi kamm postcheckiga..";
+		}
+		$stmt->close();
+		return $postCheck;
+	}
+	
+	
+	
 	
 	
 	
