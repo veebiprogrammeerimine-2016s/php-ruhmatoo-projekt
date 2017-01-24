@@ -15,9 +15,51 @@ require("../functions.php");
 		exit();
 	}
 	
+$postStatus = "";
+$currentId = $_GET["id"];
+$alertMsg = "";
+
+$pcheck = $Products->ifUserHasCreatedPostInfo($currentId);
+$postInfoCheck = $pcheck->postcheck;
+
+$sm_postsId = $Products->getNewPostId();
+$postsId = $sm_postsId->id;
 	
-	
-	
+	if($postInfoCheck == 0) {
+		$postinfoId = 0;
+		
+	} else {
+		$sm_postinfoId = $Products->getRecentPostId($currentId);
+		$postinfoId = $sm_postinfoId->postid;
+		
+	}
+
+	/* kuulutus on alustatud */
+	if($postsId > $postinfoId) {
+		
+		$recentPostHeading = "";
+		$recentPostCondition = "";
+		$recentPostPrice = "";
+		$recentPostDescription = "";
+		
+		
+	} else {
+		
+		$recentPostData = $Products->getRecentPostInfo($_GET["id"]);
+		$postStatus = $recentPostData->status;
+		$recentPostHeading = $recentPostData->heading;
+		$recentPostCondition = $recentPostData->condition;
+		$recentPostPrice = $recentPostData->price;
+		$recentPostDescription = $recentPostData->description;
+		
+	}
+
+/* id ei klapi siis suunatakse tagasi */
+	if($_GET["id"] != $postsId) {
+		header("Location: createpost.php?id=".$postsId);
+		exit();
+	}
+
 	
 	
 	
