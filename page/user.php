@@ -78,6 +78,10 @@
 
 
 
+<?php require("../footer.php"); ?>
+
+
+
 
 
 
