@@ -142,3 +142,98 @@
 	}
 
 ?>
+
+<?php require("../header.php"); ?>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 col-sm-offset-0">
+			<div class="panel panel-primary ">
+				<div class="panel-heading">
+					<h2 class="panel-title">Palun täida väljad</h2>
+				</div>
+				
+				<div class="panel-body">
+					<div class="form-group col-sm-12">
+						<form method="POST">
+							
+							<b><label>*Eesnimi:</label></b> <text style="color:red;"><?php echo $signupFirstnameError; ?></text>
+							<input class="form-control" name="signupFirstname" placeholder="Eesnimi/Firstname" type="text" value="<?=$signupFirstname;?>"> 
+							<br>
+							
+							<b><label>*Perekonnanimi:</label></b> <text style="color:red;"><?php echo $signupLastnameError; ?></text>
+							<input class="form-control" name="signupLastname" placeholder="Perekonnanimi/Lastname" type="text" value="<?=$signupLastname;?>"> 
+							<br>
+						
+							<b><label>*E-mail:</label></b> <text style="color:red;"><?php echo $signupEmailError; ?></text>
+							<input class="form-control" name="signupemail" placeholder="mail@mail.com" type="text" value="<?=$signupemail;?>"> 
+							<br>
+							
+							<b><label>*Sünnikuupäev (Aasta/Kuu/Päev)</label></b> <text style="color:red;"><?php echo $signupBYearError,$signupBMonthError,$signupBDayError; ?></text><br>
+							
+							<div class="form-group col-sm-2">
+								<input class="form-control" name="signupBYear" type="integer" placeholder="1999" value="<?=$signupBYear;?>">
+							</div>
+							<div class="form-group col-sm-2">
+								<input class="form-control" name="signupBDay" type="integer" placeholder="31" value="<?=$signupBDay;?>">
+							</div>
+							<div class="form-group col-sm-2">
+								<input class="form-control" name="signupBMonth" type="integer" placeholder="12" value="<?=$signupBMonth;?>">
+							</div>
+							
+								<br><br><br><br>
+								
+							<b><label>*Sugu:</label></b> <text style="color:red;"><?php echo $signupGenderError; ?></text>
+							<?php if($signupGender == "male") { ?>
+								<input name="signupGender" type="radio" value="male" checked> Male
+							<?php }else { ?>
+								<input name="signupGender" type="radio" value="male"> Male
+							<?php } ?>
+							
+							<?php if($signupGender == "female") { ?>
+								<input name="signupGender" type="radio" value="female" checked> Female
+							<?php }else { ?>
+								<input name="signupGender" type="radio" value="female"> Female
+							<?php } ?>
+							
+							<?php if($signupGender == "other") { ?>
+								<input name="signupGender" type="radio" value="other" checked> Other
+							<?php }else { ?>
+								<input name="signupGender" type="radio" value="other"> Other<br>
+							<?php } ?>
+							<br>
+							
+							
+							<b><label>*Kasutajanimi:</label></b><text style="color:red;"> <?php echo $signupUsernameError; ?></text>
+							<input class="form-control" name="signupUsername" type="text" value="<?=$signupUsername;?>">
+							<br>
+							
+							<b><label>*Parool:</label></b> <text style="color:red;"> <?php echo $signupPasswordError; ?></text>
+							<input class="form-control" name="signuppassword" type="password"> 
+							<br>
+							
+							<b><label>*Sisesta parool uuesti:</label></b> <text style="color:red;"><?php echo $reenterpasswordError; ?></text>
+							<input class="form-control" name="reenterpassword"  type="password"> 
+							<br>
+							</div>
+							<input class="btn btn-primary btn-block visible-xs-block" type="submit" value="Create Kasutaja">
+							<input class="btn btn-primary btn-block btn-sm hidden-xs" type="submit" value="Create Kasutaja">
+							<br>
+							
+						</form>
+				</div>
+			</div>	
+		</div>
+	</div>
+</div>
+<?php require("../footer.php"); ?>
+
+
+
+
+
+
+
+
+
+
