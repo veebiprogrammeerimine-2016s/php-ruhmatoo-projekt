@@ -38,7 +38,17 @@
 <p>
 	Tere tulemast <?=$_SESSION["userEmail"];?> 	<a href="?logout=1">Logi välja</a>
 </p>
-
+<h2>Salvesta hobi</h2>
+<?php
+    
+    $listHtml = "<ul>";
+	foreach($userInterests as $i){
+		$listHtml .= "<li>".$i->interest."</li>";
+	}
+    $listHtml .= "</ul>";
+	echo $listHtml;
+    
+?>
 
 
 
