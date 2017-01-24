@@ -40,7 +40,37 @@
 
 ?>
 
+<?php require("../header.php"); ?>
 
+<div class="container">
+	
+	<div class="row">
+	
+		<div class="col-sm-12 col-sm-offset-0">
+	
+			<h1>Login</h1>
+			<form method="POST">
+				<?php if($error!=""){ ?>
+				<div class="alert alert-danger" role="alert"><?=$error;?></div>
+				<?php } ?>
+				<div class="form-group">
+					<input class="form-control" name="loginuser" placeholder="Kasutaja" type="text" value="<?=$signinuser;?>"> <text style="color:orange;"><?php echo $signinUserError; ?></text>
+				</div>
+				<br>
+				
+				<div class="form-group">
+					<input class="form-control" name="loginpassword" placeholder="Parool" type="password"> <text style="color:orange;"><?php echo $signinPasswordError; ?></text>
+				</div>
+				<br>
+					
+				<input class="btn btn-primary btn-block visible-xs-block" type="submit" value="Logi Sisse">
+				<input class="btn btn-primary btn-block btn-sm hidden-xs" type="submit" value="Logi Sisse">
+			</form>
+			
+		</div>
+	</div>
+</div>
+<?php require("../footer.php"); ?>
 
 
 
