@@ -61,7 +61,65 @@ $postsId = $sm_postsId->id;
 	}
 
 	
+	/*Pilid üleslaadimine*/
+
+if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 	
+	$uploadName = $_FILES["fileToUpload"]["name"];
+	$target_dir = "../uploads/";
+	$target_file = $target_dir.basename($uploadName);
+	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+	$uploadName = uniqid().".".$imageFileType;
+	$target_file = $target_dir.basename($uploadName);
+	$imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+	$uploadTmp = $_FILES["fileToUpload"]["tmp_name"];
+	$uploadSize = $_FILES["fileToUpload"]["size"];
+	
+	$uploadOk = 1;
+	
+// kontroll kas on pilt
+	if(isset($_POST["submitUpload"])) {
+		$check = getimagesize($uploadTmp);
+		if($check !== false) {
+			echo "<br>Fail on pilt - ".$check["mime"].".";
+			$uploadOk = 1;
+			
+		} else {
+			echo "<br>Fail ei ole pilt.";
+			$upload = 0;
+		}
+	}
+	
+// unikaalsuse kontroll
+	if(file_exists($target_file)) {
+		echo "<br>Sellise nimega fail on juba olemas";
+		$uploadOk = 0;
+	}
+	
+// pildiformaatide kontroll
+	if($imageFileType != "jpg" && $imageFileType != "JPG" &&
+		$imageFileType != "png" && $imageFileType != "PNG" &&
+		$imageFileType != "jpeg" && $imageFileType != "JPEG" ) {
+			echo "<br> .jpg, .jpeg, .png formaadid on lubatud";
+			$uploadOk = 0;
+		}
+	
+//  uploadib pildi
+	if($uploadOk == 0) {
+		echo "<br>Faili ei ole üles laetud.";
+		$alertMsg = "<div class='alert alert-default' role='alert'>Faili ei ole üles laetud</div>";
+		
+	} else {
+		if (move_uploaded_file($uploadTmp, $target_file)) {
+			echo "<br>Pilt nimega ".basename($uploadName)." on üles laetud</div>";
+			$alertMsg = "<div class='alert alert-primary' role='alert'>Pilt on üles laetud!</div>";
+			$Products->uploadImages($uploadName, $currentId);
+		} else {
+			echo "<br>Üleslaadimisel ilmnes tõrge.";
+			$alertMsg = "<div class='alert alert-default' role='alert'>Üleslaadimisel ilmnes tõrge</div>";
+		}
+	}
+}
 	
 	
 	
