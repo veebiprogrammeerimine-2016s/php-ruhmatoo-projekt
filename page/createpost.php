@@ -122,7 +122,107 @@ if(isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"]["name"])) {
 }
 	
 	
+	$imageInfo = $Products->ifUserUploadedImage($currentId);
+$imageCheck = $imageInfo->imagecheck;
+$updateStatus = "";
+
+	if(isset($_POST["submitUpload"])) {
+		
+		if($imageCheck == 0) {
+		
+		$updateStatus = 2;
+		$Products->updatePostStatus($updateStatus, $currentId);
+		$Products->uploadImages("Untitled.png", $currentId);
+
+		$recentImageInfo = $Products->getImageData($currentId);
+		$recentImageId = $recentImageInfo->id;
+		
+		$Products->deletePreviousImages($currentId, $recentImageId);
+		
+		header("Location: createpost.php?id=".$currentId);
+		exit();	
+			
+		} else {
+		
+		$updateStatus = 2;
+		$Products->updatePostStatus($updateStatus, $currentId);
+		
+		$recentImageInfo = $Products->getImageData($currentId);
+		$recentImageId = $recentImageInfo->id;
+		
+		$Products->deletePreviousImages($currentId, $recentImageId);
+		header("Location: createpost.php?id=".$currentId);
+		exit();	
+			
+		}
+	}
+	if(isset($_POST["backToData"])) {
+		
+		$updateStatus = 0;
+		$Products->updatePostStatus($updateStatus, $currentId);
+		
+		header("Location: createpost.php?id=".$currentId);
+		exit();
+	}
 	
+	if(isset($_POST["cancelModifyData"]) && $imageCheck == 0) {
+		
+		$updateStatus = 1;
+		$Products->updatePostStatus($updateStatus, $currentId);
+		
+		header("Location: createpost.php?id=".$currentId);
+		exit();
+	}
+	
+	if(isset($_POST["backToUpload"])) {
+		
+		$updateStatus = 3;
+		$Products->updatePostStatus($updateStatus, $currentId);
+		
+		header("Location: createpost.php?id=".$currentId);
+		exit();
+	}
+	
+	
+	if(isset($_POST["cancelModifyUpload"])) {
+		
+		if($postStatus == 3) {
+			
+			$updateStatus = 2;
+			$Products->updatePostStatus($updateStatus, $currentId);
+			header("Location: createpost.php?id=".$currentId);
+			exit();
+		} else {
+			$updateStatus = 2;
+			$Products->updatePostStatus($updateStatus, $currentId);
+			
+			$Products->uploadImages("Untitled.png", $currentId);
+			
+			header("Location: createpost.php?id=".$currentId);
+			exit();
+			
+		}
+	}
+	
+	
+	if(isset($_POST["submitDefaultPic"])) {
+		$updateStatus = 2;
+		$Products->updatePostStatus($updateStatus, $currentId);
+		$Products->uploadImages("Untitled.png", $currentId);
+		$recentImageInfo = $Products->getImageData($currentId);
+		$recentImageId = $recentImageInfo->id;
+		$Products->deletePreviousImages($currentId, $recentImageId);
+		header("Location: createpost.php?id=".$currentId);
+		exit();
+	}
+	
+	
+	if(isset($_POST["cancelModifyData"]) && $imageCheck == 1) {
+		$updateStatus = 2;
+		$Products->updatePostStatus($updateStatus, $currentId);
+		header("Location: createpost.php?id=".$currentId);
+		exit();
+	}
 	
 	
 	
