@@ -32,6 +32,48 @@ class Products {
 		$stmt->close();
 	}
 		
+		/*tõe või väära väärtuse loomine 0,1 */
+
+	function ifUserHasCreatedPost() {
+		$stmt = $this->connection->prepare("SELECT COUNT(max) AS postcheck FROM (SELECT MAX(id) AS max FROM prod_posts WHERE userid = ?) AS t");
+		echo $this->connection->error;
+		$stmt->bind_param("i", $_SESSION["userId"]);
+		$stmt->bind_result($postcheck);
+		$stmt->execute();
 		
+		$userPostCheck = new StdClass();
+		if($stmt->fetch()) {
+			$userPostCheck->postcheck = $postcheck;
+		} else {
+			echo "ei saanud postchecki";
+		}
+		$stmt->close();
+		return $userPostCheck;
+	}
+	
+	/*viimane rida andmebaasist	data.php, createpost.php */
+
+	function getNewPostId() {
+		$stmt = $this->connection->prepare("SELECT id, status FROM prod_posts WHERE userid = ? ORDER BY id DESC LIMIT 1");
+		echo $this->connection->error;
+		$stmt->bind_param("i", $_SESSION["userId"]);
+		$stmt->bind_result($id, $status);
+		$stmt->execute();
+		
+		$postId = new StdClass();
+		
+		if($stmt->fetch()) {
+			$postId->id = $id;
+			$postId->status = $status;
+		} else {
+			echo $stmt->error." error";
+		}
+		$stmt->close();
+		return $postId;
+	}
+	
+	
+	
+	
 		
 	?>
