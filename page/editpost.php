@@ -70,8 +70,84 @@ if($checkId == 0) {
 
 require("../header.php");
 
-
-
-
-
 ?>
+
+
+
+<div class="container">
+
+	<ul class="nav nav-pills nav-stacked">
+		<li role="presentation"><a href="createpost.php">Uue kuulutuse loomine</a></li>
+		<li role="presentation"><a href="myposts.php">Minu üleslaetud kuulutuste vaatamine</a></li>
+	
+	</ul>
+	
+	<div>
+		<h3></h3>
+	</div>
+
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+				
+					<form method="POST">
+						
+						<div class="form-group">
+							<label for="heading">Pealkiri</label>
+							<input type="text" name="heading" class="form-control" placeholder="Kuulutuse pealkiri" id="heading" value="<?php echo $recentPostHeading; ?>">
+						</div>
+						<div>
+							<label>Kasutatud / Uus</label>
+							<div class="radio">
+								<label>
+									<input type="radio" name="condition" id="condition1" value="used" <?php echo $usedProduct; ?>> Kasutatud
+								</label>
+								<label>
+									<input type="radio" name="condition" id="condition2" value="new" <?php echo $newProduct; ?>> Uus
+								</label>
+							</div>
+						
+						</div>
+											
+						<div class="form-group">	
+							<label for="price">Hind</label>
+							<input type="integer" name="price" class="form-control" placeholder="€" id="price" value="<?php echo $recentPostPrice; ?>">
+						</div>
+
+						<div class="form-group">
+							<label for="description">Kirjeldus</label>
+							<textarea type="text" name="description" cols="40" rows="2" maxlength="50" placeholder="Lühikirjeldus" class="form-control" id="description"><?php echo $recentPostDescription; ?></textarea>
+						</div>
+						
+						<div class="form-group">
+							<input type="submit" name="submit" value="Salvesta muudatused" class="btn btn-primary btn-lg btn-block">
+						</div>
+
+					</form>
+					
+					<form method="POST">
+						<div class="form-group">
+							<input type="submit" name="delete" value="Kustuta kuulutus" class="btn btn-warning btn-lg btn-block">
+						</div>
+					</form>
+					
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
