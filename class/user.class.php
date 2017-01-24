@@ -1,11 +1,11 @@
 <?php
-
 class User {
 	
 		private $connection;
 		function __construct($mysqli){
 			$this->connection=$mysqli;
 		}
+		
 	function signUp ($email, $password, $fistname, $lastname, $gender, $username, $DoB) {
 		$stmt = $this->connection->prepare("INSERT INTO prod_users(firstname, lastname, dateofbirth, gender, username, email, password, userlevel) VALUES(?, ?, ?, ?, ?, ?, ?, 1)");
 		echo $this->connection->error;
@@ -18,7 +18,7 @@ class User {
 		$stmt->close();
 		$this->connection->close();
 	}
-	
+
 	function login($username, $password) {
 		$error="";
 		$stmt = $this->connection->prepare("SELECT id, username, password, created, userlevel FROM prod_users WHERE username=?");
@@ -44,7 +44,5 @@ class User {
 		}
 		return $error;
 	}
-
-
-
+}
 ?>
