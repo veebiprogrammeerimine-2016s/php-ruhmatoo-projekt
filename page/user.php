@@ -32,3 +32,22 @@
 	$userInterests = $Interest->getAllUserInterests();
 ?>
 <?php require("../header.php"); ?>
+
+<h1><a href="data.php"> < tagasi</a> Kasutaja leht</h1>
+<?=$msg;?>
+<p>
+	Tere tulemast <?=$_SESSION["userEmail"];?> 	<a href="?logout=1">Logi välja</a>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
