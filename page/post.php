@@ -114,7 +114,31 @@ require("../header.php");
 		</div>
 	</div>
 </div>
+<?php
 
+$allComments = $Products->getAllComments($_GET["id"]);
+	$html = "<div class='col-md-12'><div class='row'>";
+		
+	foreach($allComments as $allc) {
+		$html .= "<div class='panel panel-default'>";
+			$html .= "<form method='POST' class='form-horizontal'>";
+				$html .= "<div class='form-group'>";
+				$html .= "<label class='col-md-1 control-label'>".$allc->username."</label>";
+					$html .= "<div class='col-md-6 col-md-offset-1'>";
+						$html .= "<p class='form-control-static'>".$allc->comment."</p>";
+					$html .= "</div>";
+				$html .= "</div>";
+			$html .= "</form>";
+		$html .= "</div>";
+	}
+	
+	$html .= "</div></div>";
+	
+	echo $html;
+
+?>
+
+<?php require("../footer.php"); ?>
 
 
 
