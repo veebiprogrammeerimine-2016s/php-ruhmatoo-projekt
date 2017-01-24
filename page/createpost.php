@@ -303,7 +303,76 @@ $newProducts = "";
 		}
 	}
 	
+	$postHeading = "";
+$postCondition = "";
+$postPrice = "";
+$postDescription = "";
+
+
+$formHeadingError = "";
+$formConditionError = "";
+$formPriceError = "";
+$formDescriptionError = "";
+
+
+
+	if(isset($_POST["heading"] )) {
+		if(empty($_POST["heading"] )) {
+			$formHeadingError = "errorror";
+		} else {
+			$postHeading = $_POST["heading"];
+		}
+	}
 	
+	
+	
+	if(isset($_POST["type"] )) {
+		if(empty($_POST["type"] )) {
+			$formTypeError = "error";
+		} else {
+			$postType = $_POST["type"];
+		}
+	}
+	
+	if(isset($_POST["condition"] )) {
+		if(empty($_POST["condition"] )) {
+			$formConditionError = "error";
+		} else {
+			$postCondition = $_POST["condition"];
+		}
+	}
+	
+	if(isset($_POST["price"] )) {
+		if(empty($_POST["price"] )) {
+			$formPriceError = "error";
+		} else {
+			$postPrice = $_POST["price"];
+		}
+	}
+	
+	if(isset($_POST["description"] )) {
+		if(empty($_POST["description"] )) {
+			$formDescriptionError = "error";
+		} else {
+			$postDescription = $_POST["description"];
+		}
+	}
+	
+	if($postCondition == "" && isset($_POST["submit"])) {
+		$formConditionError = "error";
+	}
+	
+$usedProductType = "";
+$newProductType = "";
+	
+	if($postCondition == "used") {
+		$usedProductType = "checked";
+	} else {
+		if($postCondition == "new") {
+			$newProductType = "checked";
+		}
+	}
+
 	
 	
 	
