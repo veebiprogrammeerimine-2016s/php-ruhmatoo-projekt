@@ -25,7 +25,18 @@
 		
 	}
 	
-	
+	function updateproduct($contactemail, $description, $price){
+        $database = "if16_martkasa_2";
+		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $database);
+		$stmt = $mysqli->prepare("UPDATE products SET description=?, price=? WHERE contactemail=?");
+		$stmt->bind_param("sss",$description, $price, $contactemail);
+		if($stmt->execute()){
+			echo "salvestus õnnestus!";
+		}
+		$stmt->close();
+		$mysqli->close();
+		
+	}
 	
 	
 
