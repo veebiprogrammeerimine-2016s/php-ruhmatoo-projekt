@@ -49,7 +49,26 @@ if(isset($_POST["description"]) && isset($_POST["price"]) && isset($_POST["headi
 		exit();
 	}
 	
+$usedProduct = "";
+$newProduct = "";
+	
+	if($recentPostCondition == "used") {
+		$usedProduct = "checked";
+	} else {
+		if($recentPostCondition == "new") {
+			$newProduct = "checked";
+		}
+	}
 
+$checkPostId = $Products->checkModifiedPost($currentId);
+$checkId = $checkPostId->postcheck;
+
+if($checkId == 0) {
+	header("Location: myposts.php");
+	exit();
+}
+
+require("../header.php");
 
 
 
