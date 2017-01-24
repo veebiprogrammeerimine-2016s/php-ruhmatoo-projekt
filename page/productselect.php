@@ -79,3 +79,30 @@ require("../header.php");
 </body>
 </html>
 <br><br>
+
+
+<div class="col-sm-10 col-sm-offset-1">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<form>
+				<div class="col-lg-12">
+					<div class="input-group">
+					  <input type="search" class="form-control" placeholder="Search" name="q" value="<?=$q;?>">
+					  <span class="input-group-btn">
+						<input class="btn btn-primary" type="submit" value="Search!" >
+					  </span>
+					</div>
+				  </div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
