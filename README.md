@@ -1,6 +1,8 @@
 # PHP rühmatöö projekt
 **Rühmatööde demo päev** on valitud eksamipäev jaanuaris, kuhu tullakse terve rühmaga koos!
 
+muutmine
+
 ## Tööjuhend
 1. Üks rühma liikmetest _fork_'ib endale käesoleva repositooriumi ning annab teistele kirjutamisõiguse/ligipääsu (_Settings > Collaborators_)
 1. Muudate vastavalt _git config_'ut
@@ -27,7 +29,7 @@ git config user.email romilrobtsenkov@users.noreply.github.com
     * andmebaasi skeem loetava pildina + tabelite loomise SQL laused (kui keegi teine tahab seda tööle panna);
     * **kokkuvõte:** mida õppisid juurde? mis ebaõnnestus? mis oli keeruline? (kirjutab iga tiimi liige).
 
-
+lisa
 2. **Veebirakenduse nõuded:**
     * rakendus on terviklik (täidab mingit funktsiooni ja sellega saab midagi teha);
     * terve arenduse ajal on kasutatud _git_'i ja _commit_'ide sõnumid annavad edasi tehtud muudatuste sisu; 
