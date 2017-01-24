@@ -55,17 +55,23 @@
 			$signupemail = $_POST["signupemail"];
 		}
 		
-		if(isset($_POST["signupGender"])) {
-			$signupGender = $_POST["signupGender"];
+		if(isset($_POST["signuppassword"])){
+		if(empty($_POST["signuppassword"])){
+			$signupPasswordError= "See vali on kohustuslik";
 		} else {
-			$signupGenderError= "See vali on kohustuslik";
+			if( strlen($_POST["signuppassword"]) <8 ){
+				$signupPasswordError = "Parool peab olema vahemalt 8 tahemarki pikk";
+			}
 		}
-		
-		if(empty($_POST["signupAge"])) {
-			$signupAgeError= "See vali on kohustuslik";	
+	}
+	
+		if(isset($_POST["reenterpassword"])){
+		if($_POST["reenterpassword"] == $_POST["signuppassword"]){			
+			$reenterpasswordError= "";
 		} else {
-			$signupAge = $_POST["signupAge"];
+			$reenterpasswordError= "Parool peab olema sama";
 		}
+	}
 
 
 
