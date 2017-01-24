@@ -22,7 +22,6 @@ require("../functions.php");
 		exit();
 	}
 
-
 $newPostBtn = "";
 $modifyPostBtn = "disabled";
 $pc = $Products->ifUserHasCreatedPost();
@@ -44,11 +43,12 @@ $upc = $pc->postcheck;
 		}
 	}
 require("../header.php"); 
-
-
 ?>
 
 
+<div class="container">
+	
+	
 <!-- MenÜÜ -->
 	
 		<ul class="nav nav-pills nav-stacked">
@@ -80,9 +80,3 @@ require("../header.php");
 </div>
 
 <?php require("../footer.php"); ?>
-
-
-
-
-
-
