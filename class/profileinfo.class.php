@@ -23,16 +23,26 @@ class ProfileInfo {
 		}
 	}
 	
+	
 	function profileGender() {
 		
 		$error="";
+		
 		$stmt = $this->connection->prepare("SELECT gender FROM prod_user WHERE id=?");
+	
 		echo $this->connection->error;
+		
+
 		$stmt->bind_param("i", $_SESSION["userId"]);
+
 		$stmt->bind_result($profileGender);
+		
 		$stmt->execute();
+		
 		if($stmt->fetch()){
+			
 			echo $profileGender;
+			
 		}
 	}
 	
