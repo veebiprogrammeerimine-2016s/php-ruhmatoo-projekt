@@ -100,7 +100,30 @@ require("../header.php");
 </div>
 
 
+<!--  Tooted -->
+<div class="container">
+<?php
+	$html = "<div class='row'>";
+		
+	foreach($allPosts as $p) {
+		$html .= "<div class='col-md-2'>";
+			$html .= "<div class='thumbnail'>";
+				$html .= "<img src='../uploads/".$p->name."'>";
+				$html .= "<div class='caption'>";
+					$html .= "<h3>".$p->heading."</h3>";
+					$html .= "<p>".$p->description."</p>";
+					$html .= "<p><a href='post.php?id=".$p->postid."' class='btn btn-default' role='button'>Kuva</a></p>";
+				$html .= "</div>";
+			$html .= "</div>";
+		$html .= "</div>";
+	}
+	$html .= "</div>";
+	echo $html;
 
+?>
+</div>
+
+<?php require("../footer.php"); ?>
 
 
 
