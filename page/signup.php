@@ -63,7 +63,7 @@
 				$signupPasswordError = "Parool peab olema vahemalt 8 tahemarki pikk";
 			}
 		}
-	}
+		}
 	
 		if(isset($_POST["reenterpassword"])){
 		if($_POST["reenterpassword"] == $_POST["signuppassword"]){			
@@ -71,13 +71,56 @@
 		} else {
 			$reenterpasswordError= "Parool peab olema sama";
 		}
+		}
+
+		if(isset($_POST["signupGender"])) {
+			$signupGender = $_POST["signupGender"];
+		} else {
+			$signupGenderError= "See vali on kohustuslik";
+		}
+		
+		if(empty($_POST["signupAge"])) {
+			$signupAgeError= "See vali on kohustuslik";	
+		} else {
+			$signupAge = $_POST["signupAge"];
+		}
+
+
+		if(empty($_POST["signupBDay"])) {
+			$signupBDayError= "Paev ";
+		} else {
+			
+			if(32>($_POST["signupBDay"])) {
+				$signupBDay = $_POST["signupBDay"];
+			} else {
+				$signupBDayError="Sellist paeva pole ";
+			}
+		}
+		
+		if(empty($_POST["signupBMonth"])) {
+			$signupBMonthError= "Kuu ";
+		} else {
+			if(13>($_POST["signupBMonth"])) {
+				$signupBMonth = $_POST["signupBMonth"];
+			} else {
+				$signupBMonthError="Sellist kuud pole ";
+			}
+		}
+		
+		if(empty($_POST["signupBYear"])) {
+			
+			$signupBYearError= "Aasta ";
+			
+		} else {
+			
+			if(2017>($_POST["signupBYear"])) {
+				$signupBYear = $_POST["signupBYear"];
+			} else {
+				$signupBYearError="Sellist aastat pole ";
+			}
+		}
+		
 	}
-
-
-
-
-
-
 
 
 
