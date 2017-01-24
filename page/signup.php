@@ -30,7 +30,42 @@
 	$signupBYear = "";
 	$signupBYearError = "";
 
-
+	if(isset($_POST["signupemail"])){
+		if(empty($_POST["signupFirstname"])) {
+			$signupFirstnameError= "See vali on kohustuslik";
+		} else {
+			$signupFirstname = $_POST["signupFirstname"];
+		}
+		
+		if(empty($_POST["signupLastname"])) {
+			$signupLastnameError= "See vali on kohustuslik";
+		} else {
+			$signupLastname = $_POST["signupLastname"];
+		}
+		
+		if(empty($_POST["signupUsername"])) {
+			$signupUsernameError= "See vali on kohustuslik";
+		} else {
+			$signupUsername = $_POST["signupUsername"];
+		}
+		
+		if(empty($_POST["signupemail"])){
+			$signupEmailError= "See vali on kohustuslik";
+		}else{
+			$signupemail = $_POST["signupemail"];
+		}
+		
+		if(isset($_POST["signupGender"])) {
+			$signupGender = $_POST["signupGender"];
+		} else {
+			$signupGenderError= "See vali on kohustuslik";
+		}
+		
+		if(empty($_POST["signupAge"])) {
+			$signupAgeError= "See vali on kohustuslik";	
+		} else {
+			$signupAge = $_POST["signupAge"];
+		}
 
 
 
