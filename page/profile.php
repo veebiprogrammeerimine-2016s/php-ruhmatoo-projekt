@@ -28,3 +28,26 @@
 	Age: <?php $ProfileInfo->profileAge(); ?><br>
 	Created: <?php $ProfileInfo->profileCreated(); ?>
 </h3>
+<h1>Market</h1>
+<?php
+
+	$html = "<table>";
+	
+	$html .= "<tr>";
+		$html .= "<th>Contact E-Mail</th>";
+		$html .= "<th>Description</th>";
+		$html .= "<th>Price (€)</th>";
+	$html .= "</tr>";
+	
+	foreach($productdata as $p) {
+		
+		$html .= "<tr>";
+			$html .= "<td>".$p->contactemail."</td>";
+			$html .= "<td>".$p->description."</td>";
+			$html .= "<td>".$p->price."</td>";
+		$html .= "</tr>";
+	}
+	$html .= "</table>";
+	echo $html;
+?>
+<?php require("../footer.php"); ?>
