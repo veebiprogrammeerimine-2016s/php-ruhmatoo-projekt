@@ -18,9 +18,32 @@ class User {
 		$stmt->close();
 		$this->connection->close();
 	}
-
-
-
+	
+	function login($username, $password) {
+		$error="";
+		$stmt = $this->connection->prepare("SELECT id, username, password, created, userlevel FROM prod_users WHERE username=?");
+		echo $this->connection->error;
+		$stmt->bind_param("s", $username);
+		$stmt->bind_result($id, $usernameFromDb,$passwordFromDb, $created, $userlevel);
+		$stmt->execute();
+		if($stmt->fetch()){
+			$hash=hash("sha512", $password);
+			if($hash==$passwordFromDb){
+				
+				echo"Kasutaja logis sisse ".$id;
+				$_SESSION["userId"]=$id;
+				$_SESSION["username"]=$usernameFromDb;
+				$_SESSION["userlevel"]=$userlevel;
+				header("Location: productselect.php");
+				exit();
+			}else {
+				$error="Vale parool";
+			}
+		}else{
+			$error="Ei ole sellist emaili";
+		}
+		return $error;
+	}
 
 
 
