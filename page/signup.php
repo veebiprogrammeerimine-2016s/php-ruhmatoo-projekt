@@ -121,16 +121,24 @@
 		}
 		
 	}
+	if(isset($_POST["signupemail"]) &&		isset($_POST["signuppassword"]) &&			isset($_POST["signupFirstname"]) &&
+		isset($_POST["signupLastname"]) &&		isset($_POST["signupGender"]) &&		isset($_POST["signupUsername"]) &&
+		isset($_POST["signupBDay"]) &&		isset($_POST["signupBMonth"]) &&		isset($_POST["signupBYear"]) &&
+		$signupEmailError=="" &&
+		$signupPasswordError=="" &&
+		$signupFirstnameError=="" &&
+		$signupLastnameError=="" &&
+		$signupGenderError=="" &&
+		$signupUsernameError=="" &&
+		$signupBDayError=="" &&
+		$signupBMonthError=="" &&
+		$signupBYearError==""
+		) {
+		
+		$signupDoB = $signupBYear . '-' . $signupBMonth . '-' . $signupBDay;
+		$password = hash("sha512", $_POST["signuppassword"]);
 
-
-
-
-
-
-
-
-
-
-
+		$User->signUp($Helper->cleanInput($signupemail), $Helper->cleanInput($password), $Helper->cleanInput($signupFirstname), $Helper->cleanInput($signupLastname), $Helper->cleanInput($signupGender), $Helper->cleanInput($signupUsername), $Helper->cleanInput($signupDoB)); 	
+	}
 
 ?>
